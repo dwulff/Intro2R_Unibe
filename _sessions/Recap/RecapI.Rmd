@@ -1,0 +1,182 @@
+---
+title: "Recap"
+author: "Introduction to Data Science with R<br/><a href='https://therbootcamp.github.io'>www.therbootcamp.com</a><br/><a href='https://twitter.com/therbootcamp'>@therbootcamp</a>"
+date: "October 2018"
+output:
+  xaringan::moon_reader:
+    css: ["default", "baselrbootcamp.css"]
+    lib_dir: libs
+    nature:
+      highlightStyle: github
+      highlightLines: true
+      countIncrementalSlides: false
+      ratio: '16:9'
+---
+
+layout: true
+
+<div class="my-footer"><span>
+<a href="https://therbootcamp.github.io/"><font color="#7E7E7E">Introduction to Data Science with R, October 2018</font></a>
+&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
+&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
+<a href="https://therbootcamp.github.io/"><font color="#7E7E7E">www.therbootcamp.com</font></a>
+</span></div> 
+
+
+
+---
+
+```{r setup, include=FALSE}
+options(htmltools.dir.version = FALSE)
+# see: https://github.com/yihui/xaringan
+# install.packages("xaringan")
+# see: 
+# https://github.com/yihui/xaringan/wiki
+# https://github.com/gnab/remark/wiki/Markdown
+options(width=110)
+options(digits = 4)
+```
+
+
+# Essentials: The 2<sup>4</sup> Lessons of the R Bootcamp
+
+.pull-left4[
+1. Everything is an object
+2. Use `<-` to create/change objects
+3. Name objects using `_`
+4. Objects have classes
+5. Everything happens through functions
+6. Functions have (default) arguments
+7. Functions expect certain object classes
+8. View help files using `?`
+9. Study errors and warnings
+10. Data is stored in data frames
+11. Select variables (vectors) using `$`
+12. Use RStudio and projects
+13. Use editor and shortcuts
+14. First load packages and data
+15. Use auto-complete
+16. Comment and format for readability
+]
+
+---
+
+# 3 Object types for data
+
+.pull-left4[
+
+R has 3 main data objects...
+
+<high>`list`</high> - R's multi-purpose container
+- Can carry any data, incl. lists
+- Often used for function outputs
+
+<high>`data_frame`</high> - R's spreadsheet
+- Specific type of `list`
+- Typical data format
+- For multi-variable data sets
+
+<high>`vectors`</high> - R's data container
+- Actually carries the data
+- Contain data of 1 of many types
+
+]
+
+.pull-right55[
+<img src="https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/main_objects.png"></img>
+]
+
+
+
+---
+
+.pull-left4[
+
+# Functions
+
+Functions have 3 elements:
+
+1 - <high>Name</high>: Used to refer to the function and call (execute) it.
+
+2 - <high>Arguments</high>: Used to provide (data) inputs and to control what the function does. Arguments with default values (e.g., `use = "everything"`) need not be specified. Arguments without default values (e.g., `x`) need be specified. <high>Inputs must have the appropriate class!</high>
+
+3 - <high>Body</high>: The code that uses the inputs (arguments) to produce the desired output. The code of the functions body is based <high>copies of the inputs</high>, which are named according to the arguments names. 
+
+]
+
+.pull-right55[
+  <br><br>
+  <img src="https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/function.png"></img>
+]
+
+---
+
+# Documentation
+
+.pull-left5[
+
+R documentation (<high>help files</high> and <high>vignettes</high>) will become very to use once you are familiar with the basic R vocabulary. 
+
+Pay attention to...
+
+<high>Usage</high> - shows how to use function, its arguments and their defaults.<br><high>Arguments</high> - describes arguments, and their `class`.<br><high>Value</high> - describes what the function returns.<br><high>Examples</high> - provide working R code.
+
+```{r, eval = F}
+# To access help files
+?name_of_function
+
+# search help files
+??name_of_function
+
+```
+
+]
+
+.pull-right5[
+```{r}
+?cor
+```
+<p align="center"><img src="https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/help_cor.png" width="500"></p>
+]
+
+---
+
+# The almighty `tidyverse`
+
+Among its many packages, R newly contains a collection of high-performance, user-friendly packages (libraries)  known as the [tidyverse](https://www.tidyverse.org/). The tidyverse includes:
+1. `ggplot2` -- creating graphics.
+2. `dplyr` -- data manipulation.
+3. `tidyr` -- tidying data.
+4. `readr` -- read wild data.
+5. `purrr` -- functional programming.
+6. `tibble` -- modern data frame.
+<br><br>
+
+```{r, out.height = "200px", echo = F}
+knitr::include_graphics("http://d33wubrfki0l68.cloudfront.net/0ab849ed51b0b866ef6895c253d3899f4926d397/dbf0f/images/hex-ggplot2.png")
+knitr::include_graphics("http://d33wubrfki0l68.cloudfront.net/071952491ec4a6a532a3f70ecfa2507af4d341f9/c167c/images/hex-dplyr.png")
+knitr::include_graphics("http://d33wubrfki0l68.cloudfront.net/5f8c22ec53a1ac61684f3e8d59c623d09227d6b9/b15de/images/hex-tidyr.png")
+knitr::include_graphics("http://d33wubrfki0l68.cloudfront.net/66d3133b4a19949d0b9ddb95fc48da074b69fb07/7dfb6/images/hex-readr.png")
+knitr::include_graphics("http://d33wubrfki0l68.cloudfront.net/9221ddead578362bd17bafae5b85935334984429/37a68/images/hex-purrr.png")
+knitr::include_graphics("http://d33wubrfki0l68.cloudfront.net/f55c43407ae8944b985e2547fe868e5e2b3f9621/720bb/images/hex-tibble.png")
+```
+
+---
+
+.pull-left35[
+<br><br><br><br><br><br><br><br><br>
+
+<p align="center">
+  <font size=8><hfont><high>Questions?</high></hfont></font><br>
+  <font size = 4><a href = "https://therbootcamp.github.io/BaselRBootcamp_2018July/">Link to schedule</a></font>
+</p>
+
+]
+
+
+.pull-right6[
+
+<img src="https://github.com/therbootcamp/therbootcamp.github.io/blob/master/_sessions/_image/schedule_2018Jul.png?raw=true" height="580" align="right">
+
+
+]

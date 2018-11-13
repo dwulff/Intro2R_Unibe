@@ -1,0 +1,1173 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Analysing</title>
+    <meta charset="utf-8">
+    <meta name="author" content="Introduction to Data Science with R www.therbootcamp.com @therbootcamp" />
+    <link href="libs/remark-css/default.css" rel="stylesheet" />
+    <link rel="stylesheet" href="baselrbootcamp.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
+
+# Analysing
+### Introduction to Data Science with R<br/><a href='https://therbootcamp.github.io'>www.therbootcamp.com</a><br/><a href='https://twitter.com/therbootcamp'><span class="citation">@therbootcamp</span></a>
+### October 2018
+
+---
+
+
+layout: true
+
+&lt;div class="my-footer"&gt;&lt;span&gt;
+&lt;a href="https://therbootcamp.github.io/"&gt;&lt;font color="#7E7E7E"&gt;Introduction to Data Science with R, October 2018&lt;/font&gt;&lt;/a&gt;
+&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;
+&lt;a href="https://therbootcamp.github.io/"&gt;&lt;font color="#7E7E7E"&gt;www.therbootcamp.com&lt;/font&gt;&lt;/a&gt;
+&lt;/span&gt;&lt;/div&gt; 
+
+---
+  
+
+
+
+
+.pull-left4[
+
+# Where you're at...
+
+1 - Loaded packages (like `tidyverse`) with `library()`&lt;br&gt;
+
+2 - Loaded external files as a new dataframe&lt;br&gt;
+
+3 - Explore dataframes
+
+4 - Calculate descriptive statistics on specific columns&lt;br&gt;
+
+5 - Wrangle
+    - Change column names
+    - Add new columns
+    - Filter
+    - Join multiple dataframes
+    - Change data format (wide v. long)
+
+What's next?... &lt;high&gt;Analysing!&lt;/high&gt;
+
+]
+
+.pull-right55[
+
+
+```r
+# Load libraries
+
+library(tidyverse)
+
+# Read external file
+
+baslers &lt;- read_csv(file = "data/baslers.txt")
+
+# Explore data
+
+View(baslers)   # Open in new window
+dim(baslers)    # Show number of rows and columns
+names(baslers)  # Show names
+
+# Calculate descriptives on named colums
+
+mean(baslers$age)   # What is the mean age?
+table(baslers$sex)  # How many of each sex?
+
+# Wrangle
+
+baselers &lt;- baselers %&gt;%
+  rename(age_y = age,          # New names
+         salary = income) %&gt;%
+  mutate(age_m = age * 12) %&gt;% # Create new column
+  filter(sex == "male")        # filter rows...
+```
+
+]
+
+---
+.pull-left45[
+
+# What is analysing?
+
+&lt;font size = 5&gt;&lt;high&gt;Create Groups&lt;/high&gt;&lt;/font&gt;
+
+Group data by certain variables
+
+- For all males (`sex == "male"`)
+- For all people in placebo conditoin (`condition == "placebo"`)
+
+&lt;font size = 5&gt;&lt;high&gt;Calculate summaries&lt;/high&gt;&lt;/font&gt;
+
+- Count number of cases
+- Calculate mean of age (`mean(age)`)
+- Calculate number of events (`sum(events)`)
+
+&lt;font size = 5&gt;&lt;high&gt;Bonus: Statistical Analyses&lt;/high&gt;&lt;/font&gt;
+
+- Simple hypothesis tests (t-test, correlation test)
+- Generalised linear model (regression, ANOVA)
+
+
+
+]
+
+
+.pull-right55[
+
+Raw data (First 5 out of 1,000 rows)
+
+
+
+
+| id|sex    |education         | income| happiness|
+|--:|:------|:-----------------|------:|---------:|
+|  1|male   |SEK_III           |   6300|         5|
+|  2|male   |obligatory_school |  10900|         7|
+|  3|female |SEK_III           |   5100|         7|
+|  4|male   |SEK_III           |   4200|         7|
+|  5|male   |SEK_III           |   4000|         5|
+
+Aggregated data
+
+
+
+|education         |sex    |    N| Inc_mean| Hap_mean|
+|:-----------------|:------|----:|--------:|--------:|
+|apprenticeship    |female | 2168|   7663.0|      6.9|
+|apprenticeship    |male   | 1818|   7388.9|      6.9|
+|obligatory_school |female |  714|   7746.1|      6.9|
+|obligatory_school |male   |  525|   7293.7|      6.8|
+|SEK_II            |female |  469|   7385.0|      6.9|
+|SEK_II            |male   |  272|   7254.7|      6.9|
+
+
+]
+
+---
+
+
+.pull-left45[
+
+# `dplyr`
+
+To calculate grouped summary analyses, we will use `dplyr` (again!)
+
+&lt;br&gt;
+
+```r
+# Load packages individually
+
+# install.packages('dplyr')
+
+library(dplyr)
+
+# Or just use the tidyverse!
+
+# install.packages('tidyverse')
+
+library(tidyverse)
+```
+
+]
+ 
+.pull-right5[
+
+&lt;br&gt;&lt;br&gt;&lt;br&gt;
+&lt;img src="https://raw.githubusercontent.com/therbootcamp/Erfurt_2018June/master/_sessions/_image/dplyr_tidyr_hex.png" width="100%" style="display: block; margin: auto;" /&gt;
+
+]
+
+---
+
+# The Pipe!  &lt;high&gt;`%&gt;%`&lt;/high&gt;
+
+.pull-left4[
+
+`dplyr` makes extensive use of a new operator called the "Pipe" &lt;high&gt;`%&gt;%`&lt;/high&gt;&lt;br&gt;
+
+Read the "Pipe" &lt;high&gt;`%&gt;%`&lt;/high&gt; as "And Then..."
+
+&lt;br&gt;
+
+
+```r
+# Start with data
+data %&gt;% # AND THEN...
+  
+DO_SOMETHING %&gt;% # AND THEN...
+  
+DO_SOMETHING %&gt;% # AND THEN...
+  
+DO_SOMETHING %&gt;% # AND THEN...
+```
+
+]
+
+.pull-right55[
+
+&lt;p align="center"&gt;
+  &lt;img src="https://upload.wikimedia.org/wikipedia/en/thumb/b/b9/MagrittePipe.jpg/300px-MagrittePipe.jpg" width = "450px"&gt;&lt;br&gt;
+  This is not a pipe (but %&gt;% is!)
+&lt;/p&gt;
+
+]
+
+
+
+
+---
+
+# `summarise()`
+
+.pull-left45[
+
+Use `summarise()` to create new columns of &lt;high&gt;summary statistics&lt;/high&gt;
+
+
+```r
+df %&gt;%
+  summarise(
+    NAME = SUMMARY_FUN(A),
+    NAME = SUMMARY_FUN(B)
+  )
+```
+
+&lt;u&gt;Summary functions&lt;/u&gt;
+
+| Function| Purpose |
+|:-------------|:---|
+| `n()`| Number of cases in each group|
+| `mean()`, `median()`, `max()`, `min()` `sum()` | Summary stats|
+]
+
+.pull-right5[
+
+
+```r
+# Calculate summary statistics
+baselers %&gt;%
+  summarise(
+    N = n(),
+    age_mean = mean(age),
+    height_median = median(height),
+    children_max = max(children, na.rm = TRUE)
+  )
+```
+
+```
+## # A tibble: 1 x 4
+##       N age_mean height_median children_max
+##   &lt;int&gt;    &lt;dbl&gt;         &lt;dbl&gt;        &lt;dbl&gt;
+## 1 10000     44.6          171.            6
+```
+
+The result of `summarise()` will always be a tibble!
+
+&lt;high&gt;Important&lt;/high&gt; You can only include summary functions that return a single value (i.e.; can't use `table()`)
+
+
+]
+
+
+
+---
+
+# Grouped Aggregation
+
+&lt;p align="center"&gt;
+  &lt;img src="https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/summarsed_data_diagram.png" height="470px"&gt;
+&lt;/p&gt; 
+
+
+---
+
+# `group_by()`, `summarise()`
+
+.pull-left45[
+
+Use `group_by()` to &lt;high&gt;group data&lt;/high&gt; according to one or more columns
+
+After grouping data, use `summarise()` to &lt;high&gt;calculate summary statistics&lt;/high&gt; across groups of data
+
+&lt;u&gt;Statistical functions&lt;/u&gt;
+
+| Function| Purpose |
+|:-------------|:---|
+| `n()`| Number of cases in each group|
+| `mean()`, `median()`, `max()`, `min()` `sum()` | Summary stats|
+]
+
+.pull-right5[
+
+
+```r
+# Group data by arm, and calculate many
+#  summary statistics
+baselers %&gt;%
+  group_by(sex) %&gt;%
+  summarise(
+    N = n(),
+    age_mean = mean(age),
+    height_median = median(height),
+    children_max = max(children)
+  )
+```
+
+```
+## # A tibble: 2 x 5
+##   sex        N age_mean height_median children_max
+##   &lt;chr&gt;  &lt;int&gt;    &lt;dbl&gt;         &lt;dbl&gt;        &lt;dbl&gt;
+## 1 female  5000     45.4          164             6
+## 2 male    5000     43.8          178.            6
+```
+
+]
+
+---
+
+# Combine wrangling with analysing
+
+.pull-left3[
+&lt;br&gt;&lt;br&gt;
+You can easily combine multiple wrangling (filtering, slicing, renaming) and analysing operations at once!
+
+Just use the pipe &lt;high&gt;%&gt;%&lt;/high&gt;
+
+
+]
+
+.pull-right65[
+
+
+```r
+baselers %&gt;%
+  filter(sex == "male" &amp; children &gt; 0) %&gt;%  # male parents only
+  group_by(confession) %&gt;%
+  summarise(
+    N = n(),
+    age_mean = mean(age),
+    income_median = median(income, na.rm = TRUE)
+  )
+```
+
+```
+## # A tibble: 6 x 4
+##   confession               N age_mean income_median
+##   &lt;chr&gt;                &lt;int&gt;    &lt;dbl&gt;         &lt;dbl&gt;
+## 1 catholic              1401     44.0          7100
+## 2 confessionless        1125     43.8          7100
+## 3 evangelical-reformed   925     43.9          7200
+## 4 muslim                 155     41.5          6800
+## 5 other                  247     44.0          6900
+## 6 &lt;NA&gt;                   703     43.5          7000
+```
+
+]
+
+---
+
+# Quiz 1
+
+.pull-left45[
+
+
+Here is part of the baselers dataframe
+
+
+```r
+baselers %&gt;%
+  select(sex, fasnacht, age, income) %&gt;%
+  slice(1:5)
+```
+
+```
+## # A tibble: 5 x 4
+##   sex    fasnacht   age income
+##   &lt;chr&gt;  &lt;chr&gt;    &lt;dbl&gt;  &lt;dbl&gt;
+## 1 male   no          44   6300
+## 2 male   no          65  10900
+## 3 female no          31   5100
+## 4 male   no          27   4200
+## 5 male   no          24   4000
+```
+
+
+]
+
+
+.pull-right5[
+
+How do I calculate the following table?
+
+
+```
+## # A tibble: 2 x 4
+##   fasnacht     N age_mean income_mean
+##   &lt;chr&gt;    &lt;int&gt;    &lt;dbl&gt;       &lt;dbl&gt;
+## 1 no        9706     44.6       7527.
+## 2 yes        294     45.3       7692.
+```
+
+]
+
+
+---
+
+# Quiz 1
+
+.pull-left45[
+
+Here is part of the baselers dataframe
+
+
+```r
+baselers %&gt;%
+  select(sex, fasnacht, age, income) %&gt;%
+  slice(1:5)
+```
+
+```
+## # A tibble: 5 x 4
+##   sex    fasnacht   age income
+##   &lt;chr&gt;  &lt;chr&gt;    &lt;dbl&gt;  &lt;dbl&gt;
+## 1 male   no          44   6300
+## 2 male   no          65  10900
+## 3 female no          31   5100
+## 4 male   no          27   4200
+## 5 male   no          24   4000
+```
+
+
+]
+
+
+.pull-right5[
+
+How do I calculate the following table?
+
+
+```r
+baselers %&gt;%
+  group_by(fasnacht) %&gt;%
+  summarise(
+    N = n(),
+    age_mean = mean(age),
+    income_mean = mean(income, na.rm = TRUE)
+  )
+```
+
+```
+## # A tibble: 2 x 4
+##   fasnacht     N age_mean income_mean
+##   &lt;chr&gt;    &lt;int&gt;    &lt;dbl&gt;       &lt;dbl&gt;
+## 1 no        9706     44.6       7527.
+## 2 yes        294     45.3       7692.
+```
+
+]
+
+
+---
+
+# Quiz 2
+
+.pull-left45[
+
+Here is part of the baselers dataframe
+
+
+```r
+baselers %&gt;%
+  select(sex, fasnacht, age, income) %&gt;%
+  slice(1:5)
+```
+
+```
+## # A tibble: 5 x 4
+##   sex    fasnacht   age income
+##   &lt;chr&gt;  &lt;chr&gt;    &lt;dbl&gt;  &lt;dbl&gt;
+## 1 male   no          44   6300
+## 2 male   no          65  10900
+## 3 female no          31   5100
+## 4 male   no          27   4200
+## 5 male   no          24   4000
+```
+
+
+]
+
+
+.pull-right5[
+
+How do I calculate the following table?
+
+
+```
+## # A tibble: 4 x 5
+## # Groups:   fasnacht [?]
+##   fasnacht sex        N age_mean income_mean
+##   &lt;chr&gt;    &lt;chr&gt;  &lt;int&gt;    &lt;dbl&gt;       &lt;dbl&gt;
+## 1 no       female  4886     45.4       7646.
+## 2 no       male    4820     43.8       7407.
+## 3 yes      female   114     46.4       7829.
+## 4 yes      male     180     44.6       7602
+```
+
+]
+
+
+
+---
+
+# Quiz 2
+
+.pull-left45[
+
+Here is part of the baselers dataframe
+
+
+```r
+baselers %&gt;%
+  select(sex, fasnacht, age, income) %&gt;%
+  slice(1:5)
+```
+
+```
+## # A tibble: 5 x 4
+##   sex    fasnacht   age income
+##   &lt;chr&gt;  &lt;chr&gt;    &lt;dbl&gt;  &lt;dbl&gt;
+## 1 male   no          44   6300
+## 2 male   no          65  10900
+## 3 female no          31   5100
+## 4 male   no          27   4200
+## 5 male   no          24   4000
+```
+
+
+]
+
+
+.pull-right5[
+
+How do I calculate the following table?
+
+
+```r
+baselers %&gt;%
+  group_by(fasnacht, sex) %&gt;%
+  summarise(
+    N = n(),
+    age_mean = mean(age),
+    income_mean = mean(income, na.rm = TRUE)
+  )
+```
+
+```
+## # A tibble: 4 x 5
+## # Groups:   fasnacht [?]
+##   fasnacht sex        N age_mean income_mean
+##   &lt;chr&gt;    &lt;chr&gt;  &lt;int&gt;    &lt;dbl&gt;       &lt;dbl&gt;
+## 1 no       female  4886     45.4       7646.
+## 2 no       male    4820     43.8       7407.
+## 3 yes      female   114     46.4       7829.
+## 4 yes      male     180     44.6       7602
+```
+
+]
+
+
+---
+
+# Quiz 3
+
+.pull-left45[
+
+Here is part of the baselers dataframe
+
+
+```r
+baselers %&gt;%
+  select(sex, fasnacht, age, income) %&gt;%
+  slice(1:5)
+```
+
+```
+## # A tibble: 5 x 4
+##   sex    fasnacht   age income
+##   &lt;chr&gt;  &lt;chr&gt;    &lt;dbl&gt;  &lt;dbl&gt;
+## 1 male   no          44   6300
+## 2 male   no          65  10900
+## 3 female no          31   5100
+## 4 male   no          27   4200
+## 5 male   no          24   4000
+```
+
+
+]
+
+
+.pull-right5[
+
+How do I calculate the following table?
+
+
+```
+## # A tibble: 2 x 5
+## # Groups:   fasnacht [?]
+##   fasnacht sex       N age_mean income_mean
+##   &lt;chr&gt;    &lt;chr&gt; &lt;int&gt;    &lt;dbl&gt;       &lt;dbl&gt;
+## 1 no       male   4820     43.8       7407.
+## 2 yes      male    180     44.6       7602
+```
+
+]
+
+
+
+
+---
+
+# Quiz 3
+
+.pull-left45[
+
+Here is part of the baselers dataframe
+
+
+```r
+baselers %&gt;%
+  select(sex, fasnacht, age, income) %&gt;%
+  slice(1:5)
+```
+
+```
+## # A tibble: 5 x 4
+##   sex    fasnacht   age income
+##   &lt;chr&gt;  &lt;chr&gt;    &lt;dbl&gt;  &lt;dbl&gt;
+## 1 male   no          44   6300
+## 2 male   no          65  10900
+## 3 female no          31   5100
+## 4 male   no          27   4200
+## 5 male   no          24   4000
+```
+
+
+]
+
+.pull-right5[
+
+How do I calculate the following table?
+
+
+```r
+baselers %&gt;%
+  filter(sex == "male") %&gt;%    # male patients only
+  group_by(fasnacht, sex) %&gt;%
+  summarise(
+    N = n(),
+    age_mean = mean(age),
+    income_mean = mean(income, na.rm = TRUE)
+  )
+```
+
+```
+## # A tibble: 2 x 5
+## # Groups:   fasnacht [?]
+##   fasnacht sex       N age_mean income_mean
+##   &lt;chr&gt;    &lt;chr&gt; &lt;int&gt;    &lt;dbl&gt;       &lt;dbl&gt;
+## 1 no       male   4820     43.8       7407.
+## 2 yes      male    180     44.6       7602
+```
+
+]
+
+
+---
+
+# Quiz 4
+
+.pull-left45[
+
+Here is part of the baselers dataframe
+
+
+```r
+baselers %&gt;%
+  select(sex, fasnacht, age, income) %&gt;%
+  slice(1:5)
+```
+
+```
+## # A tibble: 5 x 4
+##   sex    fasnacht   age income
+##   &lt;chr&gt;  &lt;chr&gt;    &lt;dbl&gt;  &lt;dbl&gt;
+## 1 male   no          44   6300
+## 2 male   no          65  10900
+## 3 female no          31   5100
+## 4 male   no          27   4200
+## 5 male   no          24   4000
+```
+
+
+]
+
+.pull-right5[
+
+How do I calculate the following table?
+
+
+```
+## # A tibble: 4 x 3
+##   education             N income_mean
+##   &lt;chr&gt;             &lt;int&gt;       &lt;dbl&gt;
+## 1 SEK_III            4034       7555.
+## 2 obligatory_school  1239       7551.
+## 3 apprenticeship     3986       7538.
+## 4 SEK_II              741       7338.
+```
+
+]
+
+
+
+
+---
+
+# Quiz 4
+
+.pull-left45[
+
+Here is part of the baselers dataframe
+
+
+```r
+baselers %&gt;%
+  select(sex, fasnacht, age, income) %&gt;%
+  slice(1:5)
+```
+
+```
+## # A tibble: 5 x 4
+##   sex    fasnacht   age income
+##   &lt;chr&gt;  &lt;chr&gt;    &lt;dbl&gt;  &lt;dbl&gt;
+## 1 male   no          44   6300
+## 2 male   no          65  10900
+## 3 female no          31   5100
+## 4 male   no          27   4200
+## 5 male   no          24   4000
+```
+
+
+]
+
+.pull-right5[
+
+How do I calculate the following table?
+
+
+```r
+baselers %&gt;%
+  group_by(education) %&gt;%
+  summarise(
+    N = n(),
+    income_mean = mean(income, na.rm = TRUE)
+  ) %&gt;%
+  arrange(desc(income_mean))
+```
+
+```
+## # A tibble: 4 x 3
+##   education             N income_mean
+##   &lt;chr&gt;             &lt;int&gt;       &lt;dbl&gt;
+## 1 SEK_III            4034       7555.
+## 2 obligatory_school  1239       7551.
+## 3 apprenticeship     3986       7538.
+## 4 SEK_II              741       7338.
+```
+
+]
+
+
+
+---
+
+# What have we not covered yet? &lt;high&gt;Statistics!&lt;/high&gt;
+
+.pull-left4[
+
+Statistical functions (almost) always require two key arguments
+
+|||
+|:----|:-----|
+|`data`| A dataframe|
+|`formula`| A formula specifying variables in the model|
+
+
+&lt;br&gt;
+A &lt;high&gt;formula&lt;/high&gt; specifies a &lt;high&gt;dependent&lt;/high&gt; variable (y) as a function of one or more &lt;high&gt;independent&lt;/high&gt; variables (x1, x2, ...) in the form:
+
+&lt;p align='center'&gt;&lt;font size = 6&gt;formula = y ~ x1 + x2 +...&lt;/font&gt;&lt;/p&gt;
+
+]
+
+.pull-right55[
+
+How to create a statistical object:
+
+
+```r
+# Example: Create regression object (my_glm)
+my_glm &lt;- glm(formula = income ~ age + height,
+              data = baselers)
+```
+
+
+![](https://raw.githubusercontent.com/therbootcamp/Erfurt_2018June/master/_sessions/_image/formula_description.png)&lt;!-- --&gt;
+
+
+
+]
+
+---
+
+# Simple hypothesis tests
+
+.pull-left45[
+
+All of the basic &lt;high&gt;one and two sample hypothesis tests&lt;/high&gt; are included in the `stats` package.
+
+These tests take either a &lt;high&gt;formula&lt;/high&gt; for the argument `formula`, or &lt;high&gt;individual vectors&lt;/high&gt; for the arguments `x`, and `y`
+
+&lt;br&gt;
+
+.pull-left6[
+
+| Hypothesis Test| R Function|
+|------------:|------------:|
+|     t-test|    `t.test()`|
+|     Correlation Test|    `cor.test()`|
+|     Chi-Square Test|   `chisq.test()`|
+]
+
+]
+
+
+.pull-right5[
+
+### t-test with `t.test()`
+
+
+```r
+# 2-sample t-test
+t.test(formula = income ~ sex,
+       data = baselers)
+```
+
+```
+## 
+## 	Welch Two Sample t-test
+## 
+## data:  income by sex
+## t = 4, df = 8500, p-value = 6e-05
+## alternative hypothesis: true difference in means is not equal to 0
+## 95 percent confidence interval:
+##  120.6 352.2
+## sample estimates:
+## mean in group female   mean in group male 
+##                 7650                 7414
+```
+
+
+]
+
+---
+
+
+# Regression with `glm()`, `lm()`
+
+.pull-left35[
+
+How to &lt;high&gt;create a regression model&lt;/high&gt; predicting, e.g., how much money people spend on `food` as a function of `income`?
+
+&lt;br&gt;
+Part of the `baselers` dataframe:
+
+.pull-left6[
+
+
+| food| income| happiness|
+|----:|------:|---------:|
+|  610|   6300|         5|
+| 1550|  10900|         7|
+|  720|   5100|         7|
+|  680|   4200|         7|
+|  260|   4000|         5|
+
+]
+&lt;!-- `$$\Large food = \beta_{0} + \beta_{1} \times Inc + \beta_{1} \times Hap+ \epsilon$$` --&gt;
+
+]
+
+.pull-right6[
+
+### Generalized regression with `glm()`
+
+
+```r
+# food (y) on income (x1) and happiness (x2)
+food_glm &lt;- glm(formula = food ~ income + happiness,
+                data = baselers)
+
+# Print food_glm
+food_glm
+```
+
+```
+## 
+## Call:  glm(formula = food ~ income + happiness, data = baselers)
+## 
+## Coefficients:
+## (Intercept)       income    happiness  
+##    -302.089        0.101       52.205  
+## 
+## Degrees of Freedom: 8509 Total (i.e. Null);  8507 Residual
+##   (1490 observations deleted due to missingness)
+## Null Deviance:	    1.27e+09 
+## Residual Deviance: 6.06e+08 	AIC: 119000
+```
+
+]
+
+
+---
+
+# Exploring statistical objects
+
+.pull-left35[
+
+Explore statistical objects using &lt;high&gt;generic&lt;/high&gt; functions such as `print()`, `summary()`, `predict()` and `plot()`.
+
+&lt;high&gt;Generic&lt;/high&gt; functions different things depending on the &lt;high&gt;class label&lt;/high&gt; of the object. 
+
+
+```r
+# Create statistical object
+obj &lt;- STAT_FUN(formula = ...,
+                data = ...)
+
+names(obj)       # Elements
+print(obj)       # Print
+summary(obj)     # Summary
+plot(obj)        # Plotting
+predict(obj, ..) # Predict
+```
+
+]
+
+.pull-right6[
+
+
+```r
+# Create a glm object
+my_glm &lt;- glm(formula = income ~ happiness + age,
+              data = baselers)
+
+
+summary(my_glm)
+```
+
+```
+## 
+## Call:
+## glm(formula = income ~ happiness + age, data = baselers)
+## 
+## Deviance Residuals: 
+##    Min      1Q  Median      3Q     Max  
+##  -4045    -835       3     814    4899  
+## 
+## Coefficients:
+##             Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept) 1575.497     94.363   16.70  &lt; 2e-16 ***
+## happiness   -100.431     12.520   -8.02  1.2e-15 ***
+## age          149.312      0.815  183.31  &lt; 2e-16 ***
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## 
+## (Dispersion parameter for gaussian family taken to be 1501842)
+## 
+##     Null deviance: 6.3307e+10  on 8509  degrees of freedom
+## Residual deviance: 1.2776e+10  on 8507  degrees of freedom
+##   (1490 observations deleted due to missingness)
+## AIC: 145186
+## 
+## Number of Fisher Scoring iterations: 2
+```
+
+]
+
+
+---
+
+.pull-left4[
+
+# `tidy()`
+
+The `tidy()` function from the `broom` package &lt;high&gt;converts&lt;/high&gt; the most important results of many statistical object like "glm" to a &lt;high&gt;data frame&lt;/high&gt;.
+
+
+```r
+# install and load broom
+install.packages('broom')
+library(broom)
+```
+
+&lt;p align="center"&gt;
+  &lt;img src="https://raw.githubusercontent.com/therbootcamp/Erfurt_2018June/master/_sessions/_image/broom_hex.png" height="200px" vspace="10"&gt;
+&lt;/p&gt;
+
+
+]
+
+.pull-right55[
+
+&lt;br&gt;&lt;br&gt;
+
+
+```r
+# Original printout
+my_glm
+```
+
+```
+## 
+## Call:  glm(formula = income ~ happiness + age, data = baselers)
+## 
+## Coefficients:
+## (Intercept)    happiness          age  
+##        1575         -100          149  
+## 
+## Degrees of Freedom: 8509 Total (i.e. Null);  8507 Residual
+##   (1490 observations deleted due to missingness)
+## Null Deviance:	    6.33e+10 
+## Residual Deviance: 1.28e+10 	AIC: 145000
+```
+
+
+
+
+```r
+# Tidy printout
+tidy(my_glm)
+```
+
+```
+## # A tibble: 3 x 5
+##   term        estimate std.error statistic  p.value
+##   &lt;chr&gt;          &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt;
+## 1 (Intercept)    1575.    94.4       16.7  1.33e-61
+## 2 happiness      -100.    12.5       -8.02 1.18e-15
+## 3 age             149.     0.815    183.   0.
+```
+
+]
+
+
+---
+
+# Summary
+
+.pull-left4[
+
+1 - To calculate summary statistics across all rows, use `summarise()`.
+
+2 - To calculate grouped summary statistics, use `group_by()` and then `summarise()`.
+
+3 - "Keep the pipe &lt;high&gt;%&gt;%&lt;/high&gt; going" to continue working with your data frame.
+
+4 - You can always do wrangling operations (`filter()`, `rename()`) before (or after!) aggregating.
+
+5 - Statistical functions (like `glm()`, `t.test()`) require `data` and `formula` arguments
+
+]
+
+.pull-right55[
+
+
+```r
+# Assign result to baslers_agg
+
+baslers_agg &lt;- baselers %&gt;% 
+  
+  # Change column names with rename()
+  rename(age_years = age,
+         weight_kg = weight)  %&gt;% # PIPE!
+
+  # Select specific rows with filter()
+  filter(age_years &lt; 40)  %&gt;% # PIPE!
+  
+  # Create new columns witb mutate()
+  mutate(debt_ratio = debt / income)  %&gt;% # PIPE!
+  
+  # Group data with group_by()
+  group_by(sex) %&gt;% # PIPE!
+  
+  # Calculate summary statistics with summarise()
+  summarise(income_mean = mean(income),
+            debt_mean = mean(debt),
+            dr_mean = mean(dr))
+```
+
+]
+
+---
+
+# Practical
+
+&lt;p&gt;
+  &lt;font size=6&gt;
+    &lt;a href="https://therbootcamp.github.io/Intro2DataScience_2018Oct/_sessions/Analysing/Analysing_practical.html"&gt;&lt;b&gt;Link to practical&lt;b&gt;&lt;/a&gt;
+  &lt;/font&gt;
+&lt;/p&gt;
+    </textarea>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"highlightStyle": "github",
+"highlightLines": true,
+"countIncrementalSlides": false,
+"ratio": "16:9"
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function() {
+  var d = document, s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})();</script>
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  tex2jax: {
+    skipTags: ['script', 'noscript', 'style', 'textarea', 'pre']
+  }
+});
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>

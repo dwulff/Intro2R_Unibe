@@ -1,0 +1,72 @@
+---
+title: "Case Studies"
+subtitle: ""
+author: "Introduction to Data Science with R<br/><a href='https://therbootcamp.github.io'>www.therbootcamp.com</a><br/><a href='https://twitter.com/therbootcamp'>@therbootcamp</a>"
+date: "October 2018"
+output:
+  xaringan::moon_reader:
+    css: ["default", "baselrbootcamp.css"]
+    lib_dir: libs
+    nature:
+      highlightStyle: github
+      highlightLines: true
+      countIncrementalSlides: false
+      ratio: '16:9'
+---
+
+layout: true
+
+<div class="my-footer"><span>
+<a href="https://therbootcamp.github.io/"><font color="#7E7E7E">Introduction to Data Science with R, October 2018</font></a>
+&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
+<a href="https://therbootcamp.github.io/"><font color="#7E7E7E">www.therbootcamp.com</font></a>
+</span></div> 
+
+---
+
+```{r setup, include=FALSE}
+options(htmltools.dir.version = FALSE)
+# see: https://github.com/yihui/xaringan
+# install.packages("xaringan")
+# see: 
+# https://github.com/yihui/xaringan/wiki
+# https://github.com/gnab/remark/wiki/Markdown
+options(width=110)
+options(digits = 4)
+```
+
+# 2 Case Studies
+
+Work on one or both case studies designed to repeat the central elements of <high>Data I/O</high>, <high>Data Wrangling</high>, <high>Analysing</high>, and <high>Plotting</high><br>
+
+.pull-left45[
+
+## Clinical trial
+
+Analyse a clinical trial comparing the effectiveness of clinical drugs.<br>
+
+```{r, echo = FALSE}
+knitr::include_graphics("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS_hbV6L48NKZ-eU39RAx0Lb02lb0LC6ftxSQcwOq6Lf0C6m9Fd")
+```
+
+[Clinical Trial Case Study](https://therbootcamp.github.io/Intro2DataScience_2018Oct/_sessions/CaseStudies/Clinical_Data_Case_Study.html)
+
+]
+
+.pull-right45[
+
+## Finance
+
+Study the development of key financial markets across the last 20 years<br>
+
+```{r, echo = FALSE, out.width = "70%"}
+knitr::include_graphics("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSVoAJwqOBeBlDUx1c-NuQ3TpgS86fpMlnbreACyDKYfOZfJ9bd")
+```
+<br><br><br>
+[Finance Case Study](https://therbootcamp.github.io/Intro2DataScience_2018Oct/_sessions/CaseStudies/Financial_Data_Case_Study.html)
+
+]
+
+
+
+

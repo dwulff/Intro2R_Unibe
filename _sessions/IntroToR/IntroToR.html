@@ -1,0 +1,1221 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Intro to R</title>
+    <meta charset="utf-8">
+    <meta name="author" content="Introduction to Data Science with R www.therbootcamp.com @therbootcamp" />
+    <link href="libs/remark-css/default.css" rel="stylesheet" />
+    <link rel="stylesheet" href="baselrbootcamp.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
+
+# Intro to R
+### Introduction to Data Science with R<br/><a href='https://therbootcamp.github.io'>www.therbootcamp.com</a><br/><a href='https://twitter.com/therbootcamp'><span class="citation">@therbootcamp</span></a>
+### October 2018
+
+---
+
+
+layout: true
+
+&lt;div class="my-footer"&gt;&lt;span&gt;
+&lt;a href="https://therbootcamp.github.io/"&gt;&lt;font color="#7E7E7E"&gt;Introduction to Data Science with R, October 2018&lt;/font&gt;&lt;/a&gt;
+&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;
+&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;
+&lt;a href="https://therbootcamp.github.io/"&gt;&lt;font color="#7E7E7E"&gt;www.therbootcamp.com&lt;/font&gt;&lt;/a&gt;
+&lt;/span&gt;&lt;/div&gt; 
+
+
+---
+
+
+
+
+
+&lt;!---
+# R
+
+From [Wikipedia](https://en.wikipedia.org/wiki/Statistical_model) (emphasis added):
+
+&gt; R is an **open source programming language** and software environment for **statistical computing and graphics** that is supported by the **R Foundation for Statistical Computing**. The R language is **widely used among statisticians and data miners** for developing statistical software and data analysis. Polls, surveys of data miners, and studies of scholarly literature databases show that **R's popularity has increased substantially in recent years**.
+
+&gt; R is a GNU package. The source code for the R software environment is written primarily in **C, Fortran, and R**. R is freely available under the GNU General Public License, and pre-compiled binary versions are provided for various operating systems. While R has a command line interface, there are several **graphical front-ends available**.
+
+
+GNU's Not Unix!
+GPL guarantees end users the freedom to run, study, share and modify the software
+---&gt;
+
+
+# R is a programming language
+
+From [Wikipedia](https://en.wikipedia.org/wiki/Statistical_model) (emphasis added):
+
+&gt; A programming language is a **formal language** that specifies a set of instructions that can be used to produce various kinds of output. Programming languages generally consist of **instructions for a computer**. Programming languages can be used to create programs that **implement specific algorithms**.
+
+.pull-left4[
+### Algorithm
+1. Load data
+2. Extract variables
+3. Run analysis
+4. Print result
+]
+
+.pull-right6[
+### Implementation in R
+
+
+
+```r
+data &lt;- read.table(link)
+variables &lt;- data[,c('group','variable')]
+analysis &lt;- lm(variable ~ group, data = variables)
+summary(analysis)
+```
+]
+
+---
+
+# Why R?
+
+.pull-left3[
+R steadily **grows in popularity**. 
+
+Today, R is one of the **most popular languages for data science** and overall. 
+
+In terms of the number of data science jobs, **R beats SAS and Matlab**, and is on par with Python.
+
+&lt;p style="font-size:10px;float:bottom"&gt;
+  Image source: https://i0.wp.com/r4stats.com/
+&lt;p&gt;
+
+
+]
+
+.pull-right6[
+&lt;p align="center"&gt;
+  &lt;img src="https://i0.wp.com/r4stats.com/wp-content/uploads/2017/02/Fig-1a-IndeedJobs-2017.png" height="450"&gt;
+&lt;/p&gt;
+]
+
+---
+
+# R is so popular because
+
+There are many good reasons to prefer R over superficially more user friendly software such as **Excel** or **SPSS** or more complex programming languages like **C++** or **Python**. 
+
+.pull-left45[
+### Pro
+1. **It's free**
+2. Relatively **easy**
+3. **Extensibility** ([CRAN](https://cran.r-project.org/), packages)
+4. **User base** (e.g., [stackoverflow](https://stackoverflow.com/))
+5. [**Tidyverse**](https://www.tidyverse.org/) (`dplyr`, `ggplot`, etc.)
+6. [**RStudio**](https://www.rstudio.com/)
+7. **Productivity** options: [Latex](https://www.latex-project.org/), [Markdown](https://daringfireball.net/projects/markdown/), [GitHub](https://github.com/)
+]
+
+.pull-right45[
+### Con
+Sometimes slow and awkward, but... 
+
+[Tidyverse](https://www.tidyverse.org/)
+[Rcpp](http://www.rcpp.org/), [BH](https://cran.r-project.org/web/packages/BH/index.html): Links R to C++ and high-performance C++ libraries&lt;br&gt;
+[rPython](http://rpython.r-forge.r-project.org/): Links R to Python&lt;br&gt;
+[RHadoop](https://github.com/RevolutionAnalytics/RHadoop/wiki): Links R to Hadoop for big data applications.&lt;br&gt;
+]
+
+---
+
+# The almighty `tidyverse`
+
+Among its many packages, R newly contains a collection of high-performance, user-friendly packages (libraries)  known as the [tidyverse](https://www.tidyverse.org/). The tidyverse includes:
+1. `ggplot2` -- creating graphics.
+2. `dplyr` -- data manipulation.
+3. `tidyr` -- tidying data.
+4. `readr` -- read wild data.
+5. `purrr` -- functional programming.
+6. `tibble` -- modern data frame.
+&lt;br&gt;&lt;br&gt;
+
+&lt;img src="http://d33wubrfki0l68.cloudfront.net/0ab849ed51b0b866ef6895c253d3899f4926d397/dbf0f/images/hex-ggplot2.png" height="200px" /&gt;&lt;img src="http://d33wubrfki0l68.cloudfront.net/071952491ec4a6a532a3f70ecfa2507af4d341f9/c167c/images/hex-dplyr.png" height="200px" /&gt;&lt;img src="http://d33wubrfki0l68.cloudfront.net/5f8c22ec53a1ac61684f3e8d59c623d09227d6b9/b15de/images/hex-tidyr.png" height="200px" /&gt;&lt;img src="http://d33wubrfki0l68.cloudfront.net/66d3133b4a19949d0b9ddb95fc48da074b69fb07/7dfb6/images/hex-readr.png" height="200px" /&gt;&lt;img src="http://d33wubrfki0l68.cloudfront.net/9221ddead578362bd17bafae5b85935334984429/37a68/images/hex-purrr.png" height="200px" /&gt;&lt;img src="http://d33wubrfki0l68.cloudfront.net/f55c43407ae8944b985e2547fe868e5e2b3f9621/720bb/images/hex-tibble.png" height="200px" /&gt;
+
+
+---
+
+# Packages
+
+.pull-left35[
+
+  R features a vast and cutting-edge collection of **packages** provided on [**CRAN**](https://cran.r-project.org/) and [**Git/GitHub**](https://github.com/hadley) by R's large and highly active user base and the work of .         
+
+
+```r
+# To install a package
+install.packages('package_name')
+
+# load a package
+library(package_name)
+require(package_name)
+
+
+#Note: 
+# Don't forget that packages 
+# must also be loaded.
+```
+
+]
+
+.pull-right55[
+
+&lt;iframe src="https://www.rdocumentation.org/trends?page1=1&amp;sort1=total&amp;page2=1&amp;sort2=total&amp;page3=1&amp;page4=1" width="600" height="400" frameborder="0" marginheight="0" marginwidth="0" zoom="0.5"&gt;&lt;/iframe&gt;
+
+&lt;font size=2&gt;
+  &lt;a href="https://www.rdocumentation.org/trends"&gt;
+  www.rdocumentation.org/trends
+  &lt;/a&gt;
+&lt;/font&gt;
+]
+
+
+---
+
+# Packages
+
+.pull-left35[
+
+  R features a vast and cutting-edge collection of **packages** provided on [**CRAN**](https://cran.r-project.org/) and [**Git/GitHub**](https://github.com/hadley) by R's large and highly active user base and the work of .         
+
+
+```r
+# To install a package
+install.packages('package_name')
+
+# load a package
+library(package_name)
+require(package_name)
+
+
+#Note: 
+# Don't forget that packages 
+# must also be loaded.
+```
+
+]
+
+.pull-right45[
+
+&lt;img src="https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/packages.png" height="350"&gt;&lt;/img&gt;
+
+]
+
+
+---
+
+# RStudio: R's favorite environment
+
+Next to many useful packages, R users greatly benefit from R's integrated development environment [**RStudio**](https://www.rstudio.com/). Rstudio is a **graphical user interface** that allows you to (a) edit code, (b) run code, (c) access files and history, and (d) create plots. RStudio also helps you with **project management**, **version control** via [Github](https://github.com/), writing **reports** using [markdown](http://rmarkdown.rstudio.com/authoring_basics.html) and [knitr](https://yihui.name/knitr/), and many other aspects of working with R.  
+
+&lt;p align="center"&gt;&lt;img src="https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/rstudio_plus.png" height="360"&gt;&lt;/p&gt;
+
+
+---
+&lt;div class="center_text"&gt;
+  &lt;span&gt;
+  The 2&lt;sup&gt;4&lt;/sup&gt; Lessons of the R Bootcamp
+  &lt;/span&gt;
+&lt;/div&gt; 
+
+---
+
+# Essentials: The 2&lt;sup&gt;4&lt;/sup&gt; Lessons of the R Bootcamp
+
+.pull-left4[
+1. Everything is an object
+2. Use `&lt;-` to create/change objects
+3. Name objects using `_`
+4. Objects have classes
+5. Everything happens through functions
+6. Functions have (default) arguments
+7. Functions expect certain object classes
+8. View help files using `?`
+9. Study errors and warnings
+10. Data is stored in data frames
+11. Select variables (vectors) using `$`
+12. Use RStudio and projects
+13. Use editor and shortcuts
+14. First load packages and data
+15. Use auto-complete
+16. Comment and format for readability
+]
+
+---
+
+# Essentials: The 2&lt;sup&gt;4&lt;/sup&gt; Lessons of the R Bootcamp
+
+.pull-left4[
+1. &lt;high&gt;Everything is an object&lt;/high&gt;
+2. &lt;high&gt;Use `&lt;-` to create/change objects&lt;/high&gt;
+3. &lt;high&gt;Name objects using `_`&lt;/high&gt;
+4. Objects have classes
+5. Everything happens through functions
+6. Functions have (default) arguments
+7. Functions expect certain object classes
+8. View help files using `?`
+9. Study errors and warnings
+10. Data is stored in data frames
+11. Select variables (vectors) using `$`
+12. Use RStudio and projects
+13. Use editor and shortcuts
+14. First load packages and data
+15. Use auto-complete
+16. Comment and format for readability
+]
+
+.pull-right5[
+
+```r
+# an object called some_name
+some_name &lt;- c(1, 2, 3)
+
+# add 2 to the object's numbers
+some_name + 2
+```
+
+```
+## [1] 3 4 5
+```
+
+```r
+# print object
+some_name
+```
+
+```
+## [1] 1 2 3
+```
+
+```r
+# make change permanent
+some_name &lt;- some_name + 2
+
+# print object
+some_name
+```
+
+```
+## [1] 3 4 5
+```
+]
+
+---
+
+# Essentials: The 2&lt;sup&gt;4&lt;/sup&gt; Lessons of the R Bootcamp
+
+.pull-left4[
+1. Everything is an object
+2. Use `&lt;-` to create/change objects
+3. Name objects using `_`
+4. &lt;high&gt;Objects have classes&lt;/high&gt;
+5. Everything happens through functions
+6. Functions have (default) arguments
+7. Functions expect certain object classes
+8. View help files using `?`
+9. Study errors and warnings
+10. Data is stored in data frames
+11. Select variables (vectors) using `$`
+12. Use RStudio and projects
+13. Use editor and shortcuts
+14. First load packages and data
+15. Use auto-complete
+16. Comment and format for readability
+]
+
+.pull-right5[
+
+
+
+```r
+# an object called some_name
+class(some_name)
+```
+
+```
+## [1] "numeric"
+```
+
+```r
+typeof(some_name)
+```
+
+```
+## [1] "double"
+```
+
+```r
+# an object called some_name
+class(list())
+```
+
+```
+## [1] "list"
+```
+
+```r
+# an object called some_name
+class(tibble())
+```
+
+```
+## [1] "tbl_df"     "tbl"        "data.frame"
+```
+]
+
+---
+
+# Essentials: The 2&lt;sup&gt;4&lt;/sup&gt; Lessons of the R Bootcamp
+
+.pull-left4[
+1. Everything is an object
+2. Use `&lt;-` to create/change objects
+3. Name objects using `_`
+4. Objects have classes
+5. &lt;high&gt;Everything happens through functions&lt;/high&gt;
+6. Functions have (default) arguments
+7. Functions expect certain object classes
+8. View help files using `?`
+9. Study errors and warnings
+10. Data is stored in data frames
+11. Select variables (vectors) using `$`
+12. Use RStudio and projects
+13. Use editor and shortcuts
+14. First load packages and data
+15. Use auto-complete
+16. Comment and format for readability
+]
+
+.pull-right5[
+
+```r
+# function c()
+some_name &lt;- c(1, 2, 3)
+
+# function `+`()
+some_name + 2
+```
+
+```
+## [1] 3 4 5
+```
+
+```r
+# function print()
+some_name
+```
+
+```
+## [1] 1 2 3
+```
+
+```r
+# function class()
+class(some_name)
+```
+
+```
+## [1] "numeric"
+```
+]
+
+---
+
+# Essentials: The 2&lt;sup&gt;4&lt;/sup&gt; Lessons of the R Bootcamp
+
+.pull-left4[
+1. Everything is an object
+2. Use `&lt;-` to create/change objects
+3. Name objects using `_`
+4. Objects have classes
+5. Everything happens through functions
+6. &lt;high&gt;Functions have (default) arguments&lt;/high&gt;
+7. Functions expect certain object classes
+8. View help files using `?`
+9. Study errors and warnings
+10. Data is stored in data frames
+11. Select variables (vectors) using `$`
+12. Use RStudio and projects
+13. Use editor and shortcuts
+14. First load packages and data
+15. Use auto-complete
+16. Comment and format for readability
+]
+
+.pull-right5[
+
+```r
+# no argument
+mean()
+```
+
+```
+## Error in mean.default(): argument "x" is missing, with no default
+```
+
+```r
+# required argument
+mean(c(1, 2, 3))
+```
+
+```
+## [1] 2
+```
+
+```r
+# introducing NA
+mean(c(1, 2, 3, NA))
+```
+
+```
+## [1] NA
+```
+
+```r
+# changing default to handle NA
+mean(c(1, 2, 3, NA), na.rm = TRUE)
+```
+
+```
+## [1] 2
+```
+]
+
+---
+
+# Essentials: The 2&lt;sup&gt;4&lt;/sup&gt; Lessons of the R Bootcamp
+
+.pull-left4[
+1. Everything is an object
+2. Use `&lt;-` to create/change objects
+3. Name objects using `_`
+4. Objects have classes
+5. Everything happens through functions
+6. Functions have (default) arguments
+7. &lt;high&gt;Functions expect certain object classes&lt;/high&gt;
+8. View help files using `?`
+9. Study errors and warnings
+10. Data is stored in data frames
+11. Select variables (vectors) using `$`
+12. Use RStudio and projects
+13. Use editor and shortcuts
+14. First load packages and data
+15. Use auto-complete
+16. Comment and format for readability
+]
+
+.pull-right5[
+
+```r
+# mean works also for logical
+mean(c(TRUE, FALSE, TRUE))
+```
+
+```
+## [1] 0.6667
+```
+
+```r
+# but not for character
+mean(c("a", "b", "c"))
+```
+
+```
+## [1] NA
+```
+
+```r
+# classes relevant for all arg's
+mean(c(1, 2, 3), na.rm = "test")
+```
+
+```
+## Error in if (na.rm) x &lt;- x[!is.na(x)]: argument is not interpretable as logical
+```
+]
+
+---
+
+# Essentials: The 2&lt;sup&gt;4&lt;/sup&gt; Lessons of the R Bootcamp
+
+.pull-left4[
+1. Everything is an object
+2. Use `&lt;-` to create/change objects
+3. Name objects using `_`
+4. Objects have classes
+5. Everything happens through functions&lt;/font&gt;&lt;/b&gt;
+6. Functions have (default) arguments
+7. Functions expect certain object classes
+8. &lt;high&gt;View help files using `?`&lt;/high&gt;
+9. Study errors and warnings
+10. Data is stored in data frames
+11. Select variables (vectors) using `$`
+12. Use RStudio and projects
+13. Use editor and shortcuts
+14. First load packages and data
+15. Use auto-complete
+16. Comment and format for readability
+]
+
+.pull-right5[
+
+```r
+?mean
+```
+&lt;p align="center"&gt;&lt;img src="https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/help.png" width="500"&gt;&lt;/p&gt;
+]
+
+---
+
+# Essentials: The 2&lt;sup&gt;4&lt;/sup&gt; Lessons of the R Bootcamp
+
+.pull-left4[
+1. Everything is an object
+2. Use `&lt;-` to create/change objects
+3. Name objects using `_`
+4. Objects have classes
+5. Everything happens through functions&lt;/font&gt;&lt;/b&gt;
+6. Functions have (default) arguments
+7. Functions expect certain object classes
+8. &lt;high&gt;View help files using `?`&lt;/high&gt;
+9. Study errors and warnings
+10. Data is stored in data frames
+11. Select variables (vectors) using `$`
+12. Use RStudio and projects
+13. Use editor and shortcuts
+14. First load packages and data
+15. Use auto-complete
+16. Comment and format for readability
+]
+
+.pull-right5[
+
+```r
+?cor
+```
+&lt;p align="center"&gt;&lt;img src="https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/help_cor.png" width="500"&gt;&lt;/p&gt;
+]
+
+---
+
+# Essentials: The 2&lt;sup&gt;4&lt;/sup&gt; Lessons of the R Bootcamp
+
+.pull-left4[
+1. Everything is an object
+2. Use `&lt;-` to create/change objects
+3. Name objects using `_`
+4. Objects have classes
+5. Everything happens through functions&lt;/font&gt;&lt;/b&gt;
+6. Functions have (default) arguments
+7. Functions expect certain object classes
+8. View help files using `?`
+9. &lt;high&gt;Study errors and warnings&lt;/high&gt; 
+10. Data is stored in data frames
+11. Select variables (vectors) using `$`
+12. Use RStudio and projects
+13. Use editor and shortcuts
+14. First load packages and data
+15. Use auto-complete
+16. Comment and format for readability
+]
+
+.pull-right5[
+
+
+```r
+# message - attend
+basel &lt;- type_convert(baselers)
+```
+
+
+```
+## Parsed with column specification:
+## cols(
+##   sex = col_character()
+## )
+```
+
+
+```r
+# warning - attend closely
+result &lt;- mean('NA')
+```
+
+```
+## Warning in mean.default("NA"): argument is not numeric or logical: returning NA
+```
+
+```r
+# error - fix
+lenth(1)
+```
+
+```
+## Error in lenth(1): could not find function "lenth"
+```
+
+
+
+]
+
+---
+
+# Essentials: The 2&lt;sup&gt;4&lt;/sup&gt; Lessons of the R Bootcamp
+
+.pull-left4[
+1. Everything is an object
+2. Use `&lt;-` to create/change objects
+3. Name objects using `_`
+4. Objects have classes
+5. Everything happens through functions&lt;/font&gt;&lt;/b&gt;
+6. Functions have (default) arguments
+7. Functions expect certain object classes
+8. View help files using `?`
+9. &lt;high&gt;Study errors and warnings&lt;/high&gt; 
+10. Data is stored in data frames
+11. Select variables (vectors) using `$`
+12. Use RStudio and projects
+13. Use editor and shortcuts
+14. First load packages and data
+15. Use auto-complete
+16. Comment and format for readability
+]
+
+.pull-right5[
+
+
+```r
+lenth(1)
+```
+
+```
+## Error in lenth(1): could not find function "lenth"
+```
+
+| Error | Description|
+|:------|:--------------------------------------------|
+|     `'could not find function'`| Typo or package not loaded|
+|     `'error in eval'`| An object is used in function that does not exist.|
+| `'cannot open()'`| Typo or missing path.|
+| `'no applicable method'`| Function inapplicable for type |
+| package errors | Unable to install, compile, or load package. |
+
+]
+
+---
+
+# Essentials: The 2&lt;sup&gt;4&lt;/sup&gt; Lessons of the R Bootcamp
+
+.pull-left4[
+1. Everything is an object
+2. Use `&lt;-` to create/change objects
+3. Name objects using `_`
+4. Objects have classes
+5. Everything happens through functions&lt;/font&gt;&lt;/b&gt;
+6. Functions have (default) arguments
+7. Functions expect certain object classes
+8. View help files using `?`
+9. Study errors and warnings
+10. &lt;high&gt;Data is stored in data frames&lt;/high&gt;
+11. Select variables (vectors) using `$`
+12. Use RStudio and projects
+13. Use editor and shortcuts
+14. First load packages and data
+15. Use auto-complete
+16. Comment and format for readability
+]
+
+.pull-right5[
+
+
+
+```r
+print(baselers)
+```
+
+```
+## # A tibble: 10,000 x 20
+##       id sex     age height weight income
+##    &lt;int&gt; &lt;chr&gt; &lt;int&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;
+##  1     1 male     44   174.  113.    6300
+##  2     2 male     65   180.   75.2  10900
+##  3     3 fema…    31   168.   55.5   5100
+##  4     4 male     27   209    93.8   4200
+##  5     5 male     24   177.   NA     4000
+##  6     6 male     63   187.   67.4  11400
+##  7     7 male     71   152.   83.3  12000
+##  8     8 fema…    41   156.   67.8   7600
+##  9     9 male     43   176.   69.3   8500
+## 10    10 fema…    31   166.   66.3   6100
+## # ... with 9,990 more rows, and 14 more
+## #   variables
+```
+]
+
+---
+
+# Essentials: The 2&lt;sup&gt;4&lt;/sup&gt; Lessons of the R Bootcamp
+
+.pull-left4[
+1. Everything is an object
+2. Use `&lt;-` to create/change objects
+3. Name objects using `_`
+4. Objects have classes
+5. Everything happens through functions&lt;/font&gt;&lt;/b&gt;
+6. Functions have (default) arguments
+7. Functions expect certain object classes
+8. View help files using `?`
+9. Study errors and warnings
+10. Data is stored in data frames
+11. &lt;high&gt;Select variables (vectors) using `$`&lt;/high&gt;
+12. Use RStudio and projects
+13. Use editor and shortcuts
+14. First load packages and data
+15. Use auto-complete
+16. Comment and format for readability
+]
+
+.pull-right5[
+
+
+
+```r
+# select sex veriable using $
+baselers$sex
+```
+
+```
+## [1] "male"   "male"   "female" "male"   "male"  
+## [6] "male"   "male"   "female"
+##  [ reached getOption("max.print") -- omitted 9992 entries ]
+```
+
+```r
+# Wherever possible, AVOID...
+baselers[['sex']]
+```
+
+```
+## [1] "male"   "male"   "female" "male"   "male"  
+## [6] "male"   "male"   "female"
+##  [ reached getOption("max.print") -- omitted 9992 entries ]
+```
+
+```r
+baselers[[2]]
+```
+
+```
+## [1] "male"   "male"   "female" "male"   "male"  
+## [6] "male"   "male"   "female"
+##  [ reached getOption("max.print") -- omitted 9992 entries ]
+```
+
+
+]
+
+---
+
+# Essentials: The 2&lt;sup&gt;4&lt;/sup&gt; Lessons of the R Bootcamp
+
+.pull-left4[
+1. Everything is an object
+2. Use `&lt;-` to create/change objects
+3. Name objects using `_`
+4. Objects have classes
+5. Everything happens through functions&lt;/font&gt;&lt;/b&gt;
+6. Functions have (default) arguments
+7. Functions expect certain object classes
+8. View help files using `?`
+9. Study errors and warnings
+10. Data is stored in data frames
+11. Select variables (vectors) using `$`
+12. &lt;high&gt;Use RStudio and projects&lt;/high&gt;
+13. Use editor and shortcuts
+14. First load packages and data
+15. Use auto-complete
+16. Comment and format for readability
+]
+
+.pull-right5[
+### Projects help...
+save workspace and history &amp;#9679; set project specific options &amp;#9679; access files &amp;#9679; version control &amp;#9679; etc.
+&lt;p align="left"&gt;&lt;img src="https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/projects_1.png" width="360"&gt;&lt;/p&gt;
+]
+
+---
+
+# Essentials: The 2&lt;sup&gt;4&lt;/sup&gt; Lessons of the R Bootcamp
+
+.pull-left4[
+1. Everything is an object
+2. Use `&lt;-` to create/change objects
+3. Name objects using `_`
+4. Objects have classes
+5. Everything happens through functions&lt;/font&gt;&lt;/b&gt;
+6. Functions have (default) arguments
+7. Functions expect certain object classes
+8. View help files using `?`
+9. Study errors and warnings
+10. Data is stored in data frames
+11. Select variables (vectors) using `$`
+12. &lt;high&gt;Use RStudio and projects&lt;/high&gt;
+13. Use editor and shortcuts
+14. First load packages and data
+15. Use auto-complete
+16. Comment and format for readability
+]
+
+.pull-right5[
+### Folder structure
+Complement projects by a &lt;high&gt;folder structure&lt;/high&gt; appropriate for your project.
+&lt;br&gt;&lt;br&gt;
+&lt;p align="left"&gt;
+  &lt;img src="https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/folder_structure.png"&gt;
+&lt;/p&gt;
+
+]
+
+---
+
+# Essentials: The 2&lt;sup&gt;4&lt;/sup&gt; Lessons of the R Bootcamp
+
+.pull-left4[
+1. Everything is an object
+2. Use `&lt;-` to create/change objects
+3. Name objects using `_`
+4. Objects have classes
+5. Everything happens through functions&lt;/font&gt;&lt;/b&gt;
+6. Functions have (default) arguments
+7. Functions expect certain object classes
+8. View help files using `?`
+9. Study errors and warnings
+10. Data is stored in data frames
+11. Select variables (vectors) using `$`
+12. Use RStudio and projects
+13. &lt;high&gt;Use editor and shortcuts&lt;/high&gt;
+14. First load packages and data
+15. Use auto-complete
+16. Comment and format for readability
+]
+
+
+
+.pull-right5[
+
+&lt;img src="https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/editor_edit.png"&gt;&lt;/img&gt;
+&lt;br&gt;&lt;br&gt;&lt;br&gt;
+Shortcut to &lt;high&gt;send to console&lt;/high&gt;:&lt;br&gt;&lt;br2&gt;&lt;font size = 6&gt;&amp;#8984;/ctrl + &amp;#9166;&lt;/font&gt;&lt;br&gt;&lt;br2&gt;&lt;br2&gt;
+Shortcut to &lt;high&gt;rerun chunk&lt;/high&gt;:&lt;br&gt;&lt;br2&gt;&lt;font size = 6&gt;  &amp;#8984;/ctrl + &amp;#8679; + p&lt;/font&gt;
+]
+
+
+---
+
+# Essentials: The 2&lt;sup&gt;4&lt;/sup&gt; Lessons of the R Bootcamp
+
+.pull-left4[
+1. Everything is an object
+2. Use `&lt;-` to create/change objects
+3. Name objects using `_`
+4. Objects have classes
+5. Everything happens through functions&lt;/font&gt;&lt;/b&gt;
+6. Functions have (default) arguments
+7. Functions expect certain object classes
+8. View help files using `?`
+9. Study errors and warnings
+10. Data is stored in data frames
+11. Select variables (vectors) using `$`
+12. Use RStudio and projects
+13. Use editor and shortcuts
+14. &lt;high&gt;First load packages and data&lt;/high&gt;
+15. Use auto-complete
+16. Comment and format for readability
+]
+
+
+
+.pull-right5[
+
+
+```r
+# import packages
+library(tidyverse)
+library(yarrr)
+library(lme4)
+
+# import data
+baselers &lt;- read_delim("baselers.txt",
+                       delim = '\t')
+```
+&lt;br&gt;
+### The goal is...
+... to create self-contained scripts that run uninterrupted from  beginning to start.
+]
+
+---
+
+# Essentials: The 2&lt;sup&gt;4&lt;/sup&gt; Lessons of the R Bootcamp
+
+.pull-left4[
+1. Everything is an object
+2. Use `&lt;-` to create/change objects
+3. Name objects using `_`
+4. Objects have classes
+5. Everything happens through functions&lt;/font&gt;&lt;/b&gt;
+6. Functions have (default) arguments
+7. Functions expect certain object classes
+8. View help files using `?`
+9. Study errors and warnings
+10. Data is stored in data frames
+11. Select variables (vectors) using `$`
+12. Use RStudio and projects
+13. Use editor and shortcuts
+14. First load packages and data
+15. &lt;high&gt;Use auto-complete&lt;/high&gt;
+16. Comment and format for readability
+]
+
+.pull-right55[
+
+&lt;img src="https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/auto_complete_1.png"&gt;&lt;/img&gt;
+
+]
+
+---
+
+# Essentials: The 2&lt;sup&gt;4&lt;/sup&gt; Lessons of the R Bootcamp
+
+.pull-left4[
+1. Everything is an object
+2. Use `&lt;-` to create/change objects
+3. Name objects using `_`
+4. Objects have classes
+5. Everything happens through functions&lt;/font&gt;&lt;/b&gt;
+6. Functions have (default) arguments
+7. Functions expect certain object classes
+8. View help files using `?`
+9. Study errors and warnings
+10. Data is stored in data frames
+11. Select variables (vectors) using `$`
+12. Use RStudio and projects
+13. Use editor and shortcuts
+14. First load packages and data
+15. &lt;high&gt;Use auto-complete&lt;/high&gt;
+16. Comment and format for readability
+]
+
+.pull-right55[
+
+&lt;img src="https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/auto_complete_2.png"&gt;&lt;/img&gt;
+
+]
+
+---
+
+# Essentials: The 2&lt;sup&gt;4&lt;/sup&gt; Lessons of the R Bootcamp
+
+.pull-left4[
+1. Everything is an object
+2. Use `&lt;-` to create/change objects
+3. Name objects using `_`
+4. Objects have classes
+5. Everything happens through functions&lt;/font&gt;&lt;/b&gt;
+6. Functions have (default) arguments
+7. Functions expect certain object classes
+8. View help files using `?`
+9. Study errors and warnings
+10. Data is stored in data frames
+11. Select variables (vectors) using `$`
+12. Use RStudio and projects
+13. Use editor and shortcuts
+14. First load packages and data
+15. &lt;high&gt;Use auto-complete&lt;/high&gt;
+16. Comment and format for readability
+]
+
+.pull-right55[
+
+&lt;img src="https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/auto_complete_3.png"&gt;&lt;/img&gt;
+
+]
+
+---
+
+# Essentials: The 2&lt;sup&gt;4&lt;/sup&gt; Lessons of the R Bootcamp
+
+.pull-left4[
+1. Everything is an object
+2. Use `&lt;-` to create/change objects
+3. Name objects using `_`
+4. Objects have classes
+5. Everything happens through functions&lt;/font&gt;&lt;/b&gt;
+6. Functions have (default) arguments
+7. Functions expect certain object classes
+8. View help files using `?`
+9. Study errors and warnings
+10. Data is stored in data frames
+11. Select variables (vectors) using `$`
+12. Use RStudio and projects
+13. Use editor and shortcuts
+14. First load packages and data
+15. Use auto-complete
+16. &lt;high&gt;Comment and format for readability&lt;/high&gt;
+]
+
+.pull-right5[
+## Bad
+
+```r
+mean(subset((tibble(c('a','b'),runif(1000,
+0,1))),c..a....b..=='a')[,'runif.1000..0..1.'])
+```
+
+## Good
+
+```r
+# create my data.frame
+my_data &lt;- tibble('group' = c('a','b'), 
+                  'value' = runif(1000, 0, 1))
+
+# subset data to group a
+# and compute average value
+my_data %&gt;% 
+  filter(group == 'a') %&gt;%
+  summarize(mean(value))
+```
+
+]
+
+---
+
+# Essentials: The 2&lt;sup&gt;4&lt;/sup&gt; Lessons of the R Bootcamp
+
+.pull-left4[
+1. Everything is an object
+2. Use `&lt;-` to create/change objects
+3. Name objects using `_`
+4. Objects have classes
+5. Everything happens through functions&lt;/font&gt;&lt;/b&gt;
+6. Functions have (default) arguments
+7. Functions expect certain object classes
+8. View help files using `?`
+9. Study errors and warnings
+10. Data is stored in data frames
+11. Select variables (vectors) using `$`
+12. Use RStudio and projects
+13. Use editor and shortcuts
+14. First load packages and data
+15. Use auto-complete
+16. &lt;high&gt;Comment and format for readability&lt;/high&gt;
+]
+
+.pull-right5[
+### Short style guide
+
+
+```r
+# Choose appropriate names
+analyze_baselers.R
+trial_id
+
+# Leave spaces around operators
+var_rt &lt;- var(rt, na.rm = TRUE)
+
+# indent code
+if (var_rt &lt; 2){
+  print('small variance')
+} else {
+  print('large variance')
+}
+
+# Crete sections using
+# Data wrangling section ---------
+```
+See also &lt;a href="http://style.tidyverse.org/"&gt;style.tidyverse.org/&lt;/a&gt;
+]
+
+
+---
+
+# Essentials: Lesson 17
+
+.pull-left4[
+&lt;font size=8&gt;&lt;high&gt;Struggle,&lt;br&gt;ask for help,&lt;br&gt;struggle,&lt;br&gt;...&lt;/high&gt;&lt;/font&gt;
+]
+.pull-right5[
+&lt;p align="center"&gt;
+&lt;img src="https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/struggle.png" width="420"&gt;
+&lt;/p&gt;
+]
+
+---
+
+# Downloads
+
+&lt;font size="6" color="#F62D73"&gt;&lt;a href="https://raw.githubusercontent.com/therbootcamp/Intro2DataScience_2018Oct/master/_sessions/_data/baselrbootcamp_data.zip"&gt;Data sets&lt;/a&gt;&lt;/font&gt;
+
+---
+
+# Interactive session
+
+&lt;font size=6&gt;&lt;high&gt;Open up Rstudio...&lt;/high&gt;&lt;/font&gt;
+    </textarea>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"highlightStyle": "github",
+"highlightLines": true,
+"countIncrementalSlides": false,
+"ratio": "16:9"
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function() {
+  var d = document, s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})();</script>
+
+<script>
+(function() {
+  var i, text, code, codes = document.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+})();
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>
