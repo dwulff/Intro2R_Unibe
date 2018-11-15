@@ -1,7 +1,7 @@
 ---
 title: "Introduction to R"
 subtitle: ""
-date: "January 2019"
+date: "February 2019"
 author: "© Michael Schulte-Mecklenbeck & Dirk Wulff"
 output: html_document
 ---
