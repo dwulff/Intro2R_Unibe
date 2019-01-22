@@ -1,8 +1,8 @@
 ---
 title: "Welcome!"
 subtitle: ""
-author: "Introduction to Data Science with R<br/><a href='https://therbootcamp.github.io'>www.therbootcamp.com</a><br/><a href='https://twitter.com/therbootcamp'>@therbootcamp</a>"
-date: "October 2018"
+author: "R Bootcamp<br/><a href='https://therbootcamp.github.io'>www.therbootcamp.com</a><br/><a href='https://twitter.com/therbootcamp'>@therbootcamp</a>"
+date: "February 2019"
 output:
   xaringan::moon_reader:
     css: ["default", "baselrbootcamp.css"]
@@ -17,7 +17,7 @@ output:
 layout: true
 
 <div class="my-footer"><span>
-<a href="https://therbootcamp.github.io/"><font color="#7E7E7E">Introduction to Data Science with R, October 2018</font></a>
+<a href="https://therbootcamp.github.io/"><font color="#7E7E7E">R Bootcamp, February 2019</font></a>
 &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
 &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
 <a href="https://therbootcamp.github.io/"><font color="#7E7E7E">www.therbootcamp.com</font></a>
@@ -36,13 +36,14 @@ knitr::opts_chunk$set(fig.align = 'center')
 
 .pull-left4[
 <br><br><br><br><br><br>
-# Welcome to the<br><high>Basel R Bootcamp!</high>
+# Welcome to the<br><high>Bern R Bootcamp!</high>
 
 ]
 
 .pull-right6[
 <br><br>
-<p align="center"><img src="https://therbootcamp.github.io/assets/img/640px-Middle_Bridge,_Basel,_Switzerland.jpeg" width="500"  height="400"></p>
+
+<p align="center"><img src="_sessions/_images/Eiger.jpg" width="500"  height="400"></p>
 <center><font size = 3>Wikipedia</font></center>
 ]
 ---
@@ -53,6 +54,8 @@ knitr::opts_chunk$set(fig.align = 'center')
 #  Schedule and Materials
 
 Click the "Bootcamp running" link on our homepage!
+
+UPDATE!
 
 <font size="6" color="#F62D73"><a href="www.therbootcamp.com"><b>www.therbootcamp.com</b></a></font><br><br>
 
@@ -112,7 +115,7 @@ Click the "Bootcamp running" link on our homepage!
 
 We have an <high>ambitious schedule</high>!
 
->2 days, 3 sessions per day, 2 hours per session, on a variety of topics.
+>3 days, 3 sessions per day, 2 hours per session, on a variety of topics.
 
 >Each session contains a slide-based <high>introduction</high> and a hands-on <high>programming practical</high>
 
@@ -278,7 +281,7 @@ knitr::include_graphics("https://cdn.southampton.ac.uk/assets/imported/transform
 
 2 - Help yourself to refreshments
 
-3 - Lunch on your own or together at Tibits
+3 - Lunch on your own or together
 
 ]
 
