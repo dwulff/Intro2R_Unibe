@@ -3,7 +3,7 @@
   <head>
     <title>Intro to R</title>
     <meta charset="utf-8">
-    <meta name="author" content="Introduction to Data Science with R www.therbootcamp.com @therbootcamp" />
+    <meta name="author" content="R Bootcamp Bern www.therbootcamp.com @therbootcamp" />
     <link href="libs/remark-css/default.css" rel="stylesheet" />
     <link rel="stylesheet" href="baselrbootcamp.css" type="text/css" />
   </head>
@@ -12,8 +12,8 @@
 class: center, middle, inverse, title-slide
 
 # Intro to R
-### Introduction to Data Science with R<br/><a href='https://therbootcamp.github.io'>www.therbootcamp.com</a><br/><a href='https://twitter.com/therbootcamp'><span class="citation">@therbootcamp</span></a>
-### October 2018
+### R Bootcamp Bern<br/><a href='https://therbootcamp.github.io'>www.therbootcamp.com</a><br/><a href='https://twitter.com/therbootcamp'><span class="citation">@therbootcamp</span></a>
+### February 2019
 
 ---
 
@@ -21,12 +21,11 @@ class: center, middle, inverse, title-slide
 layout: true
 
 &lt;div class="my-footer"&gt;&lt;span&gt;
-&lt;a href="https://therbootcamp.github.io/"&gt;&lt;font color="#7E7E7E"&gt;Introduction to Data Science with R, October 2018&lt;/font&gt;&lt;/a&gt;
+&lt;a href="https://therbootcamp.github.io/"&gt;&lt;font color="#7E7E7E"&gt;R Bootcamp, February 2019&lt;/font&gt;&lt;/a&gt;
 &amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;
 &amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;
 &lt;a href="https://therbootcamp.github.io/"&gt;&lt;font color="#7E7E7E"&gt;www.therbootcamp.com&lt;/font&gt;&lt;/a&gt;
 &lt;/span&gt;&lt;/div&gt; 
-
 
 ---
 
@@ -87,8 +86,10 @@ Today, R is one of the **most popular languages for data science** and overall.
 
 In terms of the number of data science jobs, **R beats SAS and Matlab**, and is on par with Python.
 
+In many sciences it becomes the de factor **lingua franca** for statistics.
+
 &lt;p style="font-size:10px;float:bottom"&gt;
-  Image source: https://i0.wp.com/r4stats.com/
+  Image source: http://r4stats.com/blog/
 &lt;p&gt;
 
 
@@ -257,8 +258,8 @@ Next to many useful packages, R users greatly benefit from R's integrated develo
 
 .pull-left4[
 1. &lt;high&gt;Everything is an object&lt;/high&gt;
-2. &lt;high&gt;Use `&lt;-` to create/change objects&lt;/high&gt;
-3. &lt;high&gt;Name objects using `_`&lt;/high&gt;
+2. &lt;high&gt;Use &lt;- to create/change objects&lt;/high&gt;
+3. &lt;high&gt;Name objects using _&lt;/high&gt;
 4. Objects have classes
 5. Everything happens through functions
 6. Functions have (default) arguments
@@ -556,7 +557,7 @@ mean(c(1, 2, 3), na.rm = "test")
 5. Everything happens through functions&lt;/font&gt;&lt;/b&gt;
 6. Functions have (default) arguments
 7. Functions expect certain object classes
-8. &lt;high&gt;View help files using `?`&lt;/high&gt;
+8. &lt;high&gt;View help files using ? &lt;/high&gt;
 9. Study errors and warnings
 10. Data is stored in data frames
 11. Select variables (vectors) using `$`
@@ -587,7 +588,7 @@ mean(c(1, 2, 3), na.rm = "test")
 5. Everything happens through functions&lt;/font&gt;&lt;/b&gt;
 6. Functions have (default) arguments
 7. Functions expect certain object classes
-8. &lt;high&gt;View help files using `?`&lt;/high&gt;
+8. &lt;high&gt;View help files using ?&lt;/high&gt;
 9. Study errors and warnings
 10. Data is stored in data frames
 11. Select variables (vectors) using `$`
@@ -777,7 +778,7 @@ print(baselers)
 8. View help files using `?`
 9. Study errors and warnings
 10. Data is stored in data frames
-11. &lt;high&gt;Select variables (vectors) using `$`&lt;/high&gt;
+11. &lt;high&gt;Select variables (vectors) using $&lt;/high&gt;
 12. Use RStudio and projects
 13. Use editor and shortcuts
 14. First load packages and data
@@ -848,7 +849,7 @@ baselers[[2]]
 ]
 
 .pull-right5[
-### Projects help...
+### Projects help ... USE projects!
 save workspace and history &amp;#9679; set project specific options &amp;#9679; access files &amp;#9679; version control &amp;#9679; etc.
 &lt;p align="left"&gt;&lt;img src="https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/projects_1.png" width="360"&gt;&lt;/p&gt;
 ]
@@ -960,7 +961,7 @@ baselers &lt;- read_delim("baselers.txt",
 ```
 &lt;br&gt;
 ### The goal is...
-... to create self-contained scripts that run uninterrupted from  beginning to start.
+... to create self-contained scripts that run uninterrupted from  beginning to end.
 ]
 
 ---
@@ -1139,7 +1140,7 @@ if (var_rt &lt; 2){
   print('large variance')
 }
 
-# Crete sections using
+# Create sections using
 # Data wrangling section ---------
 ```
 See also &lt;a href="http://style.tidyverse.org/"&gt;style.tidyverse.org/&lt;/a&gt;
@@ -1169,6 +1170,8 @@ See also &lt;a href="http://style.tidyverse.org/"&gt;style.tidyverse.org/&lt;/a&
 
 # Interactive session
 
+&lt;font size=6&gt;&lt;high&gt;Install (R)studio...(if not already done)&lt;/high&gt;&lt;/font&gt;
+&lt;br&gt;
 &lt;font size=6&gt;&lt;high&gt;Open up Rstudio...&lt;/high&gt;&lt;/font&gt;
     </textarea>
 <script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
@@ -1211,7 +1214,7 @@ if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
 (function () {
   var script = document.createElement('script');
   script.type = 'text/javascript';
-  script.src  = 'https://cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
   if (location.protocol !== 'file:' && /^https?:/.test(script.src))
     script.src  = script.src.replace(/^https?:/, '');
   document.getElementsByTagName('head')[0].appendChild(script);
