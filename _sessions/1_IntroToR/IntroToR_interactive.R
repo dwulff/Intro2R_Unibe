@@ -3,7 +3,7 @@
 # 2.  Go to preferences and switch off workspace saving
 
 # Create Project -----
-# 1.  Create project named BaselRBootcamp
+# 1.  Create project named BernRBootcamp
 # 2.  Create appropriate folder structure from within RStudio
 # 3.  Add datasets to 1_Data folder
 
@@ -30,14 +30,11 @@
 # Functions in R ----- 
 
 # 1 Create a numeric vector called age
-# 2. Ccalculate mean age (auto-complete)
+# 2. Calculate mean age (auto-complete)
 # 3. Store result
 # 4. Add NA to age
 # 5. Compute mean
 # 6. Check help
-# 7. Use n.rm argument
+# 7. Use na.rm argument
 
 # Close RStudio & Reopen ----
-
-
-

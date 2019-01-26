@@ -2,7 +2,7 @@
 title: "Introduction to R"
 subtitle: ""
 date: "February 2019"
-author: "© Michael Schulte-Mecklenbeck & Dirk Wulff"
+author: "© Dirk Wulff & Michael Schulte-Mecklenbeck"
 output: html_document
 ---
 
@@ -26,8 +26,8 @@ output: html_document
 
 |  | Day 1<br>Preparation| Day 2<br>Analysis| Day 3<br>Reporting| 
 |:--|:-------------|:-------------|:-------------|
-|0| Welcome!<br>[slides](_sessions/Welcome/Welcome.html) | Recap<br>[slides](_sessions/Recap/Recap.html)| Recap II<br>[slides](_sessions/RecapII/RecapII.html)|
-|1| Intro to R<br>[slides](_sessions/IntroToR/IntroToR.html), [source](_sessions/IntroToR/IntroToR_interactive.R) | Analysing <br>[slides](_sessions/Analysing/Analysing.html), [practical](_sessions/Analysing/Analysing_practical.html) | Plotting II <br>[slides](_sessions/PlottingII/PlottingII.html), [practical](_sessions/PlottingII/PlottingII.html) |
+|0| Welcome!<br>[slides](_sessions/0_Welcome/Welcome.html) | Recap<br>[slides](_sessions/Recap/Recap.html)| Recap II<br>[slides](_sessions/RecapII/RecapII.html)|
+|1| Intro to R<br>[slides](_sessions/1_IntroToR/IntroToR.html), [source](_sessions/1_IntroToR/IntroToR_interactive.R) | Analysing <br>[slides](_sessions/Analysing/Analysing.html), [practical](_sessions/Analysing/Analysing_practical.html) | Plotting II <br>[slides](_sessions/PlottingII/PlottingII.html), [practical](_sessions/PlottingII/PlottingII.html) |
 |2|  Data <br>[slides](_sessions/Data/Data.html), [practical](_sessions/Data/Data_practical.html)| Statistics<br>[slides](_sessions/Statistics/Statistics.html), [practical](_sessions/Statistics/Statistics_practical.html)| Reporting<br>[slides](_sessions/Reporting/Reporting.html), [practical](_sessions/Reporting/Reporting_practical.html)|
 |3|   Wrangling<br>[slides](_sessions/Wrangling/Wrangling.html), [practical](_sessions/Wrangling/Wrangling_practical.html) | Plotting<br>[slides](_sessions/Plotting/Plotting.html), [practical](_sessions/Plotting/Plotting_practical.html) |Case Studies<br>[Intro](_sessions/CaseStudies/CaseStudies.html)<br>[1: Clinical Trial](_sessions/CaseStudies/Clinical_Data_Case_Study.html)<br>[2: Finance ](_sessions/CaseStudies/Financial_Data_Case_Study.html)|
 |4| |  | Next Steps<br>[slides](_sessions/NextSteps/NextSteps.html) |
@@ -36,4 +36,5 @@ output: html_document
 ## Schedule
 
 <p align="center"><br>
-    <a href=""><img border="0" alt="Oct2018Schedule" src="schedule.png?raw=true" style="width:450px"></a><br>
+    <a href=""><img border="0" alt="Feb2019Schedule" src="_sessions/_images/schedule.png" style="width:450px"></a><br>
+    

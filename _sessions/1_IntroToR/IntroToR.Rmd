@@ -1,7 +1,7 @@
 ---
 title: "Intro to R"
-author: "Introduction to Data Science with R<br/><a href='https://therbootcamp.github.io'>www.therbootcamp.com</a><br/><a href='https://twitter.com/therbootcamp'>@therbootcamp</a>"
-date: "October 2018"
+author: "R Bootcamp Bern<br/><a href='https://therbootcamp.github.io'>www.therbootcamp.com</a><br/><a href='https://twitter.com/therbootcamp'>@therbootcamp</a>"
+date: "February 2019"
 output:
   xaringan::moon_reader:
     css: ["default", "baselrbootcamp.css"]
@@ -16,12 +16,11 @@ output:
 layout: true
 
 <div class="my-footer"><span>
-<a href="https://therbootcamp.github.io/"><font color="#7E7E7E">Introduction to Data Science with R, October 2018</font></a>
+<a href="https://therbootcamp.github.io/"><font color="#7E7E7E">R Bootcamp, February 2019</font></a>
 &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
 &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
 <a href="https://therbootcamp.github.io/"><font color="#7E7E7E">www.therbootcamp.com</font></a>
 </span></div> 
-
 
 ---
 
@@ -97,8 +96,10 @@ Today, R is one of the **most popular languages for data science** and overall.
 
 In terms of the number of data science jobs, **R beats SAS and Matlab**, and is on par with Python.
 
+In many sciences it becomes the de factor **lingua franca** for statistics.
+
 <p style="font-size:10px;float:bottom">
-  Image source: https://i0.wp.com/r4stats.com/
+  Image source: http://r4stats.com/blog/
 <p>
 
 
@@ -272,8 +273,8 @@ Next to many useful packages, R users greatly benefit from R's integrated develo
 
 .pull-left4[
 1. <high>Everything is an object</high>
-2. <high>Use `<-` to create/change objects</high>
-3. <high>Name objects using `_`</high>
+2. <high>Use <- to create/change objects</high>
+3. <high>Name objects using _</high>
 4. Objects have classes
 5. Everything happens through functions
 6. Functions have (default) arguments
@@ -481,7 +482,7 @@ mean(c(1, 2, 3), na.rm = "test")
 5. Everything happens through functions</font></b>
 6. Functions have (default) arguments
 7. Functions expect certain object classes
-8. <high>View help files using `?`</high>
+8. <high>View help files using ? </high>
 9. Study errors and warnings
 10. Data is stored in data frames
 11. Select variables (vectors) using `$`
@@ -511,7 +512,7 @@ mean(c(1, 2, 3), na.rm = "test")
 5. Everything happens through functions</font></b>
 6. Functions have (default) arguments
 7. Functions expect certain object classes
-8. <high>View help files using `?`</high>
+8. <high>View help files using ?</high>
 9. Study errors and warnings
 10. Data is stored in data frames
 11. Select variables (vectors) using `$`
@@ -665,7 +666,7 @@ print(baselers)
 8. View help files using `?`
 9. Study errors and warnings
 10. Data is stored in data frames
-11. <high>Select variables (vectors) using `$`</high>
+11. <high>Select variables (vectors) using $</high>
 12. Use RStudio and projects
 13. Use editor and shortcuts
 14. First load packages and data
@@ -716,7 +717,7 @@ options(max.print=100,width=110)
 ]
 
 .pull-right5[
-### Projects help...
+### Projects help ... USE projects!
 save workspace and history &#9679; set project specific options &#9679; access files &#9679; version control &#9679; etc.
 <p align="left"><img src="https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/projects_1.png" width="360"></p>
 ]
@@ -828,7 +829,7 @@ baselers <- read_delim("baselers.txt",
 ```
 <br>
 ### The goal is...
-... to create self-contained scripts that run uninterrupted from  beginning to start.
+... to create self-contained scripts that run uninterrupted from  beginning to end.
 ]
 
 ---
@@ -1004,7 +1005,7 @@ if (var_rt < 2){
   print('large variance')
 }
 
-# Crete sections using
+# Create sections using
 # Data wrangling section ---------
 ```
 See also <a href="http://style.tidyverse.org/">style.tidyverse.org/</a>
@@ -1034,6 +1035,8 @@ See also <a href="http://style.tidyverse.org/">style.tidyverse.org/</a>
 
 # Interactive session
 
+<font size=6><high>Install (R)studio...(if not already done)</high></font>
+<br>
 <font size=6><high>Open up Rstudio...</high></font>
 
 

@@ -1,9 +1,9 @@
 # R Studio Settings ----- 
 # 1.  Panel icon -> switch to Console on right
-# 2.  Go to preferences and switch of workspace storing
+# 2.  Go to preferences and switch off workspace storing
 
 # Create Project -----
-# 1.  Create project named BaselRBootcamp
+# 1.  Create project named BernRBootcamp
 # 2.  Create appropriate folder structure from within RStudio
 
 # R as a calculator ----- 
@@ -74,6 +74,3 @@ mean(age)
 mean(age, na.rm=T)
 
 # Close RStudio & Reopen ----
-
-
-

@@ -1,8 +1,8 @@
 ---
 title: "Welcome!"
 subtitle: ""
-author: "Introduction to Data Science with R<br/><a href='https://therbootcamp.github.io'>www.therbootcamp.com</a><br/><a href='https://twitter.com/therbootcamp'>@therbootcamp</a>"
-date: "October 2018"
+author: "R Bootcamp Bern<br/><a href='https://therbootcamp.github.io'>www.therbootcamp.com</a><br/><a href='https://twitter.com/therbootcamp'>@therbootcamp</a>"
+date: "February 2019"
 output:
   xaringan::moon_reader:
     css: ["default", "baselrbootcamp.css"]
@@ -17,7 +17,7 @@ output:
 layout: true
 
 <div class="my-footer"><span>
-<a href="https://therbootcamp.github.io/"><font color="#7E7E7E">Introduction to Data Science with R, October 2018</font></a>
+<a href="https://therbootcamp.github.io/"><font color="#7E7E7E">R Bootcamp, February 2019</font></a>
 &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
 &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
 <a href="https://therbootcamp.github.io/"><font color="#7E7E7E">www.therbootcamp.com</font></a>
@@ -36,14 +36,15 @@ knitr::opts_chunk$set(fig.align = 'center')
 
 .pull-left4[
 <br><br><br><br><br><br>
-# Welcome to the<br><high>Basel R Bootcamp!</high>
+# Welcome to the<br><high>Bern R Bootcamp!</high>
 
 ]
 
 .pull-right6[
 <br><br>
-<p align="center"><img src="https://therbootcamp.github.io/assets/img/640px-Middle_Bridge,_Basel,_Switzerland.jpeg" width="500"  height="400"></p>
-<center><font size = 3>Wikipedia</font></center>
+
+<p align="center"><img src="/_sessions/_images/Eiger.jpg" width="500"  height="400"></p>
+<center><font size = 3></font></center>
 ]
 ---
 
@@ -52,7 +53,8 @@ knitr::opts_chunk$set(fig.align = 'center')
 <br><br><br><br><br>
 #  Schedule and Materials
 
-Click the "Bootcamp running" link on our homepage!
+Click the "Start Bootcamp" link in Ilias!
+
 
 <font size="6" color="#F62D73"><a href="www.therbootcamp.com"><b>www.therbootcamp.com</b></a></font><br><br>
 
@@ -61,7 +63,8 @@ Click the "Bootcamp running" link on our homepage!
 .pull-right5[
 
 <br><br>
-<iframe src="https://therbootcamp.github.io" width="500" height="500"></iframe>
+<p align="center"><img src="/_sessions/_images/schedule.png" height="550"></p>
+<center><font size = 3></font></center>
 
 ]
 
@@ -112,7 +115,7 @@ Click the "Bootcamp running" link on our homepage!
 
 We have an <high>ambitious schedule</high>!
 
->2 days, 3 sessions per day, 2 hours per session, on a variety of topics.
+>3 days, 3 sessions per day, 2 hours per session, on a variety of topics.
 
 >Each session contains a slide-based <high>introduction</high> and a hands-on <high>programming practical</high>
 
@@ -123,7 +126,8 @@ We have an <high>ambitious schedule</high>!
 
 .pull-right4[
 
-<img src="https://github.com/therbootcamp/therbootcamp.github.io/blob/master/_sessions/_image/schedule_2018Oct_Intro2DS.png?raw=true" height="550" align="center">
+<p align="center"><img src="/_sessions/_images/schedule.png" height="550"></p>
+<center><font size = 3></font></center>
 
 ]
 
@@ -192,9 +196,9 @@ knitr::include_graphics("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR
 .pull-right5[
 <br>
 
-  <iframe src="https://therbootcamp.github.io/Intro2DataScience_2018Oct/_sessions/Data/Data_practical.html" height="480px" width = "500px"></iframe>
+  <iframe src="/_sessions/Data/Data_practical.html" height="480px" width = "500px"></iframe>
 
-  Example:<a href="https://therbootcamp.github.io/Intro2DataScience_2018Oct/_sessions/Data/Data_practical.html"> Data practical </a>
+  Example:<a href="/_sessions/Data/Data_practical.html"> Data practical </a>
 
 ]
 
@@ -202,7 +206,7 @@ knitr::include_graphics("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR
 
 .pull-left45[
 <br>
-# 1-1 Coaching
+# 1:1 Coaching
 
 Learning a computer language is <high>hard</high>.
 
@@ -210,9 +214,7 @@ Learning a computer language is <high>hard</high>.
 
 Sometimes, you may find yourself in need of some <high>intensive help</high>. That's ok! We're here to help!
 
-At any time, you can <high>request a 15 minute 1-1 intensive</high> coaching session. We'll grab a coffee and work through it together.
-
-
+At any time, you can <high>request a 15 minute 1:1 intensive</high> coaching session. We'll grab a coffee and work through it together.
 ]
  
 
@@ -274,11 +276,11 @@ knitr::include_graphics("https://cdn.southampton.ac.uk/assets/imported/transform
 <br><br>
 # Breaks
 
-1 - Feel free to take breaks when you need them!
+1 - Feel free to take breaks when you need them, see schedule for 'official' breaks.
 
-2 - Help yourself to refreshments
+2 - Cafeteria in the basement of this buidling.
 
-3 - Lunch on your own or together at Tibits
+3 - Lunch on your own or together (Schanze, Welle, Coop)
 
 ]
 
@@ -304,7 +306,7 @@ knitr::include_graphics("https://cdn.southampton.ac.uk/assets/imported/transform
 
 2. Where are you from?
 
-3. What is your current profession?
+3. What is your main study subject?
 
 4. What is your programming experience?
 
@@ -343,7 +345,7 @@ knitr::include_graphics("https://cdn.southampton.ac.uk/assets/imported/transform
 
 .pull-right6[
 
-<img src="https://github.com/therbootcamp/therbootcamp.github.io/blob/master/_sessions/_image/schedule_2018Oct_Intro2DS.png?raw=true" height="580" align="center">
+<img src="/_sessions/_image/schedule_2018Oct_Intro2DS.png?raw=true" height="580" align="center">
 
 
 ]
