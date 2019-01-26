@@ -435,36 +435,7 @@ ggplot(data = mcdonalds, aes(x = Category, y = Calories, fill = Category)) +
 - Instead of using `geom_violin()`, try `geom_boxplot()`.
 - Remove the `fill = Category` aesthetic entirely.
 
-### D - Using facets
-
-1. Create the following plot showing the relationship between `Sodium` and `Calories`.
-
-```{r, eval = FALSE, echo = TRUE}
-ggplot(XX, aes(x = XX, y = XX)) +
-  geom_point(alpha = .2) +
-  facet_wrap(~ XX) +
-  labs(title = "XX",
-       subtitle = "XX") +
-  theme_minimal()
-```
-
-```{r, }
-ggplot(mcdonalds, aes(x = Sodium, y = Calories)) +
-  geom_point(alpha = .2) +
-  facet_wrap(~Category) +
-  labs(title = "McDonales",
-       subtitle = "Sodium vs. Calories") +
-  theme_minimal()
-```
-
-
-2. Try the following ways to customise your plot:
-
-- Color the points by `Category`.
-- Add a smoothed line to each plot with `geom_smooth()`.
-
-
-### E - Adjusting colors
+### D - Adjusting colors
 
 ```{r, echo = FALSE, eval = TRUE, fig.width=6, fig.height = 4}
 ggplot(mcdonalds, aes(x = Cholesterol,
@@ -487,7 +458,7 @@ ggplot(mcdonalds, aes(x = Cholesterol,
 5. Customize! Look at all of the named colors in R by running `colors()`. Then, use two new colors in your plot.
  
 
-### F - Summary statistics
+### E - Summary statistics
 
 1. Create the following plot showing the mean number of calories for each menu category using the following template:
 
@@ -514,34 +485,7 @@ ggplot(mcdonalds, aes(x = Category, y = Calories)) +
 - Add overlapping points showing the individual items using `geom_point()`, `geom_count()` or `geom_jitter()`.
 
 
-### G - Saving plots
-
-1. It's time to save your favorite plot to an image file! Pick your favorite plot you've created so far. Then, assign the plot to a new object called `mcdonalds_gg` using `mcdonalds_gg <- ggplot(...)`
-
-```{r, eval = FALSE, echo = TRUE}
-mcdonalds_gg <- ggplot(...) + ... # Include your plotting code here
-```
-
-2. Evaluate your `mcdonalds_gg` object to see that it does indeed contain your plot.
-
-3. Save your plot to a .pdf-file called `mcdonalds.pdf` using `ggsave()`. When you finish, find your plot in `3_Figures` and open it to see how it looks! 
-
-```{r, echo = TRUE, eval = FALSE}
-# Save mcdonalds_gg to a pdf file
-ggsave(filename = "3_Figures/mcdonalds", 
-       device = "pdf", 
-       plot = mcdonalds_gg,
-       width = 4, 
-       height = 4, 
-       units = "in")
-```
-
-4. Play around with the `width` and `height` arguments to change the dimensions of the plot.
-
-5. Customize your code to create a jpeg image called `mcdonalds.jpeg`
-
-
-### H - Adding labels
+### F - Adding labels
 
 Let's create the following plot with additional point labels using `geom_text()`:
 
@@ -589,90 +533,7 @@ ggplot(mcdonalds, aes(x = XX,
 - Instead of mapping `Category` to the `color` aesthetic, try creating different facets for each `Category` with `facet_wrap(~ Category)`.
 - Try using a different plotting theme. For example, you can try `theme_excel()` included in the `ggthemes` package.
 
-### I - Make your plots interactive with `plotly::ggplotly()`
-
-1. With the `ggplotly()`-function from the `plotly` package, you can turn any `ggplot` object into an interactive plot like the one below! Run the following code to see it in action.
-
-```{r, echo = TRUE, eval = TRUE, fig.width = 8, fig.height = 4}
-# Create a standard ggplot object
-MyPlot <- ggplot(data = mcdonalds,
-                 aes(x = Calories, y = TotalFat, col = Category)) + 
-  geom_point()
-
-
-# Make it interactive with ggplotly()!
-library(plotly)
-ggplotly(MyPlot)
-```
-
-2. Play around with your plot! See what happens when you hover over the points with your mouse. You can even zoom in by dragging your mouse.
-
-3. Try turning one of your favorite previous plots into an interactive `plotly` plot using the `ggplotly()` function!
-
 ### X - Challenges
 
-For these challenges, use the `kc_house` dataset. Load the data as `kc_house`
-
-1. Make this plot
-- Hint: use `scale_color_gradient(low = "green", high = "red") `)
-
-```{r, echo = FALSE, eval = TRUE, fig.width = 7, fig.height = 4}
-ggplot(data = kc_house,
-       aes(x = bedrooms, y = bathrooms, col = price)) +
-  geom_count() +
-  labs(title = "King County Housing Prices",
-       subtitle = "Lighter color = higher price",
-       x = "# of Bedrooms",
-       y = "# of Bathrooms") +
-scale_color_gradient(low = "green", high = "red") +
-  xlim(c(0, 12)) +
-  theme_bw()
-```
-
-2. Make this plot 
-- Hint: take the log of price with `log(price)`
-
-```{r, echo = FALSE, eval = TRUE, fig.width = 7, fig.height = 4}
-ggplot(data = kc_house,
-       aes(x = yr_built, y = log(price))) +
-  geom_count(alpha = .01) +
-  geom_smooth() +
-  stat_summary(size = .1) +
-  guides(size = FALSE) +
-  ylim(c(11, 15)) +
-  labs(x = "Year Built",
-       y = "Price (log-scale)",
-       title = "Selling Seattle price of houses by year",
-       subtitle = "Points indicate mean by year",
-       caption = 'Line created by gam()') +
-  theme_minimal()
-```
-
-3. Make this plot
-- Hint: Start by creating an aggregated dataset with median home prices of the top 20 zipcodes. Then, use this dataset in ggplot!
-
-```{r, eval = TRUE, echo = FALSE, fig.height = 3, fig.width = 5.5}
-agg <- kc_house %>%
-  group_by(zipcode) %>%
-  summarise(price_median = median(price)) %>%
-  arrange(desc(price_median)) %>%
-  mutate(zipcode = factor(zipcode, levels = zipcode, ordered = TRUE)) %>%
-  slice(1:20) %>%
-  mutate(rank = 1:20)
-
-ggplot(agg,
-       aes(x = rank, y = price_median, label = zipcode, size = price_median, alpha = price_median)) +
-  geom_point(col = "skyblue") +
-  geom_text(aes(x = rank, y = price_median), nudge_x = .7, nudge_y = 200000, angle = 45, size = 3, col = "black") +
-  labs(y = "Median Home Price",
-       x = "Rank",
-       title = "Top 10 Most Expensive King County Zipcodes") +
-  scale_x_continuous(breaks = 1:20) +
-  ylim(c(0, 2300000)) +
-    guides(size = FALSE, alpha = FALSE) +
-  theme_minimal() +
-  theme(panel.grid.major.x = element_blank(),
-        panel.grid.minor.x = element_blank())
-```
 
 
