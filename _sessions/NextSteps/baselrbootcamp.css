@@ -3,6 +3,9 @@
 @import url(https://fonts.googleapis.com/css?family=Yanone+Kaffeesatz);
 @import url(https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic);
 @import url(https://fonts.googleapis.com/css?family=Source+Code+Pro:400,700);
+@import url(https://use.fontawesome.com/releases/v5.6.3/css/all.css);
+@import url(https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css);
+@import url(https://fonts.googleapis.com/icon?family=Material+Icons);
 
 
 /* Title */
@@ -35,7 +38,7 @@
 
 a {
 color: #6ABA9A;
-font-weight: 700; 
+font-weight: 700;
 }
 
 /* Footer */
@@ -56,7 +59,7 @@ div.my-footer span {
     position: absolute;
     text-align: left;
     bottom: 0px;
-    left: 20px;
+    left: 0px;
 	}
 
 /* Center */
@@ -322,5 +325,15 @@ br2 {
 
 high {
   color: #EA4B68;
-  font-weight: 700; 
+  font-weight: 700;
+}
+
+mono {
+	font-family: monospace;
+}
+
+highm {
+	color: #EA4B68;
+  font-weight: 700;
+	font-family: monospace;
 }

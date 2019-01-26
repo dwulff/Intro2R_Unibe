@@ -8,7 +8,7 @@
 /* Title */
 
 .title-slide {
-	background-image: url(https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/slide_background.png);
+	background-image: url(https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/bernrbootcamp_titleslide.png);
 	background-size: cover;
 	}
 
@@ -35,7 +35,7 @@
 
 a {
 color: #6ABA9A;
-font-weight: 700; 
+font-weight: 700;
 }
 
 /* Footer */
@@ -322,7 +322,7 @@ br2 {
 
 high {
   color: #EA4B68;
-  font-weight: 700; 
+  font-weight: 700;
 }
 
 font.hfont {
