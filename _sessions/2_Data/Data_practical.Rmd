@@ -1,5 +1,5 @@
 ---
-title: "Data"
+title: "Data Practical"
 author: "Introduction to Data Science with R<br/><a href='https://therbootcamp.github.io'>www.therbootcamp.com</a><br/><a href='https://twitter.com/therbootcamp'>@therbootcamp</a>"
 output:
   html_document:
@@ -14,7 +14,7 @@ knitr::opts_chunk$set(echo = TRUE,
                       error = FALSE)
 
 options(digits = 3)
-
+#devtools::install_github("therbootcamp/baselers")
 library(baselers)
 library(tidyverse)
 library(knitr)
@@ -41,7 +41,7 @@ In this practical you'll learn how to work with basic data objects and functions
 3. Calculate basic descriptive statistics using `mean()`, `median()`, `table()` (and more!)
 4. Read and write data of various data formats using `read_csv()` and others 
 5. Access and change vectors from data frames using `$`
-6. Create `data.frames` and `tibbles`! using `data.frame()` and `tibble()`
+6. Create `data.frames` and `tibbles` using `data.frame()` and `tibble()`
 
 
 ### Datasets
@@ -439,11 +439,6 @@ diamonds
 
 6. Now pay attention to the classes of the individuals columns (variables). Have all classes been identified correctly? What about the `carat` column? It should be `numeric`, right?
 
-```{r}
-# print diamonds
-diamonds
-```
-
 7. Let's see what went wrong. Select and print the `carat` variable to identify the one entry that caused the variable to become a `character` vector (Hint: look for a comma between entry 10 and 20). 
 
 ```{r}
@@ -751,7 +746,7 @@ ten_df$age
 max(ten_df$age)
 ```
 
-8. Instead of creating a data frame of the data using the `data.frame()` function, try creating a tibble called `ten_tibble` using the `tibble()` function. `tibble`s are a more modern, leaner variant of data frame that we prefer over classic `data.frame`s You can use the exact same arguments you used before.
+8. Instead of creating a data frame of the data using the `data.frame()` function, try creating a tibble called `ten_tibble` using the `tibble()` function. `tibble`s are a more modern, leaner variant of data frame that we prefer over classic `data.frame`. You can use the exact same arguments you used before.
 
 ```{r}
 # create tibble

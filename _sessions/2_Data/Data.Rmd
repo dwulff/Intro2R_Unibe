@@ -879,7 +879,7 @@ data <- jsonlite::read_json(file, ...)
 
 # Remote databases
 
-R provides <high>all necessary tools to pull data from or directly work with</high> remote databases such as, e.g., a `SQL` database. Find out more at:
+R provides <high>all necessary tools to pull data from</high> or <high> directly work with</high> remote databases such as, e.g., a `SQL` database. Find out more at:
 
 <br><br>
 <div class="center_text_2">
