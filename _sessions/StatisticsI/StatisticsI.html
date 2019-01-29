@@ -1,0 +1,813 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Statistics I</title>
+    <meta charset="utf-8">
+    <meta name="author" content="Introduction to R   Bern R Bootcamp" />
+    <link href="libs/remark-css/default.css" rel="stylesheet" />
+    <link rel="stylesheet" href="baselrbootcamp.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
+
+# Statistics I
+### Introduction to R<br> <a href='https://therbootcamp.github.io'> Bern R Bootcamp </a> <br> <a href='https://dwulff.github.io/Intro2R_Unibe/'> <i class='fas fa-clock' style='font-size:.9em;'></i> </a>  <a href='https://therbootcamp.github.io'> <i class='fas fa-home' style='font-size:.9em;' ></i> </a>  <a href='mailto:therbootcamp@gmail.com'> <i class='fas fa-envelope' style='font-size: .9em;'></i> </a>  <a href='https://www.linkedin.com/company/basel-r-bootcamp/'> <i class='fab fa-linkedin' style='font-size: .9em;'></i> </a>
+### February 2019
+
+---
+
+
+layout: true
+
+&lt;div class="my-footer"&gt;
+  &lt;span style="text-align:center"&gt;
+    &lt;span&gt; 
+      &lt;img src="https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/by-sa.png" height=14 style="vertical-align: middle"/&gt;
+    &lt;/span&gt;
+    &lt;a href="https://therbootcamp.github.io/"&gt;
+      &lt;span style="padding-left:82px"&gt; 
+        &lt;font color="#7E7E7E"&gt;
+          www.therbootcamp.com
+        &lt;/font&gt;
+      &lt;/span&gt;
+    &lt;/a&gt;
+    &lt;a href="https://therbootcamp.github.io/"&gt;
+      &lt;font color="#7E7E7E"&gt;
+       Introduction to R | February 2019
+      &lt;/font&gt;
+    &lt;/a&gt;
+    &lt;/span&gt;
+  &lt;/div&gt; 
+
+---
+  
+
+
+
+
+# Statistics
+
+.pull-left45[
+
+#### &lt;high&gt;Descriptive statistics&lt;/high&gt; with `dplyr`
+
+
+```r
+# Group-summarise idiom
+baselers %&gt;%
+  group_by(sex, eyecor) %&gt;%
+  summarise(
+    N = n(),
+    age_mean = mean(age),
+    height_median = median(height),
+    children_max = max(children)
+  )
+```
+
+
+#### &lt;high&gt;Simply hypothesis test&lt;/high&gt; with `stats`
+
+
+```r
+# Simple hypothesis test
+t.test(baselers$happiness,
+       baselers$fitness,
+       var.equal = TRUE)
+```
+
+]
+
+.pull-right45[
+
+&lt;p align = "center"&gt;
+
+&lt;img src="image/null_hypothesis.png" height=430px&gt;&lt;br&gt;
+&lt;font style="font-size:10px"&gt;from &lt;a href="https://xkcd.com/892/"&gt;xkcd.com&lt;/a&gt;&lt;/font&gt;
+&lt;/p&gt;
+]
+
+
+
+---
+
+
+# `dplyr` + `tidyr`
+
+.pull-left5[
+
+To wrangle data in R, we will use the &lt;high&gt;&lt;mono&gt;dplyr&lt;/mono&gt;&lt;/high&gt; and &lt;high&gt;&lt;mono&gt;tidyr&lt;/mono&gt;&lt;/high&gt; packages, which are part of the &lt;high&gt;&lt;mono&gt;tidyverse&lt;/mono&gt;&lt;/high&gt;.
+
+| Package | Function| Function|
+|:-------------|:----|
+|&lt;b&gt;dplyr&lt;/b&gt; | Transformation | `rename()`, `mutate()`, `case_when()`, `*_join()`  |
+|&lt;b&gt;dplyr&lt;/b&gt; | Organisation | `arrange()`, `slice()`, `filter()`, `select()`  |
+|&lt;b&gt;tidyr&lt;/b&gt; | Organisation | `gather()`, `spread()` |
+|&lt;b&gt;dplyr&lt;/b&gt; | Aggregation | `group_by()`, `summarise()` |
+
+]
+ 
+.pull-right4[
+
+&lt;p align = "center"&gt;
+&lt;img src="image/packages.png" height=320px&gt;
+&lt;/p&gt;
+
+
+]
+
+---
+
+# Grouped aggregation 
+
+.pull-left3[
+
+&lt;high&gt;(Conditional) descriptives statistic&lt;/high&gt;s are easily calculated using `dplyr`'s `group_by()` and `summerise()` idiom.
+
+
+
+```r
+# Start with data
+data %&gt;% # AND THEN...
+  
+# GROUPING VARIABLE
+GROUP_BY %&gt;% 
+  
+# DO SUMMARIES
+SUMMARISE( 
+  
+  RESULT_1, 
+  RESULT_2,
+  RESULT_3
+  
+  ) 
+```
+
+
+]
+
+.pull-right6[
+
+&lt;p align="right"&gt;
+  &lt;img src="https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/summarsed_data_diagram.png" height="414px"&gt;
+&lt;/p&gt; 
+
+]
+
+---
+
+# The Pipe!  &lt;high&gt;`%&gt;%`&lt;/high&gt;
+
+.pull-left4[
+
+`dplyr` makes extensive use of a new operator called the "Pipe" &lt;high&gt;`%&gt;%`&lt;/high&gt;&lt;br&gt;
+
+Read the "Pipe" &lt;high&gt;`%&gt;%`&lt;/high&gt; as "And Then..."
+
+&lt;br&gt;
+
+
+```r
+# Start with data
+data %&gt;% # AND THEN...
+  
+DO_SOMETHING %&gt;% # AND THEN...
+  
+DO_SOMETHING %&gt;% # AND THEN...
+  
+DO_SOMETHING %&gt;% # AND THEN...
+```
+
+]
+
+.pull-right55[
+
+&lt;p align="center"&gt;
+  &lt;img src="https://upload.wikimedia.org/wikipedia/en/thumb/b/b9/MagrittePipe.jpg/300px-MagrittePipe.jpg" width = "450px"&gt;&lt;br&gt;
+  This is not a pipe (but %&gt;% is!)
+&lt;/p&gt;
+
+]
+
+
+
+
+---
+
+# `summarise()`
+
+.pull-left45[
+
+Use `summarise()` to create new columns of &lt;high&gt;summary statistics&lt;/high&gt;.
+
+The result of `summarise()` is always be a tibble.
+
+Functions used in `summerise()` &lt;high&gt;must return a single value&lt;/high&gt;.
+
+
+
+```r
+data %&gt;%
+  summarise(
+    NAME = SUMMARY_FUN(A),
+    NAME = SUMMARY_FUN(B),
+    ...
+  )
+```
+
+]
+
+.pull-right5[
+
+
+```r
+# Calculate summary statistics
+baselers %&gt;%
+  summarise(
+    N = n(),
+    age_mean = mean(age),
+    height_median = median(height),
+    children_max = max(children)
+  )
+```
+
+```
+## # A tibble: 1 x 4
+##       N age_mean height_median children_max
+##   &lt;int&gt;    &lt;dbl&gt;         &lt;dbl&gt;        &lt;dbl&gt;
+## 1 10000     44.6          171.            6
+```
+
+
+]
+
+
+---
+
+# `summarise()`
+
+.pull-left45[
+
+Use `summarise()` to create new columns of &lt;high&gt;summary statistics&lt;/high&gt;.
+
+The result of `summarise()` is always be a tibble.
+
+Functions used in `summerise()` &lt;high&gt;must return a single value&lt;/high&gt;.
+
+
+
+```r
+data %&gt;%
+  summarise(
+    NAME = SUMMARY_FUN(A),
+    NAME = SUMMARY_FUN(B),
+    ...
+  )
+```
+
+]
+
+.pull-right5[
+
+| Function| Purpose | Returns |
+|:-------------|:-------|:-------| 
+| `n()`| Count values  | &lt;font color="6ABA9A"&gt;&lt;b&gt;Single value&lt;/b&gt;&lt;/font&gt; |
+| `mean()`, `median()` | Central tendencies | &lt;font color="6ABA9A"&gt;&lt;b&gt;Single value&lt;/b&gt;&lt;/font&gt; |
+| `sd()`, `var()` | Variance | &lt;font color="6ABA9A"&gt;&lt;b&gt;Single value&lt;/b&gt;&lt;/font&gt; |
+| `max()`, `min()` |  Extremes | &lt;font color="6ABA9A"&gt;&lt;b&gt;Single value&lt;/b&gt;&lt;/font&gt; |
+| `quantile()` | Quantiles | &lt;font color="6ABA9A"&gt;&lt;b&gt;One&lt;/b&gt;&lt;/font&gt; or &lt;high&gt;multiple values&lt;/high&gt; |
+| `range()` |  Range | &lt;high&gt;Two values&lt;high&gt; |
+| `table()` |  (Cross-) tables | &lt;high&gt;Multiple values&lt;high&gt; |
+| `summary()` |  Overview | &lt;high&gt;Multiple values&lt;high&gt; |
+
+]
+
+
+
+
+---
+
+# `group_by()` + `summarise()`
+
+.pull-left45[
+
+Use `group_by()` to &lt;high&gt;group data&lt;/high&gt; according to one or more columns.
+
+Then, use `summarise()` to &lt;high&gt;calculate summary statistics&lt;/high&gt; for each group.
+
+You can include &lt;high&gt;one or more&lt;/high&gt; grouping variables.
+
+
+```r
+data %&gt;%
+  group_by(A, B, ...) %&gt;%
+  summarise(
+    NAME = SUMMARY_FUN(A),
+    NAME = SUMMARY_FUN(B),
+    ...
+  )
+```
+
+
+]
+
+.pull-right5[
+
+
+```r
+# Group data by arm, and calculate many
+#  summary statistics
+baselers %&gt;%
+  group_by(sex) %&gt;%
+  summarise(
+    N = n(),
+    age_mean = mean(age),
+    height_median = median(height),
+    children_max = max(children)
+  )
+```
+
+```
+## # A tibble: 2 x 5
+##   sex        N age_mean height_median children_max
+##   &lt;chr&gt;  &lt;int&gt;    &lt;dbl&gt;         &lt;dbl&gt;        &lt;dbl&gt;
+## 1 female  5000     45.4          164             6
+## 2 male    5000     43.8          178.            6
+```
+
+]
+
+---
+
+# `group_by()` + `summarise()`
+
+.pull-left45[
+
+Use `group_by()` to &lt;high&gt;group data&lt;/high&gt; according to one or more columns.
+
+Then, use `summarise()` to &lt;high&gt;calculate summary statistics&lt;/high&gt; for each group.
+
+You can include &lt;high&gt;one or more&lt;/high&gt; grouping variables.
+
+
+```r
+data %&gt;%
+  group_by(A, B, ...) %&gt;%
+  summarise(
+    NAME = SUMMARY_FUN(A),
+    NAME = SUMMARY_FUN(B),
+    ...
+  )
+```
+
+
+]
+
+.pull-right5[
+
+
+```r
+# Group data by arm, and calculate many
+#  summary statistics
+baselers %&gt;%
+  group_by(sex, eyecor) %&gt;%
+  summarise(
+    N = n(),
+    age_mean = mean(age),
+    height_median = median(height)
+    #children_max = max(children)
+  )
+```
+
+```
+## # A tibble: 4 x 5
+## # Groups:   sex [?]
+##   sex    eyecor     N age_mean height_median
+##   &lt;chr&gt;  &lt;chr&gt;  &lt;int&gt;    &lt;dbl&gt;         &lt;dbl&gt;
+## 1 female no      1731     45.3          164.
+## 2 female yes     3269     45.5          164 
+## 3 male   no      1772     43.6          178.
+## 4 male   yes     3228     43.9          178.
+```
+
+]
+
+
+---
+
+# Full pipeline
+
+.pull-left25[
+
+Combine &lt;high&gt;tranformation&lt;/high&gt;, &lt;high&gt;organization&lt;/high&gt;, and &lt;high&gt;aggregating&lt;/high&gt; operations at once!
+
+Just use the &lt;high&gt;pipe %&gt;%&lt;/high&gt;.
+
+
+]
+
+.pull-right65[
+
+
+```r
+baselers %&gt;%
+  mutate(catholic = confession == "catholic") %&gt;%
+  filter(sex == "male" &amp; children &gt; 0) %&gt;%
+  group_by(sex, catholic) %&gt;%
+  summarise(
+    N = n(),
+    age_mean = mean(age),
+    income_median = median(income, na.rm = TRUE)
+  )
+```
+
+```
+## # A tibble: 3 x 5
+## # Groups:   sex [?]
+##   sex   catholic     N age_mean income_median
+##   &lt;chr&gt; &lt;lgl&gt;    &lt;int&gt;    &lt;dbl&gt;         &lt;dbl&gt;
+## 1 male  FALSE     2452     43.7          7100
+## 2 male  TRUE      1401     44.0          7100
+## 3 male  NA         703     43.5          7000
+```
+
+]
+
+---
+
+# Inferential statistics
+
+
+.pull-left6[
+
+&lt;u&gt;Specific tests&lt;/u&gt;
+
+| Function| Purpose |
+|:------|:-------| 
+| `t.test()` | Compre group means | 
+| `cor.test()` | Compare correlations  |
+| `chisq.test()` | Compare cell frequencies |
+| `wilcox.test()` | Compre group means non-parametrically |
+
+&lt;u&gt;Fomula-based tests&lt;/u&gt;
+
+| Function| Purpose |
+|:-----|:-------| 
+| `lm()`, `glm()`| (Generalized) linear models  |
+| `lmer()`, `glmer()` | (Generalized) mixed-linear models |
+| `stan_glm()` | Bayesian (generalized) linear models |
+
+
+]
+
+
+.pull-right35[
+
+&lt;p align = "center"&gt;
+
+&lt;img src="image/null_hypothesis.png" height=430px&gt;&lt;br&gt;
+&lt;font style="font-size:10px"&gt;from &lt;a href="https://xkcd.com/892/"&gt;xkcd.com&lt;/a&gt;&lt;/font&gt;
+&lt;/p&gt;
+]
+
+
+
+---
+
+# `t.test()`
+
+.pull-left45[
+
+The &lt;high&gt;t-test&lt;/high&gt; compares one group mean &lt;high&gt;versus reference&lt;/high&gt; or &lt;high&gt;versus another&lt;/high&gt;.
+
+Compare two means by providing &lt;high&gt;two numeric vectors&lt;/high&gt; for the arguments `x`, and `y`.
+
+Alternative &lt;high&gt;arguments allow for variations&lt;/high&gt;, e.g., to account for unequal variances.
+
+]
+
+.pull-right5[
+
+### t-test with `t.test()`
+
+
+```r
+# 2-sample t-test
+t.test(baselers$happiness,
+       baselers$fitness)
+```
+
+```
+## 
+## 	Welch Two Sample t-test
+## 
+## data:  baselers$happiness and baselers$fitness
+## t = 83, df = 16000, p-value &lt;2e-16
+## alternative hypothesis: true difference in means is not equal to 0
+## 95 percent confidence interval:
+##  1.738 1.822
+## sample estimates:
+## mean of x mean of y 
+##     6.905     5.125
+```
+
+]
+
+---
+
+# `t.test()`
+
+.pull-left45[
+
+The &lt;high&gt;t-test&lt;/high&gt; compares one group mean &lt;high&gt;versus reference&lt;/high&gt; or &lt;high&gt;versus another&lt;/high&gt;.
+
+Compare two means by providing &lt;high&gt;two numeric vectors&lt;/high&gt; for the arguments `x`, and `y`.
+
+Alternative &lt;high&gt;arguments allow for variations&lt;/high&gt;, e.g., to account for unequal variances.
+
+]
+
+.pull-right5[
+
+### t-test with `t.test()`
+
+
+```r
+# 2-sample t-test assuming equal variance
+t.test(baselers$happiness,
+       baselers$fitness,
+       var.equal = TRUE)
+```
+
+```
+## 
+## 	Two Sample t-test
+## 
+## data:  baselers$happiness and baselers$fitness
+## t = 83, df = 20000, p-value &lt;2e-16
+## alternative hypothesis: true difference in means is not equal to 0
+## 95 percent confidence interval:
+##  1.738 1.822
+## sample estimates:
+## mean of x mean of y 
+##     6.905     5.125
+```
+
+]
+
+
+---
+
+# `cor.test()`
+
+.pull-left45[
+
+The &lt;high&gt;correlation test&lt;/high&gt; compares the correlation of two variables against 0.
+
+Evaluate the correlation by providing &lt;high&gt;two numeric vectors&lt;/high&gt; for the arguments `x`, and `y`.
+
+Alternative &lt;high&gt;arguments allow for variations&lt;/high&gt;, e.g., to conduct the test using different correlation measures.
+
+
+]
+
+.pull-right5[
+
+### Correlation test with `cor.test()`
+
+
+```r
+# correlation test
+cor.test(x = baselers$age,
+         y = baselers$income)
+```
+
+```
+## 
+## 	Pearson's product-moment correlation
+## 
+## data:  baselers$age and baselers$income
+## t = 180, df = 8500, p-value &lt;2e-16
+## alternative hypothesis: true correlation is not equal to 0
+## 95 percent confidence interval:
+##  0.8882 0.8968
+## sample estimates:
+##    cor 
+## 0.8926
+```
+
+]
+
+---
+
+# `cor.test()`
+
+.pull-left45[
+
+The &lt;high&gt;correlation test&lt;/high&gt; compares the correlation of two variables against 0.
+
+Evaluate the correlation by providing &lt;high&gt;two numeric vectors&lt;/high&gt; for the arguments `x`, and `y`.
+
+Alternative &lt;high&gt;arguments allow for variations&lt;/high&gt;, e.g., to conduct the test using different correlation measures.
+
+]
+
+.pull-right5[
+
+### Rank-correlation test with `cor.test()`
+
+
+```r
+# correlation test
+cor.test(x = baselers$age,
+         y = baselers$income,
+         method = "spearman")
+```
+
+```
+## Warning in cor.test.default(x = baselers$age, y = baselers$income, method = "spearman"): Cannot compute exact
+## p-value with ties
+```
+
+```
+## 
+## 	Spearman's rank correlation rho
+## 
+## data:  baselers$age and baselers$income
+## S = 1.3e+10, p-value &lt;2e-16
+## alternative hypothesis: true rho is not equal to 0
+## sample estimates:
+##    rho 
+## 0.8756
+```
+
+]
+
+
+---
+
+# `chisq.test()`
+
+.pull-left45[
+
+The &lt;high&gt;chi-square test&lt;/high&gt; compares frequencies in (cross-) tables for equality in absolute or relative frequency. 
+
+Evaluate frequencies by providing a &lt;high&gt;table&lt;/high&gt;, &lt;high&gt;vectors&lt;/high&gt; or &lt;high&gt;matrix&lt;/matrix&gt; for the argument `x`.
+
+Alternative &lt;high&gt;arguments allow for variations&lt;/high&gt;, e.g., to conduct the test using different coefficents.
+]
+
+.pull-right5[
+
+### Chi-square test with `chisq.test()`
+
+
+```r
+# compute cross-table with table
+tab &lt;- baselers %&gt;% 
+  mutate(tattoo = tattoos == TRUE) %&gt;%
+  select(sex, tattoo) %&gt;% 
+  table()
+
+# show table
+tab
+```
+
+```
+##         tattoo
+## sex      FALSE TRUE
+##   female  4703  297
+##   male    4794  206
+```
+
+]
+
+
+---
+
+# `chisq.test()`
+
+.pull-left45[
+
+The &lt;high&gt;chi-square test&lt;/high&gt; compares frequencies in (cross-) tables for equality in absolute or relative frequency. 
+
+Evaluate frequencies by providing a &lt;high&gt;table&lt;/high&gt;, &lt;high&gt;vectors&lt;/high&gt; or &lt;high&gt;matrix&lt;/matrix&gt; for the argument `x`.
+
+Alternative &lt;high&gt;arguments allow for variations&lt;/high&gt;, e.g., to conduct the test using different coefficents.
+]
+
+.pull-right5[
+
+### Chi-square test with `chisq.test()`
+
+
+```r
+# chi-square test 
+chisq.test(tab)
+```
+
+```
+## 
+## 	Pearson's Chi-squared test with Yates' continuity correction
+## 
+## data:  tab
+## X-squared = 17, df = 1, p-value = 4e-05
+```
+
+]
+
+
+---
+
+# `wilcox.test()`
+
+.pull-left45[
+
+The &lt;high&gt;Wilcoxon test&lt;/high&gt; compares one group' average ranks &lt;high&gt;versus reference&lt;/high&gt; or &lt;high&gt;versus group&lt;/high&gt;'s average rank.
+
+Compare average ranks of two groups by providing &lt;high&gt;two numeric vectors&lt;/high&gt; for the arguments `x`, and `y`.
+
+Alternative &lt;high&gt;arguments allow for variations&lt;/high&gt;.
+
+]
+
+.pull-right5[
+
+### t-test with `t.test()`
+
+
+```r
+# 2-sample wilcoxon rank test assuming equal variance
+wilcox.test(baselers$happiness,
+            baselers$fitness)
+```
+
+```
+## 
+## 	Wilcoxon rank sum test with continuity correction
+## 
+## data:  baselers$happiness and baselers$fitness
+## W = 7.8e+07, p-value &lt;2e-16
+## alternative hypothesis: true location shift is not equal to 0
+```
+
+]
+
+
+
+
+
+---
+
+class: middle, center
+
+&lt;h1&gt;&lt;a href="https://therbootcamp.github.io/appliedML_2019Jan/_sessions/Models/Models_practical.html"&gt;Practical&lt;/a&gt;&lt;/h1&gt;
+    </textarea>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"highlightStyle": "github",
+"highlightLines": true,
+"countIncrementalSlides": false,
+"ratio": "16:9"
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function() {
+  var d = document, s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})();</script>
+
+<script>
+(function() {
+  var i, text, code, codes = document.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+})();
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>

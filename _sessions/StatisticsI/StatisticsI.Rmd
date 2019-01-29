@@ -1,0 +1,659 @@
+---
+title: "Statistics I"
+author: "
+Introduction to R<br>
+  <a href='https://therbootcamp.github.io'>
+    Bern R Bootcamp
+  </a>
+  <br>
+  <a href='https://dwulff.github.io/Intro2R_Unibe/'>
+    <i class='fas fa-clock' style='font-size:.9em;'></i>
+  </a>&#8239; 
+  <a href='https://therbootcamp.github.io'>
+    <i class='fas fa-home' style='font-size:.9em;' ></i>
+  </a>&#8239;
+  <a href='mailto:therbootcamp@gmail.com'>
+    <i class='fas fa-envelope' style='font-size: .9em;'></i>
+  </a>&#8239;
+  <a href='https://www.linkedin.com/company/basel-r-bootcamp/'>
+    <i class='fab fa-linkedin' style='font-size: .9em;'></i>
+  </a>"
+date: "February 2019"
+output:
+  xaringan::moon_reader:
+    css: ["default", "baselrbootcamp.css"]
+    lib_dir: libs
+    nature:
+      highlightStyle: github
+      highlightLines: true
+      countIncrementalSlides: false
+      ratio: '16:9'
+---
+
+layout: true
+
+<div class="my-footer">
+  <span style="text-align:center">
+    <span> 
+      <img src="https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/by-sa.png" height=14 style="vertical-align: middle"/>
+    </span>
+    <a href="https://therbootcamp.github.io/">
+      <span style="padding-left:82px"> 
+        <font color="#7E7E7E">
+          www.therbootcamp.com
+        </font>
+      </span>
+    </a>
+    <a href="https://therbootcamp.github.io/">
+      <font color="#7E7E7E">
+       Introduction to R | February 2019
+      </font>
+    </a>
+    </span>
+  </div> 
+
+---
+  
+```{r, eval = FALSE, echo = FALSE, message=FALSE}
+# Code to knit slides
+xaringan::inf_mr('_sessions/D1S2_Wrangling/Wrangling.Rmd')
+baselers <- read_csv("https://raw.githubusercontent.com/therbootcamp/baselers/master/inst/extdata/baselers.txt")
+```
+
+```{r setup, include=FALSE}
+options(htmltools.dir.version = FALSE)
+options(width=110)
+options(digits = 4)
+library(tidyverse)
+library(baselers)
+```
+
+# Statistics
+
+.pull-left45[
+
+#### <high>Descriptive statistics</high> with `dplyr`
+
+```{r, eval = F}
+# Group-summarise idiom
+baselers %>%
+  group_by(sex, eyecor) %>%
+  summarise(
+    N = n(),
+    age_mean = mean(age),
+    height_median = median(height),
+    children_max = max(children)
+  )
+```
+
+
+#### <high>Simply hypothesis test</high> with `stats`
+
+```{r, eval = F}
+# Simple hypothesis test
+t.test(baselers$happiness,
+       baselers$fitness,
+       var.equal = TRUE)
+
+```
+
+]
+
+.pull-right45[
+
+<p align = "center">
+
+<img src="image/null_hypothesis.png" height=430px><br>
+<font style="font-size:10px">from <a href="https://xkcd.com/892/">xkcd.com</a></font>
+</p>
+]
+
+
+
+---
+
+
+# `dplyr` + `tidyr`
+
+.pull-left5[
+
+To wrangle data in R, we will use the <high><mono>dplyr</mono></high> and <high><mono>tidyr</mono></high> packages, which are part of the <high><mono>tidyverse</mono></high>.
+
+| Package | Function| Function|
+|:-------------|:----|
+|<b>dplyr</b> | Transformation | `rename()`, `mutate()`, `case_when()`, `*_join()`  |
+|<b>dplyr</b> | Organisation | `arrange()`, `slice()`, `filter()`, `select()`  |
+|<b>tidyr</b> | Organisation | `gather()`, `spread()` |
+|<b>dplyr</b> | Aggregation | `group_by()`, `summarise()` |
+
+]
+ 
+.pull-right4[
+
+<p align = "center">
+<img src="image/packages.png" height=320px>
+</p>
+
+
+]
+
+---
+
+# Grouped aggregation 
+
+.pull-left3[
+
+<high>(Conditional) descriptives statistic</high>s are easily calculated using `dplyr`'s `group_by()` and `summerise()` idiom.
+
+
+```{r, eval = F}
+# Start with data
+data %>% # AND THEN...
+  
+# GROUPING VARIABLE
+GROUP_BY %>% 
+  
+# DO SUMMARIES
+SUMMARISE( 
+  
+  RESULT_1, 
+  RESULT_2,
+  RESULT_3
+  
+  ) 
+
+```
+
+
+]
+
+.pull-right6[
+
+<p align="right">
+  <img src="https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/summarsed_data_diagram.png" height="414px">
+</p> 
+
+]
+
+---
+
+# The Pipe!  <high>`%>%`</high>
+
+.pull-left4[
+
+`dplyr` makes extensive use of a new operator called the "Pipe" <high>`%>%`</high><br>
+
+Read the "Pipe" <high>`%>%`</high> as "And Then..."
+
+<br>
+
+```{r, eval = FALSE, echo = TRUE}
+# Start with data
+data %>% # AND THEN...
+  
+DO_SOMETHING %>% # AND THEN...
+  
+DO_SOMETHING %>% # AND THEN...
+  
+DO_SOMETHING %>% # AND THEN...
+
+```
+
+]
+
+.pull-right55[
+
+<p align="center">
+  <img src="https://upload.wikimedia.org/wikipedia/en/thumb/b/b9/MagrittePipe.jpg/300px-MagrittePipe.jpg" width = "450px"><br>
+  This is not a pipe (but %>% is!)
+</p>
+
+]
+
+
+
+
+---
+
+# `summarise()`
+
+.pull-left45[
+
+Use `summarise()` to create new columns of <high>summary statistics</high>.
+
+The result of `summarise()` is always be a tibble.
+
+Functions used in `summerise()` <high>must return a single value</high>.
+
+
+```{r, echo = TRUE, eval = FALSE}
+data %>%
+  summarise(
+    NAME = SUMMARY_FUN(A),
+    NAME = SUMMARY_FUN(B),
+    ...
+  )
+```
+
+]
+
+.pull-right5[
+
+```{r}
+# Calculate summary statistics
+baselers %>%
+  summarise(
+    N = n(),
+    age_mean = mean(age),
+    height_median = median(height),
+    children_max = max(children)
+  )
+```
+
+
+]
+
+
+---
+
+# `summarise()`
+
+.pull-left45[
+
+Use `summarise()` to create new columns of <high>summary statistics</high>.
+
+The result of `summarise()` is always be a tibble.
+
+Functions used in `summerise()` <high>must return a single value</high>.
+
+
+```{r, echo = TRUE, eval = FALSE}
+data %>%
+  summarise(
+    NAME = SUMMARY_FUN(A),
+    NAME = SUMMARY_FUN(B),
+    ...
+  )
+```
+
+]
+
+.pull-right5[
+
+| Function| Purpose | Returns |
+|:-------------|:-------|:-------| 
+| `n()`| Count values  | <font color="6ABA9A"><b>Single value</b></font> |
+| `mean()`, `median()` | Central tendencies | <font color="6ABA9A"><b>Single value</b></font> |
+| `sd()`, `var()` | Variance | <font color="6ABA9A"><b>Single value</b></font> |
+| `max()`, `min()` |  Extremes | <font color="6ABA9A"><b>Single value</b></font> |
+| `quantile()` | Quantiles | <font color="6ABA9A"><b>One</b></font> or <high>multiple values</high> |
+| `range()` |  Range | <high>Two values<high> |
+| `table()` |  (Cross-) tables | <high>Multiple values<high> |
+| `summary()` |  Overview | <high>Multiple values<high> |
+
+]
+
+
+
+
+---
+
+# `group_by()` + `summarise()`
+
+.pull-left45[
+
+Use `group_by()` to <high>group data</high> according to one or more columns.
+
+Then, use `summarise()` to <high>calculate summary statistics</high> for each group.
+
+You can include <high>one or more</high> grouping variables.
+
+```{r, echo = TRUE, eval = FALSE}
+data %>%
+  group_by(A, B, ...) %>%
+  summarise(
+    NAME = SUMMARY_FUN(A),
+    NAME = SUMMARY_FUN(B),
+    ...
+  )
+```
+
+
+]
+
+.pull-right5[
+
+```{r}
+# Group data by arm, and calculate many
+#  summary statistics
+baselers %>%
+  group_by(sex) %>%
+  summarise(
+    N = n(),
+    age_mean = mean(age),
+    height_median = median(height),
+    children_max = max(children)
+  )
+```
+
+]
+
+---
+
+# `group_by()` + `summarise()`
+
+.pull-left45[
+
+Use `group_by()` to <high>group data</high> according to one or more columns.
+
+Then, use `summarise()` to <high>calculate summary statistics</high> for each group.
+
+You can include <high>one or more</high> grouping variables.
+
+```{r, echo = TRUE, eval = FALSE}
+data %>%
+  group_by(A, B, ...) %>%
+  summarise(
+    NAME = SUMMARY_FUN(A),
+    NAME = SUMMARY_FUN(B),
+    ...
+  )
+```
+
+
+]
+
+.pull-right5[
+
+```{r}
+# Group data by arm, and calculate many
+#  summary statistics
+baselers %>%
+  group_by(sex, eyecor) %>%
+  summarise(
+    N = n(),
+    age_mean = mean(age),
+    height_median = median(height)
+    #children_max = max(children)
+  )
+```
+
+]
+
+
+---
+
+# Full pipeline
+
+.pull-left25[
+
+Combine <high>tranformation</high>, <high>organization</high>, and <high>aggregating</high> operations at once!
+
+Just use the <high>pipe %>%</high>.
+
+
+]
+
+.pull-right65[
+
+```{r}
+baselers %>%
+  mutate(catholic = confession == "catholic") %>%
+  filter(sex == "male" & children > 0) %>%
+  group_by(sex, catholic) %>%
+  summarise(
+    N = n(),
+    age_mean = mean(age),
+    income_median = median(income, na.rm = TRUE)
+  )
+```
+
+]
+
+---
+
+# Inferential statistics
+
+
+.pull-left6[
+
+<u>Specific tests</u>
+
+| Function| Purpose |
+|:------|:-------| 
+| `t.test()` | Compre group means | 
+| `cor.test()` | Compare correlations  |
+| `chisq.test()` | Compare cell frequencies |
+| `wilcox.test()` | Compre group means non-parametrically |
+
+<u>Fomula-based tests</u>
+
+| Function| Purpose |
+|:-----|:-------| 
+| `lm()`, `glm()`| (Generalized) linear models  |
+| `lmer()`, `glmer()` | (Generalized) mixed-linear models |
+| `stan_glm()` | Bayesian (generalized) linear models |
+
+
+]
+
+
+.pull-right35[
+
+<p align = "center">
+
+<img src="image/null_hypothesis.png" height=430px><br>
+<font style="font-size:10px">from <a href="https://xkcd.com/892/">xkcd.com</a></font>
+</p>
+]
+
+
+
+---
+
+# `t.test()`
+
+.pull-left45[
+
+The <high>t-test</high> compares one group mean <high>versus reference</high> or <high>versus another</high>.
+
+Compare two means by providing <high>two numeric vectors</high> for the arguments `x`, and `y`.
+
+Alternative <high>arguments allow for variations</high>, e.g., to account for unequal variances.
+
+]
+
+.pull-right5[
+
+### t-test with `t.test()`
+
+```{r}
+# 2-sample t-test
+t.test(baselers$happiness,
+       baselers$fitness)
+
+```
+
+]
+
+---
+
+# `t.test()`
+
+.pull-left45[
+
+The <high>t-test</high> compares one group mean <high>versus reference</high> or <high>versus another</high>.
+
+Compare two means by providing <high>two numeric vectors</high> for the arguments `x`, and `y`.
+
+Alternative <high>arguments allow for variations</high>, e.g., to account for unequal variances.
+
+]
+
+.pull-right5[
+
+### t-test with `t.test()`
+
+```{r}
+# 2-sample t-test assuming equal variance
+t.test(baselers$happiness,
+       baselers$fitness,
+       var.equal = TRUE)
+
+```
+
+]
+
+
+---
+
+# `cor.test()`
+
+.pull-left45[
+
+The <high>correlation test</high> compares the correlation of two variables against 0.
+
+Evaluate the correlation by providing <high>two numeric vectors</high> for the arguments `x`, and `y`.
+
+Alternative <high>arguments allow for variations</high>, e.g., to conduct the test using different correlation measures.
+
+
+]
+
+.pull-right5[
+
+### Correlation test with `cor.test()`
+
+```{r}
+# correlation test
+cor.test(x = baselers$age,
+         y = baselers$income)
+
+```
+
+]
+
+---
+
+# `cor.test()`
+
+.pull-left45[
+
+The <high>correlation test</high> compares the correlation of two variables against 0.
+
+Evaluate the correlation by providing <high>two numeric vectors</high> for the arguments `x`, and `y`.
+
+Alternative <high>arguments allow for variations</high>, e.g., to conduct the test using different correlation measures.
+
+]
+
+.pull-right5[
+
+### Rank-correlation test with `cor.test()`
+
+```{r}
+# correlation test
+cor.test(x = baselers$age,
+         y = baselers$income,
+         method = "spearman")
+
+```
+
+]
+
+
+---
+
+# `chisq.test()`
+
+.pull-left45[
+
+The <high>chi-square test</high> compares frequencies in (cross-) tables for equality in absolute or relative frequency. 
+
+Evaluate frequencies by providing a <high>table</high>, <high>vectors</high> or <high>matrix</matrix> for the argument `x`.
+
+Alternative <high>arguments allow for variations</high>, e.g., to conduct the test using different coefficents.
+]
+
+.pull-right5[
+
+### Chi-square test with `chisq.test()`
+
+```{r}
+# compute cross-table with table
+tab <- baselers %>% 
+  mutate(tattoo = tattoos == TRUE) %>%
+  select(sex, tattoo) %>% 
+  table()
+
+# show table
+tab
+
+```
+
+]
+
+
+---
+
+# `chisq.test()`
+
+.pull-left45[
+
+The <high>chi-square test</high> compares frequencies in (cross-) tables for equality in absolute or relative frequency. 
+
+Evaluate frequencies by providing a <high>table</high>, <high>vectors</high> or <high>matrix</matrix> for the argument `x`.
+
+Alternative <high>arguments allow for variations</high>, e.g., to conduct the test using different coefficents.
+]
+
+.pull-right5[
+
+### Chi-square test with `chisq.test()`
+
+```{r}
+# chi-square test 
+chisq.test(tab)
+
+```
+
+]
+
+
+---
+
+# `wilcox.test()`
+
+.pull-left45[
+
+The <high>Wilcoxon test</high> compares one group' average ranks <high>versus reference</high> or <high>versus group</high>'s average rank.
+
+Compare average ranks of two groups by providing <high>two numeric vectors</high> for the arguments `x`, and `y`.
+
+Alternative <high>arguments allow for variations</high>.
+
+]
+
+.pull-right5[
+
+### t-test with `t.test()`
+
+```{r}
+# 2-sample wilcoxon rank test assuming equal variance
+wilcox.test(baselers$happiness,
+            baselers$fitness)
+
+```
+
+]
+
+
+
+
+
+---
+
+class: middle, center
+
+<h1><a href="https://therbootcamp.github.io/appliedML_2019Jan/_sessions/Models/Models_practical.html">Practical</a></h1>
+

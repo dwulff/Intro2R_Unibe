@@ -46,7 +46,7 @@ layout: true
     </a>
     <a href="https://therbootcamp.github.io/">
       <font color="#7E7E7E">
-       Applied Machine Learning with R | January 2019
+       Introduction to R | February 2019
       </font>
     </a>
     </span>

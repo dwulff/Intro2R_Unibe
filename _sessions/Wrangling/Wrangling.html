@@ -3,7 +3,7 @@
   <head>
     <title>Wrangling</title>
     <meta charset="utf-8">
-    <meta name="author" content="Introduction to Data Science with R www.therbootcamp.com @therbootcamp" />
+    <meta name="author" content="Introduction to R   Bern R Bootcamp" />
     <link href="libs/remark-css/default.css" rel="stylesheet" />
     <link rel="stylesheet" href="baselrbootcamp.css" type="text/css" />
   </head>
@@ -12,19 +12,33 @@
 class: center, middle, inverse, title-slide
 
 # Wrangling
-### Introduction to Data Science with R<br/><a href='https://therbootcamp.github.io'>www.therbootcamp.com</a><br/><a href='https://twitter.com/therbootcamp'><span class="citation">@therbootcamp</span></a>
-### October 2018
+### Introduction to R<br> <a href='https://therbootcamp.github.io'> Bern R Bootcamp </a> <br> <a href='https://dwulff.github.io/Intro2R_Unibe/'> <i class='fas fa-clock' style='font-size:.9em;'></i> </a>  <a href='https://therbootcamp.github.io'> <i class='fas fa-home' style='font-size:.9em;' ></i> </a>  <a href='mailto:therbootcamp@gmail.com'> <i class='fas fa-envelope' style='font-size: .9em;'></i> </a>  <a href='https://www.linkedin.com/company/basel-r-bootcamp/'> <i class='fab fa-linkedin' style='font-size: .9em;'></i> </a>
+### February 2019
 
 ---
 
 
 layout: true
 
-&lt;div class="my-footer"&gt;&lt;span&gt;
-&lt;a href="https://therbootcamp.github.io/"&gt;&lt;font color="#7E7E7E"&gt;Introduction to Data Science with R, October 2018&lt;/font&gt;&lt;/a&gt;
-&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;
-&lt;a href="https://therbootcamp.github.io/"&gt;&lt;font color="#7E7E7E"&gt;www.therbootcamp.com&lt;/font&gt;&lt;/a&gt;
-&lt;/span&gt;&lt;/div&gt; 
+&lt;div class="my-footer"&gt;
+  &lt;span style="text-align:center"&gt;
+    &lt;span&gt; 
+      &lt;img src="https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/by-sa.png" height=14 style="vertical-align: middle"/&gt;
+    &lt;/span&gt;
+    &lt;a href="https://therbootcamp.github.io/"&gt;
+      &lt;span style="padding-left:82px"&gt; 
+        &lt;font color="#7E7E7E"&gt;
+          www.therbootcamp.com
+        &lt;/font&gt;
+      &lt;/span&gt;
+    &lt;/a&gt;
+    &lt;a href="https://therbootcamp.github.io/"&gt;
+      &lt;font color="#7E7E7E"&gt;
+       Introduction to R | February 2019
+      &lt;/font&gt;
+    &lt;/a&gt;
+    &lt;/span&gt;
+  &lt;/div&gt; 
 
 ---
   
@@ -32,89 +46,49 @@ layout: true
 
 
 
-.pull-left4[
-
-# Where you're at...
-
-1 - Loaded packages (like `tidyverse`) with `library()`&lt;br&gt;
-
-2 - Loaded external files as a new dataframe&lt;br&gt;
-
-3 - Explore dataframes
-
-4 - Calculate descriptive statistics on specific columns&lt;br&gt;
-
-&lt;br&gt;&lt;br&gt;&lt;br&gt;
-What's next?... &lt;high&gt;Wrangling!&lt;/high&gt;
-
-]
-
-.pull-right55[
-
-&lt;br&gt;&lt;br&gt;
-
-
-```r
-# Step 0) Load libraries
-
-library(tidyverse)
-
-# Step 1) Read file called baslers.txt 
-#  in a data folder with read_csv()
-#  and save as new object baslers
-
-baslers &lt;- read_csv(file = "data/baslers.txt")
-
-# Step 2) Explore data
-
-View(baslers)   # Open in new window
-dim(baslers)    # Show number of rows and columns
-names(baslers)  # Show names
-
-# Step 3) Calculate descriptives on named colums
-
-mean(baslers$age)   # What is the mean age?
-table(baslers$sex)  # How many of each sex?
-
-# Step 4) ...
-```
-
-]
-
----
-.pull-left45[
 
 # What is wrangling?
 
-&lt;font size = 5&gt;&lt;high&gt;Transform&lt;/high&gt;&lt;/font&gt;
+&lt;p align = "center"&gt;
+&lt;img src="image/wrangling.jpeg" height=450px&gt;&lt;br&gt;
+&lt;font style="font-size:10px"&gt;from &lt;a href="https://datasciencebe.com/tag/data-wrangling/"&gt;datasciencebe.com&lt;/a&gt;&lt;/font&gt;
+&lt;/p&gt;
 
-Change column names
 
-Add new columns
+---
 
-&lt;font size = 5&gt;&lt;high&gt;Organise&lt;/high&gt;&lt;/font&gt;
+.pull-left45[
 
-Sort data by columns
+# This is wrangling!
+
+&lt;div style="padding-bottom:10px"&gt;&lt;/div&gt;
+
+#### &lt;high&gt;Transform&lt;/high&gt;
+
+Change variable names
+
+Add new variables
+
+#### &lt;high&gt;Organise&lt;/high&gt;&lt;/font&gt;
+
+Sort data by variables
 
 Merging data from two separate dataframes
 
-Move data between columns and rows
+Move data between variables and rows
 
-&lt;font size = 5&gt;&lt;high&gt;Aggregate and summarise&lt;/high&gt;&lt;/font&gt;
+#### &lt;high&gt;Aggregate and summarise&lt;/high&gt;&lt;/font&gt;
 
 Group data and calculate and summary stats
-
-*We'll do this tomorrow!*
 
 
 
 ]
-
 
 .pull-right5[
 &lt;br&gt;
 &lt;p align="center"&gt;
-  &lt;img src="https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/organise_transform_aggregate.png" height = "550px"&gt;
+&lt;img src="https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/organise_transform_aggregate.png" height = "530px"&gt;
 &lt;/p&gt;
 
 ]
@@ -122,37 +96,27 @@ Group data and calculate and summary stats
 ---
 
 
+# `dplyr` + `tidyr`
 
-.pull-left45[
+.pull-left5[
 
-# `dplyr` &amp; `tidyr`
+To wrangle data in R, we will use the &lt;high&gt;&lt;mono&gt;dplyr&lt;/mono&gt;&lt;/high&gt; and &lt;high&gt;&lt;mono&gt;tidyr&lt;/mono&gt;&lt;/high&gt; packages, which are part of the &lt;high&gt;&lt;mono&gt;tidyverse&lt;/mono&gt;&lt;/high&gt;.
 
-To wrangle data in R, we will use the `dplyr` and `tidyr` packages.
-
-&lt;br&gt;
-
-```r
-# Load packages individually
-
-# install.packages('dplyr')
-# install.packages('tidyr')
-
-library(dplyr)
-library(tidyr)
-
-# Or just use the tidyverse!
-
-# install.packages('tidyverse')
-
-library(tidyverse)
-```
+| Package | Function| Function|
+|:-------------|:----|
+|&lt;b&gt;dplyr&lt;/b&gt; | Transformation | `rename()`, `mutate()`, `case_when()`, `*_join()`  |
+|&lt;b&gt;dplyr&lt;/b&gt; | Organisation | `arrange()`, `slice()`, `filter()`, `select()`  |
+|&lt;b&gt;tidyr&lt;/b&gt; | Organisation | `gather()`, `spread()` |
+|&lt;b&gt;dplyr&lt;/b&gt; | Aggregation | `group_by()`, `summarise()` |
 
 ]
  
-.pull-right5[
+.pull-right4[
 
-&lt;br&gt;&lt;br&gt;&lt;br&gt;
-&lt;img src="https://raw.githubusercontent.com/therbootcamp/Erfurt_2018June/master/_sessions/_image/dplyr_tidyr_hex.png" width="100%" style="display: block; margin: auto;" /&gt;
+&lt;p align = "center"&gt;
+&lt;img src="image/packages.png" height=320px&gt;
+&lt;/p&gt;
+
 
 ]
 
@@ -162,9 +126,9 @@ library(tidyverse)
 
 .pull-left4[
 
-`dplyr` makes extensive use of a new operator called the "Pipe" &lt;high&gt;`%&gt;%`&lt;/high&gt;&lt;br&gt;
+`dplyr` makes extensive use of a new operator called the &lt;high&gt;&lt;i&gt;Pipe&lt;/i&gt; `%&gt;%`&lt;/high&gt;&lt;br&gt;
 
-Read the "Pipe" &lt;high&gt;`%&gt;%`&lt;/high&gt; as "And Then..."
+Read the &lt;high&gt;&lt;i&gt;Pipe&lt;/i&gt; `%&gt;%`&lt;/high&gt; as "And Then..."
 
 &lt;br&gt;
 
@@ -185,8 +149,8 @@ DO_SOMETHING %&gt;% # AND THEN...
 .pull-right55[
 
 &lt;p align="center"&gt;
-  &lt;img src="https://upload.wikimedia.org/wikipedia/en/thumb/b/b9/MagrittePipe.jpg/300px-MagrittePipe.jpg" width = "450px"&gt;&lt;br&gt;
-  This is not a pipe (but %&gt;% is!)
+  &lt;img src="https://upload.wikimedia.org/wikipedia/en/thumb/b/b9/MagrittePipe.jpg/300px-MagrittePipe.jpg" width = "400px"&gt;&lt;br&gt;
+&lt;br&gt;&lt;i&gt;This is not a pipe. But &lt;mono&gt;%&gt;%&lt;/mono&gt; is!&lt;/i&gt;
 &lt;/p&gt;
 
 ]
@@ -199,18 +163,19 @@ DO_SOMETHING %&gt;% # AND THEN...
 
 .pull-left4[
 
-Task: Calculate the mean of a vector of `scores`
-
 
 ```r
-# Create a vector score
+#  Vector of `scores`
 score &lt;- c(8, 4, 6, 3, 7, 3)
+score
 ```
 
-Base-R method
-
+```
+## [1] 8 4 6 3 7 3
+```
 
 ```r
+# Mean: Base-R-way
 mean(x = score)
 ```
 
@@ -218,10 +183,8 @@ mean(x = score)
 ## [1] 5.167
 ```
 
-Pipe &lt;high&gt;%&gt;%&lt;/high&gt; method
-
-
 ```r
+# Mean: Tidyverse-style (with %&gt;%)
 score %&gt;%  # AND THEN 
   mean()  
 ```
@@ -236,7 +199,7 @@ score %&gt;%  # AND THEN
 .pull-right55[
 
 &lt;p align="center"&gt;
-  &lt;img src="https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/pipe_explanation_kn.png" height = "400px"&gt;
+  &lt;img src="image/pipe.png" height = "400px"&gt;
 &lt;/p&gt;
 
 ]
@@ -247,31 +210,30 @@ score %&gt;%  # AND THEN
 
 .pull-left4[
 
-Task: Calculate the mean of a vector of `scores` and round to 1 digit.
-
 
 ```r
-# Create a vector score
+#  Vector of `scores`
 score &lt;- c(8, 4, 6, 3, 7, 3)
+score
 ```
 
-Base-R method
-
+```
+## [1] 8 4 6 3 7 3
+```
 
 ```r
-round(x = mean(score), digits = 1)
+# Mean: Base-R-way
+mean(x = score, digits = 1)
 ```
 
 ```
-## [1] 5.2
+## [1] 5.167
 ```
-
-Pipe &lt;high&gt;%&gt;%&lt;/high&gt; method
-
 
 ```r
-score %&gt;%        # AND THEN
-  mean() %&gt;%       # AND THEN
+# Mean: Tidyverse-style (with %&gt;%)
+score %&gt;%     # AND THEN
+  mean() %&gt;%  # AND THEN
   round(digits = 1)
 ```
 
@@ -284,71 +246,108 @@ score %&gt;%        # AND THEN
 .pull-right55[
 
 &lt;p align="center"&gt;
-  &lt;img src="https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/pipe_explanation_kn.png" height = "400px"&gt;
+  &lt;img src="image/pipe.png" height = "400px"&gt;
 &lt;/p&gt;
 
-
 ]
-
 
 ---
 
-.pull-left35[
-
-# `dplyr` Functions
-
-There are &lt;high&gt;dozens of wrangling functions&lt;/high&gt; in `dplyr`.
-
-For an overview, check out &lt;a href='http://dplyr.tidyverse.org/'&gt;dplyr.tidyverse.org&lt;/a&gt;
-
-&lt;p align="center"&gt; &lt;a href = 'https://www.rstudio.com/wp-content/uploads/2015/02/data-wrangling-cheatsheet.pdf'&gt;
-  &lt;img src="https://image.slidesharecdn.com/data-wrangling-cheatsheet-160705210122/95/data-wrangling-with-dplyr-and-tidyr-cheat-sheet-2-638.jpg?cb=1467752577g" height="270px"&gt;&lt;/a&gt;
-  &lt;a href= 'https://www.rstudio.com/wp-content/uploads/2015/02/data-wrangling-cheatsheet.pdf'&gt; Wrangling Cheat Sheet&lt;/a&gt;
-&lt;/p&gt;
-
-
-]
-
-.pull-right65[
-&lt;br&gt;&lt;br&gt;
-&lt;p align="center"&gt;
-  &lt;img src="https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/dplyr_functions.png" height="420px"&gt;
-&lt;/p&gt;
-
-]
-
-
----
-
-
-
-
-
-# Transformation Functions
 
 .pull-left4[
 
-&lt;br&gt;
+# 2 dirty data sets
 
-| Function| Description|
-|:-------------|:----|
-| `rename()` | Change column names |
-| `mutate()`|   Create a new column from existing columns|
-| `case_when()`|  Recode values from a vector to another|
-| `left_join()` | Combine multiple dataframes| 
+### Goals
+
+&lt;b&gt;1&lt;/b&gt; &lt;i&gt;Rename&lt;/i&gt; - Give meaningful &lt;high&gt;variable names&lt;/high&gt;.&lt;br&gt;&lt;br&gt;
+&lt;b&gt;2&lt;/b&gt; &lt;i&gt;Recode&lt;/i&gt; - Use appropriate &lt;high&gt;units&lt;/high&gt; and &lt;high&gt;labels&lt;/high&gt; for nominal variables.&lt;br&gt;&lt;br&gt;
+&lt;b&gt;3&lt;/b&gt; &lt;i&gt;Join&lt;/i&gt; - &lt;high&gt;Combine&lt;/high&gt; datasets.&lt;br&gt;&lt;br&gt;
+&lt;b&gt;4&lt;/b&gt; &lt;i&gt;Sort&lt;/i&gt; - &lt;high&gt;Sort&lt;/high&gt; tibble by age. &lt;br&gt;&lt;br&gt;
+&lt;b&gt;5&lt;/b&gt; &lt;i&gt;Filter&lt;/i&gt; - Select relevant &lt;high&gt;cases&lt;/high&gt;. &lt;br&gt;&lt;br&gt;
+&lt;b&gt;6&lt;/b&gt; &lt;i&gt;Select&lt;/i&gt; - Select relevant &lt;high&gt;variables&lt;/high&gt;.&lt;br&gt;&lt;br&gt;
+&lt;b&gt;7&lt;/b&gt; &lt;i&gt;Spread&lt;/i&gt; - Change to &lt;high&gt;wide format&lt;/high&gt;.&lt;br&gt;&lt;br&gt;
+
 
 ]
 
-.pull-right55[
-&lt;br&gt;
+.pull-right45[
+
+&lt;br&gt;&lt;br2&gt;
+
+
+
 
 ```r
-patients_df   # Demographic data
+# patients tibble
+patients
 ```
 
 ```
 ## # A tibble: 5 x 3
-##      id     b     c
+##      ID    X1    X2
+##   &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+## 1     1    37     1
+## 2     2    65     2
+## 3     3    57     2
+## 4     4    34     1
+## 5     5    45     2
+```
+
+
+
+
+
+```r
+# results tibble
+patients
+```
+
+```
+## # A tibble: 5 x 3
+##      ID    X1    X2
+##   &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+## 1     1    37     1
+## 2     2    65     2
+## 3     3    57     2
+## 4     4    34     1
+## 5     5    45     2
+```
+
+]
+
+
+---
+
+# Transformation
+
+.pull-left4[
+
+Transformation functions are used to &lt;high&gt;alter the content&lt;/high&gt; of a `tibble`.
+
+&lt;br2&gt;
+
+| Function| Description|
+|:-------------|:----|
+| `rename()` | &lt;high&gt;Change names&lt;/high&gt; of variables |
+| `mutate()`|   &lt;high&gt;Create variable&lt;/high&gt; from existing variables|
+| `case_when()`|  &lt;high&gt;Recode values&lt;/high&gt; from a vector to another|
+| `left_join()` | &lt;high&gt;Combine tibbbles&lt;/high&gt; |
+
+]
+
+.pull-right5[
+
+
+
+
+```r
+patients   # Baselers data
+```
+
+```
+## # A tibble: 5 x 3
+##      ID    X1    X2
 ##   &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
 ## 1     1    37     1
 ## 2     2    65     2
@@ -363,29 +362,27 @@ patients_df   # Demographic data
 
 ---
 
-
 # `rename()` 
 
-.pull-left45[
+.pull-left4[
 
-
-Change &lt;high&gt;column names&lt;/high&gt; with `rename()`.
+&lt;high&gt;Change variable names&lt;/high&gt; with `rename()`.
 
 
 ```r
-df %&gt;%
+patients %&gt;%
   rename(NEW = OLD,
          NEW = OLD)
 ```
 
 
 ```r
-patients_df  # Original
+patients  # Original
 ```
 
 ```
 ## # A tibble: 5 x 3
-##      id     b     c
+##      ID    X1    X2
 ##   &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
 ## 1     1    37     1
 ## 2     2    65     2
@@ -395,23 +392,23 @@ patients_df  # Original
 ```
 ]
 
-.pull-right45[
+.pull-right5[
 
-Change the old name "b" to "age", and "c" to "arm"
+Change `X1` to `age`, and `X2` to `arm`.
 
 
 ```r
-# 0) Start with patients_df data
-patients_df %&gt;% 
+# 0) Start with patients data
+patients %&gt;% 
 
-# 1) Change column names with rename()
-  rename(age = b,  # New = Old
-         arm = c)  # New = Old
+# 1) Change variable names with rename()
+  rename(age = X1,  # New = Old
+         arm = X2)  # New = Old
 ```
 
 ```
 ## # A tibble: 5 x 3
-##      id   age   arm
+##      ID   age   arm
 ##   &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
 ## 1     1    37     1
 ## 2     2    65     2
@@ -427,13 +424,13 @@ patients_df %&gt;%
 
 # `mutate()` 
 
-.pull-left35[
+.pull-left4[
 
-Calculate &lt;high&gt;new columns&lt;/high&gt;, or change existing ones, with `mutate()`.
+Create &lt;high&gt;new variables&lt;/high&gt;, or &lt;high&gt;change existing ones&lt;/high&gt;, with `mutate()`.
 
 
 ```r
-df %&gt;%
+tibble %&gt;%
   mutate(
    NEW1 = DEFINITION1,
    NEW2 = DEFINITION2,
@@ -443,25 +440,25 @@ df %&gt;%
 ```
 ]
 
-.pull-right6[
+.pull-right5[
 
-Calculate two new columns `age_months` and `age_decades`
+Calculate two new variables `age_months` and `age_decades`.
 
 
 ```r
-patients_df %&gt;% 
+patients %&gt;% 
 
-  rename(age = b, 
-         arm = c) %&gt;%   # AND THEN...
+  rename(age = X1, 
+         arm = X2) %&gt;%   # AND THEN...
   
-# Create new columns with mutate()
+# Create new variables with mutate()
   mutate(age_months = age * 12,
          age_decades = age / 10)
 ```
 
 ```
 ## # A tibble: 5 x 5
-##      id   age   arm age_months age_decades
+##      ID   age   arm age_months age_decades
 ##   &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;      &lt;dbl&gt;       &lt;dbl&gt;
 ## 1     1    37     1        444         3.7
 ## 2     2    65     2        780         6.5
@@ -478,12 +475,12 @@ patients_df %&gt;%
 
 .pull-left4[
 
-Use `case_when()` with `mutate()` to define &lt;high&gt;new columns based on logical conditions&lt;/high&gt;.
+Use `case_when()` with `mutate()` to define &lt;high&gt;new variables based on logical conditions&lt;/high&gt;.
 
 
 ```r
 # Using mutate(case_when())
-df %&gt;%
+tibble %&gt;%
   mutate(
     NEW = case_when(
       COND1 ~ VAL1,
@@ -496,29 +493,28 @@ df %&gt;%
 
 .pull-right55[
 
-Create `arm_char`, which shows arm as a meaningful character rather than an integer.
+Create `arm_lab` that carries `'placebo'` for `arm == 1` and `'drug'` for `arm == 2`.
 
 
 ```r
-patients_df %&gt;% 
+patients %&gt;% 
 
-  rename(age = b, 
-         arm = c) %&gt;%
+  rename(age = X1, 
+         arm = X2) %&gt;%
   
-  # Create column arm_char based on values of arm
-  
-  mutate(arm_char = case_when(arm == 1 ~ "placebo",
-                              arm == 2 ~ "drug"))
+  # Create arm_lab from arm
+  mutate(arm_lab = case_when(arm == 1 ~ "placebo",
+                             arm == 2 ~ "drug"))
 ```
 
 ```
 ## # A tibble: 5 x 4
-##      id   age   arm arm_char
-##   &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;   
-## 1     1    37     1 placebo 
-## 2     2    65     2 drug    
-## 3     3    57     2 drug    
-## 4     4    34     1 placebo 
+##      ID   age   arm arm_lab
+##   &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;  
+## 1     1    37     1 placebo
+## 2     2    65     2 drug   
+## 3     3    57     2 drug   
+## 4     4    34     1 placebo
 ## 5     5    45     2 drug
 ```
 
@@ -540,21 +536,18 @@ patients_df %&gt;%
 
 .pull-left35[
 
-Use `left_join()` to &lt;high&gt;combine two data frames&lt;/high&gt; based on one or more key columns
+Use `left_join()` to &lt;high&gt;combine two data frames&lt;/high&gt; based on one or more key variables.
 
 
 ```r
-# Join df2 to df1
-#   using KEY as the key column
-df1 %&gt;%
-  left_join(df2, 
+# Join tibble_1 to tibble_2
+#   matched by KEY
+tibble_1 %&gt;%
+  left_join(tibble_2, 
       by = c("KEY"))
 ```
 
-&lt;br2&gt;
-&lt;p align="center"&gt;
-  &lt;img src="https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/joining_data.png" height="190px"&gt;
-&lt;/p&gt; 
+Other `*_join()` functions: `right_join()`, `full_join()`, `inner_join()`, `anti_join()`, `semi_join()`.
 
 ]
 
@@ -562,23 +555,73 @@ df1 %&gt;%
 
 
 ```r
-# Join patients_df with results_df to create combined_df
-combined_df &lt;- patients_df %&gt;% 
-  rename(age = b, arm = c) %&gt;%
-  mutate(arm_char = case_when(arm == 1 ~ "placebo",
+# Join patients with results to create combined
+combined &lt;- patients %&gt;% 
+  rename(age = X1, arm = X2) %&gt;%
+  mutate(arm_lab = case_when(arm == 1 ~ "placebo",
                               arm == 2 ~ "drug")) %&gt;%
   
-# Join with results_df with left_join()
-  left_join(results_df, by = "id")
+# Join with results with left_join()
+  left_join(results, by = "id")
+```
 
-# Show a few columns
-combined_df %&gt;%
-  select(id, arm, age, t1, t2)
+```
+## Error: `by` can't contain join column `id` which is missing from LHS
+```
+
+
+```r
+# Show a few variables
+combined %&gt;%
+  select(id, arm, age, t_1, t_2)
+```
+
+]
+
+---
+
+# `left_join()`
+
+.pull-left35[
+
+Use `left_join()` to &lt;high&gt;combine two data frames&lt;/high&gt; based on one or more key variables
+
+
+```r
+# Join tibble_1 to tibble_2
+#   matched by KEY
+tibble_1 %&gt;%
+  left_join(tibble_2, 
+      by = c("KEY"))
+```
+
+
+Other `*_join()` functions: `right_join()`, `full_join()`, `inner_join()`, `anti_join()`, `semi_join()`.
+
+
+]
+
+.pull-right6[
+
+
+```r
+# Join patients with results to create combined
+combined &lt;- patients %&gt;% 
+  rename(age = X1, arm = X2, id = ID) %&gt;%
+  mutate(arm_lab = case_when(arm == 1 ~ "placebo",
+                              arm == 2 ~ "drug")) %&gt;%
+  
+# Join with results with left_join()
+  left_join(results, by = "id")
+
+# Show a few variables
+combined %&gt;%
+  select(id, arm, age, t_1, t_2)
 ```
 
 ```
 ## # A tibble: 5 x 5
-##      id   arm   age    t1    t2
+##      id   arm   age   t_1   t_2
 ##   &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
 ## 1     1     1    37   123   135
 ## 2     2     2    65   143   140
@@ -591,277 +634,41 @@ combined_df %&gt;%
 
 ---
 
-.pull-left35[
+# Organisation
 
-# Keep in mind
+.pull-left4[
 
-1 - Don't forget to start by assigning to a new (or existing) object with &lt;-&lt;br&gt;
+Organisation functions help you change the organisation of your data by &lt;high&gt;sorting rows&lt;/high&gt; by variables, &lt;high&gt;filter rows&lt;/high&gt; based on criteria, &lt;high&gt;select variables&lt;/high&gt; (etc).
 
-2 - Keep adding new functions connected by the pipe &lt;high&gt;%&gt;%&lt;/high&gt;&lt;br&gt;
-
-3 - Order matters! You can refer to new columns in later code
-&lt;br&gt;&lt;br&gt;
-
-]
-
-.pull-right6[
-&lt;br&gt;&lt;br&gt;
-
-
-```r
-# 0) Start with patients_df data
-combined_df &lt;- patients_df %&gt;%
-  
-# 1) Change column names with rename()
-  rename(age = b,  
-         arm = c) %&gt;%  # AND THEN...
-  
-# 2) Create new columns with mutate()
-  mutate(age_months = age * 12,
-         age_decades = age / 10,
-         arm_char = case_when(arm == 0 ~ "placebo",
-                              arm == 1 ~ "drug")
-         ) %&gt;%  # AND THEN..
-  
-# 3) Add data from results_df with left_join()
-  left_join(results_df, by = "id")
-```
-
-
-]
-
----
-
-.pull-left5[
-# Quiz 1
-
-Do these two chunks do the same thing?
-
-
-### Chunk A
-
-
-```r
-baselers &lt;- baselers %&gt;%
-        rename(salary = income)
-
-baselers &lt;- baselers %&gt;%
-        rename(weight = weight_kg)
-```
-
-]
-
-.pull-right45[
-&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;
-### Chunk B
-
-
-```r
-baselers &lt;- baselers %&gt;%
-        rename(salary = income,
-               weight = weight_kg)
-```
-
-]
-
-
----
-
-.pull-left5[
-# Quiz 1
-
-Do these two chunks do the same thing?
-
-### Chunk A
-
-
-```r
-baselers &lt;- baselers %&gt;%
-        rename(salary = income)
-
-baselers &lt;- baselers %&gt;%
-        rename(weight = weight_kg)
-```
-
-
-*This is a long way to do it*
-
-]
-
-.pull-right45[
-&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;high&gt;Answer: Yes!&lt;/high&gt;
-### Chunk B
-
-
-```r
-baselers &lt;- baselers %&gt;%
-        rename(salary = income,
-               weight = weight_kg)
-```
-
-*This is simpler, you can do multiple rename() operations at the same time*
-
-]
-
-
----
-
-.pull-left5[
-# Quiz 2
-
-Do these two chunks do the same thing?
-
-### Chunk A
-
-```r
-baselers &lt;- baselers %&gt;%
-        rename(salary = income)
-
-baselers &lt;- baselers %&gt;%
-        mutate(age_months = age * 12)
-```
-
-]
-
-
-.pull-right45[
-&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;
-### Chunk B
-
-
-```r
-baselers &lt;- baselers %&gt;%
-              rename(salary = income) %&gt;%
-              mutate(age_months = age * 12)
-```
-
-
-]
-
-
-
----
-
-.pull-left5[
-# Quiz 2
-
-Do these two chunks do the same thing?
-
-### Chunk A
-
-```r
-baselers &lt;- baselers %&gt;%
-        rename(salary = income)
-
-baselers &lt;- baselers %&gt;%
-        mutate(age_months = age * 12)
-```
-
-*This is the long way to do multiple operations.*
-
-]
-
-
-.pull-right45[
-&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;high&gt;Answer: Yes!&lt;/high&gt;
-### Chunk B
-
-
-```r
-baselers &lt;- baselers %&gt;%
-              rename(salary = income) %&gt;%
-              mutate(age_months = age * 12)
-```
-*This is the short way that uses the pipe to continue working on the same dataframe*
-
-]
-
-
----
-
-.pull-left5[
-# Quiz 3
-
-Do these two chunks do the same thing?
-
-### Chunk A
-
-```r
-baselers %&gt;%
-      rename(salary = income) %&gt;%
-      mutate(age_months = age * 12)
-```
-
-]
-
-
-.pull-right45[
-&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;
-### Chunk B
-
-
-```r
-baselers &lt;- baselers %&gt;%
-      rename(salary = income) %&gt;%
-      mutate(age_months = age * 12)
-```
-
-
-]
-
----
-
-.pull-left5[
-# Quiz 3
-
-Do these two chunks do the same thing?
-
-### Chunk A
-
-```r
-baselers %&gt;%
-      rename(salary = income) %&gt;%
-      mutate(age_months = age * 12)
-```
-
-*This just prints a result without changing anything*
-
-]
-
-
-.pull-right45[
-&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;high&gt;Answer: No!&lt;/high&gt;
-### Chunk B
-
-
-```r
-baselers &lt;- baselers %&gt;%
-      rename(salary = income) %&gt;%
-      mutate(age_months = age * 12)
-```
-*This actually changes the baselers dataframe because we used assignment &lt;- !*
-
-]
-
-
----
-
-# Organisation Functions
-
-.pull-left35[
-
-Organisation functions help you shuffle your data by &lt;high&gt;sorting rows&lt;/high&gt; by columns, &lt;high&gt;filter rows&lt;/high&gt; based on criteria, &lt;high&gt;select columns&lt;/high&gt; (etc).
-
-]
-
-.pull-right6[
-
-| Function| Purpose|Example|
+| Function| Description|
 |:--------|:----|:-------------|
-| `arrange()` |Sort rows by columns|`df %&gt;%`&lt;br&gt;`arrange(arm, age)`|
-| `slice()`|   Select rows by location|`df %&gt;%`&lt;br&gt;`slice(1:10)`|
-| `filter()` | Select specific rows by criteria|`df %&gt;%`&lt;br&gt;`filter(age &gt; 50)`|
-| `select()`|   Select specific columns|`df %&gt;%`&lt;br&gt;`select(arm, t1)`|
+| `arrange()` |&lt;high&gt;Sort rows&lt;/high&gt; by variables|
+| `slice()`|   &lt;high&gt;Select rows&lt;/high&gt; by location|
+| `filter()` | &lt;high&gt;Select rows&lt;/high&gt; by criteria|
+| `select()`|   &lt;high&gt;Select variables&lt;/high&gt;|
+
+]
+
+.pull-right55[
+
+
+```r
+# combined tibble
+combined
+```
+
+```
+## # A tibble: 5 x 6
+##      id   age   arm arm_lab   t_1   t_2
+##   &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;   &lt;dbl&gt; &lt;dbl&gt;
+## 1     1    37     1 placebo   123   135
+## 2     2    65     2 drug      143   140
+## 3     3    57     2 drug       NA    NA
+## 4     4    34     1 placebo   100   105
+## 5     5    45     2 drug       NA    NA
+```
+
+```
 
 ]
 
@@ -871,11 +678,11 @@ Organisation functions help you shuffle your data by &lt;high&gt;sorting rows&lt
 
 .pull-left4[
 
-Use `arrange()` to &lt;high&gt;arrange (aka, sort) rows&lt;/high&gt; in increasing or decreasing order of one (or more) columns.
+Use `arrange()` to &lt;high&gt;sort rows&lt;/high&gt; in increasing or decreasing (using `desc()`) order of one or more variables.
 
 
 ```r
-df %&gt;%
+tibble %&gt;%
   arrange(A, B)
 ```
 
@@ -883,7 +690,7 @@ To sort in descending order, use `desc()`
 
 
 ```r
-df %&gt;%
+tibble %&gt;%
   arrange(desc(A), B)
 ```
 
@@ -895,19 +702,19 @@ Sort by `arm`.
 
 
 ```r
-combined_df %&gt;%
+combined %&gt;%
   arrange(arm)   # Sort by arm
 ```
 
 ```
 ## # A tibble: 5 x 6
-##      id   age   arm arm_char    t1    t2
-##   &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;    &lt;dbl&gt; &lt;dbl&gt;
-## 1     1    37     1 placebo    123   135
-## 2     4    34     1 placebo    100   105
-## 3     2    65     2 drug       143   140
-## 4     3    57     2 drug        NA    NA
-## 5     5    45     2 drug        NA    NA
+##      id   age   arm arm_lab   t_1   t_2
+##   &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;   &lt;dbl&gt; &lt;dbl&gt;
+## 1     1    37     1 placebo   123   135
+## 2     4    34     1 placebo   100   105
+## 3     2    65     2 drug      143   140
+## 4     3    57     2 drug       NA    NA
+## 5     5    45     2 drug       NA    NA
 ```
 
 
@@ -919,11 +726,11 @@ combined_df %&gt;%
 
 .pull-left4[
 
-Use `arrange()` to &lt;high&gt;arrange (aka, sort) rows&lt;/high&gt; in increasing or decreasing order of one (or more) columns.
+Use `arrange()` to &lt;high&gt;sort rows&lt;/high&gt; in increasing or decreasing (using `desc()`) order of one or more variables.
 
 
 ```r
-df %&gt;%
+tibble %&gt;%
   arrange(A, B)
 ```
 
@@ -931,7 +738,7 @@ To sort in descending order, use `desc()`
 
 
 ```r
-df %&gt;%
+tibble %&gt;%
   arrange(desc(A), B)
 ```
 
@@ -944,19 +751,19 @@ Sort by `arm` and then `age`.
 
 
 ```r
-combined_df %&gt;%
+combined %&gt;%
   arrange(arm, age)  # Sort by arm then age
 ```
 
 ```
 ## # A tibble: 5 x 6
-##      id   age   arm arm_char    t1    t2
-##   &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;    &lt;dbl&gt; &lt;dbl&gt;
-## 1     4    34     1 placebo    100   105
-## 2     1    37     1 placebo    123   135
-## 3     5    45     2 drug        NA    NA
-## 4     3    57     2 drug        NA    NA
-## 5     2    65     2 drug       143   140
+##      id   age   arm arm_lab   t_1   t_2
+##   &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;   &lt;dbl&gt; &lt;dbl&gt;
+## 1     4    34     1 placebo   100   105
+## 2     1    37     1 placebo   123   135
+## 3     5    45     2 drug       NA    NA
+## 4     3    57     2 drug       NA    NA
+## 5     2    65     2 drug      143   140
 ```
 
 ]
@@ -969,13 +776,13 @@ combined_df %&gt;%
 
 .pull-left4[
 
-Use `slice()` to &lt;high&gt;select rows&lt;/high&gt; (and remove others) by row number.
+Use `slice()` to &lt;high&gt;select rows&lt;/high&gt; (or remove) by row number.
 
-Use functions like `c()`, `a:b` and `seq()` to create row numbers
+Use `c()`, `a:b`, or `seq()` to create row numbers
 
 
 ```r
-# Specific numbers
+# Integer vector
 c(2, 6, 10)
 ```
 
@@ -984,7 +791,7 @@ c(2, 6, 10)
 ```
 
 ```r
-# Integers from 0 to 5
+# Integer vector of 0 to 5
 0:5
 ```
 
@@ -1002,16 +809,16 @@ Select rows `3` and `5`.
 
 ```r
 # Rows 3 and 5 only
-combined_df %&gt;%
+combined %&gt;%
   slice(c(3, 5))
 ```
 
 ```
 ## # A tibble: 2 x 6
-##      id   age   arm arm_char    t1    t2
-##   &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;    &lt;dbl&gt; &lt;dbl&gt;
-## 1     3    57     2 drug        NA    NA
-## 2     5    45     2 drug        NA    NA
+##      id   age   arm arm_lab   t_1   t_2
+##   &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;   &lt;dbl&gt; &lt;dbl&gt;
+## 1     3    57     2 drug       NA    NA
+## 2     5    45     2 drug       NA    NA
 ```
 
 
@@ -1023,13 +830,13 @@ combined_df %&gt;%
 
 .pull-left4[
 
-Use `slice()` to &lt;high&gt;select rows&lt;/high&gt; (and remove others) by row number.
+Use `slice()` to &lt;high&gt;select rows&lt;/high&gt; (or remove) by row number.
 
-Use functions like `c()`, `a:b` and `seq()` to create row numbers
+Use `c()`, `a:b`, or `seq()` to create row numbers
 
 
 ```r
-# Specific numbers
+# Integer vector
 c(2, 6, 10)
 ```
 
@@ -1038,7 +845,7 @@ c(2, 6, 10)
 ```
 
 ```r
-# Integers from 0 to 5
+# Integer vector of 0 to 5
 0:5
 ```
 
@@ -1046,35 +853,31 @@ c(2, 6, 10)
 ## [1] 0 1 2 3 4 5
 ```
 
-
 ]
 
 .pull-right55[
 
 
-Select rows `1` through `5`.
+Select rows `1` through `4`.
 
 
 ```r
 # First 5 rows
-combined_df %&gt;%
-  slice(1:5)
+combined %&gt;%
+  slice(1:4)
 ```
 
 ```
-## # A tibble: 5 x 6
-##      id   age   arm arm_char    t1    t2
-##   &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;    &lt;dbl&gt; &lt;dbl&gt;
-## 1     1    37     1 placebo    123   135
-## 2     2    65     2 drug       143   140
-## 3     3    57     2 drug        NA    NA
-## 4     4    34     1 placebo    100   105
-## 5     5    45     2 drug        NA    NA
+## # A tibble: 4 x 6
+##      id   age   arm arm_lab   t_1   t_2
+##   &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;   &lt;dbl&gt; &lt;dbl&gt;
+## 1     1    37     1 placebo   123   135
+## 2     2    65     2 drug      143   140
+## 3     3    57     2 drug       NA    NA
+## 4     4    34     1 placebo   100   105
 ```
 
 ]
-
-
 
 ---
 
@@ -1082,9 +885,9 @@ combined_df %&gt;%
 
 .pull-left4[
 
-Use `filter()` to &lt;high&gt;select rows&lt;/high&gt; (and remove others) based on criteria
+Use `filter()` to &lt;high&gt;select rows&lt;/high&gt; (or remove) based on logical statements.
 
-For complex conditions, chain multiple logical comparison operators with `&amp;` (AND) and `|` (OR)
+&lt;high&gt;Chain&lt;/high&gt; logical comparison operators with `&amp;` (AND) and `|` (OR).
 
 &lt;high&gt;`==`&lt;/high&gt; - is equal to&lt;br&gt;
 &lt;high&gt;`&lt;`&lt;/high&gt;, &lt;high&gt;`&gt;`&lt;/high&gt; - smaller/greater than&lt;br&gt;
@@ -1101,19 +904,19 @@ Select &lt;i&gt;only&lt;/i&gt; patients over `30`.
 
 ```r
 # Filter patients older than 30
-combined_df %&gt;%
+combined %&gt;%
   filter(age &gt; 30)
 ```
 
 ```
 ## # A tibble: 5 x 6
-##      id   age   arm arm_char    t1    t2
-##   &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;    &lt;dbl&gt; &lt;dbl&gt;
-## 1     1    37     1 placebo    123   135
-## 2     2    65     2 drug       143   140
-## 3     3    57     2 drug        NA    NA
-## 4     4    34     1 placebo    100   105
-## 5     5    45     2 drug        NA    NA
+##      id   age   arm arm_lab   t_1   t_2
+##   &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;   &lt;dbl&gt; &lt;dbl&gt;
+## 1     1    37     1 placebo   123   135
+## 2     2    65     2 drug      143   140
+## 3     3    57     2 drug       NA    NA
+## 4     4    34     1 placebo   100   105
+## 5     5    45     2 drug       NA    NA
 ```
 
 ]
@@ -1125,9 +928,9 @@ combined_df %&gt;%
 
 .pull-left4[
 
-Use `filter()` to &lt;high&gt;select rows&lt;/high&gt; (and remove others) based on criteria
+Use `filter()` to &lt;high&gt;select rows&lt;/high&gt; (or remove) based on logical statements.
 
-For complex conditions, chain multiple logical comparison operators with `&amp;` (AND) and `|` (OR)
+&lt;high&gt;Chain&lt;/high&gt; logical comparison operators with `&amp;` (AND) and `|` (OR).
 
 &lt;high&gt;`==`&lt;/high&gt; - is equal to&lt;br&gt;
 &lt;high&gt;`&lt;`&lt;/high&gt;, &lt;high&gt;`&gt;`&lt;/high&gt; - smaller/greater than&lt;br&gt;
@@ -1139,22 +942,22 @@ For complex conditions, chain multiple logical comparison operators with `&amp;`
 
 .pull-right55[
 
-Select &lt;i&gt;only&lt;/i&gt; patients over `30` given drug.
+Select &lt;i&gt;only&lt;/i&gt; patients over `30` given arm is `'drug'`.
 
 
 ```r
 # Filter patients older than 30 given drug
-combined_df %&gt;%
-  filter(age &gt; 30 &amp; arm_char == "drug")
+combined %&gt;%
+  filter(age &gt; 30 &amp; arm_lab == "drug")
 ```
 
 ```
 ## # A tibble: 3 x 6
-##      id   age   arm arm_char    t1    t2
-##   &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;    &lt;dbl&gt; &lt;dbl&gt;
-## 1     2    65     2 drug       143   140
-## 2     3    57     2 drug        NA    NA
-## 3     5    45     2 drug        NA    NA
+##      id   age   arm arm_lab   t_1   t_2
+##   &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;   &lt;dbl&gt; &lt;dbl&gt;
+## 1     2    65     2 drug      143   140
+## 2     3    57     2 drug       NA    NA
+## 3     5    45     2 drug       NA    NA
 ```
 
 ]
@@ -1166,22 +969,19 @@ combined_df %&gt;%
 
 .pull-left4[
 
-Use `select()` to &lt;high&gt;select columns&lt;/high&gt; (and remove all others)
+Use `select()` to &lt;high&gt;select variables&lt;/high&gt; (or remove).
+
+&lt;high&gt;Remove variables&lt;/high&gt; with `-` (minus).
 
 
 ```r
-# Select columns A, B
-df %&gt;% 
+# Select variables A, B
+ %&gt;% 
   select(A, B)
-```
-
-&lt;high&gt;Remove columns&lt;/high&gt; with `-`.
-
-
-```r
+  
 # Select everything BUT A
-df %&gt;% 
-  select(-A)
+tibble %&gt;% 
+  select(-A)  
 ```
 
 
@@ -1189,12 +989,12 @@ df %&gt;%
 
 .pull-right55[
 
-Select columns `id` and `arm`
+Select variables `id` and `arm`.
 
 
 ```r
-combined_df %&gt;%
-  select(id, arm) # Select id and arm columns
+combined %&gt;%
+  select(id, arm) # Select id and arm variables
 ```
 
 ```
@@ -1217,21 +1017,21 @@ combined_df %&gt;%
 
 .pull-left4[
 
-Use `select()` to &lt;high&gt;select columns&lt;/high&gt; (and remove all others)
+Use `select()` to &lt;high&gt;select variables&lt;/high&gt; (and remove all others)
 
 
 ```r
-# Select columns A, B
-df %&gt;% 
+# Select variables A, B
+tibble %&gt;% 
   select(A, B)
 ```
 
-&lt;high&gt;Remove columns&lt;/high&gt; with `-`.
+&lt;high&gt;Remove variables&lt;/high&gt; with `-`.
 
 
 ```r
 # Select everything BUT A
-df %&gt;% 
+tibble %&gt;% 
   select(-A)
 ```
 
@@ -1244,367 +1044,221 @@ Select everything &lt;i&gt;except&lt;/i&gt; id
 
 
 ```r
-combined_df %&gt;%
+combined %&gt;%
   select(-id) # Everything BUT id
 ```
 
 ```
 ## # A tibble: 5 x 5
-##     age   arm arm_char    t1    t2
-##   &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;    &lt;dbl&gt; &lt;dbl&gt;
-## 1    37     1 placebo    123   135
-## 2    65     2 drug       143   140
-## 3    57     2 drug        NA    NA
-## 4    34     1 placebo    100   105
-## 5    45     2 drug        NA    NA
+##     age   arm arm_lab   t_1   t_2
+##   &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;   &lt;dbl&gt; &lt;dbl&gt;
+## 1    37     1 placebo   123   135
+## 2    65     2 drug      143   140
+## 3    57     2 drug       NA    NA
+## 4    34     1 placebo   100   105
+## 5    45     2 drug       NA    NA
 ```
 
 ]
-
 
 
 ---
 
-# Quiz 4
+# Long and wide formats
 
-.pull-left45[
+.pull-left4[
 
-Here is part of the baselers dataframe
+Some functions require data to be in a certain shape, that is to be either in a wide or a long format.
 
+Use &lt;high&gt;`gather()`&lt;/high&gt; and &lt;high&gt;`spread()`&lt;/high&gt; from the `tidyr`package to change a tibble between &lt;high&gt;wide&lt;/high&gt; and &lt;high&gt;long&lt;/high&gt; formats.
 
-```r
-baselers %&gt;%
-  select(id, sex, age, height) %&gt;%
-  slice(1:5)
-```
-
-```
-## # A tibble: 5 x 4
-##      id sex      age height
-##   &lt;int&gt; &lt;chr&gt;  &lt;int&gt;  &lt;dbl&gt;
-## 1     1 male      44   174.
-## 2     2 male      65   180.
-## 3     3 female    31   168.
-## 4     4 male      27   209 
-## 5     5 male      24   177.
-```
-
-
-]
-
-
-.pull-right5[
-
-How do I calculate the following table of the top 5 tallest Baselers?
-
-
-```
-## # A tibble: 5 x 3
-##      id height sex  
-##   &lt;int&gt;  &lt;dbl&gt; &lt;chr&gt;
-## 1  9676   219. male 
-## 2  5623   213. male 
-## 3  7214   213. male 
-## 4  7059   212. male 
-## 5  9538   210. male
-```
-
-]
-
-
-
----
-
-# Quiz 4
-
-.pull-left45[
-
-Here is part of the baselers dataframe
-
-
-```r
-baselers %&gt;%
-  select(id, sex, age, height) %&gt;%
-  slice(1:5)
-```
-
-```
-## # A tibble: 5 x 4
-##      id sex      age height
-##   &lt;int&gt; &lt;chr&gt;  &lt;int&gt;  &lt;dbl&gt;
-## 1     1 male      44   174.
-## 2     2 male      65   180.
-## 3     3 female    31   168.
-## 4     4 male      27   209 
-## 5     5 male      24   177.
-```
-
-
-]
-
-
-.pull-right5[
-
-How do I calculate the following table of the top 5 tallest Baselers?
-
-
-```r
-baselers %&gt;%
-  arrange(desc(height)) %&gt;%
-  select(id, height, sex) %&gt;%
-  slice(1:5)
-```
-
-```
-## # A tibble: 5 x 3
-##      id height sex  
-##   &lt;int&gt;  &lt;dbl&gt; &lt;chr&gt;
-## 1  9676   219. male 
-## 2  5623   213. male 
-## 3  7214   213. male 
-## 4  7059   212. male 
-## 5  9538   210. male
-```
-
-]
-
-
-
-
----
-
-# Quiz 5
-
-.pull-left45[
-
-Here is part of the baselers dataframe
-
-
-```r
-baselers %&gt;%
-  select(id, sex, age, height) %&gt;%
-  slice(1:5)
-```
-
-```
-## # A tibble: 5 x 4
-##      id sex      age height
-##   &lt;int&gt; &lt;chr&gt;  &lt;int&gt;  &lt;dbl&gt;
-## 1     1 male      44   174.
-## 2     2 male      65   180.
-## 3     3 female    31   168.
-## 4     4 male      27   209 
-## 5     5 male      24   177.
-```
-
-
-]
-
-
-.pull-right5[
-
-How do I calculate the following table of the top 5 tallest *female* Baselers?
-
-
-```
-## # A tibble: 5 x 3
-##      id height sex   
-##   &lt;int&gt;  &lt;dbl&gt; &lt;chr&gt; 
-## 1  6936   198. female
-## 2  8450   196. female
-## 3   385   196. female
-## 4  3203   195. female
-## 5  4392   194  female
-```
-
-]
-
----
-
-# Quiz 5
-
-.pull-left45[
-
-Here is part of the baselers dataframe
-
-
-```r
-baselers %&gt;%
-  select(id, sex, age, height) %&gt;%
-  slice(1:5)
-```
-
-```
-## # A tibble: 5 x 4
-##      id sex      age height
-##   &lt;int&gt; &lt;chr&gt;  &lt;int&gt;  &lt;dbl&gt;
-## 1     1 male      44   174.
-## 2     2 male      65   180.
-## 3     3 female    31   168.
-## 4     4 male      27   209 
-## 5     5 male      24   177.
-```
-
-
-]
-
-
-.pull-right5[
-
-How do I calculate the following table of the top 5 tallest *female* Baselers?
-
-
-```r
-baselers %&gt;%
-  filter(sex == "female") %&gt;%
-  arrange(desc(height)) %&gt;%
-  select(id, height, sex) %&gt;%
-  slice(1:5)
-```
-
-```
-## # A tibble: 5 x 3
-##      id height sex   
-##   &lt;int&gt;  &lt;dbl&gt; &lt;chr&gt; 
-## 1  6936   198. female
-## 2  8450   196. female
-## 3   385   196. female
-## 4  3203   195. female
-## 5  4392   194  female
-```
-
-]
-
----
-
-# Reshaping data
-
-.pull-left45[
-
-Two key functions that allow you to &lt;high&gt;`reshape`&lt;/high&gt; a dataframe between 'wide'and 'long' formats.
-
-Some functions require data to be in a certain shape.
-
-#### Two key tidyr functions
+&lt;br&gt;
 
 | Function | Result |
 |:----------|:-------|
-|`gather()`|Move data from 'wide' to 'long' format|
-|`spread()`|Move data from 'long' to 'wide' format|
+|`gather()`|&lt;high&gt;wide &amp;#8594; long&lt;/high&gt; format|
+|`spread()`|&lt;high&gt;long &amp;#8594; wide&lt;/high&gt; format|
 
 ]
 
-.pull-right5[
+.pull-right55[
 
-&lt;high&gt;Wide vs. Long&lt;/high&gt; data
-
-
-
-
-```r
-# Wide format
-stock_w
-```
-
-```
-##   id t1 t2
-## 1  a 10 20
-## 2  b 20 26
-## 3  c 15 30
-```
-
-
-```r
-# Long format
-stock_l
-```
-
-```
-##   id time measure
-## 1  a   t1      10
-## 2  b   t1      20
-## 3  c   t1      15
-## 4  a   t2      20
-## 5  b   t2      26
-## 6  c   t2      30
-```
+&lt;p align="center"&gt;
+&lt;img src="image/longwide.png" height=420px&gt;
+&lt;/p&gt;
 
 ]
 
 ---
 
-.pull-left45[
-
 # `gather()`
 
-
-```r
-# Show wide data
-stock_w
-```
-
-```
-##   id t1 t2
-## 1  a 10 20
-## 2  b 20 26
-## 3  c 15 30
-```
+.pull-left45[
 
 
 ```r
-# "Gather" wide data to long
-stock_w %&gt;% 
-  gather(time,    # New group column
-         measure, # New target column
-         -id)     # ID column
+# Show original data (wide)
+combined
 ```
 
 ```
-##   id time measure
-## 1  a   t1      10
-## 2  b   t1      20
-## 3  c   t1      15
-## 4  a   t2      20
-## 5  b   t2      26
-## 6  c   t2      30
+## # A tibble: 5 x 6
+##      id   age   arm arm_lab   t_1   t_2
+##   &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;   &lt;dbl&gt; &lt;dbl&gt;
+## 1     1    37     1 placebo   123   135
+## 2     2    65     2 drug      143   140
+## 3     3    57     2 drug       NA    NA
+## 4     4    34     1 placebo   100   105
+## 5     5    45     2 drug       NA    NA
 ```
 
 ]
 
 .pull-right45[
 
+
+```r
+# "Gather" wide data to long
+combined %&gt;% 
+  gather(time,  # New group variable
+         value, # New target variable
+         -id)   # Omit ID
+```
+
+```
+## # A tibble: 25 x 3
+##       id time  value
+##    &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt;
+##  1     1 age   37   
+##  2     2 age   65   
+##  3     3 age   57   
+##  4     4 age   34   
+##  5     5 age   45   
+##  6     1 arm   1    
+##  7     2 arm   2    
+##  8     3 arm   2    
+##  9     4 arm   1    
+## 10     5 arm   2    
+## # ... with 15 more rows
+```
+
+]
+
+---
+
+# `gather()`
+
+.pull-left45[
+
+
+
+```r
+# Show original data (wide)
+combined
+```
+
+```
+## # A tibble: 5 x 6
+##      id   age   arm arm_lab   t_1   t_2
+##   &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;   &lt;dbl&gt; &lt;dbl&gt;
+## 1     1    37     1 placebo   123   135
+## 2     2    65     2 drug      143   140
+## 3     3    57     2 drug       NA    NA
+## 4     4    34     1 placebo   100   105
+## 5     5    45     2 drug       NA    NA
+```
+
+]
+
+.pull-right45[
+
+
+
+```r
+# "Gather" wide data to long
+combined %&gt;% 
+  gather(time,  # New group variable
+         value, # New target variable
+         -id, -age, -arm, -arm_lab) # Omit variables
+```
+
+```
+## # A tibble: 10 x 6
+##       id   age   arm arm_lab time  value
+##    &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;   &lt;chr&gt; &lt;dbl&gt;
+##  1     1    37     1 placebo t_1     123
+##  2     2    65     2 drug    t_1     143
+##  3     3    57     2 drug    t_1      NA
+##  4     4    34     1 placebo t_1     100
+##  5     5    45     2 drug    t_1      NA
+##  6     1    37     1 placebo t_2     135
+##  7     2    65     2 drug    t_2     140
+##  8     3    57     2 drug    t_2      NA
+##  9     4    34     1 placebo t_2     105
+## 10     5    45     2 drug    t_2      NA
+```
+
+]
+
+---
+
 # `spread()`
+
+.pull-left45[
 
 
 ```r
 # Show long data
-stock_l
+combined %&gt;% 
+  gather(time,  # New group variable
+         value, # New target variable
+         -id, -age, -arm, -arm_lab) # Omit variables
 ```
 
 ```
-##   id time measure
-## 1  a   t1      10
-## 2  b   t1      20
-## 3  c   t1      15
-## 4  a   t2      20
-## 5  b   t2      26
-## 6  c   t2      30
+## # A tibble: 10 x 6
+##       id   age   arm arm_lab time  value
+##    &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;   &lt;chr&gt; &lt;dbl&gt;
+##  1     1    37     1 placebo t_1     123
+##  2     2    65     2 drug    t_1     143
+##  3     3    57     2 drug    t_1      NA
+##  4     4    34     1 placebo t_1     100
+##  5     5    45     2 drug    t_1      NA
+##  6     1    37     1 placebo t_2     135
+##  7     2    65     2 drug    t_2     140
+##  8     3    57     2 drug    t_2      NA
+##  9     4    34     1 placebo t_2     105
+## 10     5    45     2 drug    t_2      NA
 ```
 
+
+]
+
+.pull-right45[
 
 
 ```r
+# "Gather" wide data to long
+long_combined = combined %&gt;% 
+  gather(time,  # New group variable
+         value, # New target variable
+         -id, -age, -arm, -arm_lab) # Omit variables
+         
 # "Spread" long data to wide
-stock_l %&gt;% 
-  spread(time,    # Old group column
-         measure) # Old target column
+long_combined %&gt;%
+  spread(time,   # Old group variable
+         value)  # Old target variable
 ```
 
 ```
-##   id t1 t2
-## 1  a 10 20
-## 2  b 20 26
-## 3  c 15 30
+## # A tibble: 5 x 6
+##      id   age   arm arm_lab   t_1   t_2
+##   &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;   &lt;dbl&gt; &lt;dbl&gt;
+## 1     1    37     1 placebo   123   135
+## 2     2    65     2 drug      143   140
+## 3     3    57     2 drug       NA    NA
+## 4     4    34     1 placebo   100   105
+## 5     5    45     2 drug       NA    NA
 ```
 
 ]
@@ -1612,51 +1266,9 @@ stock_l %&gt;%
 
 ---
 
-.pull-left4[
+class: middle, center
 
-# Summary
-
-
-1 - Start by assigning your result to a new object to save it!
-
-2 - "Keep the pipe &lt;high&gt;%&gt;%&lt;/high&gt; going" to continue working with your data frame.
-
-3 - The output of dplyr functions will (almost) always be a &lt;high&gt;tibble&lt;/high&gt;.
-
-4 - You can almost always include &lt;high&gt;multiple operations&lt;/high&gt; within each function.
-
-]
-
-.pull-right55[
-&lt;br&gt;&lt;br&gt;&lt;br&gt;
-
-```r
-# Assign result to baslers_agg
-
-baslers_agg &lt;- baselers %&gt;% 
-  
-  # Change column names with rename()
-  rename(age_years = age,
-         weight_kg = weight)  %&gt;% # PIPE!
-
-  # Select specific rows with filter()
-  filter(age_years &lt; 40)  %&gt;% # PIPE!
-  
-  # Create new columns witb mutate()
-  mutate(debt_ratio = debt / income)
-```
-
-]
-
----
-
-# Practical
-
-&lt;p&gt;
-  &lt;font size=6&gt;
-    &lt;a href="https://therbootcamp.github.io/Intro2DataScience_2018Oct/_sessions/Wrangling/Wrangling_practical.html"&gt;&lt;b&gt;Link to practical&lt;b&gt;&lt;/a&gt;
-  &lt;/font&gt;
-&lt;/p&gt;
+&lt;h1&gt;&lt;a href="https://therbootcamp.github.io/appliedML_2019Jan/_sessions/Models/Models_practical.html"&gt;Practical&lt;/a&gt;&lt;/h1&gt;
     </textarea>
 <script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
 <script>var slideshow = remark.create({
