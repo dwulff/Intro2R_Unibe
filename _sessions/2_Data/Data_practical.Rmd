@@ -1,0 +1,813 @@
+---
+title: "Data Practical"
+author: "Introduction to Data Science with R<br/><a href='https://therbootcamp.github.io'>www.therbootcamp.com</a><br/><a href='https://twitter.com/therbootcamp'>@therbootcamp</a>"
+output:
+  html_document:
+    css: practical.css
+---
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(echo = TRUE,
+                      eval = TRUE,
+                      message = FALSE,
+                      warning = FALSE,
+                      error = FALSE)
+
+options(digits = 3)
+#devtools::install_github("therbootcamp/baselers")
+library(baselers)
+library(tidyverse)
+library(knitr)
+library(kableExtra)
+library(readxl)
+```
+
+
+<figure>
+<center>
+  <img src="https://www.methodspace.com/wp-content/uploads/2018/02/Big-data-slider_GEBI.jpg" alt="Trulli" style="width:800px;height:250px">
+  <figcaption><a href="https://www.methodspace.com">source</a></figcaption>
+</figure>
+
+## {.tabset}
+
+
+### Overview
+
+In this practical you'll learn how to work with basic data objects and functions. By the end of this practical you will know how to:
+
+1. Create vectors of different types using `c()`
+2. Understand the three main vector classes numeric, character, and logical using `class()` 
+3. Calculate basic descriptive statistics using `mean()`, `median()`, `table()` (and more!)
+4. Read and write data of various data formats using `read_csv()` and others 
+5. Access and change vectors from data frames using `$`
+6. Create `data.frames` and `tibbles` using `data.frame()` and `tibble()`
+
+
+### Datasets
+
+```{r, eval = TRUE, message = FALSE}
+library(tidyverse)
+library(haven)
+```
+
+|File | Rows | Columns | Description |
+|:----|:-----|:------|:-----------------------------------------|
+|[diamonds.csv](https://raw.githubusercontent.com/therbootcamp/BaselRBootcamp_2018July/master/_sessions/_data/baselrbootcamp_data/diamonds.csv) | 100 | 7 | Subset of the well-known diamonds data set containing specifications and prices of a large number of recorded diamonds.  |
+|[titanic.xls](https://raw.githubusercontent.com/therbootcamp/BaselRBootcamp_2018July/master/_sessions/_data/baselrbootcamp_data/titanic.xls) | 1309 | 14 | Information on the survival of titanic passengers. |
+|[sleep.sav](https://raw.githubusercontent.com/therbootcamp/BaselRBootcamp_2018July/master/_sessions/_data/baselrbootcamp_data/sleep.sav) | 271 | 55 | Survey on sleeping behavior completed by staff at the University of Melbourne. |
+|[airbnb_zuerich.sas7bdat](https://raw.githubusercontent.com/therbootcamp/BaselRBootcamp_2018July/master/_sessions/_data/baselrbootcamp_data/airbnb_zuerich.sas7bdat) | 2392 | 20 | Data on AirBnB listings in Zürich, Switzerland|
+
+
+### Packages
+
+|Package| Installation|
+|:------|:------|
+|`tidyverse`|`install.packages("tidyverse")`|
+|`readr`|`install.packages("readr")`|
+|`haven`|`install.packages("haven")`|
+|`readxl`|`install.packages("readxl")`|
+
+### Glossary
+
+*Creating vectors*
+
+| Function| Description|
+|:------|:--------|
+| `c("a", "b", "c")` |Create a character vector|
+| `c(1, 2, 3)`| Create a numeric vector|
+| `c(TRUE, FALSE, TRUE)`|    Create a logical vector|
+
+*Vector functions*
+
+| Function| Description|
+|:------|:--------|
+| `mean(x), median(x), sd(x), sum(x)` | Mean, median standard deviation, sum|
+| `max(x), min(x)`                    | Maximum, minimum|
+| `table(x)`                          | Table of frequency counts|
+| `round(x, digits)`                  | Round a numeric vector x to `digits`|
+
+*Accessing vectors from data frames*
+
+| Function| Description|
+|:------|:--------|
+| `df$name` |Access vector `name` from a data frame `df`|
+
+*Reading/writing text data*
+
+| Extension | File Type |Read | Write |
+|:------|:------|:--------------------------|:-----------------------------|
+| `.csv` | Comma-separated text |`read_csv(file)` | `write_csv(x, file)` |
+| `.csv` | Semi-colon separated text |`read_csv2(file)` | *not available* |
+| `.txt` |Other text | `read_delim(file)` |`write_delim(x, file)` | 
+
+*Reading/writing other data formats*
+
+|Extension| File Type | Read | Write|
+|:--------|:-----|:--------------------------|:-----------------------------|
+|`.xls`, `.xlsx`|Excel | `read_excel(file)` | `xlsx::write.xlsx()` |
+|`.sav`| SPSS | `read_spss(file)` | `write_spss(x, file)`| 
+|`.sas7bdat`| SAS | `read_sas(file)` | `write_sas(x, file)`|
+
+*Creating data frames from vectors*
+
+| Function| Description|
+|:------|:--------|
+| `data.frame(a, b, c)` | Create a data frame from vectors a, b, c|
+| `tibble(a, b, c)`     | Create a tibble from vectors a, b, c|
+
+
+### Examples
+
+```{r, eval = FALSE, echo = TRUE}
+library(tidyverse)
+library(readr)
+library(readxl)
+library(haven)
+
+# Create vectors of (fake) stock data
+name      <- c("apple", "microsoft", "dell", "google", "twitter")
+yesterday <- c(100, 89, 65, 54, 89)
+today     <- c(102, 85, 72, 60, 95)
+
+# Summary statistics
+mean(today)
+mean(yesterday)
+
+# Show classes
+class(name)
+class(yesterday)
+
+# Operations of vectors
+change <- today - yesterday
+change # Print result
+
+# Create a logical vector from two numerics
+increase <- today > yesterday
+increase # Print result
+
+# Create a tibble combining multiple vectors
+stocks <- tibble(name, yesterday, today, change, increase)
+
+# Get column names
+names(stocks)
+
+# Access columns by name
+stocks$name
+stocks$today
+
+# Calculate descriptives on columns
+mean(stocks$yesterday)
+median(stocks$today)
+table(stocks$increase)
+max(stocks$increase)
+
+
+# read/write delim-separated -------------------
+
+# read chickens data
+chickens <- read_csv(file = "1_Data/chickens.csv")
+
+# fix header of chickens_nohead.csv with known column names
+chickens <- read_csv(file = "1_Data/chickens_nohead.csv",
+                     col_names = c("weight", "time", "chick", "diet"))
+
+# fix NA values of chickens_na.csv
+chickens <- read_csv(file = "1_Data/chickens_na.csv",
+                     na = c('NA', 'NULL'))
+
+# write clean data to disc
+write_csv(x = chickens, 
+          path = "1_Data/chickens_clean.csv")
+
+# fix types -------------------
+# Note: the survey data is fictional!
+
+# remove character from rating
+survey$rating[survey$rating == "2,1"] <- 2.1
+
+# rerun type convert
+survey <- type_convert(survey)
+
+# other formats -------------------
+
+# .xlsx (Excel)
+chickens <- read_excel("1_Data/chickens.xlsx")
+
+# .sav (SPSS)
+chickens <- read_spss("1_Data/chickens.sav")
+
+# .sad7bdata (SAS)
+chickens <- read_sas("1_Data/chickens.sas7bdat")
+
+```
+
+# Tasks
+
+## A - Getting setup
+
+1. Open your `baselrbootcamp` R project. It should already have the folders `1_Data` and `2_Code`.
+
+2. Open a new R script and save it as a new file called `data_practical.R` in the `2_Code` folder. At the top of the script, using comments, write your name and the date. Then, load all package(s) listed in the Packages section above with `library()`. Make sure that each of the datasets listed above lie in your `1_Data` folder.
+
+## B - Creating vectors
+
+The table below shows results from a (fictional) survey of 10 Baselers. In the first part of this practical, you will convert this table to R objects and then analyse them!
+
+```{r, echo = FALSE, eval = TRUE}
+data <- baselers[1:10, c("id", "sex", "age", "height", "weight")]
+
+data %>% mutate_all(replace_na, " ") %>% 
+  knitr::kable(format = "markdown", caption = "Data from 10 baselers")
+```
+
+1. Create a numeric vector called `id` that shows the id values. When you finish, print the vector object to see it!
+
+```{r, eval = FALSE, echo = TRUE}
+# Create a vector id
+XX <- c(XX, XX, ...)
+
+# Print the vector id
+XX
+```
+
+```{r}
+# Create an id vector 
+id <- 1:10 # shortcut to creating the sequence from 1 to 10
+
+# Print the vector
+id
+```
+
+2. Using the `class()` function, check the class of your `id` vector. Is it `"numeric"`?
+
+```{r, eval = FALSE, echo = TRUE}
+# Show the class of an object XX
+class(XX)
+```
+
+```{r}
+# Show the class of the id vector
+class(id)
+```
+
+3. Using the `length()` function, find out the length of your `id` vector. Does it have length 10? If not, make sure you defined it correctly!
+
+```{r, eval = FALSE, echo = TRUE}
+# Show the length of the id vector
+length(XX)
+```
+
+```{r}
+# Show the length of the id vector
+length(id)
+```
+
+4. Create a character vector called `sex` that shows the sex values. Make sure to use quotation marks "" to enclose each element to tell R that the data are of type `"character"`! When you finish, print the object to see it!
+
+```{r, eval = FALSE, echo = TRUE}
+# Create a character vector sex
+XX <- c("XX", "XX", "...")
+```
+
+```{r}
+# Create a sex vector 
+sex <- c("male", "male", "female", "male", "male", "male", "male", "female", "male", "female")
+
+# Print the vector
+sex
+```
+
+5. Using the `class()` function, check the class of your `sex` vector. Is it  `"character"`?
+
+```{r}
+# Show the class of the sex vector
+class(sex)
+```
+
+6. Using the `length()` function, find out the length of your `sex` object. Does it have length 10? If not, make sure you defined it correctly!
+
+```{r}
+# Show the length of the sex vector
+length(sex)
+```
+
+7. Using the same steps as before, create a `age` and `height` vector.
+
+```{r}
+# Create a age vector 
+age <- c(44, 65, 31, 27, 24, 63, 71, 41, 43, 31)
+
+# Print the age vector
+age
+
+# Show the class of the age vector
+class(age)
+
+# Show the length of the age vector
+length(age)
+
+# Create a height vector 
+height <- c(174.3, 180.3, 168.3, 209, 176.7, 186.6, 151.6, 155.7, 176.1, 166.1)
+
+# Print the height vector
+height
+
+# Show the class of the height vector
+class(height)
+
+# Show the length of the height vector
+length(height)
+```
+
+8. Look at the weight data, you'll notice it contains an missing value. Create a vector called `weight` containing these data, following the same steps as before, making sure to specify the missing value as `NA` (no quotation marks). 
+
+```{r}
+# Create a weight vector 
+weight <- c(113.4, 75.2, 55.5, 93.8, NA, 67.4, 83.3, 67.8, 69.3, 66.3)
+
+# Print the weight vector
+weight
+
+# Show the class of the weight vector
+class(weight)
+
+# Show the length of the weight vector
+length(weight)
+```
+
+## C - Functions
+
+1. Using the `table()` function, find out how many males and females are in the data. You should find `r sum(data$sex == "male")` males and `r sum(data$sex == "female")` females!
+
+```{r}
+# Count types in sex
+table(sex)
+```
+
+2. Using the `mean()` function, calculate the mean `age`. It should be `r mean(data$age)`!
+
+```{r}
+# Compute mean of age
+mean(age)
+```
+
+3. Try calculating the mean value of `sex`. What happens? Why?
+
+```{r}
+# Compute mean of sex
+mean(sex)
+```
+
+4. Try calculating the mean `weight`. You should get an `NA` value. Why?
+
+```{r}
+# Compute mean of sex
+mean(weight)
+```
+
+5. Look at the help menu for the `mean()` function (using `?mean`) to look for an argument that will help you with your problem.
+
+```{r}
+# Inspect help for mean
+?mean
+```
+
+6. Using the correct argument for the mean function, calculate the mean weight ignoring `NA` values. It should be `r round(mean(data$weight, na.rm = TRUE), 2)`!
+
+```{r}
+# Compute mean weight, ignoring NAs 
+mean(weight, na.rm = TRUE)
+```
+
+## D - Read & write delim-separated text files
+
+In this section, you will read in a subset of the well known diamonds data set and prepare it for data analysis. 
+
+1. Identify the file path to the `diamonds.csv` dataset using the `""` (quotation marks) auto-complete trick. Place the cursor between two quotation marks, hit &#8677; (tab-key), and browse through the folders. Save the file path, for now, in an object called `diamonds_path`.
+
+```{r, eval = F, echo =T}
+# place cursor in-between "" and hit tab
+diamonds_path <- ""
+```
+
+
+```{r}
+# place cursor in-between and hit tab
+diamonds_path <- "1_Data/diamonds.csv"
+```
+
+2. Now use the Using `diamonds_path` insdide the `read_csv()` function to read in the `diamonds.csv` dataset. Store it as a new object called `diamonds`.
+
+```{r, eval = F, echo = T}
+# read diamonds data
+diamonds <- read_csv(file = XX)
+```
+
+```{r}
+# read diamonds data
+diamonds <- read_csv(file = diamonds_path)
+```
+
+3. Print the `diamonds` data and inspect the column names in the header line. Something's wrong!
+
+```{r}
+# print diamonds
+diamonds
+```
+
+4. Fix the header by reading in the data again using the `col_names`-argument. Assign to `col_names` a character vector containing the correct column names: `carat`, `cut`, `color`, `clarity`, `depth`, `table`, `price`.
+
+```{r, eval = F, echo = T}
+# read diamonds data with specified col_names
+diamonds <- read_csv(file = "XX", 
+                     col_names = c('name_1','name_2','...'))  # Vector of column names
+```
+
+```{r}
+# read diamonds data with specified col_names
+diamonds <- read_csv(file = diamonds_path,
+                     col_names = c("carat", "cut", "color", "clarity", "depth", "table", "price"))
+```
+
+5. Re-inspect the header by printing the data. Has the header been fixed?
+
+```{r}
+# print diamonds
+diamonds
+```
+
+6. Now pay attention to the classes of the individuals columns (variables). Have all classes been identified correctly? What about the `carat` column? It should be `numeric`, right?
+
+7. Let's see what went wrong. Select and print the `carat` variable to identify the one entry that caused the variable to become a `character` vector (Hint: look for a comma between entry 10 and 20). 
+
+```{r}
+# print the carat column
+diamonds$carat
+```
+
+8. Change the incorrectly formated entry in `carat` by replacing `XX` with the index of the incorrect value (i.e., the correct number between 10 and 20) and `YY` with the correct entry with a period (`.`) instead of a comma (`,`) in the code below.  
+
+```{r, eval = F, echo = T}
+# Change the value at position XX to YY
+diamonds$carat[XX] <- YY
+```
+
+```{r}
+# Change the value at position XX to YY
+diamonds$carat[17] <- 0.37
+```
+
+9. Ok you fixed the value but `carat` is still `character`. We can fix it with the `type_convert()` function. Apply the `type_convert()` function to the `diamonds` data to have R fix all the data types. Make sure to assign the result back to `diamonds` so that you change the object!
+
+```{r, echo = T}
+# re-infer data types
+diamonds <- type_convert(diamonds)
+```
+
+10. Print the `diamonds` object and look at the column types. Has the type of `carat` changed to `double`?
+
+```{r}
+# print diamonds data set
+diamonds
+```
+
+11. Write the, now, properly formatted diamonds data to your data folder as a `.csv` file using the name `diamonds_clean.csv`. Don't forget to include both the file name and the folder (separated by `/`) in the character string specifying the `path` argument. 
+
+```{r, eval = F, echo = T}
+# write clean diamonds data to disc
+write_csv(x = XX, path = "XX")
+```
+
+```{r}
+# write clean diamonds data to disc
+write_csv(x = diamonds, "1_Data/diamonds_clean.csv")
+```
+
+12. Read `diamonds_clean.csv` back into R as a new object called `diamonds_clean`. Then, print the object and verify that this time the types been correctly identified from the start.
+
+```{r}
+# read clean diamonds data from disc
+diamonds_clean <- read_csv(file = "1_Data/diamonds_clean.csv")
+```
+
+13. The data is now ready for analysis. Explore it a bit by calculating a few statistics. For instance, what is the average `carat` or `price` (use `mean()`)? What  `cut` and `clarity` levels exist and how often do they occur (use `table()` on both variables)? You can learn more about the variable values from the help file `?diamonds`.
+
+```{r}
+# simple stats of diamonds
+mean(diamonds$carat)
+mean(diamonds$price)
+table(diamonds$cut)
+table(diamonds$clarity)
+```
+
+
+## E - Logical Vectors and `$`
+
+1. Logical vectors contain as values only `TRUE` and `FALSE` (and `NA`s). Create a new logical vector called `expensive` indicating which diamonds are more expensive than \$10000. To do this, select the `price` variable from the data frame using `$` use the `>` (greater than) operator á la `vector > value`.  
+
+```{r, eval = FALSE, echo = TRUE}
+# Create a logical vector expensive indicating
+# which dimaonds cost more than 10,000
+
+ZZ <- diamonds$XX > YY
+```
+
+```{r}
+# Create a logical vector expensive indicating
+# which dimaonds cost more than 10,000
+
+expensive <- diamonds$price > 10000
+```
+
+2. Print your `expensive` vector to the console. Do you see only TRUE and FALSE values? If so, do the first few values match those in the `price` variable?
+
+```{r}
+# print expensive
+expensive
+```
+
+3. Add your `expensive` vector to the diamonds data frame using `data_frame$variable_name <- variable`. See below?
+
+```{r, eval = FALSE, echo = TRUE}
+# add vector to data frame
+XX$YY <- ZZ
+```
+
+```{r}
+# add vector to data frame
+diamonds$expensive <- expensive
+```
+
+4. Using the `table()` function, create a table showing how many of the diamonds are expensive how many are not. Select the variable directly from the data frame using `$`.
+
+```{r}
+# count expensive diamonds
+table(diamonds$expensive)
+```
+
+5. Using the `mean()` function, determine the percentage of the diamonds that are expensive, i.e., `mean(expensive)`. Should this have worked?
+
+```{r}
+# percentage of expensive diamonds
+mean(diamonds$expensive)
+```
+
+6. What percent diamonds weigh more than 1 `carat` (i.e., more than .2 gram)?
+
+```{r}
+# percentage of diamonds heavier than 1 carat
+mean(diamonds$carat > 1)
+```
+
+## F - Read other file formats
+
+#### Excel
+
+```{r, out.width = "8%", fig.align = 'left', eval = TRUE, echo = FALSE}
+knitr::include_graphics("https://upload.wikimedia.org/wikipedia/commons/thumb/8/86/Microsoft_Excel_2013_logo.svg/2000px-Microsoft_Excel_2013_logo.svg.png")
+```
+
+1. Using `read_excel()`, read in the `titanic.xls` dataset as a new object called `titanic` (Make sure you have alredy loaded the `readxl` package at the beginning of your script).
+
+```{r, eval = F, echo = T}
+titanic <- read_excel(path = "XX")
+```
+
+```{r}
+# Read titanic data
+titanic <- read_excel("1_Data/titanic.xls")
+```
+
+2. Print `titanic` and evaluate its dimensions using `dim()`.
+
+```{r}
+# print and show dimenisons
+titanic
+dim(titanic)
+```
+
+3. Using `table()`, how many people survived (variable `survived`) in each cabin class (variable `pclass`)?
+
+```{r, eval = F, echo = T}
+# determine survival rate by cabin class
+table(titanic$XX, 
+      titanic$XX)
+```
+
+```{r}
+# determine survival rate by cabin class
+table(titanic$pclass, titanic$survived)
+```
+
+4. Using `write_csv()`, write the `titanic` dataframe as a new comma separated text file called `titanic.csv` in your `1_Data`  folder. Now you have the data saved as a text file any software can use!
+
+```{r}
+# write data to .csv
+write_csv(x = titanic, 
+          path = "1_Data/titanic.csv")
+```
+
+#### SPSS 
+
+```{r, out.width = "8%", fig.align = 'left', eval = TRUE, echo = FALSE}
+knitr::include_graphics("http://www.sqlearn.gr/wp-content/uploads/2010/12/2000px-SPSS_logo.jpg")
+```
+
+5. Using `read_spss()` read in the sleep data set `sleep.sav` of staff at he University of Melbourne as a new object called `sleep`. (Make sure that you have first loaded the `haven` package).
+
+```{r, eval = F, echo = T}
+XX <- read_spss(file = "XX")
+```
+
+```{r}
+# Read sleep data
+sleep <- read_spss(file = "1_Data/sleep.sav")
+```
+
+6. Print your `sleep` object and evaluate its dimensions using `dim()`.
+
+```{r}
+# print and show dimensions
+sleep
+dim(sleep)
+```
+
+7. How many drinks do staff at the University of Melbourne consumer per day (variable `alcohol`). To do this, use the `mean()` function, while taking care of missing values using the `na.rm` argument. 
+
+```{r}
+# compute mean number of drinks
+mean(x = sleep, na.rm = TRUE)
+```
+
+8. Using the `write_csv()` function, write the `sleep` data to a new file called `sleep.csv` in your `1_Data` folder. Now you have the `sleep` data stored as a text file any software can use!
+
+```{r}
+# write data to .csv
+write_csv(x = sleep, 
+          path = "1_Data/sleep.csv")
+```
+
+
+#### SAS
+
+```{r, out.width = "8%", fig.align = 'left', eval = TRUE, echo = FALSE}
+knitr::include_graphics("https://upload.wikimedia.org/wikipedia/commons/1/10/SAS_logo_horiz.svg")
+```
+
+9. Using `read_sas()`, read in `airbnb_zuerich.sas7bdat` containing AirBnB listings in Zürich, Switzerland and call the object `airbnb_zuerich`.
+
+```{r, eval = F, echo = T}
+# read sas data
+XX <- read_sas(data_file = "XX")
+```
+
+```{r}
+# read airbnb_zuerich.sas7bdat
+airbnb_zuerich <- read_sas(data_file = "1_Data/airbnb_zuerich.sas7bdat")
+```
+
+10. Print `airbnb_zuerich` and then evaluate its dimensions using `dim()`.
+
+```{r}
+# print and show dimenisons
+airbnb_zuerich
+dim(airbnb_zuerich)
+```
+
+11. How many AirBnB listings were there of each `room_type` in Zürich? (Hint: use `table()`)
+
+```{r}
+# table room type
+table(airbnb_zuerich$room_type)
+```
+
+12. Using `write_csv()` write your `airbnb_zuerich` data frame to as new comma-separated text file called `airbnb_zuerich.csv` in your `1_Data` folder.
+
+```{r}
+# write data to .csv
+write_csv(x = airbnb_zuerich, 
+          path = "1_Data/airbnb_zuerich.csv")
+```
+
+## G - Creating data frames
+
+1. Using the `data.frame()` function, create a data frame called `ten_df` that contains each of vectors you just created: `id`, `age`, `sex`, `height`, `weight`.
+
+```{r, eval = FALSE, echo = TRUE}
+# Create data frame ten_df containing vectors id, age, sex, height, and weight.
+XX <- data.frame(XX, XX, XX, XX, XX, XX) 
+```
+
+```{r}
+# Create ten_df data frame from vectors
+ten_df <- data.frame(id, age, sex, height, weight) 
+```
+
+2. Print your `ten_df` object to see how it looks! Does it contain all of the vectors?
+
+```{r}
+# Print ten_df
+ten_df
+```
+
+3. Using the `dim()` function, print the number of rows and columns in your data frame. Do you get 10 rows and 5 columns?
+
+```{r}
+# Inspect dimensions
+dim(ten_df)
+```
+
+4. What is the class of your `ten_df` object? Use the `class()` function to find out!
+
+```{r}
+# Inspect class
+class(ten_df)
+```
+
+5. Use the `summary()` function to print descriptive statistics from each column of `ten_df`
+
+```{r}
+# Inspect class
+summary(ten_df)
+```
+
+6. Using the `$` operator, print the `age` column from the `ten_df` data frame.
+
+```{r}
+# Inspect age
+ten_df$age
+```
+
+7. Calculate the maximum `age` value from the `ten_df` data frame using `max()`. Do you get the same result from when you calculated it from the original vector `age`?
+
+```{r}
+# Get max
+max(ten_df$age)
+```
+
+8. Instead of creating a data frame of the data using the `data.frame()` function, try creating a tibble called `ten_tibble` using the `tibble()` function. `tibble`s are a more modern, leaner variant of data frame that we prefer over classic `data.frame`. You can use the exact same arguments you used before.
+
+```{r}
+# create tibble
+ten_tibble = tibble(id, sex, height, weight)
+```
+
+9. Print your new `ten_tibble` object, how does it look different from `ten_df`? Try calculating the maximum `age` from this object. Is it different from what you got before?
+
+```{r}
+# print tibble
+ten_tibble
+max(ten_tibble$age) == max(ten_df$age)
+```
+
+## X - Challenges
+
+1. If you take the `sum()` of a logical vector, R will return the number of cases that are `TRUE`. Using this, find out how many of the ten Baselers are male while using the is-equal-to operator `==`.
+
+```{r, eval = FALSE, echo = TRUE}
+# Determine the frequency of a case in a vector
+sum(XX == XX)
+```
+
+```{r}
+# Determine the frequency of a case in a vector
+sum(ten_tibble == "male")
+```
+
+2. You can use logical vectors to select rows from a data frame based on certain criteria. using the following template, get the id values of Baselers who are younger than 30:
+
+```{r, eval = FALSE, echo = TRUE}
+# Create a logical vector indicating which baselers are younger than 30
+young_30 <- XX$XX < 30
+
+# Print the ids of baselers younger than 30
+XX$XX[young_30]
+```
+
+```{r}
+# Create a logical vector indicating which baselers are younger than 30
+young_30 <- ten_tibble$age < 30
+
+# Print the ids of baselers younger than 30
+ten_tibble$id[young_30]
+```
+
+3. Use a combination of logical vectors and the `mean()` function to answer the question: "What is the mean age of Baselers who are heavier than 80kg?"
+
+```{r}
+# Mean age of baselers heavier than 80kg
+mean(ten_tibble$age[ten_tibble$weight > 80])
+```
+
+4. What are the id values of Baselers who are male *and* are shorter than 165cm? (Hint: You will need to use the logical AND operator `&` to combine multiple logical vectors)
+
+```{r}
+# Mean age of baselers heavier than 80kg
+ten_tibble$id[ten_tibble$sex == "male" & ten_tibble$height < 165]
+```
+
+## Additional Resources
+
+- For more information on the fundamentals of object and functions in R see the R Core team's [introduction to R](https://cran.r-project.org/doc/manuals/r-release/R-intro.html) and for even more advanced object and function-related topics Hadley Wickham's [Advanced R](http://adv-r.had.co.nz/).
+- For more information on reading and writing (and everything else) see Grolemund`s and Wickham's [R for Data Science](http://r4ds.had.co.nz/data-import.html).

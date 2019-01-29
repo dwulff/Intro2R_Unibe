@@ -1,7 +1,7 @@
 ---
 title: "Welcome!"
 author: "
-Introduction to R<br>
+Introduction to R<br/>
   <a href='https://therbootcamp.github.io'>
     Bern R Bootcamp
   </a>
@@ -46,7 +46,11 @@ layout: true
     </a>
     <a href="https://therbootcamp.github.io/">
       <font color="#7E7E7E">
+<<<<<<< HEAD
        Introduction to R | February 2019
+=======
+       R Bootcamp Bern | February 2019
+>>>>>>> 08ce1b458a25fa338b36f65c6eadeda31d5fc467
       </font>
     </a>
     </span>
