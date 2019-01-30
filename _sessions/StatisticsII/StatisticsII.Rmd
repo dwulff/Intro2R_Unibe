@@ -82,64 +82,43 @@ knitr::opts_chunk$set(warning = FALSE)
 
 ```
 
-
 .pull-left45[
 
-# In this session...
+# Linear models
 
-1 - Basic structure and arguments of most <high>statistical functions</high>
 
-- `formula`: Specify your <high>variables</high>
-- `data`: A <high>data frame</high> containing variables.
-    
-2 - Simple <high>`htest`</high> objects
+#### <high>Run linear models</high> with `stats` including...
 
-- `t.test()`, `cor`relation
+| Function| Purpose |
+|:-----|:-------| 
+| `lm()`, `glm()`| (Generalized) linear models  |
+| `lmer()`, `glmer()` | (Generalized) mixed-linear models |
+| `stan_glm()` | Bayesian (generalized) linear models |
 
-3 - (Generalized) <high>linear model</high> 
-- `lm()`, `glm()`, `aov()`
 
-4 - Explore statistical objects
-- `MODEL$NAME`, `print()`, `summary()`, `names()`, `predict()`, `plot()`
+#### <high>Explore linear models</high> with `stats`
 
-5 - Conduct simulations
-
-]
-
-.pull-right5[
-
-```{r, eval = FALSE}
-# t-test comparing height based on gender
-t.test(formula = height ~ sex,
-         data = baselers)
-
-# Regression model
-inc_glm <- glm(formula = income ~ .,
-               data = baselers %>% select(-id))
-
-# Summary information
-summary(inc_glm)  
-
-# Dissect
-inc_glm$coefficients # Acess coefficients
-inc_glm$residuals # Access residuals
-
-### Generate random data
-x1 <- rnorm(n = 100, mean = 10, sd = 5)
-x2 <- rnorm(n = 100, mean = 5, sd = 1)
-noise <- rnorm(n= 100, mean = 0, sd = 10)
-
-# Create y as a function of x1, x2, and noise
-y <- x1 + x2 + noise
-
-df <- data.frame(x1, x2, y)
-
-# Regress y on x1 and x2
-lm(formula = y ~ ., 
-   data = df)
-```
+| Function| Purpose |
+|:-----|:-------| 
+| `summry()`, `print()`| (Generalized) linear models  |
+| `anova()` | (Generalized) mixed-linear models |
+| `stan_glm()` | Bayesian (generalized) linear models |
 
 ]
+
+.pull-right45[
+
+<p align = "center">
+<br>
+<img src="image/curve_fitting_sm.png" height=500px><br>
+<font style="font-size:10px">adapted from <a href="https://xkcd.com/892/">xkcd.com</a></font>
+</p>
+]
+
+
+
+---
+
 
 ---
 

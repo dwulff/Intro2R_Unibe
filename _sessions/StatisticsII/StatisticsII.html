@@ -1,0 +1,866 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Statistics II</title>
+    <meta charset="utf-8">
+    <meta name="author" content="Introduction to R   Bern R Bootcamp" />
+    <link href="libs/remark-css/default.css" rel="stylesheet" />
+    <link rel="stylesheet" href="baselrbootcamp.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
+
+# Statistics II
+### Introduction to R<br> <a href='https://therbootcamp.github.io'> Bern R Bootcamp </a> <br> <a href='https://dwulff.github.io/Intro2R_Unibe/'> <i class='fas fa-clock' style='font-size:.9em;'></i> </a>  <a href='https://therbootcamp.github.io'> <i class='fas fa-home' style='font-size:.9em;' ></i> </a>  <a href='mailto:therbootcamp@gmail.com'> <i class='fas fa-envelope' style='font-size: .9em;'></i> </a>  <a href='https://www.linkedin.com/company/basel-r-bootcamp/'> <i class='fab fa-linkedin' style='font-size: .9em;'></i> </a>
+### February 2019
+
+---
+
+
+layout: true
+
+&lt;div class="my-footer"&gt;
+  &lt;span style="text-align:center"&gt;
+    &lt;span&gt; 
+      &lt;img src="https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/by-sa.png" height=14 style="vertical-align: middle"/&gt;
+    &lt;/span&gt;
+    &lt;a href="https://therbootcamp.github.io/"&gt;
+      &lt;span style="padding-left:82px"&gt; 
+        &lt;font color="#7E7E7E"&gt;
+          www.therbootcamp.com
+        &lt;/font&gt;
+      &lt;/span&gt;
+    &lt;/a&gt;
+    &lt;a href="https://therbootcamp.github.io/"&gt;
+      &lt;font color="#7E7E7E"&gt;
+       Introduction to R | February 2019
+      &lt;/font&gt;
+    &lt;/a&gt;
+    &lt;/span&gt;
+  &lt;/div&gt; 
+
+---
+
+
+
+.pull-left45[
+
+# Linear models
+
+
+
+
+#### &lt;high&gt;Run linear models&lt;/high&gt; with `stats`
+
+
+```r
+# Group-summarise idiom
+baselers %&gt;%
+  group_by(sex, eyecor) %&gt;%
+  summarise(
+    N = n(),
+    age_mean = mean(age),
+    height_median = median(height),
+    children_max = max(children)
+  )
+```
+
+
+#### &lt;high&gt;Explore linear models&lt;/high&gt; with `stats`
+
+
+```r
+# Simple hypothesis test
+t.test(baselers$happiness,
+       baselers$fitness,
+       var.equal = TRUE)
+```
+
+]
+
+.pull-right45[
+
+&lt;p align = "center"&gt;
+&lt;br&gt;
+&lt;img src="image/curve_fitting_sm.png" height=500px&gt;&lt;br&gt;
+&lt;font style="font-size:10px"&gt;adapted from &lt;a href="https://xkcd.com/892/"&gt;xkcd.com&lt;/a&gt;&lt;/font&gt;
+&lt;/p&gt;
+]
+
+
+
+---
+
+
+---
+
+# Basic structure of statistical functions
+
+.pull-left4[
+
+Statistical functions always require a &lt;high&gt;data frame&lt;/high&gt; called `data`, e.g.,...
+
+
+|sex    | age| height| weight| income|
+|:------|---:|------:|------:|------:|
+|male   |  44|  174.3|  113.4|   6300|
+|male   |  65|  180.3|   75.2|  10900|
+|female |  31|  168.3|   55.5|   5100|
+&lt;br&gt;
+They also require a &lt;high&gt;formula&lt;/high&gt; that specifies a &lt;high&gt;dependent&lt;/high&gt; variable (y) as a function of one or more &lt;high&gt;independent&lt;/high&gt; variables (x1, x2, ...) in the form:
+
+&lt;p align='center'&gt;&lt;font size = 6&gt;formula = y ~ x1 + x2 +...&lt;/font&gt;&lt;/p&gt;
+
+]
+
+.pull-right55[
+
+How to create a statistical object:
+
+
+```r
+# Example: Create regression object (my_glm)
+my_glm &lt;- glm(formula = income ~ age + height,
+              data = baselers)
+```
+
+
+![](https://raw.githubusercontent.com/therbootcamp/Erfurt_2018June/master/_sessions/_image/formula_description.png)&lt;!-- --&gt;
+
+
+
+]
+
+---
+ 
+.pull-left35[
+
+ # Look for optional arguments
+
+Statistical functions usually have many optional arguments.
+
+Each of these have &lt;high&gt;default&lt;/high&gt; values. To customise a test, &lt;high&gt;look at the help menu&lt;/high&gt; and specify arguments explicitly.
+
+]
+
+
+.pull-right6[
+
+&lt;br&gt;&lt;br&gt;
+
+&lt;u&gt;Default vs. customised `glm()` (Generalized linear model)&lt;/u&gt;
+
+```r
+# Default
+glm(formula = income ~ age + education,
+    data = baselers)
+
+# Customised
+glm(formula = eyecor ~ age + education,
+    data = baselers,
+    family = "binomial")  # Logistic regression
+```
+
+&lt;u&gt;Default vs. customised `t-test`&lt;/u&gt;
+
+
+```r
+# Default
+t.test(formula = age ~ sex,
+       data = baselers)
+
+# Customised
+t.test(formula = age ~ sex,
+       data = baselers,
+       alternative = "less", # One sided test
+       var.equal = TRUE)     # Assume equal variance
+```
+
+]
+
+
+---
+ 
+.pull-left35[
+
+ # Look for optional arguments
+
+
+```r
+?glm
+```
+
+&lt;p align="center"&gt;
+  &lt;img src="https://raw.githubusercontent.com/therbootcamp/Erfurt_2018June/master/_sessions/_image/glm_help.jpg"&gt;
+&lt;/p&gt;
+
+]
+
+
+.pull-right6[
+
+&lt;br&gt;&lt;br&gt;
+
+&lt;u&gt;Default vs. customised `glm()` (Generalized linear model)&lt;/u&gt;
+
+```r
+# Default
+glm(formula = income ~ age + education,
+    data = baselers)
+
+# Customised
+glm(formula = eyecor ~ age + education,
+    data = baselers,
+    family = "binomial")  # Logistic regression
+```
+
+&lt;u&gt;Default vs. customised `t-test`&lt;/u&gt;
+
+
+```r
+# Default
+t.test(formula = age ~ sex,
+       data = baselers)
+
+# Customised
+t.test(formula = age ~ sex,
+       data = baselers,
+       alternative = "less", # One sided test
+       var.equal = TRUE)     # Assume equal variance
+```
+
+]
+
+
+
+---
+
+
+# Regression with `glm()`, `lm()`
+
+.pull-left35[
+
+How to &lt;high&gt;create a regression model&lt;/high&gt; predicting, e.g., how much money people spend on `food` as a function of `income`?
+
+&lt;br&gt;
+Part of the `baselers` dataframe:
+
+.pull-left6[
+
+
+| food| income| happiness|
+|----:|------:|---------:|
+|  610|   6300|         5|
+| 1550|  10900|         7|
+|  720|   5100|         7|
+|  680|   4200|         7|
+|  260|   4000|         5|
+
+]
+&lt;!-- `$$\Large food = \beta_{0} + \beta_{1} \times Inc + \beta_{1} \times Hap+ \epsilon$$` --&gt;
+
+]
+
+.pull-right6[
+
+### Generalized regression with `glm()`
+
+
+```r
+# food (y) on income (x1) and happiness (x2)
+food_glm &lt;- glm(formula = food ~ income + happiness,
+              data = baselers)
+
+# Print food_glm
+food_glm
+```
+
+```
+## 
+## Call:  glm(formula = food ~ income + happiness, data = baselers)
+## 
+## Coefficients:
+## (Intercept)       income    happiness  
+##    -302.089        0.101       52.205  
+## 
+## Degrees of Freedom: 8509 Total (i.e. Null);  8507 Residual
+##   (1490 observations deleted due to missingness)
+## Null Deviance:	    1.27e+09 
+## Residual Deviance: 6.06e+08 	AIC: 119000
+```
+
+]
+
+
+---
+
+# Customising formulas
+
+Include additional independent variables to formulas by "adding" them with &lt;high&gt;`+`&lt;/high&gt; 
+
+
+```r
+# Include multiple terms with +
+my_glm &lt;- glm(formula = income ~ food + alcohol + happiness + hiking,
+              data = baselers)
+```
+
+To &lt;high&gt;include all variables&lt;/high&gt; in a dataframe, use the catch-all notation &lt;high&gt;`formula = y ~ .`&lt;/high&gt;
+
+
+```r
+# Use  y ~ . to include ALL variables
+my_glm &lt;- glm(formula = income ~ .,
+              data = baselers)
+```
+
+To include &lt;high&gt;interaction terms&lt;/high&gt; use `x1 : x2` or  `x1 * x2` (also includes main effects) instead of `x1 + x2`
+
+
+```r
+# Include an interaction term between food and alcohol
+my_glm &lt;- glm(formula = income ~ food * alcohol,
+              data = baselers)
+```
+
+---
+
+# Exploring statistical objects
+
+.pull-left35[
+
+Explore statistical objects using &lt;high&gt;generic&lt;/high&gt; functions such as `print()`, `summary()`, `predict()` and `plot()`.
+
+&lt;high&gt;Generic&lt;/high&gt; functions different things depending on the &lt;high&gt;class label&lt;/high&gt; of the object. 
+
+
+```r
+# Create statistical object
+obj &lt;- STAT_FUN(formula = ...,
+                data = ...)
+
+names(obj)       # Elements
+print(obj)       # Print
+summary(obj)     # Summary
+plot(obj)        # Plotting
+predict(obj, ..) # Predict
+```
+
+]
+
+.pull-right6[
+
+
+```r
+# Create a glm object
+my_glm &lt;- glm(formula = income ~ happiness + age,
+              data = baselers)
+
+# print the my_glm object
+print(my_glm)
+```
+
+```
+## 
+## Call:  glm(formula = income ~ happiness + age, data = baselers)
+## 
+## Coefficients:
+## (Intercept)    happiness          age  
+##        1575         -100          149  
+## 
+## Degrees of Freedom: 8509 Total (i.e. Null);  8507 Residual
+##   (1490 observations deleted due to missingness)
+## Null Deviance:	    6.33e+10 
+## Residual Deviance: 1.28e+10 	AIC: 145000
+```
+
+]
+
+
+
+---
+
+# Exploring statistical objects
+
+.pull-left35[
+
+Explore statistical objects using &lt;high&gt;generic&lt;/high&gt; functions such as `print()`, `summary()`, `predict()` and `plot()`.
+
+&lt;high&gt;Generic&lt;/high&gt; functions different things depending on the &lt;high&gt;class label&lt;/high&gt; of the object. 
+
+
+```r
+# Create statistical object
+obj &lt;- STAT_FUN(formula = ...,
+                data = ...)
+
+names(obj)       # Elements
+print(obj)       # Print
+summary(obj)     # Summary
+plot(obj)        # Plotting
+predict(obj, ..) # Predict
+```
+
+]
+
+.pull-right6[
+
+
+```r
+# Create a glm object
+my_glm &lt;- glm(formula = income ~ happiness + age,
+              data = baselers)
+
+# Show summary of the my_glm object
+summary(my_glm)
+```
+
+```
+## 
+## Call:
+## glm(formula = income ~ happiness + age, data = baselers)
+## 
+## Deviance Residuals: 
+##    Min      1Q  Median      3Q     Max  
+##  -4045    -835       3     814    4899  
+## 
+## Coefficients:
+##             Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept) 1575.497     94.363   16.70  &lt; 2e-16 ***
+## happiness   -100.431     12.520   -8.02  1.2e-15 ***
+## age          149.312      0.815  183.31  &lt; 2e-16 ***
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## 
+## (Dispersion parameter for gaussian family taken to be 1501842)
+## 
+##     Null deviance: 6.3307e+10  on 8509  degrees of freedom
+## Residual deviance: 1.2776e+10  on 8507  degrees of freedom
+##   (1490 observations deleted due to missingness)
+## AIC: 145186
+## 
+## Number of Fisher Scoring iterations: 2
+```
+
+]
+
+
+---
+
+# Exploring statistical objects
+
+.pull-left35[
+
+Explore statistical objects using &lt;high&gt;generic&lt;/high&gt; functions such as `print()`, `summary()`, `predict()` and `plot()`.
+
+&lt;high&gt;Generic&lt;/high&gt; functions different things depending on the &lt;high&gt;class label&lt;/high&gt; of the object. 
+
+
+```r
+# Create statistical object
+obj &lt;- STAT_FUN(formula = ...,
+                data = ...)
+
+names(obj)       # Elements
+print(obj)       # Print
+summary(obj)     # Summary
+plot(obj)        # Plotting
+predict(obj, ..) # Predict
+```
+
+]
+
+.pull-right6[
+
+Many &lt;high&gt;statistical objects are lists&lt;/high&gt;. Show elements with `names()`, access them with &lt;high&gt;`$`&lt;/high&gt;.
+
+
+```r
+# What are the named elements
+names(my_glm)
+```
+ 
+
+```
+##  [1] "coefficients"      "residuals"         "fitted.values"     "effects"           "R"                
+##  [6] "rank"              "qr"                "family"            "linear.predictors" "deviance"
+```
+ 
+&lt;p align="left"&gt;
+  &lt;img src="https://raw.githubusercontent.com/therbootcamp/Erfurt_2018June/master/_sessions/_image/list_tab.png" height="180px" vspace="10px"&gt;
+&lt;/p&gt;
+ 
+
+]
+
+
+---
+
+# Exploring statistical objects
+
+.pull-left35[
+
+Explore statistical objects using &lt;high&gt;generic&lt;/high&gt; functions such as `print()`, `summary()`, `predict()` and `plot()`.
+
+&lt;high&gt;Generic&lt;/high&gt; functions different things depending on the &lt;high&gt;class label&lt;/high&gt; of the object. 
+
+
+```r
+# Create statistical object
+obj &lt;- STAT_FUN(formula = ...,
+                data = ...)
+
+names(obj)       # Elements
+print(obj)       # Print
+summary(obj)     # Summary
+plot(obj)        # Plotting
+predict(obj, ..) # Predict
+```
+
+]
+
+.pull-right6[
+
+
+
+```r
+# Look at coefficients
+my_glm$coefficients
+```
+
+
+```
+## (Intercept)   happiness         age 
+##      1575.5      -100.4       149.3
+```
+
+
+```r
+# First 5 fitted values
+my_glm$fitted.values
+```
+
+
+```
+##     1     2     3     4     5     6     7     8 
+##  7643 10578  5501  4904  4657 10279 11373  6994
+```
+
+
+```r
+# First 5 residuals
+my_glm$residuals
+```
+
+
+```
+##       1       2       3       4       5       6 
+## -1343.1   322.2  -401.2  -703.9  -656.8  1120.8
+```
+
+]
+
+
+---
+
+# `predict()`
+
+.pull-left4[
+
+`predict(model, newdata)` allows you to use your `model` to &lt;high&gt;predict outcomes&lt;/high&gt; for `newdata`.
+
+
+
+
+```r
+last_year
+```
+
+
+| id| age| fitness| tattoos| income|
+|--:|---:|-------:|-------:|------:|
+|  1|  44|       7|       6|   6300|
+|  2|  65|       8|       5|  10900|
+
+
+```r
+this_year
+```
+
+
+
+|  id| age| fitness| tattoos|income |
+|---:|---:|-------:|-------:|:------|
+| 101|  21|       3|       4|NA     |
+| 102|  23|       6|       8|NA     |
+
+
+]
+
+
+.pull-right55[
+
+&lt;high&gt;Fit `model`&lt;/high&gt; based on `leastyear`
+
+
+```r
+# Create regression model predicting income
+model &lt;- lm(formula = income ~ age + tattoos,
+            data = lastyear)
+
+model$coefficients
+```
+
+```
+## (Intercept)         age     tattoos 
+##      1418.3       145.7      -175.5
+```
+
+Now use `model` to &lt;high&gt;`predict`&lt;/high&gt; values for `thisyear`
+
+
+```r
+# Predict the income of people in thisyear
+predict(object = model, 
+        newdata = thisyear)
+```
+
+
+```
+##    1    2 
+## 3776 3366
+```
+
+]
+
+
+---
+
+.pull-left4[
+
+# `tidy()`
+
+The `tidy()` function from the `broom` package &lt;high&gt;converts&lt;/high&gt; the most important results of many statistical object like "glm" to a &lt;high&gt;data frame&lt;/high&gt;.
+
+
+```r
+# install and load broom
+install.packages('broom')
+library(broom)
+```
+
+&lt;p align="center"&gt;
+  &lt;img src="https://raw.githubusercontent.com/therbootcamp/Erfurt_2018June/master/_sessions/_image/broom_hex.png" height="200px" vspace="10"&gt;
+&lt;/p&gt;
+
+
+]
+
+.pull-right55[
+
+&lt;br&gt;&lt;br&gt;
+
+
+```r
+# Original printout
+my_glm
+```
+
+```
+## 
+## Call:  glm(formula = income ~ happiness + age, data = baselers)
+## 
+## Coefficients:
+## (Intercept)    happiness          age  
+##        1575         -100          149  
+## 
+## Degrees of Freedom: 8509 Total (i.e. Null);  8507 Residual
+##   (1490 observations deleted due to missingness)
+## Null Deviance:	    6.33e+10 
+## Residual Deviance: 1.28e+10 	AIC: 145000
+```
+
+
+
+
+```r
+# Tidy printout
+tidy(my_glm)
+```
+
+```
+## # A tibble: 3 x 5
+##   term        estimate std.error statistic  p.value
+##   &lt;chr&gt;          &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt;
+## 1 (Intercept)    1575.    94.4       16.7  1.33e-61
+## 2 happiness      -100.    12.5       -8.02 1.18e-15
+## 3 age             149.     0.815    183.   0.
+```
+
+]
+
+---
+
+
+.pull-left4[
+
+# Other great statistics packages
+
+&lt;br&gt;
+
+|package|Description|
+|:----|:-----|
+|`afex`|Factorial experiments|
+|`lme4`|Mixed effects models|
+|`rstanarm`|Bayesian mixed effects models|
+|`BayesFactor`|Bayesian Models|
+|`forecast`|Time series| 
+|`lavaan`|Latent variable and structural equation modelling| 
+
+
+]
+
+
+.pull-right55[
+
+&lt;br&gt;&lt;br&gt;
+
+&lt;p align="center"&gt;
+  &lt;img src="https://raw.githubusercontent.com/therbootcamp/Erfurt_2018June/master/_sessions/_image/BayesFactor_ss.png" height= "120px"&gt;
+&lt;/p&gt;
+
+&lt;p align="center"&gt;
+  &lt;img src="https://raw.githubusercontent.com/therbootcamp/Erfurt_2018June/master/_sessions/_image/lavaan_ss.jpg" height= "320px" vspace="35px"&gt;
+&lt;/p&gt;
+
+]
+
+---
+
+# Summary
+
+.pull-left45[
+
+1 - There are &lt;high&gt;packages for every statistical procedure&lt;/high&gt; you can imagine in R.
+
+2 - Most have &lt;high&gt;formula&lt;/high&gt; and &lt;high&gt;data&lt;/high&gt; arguments (among many others).
+
+3 - Use &lt;high&gt;help files&lt;/high&gt; to understand the arguments of functions!
+
+4 - Once you've created a statistical object, use &lt;high&gt;generic functions&lt;/high&gt; to explore it: `print()`, `names()`, `summary()`, etc.
+
+5 - Use &lt;high&gt;random sampling&lt;/high&gt; functions to run simulations.
+
+]
+
+.pull-right5[
+
+
+```r
+?t.test
+```
+
+&lt;p align="left"&gt;
+  &lt;img src="https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/ttesthelp_ss.png" height= "380px" &gt;
+&lt;/p&gt;
+
+]
+
+---
+
+# Stats? There is a package for that!
+
+
+## REMOVE
+
+.pull-left45[
+
+&lt;br&gt;
+
+| Package| Models|
+|------:|:----|
+| `stats`|Generalized linear model|
+|     `afex`|   Anovas|
+|     `lme4`|   Mixed effects regression|
+|     `rpart`|    Decision Trees|
+|     `BayesFactor`| Bayesian statistics|
+|     `igraph`| Network analysis|
+|     `neuralnet`| Neural networks|
+|     `MatchIt`| Matching and causal inference|
+|     `survival`| Longitudinal survival analysis|
+|     ...| Anything you can ever want!|
+
+
+
+]
+
+.pull-right5[
+
+&lt;p align="center"&gt;
+  &lt;img src="https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/statistical_procedures.png" height="450px" vspace="20"&gt;
+&lt;/p&gt;
+
+]
+
+
+
+
+---
+
+# Practical
+
+&lt;p&gt;
+  &lt;font size=6&gt;
+    &lt;a href="https://therbootcamp.github.io/BaselRBootcamp_2018July/_sessions/Statistics/Statistics_practical.html"&gt;&lt;b&gt;Link to practical&lt;b&gt;&lt;/a&gt;
+  &lt;/font&gt;
+&lt;/p&gt;
+    </textarea>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"highlightStyle": "github",
+"highlightLines": true,
+"countIncrementalSlides": false,
+"ratio": "16:9"
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function() {
+  var d = document, s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})();</script>
+
+<script>
+(function() {
+  var i, text, code, codes = document.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+})();
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>

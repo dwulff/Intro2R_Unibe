@@ -3,11 +3,7 @@
   <head>
     <title>Wrangling</title>
     <meta charset="utf-8">
-<<<<<<< HEAD:_sessions/Wrangling/Wrangling.html
     <meta name="author" content="Introduction to R   Bern R Bootcamp" />
-=======
-    <meta name="author" content="Introduction to Data Science with R   Bern R Bootcamp" />
->>>>>>> 08ce1b458a25fa338b36f65c6eadeda31d5fc467:_sessions/3_Wrangling/Wrangling.html
     <link href="libs/remark-css/default.css" rel="stylesheet" />
     <link rel="stylesheet" href="baselrbootcamp.css" type="text/css" />
   </head>
@@ -16,11 +12,7 @@
 class: center, middle, inverse, title-slide
 
 # Wrangling
-<<<<<<< HEAD:_sessions/Wrangling/Wrangling.html
 ### Introduction to R<br> <a href='https://therbootcamp.github.io'> Bern R Bootcamp </a> <br> <a href='https://dwulff.github.io/Intro2R_Unibe/'> <i class='fas fa-clock' style='font-size:.9em;'></i> </a>  <a href='https://therbootcamp.github.io'> <i class='fas fa-home' style='font-size:.9em;' ></i> </a>  <a href='mailto:therbootcamp@gmail.com'> <i class='fas fa-envelope' style='font-size: .9em;'></i> </a>  <a href='https://www.linkedin.com/company/basel-r-bootcamp/'> <i class='fab fa-linkedin' style='font-size: .9em;'></i> </a>
-=======
-### Introduction to Data Science with R<br/> <a href='https://therbootcamp.github.io'> Bern R Bootcamp </a> <br> <a href='https://dwulff.github.io/Intro2R_Unibe/'> <i class='fas fa-clock' style='font-size:.9em;'></i> </a>  <a href='https://therbootcamp.github.io'> <i class='fas fa-home' style='font-size:.9em;' ></i> </a>  <a href='mailto:therbootcamp@gmail.com'> <i class='fas fa-envelope' style='font-size: .9em;'></i> </a>  <a href='https://www.linkedin.com/company/basel-r-bootcamp/'> <i class='fab fa-linkedin' style='font-size: .9em;'></i> </a>
->>>>>>> 08ce1b458a25fa338b36f65c6eadeda31d5fc467:_sessions/3_Wrangling/Wrangling.html
 ### February 2019
 
 ---
@@ -42,11 +34,7 @@ layout: true
     &lt;/a&gt;
     &lt;a href="https://therbootcamp.github.io/"&gt;
       &lt;font color="#7E7E7E"&gt;
-<<<<<<< HEAD:_sessions/Wrangling/Wrangling.html
        Introduction to R | February 2019
-=======
-       R Bootcamp Bern | February 2019
->>>>>>> 08ce1b458a25fa338b36f65c6eadeda31d5fc467:_sessions/3_Wrangling/Wrangling.html
       &lt;/font&gt;
     &lt;/a&gt;
     &lt;/span&gt;
@@ -1084,20 +1072,7 @@ Some functions require data to be in a certain shape, that is to be either in a 
 
 Use &lt;high&gt;`gather()`&lt;/high&gt; and &lt;high&gt;`spread()`&lt;/high&gt; from the `tidyr`package to change a tibble between &lt;high&gt;wide&lt;/high&gt; and &lt;high&gt;long&lt;/high&gt; formats.
 
-<<<<<<< HEAD:_sessions/Wrangling/Wrangling.html
 &lt;br&gt;
-=======
-```
-## # A tibble: 5 x 4
-##      id sex      age height
-##   &lt;dbl&gt; &lt;chr&gt;  &lt;dbl&gt;  &lt;dbl&gt;
-## 1     1 male      44   174.
-## 2     2 male      65   180.
-## 3     3 female    31   168.
-## 4     4 male      27   209 
-## 5     5 male      24   177.
-```
->>>>>>> 08ce1b458a25fa338b36f65c6eadeda31d5fc467:_sessions/3_Wrangling/Wrangling.html
 
 | Function | Result |
 |:----------|:-------|
@@ -1108,27 +1083,9 @@ Use &lt;high&gt;`gather()`&lt;/high&gt; and &lt;high&gt;`spread()`&lt;/high&gt; 
 
 .pull-right55[
 
-<<<<<<< HEAD:_sessions/Wrangling/Wrangling.html
 &lt;p align="center"&gt;
 &lt;img src="image/longwide.png" height=420px&gt;
 &lt;/p&gt;
-=======
-.pull-right5[
-
-How do I calculate the following table of the top 5 tallest Baselers?
-
-
-```
-## # A tibble: 5 x 3
-##      id height sex  
-##   &lt;dbl&gt;  &lt;dbl&gt; &lt;chr&gt;
-## 1  9676   219. male 
-## 2  5623   213. male 
-## 3  7214   213. male 
-## 4  7059   212. male 
-## 5  9538   210. male
-```
->>>>>>> 08ce1b458a25fa338b36f65c6eadeda31d5fc467:_sessions/3_Wrangling/Wrangling.html
 
 ]
 
@@ -1145,7 +1102,6 @@ combined
 ```
 
 ```
-<<<<<<< HEAD:_sessions/Wrangling/Wrangling.html
 ## # A tibble: 5 x 6
 ##      id   age   arm arm_lab   t_1   t_2
 ##   &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;   &lt;dbl&gt; &lt;dbl&gt;
@@ -1154,43 +1110,6 @@ combined
 ## 3     3    57     2 drug       NA    NA
 ## 4     4    34     1 placebo   100   105
 ## 5     5    45     2 drug       NA    NA
-=======
-## # A tibble: 5 x 4
-##      id sex      age height
-##   &lt;dbl&gt; &lt;chr&gt;  &lt;dbl&gt;  &lt;dbl&gt;
-## 1     1 male      44   174.
-## 2     2 male      65   180.
-## 3     3 female    31   168.
-## 4     4 male      27   209 
-## 5     5 male      24   177.
-```
-
-
-]
-
-
-.pull-right5[
-
-How do I calculate the following table of the top 5 tallest Baselers?
-
-
-```r
-baselers %&gt;%
-  arrange(desc(height)) %&gt;%
-  select(id, height, sex) %&gt;%
-  slice(1:5)
-```
-
-```
-## # A tibble: 5 x 3
-##      id height sex  
-##   &lt;dbl&gt;  &lt;dbl&gt; &lt;chr&gt;
-## 1  9676   219. male 
-## 2  5623   213. male 
-## 3  7214   213. male 
-## 4  7059   212. male 
-## 5  9538   210. male
->>>>>>> 08ce1b458a25fa338b36f65c6eadeda31d5fc467:_sessions/3_Wrangling/Wrangling.html
 ```
 
 ]
@@ -1199,32 +1118,14 @@ baselers %&gt;%
 
 
 ```r
-<<<<<<< HEAD:_sessions/Wrangling/Wrangling.html
 # "Gather" wide data to long
 combined %&gt;% 
   gather(time,  # New group variable
          value, # New target variable
          -id)   # Omit ID
-=======
-baselers %&gt;%
-  select(id, sex, age, height) %&gt;%
-  slice(1:5)
 ```
 
 ```
-## # A tibble: 5 x 4
-##      id sex      age height
-##   &lt;dbl&gt; &lt;chr&gt;  &lt;dbl&gt;  &lt;dbl&gt;
-## 1     1 male      44   174.
-## 2     2 male      65   180.
-## 3     3 female    31   168.
-## 4     4 male      27   209 
-## 5     5 male      24   177.
->>>>>>> 08ce1b458a25fa338b36f65c6eadeda31d5fc467:_sessions/3_Wrangling/Wrangling.html
-```
-
-```
-<<<<<<< HEAD:_sessions/Wrangling/Wrangling.html
 ## # A tibble: 25 x 3
 ##       id time  value
 ##    &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt;
@@ -1239,16 +1140,6 @@ baselers %&gt;%
 ##  9     4 arm   1    
 ## 10     5 arm   2    
 ## # ... with 15 more rows
-=======
-## # A tibble: 5 x 3
-##      id height sex   
-##   &lt;dbl&gt;  &lt;dbl&gt; &lt;chr&gt; 
-## 1  6936   198. female
-## 2  8450   196. female
-## 3   385   196. female
-## 4  3203   195. female
-## 5  4392   194  female
->>>>>>> 08ce1b458a25fa338b36f65c6eadeda31d5fc467:_sessions/3_Wrangling/Wrangling.html
 ```
 
 ]
@@ -1267,7 +1158,6 @@ combined
 ```
 
 ```
-<<<<<<< HEAD:_sessions/Wrangling/Wrangling.html
 ## # A tibble: 5 x 6
 ##      id   age   arm arm_lab   t_1   t_2
 ##   &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;   &lt;dbl&gt; &lt;dbl&gt;
@@ -1276,16 +1166,6 @@ combined
 ## 3     3    57     2 drug       NA    NA
 ## 4     4    34     1 placebo   100   105
 ## 5     5    45     2 drug       NA    NA
-=======
-## # A tibble: 5 x 4
-##      id sex      age height
-##   &lt;dbl&gt; &lt;chr&gt;  &lt;dbl&gt;  &lt;dbl&gt;
-## 1     1 male      44   174.
-## 2     2 male      65   180.
-## 3     3 female    31   168.
-## 4     4 male      27   209 
-## 5     5 male      24   177.
->>>>>>> 08ce1b458a25fa338b36f65c6eadeda31d5fc467:_sessions/3_Wrangling/Wrangling.html
 ```
 
 ]
@@ -1303,7 +1183,6 @@ combined %&gt;%
 ```
 
 ```
-<<<<<<< HEAD:_sessions/Wrangling/Wrangling.html
 ## # A tibble: 10 x 6
 ##       id   age   arm arm_lab time  value
 ##    &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;   &lt;chr&gt; &lt;dbl&gt;
@@ -1317,16 +1196,6 @@ combined %&gt;%
 ##  8     3    57     2 drug    t_2      NA
 ##  9     4    34     1 placebo t_2     105
 ## 10     5    45     2 drug    t_2      NA
-=======
-## # A tibble: 5 x 3
-##      id height sex   
-##   &lt;dbl&gt;  &lt;dbl&gt; &lt;chr&gt; 
-## 1  6936   198. female
-## 2  8450   196. female
-## 3   385   196. female
-## 4  3203   195. female
-## 5  4392   194  female
->>>>>>> 08ce1b458a25fa338b36f65c6eadeda31d5fc467:_sessions/3_Wrangling/Wrangling.html
 ```
 
 ]
@@ -1441,7 +1310,7 @@ if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
 (function () {
   var script = document.createElement('script');
   script.type = 'text/javascript';
-  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  script.src  = 'https://cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML';
   if (location.protocol !== 'file:' && /^https?:/.test(script.src))
     script.src  = script.src.replace(/^https?:/, '');
   document.getElementsByTagName('head')[0].appendChild(script);

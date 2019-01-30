@@ -891,11 +891,7 @@ R provides <high>all necessary tools to pull data from</high> or <high> directly
 
 ---
 
-# Practical
+class: middle, center
 
-<p>
-  <font size=6>
-    <a href="https://therbootcamp.github.io/Intro2DataScience_2018Oct/_sessions/Data/Data_practical.html"><b>Link to practical<b></a>
-  </font>
-</p>
+<h1><a href="https://therbootcamp.github.io/appliedML_2019Jan/_sessions/Models/Models_practical.html">Practical</a></h1>
 
