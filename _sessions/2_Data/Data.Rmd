@@ -1,8 +1,8 @@
 ---
 title: "Data"
-author: "Introduction to Data Science with R<br/>
+author: "R Bootcamp Bern<br/>
   <a href='https://therbootcamp.github.io'>
-    Bern R Bootcamp
+    R Bootcamp Bern
   </a> 
   <br>
   <a href='https://dwulff.github.io/Intro2R_Unibe/'>
