@@ -1,9 +1,13 @@
 ---
 title: "Wrangling"
+<<<<<<< HEAD
 author: "
 Introduction to R<br>
+=======
+author: "R Bootcamp Bern<br>
+>>>>>>> 1a07c7d704d4fd73a532d7b8d89c6d9a58117422
   <a href='https://therbootcamp.github.io'>
-    Bern R Bootcamp
+    R Bootcamp Bern
   </a>
   <br>
   <a href='https://dwulff.github.io/Intro2R_Unibe/'>
