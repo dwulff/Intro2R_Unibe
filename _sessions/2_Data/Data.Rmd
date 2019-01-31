@@ -394,7 +394,7 @@ age[1:9]
 ```
 
 <br>
-Find more info on indexing [here](http://rspatial.org/intr/rst/4-indexing.html).
+Find more info on indexing [here](http://eriqande.github.io/rep-res-web/lectures/vectorization_recycling_and_indexing.html).
 
 ]
 
