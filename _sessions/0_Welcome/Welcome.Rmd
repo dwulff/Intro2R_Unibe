@@ -154,7 +154,7 @@ We have an <high>ambitious schedule</high>!
 
 .pull-right4[
 
-<p align="center"><img src="images/schedule.png" height="550"></p>
+<p align="center"><img src="image/schedule.png" height="550"></p>
 <center><font size = 3></font></center>
 
 ]
