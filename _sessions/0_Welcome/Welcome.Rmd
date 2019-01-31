@@ -138,7 +138,7 @@ We have an <high>ambitious schedule</high>!
 .pull-right4[
 
 <p align="center">
-  <img src="image/schedule.png" height="550">
+  <img src="https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/bernrbootcamp_schedule.png" height="550">
   <font size = 3></font>
 </p>
 
@@ -358,7 +358,7 @@ knitr::include_graphics("https://cdn.southampton.ac.uk/assets/imported/transform
 
 .pull-right6[
 
-<img src="/_sessions/_image/schedule_2018Oct_Intro2DS.png?raw=true" height="580" align="center">
+<img src="https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/bernrbootcamp_schedule.png" height="580" align="center">
 
 
 ]
