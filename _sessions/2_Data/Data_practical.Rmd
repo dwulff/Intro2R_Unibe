@@ -1,14 +1,41 @@
 ---
-title: "Data Practical"
-author: "Introduction to Data Science with R<br/><a href='https://therbootcamp.github.io'>www.therbootcamp.com</a><br/><a href='https://twitter.com/therbootcamp'>@therbootcamp</a>"
+title: "Data"
+subtitle: ""
+author: "
+<table style='table-layout:fixed;width:100%;border:0;padding:0;margin:0'><col width='10%'><col width='10%'>
+  <tr style='border:none'>
+    <td style='display:block;width:100%;text-align:left;vertical-align:bottom;padding:0;margin:0;border:none' nowrap>
+      <a href='https://dwulff.github.io/Intro2R_Unibe/'>
+        <i class='fas fa-clock' style='font-size:.9em;' ></i>
+      </a>
+      <a href='https://therbootcamp.github.io'>
+        <i class='fas fa-home' style='font-size:.9em;'></i>
+      </a>
+      <a href='mailto:therbootcamp@gmail.com'>
+        <i class='fas fa-envelope' style='font-size: .9em;'></i>
+      </a>
+      <a href='https://www.linkedin.com/company/basel-r-bootcamp/'>
+        <i class='fab fa-linkedin' style='font-size: .9em;'></i>
+      </a>
+        <a href='https://therbootcamp.github.io'>
+        <font style='font-style:normal'>Bern R Bootcamp</font>
+      </a>&nbsp;&nbsp;
+    </td>
+    <td style='width:100%;vertical-align:bottom;text-align:right;padding:0;margin:0;border:none'>
+      <img src='https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/by-sa.png' style='height:15px;width:80px'/>
+    </td>
+  </tr>
+</table>"
 output:
   html_document:
     css: practical.css
+    self_contained: no
+    highlight: tango
 ---
 
 ```{r setup, include = FALSE}
-knitr::opts_chunk$set(echo = TRUE,
-                      eval = TRUE,
+knitr::opts_chunk$set(echo = FALSE,
+                      eval = FALSE,
                       message = FALSE,
                       warning = FALSE,
                       error = FALSE)
@@ -23,16 +50,15 @@ library(readxl)
 ```
 
 
-<figure>
-<center>
-  <img src="https://www.methodspace.com/wp-content/uploads/2018/02/Big-data-slider_GEBI.jpg" alt="Trulli" style="width:800px;height:250px">
-  <figcaption><a href="https://www.methodspace.com">source</a></figcaption>
-</figure>
+<p align="center" width="100%">
+  <img src="https://www.methodspace.com/wp-content/uploads/2018/02/Big-data-slider_GEBI.jpg" alt="Trulli" style="width:100%;height:280px">
+  <br>
+  <a href="https://www.methodspace.com">source</a>
+</p>
 
-## {.tabset}
+# {.tabset .tabset-fade}
 
-
-### Overview
+## Overview
 
 In this practical you'll learn how to work with basic data objects and functions. By the end of this practical you will know how to:
 
@@ -43,174 +69,15 @@ In this practical you'll learn how to work with basic data objects and functions
 5. Access and change vectors from data frames using `$`
 6. Create `data.frames` and `tibbles` using `data.frame()` and `tibble()`
 
+## Tasks
 
-### Datasets
-
-```{r, eval = TRUE, message = FALSE}
-library(tidyverse)
-library(haven)
-```
-
-|File | Rows | Columns | Description |
-|:----|:-----|:------|:-----------------------------------------|
-|[diamonds.csv](https://raw.githubusercontent.com/therbootcamp/BaselRBootcamp_2018July/master/_sessions/_data/baselrbootcamp_data/diamonds.csv) | 100 | 7 | Subset of the well-known diamonds data set containing specifications and prices of a large number of recorded diamonds.  |
-|[titanic.xls](https://raw.githubusercontent.com/therbootcamp/BaselRBootcamp_2018July/master/_sessions/_data/baselrbootcamp_data/titanic.xls) | 1309 | 14 | Information on the survival of titanic passengers. |
-|[sleep.sav](https://raw.githubusercontent.com/therbootcamp/BaselRBootcamp_2018July/master/_sessions/_data/baselrbootcamp_data/sleep.sav) | 271 | 55 | Survey on sleeping behavior completed by staff at the University of Melbourne. |
-|[airbnb_zuerich.sas7bdat](https://raw.githubusercontent.com/therbootcamp/BaselRBootcamp_2018July/master/_sessions/_data/baselrbootcamp_data/airbnb_zuerich.sas7bdat) | 2392 | 20 | Data on AirBnB listings in Zürich, Switzerland|
-
-
-### Packages
-
-|Package| Installation|
-|:------|:------|
-|`tidyverse`|`install.packages("tidyverse")`|
-|`readr`|`install.packages("readr")`|
-|`haven`|`install.packages("haven")`|
-|`readxl`|`install.packages("readxl")`|
-
-### Glossary
-
-*Creating vectors*
-
-| Function| Description|
-|:------|:--------|
-| `c("a", "b", "c")` |Create a character vector|
-| `c(1, 2, 3)`| Create a numeric vector|
-| `c(TRUE, FALSE, TRUE)`|    Create a logical vector|
-
-*Vector functions*
-
-| Function| Description|
-|:------|:--------|
-| `mean(x), median(x), sd(x), sum(x)` | Mean, median standard deviation, sum|
-| `max(x), min(x)`                    | Maximum, minimum|
-| `table(x)`                          | Table of frequency counts|
-| `round(x, digits)`                  | Round a numeric vector x to `digits`|
-
-*Accessing vectors from data frames*
-
-| Function| Description|
-|:------|:--------|
-| `df$name` |Access vector `name` from a data frame `df`|
-
-*Reading/writing text data*
-
-| Extension | File Type |Read | Write |
-|:------|:------|:--------------------------|:-----------------------------|
-| `.csv` | Comma-separated text |`read_csv(file)` | `write_csv(x, file)` |
-| `.csv` | Semi-colon separated text |`read_csv2(file)` | *not available* |
-| `.txt` |Other text | `read_delim(file)` |`write_delim(x, file)` | 
-
-*Reading/writing other data formats*
-
-|Extension| File Type | Read | Write|
-|:--------|:-----|:--------------------------|:-----------------------------|
-|`.xls`, `.xlsx`|Excel | `read_excel(file)` | `xlsx::write.xlsx()` |
-|`.sav`| SPSS | `read_spss(file)` | `write_spss(x, file)`| 
-|`.sas7bdat`| SAS | `read_sas(file)` | `write_sas(x, file)`|
-
-*Creating data frames from vectors*
-
-| Function| Description|
-|:------|:--------|
-| `data.frame(a, b, c)` | Create a data frame from vectors a, b, c|
-| `tibble(a, b, c)`     | Create a tibble from vectors a, b, c|
-
-
-### Examples
-
-```{r, eval = FALSE, echo = TRUE}
-library(tidyverse)
-library(readr)
-library(readxl)
-library(haven)
-
-# Create vectors of (fake) stock data
-name      <- c("apple", "microsoft", "dell", "google", "twitter")
-yesterday <- c(100, 89, 65, 54, 89)
-today     <- c(102, 85, 72, 60, 95)
-
-# Summary statistics
-mean(today)
-mean(yesterday)
-
-# Show classes
-class(name)
-class(yesterday)
-
-# Operations of vectors
-change <- today - yesterday
-change # Print result
-
-# Create a logical vector from two numerics
-increase <- today > yesterday
-increase # Print result
-
-# Create a tibble combining multiple vectors
-stocks <- tibble(name, yesterday, today, change, increase)
-
-# Get column names
-names(stocks)
-
-# Access columns by name
-stocks$name
-stocks$today
-
-# Calculate descriptives on columns
-mean(stocks$yesterday)
-median(stocks$today)
-table(stocks$increase)
-max(stocks$increase)
-
-
-# read/write delim-separated -------------------
-
-# read chickens data
-chickens <- read_csv(file = "1_Data/chickens.csv")
-
-# fix header of chickens_nohead.csv with known column names
-chickens <- read_csv(file = "1_Data/chickens_nohead.csv",
-                     col_names = c("weight", "time", "chick", "diet"))
-
-# fix NA values of chickens_na.csv
-chickens <- read_csv(file = "1_Data/chickens_na.csv",
-                     na = c('NA', 'NULL'))
-
-# write clean data to disc
-write_csv(x = chickens, 
-          path = "1_Data/chickens_clean.csv")
-
-# fix types -------------------
-# Note: the survey data is fictional!
-
-# remove character from rating
-survey$rating[survey$rating == "2,1"] <- 2.1
-
-# rerun type convert
-survey <- type_convert(survey)
-
-# other formats -------------------
-
-# .xlsx (Excel)
-chickens <- read_excel("1_Data/chickens.xlsx")
-
-# .sav (SPSS)
-chickens <- read_spss("1_Data/chickens.sav")
-
-# .sad7bdata (SAS)
-chickens <- read_sas("1_Data/chickens.sas7bdat")
-
-```
-
-# Tasks
-
-## A - Getting setup
+### A - Getting setup
 
 1. Open your `baselrbootcamp` R project. It should already have the folders `1_Data` and `2_Code`.
 
 2. Open a new R script and save it as a new file called `data_practical.R` in the `2_Code` folder. At the top of the script, using comments, write your name and the date. Then, load all package(s) listed in the Packages section above with `library()`. Make sure that each of the datasets listed above lie in your `1_Data` folder.
 
-## B - Creating vectors
+### B - Creating vectors
 
 The table below shows results from a (fictional) survey of 10 Baselers. In the first part of this practical, you will convert this table to R objects and then analyse them!
 
@@ -336,7 +203,7 @@ class(weight)
 length(weight)
 ```
 
-## C - Functions
+### C - Functions
 
 1. Using the `table()` function, find out how many males and females are in the data. You should find `r sum(data$sex == "male")` males and `r sum(data$sex == "female")` females!
 
@@ -380,7 +247,7 @@ mean(weight)
 mean(weight, na.rm = TRUE)
 ```
 
-## D - Read & write delim-separated text files
+### D - Read & write delim-separated text files
 
 In this section, you will read in a subset of the well known diamonds data set and prepare it for data analysis. 
 
@@ -502,7 +369,7 @@ table(diamonds$clarity)
 ```
 
 
-## E - Logical Vectors and `$`
+### E - Logical Vectors and `$`
 
 1. Logical vectors contain as values only `TRUE` and `FALSE` (and `NA`s). Create a new logical vector called `expensive` indicating which diamonds are more expensive than \$10000. To do this, select the `price` variable from the data frame using `$` use the `>` (greater than) operator á la `vector > value`.  
 
@@ -560,7 +427,7 @@ mean(diamonds$expensive)
 mean(diamonds$carat > 1)
 ```
 
-## F - Read other file formats
+### F - Read other file formats
 
 #### Excel
 
@@ -690,7 +557,7 @@ write_csv(x = airbnb_zuerich,
           path = "1_Data/airbnb_zuerich.csv")
 ```
 
-## G - Creating data frames
+### G - Creating data frames
 
 1. Using the `data.frame()` function, create a data frame called `ten_df` that contains each of vectors you just created: `id`, `age`, `sex`, `height`, `weight`.
 
@@ -761,7 +628,7 @@ ten_tibble
 max(ten_tibble$age) == max(ten_df$age)
 ```
 
-## X - Challenges
+### X - Challenges
 
 1. If you take the `sum()` of a logical vector, R will return the number of cases that are `TRUE`. Using this, find out how many of the ten Baselers are male while using the is-equal-to operator `==`.
 
@@ -807,7 +674,167 @@ mean(ten_tibble$age[ten_tibble$weight > 80])
 ten_tibble$id[ten_tibble$sex == "male" & ten_tibble$height < 165]
 ```
 
-## Additional Resources
+
+## Datasets
+
+```{r, eval = TRUE, message = FALSE}
+library(tidyverse)
+library(haven)
+```
+
+|File | Rows | Columns | Description |
+|:----|:-----|:------|:-----------------------------------------|
+|[diamonds.csv](https://raw.githubusercontent.com/therbootcamp/BaselRBootcamp_2018July/master/_sessions/_data/baselrbootcamp_data/diamonds.csv) | 100 | 7 | Subset of the well-known diamonds data set containing specifications and prices of a large number of recorded diamonds.  |
+|[titanic.xls](https://raw.githubusercontent.com/therbootcamp/BaselRBootcamp_2018July/master/_sessions/_data/baselrbootcamp_data/titanic.xls) | 1309 | 14 | Information on the survival of titanic passengers. |
+|[sleep.sav](https://raw.githubusercontent.com/therbootcamp/BaselRBootcamp_2018July/master/_sessions/_data/baselrbootcamp_data/sleep.sav) | 271 | 55 | Survey on sleeping behavior completed by staff at the University of Melbourne. |
+|[airbnb_zuerich.sas7bdat](https://raw.githubusercontent.com/therbootcamp/BaselRBootcamp_2018July/master/_sessions/_data/baselrbootcamp_data/airbnb_zuerich.sas7bdat) | 2392 | 20 | Data on AirBnB listings in Zürich, Switzerland|
+
+
+## Packages
+
+|Package| Installation|
+|:------|:------|
+|`tidyverse`|`install.packages("tidyverse")`|
+|`readr`|`install.packages("readr")`|
+|`haven`|`install.packages("haven")`|
+|`readxl`|`install.packages("readxl")`|
+
+## Glossary
+
+*Creating vectors*
+
+| Function| Description|
+|:------|:--------|
+| `c("a", "b", "c")` |Create a character vector|
+| `c(1, 2, 3)`| Create a numeric vector|
+| `c(TRUE, FALSE, TRUE)`|    Create a logical vector|
+
+*Vector functions*
+
+| Function| Description|
+|:------|:--------|
+| `mean(x), median(x), sd(x), sum(x)` | Mean, median standard deviation, sum|
+| `max(x), min(x)`                    | Maximum, minimum|
+| `table(x)`                          | Table of frequency counts|
+| `round(x, digits)`                  | Round a numeric vector x to `digits`|
+
+*Accessing vectors from data frames*
+
+| Function| Description|
+|:------|:--------|
+| `df$name` |Access vector `name` from a data frame `df`|
+
+*Reading/writing text data*
+
+| Extension | File Type |Read | Write |
+|:------|:------|:--------------------------|:-----------------------------|
+| `.csv` | Comma-separated text |`read_csv(file)` | `write_csv(x, file)` |
+| `.csv` | Semi-colon separated text |`read_csv2(file)` | *not available* |
+| `.txt` |Other text | `read_delim(file)` |`write_delim(x, file)` | 
+
+*Reading/writing other data formats*
+
+|Extension| File Type | Read | Write|
+|:--------|:-----|:--------------------------|:-----------------------------|
+|`.xls`, `.xlsx`|Excel | `read_excel(file)` | `xlsx::write.xlsx()` |
+|`.sav`| SPSS | `read_spss(file)` | `write_spss(x, file)`| 
+|`.sas7bdat`| SAS | `read_sas(file)` | `write_sas(x, file)`|
+
+*Creating data frames from vectors*
+
+| Function| Description|
+|:------|:--------|
+| `data.frame(a, b, c)` | Create a data frame from vectors a, b, c|
+| `tibble(a, b, c)`     | Create a tibble from vectors a, b, c|
+
+
+## Examples
+
+```{r, eval = FALSE, echo = TRUE}
+library(tidyverse)
+library(readr)
+library(readxl)
+library(haven)
+
+# Create vectors of (fake) stock data
+name      <- c("apple", "microsoft", "dell", "google", "twitter")
+yesterday <- c(100, 89, 65, 54, 89)
+today     <- c(102, 85, 72, 60, 95)
+
+# Summary statistics
+mean(today)
+mean(yesterday)
+
+# Show classes
+class(name)
+class(yesterday)
+
+# Operations of vectors
+change <- today - yesterday
+change # Print result
+
+# Create a logical vector from two numerics
+increase <- today > yesterday
+increase # Print result
+
+# Create a tibble combining multiple vectors
+stocks <- tibble(name, yesterday, today, change, increase)
+
+# Get column names
+names(stocks)
+
+# Access columns by name
+stocks$name
+stocks$today
+
+# Calculate descriptives on columns
+mean(stocks$yesterday)
+median(stocks$today)
+table(stocks$increase)
+max(stocks$increase)
+
+
+# read/write delim-separated -------------------
+
+# read chickens data
+chickens <- read_csv(file = "1_Data/chickens.csv")
+
+# fix header of chickens_nohead.csv with known column names
+chickens <- read_csv(file = "1_Data/chickens_nohead.csv",
+                     col_names = c("weight", "time", "chick", "diet"))
+
+# fix NA values of chickens_na.csv
+chickens <- read_csv(file = "1_Data/chickens_na.csv",
+                     na = c('NA', 'NULL'))
+
+# write clean data to disc
+write_csv(x = chickens, 
+          path = "1_Data/chickens_clean.csv")
+
+# fix types -------------------
+# Note: the survey data is fictional!
+
+# remove character from rating
+survey$rating[survey$rating == "2,1"] <- 2.1
+
+# rerun type convert
+survey <- type_convert(survey)
+
+# other formats -------------------
+
+# .xlsx (Excel)
+chickens <- read_excel("1_Data/chickens.xlsx")
+
+# .sav (SPSS)
+chickens <- read_spss("1_Data/chickens.sav")
+
+# .sad7bdata (SAS)
+chickens <- read_sas("1_Data/chickens.sas7bdat")
+
+```
+
+
+## Resources
 
 - For more information on the fundamentals of object and functions in R see the R Core team's [introduction to R](https://cran.r-project.org/doc/manuals/r-release/R-intro.html) and for even more advanced object and function-related topics Hadley Wickham's [Advanced R](http://adv-r.had.co.nz/).
 - For more information on reading and writing (and everything else) see Grolemund`s and Wickham's [R for Data Science](http://r4ds.had.co.nz/data-import.html).
