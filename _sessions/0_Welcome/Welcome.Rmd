@@ -92,8 +92,7 @@ Click the "Start Bootcamp" link in Ilias!
 .pull-right5[
 
 <br><br>
-<p align="center"><img src="image/schedule.png" height="550"></p>
-<center><font size = 3></font></center>
+<iframe src="https://dwulff.github.io/Intro2R_Unibe/" width="500" height="500"></iframe>
 
 ]
 
