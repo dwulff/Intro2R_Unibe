@@ -44,45 +44,62 @@ layout: true
 
 
 
-.pull-left45[
+.pull-left5[
 
 # Linear models
 
 
+#### &lt;high&gt;Run linear models&lt;/high&gt; with `stats` including...
 
-
-#### &lt;high&gt;Run linear models&lt;/high&gt; with `stats`
-
-
-```r
-# Group-summarise idiom
-baselers %&gt;%
-  group_by(sex, eyecor) %&gt;%
-  summarise(
-    N = n(),
-    age_mean = mean(age),
-    height_median = median(height),
-    children_max = max(children)
-  )
-```
-
+&lt;table&gt;
+  &lt;tr&gt;
+    &lt;td&gt; &lt;b&gt;Function&lt;/b&gt; &lt;/td&gt;
+    &lt;td&gt; &lt;b&gt;Purpose&lt;/b&gt; &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td&gt; &lt;mono&gt;lm()&lt;/mono&gt;, &lt;mono&gt;glm()&lt;/mono&gt; &lt;/td&gt;
+    &lt;td&gt; (Generalized) linear models &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td&gt; &lt;mono&gt;lmer()&lt;/mono&gt;, &lt;mono&gt;glmer()&lt;/mono&gt; &lt;/td&gt;
+    &lt;td&gt; (Generalized) mixed-linear models &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td&gt; &lt;mono&gt;stan_glm()&lt;/mono&gt; &lt;/td&gt;
+    &lt;td&gt; Bayesian (gen.) linear models &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/table&gt;
 
 #### &lt;high&gt;Explore linear models&lt;/high&gt; with `stats`
 
 
-```r
-# Simple hypothesis test
-t.test(baselers$happiness,
-       baselers$fitness,
-       var.equal = TRUE)
-```
+&lt;table&gt;
+  &lt;col width="43%"&gt;
+  &lt;col width="57%"&gt;
+  &lt;tr&gt;
+    &lt;td&gt; &lt;b&gt;Function&lt;/b&gt; &lt;/td&gt;
+    &lt;td&gt; &lt;b&gt;Purpose&lt;/b&gt; &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td&gt; &lt;mono&gt;summary()&lt;/mono&gt;, &lt;mono&gt;print()&lt;/mono&gt;, &lt;mono&gt;coefficients()&lt;/mono&gt;&lt;/td&gt;
+    &lt;td&gt; Inspect fitted coefficients &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td&gt; &lt;mono&gt;names()&lt;/mono&gt;, &lt;mono&gt;mod$name&lt;/mono&gt; &lt;/td&gt;
+    &lt;td&gt; Inspect model object &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td&gt; &lt;mono&gt;plot()&lt;/mono&gt; &lt;/td&gt;
+    &lt;td&gt; Inspect default illustrations &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/table&gt;
 
 ]
 
 .pull-right45[
 
 &lt;p align = "center"&gt;
-&lt;br&gt;
+&lt;br&gt;&lt;br&gt;
 &lt;img src="image/curve_fitting_sm.png" height=500px&gt;&lt;br&gt;
 &lt;font style="font-size:10px"&gt;adapted from &lt;a href="https://xkcd.com/892/"&gt;xkcd.com&lt;/a&gt;&lt;/font&gt;
 &lt;/p&gt;
@@ -92,31 +109,83 @@ t.test(baselers$happiness,
 
 ---
 
+# Fitting a linear model
+
+&lt;p align="center"&gt;
+&lt;img src="StatisticsII_files/figure-html/unnamed-chunk-1-1.png" width="80%" /&gt;
+&lt;/p&gt;
+
+---
+
+# Fitting a linear model
+
+&lt;p align="center"&gt;
+&lt;img src="StatisticsII_files/figure-html/unnamed-chunk-2-1.png" width="80%" /&gt;
+&lt;/p&gt;
+
+---
+
+# Fitting a linear model
+
+&lt;p align="center"&gt;
+&lt;img src="StatisticsII_files/figure-html/unnamed-chunk-3-1.png" width="80%" /&gt;
+&lt;/p&gt;
+
+---
+
+# Fitting a linear model
+
+&lt;p align="center"&gt;
+&lt;img src="StatisticsII_files/figure-html/unnamed-chunk-4-1.png" width="80%" /&gt;
+&lt;/p&gt;
+
+
+---
+
+# Fitting a linear model
+
+&lt;p align="center"&gt;
+&lt;img src="StatisticsII_files/figure-html/unnamed-chunk-5-1.png" width="80%" /&gt;
+&lt;/p&gt;
+
+
+---
+
+# Fitting a linear model
+
+&lt;p align="center"&gt;
+&lt;img src="StatisticsII_files/figure-html/unnamed-chunk-6-1.png" width="80%" /&gt;
+&lt;/p&gt;
+
+---
+
+# Fitting a linear model
+
+&lt;p align="center"&gt;
+&lt;img src="StatisticsII_files/figure-html/unnamed-chunk-7-1.png" width="80%" /&gt;
+&lt;/p&gt;
 
 ---
 
 # Basic structure of statistical functions
 
-.pull-left4[
+.pull-left3[
 
-Statistical functions always require a &lt;high&gt;data frame&lt;/high&gt; called `data`, e.g.,...
+Statistical functions work with two types of objects... 
 
 
-|sex    | age| height| weight| income|
-|:------|---:|------:|------:|------:|
-|male   |  44|  174.3|  113.4|   6300|
-|male   |  65|  180.3|   75.2|  10900|
-|female |  31|  168.3|   55.5|   5100|
+(1) A &lt;high&gt;`tibble`&lt;/high&gt; in place of the `data` argument.
+
+(2) A &lt;high&gt;`formula`&lt;/high&gt; in place of the `formula` argument.
+
 &lt;br&gt;
-They also require a &lt;high&gt;formula&lt;/high&gt; that specifies a &lt;high&gt;dependent&lt;/high&gt; variable (y) as a function of one or more &lt;high&gt;independent&lt;/high&gt; variables (x1, x2, ...) in the form:
+&lt;high&gt;`Formulas`&lt;/high&gt; specifies a &lt;high&gt;criterion&lt;/high&gt; (y) as a function of one or more &lt;high&gt;predictors&lt;/high&gt; (x1, x2, ...) in the form:
 
-&lt;p align='center'&gt;&lt;font size = 6&gt;formula = y ~ x1 + x2 +...&lt;/font&gt;&lt;/p&gt;
+&lt;mono&gt;formula = y ~ x1 + x2 +...&lt;mono&gt;
 
 ]
 
-.pull-right55[
-
-How to create a statistical object:
+.pull-right65[
 
 
 ```r
@@ -125,10 +194,9 @@ my_glm &lt;- glm(formula = income ~ age + height,
               data = baselers)
 ```
 
-
-![](https://raw.githubusercontent.com/therbootcamp/Erfurt_2018June/master/_sessions/_image/formula_description.png)&lt;!-- --&gt;
-
-
+&lt;p align="center"&gt;
+&lt;img src="https://raw.githubusercontent.com/therbootcamp/Erfurt_2018June/master/_sessions/_image/formula_description.png"&gt;
+&lt;/p&gt;
 
 ]
 
