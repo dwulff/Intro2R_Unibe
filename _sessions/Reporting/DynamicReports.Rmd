@@ -1,22 +1,29 @@
 ---
 title: "Dynamic Reports"
 subtitle: "with R Markdown"
-author: "<a href='https://therbootcamp.github.io'>
-    R Bootcamp Bern
-  </a>
-  <br>
-  <a href='https://dwulff.github.io/Intro2R_Unibe/'>
-    <i class='fas fa-clock' style='font-size:.9em;'></i>
-  </a>&#8239; 
-  <a href='https://therbootcamp.github.io'>
-    <i class='fas fa-home' style='font-size:.9em;' ></i>
-  </a>&#8239;
-  <a href='mailto:therbootcamp@gmail.com'>
-    <i class='fas fa-envelope' style='font-size: .9em;'></i>
-  </a>&#8239;
-  <a href='https://www.linkedin.com/company/basel-r-bootcamp/'>
-    <i class='fab fa-linkedin' style='font-size: .9em;'></i>
-  </a>"
+author: <table style='table-layout:fixed;width:100%;border:0;padding:0;margin:0'><col width='10%'><col width='10%'>
+  <tr style='border:none'>
+    <td style='display:block;width:100%;text-align:left;vertical-align:bottom;padding:0;margin:0;border:none' nowrap>
+      <a href='https://dwulff.github.io/Intro2R_Unibe/'>
+        <i class='fas fa-clock' style='font-size:.9em;' ></i>
+      </a>
+      <a href='https://therbootcamp.github.io'>
+        <i class='fas fa-home' style='font-size:.9em;'></i>
+      </a>
+      <a href='mailto:therbootcamp@gmail.com'>
+        <i class='fas fa-envelope' style='font-size: .9em;'></i>
+      </a>
+      <a href='https://www.linkedin.com/company/basel-r-bootcamp/'>
+        <i class='fab fa-linkedin' style='font-size: .9em;'></i>
+      </a>
+        <a href='https://therbootcamp.github.io'>
+        <font style='font-style:normal'>Bern R Bootcamp</font>
+      </a>&nbsp;&nbsp;
+    </td>
+    <td style='width:100%;vertical-align:bottom;text-align:right;padding:0;margin:0;border:none'>
+      <img src='https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/by-sa.png' style='height:15px;width:80px'/>
+    </td>
+  </tr>
 date: "February 2019"
 output:
   xaringan::moon_reader:
@@ -417,11 +424,9 @@ The `datatable()` function from the `DT` package will include a rich HTML table 
 library(DT)
 
 datatable(baselers %>% 
-            select(id, sex, age, height, weight, income), # Only these columns
-          options = list(pageLength = 4))                 # 4 Rows at a time please
+          select(id, sex, age, height, weight, income), # Only these columns
+          options = list(pageLength = 4))               # 4 Rows at a time please
 ```
-
-
 
 ---
 
@@ -524,14 +529,14 @@ chickens <- read_csv("1_Data/chickens.csv")
 
 There are *many* different output formats you can create from an R Markdown document
 
-Many come with RStudio, many are distributed in packages:
+Some come with RStudio, some are distributed in separate packages:
 
 | Package|Description|
 |:------|:----|
 |     `xaringan`*| Slideshows (like this one!)|
 |     `papaja`*|APA Manuscripts|
 |     `rmdformats`|Many templates|
-|     `prettydoc`|Many templates|
+|     `prettydoc`|Project documentation|
 
 `* = On GitHub
 
@@ -552,7 +557,7 @@ knitr::include_graphics("https://raw.githubusercontent.com/therbootcamp/therboot
 
 ## R Markdown Gallery
 
-http://rmarkdown.rstudio.com/gallery.html
+Overview of available formats: http://rmarkdown.rstudio.com/gallery.html
 
 <iframe src="rmarkdown_gallery.htm" width="800" height="450"></iframe>
 
@@ -588,11 +593,6 @@ knitr::include_graphics("https://raw.githubusercontent.com/therbootcamp/therboot
 [Yihui Xie's free R Markdown guide](https://bookdown.org/yihui/rmarkdown/)
 
 
-]
-
-
-
-
 ---
 # Questions?
 
@@ -601,102 +601,3 @@ knitr::include_graphics("https://raw.githubusercontent.com/therbootcamp/therboot
 ```{r, echo = FALSE, out.width = "80%"}
 knitr::include_graphics("https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/minichunk_big_ss.png")
 ```
-
-
-
----
-# Additional Slides
-
----
-
-## R Packages - The ultimate dynamic report?
-
-.pull-left55[
-
-If you want a fully contained, dynamic report that contains data, code, statistics, plots, text, help files and documentation that you can easily share, your answer may be creating an **R Package**.
-
-#### Installing an example package from GitHub
-
-```{r, eval = FALSE}
-library(devtools) # For the install_github function
-
-# Install DrugX_2018_Trial package from github
-install_github("bootcamp/DrugX_2018_Trial")
-
-# Load DrugX_2018_Trial package
-library("DrugX_2018_Trial")
-
-# Open DrugX_2018_Trial package help
-?DrugX_2018_Trial
-
-```
-
-]
-
-.pull-right4[
-
-### Package folder structure
-
-```{r, echo = FALSE, out.width="100%", fig.align = 'center'}
-knitr::include_graphics("https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/phillips2017_package_ss.png")
-```
-
-<br>
-
-Read Wickham's [book "R Packages"](http://r-pkgs.had.co.nz/) (available free at this link) to learn how to write your own package.
-
-]
-
-
-
----
-
-## To write to PDF, you need TeX
-
-.pull-left3[
-
-
-RMarkdown uses LaTeX to create PDF files
-
-In order to knit your document to a PDF, you'll need a TeX installation on your machine.
-
-| OS | Link |
-|:---|:----|
-|Windows| MiKTeX [https://miktex.org/download](https://miktex.org/download)
-|Mac| MacTeX [http://www.tug.org/mactex/](http://www.tug.org/mactex/)
-
-
-]
-
-.pull-right65[
-
-```{r, echo = FALSE, out.width="70%", fig.align = 'center'}
-knitr::include_graphics("https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/latex_collage.png")
-```
-
-]
-
-
-
----
-
-## Code Chunks in R Markdown
-
-You can set default chunk options with `ops_chunk$set()`. When you do, all future chunks will have these settings (unless you specify otherwise)
-
-```{r, echo = TRUE, eval = FALSE}
-# Example: Set default values for ALL future chunks
-#   with knitr::ops_chunk$set
-
-
-knitr::opts_chunk$set(fig.width = 6,        # Figure width (in)
-                      fig.height = 6,       # Figure height (in)
-                      echo = TRUE,          # Repeat code
-                      eval = TRUE,          # Evaluate chunks
-                      message = FALSE,      # Don't print messages
-                      warning = FALSE,      # Don't print warnings
-                      fig.align = 'center') # Center figures
-```
-
-We recommend setting chunk options at the beginning of each document!
-
