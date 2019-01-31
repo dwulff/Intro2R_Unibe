@@ -1,7 +1,7 @@
 ---
 title: "Statistics II"
 author: "
-Introduction to R<br>
+  Introduction to R<br>
   <a href='https://therbootcamp.github.io'>
     Bern R Bootcamp
   </a>
@@ -67,8 +67,14 @@ options(max.print = 20)
 options(width=110)
 options(digits = 4)
 library(tidyverse)
+library(lme4)
+library(BayesFactor)
 
 baselers <- read_csv("https://raw.githubusercontent.com/therbootcamp/baselers/master/inst/extdata/baselers.txt")
+baselers <- baselers %>% 
+  filter(!is.na(income),!is.na(age),!is.na(height)) %>%
+  slice(sample(1:nrow(baselers),1000)) %>% 
+              mutate(sex01 = sex == 'male')
 
 source("https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_materials/code/baselrbootcamp_palettes.R")
 
@@ -209,7 +215,7 @@ knitr::opts_chunk$set(warning = FALSE)
 # Fitting a linear model
 
 <p align="center">
-```{r, echo = FALSE, fig.width = 4.4, fig.height = 2.6, dpi = 400, out.width = "80%"}
+```{r, echo = FALSE, fig.width = 4.2, fig.height = 2.7, dpi = 400, out.width = "70%"}
 raw
 ```
 </p>
@@ -219,7 +225,7 @@ raw
 # Fitting a linear model
 
 <p align="center">
-```{r, echo = FALSE, fig.width = 4.4, fig.height = 2.6, dpi = 400, out.width = "80%"}
+```{r, echo = FALSE, fig.width = 4.2, fig.height = 2.7, dpi = 400, out.width = "70%"}
 medi_raw
 ```
 </p>
@@ -229,7 +235,7 @@ medi_raw
 # Fitting a linear model
 
 <p align="center">
-```{r, echo = FALSE, fig.width = 4.4, fig.height = 2.6, dpi = 400, out.width = "80%"}
+```{r, echo = FALSE, fig.width = 4.2, fig.height = 2.7, dpi = 400, out.width = "70%"}
 bad_raw
 ```
 </p>
@@ -239,7 +245,7 @@ bad_raw
 # Fitting a linear model
 
 <p align="center">
-```{r, echo = FALSE, fig.width = 4.4, fig.height = 2.6, dpi = 400, out.width = "80%"}
+```{r, echo = FALSE, fig.width = 4.2, fig.height = 2.7, dpi = 400, out.width = "70%"}
 great_raw
 ```
 </p>
@@ -250,7 +256,7 @@ great_raw
 # Fitting a linear model
 
 <p align="center">
-```{r, echo = FALSE, fig.width = 4.4, fig.height = 2.6, dpi = 400, out.width = "80%"}
+```{r, echo = FALSE, fig.width = 4.2, fig.height = 2.7, dpi = 400, out.width = "70%"}
 medi_err
 ```
 </p>
@@ -261,7 +267,7 @@ medi_err
 # Fitting a linear model
 
 <p align="center">
-```{r, echo = FALSE, fig.width = 4.4, fig.height = 2.6, dpi = 400, out.width = "80%"}
+```{r, echo = FALSE, fig.width = 4.2, fig.height = 2.7, dpi = 400, out.width = "70%"}
 bad_err
 ```
 </p>
@@ -271,14 +277,14 @@ bad_err
 # Fitting a linear model
 
 <p align="center">
-```{r, echo = FALSE, fig.width = 4.4, fig.height = 2.6, dpi = 400, out.width = "80%"}
+```{r, echo = FALSE, fig.width = 4.2, fig.height = 2.7, dpi = 400, out.width = "70%"}
 great_err
 ```
 </p>
 
 ---
 
-# Basic structure of statistical functions
+# Statistical functions like `lm()`
 
 .pull-left3[
 
@@ -300,8 +306,8 @@ Statistical functions work with two types of objects...
 
 ```{r}
 # Example: Create regression object (my_glm)
-my_glm <- glm(formula = income ~ age + height,
-              data = baselers)
+my_glm <- lm(formula = income ~ age + height,
+             data = baselers)
 ```
 
 <p align="center">
@@ -311,414 +317,111 @@ my_glm <- glm(formula = income ~ age + height,
 ]
 
 ---
- 
-.pull-left35[
 
- # Look for optional arguments
+# Customize formulas
 
-Statistical functions usually have many optional arguments.
-
-Each of these have <high>default</high> values. To customise a test, <high>look at the help menu</high> and specify arguments explicitly.
-
-]
-
-
-.pull-right6[
-
-<br><br>
-
-<u>Default vs. customised `glm()` (Generalized linear model)</u>
-```{r, eval = FALSE}
-# Default
-glm(formula = income ~ age + education,
-    data = baselers)
-
-# Customised
-glm(formula = eyecor ~ age + education,
-    data = baselers,
-    family = "binomial")  # Logistic regression
-```
-
-<u>Default vs. customised `t-test`</u>
-
-```{r, eval = FALSE}
-# Default
-t.test(formula = age ~ sex,
-       data = baselers)
-
-# Customised
-t.test(formula = age ~ sex,
-       data = baselers,
-       alternative = "less", # One sided test
-       var.equal = TRUE)     # Assume equal variance
-```
-
-]
-
-
----
- 
-.pull-left35[
-
- # Look for optional arguments
-
-```{r}
-?glm
-```
-
-<p align="center">
-  <img src="https://raw.githubusercontent.com/therbootcamp/Erfurt_2018June/master/_sessions/_image/glm_help.jpg">
-</p>
-
-]
-
-
-.pull-right6[
-
-<br><br>
-
-<u>Default vs. customised `glm()` (Generalized linear model)</u>
-```{r, eval = FALSE}
-# Default
-glm(formula = income ~ age + education,
-    data = baselers)
-
-# Customised
-glm(formula = eyecor ~ age + education,
-    data = baselers,
-    family = "binomial")  # Logistic regression
-```
-
-<u>Default vs. customised `t-test`</u>
-
-```{r, eval = FALSE}
-# Default
-t.test(formula = age ~ sex,
-       data = baselers)
-
-# Customised
-t.test(formula = age ~ sex,
-       data = baselers,
-       alternative = "less", # One sided test
-       var.equal = TRUE)     # Assume equal variance
-```
-
-]
-
-
-
----
-
-
-# Regression with `glm()`, `lm()`
-
-.pull-left35[
-
-How to <high>create a regression model</high> predicting, e.g., how much money people spend on `food` as a function of `income`?
-
-<br>
-Part of the `baselers` dataframe:
-
-.pull-left6[
-
-```{r, echo = FALSE}
-baselers %>% 
-  select(food, income, happiness) %>%
-  slice(1:5) %>% 
-  knitr::kable(format = "markdown")
-```
-
-]
-<!-- $$\Large food = \beta_{0} + \beta_{1} \times Inc + \beta_{1} \times Hap+ \epsilon$$ -->
-
-]
-
-.pull-right6[
-
-### Generalized regression with `glm()`
-
-```{r}
-# food (y) on income (x1) and happiness (x2)
-food_glm <- glm(formula = food ~ income + happiness,
-              data = baselers)
-
-# Print food_glm
-food_glm
-```
-
-]
-
-
----
-
-# Customising formulas
-
-Include additional independent variables to formulas by "adding" them with <high>`+`</high> 
+Include <high>additional predictors</high> to formulas by "adding" them with <high>`+`</high> 
 
 ```{r}
 # Include multiple terms with +
-my_glm <- glm(formula = income ~ food + alcohol + happiness + hiking,
-              data = baselers)
+my_lm <- lm(formula = income ~ age + height,
+            data = baselers)
 ```
 
-To <high>include all variables</high> in a dataframe, use the catch-all notation <high>`formula = y ~ .`</high>
+
+To also include <high>interaction terms</high> use <high><mono>x1:x2</mono></high>.
 
 ```{r}
-# Use  y ~ . to include ALL variables
-my_glm <- glm(formula = income ~ .,
-              data = baselers)
+# Add an interaction term between age and height
+my_lm <- lm(formula = income ~ age + height + age : height,
+            data = baselers)
 ```
 
-To include <high>interaction terms</high> use `x1 : x2` or  `x1 * x2` (also includes main effects) instead of `x1 + x2`
+To include, both <high>main effects and interactions</high>, use <high><mono>x1:x2</mono></high>.
 
 ```{r}
-# Include an interaction term between food and alcohol
-my_glm <- glm(formula = income ~ food * alcohol,
-              data = baselers)
+# Include both main effects and interactions for age and height
+my_lm <- lm(formula = income ~ age * height,
+            data = baselers)
 ```
 
 ---
 
-# Exploring statistical objects
-
-.pull-left35[
-
-Explore statistical objects using <high>generic</high> functions such as `print()`, `summary()`, `predict()` and `plot()`.
-
-<high>Generic</high> functions different things depending on the <high>class label</high> of the object. 
-
-```{r, eval = FALSE}
-# Create statistical object
-obj <- STAT_FUN(formula = ...,
-                data = ...)
-
-names(obj)       # Elements
-print(obj)       # Print
-summary(obj)     # Summary
-plot(obj)        # Plotting
-predict(obj, ..) # Predict
-```
-
-]
-
-.pull-right6[
-
-```{r, eval = TRUE}
-# Create a glm object
-my_glm <- glm(formula = income ~ happiness + age,
-              data = baselers)
-
-# print the my_glm object
-print(my_glm)
-```
-
-]
-
-
-
----
-
-# Exploring statistical objects
-
-.pull-left35[
-
-Explore statistical objects using <high>generic</high> functions such as `print()`, `summary()`, `predict()` and `plot()`.
-
-<high>Generic</high> functions different things depending on the <high>class label</high> of the object. 
-
-```{r, eval = FALSE}
-# Create statistical object
-obj <- STAT_FUN(formula = ...,
-                data = ...)
-
-names(obj)       # Elements
-print(obj)       # Print
-summary(obj)     # Summary
-plot(obj)        # Plotting
-predict(obj, ..) # Predict
-```
-
-]
-
-.pull-right6[
-
-```{r, eval = TRUE}
-# Create a glm object
-my_glm <- glm(formula = income ~ happiness + age,
-              data = baselers)
-
-# Show summary of the my_glm object
-summary(my_glm)
-```
-
-]
-
-
----
-
-# Exploring statistical objects
-
-.pull-left35[
-
-Explore statistical objects using <high>generic</high> functions such as `print()`, `summary()`, `predict()` and `plot()`.
-
-<high>Generic</high> functions different things depending on the <high>class label</high> of the object. 
-
-```{r, eval = FALSE}
-# Create statistical object
-obj <- STAT_FUN(formula = ...,
-                data = ...)
-
-names(obj)       # Elements
-print(obj)       # Print
-summary(obj)     # Summary
-plot(obj)        # Plotting
-predict(obj, ..) # Predict
-```
-
-]
-
-.pull-right6[
-
-Many <high>statistical objects are lists</high>. Show elements with `names()`, access them with <high>`$`</high>.
-
-```{r, eval = FALSE}
-# What are the named elements
-names(my_glm)
-```
- 
-```{r, echo = FALSE}
-# What are the named elements
-names(my_glm)[1:10]
-``` 
- 
-<p align="left">
-  <img src="https://raw.githubusercontent.com/therbootcamp/Erfurt_2018June/master/_sessions/_image/list_tab.png" height="180px" vspace="10px">
-</p>
- 
-
-]
-
-
----
-
-# Exploring statistical objects
-
-.pull-left35[
-
-Explore statistical objects using <high>generic</high> functions such as `print()`, `summary()`, `predict()` and `plot()`.
-
-<high>Generic</high> functions different things depending on the <high>class label</high> of the object. 
-
-```{r, eval = FALSE}
-# Create statistical object
-obj <- STAT_FUN(formula = ...,
-                data = ...)
-
-names(obj)       # Elements
-print(obj)       # Print
-summary(obj)     # Summary
-plot(obj)        # Plotting
-predict(obj, ..) # Predict
-```
-
-]
-
-.pull-right6[
-
-
-```{r, eval = FALSE}
-# Look at coefficients
-my_glm$coefficients
-```
-
-```{r, echo = FALSE}
-# Look at coefficients
-my_glm$coefficients
-```
-
-```{r, eval = FALSE}
-# First 5 fitted values
-my_glm$fitted.values
-```
-
-```{r, echo = FALSE}
-# First 5 fitted values
-my_glm$fitted.values[1:8]
-```
-
-```{r, eval = FALSE}
-# First 5 residuals
-my_glm$residuals
-```
-
-```{r, echo = FALSE}
-# First 5 residuals
-my_glm$residuals[1:6]
-```
-
-]
-
-
----
-
-# `predict()`
+# Customize formulas
 
 .pull-left4[
 
-`predict(model, newdata)` allows you to use your `model` to <high>predict outcomes</high> for `newdata`.
+<high>Explicit</high> main effects and interactions.
 
-```{r, echo = FALSE}
-lastyear <- baselers %>% slice(1:100)
-thisyear <- baselers %>% slice(101:200)
+```{r, eval = F}
+# Main effects and interactions
+lm(formula = income ~ age + 
+                      height + 
+                      age:height,
+   data = baselers)
 ```
 
-```{r, eval = FALSE}
-last_year
-```
+<br>
 
-```{r, echo = FALSE}
-lastyear  %>% select(id, age, fitness, tattoos, income) %>% 
-  slice(1:2) %>% knitr::kable(format = "markdown")
-```
+<high>Implicit</high> main effects and interactions.
 
-```{r, echo = TRUE, eval = FALSE}
-this_year
-```
-
-
-```{r, echo = FALSE}
-thisyear  %>% select(id, age, fitness, tattoos) %>% slice(1:2) %>% mutate(income = NA) %>% knitr::kable(format = "markdown")
+```{r, eval = F}
+# Main effects and interactions
+lm(formula = income ~ age*height,
+   data = baselers)
 ```
 
 
 ]
-
 
 .pull-right55[
 
-<high>Fit `model`</high> based on `leastyear`
+<br>
 
-```{r}
-# Create regression model predicting income
-model <- lm(formula = income ~ age + tattoos,
-            data = lastyear)
-
-model$coefficients
+```{r, echo = F}
+# Main effects and interactions
+lm(formula = income ~ age + 
+                      height + 
+                      age:height,
+   data = baselers)
 ```
 
-Now use `model` to <high>`predict`</high> values for `thisyear`
+<br>
 
-```{r, eval = FALSE, echo = TRUE}
-# Predict the income of people in thisyear
-predict(object = model, 
-        newdata = thisyear)
+```{r, echo = F}
+# Main effects and interactions
+lm(formula = income ~ age*height,
+   data = baselers)
 ```
 
-```{r, eval = TRUE, echo = FALSE}
-# Predict the income of people in thisyear
-predict(object = model, 
-        newdata = thisyear)[1:2]
+
+]
+
+---
+
+# Inspect model output
+
+.pull-left4[
+
+<high>Summary</high> of a model using `summary()`.
+
+```{r, eval = F}
+# Main effects and interactions
+my_lm <- lm(formula = income ~ age*height,
+            data = baselers)
+
+# model summary
+summary(my_lm)
+```
+
+]
+
+.pull-right55[
+
+```{r, echo = F}
+# Main effects and interactions
+summary(lm(formula = income ~ age*height,
+           data = baselers))
 ```
 
 ]
@@ -726,32 +429,270 @@ predict(object = model,
 
 ---
 
+# Inspect model object
+
 .pull-left4[
+
+<high>Inspect object</high> using `names()`.
+
+```{r, echo = F}
+options(width=40)
+```
+
+```{r}
+# Main effects and interactions
+my_lm <- lm(formula = income ~ age*height,
+            data = baselers)
+
+# model elements
+names(my_lm)
+```
+
+]
+
+.pull-right55[
+
+<high>Select element</high> via <mono>$</mono>.
+
+```{r, echo = F}
+options(width=50)
+```
+
+```{r}
+# Select coefficients
+my_lm$coefficients
+
+# Select residuals
+my_lm$residuals
+```
+
+]
+
+---
+
+# Inspect model object
+
+.pull-left4[
+
+<high>Inspect object</high> using `plot()`.
+
+```{r, echo = F}
+options(width=40)
+```
+
+```{r, eval = F}
+# Main effects and interactions
+my_lm <- lm(formula = income ~ age*height,
+            data = baselers)
+
+# model elements
+plot(my_lm)
+```
+
+]
+
+.pull-right55[
+
+<p align="center">
+```{r, echo = F, out.width="75%"}
+# plot my_lm  
+plot(my_lm)
+```
+</p>
+]
+
+---
+
+# Logistic regression with `glm()`
+
+.pull-left4[
+
+Specify <high>generlized linear models</high> using `glm()` and the `family` argument. 
+
+Set <highm>family = "binomial"</highm> to run logistic regressions regressions.
+
+<br>
+
+<u>Logistic model</u>
+
+<br>
+
+$$p(Y = 1) = \frac{1}{1 + \exp{(-(\boldsymbol x^T \boldsymbol \beta))}}$$
+
+]
+
+.pull-right55[
+
+```{r, echo = F}
+options(width=55)
+```
+
+```{r}
+# Logistic regression
+my_glm <- glm(formula = sex01 ~ age*height,
+              data = baselers,
+              family = "binomial")
+my_glm
+```
+
+]
+
+---
+
+# ANOVA? With `lm()` or `glm()`
+
+.pull-left4[
+
+<high>Analysis of variance</high> (ANOVA) is a (generlized linear models). 
+
+Run ANOVA using using `lm()` or `glm()` and <high>evaluate with <mono>anova()</mono></high>.
+
+<high>`Character`</high> will be interpreted <high>as `factors`</high>.
+
+]
+
+.pull-right55[
+
+```{r, echo = F}
+options(width=55)
+```
+
+```{r}
+# Anova model with education
+my_an <- lm(formula = income ~ education*height,
+            data = baselers)
+anova(my_an)
+```
+
+]
+
+
+
+---
+
+# ANOVA? With `lm()` or `glm()`
+
+.pull-left4[
+
+<high>Analysis of variance</high> (ANOVA) is a (generlized linear models). 
+
+Run ANOVA using using `lm()` or `glm()` and <high>evaluate with <mono>anova()</mono></high>.
+
+<high>`Character`</high> will be interpreted <high>as `factors`</high>.
+
+]
+
+.pull-right55[
+
+```{r, echo = F}
+options(width=55)
+```
+
+```{r}
+# Anova model with education
+my_an <- lm(formula = income ~ education*height,
+            data = baselers)
+my_an
+```
+
+]
+
+
+---
+
+# Mixed-linear models with `lmer()`
+
+.pull-left4[
+
+Mixed-linear models account for dependency structures in the data, such as when <high>repeated measures</high> or <high>multi-level assessments</high>.
+
+Run mixed models using <highm>lmer()</highm> or <highm>glmer()</highm> from the `lme4` package.
+
+Specify a <high>random model term</high> using <highm>(rand_terms|identifer)<highm>.
+
+<br>
+
+```{r, eval = F}
+# Mixed-model with education
+m <- lmer(formula = income ~ 
+            age * height + (1|eyecor),
+     data = baselers)
+
+summary(m)
+```
+
+```{r, echo = F}
+# Mixed-model with education
+m <- lmer(formula = income ~ 
+            age * height + (1|eyecor),
+     data = baselers)
+```
+
+]
+
+.pull-right55[
+
+```{r, echo = F}
+options(width=55)
+```
+
+```{r, echo = F}
+# Eval mixed model
+summary(m)
+```
+
+]
+
+
+---
+
+# Bayesian statistics
+
+.pull-left4[
+
+Bayesian statistics combine the results of classic, inferential statitics with a <high>prior</high> to compute the <high>probability of the hypothesis</high> rather than that of the data.  
+
+Packages such as <highm>BayesFactor</highm> or <highm>rstanarm</highm> make the use of Bayesian statistics as easy as that of classic, inferential statitics.
+
+<u>Bayesian model</u>
+
+$$ p(H|D) = \frac{p(D|H)*p(H)}{p(D)}  $$
+
+]
+
+.pull-right55[
+
+```{r, echo = F}
+options(width=55)
+```
+
+```{r}
+# Bayesian regression
+my_bm <- lmBF(formula = income ~ 
+              age + height + age:height,
+              data = baselers)
+summary(my_bm)
+```
+]
+
+
+
+
+---
 
 # `tidy()`
 
-The `tidy()` function from the `broom` package <high>converts</high> the most important results of many statistical object like "glm" to a <high>data frame</high>.
+.pull-left4[
 
-```{r, eval = FALSE}
-# install and load broom
-install.packages('broom')
-library(broom)
-```
-
-<p align="center">
-  <img src="https://raw.githubusercontent.com/therbootcamp/Erfurt_2018June/master/_sessions/_image/broom_hex.png" height="200px" vspace="10">
-</p>
-
+The `tidy()` function from the <highm>broom</highm> package converts model object like the result of `lm()` to a tibble.
 
 ]
 
 .pull-right55[
 
-<br><br>
-
 ```{r}
 # Original printout
-my_glm
+my_lm
 ```
 
 ```{r, echo = FALSE, message=F,warning=F}
@@ -761,123 +702,16 @@ require(broom)
 
 ```{r}
 # Tidy printout
-tidy(my_glm)
+tidy(my_lm)
 ```
 
 ]
 
----
-
-
-.pull-left4[
-
-# Other great statistics packages
-
-<br>
-
-|package|Description|
-|:----|:-----|
-|`afex`|Factorial experiments|
-|`lme4`|Mixed effects models|
-|`rstanarm`|Bayesian mixed effects models|
-|`BayesFactor`|Bayesian Models|
-|`forecast`|Time series| 
-|`lavaan`|Latent variable and structural equation modelling| 
-
-
-]
-
-
-.pull-right55[
-
-<br><br>
-
-<p align="center">
-  <img src="https://raw.githubusercontent.com/therbootcamp/Erfurt_2018June/master/_sessions/_image/BayesFactor_ss.png" height= "120px">
-</p>
-
-<p align="center">
-  <img src="https://raw.githubusercontent.com/therbootcamp/Erfurt_2018June/master/_sessions/_image/lavaan_ss.jpg" height= "320px" vspace="35px">
-</p>
-
-]
-
----
-
-# Summary
-
-.pull-left45[
-
-1 - There are <high>packages for every statistical procedure</high> you can imagine in R.
-
-2 - Most have <high>formula</high> and <high>data</high> arguments (among many others).
-
-3 - Use <high>help files</high> to understand the arguments of functions!
-
-4 - Once you've created a statistical object, use <high>generic functions</high> to explore it: `print()`, `names()`, `summary()`, etc.
-
-5 - Use <high>random sampling</high> functions to run simulations.
-
-]
-
-.pull-right5[
-
-```{r, eval = F}
-?t.test
-```
-
-<p align="left">
-  <img src="https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/ttesthelp_ss.png" height= "380px" >
-</p>
-
-]
-
----
-
-# Stats? There is a package for that!
-
-
-## REMOVE
-
-.pull-left45[
-
-<br>
-
-| Package| Models|
-|------:|:----|
-| `stats`|Generalized linear model|
-|     `afex`|   Anovas|
-|     `lme4`|   Mixed effects regression|
-|     `rpart`|    Decision Trees|
-|     `BayesFactor`| Bayesian statistics|
-|     `igraph`| Network analysis|
-|     `neuralnet`| Neural networks|
-|     `MatchIt`| Matching and causal inference|
-|     `survival`| Longitudinal survival analysis|
-|     ...| Anything you can ever want!|
-
-
-
-]
-
-.pull-right5[
-
-<p align="center">
-  <img src="https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/statistical_procedures.png" height="450px" vspace="20">
-</p>
-
-]
-
-
 
 
 ---
 
-# Practical
+class: middle, center
 
-<p>
-  <font size=6>
-    <a href="https://therbootcamp.github.io/BaselRBootcamp_2018July/_sessions/Statistics/Statistics_practical.html"><b>Link to practical<b></a>
-  </font>
-</p>
+<h1><a href="https://therbootcamp.github.io/appliedML_2019Jan/_sessions/Models/Models_practical.html">Practical</a></h1>
 
