@@ -67,49 +67,136 @@ options(max.print = 20)
 options(width=110)
 options(digits = 4)
 library(tidyverse)
-ChickWeight <- as.data.frame(ChickWeight)
+
 baselers <- read_csv("https://raw.githubusercontent.com/therbootcamp/baselers/master/inst/extdata/baselers.txt")
 
-trial_X <- data.frame(id = 1:5,
-           sex = c("m", "f", "f", "m", "f"),
-           age = c(35, 42, 24, 56, 49),
-           arm = c(1, 2, 1, 2, 1),
-           y_primary = c(50, 78, 46, 97, 74),
-           y_secondary = c(1, 1, 0, 1, 1)
-           )
+source("https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_materials/code/baselrbootcamp_palettes.R")
+
+set.seed(102)
+x <- rnorm(10)
+y <- .7 * x + rnorm(10, sd = .3) + 2
+
+data <- data.frame(x, y)
+mod <- lm(y ~ x, data = data)
+
+mediocre_intercept <- 2.5
+mediocre_slope <- -.2
+dat_medi <- data.frame(x0 = x, x1 = x,
+                           y0 = y, y1 = mediocre_intercept + mediocre_slope * x)
+
+bad_intercept <- 3.5
+bad_slope <- -.5
+dat_bad <- data.frame(x0 = x, x1 = x,
+                      y0 = y, y1 = bad_intercept + bad_slope * x)
+
+great_intercept <- mod$coefficients[1]
+great_slope <- mod$coefficients[2]
+dat_great <- data.frame(x0 = x, x1 = x,
+                        y0 = y, y1 = great_intercept + great_slope * x)
+
+
+# raw plot
+raw <- ggplot(dat_great, aes(x = x0, y = y0)) + geom_point(col = baselrbootcamp_cols("grey"), size = 2) +
+  theme_minimal() + xlim(c(-2, 3)) + ylim(c(0, 5)) +
+  labs(subtitle = 'How to best explain these point?',
+       x = "Predictor", y = "Criterion")
+
+
+medi_raw <- ggplot(dat_medi, aes(x = x0, y = y0)) + geom_point(col = baselrbootcamp_cols("grey"), size = 2) +
+  geom_abline(slope = mediocre_slope, intercept = mediocre_intercept, size = .5, linetype = 3) +
+  theme_minimal() + xlim(c(-2, 3)) + ylim(c(0, 5)) +
+  labs(subtitle = paste("Is this a good fit?"), x = "Predictor", y = "Criterion")
+
+
+great_raw <- ggplot(dat_great, aes(x = x0, y = y0)) + geom_point(col = baselrbootcamp_cols("grey"), size = 2) +
+  geom_abline(slope = great_slope, intercept = great_intercept, size = .5, linetype = 3) +
+  theme_minimal() + xlim(c(-2, 3)) + ylim(c(0, 5)) +
+  labs(subtitle = paste("Or this?"), x = "Predictor", y = "Criterion")
+
+
+bad_raw <- ggplot(dat_bad, aes(x = x0, y = y0)) + geom_point(col = baselrbootcamp_cols("grey"), size = 2) +
+  geom_abline(slope = bad_slope, intercept = bad_intercept, size = .5, linetype = 3) +
+  theme_minimal() + xlim(c(-2, 3)) + ylim(c(0, 5)) +
+  labs(subtitle = paste("Or this?"), x = "Predictor", y = "Criterion")
+
+medi_err <- medi_raw + 
+  geom_linerange(data = dat_medi, aes(x = x0, ymin = y0, ymax = y1), col = baselrbootcamp_cols("magenta")) +
+  geom_point(data = dat_medi, aes(x = x0, y = y1, size = 2), col = baselrbootcamp_cols("green"), pch = "X", size = 4) +
+    labs(subtitle = paste("Mean Squared Error (MSE) = ", round(mean((dat_medi$y1 - dat_medi$y0) ^ 2), 2)),
+       x = "Predictor", y = "Criterion")
+
+great_err <- great_raw + 
+  geom_linerange(data = dat_great, aes(x = x0, ymin = y0, ymax = y1), col = baselrbootcamp_cols("magenta")) +
+  geom_point(data = dat_great, aes(x = x0, y = y1, size = 2), col = baselrbootcamp_cols("green"), pch = "X", size = 4) +
+    labs(subtitle = paste("Mean Squared Error (MSE) = ", round(mean((dat_great$y1 - dat_great$y0) ^ 2), 2)),
+       x = "Predictor", y = "Criterion")
+
+bad_err <- bad_raw +
+    geom_linerange(data = dat_bad, aes(x = x0, ymin = y0, ymax = y1), col = baselrbootcamp_cols("magenta")) +
+    geom_point(data = dat_bad, aes(x = x0, y = y1, size = 2), col = baselrbootcamp_cols("green"), pch = "X", size = 4) +
+   labs(subtitle = paste("Mean Squared Error (MSE) = ", round(mean((dat_bad$y1 - dat_bad$y0) ^ 2), 2)),
+       x = "Predictor", y = "Criterion")
 
 knitr::opts_chunk$set(warning = FALSE)
 
 ```
 
-.pull-left45[
+.pull-left5[
 
 # Linear models
 
 
 #### <high>Run linear models</high> with `stats` including...
 
-| Function| Purpose |
-|:-----|:-------| 
-| `lm()`, `glm()`| (Generalized) linear models  |
-| `lmer()`, `glmer()` | (Generalized) mixed-linear models |
-| `stan_glm()` | Bayesian (generalized) linear models |
-
+<table>
+  <tr>
+    <td> <b>Function</b> </td>
+    <td> <b>Purpose</b> </td>
+  </tr>
+  <tr>
+    <td> <mono>lm()</mono>, <mono>glm()</mono> </td>
+    <td> (Generalized) linear models </td>
+  </tr>
+  <tr>
+    <td> <mono>lmer()</mono>, <mono>glmer()</mono> </td>
+    <td> (Generalized) mixed-linear models </td>
+  </tr>
+  <tr>
+    <td> <mono>stan_glm()</mono> </td>
+    <td> Bayesian (gen.) linear models </td>
+  </tr>
+</table>
 
 #### <high>Explore linear models</high> with `stats`
 
-| Function| Purpose |
-|:-----|:-------| 
-| `summry()`, `print()`| (Generalized) linear models  |
-| `anova()` | (Generalized) mixed-linear models |
-| `stan_glm()` | Bayesian (generalized) linear models |
+
+<table>
+  <col width="43%">
+  <col width="57%">
+  <tr>
+    <td> <b>Function</b> </td>
+    <td> <b>Purpose</b> </td>
+  </tr>
+  <tr>
+    <td> <mono>summary()</mono>, <mono>print()</mono>, <mono>coefficients()</mono></td>
+    <td> Inspect fitted coefficients </td>
+  </tr>
+  <tr>
+    <td> <mono>names()</mono>, <mono>mod$name</mono> </td>
+    <td> Inspect model object </td>
+  </tr>
+  <tr>
+    <td> <mono>plot()</mono> </td>
+    <td> Inspect default illustrations </td>
+  </tr>
+</table>
 
 ]
 
 .pull-right45[
 
 <p align = "center">
-<br>
+<br><br>
 <img src="image/curve_fitting_sm.png" height=500px><br>
 <font style="font-size:10px">adapted from <a href="https://xkcd.com/892/">xkcd.com</a></font>
 </p>
@@ -119,29 +206,97 @@ knitr::opts_chunk$set(warning = FALSE)
 
 ---
 
+# Fitting a linear model
+
+<p align="center">
+```{r, echo = FALSE, fig.width = 4.4, fig.height = 2.6, dpi = 400, out.width = "80%"}
+raw
+```
+</p>
+
+---
+
+# Fitting a linear model
+
+<p align="center">
+```{r, echo = FALSE, fig.width = 4.4, fig.height = 2.6, dpi = 400, out.width = "80%"}
+medi_raw
+```
+</p>
+
+---
+
+# Fitting a linear model
+
+<p align="center">
+```{r, echo = FALSE, fig.width = 4.4, fig.height = 2.6, dpi = 400, out.width = "80%"}
+bad_raw
+```
+</p>
+
+---
+
+# Fitting a linear model
+
+<p align="center">
+```{r, echo = FALSE, fig.width = 4.4, fig.height = 2.6, dpi = 400, out.width = "80%"}
+great_raw
+```
+</p>
+
+
+---
+
+# Fitting a linear model
+
+<p align="center">
+```{r, echo = FALSE, fig.width = 4.4, fig.height = 2.6, dpi = 400, out.width = "80%"}
+medi_err
+```
+</p>
+
+
+---
+
+# Fitting a linear model
+
+<p align="center">
+```{r, echo = FALSE, fig.width = 4.4, fig.height = 2.6, dpi = 400, out.width = "80%"}
+bad_err
+```
+</p>
+
+---
+
+# Fitting a linear model
+
+<p align="center">
+```{r, echo = FALSE, fig.width = 4.4, fig.height = 2.6, dpi = 400, out.width = "80%"}
+great_err
+```
+</p>
 
 ---
 
 # Basic structure of statistical functions
 
-.pull-left4[
+.pull-left3[
 
-Statistical functions always require a <high>data frame</high> called `data`, e.g.,...
+Statistical functions work with two types of objects... 
 
-```{r, echo = FALSE}
-baselers %>%
-  slice(1:3) %>% select(2:6) %>% knitr::kable(format = 'markdown')
-```
+
+(1) A <high>`tibble`</high> in place of the `data` argument.
+
+(2) A <high>`formula`</high> in place of the `formula` argument.
+
 <br>
-They also require a <high>formula</high> that specifies a <high>dependent</high> variable (y) as a function of one or more <high>independent</high> variables (x1, x2, ...) in the form:
+<high>`Formulas`</high> specifies a <high>criterion</high> (y) as a function of one or more <high>predictors</high> (x1, x2, ...) in the form:
 
-<p align='center'><font size = 6>formula = y ~ x1 + x2 +...</font></p>
+<mono>formula = y ~ x1 + x2 +...<mono>
 
 ]
 
-.pull-right55[
-
-How to create a statistical object:
+.pull-right65[
 
 ```{r}
 # Example: Create regression object (my_glm)
@@ -149,12 +304,9 @@ my_glm <- glm(formula = income ~ age + height,
               data = baselers)
 ```
 
-
-```{r, echo = FALSE}
-knitr::include_graphics("https://raw.githubusercontent.com/therbootcamp/Erfurt_2018June/master/_sessions/_image/formula_description.png")
-```
-
-
+<p align="center">
+<img src="https://raw.githubusercontent.com/therbootcamp/Erfurt_2018June/master/_sessions/_image/formula_description.png">
+</p>
 
 ]
 
