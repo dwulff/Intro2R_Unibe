@@ -1,7 +1,6 @@
 # BernR Verteilung
 
 ## Day 1
-
 Welcome MSM
 Intro2R DUW
 Data MSM
