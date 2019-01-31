@@ -23,7 +23,7 @@ daily_single_ag <- get_power(community = "AG",
 
 class(daily_single_ag) <- c("tbl_df", "tbl", "data.frame")
 
-write_csv('daily_single_ag', '')
+write_csv(daily_single_ag, '1_Data/brazil_wheather.csv')
 
 
 # 1. Daten einlesen

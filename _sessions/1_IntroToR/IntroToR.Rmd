@@ -1043,29 +1043,16 @@ See also <a href="http://style.tidyverse.org/">style.tidyverse.org/</a>
 
 ---
 
-# Essentials: Lesson 17
-
-.pull-left4[
-<font size=8><high>Struggle,<br>ask for help,<br>struggle,<br>...</high></font>
-]
-.pull-right5[
-<p align="center">
-<img src="https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/struggle.png" width="420">
-</p>
-]
-
----
-
 # Downloads
 
 <font size="6" color="#F62D73"><a href="https://raw.githubusercontent.com/therbootcamp/Intro2DataScience_2018Oct/master/_sessions/_data/baselrbootcamp_data.zip">Data sets</a></font>
 
 ---
 
-# Interactive session
+class: middle, center
 
-<font size=6><high>Install (R)studio...(if not already done)</high></font>
-<br>
-<font size=6><high>Open up Rstudio...</high></font>
+<h1> Questions?</h1>
+
+<h1><a href=https://therbootcamp.github.io/appliedML_2019Jan/_sessions/Fitting/Fitting_practical.html>Practical</a></h1>
 
 
