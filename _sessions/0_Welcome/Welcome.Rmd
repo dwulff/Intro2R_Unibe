@@ -96,23 +96,6 @@ Click the "Start Bootcamp" link in Ilias!
 
 ]
 
-
----
-
-.pull-left25[
-
-# What is Data Science?
-
-]
-
-.pull-right75[
-<br>
-<p align = "center">
-<img src="http://sudeep.co/images/post_images/2018-02-09-Understanding-the-Data-Science-Lifecycle/chart.png" height="550"><br>
-<font size=3><a href = "http://sudeep.co/">Source</a></font>
-</p>
-]
-
 ---
 
 
@@ -154,8 +137,10 @@ We have an <high>ambitious schedule</high>!
 
 .pull-right4[
 
-<p align="center"><img src="image/schedule.png" height="550"></p>
-<center><font size = 3></font></center>
+<p align="center">
+  <img src="image/schedule.png" height="550">
+  <font size = 3></font>
+</p>
 
 ]
 
