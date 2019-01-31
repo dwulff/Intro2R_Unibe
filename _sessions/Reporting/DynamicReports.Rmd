@@ -1,8 +1,23 @@
 ---
 title: "Dynamic Reports"
 subtitle: "with R Markdown"
-author: "Basel R Bootcamp<br/><a href='https://therbootcamp.github.io'>www.therbootcamp.com</a><br/><a href='https://twitter.com/therbootcamp'>@therbootcamp</a>"
-date: "July 2018"
+author: "<a href='https://therbootcamp.github.io'>
+    R Bootcamp Bern
+  </a>
+  <br>
+  <a href='https://dwulff.github.io/Intro2R_Unibe/'>
+    <i class='fas fa-clock' style='font-size:.9em;'></i>
+  </a>&#8239; 
+  <a href='https://therbootcamp.github.io'>
+    <i class='fas fa-home' style='font-size:.9em;' ></i>
+  </a>&#8239;
+  <a href='mailto:therbootcamp@gmail.com'>
+    <i class='fas fa-envelope' style='font-size: .9em;'></i>
+  </a>&#8239;
+  <a href='https://www.linkedin.com/company/basel-r-bootcamp/'>
+    <i class='fab fa-linkedin' style='font-size: .9em;'></i>
+  </a>"
+date: "February 2019"
 output:
   xaringan::moon_reader:
     css: ["default", "baselrbootcamp.css"]
@@ -16,14 +31,25 @@ output:
 
 layout: true
 
-<div class="my-footer"><span>
-<a href="https://therbootcamp.github.io/"><font color="#7E7E7E">BaselRBootcamp, July 2018</font></a>
-&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
-&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
-&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
-&emsp;&emsp;&emsp;&emsp;&emsp;
-<a href="https://therbootcamp.github.io/"><font color="#7E7E7E">www.therbootcamp.com</font></a>
-</span></div> 
+<div class="my-footer">
+  <span style="text-align:center">
+    <span> 
+      <img src="https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/by-sa.png" height=14 style="vertical-align: middle"/>
+    </span>
+    <a href="https://therbootcamp.github.io/">
+      <span style="padding-left:82px"> 
+        <font color="#7E7E7E">
+          www.therbootcamp.com
+        </font>
+      </span>
+    </a>
+    <a href="https://therbootcamp.github.io/">
+      <font color="#7E7E7E">
+       Introduction to R | February 2019
+      </font>
+    </a>
+    </span>
+  </div> 
 
 ---
 
@@ -59,12 +85,10 @@ knitr::include_graphics("https://raw.githubusercontent.com/therbootcamp/therboot
 
 
 ---
-
-
-.pull-left5[
+.pull-left55[
 <br><br>
-## What is wrong?
-
+## What is wrong with this approach?
+ 
 Many opportunities for <high>human error</high> in transferring results.
 
 > Wait is the p-value .07 or 0.70?
@@ -76,7 +100,7 @@ Many opportunities for <high>human error</high> in transferring results.
 <high>Slow</high> 
 > You want me to do that analysis again with new data?! Do you know how long that took me?!
 
-### The solution? A Dynamic Report
+## The solution? A Dynamic Report
 
 ]
 
@@ -89,12 +113,10 @@ knitr::include_graphics("https://raw.githubusercontent.com/therbootcamp/therboot
 
 ]
 
-
-
 ---
 ## Dynamic report
 
-A <high>Dynamic Report</high> <u>automatically generates</u> output from a combination of data, code, images, and text.
+A <high>Dynamic Report</high> automatically generates output from a combination of code + data, images, and text.
 
 ```{r, echo = FALSE}
 knitr::include_graphics("https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/DynamicReports_ProcessHorizontal.png")
@@ -109,19 +131,17 @@ knitr::include_graphics("https://raw.githubusercontent.com/therbootcamp/therboot
 <br>
 <high>Accurate</high>
 
-- Statistical output are never mistyped
-- The code *must* be correct because it is being run as the report is created.
+- No transfer errors from output to final document.
+- The R code always matches the final document. 
 
 <high>Reproducible</high>
 
-- All processes are contained in code that anyone can see and run.
-- The code *must* be correct because it is evaluated as the report is created.
-- Original data is always connected to the final output
+- All processes are contained in one pices of code that anyone can examine and run.
+- Original data + transformations, aggregation ... is directly connected to the final output
 
 <high>Efficient</high>
 
 - If you get new data, you can easily repeat your analyses with one click!
-
 
 ]
 
@@ -131,15 +151,12 @@ knitr::include_graphics("https://raw.githubusercontent.com/therbootcamp/therboot
 knitr::include_graphics("https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/DynamicReports_ProcessVertical.png")
 ```
 
-
-
-
 ]
 
 
 ---
 
-## What dynamic reports can I make in R?
+## What are common output formats for a dynamic report?
 
 .pull-left45[
 <br><br>
@@ -149,12 +166,12 @@ knitr::include_graphics("https://raw.githubusercontent.com/therbootcamp/therboot
 |Web (HTML) pages |[Websites from Markdown](http://rmarkdown.rstudio.com/rmarkdown_websites.html) |
 |PDF documents | [PDFs from Markdown](http://rmarkdown.rstudio.com/pdf_document_format.html) |
 |Slideshows | [Slide Ninja from xaringan!](https://github.com/yihui/xaringan) |
-|Shiny Apps | [https://shiny.rstudio.com/](https://shiny.rstudio.com/) |
+|Shiny Apps | [Dynamic web applications](https://shiny.rstudio.com/) |
 |Books | [bookdown.org](http://bookdown.org) |
-|R Packages | [Wickham package writing guide](http://r-pkgs.had.co.nz/) |
+|R Packages | [Pkgdown - documentation](https://pkgdown.r-lib.org) |
 
 
-### Underneath everything...
+### Underneath everything ...
 
 # R Markdown
 
@@ -173,7 +190,7 @@ knitr::include_graphics("https://raw.githubusercontent.com/therbootcamp/therboot
 
 ## What is Markdown (.md)?
 
-Markdown is a simple, readable markup <high>language</high> that allows you to easily write text with special <high>formatting tags</high>, which are then converted to formatted outputs.
+Markdown is a simple, lightweight markup <high>language</high> that allows you to easily write text with special <high>formatting tags</high>, which are then converted to formatted outputs.
 
 
 ```{r, echo = FALSE, out.width = "90%"}
@@ -210,7 +227,7 @@ knitr::include_graphics("https://raw.githubusercontent.com/therbootcamp/therboot
 
 .pull-left4[
 
-Incorporate code in your document in <high>code chunks</high>
+Add R code to your document in <high>code chunks</high>
 
 Everything in a code chunk will be evaluated when you "knit" the document
 
@@ -255,9 +272,6 @@ knitr::include_graphics("https://raw.githubusercontent.com/therbootcamp/therboot
 knitr::include_graphics("https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/minichunk_big_ss.png")
 ```
 
-
-
-
 ---
 
 
@@ -268,12 +282,12 @@ knitr::include_graphics("https://raw.githubusercontent.com/therbootcamp/therboot
 
 <br>
 
+1. All raw data files (.csv, .sav, etc) should be in a folder (e.g.; `1_Data`) in your R Project directory
 
-1. Easily read in external files like images, R code, or datasets in your R Markdown document.
+2. Keep other files such as images (.jpg, .png) in a different  folder (e.g.; `0_Materials` or `4_Images`)
 
-2. All raw data files (.csv, .sav, etc) should be in a folder (e.g.; `1_Data`) in your R Project directory
+3. Put the .Rmd file in the project's main directory for clean referencing
 
-3. Keep other files such as images (.jpg, .png) in another well named folder (e.g.; `0_Materials` or `4_Images`)
 <br><br>
 
 
@@ -282,7 +296,7 @@ knitr::include_graphics("https://raw.githubusercontent.com/therbootcamp/therboot
 .pull-right55[
 <br><br>
 
-<center><h3>Everything in your project!!</h3>
+<center><h3>Put everything into your project folder!!</h3>
 <center><high>Every</high> file (data, images) necessary to create your RMarkdown document should be somewhere <high>in your R project folder</high>!
 
 ```{r, echo = FALSE, out.width="100%", fig.align = 'center'}
@@ -296,24 +310,21 @@ knitr::include_graphics("https://github.com/therbootcamp/therbootcamp.github.io/
 
 When you knit a Markdown file, R will <high>forget</high> everything you've done and <high>start from scratch</high> 
 
-You must <high>load all packages</high> with `library()` and <high>define all objects</high>
 
 ```{r, echo = FALSE, out.width = "95%"}
 knitr::include_graphics("https://github.com/therbootcamp/therbootcamp.github.io/blob/master/_sessions/_image/DynamicReports_badknit.png?raw=true")
 ```
-
 
 ---
 ## Your code must be complete!
 
 When you knit a Markdown file, R will <high>forget</high> everything you've done and <high>start from scratch</high> 
 
-You must <high>load all packages</high> with `library()` and <high>define all objects</high>
+You must <high>load all packages</high> with `library()` and <high>define all objects</high> to use them during knitting!
 
 ```{r, echo = FALSE, out.width = "95%"}
 knitr::include_graphics("https://github.com/therbootcamp/therbootcamp.github.io/blob/master/_sessions/_image/DynamicReports_goodknit.png?raw=true")
 ```
-
 
 ---
 
@@ -331,7 +342,7 @@ knitr::include_graphics("https://raw.githubusercontent.com/therbootcamp/therboot
 
 .pull-right45[
 
-If you want to save some code for you, comment it out with \#
+If you want to save some code for yourself, comment it out with \#
 
 ```{r, echo = FALSE, out.width="100%", fig.align = 'center'}
 knitr::include_graphics("https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/DynamicReports_GoodMarkdown.png")
