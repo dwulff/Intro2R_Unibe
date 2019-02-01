@@ -159,7 +159,7 @@ There are many good reasons to prefer R over superficially more user friendly so
 
 .pull-right45[
 ### Con
-Sometimes slow and awkward, but... 
+Some consider it slow and convuluted, but... 
 
 [Tidyverse](https://www.tidyverse.org/)
 [Rcpp](http://www.rcpp.org/), [BH](https://cran.r-project.org/web/packages/BH/index.html): Links R to C++ and high-performance C++ libraries<br>
@@ -256,26 +256,18 @@ require(package_name)
 
 ]
 
-
 ---
 
-# RStudio: R's favorite environment
-
-Next to many useful packages, R users greatly benefit from R's integrated development environment [**RStudio**](https://www.rstudio.com/). Rstudio is a **graphical user interface** that allows you to (a) edit code, (b) run code, (c) access files and history, and (d) create plots. RStudio also helps you with **project management**, **version control** via [Github](https://github.com/), writing **reports** using [markdown](http://rmarkdown.rstudio.com/authoring_basics.html) and [knitr](https://yihui.name/knitr/), and many other aspects of working with R.  
-
-<p align="center"><img src="https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/rstudio_plus.png" height="360"></p>
-
-
----
 <div class="center_text">
   <span>
-  The 2<sup>4</sup> Lessons of the R Bootcamp
+  12 basic R lessons
   </span>
 </div> 
 
+
 ---
 
-# Essentials: The 2<sup>4</sup> Lessons of the R Bootcamp
+# Essentials: 12 basic R lessons
 
 .pull-left4[
 1. Everything is an object
@@ -287,37 +279,31 @@ Next to many useful packages, R users greatly benefit from R's integrated develo
 7. Functions expect certain object classes
 8. View help files using `?`
 9. Study errors and warnings
-10. Data is stored in data frames
-11. Select variables (vectors) using `$`
-12. Use RStudio and projects
-13. Use editor and shortcuts
-14. First load packages and data
-15. Use auto-complete
-16. Comment and format for readability
+10. Use RStudio and projects
+11. Use editor, shortcuts, and auto-complete
+12. Comment and format for readability
 ]
+
 
 ---
 
-# Essentials: The 2<sup>4</sup> Lessons of the R Bootcamp
+# Essentials: 12 basic R lessons
 
 .pull-left4[
 1. <high>Everything is an object</high>
-2. <high>Use <- to create/change objects</high>
-3. <high>Name objects using _</high>
+2. <high>Use `<-` to create/change objects</high>
+3. <high>Name objects using `_`</high>
 4. Objects have classes
 5. Everything happens through functions
 6. Functions have (default) arguments
 7. Functions expect certain object classes
 8. View help files using `?`
 9. Study errors and warnings
-10. Data is stored in data frames
-11. Select variables (vectors) using `$`
-12. Use RStudio and projects
-13. Use editor and shortcuts
-14. First load packages and data
-15. Use auto-complete
-16. Comment and format for readability
+10. Use RStudio and projects
+11. Use editor, shortcuts, and auto-complete
+12. Comment and format for readability
 ]
+
 
 .pull-right5[
 ```{r}
@@ -341,7 +327,7 @@ some_name
 
 ---
 
-# Essentials: The 2<sup>4</sup> Lessons of the R Bootcamp
+# Essentials: 12 basic R lessons
 
 .pull-left4[
 1. Everything is an object
@@ -353,14 +339,12 @@ some_name
 7. Functions expect certain object classes
 8. View help files using `?`
 9. Study errors and warnings
-10. Data is stored in data frames
-11. Select variables (vectors) using `$`
-12. Use RStudio and projects
-13. Use editor and shortcuts
-14. First load packages and data
-15. Use auto-complete
-16. Comment and format for readability
+10. Use RStudio and projects
+11. Use editor, shortcuts, and auto-complete
+12. Comment and format for readability
 ]
+
+
 
 .pull-right5[
 ```{r, echo=F,message=F,warning=F}
@@ -384,7 +368,7 @@ class(tibble())
 
 ---
 
-# Essentials: The 2<sup>4</sup> Lessons of the R Bootcamp
+# Essentials: 12 basic R lessons
 
 .pull-left4[
 1. Everything is an object
@@ -396,14 +380,12 @@ class(tibble())
 7. Functions expect certain object classes
 8. View help files using `?`
 9. Study errors and warnings
-10. Data is stored in data frames
-11. Select variables (vectors) using `$`
-12. Use RStudio and projects
-13. Use editor and shortcuts
-14. First load packages and data
-15. Use auto-complete
-16. Comment and format for readability
+10. Use RStudio and projects
+11. Use editor, shortcuts, and auto-complete
+12. Comment and format for readability
 ]
+
+
 
 .pull-right5[
 ```{r}
@@ -424,7 +406,7 @@ class(some_name)
 
 ---
 
-# Essentials: The 2<sup>4</sup> Lessons of the R Bootcamp
+# Essentials: 12 basic R lessons
 
 .pull-left4[
 1. Everything is an object
@@ -436,14 +418,11 @@ class(some_name)
 7. Functions expect certain object classes
 8. View help files using `?`
 9. Study errors and warnings
-10. Data is stored in data frames
-11. Select variables (vectors) using `$`
-12. Use RStudio and projects
-13. Use editor and shortcuts
-14. First load packages and data
-15. Use auto-complete
-16. Comment and format for readability
+10. Use RStudio and projects
+11. Use editor, shortcuts, and auto-complete
+12. Comment and format for readability
 ]
+
 
 .pull-right5[
 ```{r, error=TRUE,tidy=T}
@@ -464,7 +443,7 @@ mean(c(1, 2, 3, NA), na.rm = TRUE)
 
 ---
 
-# Essentials: The 2<sup>4</sup> Lessons of the R Bootcamp
+# Essentials: 12 basic R lessons
 
 .pull-left4[
 1. Everything is an object
@@ -476,14 +455,11 @@ mean(c(1, 2, 3, NA), na.rm = TRUE)
 7. <high>Functions expect certain object classes</high>
 8. View help files using `?`
 9. Study errors and warnings
-10. Data is stored in data frames
-11. Select variables (vectors) using `$`
-12. Use RStudio and projects
-13. Use editor and shortcuts
-14. First load packages and data
-15. Use auto-complete
-16. Comment and format for readability
+10. Use RStudio and projects
+11. Use editor, shortcuts, and auto-complete
+12. Comment and format for readability
 ]
+
 
 .pull-right5[
 ```{r, error=TRUE,warning=F}
@@ -501,26 +477,23 @@ mean(c(1, 2, 3), na.rm = "test")
 
 ---
 
-# Essentials: The 2<sup>4</sup> Lessons of the R Bootcamp
+# Essentials: 12 basic R lessons
 
 .pull-left4[
 1. Everything is an object
 2. Use `<-` to create/change objects
 3. Name objects using `_`
 4. Objects have classes
-5. Everything happens through functions</font></b>
+5. Everything happens through functions
 6. Functions have (default) arguments
 7. Functions expect certain object classes
-8. <high>View help files using ? </high>
+8. <high>View help files using `?`</high>
 9. Study errors and warnings
-10. Data is stored in data frames
-11. Select variables (vectors) using `$`
-12. Use RStudio and projects
-13. Use editor and shortcuts
-14. First load packages and data
-15. Use auto-complete
-16. Comment and format for readability
+10. Use RStudio and projects
+11. Use editor, shortcuts, and auto-complete
+12. Comment and format for readability
 ]
+
 
 .pull-right5[
 ```{r}
@@ -531,25 +504,21 @@ mean(c(1, 2, 3), na.rm = "test")
 
 ---
 
-# Essentials: The 2<sup>4</sup> Lessons of the R Bootcamp
+# Essentials: 12 basic R lessons
 
 .pull-left4[
 1. Everything is an object
 2. Use `<-` to create/change objects
 3. Name objects using `_`
 4. Objects have classes
-5. Everything happens through functions</font></b>
+5. Everything happens through functions
 6. Functions have (default) arguments
 7. Functions expect certain object classes
-8. <high>View help files using ?</high>
+8. <high>View help files using `?`</high>
 9. Study errors and warnings
-10. Data is stored in data frames
-11. Select variables (vectors) using `$`
-12. Use RStudio and projects
-13. Use editor and shortcuts
-14. First load packages and data
-15. Use auto-complete
-16. Comment and format for readability
+10. Use RStudio and projects
+11. Use editor, shortcuts, and auto-complete
+12. Comment and format for readability
 ]
 
 .pull-right5[
@@ -561,25 +530,21 @@ mean(c(1, 2, 3), na.rm = "test")
 
 ---
 
-# Essentials: The 2<sup>4</sup> Lessons of the R Bootcamp
+# Essentials: 12 basic R lessons
 
 .pull-left4[
 1. Everything is an object
 2. Use `<-` to create/change objects
 3. Name objects using `_`
 4. Objects have classes
-5. Everything happens through functions</font></b>
+5. Everything happens through functions
 6. Functions have (default) arguments
 7. Functions expect certain object classes
 8. View help files using `?`
-9. <high>Study errors and warnings</high> 
-10. Data is stored in data frames
-11. Select variables (vectors) using `$`
-12. Use RStudio and projects
-13. Use editor and shortcuts
-14. First load packages and data
-15. Use auto-complete
-16. Comment and format for readability
+9. <high>Study errors and warnings</high>
+10. Use RStudio and projects
+11. Use editor, shortcuts, and auto-complete
+12. Comment and format for readability
 ]
 
 .pull-right5[
@@ -609,25 +574,21 @@ lenth(1)
 
 ---
 
-# Essentials: The 2<sup>4</sup> Lessons of the R Bootcamp
+# Essentials: 12 basic R lessons
 
 .pull-left4[
 1. Everything is an object
 2. Use `<-` to create/change objects
 3. Name objects using `_`
 4. Objects have classes
-5. Everything happens through functions</font></b>
+5. Everything happens through functions
 6. Functions have (default) arguments
 7. Functions expect certain object classes
 8. View help files using `?`
-9. <high>Study errors and warnings</high> 
-10. Data is stored in data frames
-11. Select variables (vectors) using `$`
-12. Use RStudio and projects
-13. Use editor and shortcuts
-14. First load packages and data
-15. Use auto-complete
-16. Comment and format for readability
+9. <high>Study errors and warnings</high>
+10. Use RStudio and projects
+11. Use editor, shortcuts, and auto-complete
+12. Comment and format for readability
 ]
 
 .pull-right5[
@@ -648,101 +609,21 @@ lenth(1)
 
 ---
 
-# Essentials: The 2<sup>4</sup> Lessons of the R Bootcamp
+# Essentials: 12 basic R lessons
 
 .pull-left4[
 1. Everything is an object
 2. Use `<-` to create/change objects
 3. Name objects using `_`
 4. Objects have classes
-5. Everything happens through functions</font></b>
+5. Everything happens through functions
 6. Functions have (default) arguments
 7. Functions expect certain object classes
 8. View help files using `?`
 9. Study errors and warnings
-10. <high>Data is stored in data frames</high>
-11. Select variables (vectors) using `$`
-12. Use RStudio and projects
-13. Use editor and shortcuts
-14. First load packages and data
-15. Use auto-complete
-16. Comment and format for readability
-]
-
-.pull-right5[
-```{r, echo=FALSE,eval=T,warning=F,message=F,error=T}
-require(tibble)
-options(tibble.width = 48, tibble.max_extra_cols = 0)
-```
-
-```{r, error=T}
-print(baselers)
-```
-]
-
----
-
-# Essentials: The 2<sup>4</sup> Lessons of the R Bootcamp
-
-.pull-left4[
-1. Everything is an object
-2. Use `<-` to create/change objects
-3. Name objects using `_`
-4. Objects have classes
-5. Everything happens through functions</font></b>
-6. Functions have (default) arguments
-7. Functions expect certain object classes
-8. View help files using `?`
-9. Study errors and warnings
-10. Data is stored in data frames
-11. <high>Select variables (vectors) using $</high>
-12. Use RStudio and projects
-13. Use editor and shortcuts
-14. First load packages and data
-15. Use auto-complete
-16. Comment and format for readability
-]
-
-.pull-right5[
-```{r, echo=FALSE,eval=T,warning=F,message=F}
-options(max.print=8,width=48)
-```
-
-```{r}
-# select sex veriable using $
-baselers$sex
-
-# Wherever possible, AVOID...
-baselers[['sex']]
-baselers[[2]]
-```
-
-```{r, echo=FALSE,eval=T,warning=F,message=F}
-options(max.print=100,width=110)
-```
-]
-
----
-
-# Essentials: The 2<sup>4</sup> Lessons of the R Bootcamp
-
-.pull-left4[
-1. Everything is an object
-2. Use `<-` to create/change objects
-3. Name objects using `_`
-4. Objects have classes
-5. Everything happens through functions</font></b>
-6. Functions have (default) arguments
-7. Functions expect certain object classes
-8. View help files using `?`
-9. Study errors and warnings
-10. Data is stored in data frames
-11. Select variables (vectors) using `$`
-12. <high>Use RStudio and projects</high>
-13. Use editor and shortcuts
-14. First load packages and data
-15. Use auto-complete
-16. Comment and format for readability
+10. <high>Use RStudio and projects</high>
+11. Use editor, shortcuts, and auto-complete
+12. Comment and format for readability
 ]
 
 .pull-right5[
@@ -753,25 +634,21 @@ save workspace and history &#9679; set project specific options &#9679; access f
 
 ---
 
-# Essentials: The 2<sup>4</sup> Lessons of the R Bootcamp
+# Essentials: 12 basic R lessons
 
 .pull-left4[
 1. Everything is an object
 2. Use `<-` to create/change objects
 3. Name objects using `_`
 4. Objects have classes
-5. Everything happens through functions</font></b>
+5. Everything happens through functions
 6. Functions have (default) arguments
 7. Functions expect certain object classes
 8. View help files using `?`
 9. Study errors and warnings
-10. Data is stored in data frames
-11. Select variables (vectors) using `$`
-12. <high>Use RStudio and projects</high>
-13. Use editor and shortcuts
-14. First load packages and data
-15. Use auto-complete
-16. Comment and format for readability
+10. <high>Use RStudio and projects</high>
+11. Use editor, shortcuts, and auto-complete
+12. Comment and format for readability
 ]
 
 .pull-right5[
@@ -786,28 +663,22 @@ Complement projects by a <high>folder structure</high> appropriate for your proj
 
 ---
 
-# Essentials: The 2<sup>4</sup> Lessons of the R Bootcamp
+# Essentials: 12 basic R lessons
 
 .pull-left4[
 1. Everything is an object
 2. Use `<-` to create/change objects
 3. Name objects using `_`
 4. Objects have classes
-5. Everything happens through functions</font></b>
+5. Everything happens through functions
 6. Functions have (default) arguments
 7. Functions expect certain object classes
 8. View help files using `?`
 9. Study errors and warnings
-10. Data is stored in data frames
-11. Select variables (vectors) using `$`
-12. Use RStudio and projects
-13. <high>Use editor and shortcuts</high>
-14. First load packages and data
-15. Use auto-complete
-16. Comment and format for readability
+10. Use RStudio and projects
+11. <high>Use editor, shortcuts, and auto-complete</high>
+12. Comment and format for readability
 ]
-
-
 
 .pull-right5[
 
@@ -820,28 +691,22 @@ Shortcut to <high>rerun chunk</high>:<br><br2><font size = 6>  &#8984;/ctrl + &#
 
 ---
 
-# Essentials: The 2<sup>4</sup> Lessons of the R Bootcamp
+# Essentials: 12 basic R lessons
 
 .pull-left4[
 1. Everything is an object
 2. Use `<-` to create/change objects
 3. Name objects using `_`
 4. Objects have classes
-5. Everything happens through functions</font></b>
+5. Everything happens through functions
 6. Functions have (default) arguments
 7. Functions expect certain object classes
 8. View help files using `?`
 9. Study errors and warnings
-10. Data is stored in data frames
-11. Select variables (vectors) using `$`
-12. Use RStudio and projects
-13. Use editor and shortcuts
-14. <high>First load packages and data</high>
-15. Use auto-complete
-16. Comment and format for readability
+10. Use RStudio and projects
+11. <high>Use editor, shortcuts, and auto-complete</high>
+12. Comment and format for readability
 ]
-
-
 
 .pull-right5[
 
@@ -863,25 +728,21 @@ baselers <- read_delim("baselers.txt",
 
 ---
 
-# Essentials: The 2<sup>4</sup> Lessons of the R Bootcamp
+# Essentials: 12 basic R lessons
 
 .pull-left4[
 1. Everything is an object
 2. Use `<-` to create/change objects
 3. Name objects using `_`
 4. Objects have classes
-5. Everything happens through functions</font></b>
+5. Everything happens through functions
 6. Functions have (default) arguments
 7. Functions expect certain object classes
 8. View help files using `?`
 9. Study errors and warnings
-10. Data is stored in data frames
-11. Select variables (vectors) using `$`
-12. Use RStudio and projects
-13. Use editor and shortcuts
-14. First load packages and data
-15. <high>Use auto-complete</high>
-16. Comment and format for readability
+10. Use RStudio and projects
+11. <high>Use editor, shortcuts, and auto-complete</high>
+12. Comment and format for readability
 ]
 
 .pull-right55[
@@ -892,25 +753,21 @@ baselers <- read_delim("baselers.txt",
 
 ---
 
-# Essentials: The 2<sup>4</sup> Lessons of the R Bootcamp
+# Essentials: 12 basic R lessons
 
 .pull-left4[
 1. Everything is an object
 2. Use `<-` to create/change objects
 3. Name objects using `_`
 4. Objects have classes
-5. Everything happens through functions</font></b>
+5. Everything happens through functions
 6. Functions have (default) arguments
 7. Functions expect certain object classes
 8. View help files using `?`
 9. Study errors and warnings
-10. Data is stored in data frames
-11. Select variables (vectors) using `$`
-12. Use RStudio and projects
-13. Use editor and shortcuts
-14. First load packages and data
-15. <high>Use auto-complete</high>
-16. Comment and format for readability
+10. Use RStudio and projects
+11. <high>Use editor, shortcuts, and auto-complete</high>
+12. Comment and format for readability
 ]
 
 .pull-right55[
@@ -921,26 +778,23 @@ baselers <- read_delim("baselers.txt",
 
 ---
 
-# Essentials: The 2<sup>4</sup> Lessons of the R Bootcamp
+# Essentials: 12 basic R lessons
 
 .pull-left4[
 1. Everything is an object
 2. Use `<-` to create/change objects
 3. Name objects using `_`
 4. Objects have classes
-5. Everything happens through functions</font></b>
+5. Everything happens through functions
 6. Functions have (default) arguments
 7. Functions expect certain object classes
 8. View help files using `?`
 9. Study errors and warnings
-10. Data is stored in data frames
-11. Select variables (vectors) using `$`
-12. Use RStudio and projects
-13. Use editor and shortcuts
-14. First load packages and data
-15. <high>Use auto-complete</high>
-16. Comment and format for readability
+10. Use RStudio and projects
+11. <high>Use editor, shortcuts, and auto-complete</high>
+12. Comment and format for readability
 ]
+
 
 .pull-right55[
 
@@ -950,26 +804,23 @@ baselers <- read_delim("baselers.txt",
 
 ---
 
-# Essentials: The 2<sup>4</sup> Lessons of the R Bootcamp
+# Essentials: 12 basic R lessons
 
 .pull-left4[
 1. Everything is an object
 2. Use `<-` to create/change objects
 3. Name objects using `_`
 4. Objects have classes
-5. Everything happens through functions</font></b>
+5. Everything happens through functions
 6. Functions have (default) arguments
 7. Functions expect certain object classes
 8. View help files using `?`
 9. Study errors and warnings
-10. Data is stored in data frames
-11. Select variables (vectors) using `$`
-12. Use RStudio and projects
-13. Use editor and shortcuts
-14. First load packages and data
-15. Use auto-complete
-16. <high>Comment and format for readability</high>
+10. Use RStudio and projects
+11. Use editor, shortcuts, and auto-complete
+12. <high>Comment and format for readability</high>
 ]
+
 
 .pull-right5[
 ## Bad
@@ -995,25 +846,21 @@ my_data %>%
 
 ---
 
-# Essentials: The 2<sup>4</sup> Lessons of the R Bootcamp
+# Essentials: 12 basic R lessons
 
 .pull-left4[
 1. Everything is an object
 2. Use `<-` to create/change objects
 3. Name objects using `_`
 4. Objects have classes
-5. Everything happens through functions</font></b>
+5. Everything happens through functions
 6. Functions have (default) arguments
 7. Functions expect certain object classes
 8. View help files using `?`
 9. Study errors and warnings
-10. Data is stored in data frames
-11. Select variables (vectors) using `$`
-12. Use RStudio and projects
-13. Use editor and shortcuts
-14. First load packages and data
-15. Use auto-complete
-16. <high>Comment and format for readability</high>
+10. Use RStudio and projects
+11. Use editor, shortcuts, and auto-complete
+12. <high>Comment and format for readability</high>
 ]
 
 .pull-right5[
@@ -1043,16 +890,14 @@ See also <a href="http://style.tidyverse.org/">style.tidyverse.org/</a>
 
 ---
 
-# Downloads
+class: middle, center
 
-<font size="6" color="#F62D73"><a href="https://raw.githubusercontent.com/therbootcamp/Intro2DataScience_2018Oct/master/_sessions/_data/baselrbootcamp_data.zip">Data sets</a></font>
+<h1><a href=https://therbootcamp.github.io/appliedML_2019Jan/_sessions/Fitting/Fitting_practical.html>Downloads</a></h1>
 
 ---
 
 class: middle, center
 
-<h1> Questions?</h1>
-
-<h1><a href=https://therbootcamp.github.io/appliedML_2019Jan/_sessions/Fitting/Fitting_practical.html>Practical</a></h1>
+<h1><a>Interactive</a></h1>
 
 

@@ -1,28 +1,23 @@
 ---
 title: "Welcome!"
-author: <table style='table-layout:fixed;width:100%;border:0;padding:0;margin:0'><col width='10%'><col width='10%'>
-  <tr style='border:none'>
-    <td style='display:block;width:100%;text-align:left;vertical-align:bottom;padding:0;margin:0;border:none' nowrap>
-      <a href='https://dwulff.github.io/Intro2R_Unibe/'>
-        <i class='fas fa-clock' style='font-size:.9em;' ></i>
-      </a>
-      <a href='https://therbootcamp.github.io'>
-        <i class='fas fa-home' style='font-size:.9em;'></i>
-      </a>
-      <a href='mailto:therbootcamp@gmail.com'>
-        <i class='fas fa-envelope' style='font-size: .9em;'></i>
-      </a>
-      <a href='https://www.linkedin.com/company/basel-r-bootcamp/'>
-        <i class='fab fa-linkedin' style='font-size: .9em;'></i>
-      </a>
-        <a href='https://therbootcamp.github.io'>
-        <font style='font-style:normal'>Bern R Bootcamp</font>
-      </a>&nbsp;&nbsp;
-    </td>
-    <td style='width:100%;vertical-align:bottom;text-align:right;padding:0;margin:0;border:none'>
-      <img src='https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/by-sa.png' style='height:15px;width:80px'/>
-    </td>
-  </tr>
+author: "
+  Introduction to R<br>
+  <a href='https://therbootcamp.github.io'>
+    R Bootcamp Bern
+  </a>
+  <br>
+  <a href='https://dwulff.github.io/Intro2R_Unibe/'>
+    <i class='fas fa-clock' style='font-size:.9em;'></i>
+  </a>&#8239; 
+  <a href='https://therbootcamp.github.io'>
+    <i class='fas fa-home' style='font-size:.9em;' ></i>
+  </a>&#8239;
+  <a href='mailto:therbootcamp@gmail.com'>
+    <i class='fas fa-envelope' style='font-size: .9em;'></i>
+  </a>&#8239;
+  <a href='https://www.linkedin.com/company/basel-r-bootcamp/'>
+    <i class='fab fa-linkedin' style='font-size: .9em;'></i>
+  </a>"
 date: "February 2019"
 output:
   xaringan::moon_reader:
@@ -51,7 +46,7 @@ layout: true
     </a>
     <a href="https://therbootcamp.github.io/">
       <font color="#7E7E7E">
-       R Bootcamp Bern | February 2019
+       Introduction to R | February 2019
       </font>
     </a>
     </span>
@@ -126,14 +121,14 @@ Click the "Start Bootcamp" link in Ilias!
 
 ---
 <br><br>
-.pull-left6[
+.pull-left5[
 # Schedule 
 
 We have an <high>ambitious schedule</high>!
 
->3 days, 3 sessions per day, 2 hours per session, on a variety of topics.
+3 days, <high>3 sessions per day</high>, <high>2 hours per session</high>, on a variety of topics.
 
->Each session contains a slide-based <high>introduction</high> and a hands-on <high>programming practical</high>
+Each session contains a slide-based <high>introduction</high> and a hands-on <high>programming practical</high>
 
 <br>
 
@@ -151,18 +146,18 @@ We have an <high>ambitious schedule</high>!
 
 ---
 
+
 .pull-left45[
 
 # Introduction
 
 <high>15 - 45 minutes</high> slide based introduction to help you understand the basic concepts, including:
+
 <br><br>
 &emsp;&emsp;1 - Theory<br>
 &emsp;&emsp;2 - Code examples<br>
 &emsp;&emsp;3 - Live demonstrations<br> 
 <br><br>
-
-
 
 <high>All available online</high>. Follow along, and don't worry about memorizing
 
@@ -177,14 +172,18 @@ We have an <high>ambitious schedule</high>!
 .pull-right55[
 
 <br>
-```{r, out.width = "45%", echo = FALSE, fig.cap = "<font size = 3>Freepik.com</font>"}
-knitr::include_graphics("https://img.freepik.com/free-vector/business-presentation_23-2147511785.jpg?size=338&ext=jpg")
-```
 
+<p align="center">
+<img src="https://img.freepik.com/free-vector/business-presentation_23-2147511785.jpg?size=338&ext=jpg" style="width:250px">
+<br>
+<font style="font-size:10px">from <a href="www.Freepik.com">Freepik.com</a></font>
+</p>
 
-```{r, out.width = "45%", echo = FALSE, fig.cap}
-knitr::include_graphics("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR5DZ7eRkgxeFuEMEtuVC9YHz2v0STxeQ9YJyW2T3PbXGIci_2Lig")
-```
+<p align="center">
+<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR5DZ7eRkgxeFuEMEtuVC9YHz2v0STxeQ9YJyW2T3PbXGIci_2Lig" style="width:250px">
+<br>
+<font style="font-size:10px">from <a href="www.Freepik.com">Freepik.com</a></font>
+</p>
 
 ]
 
@@ -216,7 +215,7 @@ knitr::include_graphics("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR
 
   <iframe src="/_sessions/Data/Data_practical.html" height="480px" width = "500px"></iframe>
 
-  Example:<a href="/_sessions/Data/Data_practical.html"> Data practical </a>
+  Example practical:<a href="/_sessions/Data/Data_practical.html"> Data </a>
 
 ]
 
@@ -237,16 +236,14 @@ Sometimes, you may find yourself in need of some <high>intensive help</high>. Th
 
 .pull-right5[
 
+
+<br><br>
+
+<p align="center">
+<img src="image/yesterdayitworked.jpg" height="500px">
 <br>
-```{r, echo = FALSE, fig.cap = "<font size = 3>repairedcomputer.com</font>", out.width = "60%"}
-knitr::include_graphics("http://www.repairedcomputer.com/i/68/c/14/quality-computer-repair.1360h.jpg")
-```
-
-
-```{r, echo = FALSE, out.width = "60%", fig.cap = "<font size = 3>University of Southampton</font>"}
-knitr::include_graphics("https://cdn.southampton.ac.uk/assets/imported/transforms/content-block/BoxGridWithImages_ImageBlock/D771F505B1D44CB9A9C34653E19EA026/_3JB3522.jpg_SIA_JPG_fit_to_width_MEDIUM.jpg")
-```
-
+<font style="font-size:10px">from <a href="www.geek-and-poke.com">geek-and-poke.com</a></font>
+</p>
 ]
 
 ---

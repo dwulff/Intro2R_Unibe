@@ -98,7 +98,7 @@ R has 3 main data objects...
 - Can carry any data, incl. lists
 - Often used for function outputs
 
-<high>`data_frame`</high> - R's spreadsheet
+<high>`tibble`</high> - R's spreadsheet
 - Specific type of `list`
 - Typical data format
 - For multi-variable data sets
@@ -120,7 +120,7 @@ R has 3 main data objects...
 
 .pull-left45[
 <br><br><br>
-1 - Can <high>carry any data</high>, incl. `list`s, `data_frame`s, `vector`s, etc.
+1 - Can <high>carry any data</high>, incl. `list`s, `tibble`s, `vector`s, etc.
 <br><br>
 2 - Are often used for <high>function outputs</high>
 <br><br>
@@ -188,7 +188,7 @@ reg_results$coefficients[,c(1,3)]
 
 .pull-left45[
 
-# `data_frame`
+# `tibble`
 
 <br><br>
 1 - Are `list`s containing <high>`vector`s of equal length</high> representing the variables.
@@ -544,9 +544,9 @@ baselers$age[1:9] < 300
 
 ---
 
-.pull-left4[
+.pull-left45[
 
-# Functions
+# Why classes are important
 
 Functions have 3 elements:
 
@@ -558,8 +558,8 @@ Functions have 3 elements:
 
 ]
 
-.pull-right55[
-  <br><br>
+.pull-right5[
+  <br><br><br>
   <img src="https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/function.png"></img>
 ]
 
@@ -729,7 +729,7 @@ write_delim(data_object, file, ...)  # arbitrary-delimited
 <br><br><br>
 ```{r, eval=F}
 # Read with explicit column names
-baselers <-read_delim(file = "../_data/baselers.csv",
+baselers <-read_delim(file = "/1_Data/baselers.csv",
                       delim = c(","))
 ```
 
@@ -756,10 +756,9 @@ baselers <-read_delim(file = "../_data/baselers.csv",
 <br><br><br>
 ```{r, eval=F}
 # Read with explicit column names
-baselers <- read_csv(file = ".../baselers.csv",
-                     col_names = c("id",
-                                  "age",
-                                   ...))
+bas. <- read_csv(file = "1_Data/baselers.csv",
+                 col_names = c("id","age",
+                               ...))
 ```
 
 ]
@@ -782,7 +781,8 @@ Reading in data, <high> `readr` infers the type of data </high> for each column.
 
 ```{r}
 # Read baselers
-read_csv(file = "1_Data/baselers.csv")
+baselers <- read_csv(file = "1_Data/baselers.csv")
+baselers
 ```
 
 ]
@@ -875,18 +875,6 @@ data <- jsonlite::read_json(file, ...)
 ```
 ]
 
----
-
-# Remote databases
-
-R provides <high>all necessary tools to pull data from</high> or <high> directly work with</high> remote databases such as, e.g., a `SQL` database. Find out more at:
-
-<br><br>
-<div class="center_text_2">
-  <span>
-  <a href="https://db.rstudio.com/">db.rstudio.com</a>
-  </span>
-</div> 
 
 
 ---

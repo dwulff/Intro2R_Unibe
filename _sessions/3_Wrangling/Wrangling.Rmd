@@ -1,10 +1,7 @@
 ---
 title: "Wrangling"
-<<<<<<< HEAD
 author: "
-Introduction to R<br>
-=======
-author: "R Bootcamp Bern<br>
+  Introduction to R<br>
   <a href='https://therbootcamp.github.io'>
     R Bootcamp Bern
   </a>
