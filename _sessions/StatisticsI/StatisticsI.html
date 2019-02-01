@@ -3,7 +3,7 @@
   <head>
     <title>Statistics I</title>
     <meta charset="utf-8">
-    <meta name="author" content="Introduction to R   Bern R Bootcamp" />
+    <meta name="author" content="Introduction to R   R Bootcamp Bern" />
     <link href="libs/remark-css/default.css" rel="stylesheet" />
     <link rel="stylesheet" href="baselrbootcamp.css" type="text/css" />
   </head>
@@ -12,7 +12,7 @@
 class: center, middle, inverse, title-slide
 
 # Statistics I
-### Introduction to R<br> <a href='https://therbootcamp.github.io'> Bern R Bootcamp </a> <br> <a href='https://dwulff.github.io/Intro2R_Unibe/'> <i class='fas fa-clock' style='font-size:.9em;'></i> </a>  <a href='https://therbootcamp.github.io'> <i class='fas fa-home' style='font-size:.9em;' ></i> </a>  <a href='mailto:therbootcamp@gmail.com'> <i class='fas fa-envelope' style='font-size: .9em;'></i> </a>  <a href='https://www.linkedin.com/company/basel-r-bootcamp/'> <i class='fab fa-linkedin' style='font-size: .9em;'></i> </a>
+### Introduction to R<br> <a href='https://therbootcamp.github.io'> R Bootcamp Bern </a> <br> <a href='https://dwulff.github.io/Intro2R_Unibe/'> <i class='fas fa-clock' style='font-size:.9em;'></i> </a>  <a href='https://therbootcamp.github.io'> <i class='fas fa-home' style='font-size:.9em;' ></i> </a>  <a href='mailto:therbootcamp@gmail.com'> <i class='fas fa-envelope' style='font-size: .9em;'></i> </a>  <a href='https://www.linkedin.com/company/basel-r-bootcamp/'> <i class='fab fa-linkedin' style='font-size: .9em;'></i> </a>
 ### February 2019
 
 ---
@@ -39,7 +39,6 @@ layout: true
     &lt;/a&gt;
     &lt;/span&gt;
   &lt;/div&gt; 
-
 ---
   
 
@@ -67,7 +66,6 @@ baselers %&gt;%
 
 
 #### &lt;high&gt;Simply hypothesis test&lt;/high&gt; with `stats`
-
 
 ```r
 # Simple hypothesis test
@@ -113,12 +111,11 @@ To wrangle data in R, we will use the &lt;high&gt;&lt;mono&gt;dplyr&lt;/mono&gt;
 &lt;img src="image/packages.png" height=320px&gt;
 &lt;/p&gt;
 
-
 ]
-
 ---
 
-# Grouped aggregation 
+# Grouped aggregation
+
 
 .pull-left3[
 
@@ -403,6 +400,8 @@ Combine &lt;high&gt;tranformation&lt;/high&gt;, &lt;high&gt;organization&lt;/hig
 
 Just use the &lt;high&gt;pipe %&gt;%&lt;/high&gt;.
 
+It can easily happen, that your pipes get very long - the &lt;a href="https://github.com/elbersb/tidylog"&gt;tidylog package&lt;/a&gt; can come in handy for that.
+
 
 ]
 
@@ -478,9 +477,9 @@ baselers %&gt;%
 
 .pull-left45[
 
-The &lt;high&gt;t-test&lt;/high&gt; compares one group mean &lt;high&gt;versus reference&lt;/high&gt; or &lt;high&gt;versus another&lt;/high&gt;.
+The &lt;high&gt;t-test&lt;/high&gt; compares one group mean &lt;high&gt;versus a reference&lt;/high&gt; or &lt;high&gt;versus another group&lt;/high&gt;.
 
-Compare two means by providing &lt;high&gt;two numeric vectors&lt;/high&gt; for the arguments `x`, and `y`.
+Compares two means by providing &lt;high&gt;two numeric vectors&lt;/high&gt; for the arguments `x`, and `y`.
 
 Alternative &lt;high&gt;arguments allow for variations&lt;/high&gt;, e.g., to account for unequal variances.
 
@@ -803,7 +802,7 @@ if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
 (function () {
   var script = document.createElement('script');
   script.type = 'text/javascript';
-  script.src  = 'https://cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
   if (location.protocol !== 'file:' && /^https?:/.test(script.src))
     script.src  = script.src.replace(/^https?:/, '');
   document.getElementsByTagName('head')[0].appendChild(script);
