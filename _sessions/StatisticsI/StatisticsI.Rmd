@@ -1,9 +1,9 @@
 ---
 title: "Statistics I"
 author: "
-Introduction to R<br>
+  Introduction to R<br>
   <a href='https://therbootcamp.github.io'>
-    Bern R Bootcamp
+    R Bootcamp Bern
   </a>
   <br>
   <a href='https://dwulff.github.io/Intro2R_Unibe/'>
@@ -51,7 +51,6 @@ layout: true
     </a>
     </span>
   </div> 
-
 ---
   
 ```{r, eval = FALSE, echo = FALSE, message=FALSE}
@@ -88,13 +87,11 @@ baselers %>%
 
 
 #### <high>Simply hypothesis test</high> with `stats`
-
 ```{r, eval = F}
 # Simple hypothesis test
 t.test(baselers$happiness,
        baselers$fitness,
        var.equal = TRUE)
-
 ```
 
 ]
@@ -134,12 +131,11 @@ To wrangle data in R, we will use the <high><mono>dplyr</mono></high> and <high>
 <img src="image/packages.png" height=320px>
 </p>
 
-
 ]
-
 ---
 
-# Grouped aggregation 
+# Grouped aggregation
+
 
 .pull-left3[
 
@@ -391,6 +387,8 @@ Combine <high>tranformation</high>, <high>organization</high>, and <high>aggrega
 
 Just use the <high>pipe %>%</high>.
 
+It can easily happen, that your pipes get very long - the <a href="https://github.com/elbersb/tidylog">tidylog package</a> can come in handy for that.
+
 
 ]
 
@@ -455,9 +453,9 @@ baselers %>%
 
 .pull-left45[
 
-The <high>t-test</high> compares one group mean <high>versus reference</high> or <high>versus another</high>.
+The <high>t-test</high> compares one group mean <high>versus a reference</high> or <high>versus another group</high>.
 
-Compare two means by providing <high>two numeric vectors</high> for the arguments `x`, and `y`.
+Compares two means by providing <high>two numeric vectors</high> for the arguments `x`, and `y`.
 
 Alternative <high>arguments allow for variations</high>, e.g., to account for unequal variances.
 
