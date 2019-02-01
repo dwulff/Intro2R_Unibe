@@ -106,7 +106,6 @@ t.test(baselers$happiness,
 ]
 
 
-
 ---
 
 
@@ -132,7 +131,10 @@ To wrangle data in R, we will use the <high><mono>dplyr</mono></high> and <high>
 </p>
 
 ]
+
+
 ---
+
 
 # Grouped aggregation
 
@@ -171,7 +173,9 @@ SUMMARISE(
 
 ]
 
+
 ---
+
 
 # The Pipe!  <high>`%>%`</high>
 
@@ -207,9 +211,8 @@ DO_SOMETHING %>% # AND THEN...
 ]
 
 
-
-
 ---
+
 
 # `summarise()`
 
@@ -252,6 +255,7 @@ baselers %>%
 
 ---
 
+
 # `summarise()`
 
 .pull-left45[
@@ -289,10 +293,8 @@ data %>%
 
 ]
 
-
-
-
 ---
+
 
 # `group_by()` + `summarise()`
 
@@ -334,7 +336,9 @@ baselers %>%
 
 ]
 
+
 ---
+
 
 # `group_by()` + `summarise()`
 
@@ -379,6 +383,7 @@ baselers %>%
 
 ---
 
+
 # Full pipeline
 
 .pull-left25[
@@ -408,7 +413,9 @@ baselers %>%
 
 ]
 
+
 ---
+
 
 # Inferential statistics
 
@@ -446,8 +453,8 @@ baselers %>%
 ]
 
 
-
 ---
+
 
 # `t.test()`
 
@@ -474,7 +481,10 @@ t.test(baselers$happiness,
 
 ]
 
+
 ---
+
+
 
 # `t.test()`
 
@@ -505,6 +515,8 @@ t.test(baselers$happiness,
 
 ---
 
+
+
 # `cor.test()`
 
 .pull-left45[
@@ -531,7 +543,9 @@ cor.test(x = baselers$age,
 
 ]
 
+
 ---
+
 
 # `cor.test()`
 
@@ -561,6 +575,7 @@ cor.test(x = baselers$age,
 
 
 ---
+
 
 # `chisq.test()`
 
@@ -594,6 +609,7 @@ tab
 
 ---
 
+
 # `chisq.test()`
 
 .pull-left45[
@@ -619,6 +635,7 @@ chisq.test(tab)
 
 
 ---
+
 
 # `wilcox.test()`
 
@@ -646,10 +663,8 @@ wilcox.test(baselers$happiness,
 ]
 
 
-
-
-
 ---
+
 
 class: middle, center
 

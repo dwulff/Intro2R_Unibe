@@ -86,7 +86,6 @@ t.test(baselers$happiness,
 ]
 
 
-
 ---
 
 
@@ -112,7 +111,10 @@ To wrangle data in R, we will use the &lt;high&gt;&lt;mono&gt;dplyr&lt;/mono&gt;
 &lt;/p&gt;
 
 ]
+
+
 ---
+
 
 # Grouped aggregation
 
@@ -151,7 +153,9 @@ SUMMARISE(
 
 ]
 
+
 ---
+
 
 # The Pipe!  &lt;high&gt;`%&gt;%`&lt;/high&gt;
 
@@ -187,9 +191,8 @@ DO_SOMETHING %&gt;% # AND THEN...
 ]
 
 
-
-
 ---
+
 
 # `summarise()`
 
@@ -241,6 +244,7 @@ baselers %&gt;%
 
 ---
 
+
 # `summarise()`
 
 .pull-left45[
@@ -279,10 +283,8 @@ data %&gt;%
 
 ]
 
-
-
-
 ---
+
 
 # `group_by()` + `summarise()`
 
@@ -334,7 +336,9 @@ baselers %&gt;%
 
 ]
 
+
 ---
+
 
 # `group_by()` + `summarise()`
 
@@ -392,6 +396,7 @@ baselers %&gt;%
 
 ---
 
+
 # Full pipeline
 
 .pull-left25[
@@ -432,7 +437,9 @@ baselers %&gt;%
 
 ]
 
+
 ---
+
 
 # Inferential statistics
 
@@ -470,8 +477,8 @@ baselers %&gt;%
 ]
 
 
-
 ---
+
 
 # `t.test()`
 
@@ -512,7 +519,10 @@ t.test(baselers$happiness,
 
 ]
 
+
 ---
+
+
 
 # `t.test()`
 
@@ -557,6 +567,8 @@ t.test(baselers$happiness,
 
 ---
 
+
+
 # `cor.test()`
 
 .pull-left45[
@@ -597,7 +609,9 @@ cor.test(x = baselers$age,
 
 ]
 
+
 ---
+
 
 # `cor.test()`
 
@@ -645,6 +659,7 @@ cor.test(x = baselers$age,
 
 ---
 
+
 # `chisq.test()`
 
 .pull-left45[
@@ -684,6 +699,7 @@ tab
 
 ---
 
+
 # `chisq.test()`
 
 .pull-left45[
@@ -717,6 +733,7 @@ chisq.test(tab)
 
 
 ---
+
 
 # `wilcox.test()`
 
@@ -753,10 +770,8 @@ wilcox.test(baselers$happiness,
 ]
 
 
-
-
-
 ---
+
 
 class: middle, center
 
@@ -802,7 +817,7 @@ if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
 (function () {
   var script = document.createElement('script');
   script.type = 'text/javascript';
-  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  script.src  = 'https://cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML';
   if (location.protocol !== 'file:' && /^https?:/.test(script.src))
     script.src  = script.src.replace(/^https?:/, '');
   document.getElementsByTagName('head')[0].appendChild(script);
