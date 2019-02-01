@@ -1,6 +1,6 @@
 ---
 title: "Plotting"
-author: "R Bootcamp Bern<br/>
+author: "Introduction to R<br/>
   <a href='https://therbootcamp.github.io'>
     R Bootcamp Bern
   </a> 

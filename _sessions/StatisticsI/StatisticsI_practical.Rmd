@@ -1,12 +1,14 @@
 ---
-title: "Analysing"
+title: "Statistics I"
 subtitle: ""
 author: "
-<table style='table-layout:fixed;width:100%;border:0;padding:0;margin:0'><col width='10%'><col width='10%'>
+  Introduction to R<br>
+  <table style='table-layout:fixed;width:100%;border:0;padding:0;margin:0'><col width='10%'><col width='10%'>
   <tr style='border:none'>
     <td style='display:block;width:100%;text-align:left;vertical-align:bottom;padding:0;margin:0;border:none' nowrap>
-      <font style='font-style:normal'>Introduction to R</font>
-      <br>
+      <a href='https://therbootcamp.github.io'>
+        <font style='font-style:normal'>Bern R Bootcamp</font>
+      </a>
       <a href='https://dwulff.github.io/Intro2R_Unibe/'>
         <i class='fas fa-clock' style='font-size:.9em;' ></i>
       </a>
@@ -19,9 +21,7 @@ author: "
       <a href='https://www.linkedin.com/company/basel-r-bootcamp/'>
         <i class='fab fa-linkedin' style='font-size: .9em;'></i>
       </a>
-            <a href='https://therbootcamp.github.io'>
-        <font style='font-style:normal'>Bern R Bootcamp</font>
-      </a>&nbsp;&nbsp;
+
     </td>
     <td style='width:100%;vertical-align:bottom;text-align:right;padding:0;margin:0;border:none'>
       <img src='https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/by-sa.png' style='height:15px;width:80px'/>
@@ -52,9 +52,9 @@ options(digits = 3)
 </p>
 
 
-## {.tabset}
+# {.tabset .tabset-fade}
 
-### Overview
+## Overview
 
 In this practical, you'll practice grouping and analysing data with the `dplyr` and `tidyr` packages (part of the `tidyverse collection of packages).
 
@@ -63,7 +63,7 @@ By the end of this practical you will know how to:
 1. Group data and calculate summary statistics
 2. Run simple statistical analyses.
 
-### Datasets
+## Datasets
 
 ```{r, eval = TRUE, message = FALSE}
 library(tidyverse)
@@ -74,13 +74,13 @@ kc_house <- read_csv("https://raw.githubusercontent.com/therbootcamp/BaselRBootc
 |:----|:-----|:------|:-----------------------------------------|
 |[kc_house.csv](https://raw.githubusercontent.com/therbootcamp/BaselRBootcamp_2018July/master/_sessions/_data//baselrbootcamp_data/kc_house.csv) | 21613 | 21|House sale prices for King County between May 2014 and May 2015. |
 
-### Packages
+## Packages
 
 |Package| Installation|
 |:------|:------|
 |`tidyverse`|`install.packages("tidyverse")`|
 
-### Glossary
+## Glossary
 
 *Wrangling*
 
@@ -105,7 +105,7 @@ kc_house <- read_csv("https://raw.githubusercontent.com/therbootcamp/BaselRBootc
 |     `cor.test()`|    Correlation test|
 |     `glm()`, `lm()`|    Generalized linear model and linear model|
 
-### Cheatsheet
+## Cheatsheet
 
 <figure>
 <center>
@@ -114,7 +114,7 @@ kc_house <- read_csv("https://raw.githubusercontent.com/therbootcamp/BaselRBootc
   <figcaption>https://www.rstudio.com/wp-content/uploads/2015/02/data-wrangling-cheatsheet.pdf</figcaption></a>
 </figure>
 
-### Examples
+## Examples
 
 ```{r, eval = FALSE, echo = TRUE}
 
@@ -205,9 +205,9 @@ rsq(price_glm)
 
 ```
 
-# Tasks
+## Tasks
 
-## A - Setup
+### A - Setup
 
 1. Open your `baselrbootcamp` R project. It should already have the folders `1_Data` and `2_Code`. Make sure that the data files listed in the `Datasets` section above are in your `1_Data` folder.
 
