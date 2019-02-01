@@ -32,7 +32,6 @@ output:
   html_document:
     css: practical.css
     self_contained: no
-    highlight: tango
 ---
 
 ```{r setup, include = FALSE}
@@ -55,7 +54,7 @@ library(readxl)
 <p align="center" width="100%">
   <img src="https://www.methodspace.com/wp-content/uploads/2018/02/Big-data-slider_GEBI.jpg" alt="Trulli" style="width:100%;height:280px">
   <br>
-  <a href="https://www.methodspace.com">source</a>
+  <font style="font-size:10px">from <a href="https://www.methodspace.com">methodspace.com</a></font>
 </p>
 
 # {.tabset .tabset-fade}

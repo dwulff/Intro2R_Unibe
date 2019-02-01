@@ -1,25 +1,37 @@
 ---
 title: "Wrangling"
-author: "R Bootcamp Bern<br/>
-  <a href='https://therbootcamp.github.io'>
-    R Bootcamp Bern
-  </a> 
-  <br>
-  <a href='https://dwulff.github.io/Intro2R_Unibe/'>
-    <i class='fas fa-clock' style='font-size:.9em;'></i>
-  </a>&#8239; 
-  <a href='https://therbootcamp.github.io'>
-    <i class='fas fa-home' style='font-size:.9em;' ></i>
-  </a>&#8239;
-  <a href='mailto:therbootcamp@gmail.com'>
-    <i class='fas fa-envelope' style='font-size: .9em;'></i>
-  </a>&#8239;
-  <a href='https://www.linkedin.com/company/basel-r-bootcamp/'>
-    <i class='fab fa-linkedin' style='font-size: .9em;'></i>
-  </a>"
+subtitle: ""
+author: "
+  Introduction to R<br>
+  <table style='table-layout:fixed;width:100%;border:0;padding:0;margin:0'><col width='10%'><col width='10%'>
+  <tr style='border:none'>
+    <td style='display:block;width:100%;text-align:left;vertical-align:bottom;padding:0;margin:0;border:none' nowrap>
+      <a href='https://therbootcamp.github.io'>
+        <font style='font-style:normal'>Bern R Bootcamp</font>
+      </a>
+      <a href='https://dwulff.github.io/Intro2R_Unibe/'>
+        <i class='fas fa-clock' style='font-size:.9em;' ></i>
+      </a>
+      <a href='https://therbootcamp.github.io'>
+        <i class='fas fa-home' style='font-size:.9em;'></i>
+      </a>
+      <a href='mailto:therbootcamp@gmail.com'>
+        <i class='fas fa-envelope' style='font-size: .9em;'></i>
+      </a>
+      <a href='https://www.linkedin.com/company/basel-r-bootcamp/'>
+        <i class='fab fa-linkedin' style='font-size: .9em;'></i>
+      </a>
+
+    </td>
+    <td style='width:100%;vertical-align:bottom;text-align:right;padding:0;margin:0;border:none'>
+      <img src='https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/by-sa.png' style='height:15px;width:80px'/>
+    </td>
+  </tr>
+</table>"
 output:
   html_document:
     css: practical.css
+    self_contained: no
 ---
 
 ```{r setup, echo = FALSE}
@@ -34,13 +46,19 @@ knitr::opts_chunk$set(comment = NA,
 options(digits = 3)
 ```
 
+<p align="center" width="100%">
+  <img src="image/trial.jpg" alt="Trulli" style="width:100%;height:280px">
+  <br>
+  <font style="font-size:10px">from <a href="https://parkinsonsnewstoday.com/2016/02/24/promising-respiratory-drug-focus-of-new-clinical-trial-for-parkinsons-disease">parkinsonsnewstoday.com</a></font>
+</p>
+
 ```{r, echo = FALSE, fig.align = 'center', eval = TRUE, out.width = "70%"}
-knitr::include_graphics("https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/dplyr_functions.png")
+knitr::include_graphics("")
 ```
 
-## {.tabset}
+# {.tabset}
 
-### Overview
+## Overview
 
 In this practical you'll practice "data wrangling" with the `dplyr` and `tidyr` packages (part of the `tidyverse collection of packages).
 
@@ -52,94 +70,10 @@ By the end of this practical you will know how to:
 4. Combine (aka, 'join') multiple data sets through key columns
 5. Convert data between wide and long formats
 
-### Datasets
 
-```{r, eval = TRUE, message = FALSE, echo = FALSE}
-library(tidyverse)
-trial_act <- read_csv("https://raw.githubusercontent.com/therbootcamp/BaselRBootcamp_2018July/master/_sessions/_data/baselrbootcamp_data/trial_act.csv")
-trial_act_demo <- read_csv("https://raw.githubusercontent.com/therbootcamp/BaselRBootcamp_2018July/master/_sessions/_data/baselrbootcamp_data/trial_act_demo_fake.csv")
-```
+## Tasks
 
-|File | Rows | Columns |
-|:----|:-----|:------|
-|[trial_act.csv](https://raw.githubusercontent.com/therbootcamp/BaselRBootcamp_2018July/master/_sessions/_data/baselrbootcamp_data/trial_act.csv) | 2139 | 27 |
-|[trial_act_demo_fake.csv](https://raw.githubusercontent.com/therbootcamp/BaselRBootcamp_2018July/master/_sessions/_data/baselrbootcamp_data/trial_act_demo_fake.csv)| 2139 | 3|
-
-### Packages
-
-|Package| Installation|
-|:------|:------|
-|`tidyverse`|`install.packages("tidyverse")`|
-
-### Glossary
-
-| Function| Package | Description |
-|:---|:------|:---------------------------------------------|
-|     `rename()`|`dplyr`|    Rename columns| 
-|     `select()`|`dplyr`|    Select columns based on name or index| 
-|     `filter()`|`dplyr`|    Select rows based on some logical criteria| 
-|     `arrange()`|`dplyr`|    Sort rows| 
-|     `mutate()`|`dplyr`|    Add new columns|
-|     `case_when()`|`dplyr`|    Recode values of a column| 
-|     `group_by(), summarise()`|`dplyr`|   Group data and then calculate summary statistics|
-|     `left_join()`|`dplyr`|   Combine multiple data sets using a key column|
-|     `spread()`|`tidyr`|    Convert long data to wide format - from rows to columns| 
-|     `gather()`|`tidyr`|    Convert wide data to long format - from columns to rows|
-
-### Cheatsheet
-
-<figure>
-<center>
-<a href="https://www.rstudio.com/wp-content/uploads/2015/02/data-wrangling-cheatsheet.pdf">
-  <img src="https://image.slidesharecdn.com/data-wrangling-cheatsheet-160705210122/95/data-wrangling-with-dplyr-and-tidyr-cheat-sheet-1-638.jpg?cb=1467752577" alt="Trulli" style="width:70%">
-  <figcaption>https://www.rstudio.com/wp-content/uploads/2015/02/data-wrangling-cheatsheet.pdf</figcaption></a>
-</figure>
-
-### Examples
-
-```{r, eval = FALSE, echo = TRUE}
-
-# Wrangling with dplyr and tidyr ---------------------------
-
-library(tidyverse)    # Load tidyverse for dplyr and tidyr
-
-# Load baselers data
-baselers <- read_csv("https://raw.githubusercontent.com/therbootcamp/baselers/master/inst/extdata/baselers.txt")
-
-# Perform many dplyr operations in a row
-
-baselers %>%
-  
-  # Change some names
-  rename(age_y = age,
-         swimming = rhine) %>%
-  
-  # Only include people over 30
-  filter(age_y > 30) %>%
-  
-  # Calculate some new columns
-  mutate(weight_lbs = weight * 2.22,
-         height_m = height / 100,
-         BMI = weight / height_m ^ 2,
-         
-         # Make binary version of sex
-         sex_bin = case_when(
-                      sex == "male" ~ 0,
-                      sex == "female" ~ 1),
-
-        # Show when height is greater than 150
-        height_lt_150 = case_when(
-                                height < 150 ~ 1,
-                                height >= 150 ~ 0)) %>%
-  
-  # Sort in ascending order of sex, then
-  #  descending order of age
-  arrange(sex, desc(age_y)))
-```
-
-# Tasks
-
-## A - Setup
+### A - Setup
 
 1. Open your `baselrbootcamp` R project. It should already have the folders `1_Data` and `2_Code`. Make sure that the data files listed in the `Datasets` section above are in your `1_Data` folder
 
@@ -201,7 +135,7 @@ summary(trial_act)
 summary(trial_act_demo)
 ```
 
-### Tips
+#### Tips
 
 In this practical you will do many operations on dataframes. Remember: when using `dplyr`, you can chain multiple functions together with the pipe `%>%`. When giving your answers to the questions in this practical, see how many operations you can chain with the pipe!
 
@@ -639,7 +573,129 @@ trial_B
 ```
 
 
-## Additional Resources
+## Datasets
+
+```{r, eval = TRUE, message = FALSE, echo = FALSE}
+library(tidyverse)
+trial_act <- read_csv("https://raw.githubusercontent.com/therbootcamp/BaselRBootcamp_2018July/master/_sessions/_data/baselrbootcamp_data/trial_act.csv")
+trial_act_demo <- read_csv("https://raw.githubusercontent.com/therbootcamp/BaselRBootcamp_2018July/master/_sessions/_data/baselrbootcamp_data/trial_act_demo_fake.csv")
+```
+
+|File | Rows | Columns |
+|:----|:-----|:------|
+|[trial_act.csv](https://raw.githubusercontent.com/therbootcamp/BaselRBootcamp_2018July/master/_sessions/_data/baselrbootcamp_data/trial_act.csv) | 2139 | 27 |
+|[trial_act_demo_fake.csv](https://raw.githubusercontent.com/therbootcamp/BaselRBootcamp_2018July/master/_sessions/_data/baselrbootcamp_data/trial_act_demo_fake.csv)| 2139 | 3|
+
+The `trial_act` data set contains a randomized clinical trial to compare monotherapy with zidovudine or didanosine with combination therapy with zidovudine and didanosine or zidovudine and zalcitabine in adults
+infected with the human immunodeficiency virus type I whose CD4 T cell counts were between
+200 and 500 per cubic millimeter.
+
+|File | Rows |
+|:-------------|:-------------------------------------|
+|pidnum| patient’s ID number|
+|age| age in years at baseline|
+|wtkg| weight in kg at baseline|
+|hemo| hemophilia (0=no, 1=yes)|
+|homo| homosexual activity (0=no, 1=yes)|
+|drugs| history of intravenous drug use (0=no, 1=yes)|
+|karnof| Karnofsky score (on a scale of 0-100)|
+|oprior| non-zidovudine antiretroviral therapy prior to initiation of study treatment (0=no, 1=yes)|
+|z30| zidovudine use in the 30 days prior to treatment initiation (0=no, 1=yes)|
+|zprior| zidovudine use prior to treatment initiation (0=no, 1=yes)|
+|preanti| number of days of previously received antiretroviral therapy|
+|race| race (0=white, 1=non-white)|
+|gender| gender (0=female, 1=male)|
+|str2| antiretroviral history (0=naive, 1=experienced)|
+|strat| antiretroviral history stratification (1=’antiretroviral naive’, 2=’> 1 but ≤ 52 weeks of prior antiretroviral therapy’, 3=’> 52 weeks’)|
+|symptom| symptomatic indicator (0=asymptomatic, 1=symptomatic)|
+|treat| treatment indicator (0=zidovudine only, 1=other therapies)|
+|offtrt| indicator of off-treatment before 96±5 weeks (0=no,1=yes)|
+|cd40| CD4 T cell count at baseline|
+|cd420| CD4 T cell count at 20±5 weeks|
+|cd496| CD4 T cell count at 96±5 weeks (=NA if missing)|
+|r| missing CD4 T cell count at 96±5 weeks (0=missing, 1=observed)|
+|cd80| CD8 T cell count at baseline|
+|cd820| CD8 T cell count at 20±5 weeks|
+|cens| indicator of observing the event in days|
+|days| number of days until the first occurrence of: (i) a decline in CD4 T cell count of at least 50 (ii) an event indicating progression to AIDS, or (iii) death.|
+|arms| treatment arm (0=zidovudine, 1=zidovudine and didanosine, 2=zidovudine and zalcitabine,
+3=didanosine).|
+
+
+## Packages
+
+|Package| Installation|
+|:------|:------|
+|`tidyverse`|`install.packages("tidyverse")`|
+
+## Glossary
+
+| Function| Package | Description |
+|:---|:------|:---------------------------------------------|
+|     `rename()`|`dplyr`|    Rename columns| 
+|     `select()`|`dplyr`|    Select columns based on name or index| 
+|     `filter()`|`dplyr`|    Select rows based on some logical criteria| 
+|     `arrange()`|`dplyr`|    Sort rows| 
+|     `mutate()`|`dplyr`|    Add new columns|
+|     `case_when()`|`dplyr`|    Recode values of a column| 
+|     `group_by(), summarise()`|`dplyr`|   Group data and then calculate summary statistics|
+|     `left_join()`|`dplyr`|   Combine multiple data sets using a key column|
+|     `spread()`|`tidyr`|    Convert long data to wide format - from rows to columns| 
+|     `gather()`|`tidyr`|    Convert wide data to long format - from columns to rows|
+
+## Cheatsheet
+
+<figure>
+<center>
+<a href="https://www.rstudio.com/wp-content/uploads/2015/02/data-wrangling-cheatsheet.pdf">
+  <img src="https://image.slidesharecdn.com/data-wrangling-cheatsheet-160705210122/95/data-wrangling-with-dplyr-and-tidyr-cheat-sheet-1-638.jpg?cb=1467752577" alt="Trulli" style="width:70%">
+  <figcaption>https://www.rstudio.com/wp-content/uploads/2015/02/data-wrangling-cheatsheet.pdf</figcaption></a>
+</figure>
+
+## Examples
+
+```{r, eval = FALSE, echo = TRUE}
+
+# Wrangling with dplyr and tidyr ---------------------------
+
+library(tidyverse)    # Load tidyverse for dplyr and tidyr
+
+# Load baselers data
+baselers <- read_csv("https://raw.githubusercontent.com/therbootcamp/baselers/master/inst/extdata/baselers.txt")
+
+# Perform many dplyr operations in a row
+
+baselers %>%
+  
+  # Change some names
+  rename(age_y = age,
+         swimming = rhine) %>%
+  
+  # Only include people over 30
+  filter(age_y > 30) %>%
+  
+  # Calculate some new columns
+  mutate(weight_lbs = weight * 2.22,
+         height_m = height / 100,
+         BMI = weight / height_m ^ 2,
+         
+         # Make binary version of sex
+         sex_bin = case_when(
+                      sex == "male" ~ 0,
+                      sex == "female" ~ 1),
+
+        # Show when height is greater than 150
+        height_lt_150 = case_when(
+                                height < 150 ~ 1,
+                                height >= 150 ~ 0)) %>%
+  
+  # Sort in ascending order of sex, then
+  #  descending order of age
+  arrange(sex, desc(age_y)))
+```
+
+
+## Resources
 
 - See [https://cran.r-project.org/web/packages/dplyr/vignettes/dplyr.html](https://cran.r-project.org/web/packages/dplyr/vignettes/dplyr.html) for the full dplyr vignette with lots of wrangling tips and tricks.
 
