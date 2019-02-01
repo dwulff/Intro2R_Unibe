@@ -460,7 +460,7 @@ baselers %>%
 
 .pull-left45[
 
-The <high>t-test</high> compares one group mean <high>versus a reference</high> or <high>versus another group</high>.
+The <high>t-test</high> compares one group mean versus a <high>reference</high> or versus <high> another group</high>.
 
 Compares two means by providing <high>two numeric vectors</high> for the arguments `x`, and `y`.
 
@@ -490,9 +490,9 @@ t.test(baselers$happiness,
 
 .pull-left45[
 
-The <high>t-test</high> compares one group mean <high>versus reference</high> or <high>versus another</high>.
+The <high>t-test</high> compares one group mean versus a <high>reference</high> or versus <high> another group</high>.
 
-Compare two means by providing <high>two numeric vectors</high> for the arguments `x`, and `y`.
+Compares two means by providing <high>two numeric vectors</high> for the arguments `x`, and `y`.
 
 Alternative <high>arguments allow for variations</high>, e.g., to account for unequal variances.
 
