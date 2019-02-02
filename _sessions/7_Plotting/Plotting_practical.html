@@ -97,9 +97,6 @@ img {
 button.code-folding-btn:focus {
   outline: none;
 }
-summary {
-  display: list-item;
-}
 </style>
 
 
@@ -107,6 +104,8 @@ summary {
 <div class="container-fluid main-container">
 
 <!-- tabsets -->
+<<<<<<< HEAD
+=======
 
 <style type="text/css">
 .tabset-dropdown > .nav-tabs {
@@ -162,15 +161,10 @@ summary {
 }
 </style>
 
+>>>>>>> 58ecebeed379df1bb6ba22a483e38282af11c685
 <script>
 $(document).ready(function () {
   window.buildTabsets("TOC");
-});
-
-$(document).ready(function () {
-  $('.tabset-dropdown > .nav-tabs > li').click(function () {
-    $(this).parent().toggleClass('nav-tabs-open')
-  });
 });
 </script>
 
@@ -180,10 +174,16 @@ $(document).ready(function () {
 
 
 
+
 <div class="fluid-row" id="header">
 
 
 
+<<<<<<< HEAD
+<h1 class="title toc-ignore">Plotting</h1>
+<h4 class="author"><em>Introduction to R<br/> <a href='https://therbootcamp.github.io'> R Bootcamp Bern </a> <br> <a href='https://dwulff.github.io/Intro2R_Unibe/'> <i class='fas fa-clock' style='font-size:.9em;'></i> </a>  <a href='https://therbootcamp.github.io'> <i class='fas fa-home' style='font-size:.9em;' ></i> </a>  <a href='mailto:therbootcamp@gmail.com'> <i class='fas fa-envelope' style='font-size: .9em;'></i> </a>  <a href='https://www.linkedin.com/company/basel-r-bootcamp/'> <i class='fab fa-linkedin' style='font-size: .9em;'></i> </a></em></h4>
+=======
+>>>>>>> 58ecebeed379df1bb6ba22a483e38282af11c685
 
 </div>
 
@@ -363,9 +363,9 @@ ggplot(data = mpg,
 <div id="references" class="section level3">
 <h3>References</h3>
 <ul>
-<li><p>The main <code>ggplot2</code> webpage at <a href="http://ggplot2.tidyverse.org/">http://ggplot2.tidyverse.org/</a> has great tutorials and examples.</p></li>
-<li><p>Check out Selva Prabhakaran’s website for a nice gallery of ggplot2 graphics <a href="http://r-statistics.co/Top50-Ggplot2-Visualizations-MasterList-R-Code.html">http://r-statistics.co/Top50-Ggplot2-Visualizations-MasterList-R-Code.html</a></p></li>
-<li><p><code>ggplot2</code> is also great for making maps. For examples, check out Eric Anderson’s page at <a href="http://eriqande.github.io/rep-res-web/lectures/making-maps-with-R.html">http://eriqande.github.io/rep-res-web/lectures/making-maps-with-R.html</a></p></li>
+<li><p>The main <code>ggplot2</code> webpage at <a href="http://ggplot2.tidyverse.org/" class="uri">http://ggplot2.tidyverse.org/</a> has great tutorials and examples.</p></li>
+<li><p>Check out Selva Prabhakaran’s website for a nice gallery of ggplot2 graphics <a href="http://r-statistics.co/Top50-Ggplot2-Visualizations-MasterList-R-Code.html" class="uri">http://r-statistics.co/Top50-Ggplot2-Visualizations-MasterList-R-Code.html</a></p></li>
+<li><p><code>ggplot2</code> is also great for making maps. For examples, check out Eric Anderson’s page at <a href="http://eriqande.github.io/rep-res-web/lectures/making-maps-with-R.html" class="uri">http://eriqande.github.io/rep-res-web/lectures/making-maps-with-R.html</a></p></li>
 </ul>
 </div>
 </div>
@@ -400,7 +400,7 @@ library(XX)
 <pre class="r"><code>mcdonalds</code></pre>
 <pre><code># A tibble: 260 x 24
    Category Item  `Serving Size` Calories `Calories from … `Total Fat`
-   &lt;chr&gt;    &lt;chr&gt; &lt;chr&gt;             &lt;dbl&gt;            &lt;dbl&gt;       &lt;dbl&gt;
+   &lt;chr&gt;    &lt;chr&gt; &lt;chr&gt;             &lt;int&gt;            &lt;int&gt;       &lt;dbl&gt;
  1 Breakfa… Egg … 4.8 oz (136 g)      300              120          13
  2 Breakfa… Egg … 4.8 oz (135 g)      250               70           8
  3 Breakfa… Saus… 3.9 oz (111 g)      370              200          23
@@ -411,15 +411,15 @@ library(XX)
  8 Breakfa… Baco… 5.8 oz (164 g)      520              270          30
  9 Breakfa… Baco… 5.4 oz (153 g)      410              180          20
 10 Breakfa… Baco… 5.9 oz (167 g)      470              220          25
-# … with 250 more rows, and 18 more variables: `Total Fat (% Daily
-#   Value)` &lt;dbl&gt;, `Saturated Fat` &lt;dbl&gt;, `Saturated Fat (% Daily
-#   Value)` &lt;dbl&gt;, `Trans Fat` &lt;dbl&gt;, Cholesterol &lt;dbl&gt;, `Cholesterol (%
-#   Daily Value)` &lt;dbl&gt;, Sodium &lt;dbl&gt;, `Sodium (% Daily Value)` &lt;dbl&gt;,
-#   Carbohydrates &lt;dbl&gt;, `Carbohydrates (% Daily Value)` &lt;dbl&gt;, `Dietary
-#   Fiber` &lt;dbl&gt;, `Dietary Fiber (% Daily Value)` &lt;dbl&gt;, Sugars &lt;dbl&gt;,
-#   Protein &lt;dbl&gt;, `Vitamin A (% Daily Value)` &lt;dbl&gt;, `Vitamin C (% Daily
-#   Value)` &lt;dbl&gt;, `Calcium (% Daily Value)` &lt;dbl&gt;, `Iron (% Daily
-#   Value)` &lt;dbl&gt;</code></pre>
+# ... with 250 more rows, and 18 more variables: `Total Fat (% Daily
+#   Value)` &lt;int&gt;, `Saturated Fat` &lt;dbl&gt;, `Saturated Fat (% Daily
+#   Value)` &lt;int&gt;, `Trans Fat` &lt;dbl&gt;, Cholesterol &lt;int&gt;, `Cholesterol (%
+#   Daily Value)` &lt;int&gt;, Sodium &lt;int&gt;, `Sodium (% Daily Value)` &lt;int&gt;,
+#   Carbohydrates &lt;int&gt;, `Carbohydrates (% Daily Value)` &lt;int&gt;, `Dietary
+#   Fiber` &lt;int&gt;, `Dietary Fiber (% Daily Value)` &lt;int&gt;, Sugars &lt;int&gt;,
+#   Protein &lt;int&gt;, `Vitamin A (% Daily Value)` &lt;int&gt;, `Vitamin C (% Daily
+#   Value)` &lt;int&gt;, `Calcium (% Daily Value)` &lt;int&gt;, `Iron (% Daily
+#   Value)` &lt;int&gt;</code></pre>
 <ol start="6" style="list-style-type: decimal">
 <li>You’ll notice that the <code>mcdonalds</code> data frame has many column names with spaces and ‘bad’ characters like parentheses. Run the following code to fix that!</li>
 </ol>
@@ -433,7 +433,7 @@ mcdonalds &lt;- mcdonalds %&gt;%
 <pre class="r"><code>mcdonalds</code></pre>
 <pre><code># A tibble: 260 x 14
    Category Item  ServingSize Calories CaloriesfromFat TotalFat
-   &lt;chr&gt;    &lt;chr&gt; &lt;chr&gt;          &lt;dbl&gt;           &lt;dbl&gt;    &lt;dbl&gt;
+   &lt;chr&gt;    &lt;chr&gt; &lt;chr&gt;          &lt;int&gt;           &lt;int&gt;    &lt;dbl&gt;
  1 Breakfa… Egg … 4.8 oz (13…      300             120       13
  2 Breakfa… Egg … 4.8 oz (13…      250              70        8
  3 Breakfa… Saus… 3.9 oz (11…      370             200       23
@@ -444,9 +444,9 @@ mcdonalds &lt;- mcdonalds %&gt;%
  8 Breakfa… Baco… 5.8 oz (16…      520             270       30
  9 Breakfa… Baco… 5.4 oz (15…      410             180       20
 10 Breakfa… Baco… 5.9 oz (16…      470             220       25
-# … with 250 more rows, and 8 more variables: SaturatedFat &lt;dbl&gt;,
-#   TransFat &lt;dbl&gt;, Cholesterol &lt;dbl&gt;, Sodium &lt;dbl&gt;, Carbohydrates &lt;dbl&gt;,
-#   DietaryFiber &lt;dbl&gt;, Sugars &lt;dbl&gt;, Protein &lt;dbl&gt;</code></pre>
+# ... with 250 more rows, and 8 more variables: SaturatedFat &lt;dbl&gt;,
+#   TransFat &lt;dbl&gt;, Cholesterol &lt;int&gt;, Sodium &lt;int&gt;, Carbohydrates &lt;int&gt;,
+#   DietaryFiber &lt;int&gt;, Sugars &lt;int&gt;, Protein &lt;int&gt;</code></pre>
 <div id="b---building-a-plot-step-by-step" class="section level3">
 <h3>B - Building a plot step-by-step</h3>
 <p>In this section, you’ll build the following plot step by step.</p>
