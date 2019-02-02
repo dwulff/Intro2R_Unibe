@@ -1,0 +1,167 @@
+---
+title: "Final Project"
+author: "Introduction to R<br/>
+  <a href='https://therbootcamp.github.io'>
+     Bern R Bootcamp
+  </a> 
+  <br>
+  <a href='https://dwulff.github.io/Intro2R_Unibe/'>
+    <i class='fas fa-clock' style='font-size:.9em;'></i>
+  </a>&#8239; 
+  <a href='https://therbootcamp.github.io'>
+    <i class='fas fa-home' style='font-size:.9em;' ></i>
+  </a>&#8239;
+  <a href='mailto:therbootcamp@gmail.com'>
+    <i class='fas fa-envelope' style='font-size: .9em;'></i>
+  </a>&#8239;
+  <a href='https://www.linkedin.com/company/basel-r-bootcamp/'>
+    <i class='fab fa-linkedin' style='font-size: .9em;'></i>
+  </a>"
+output:
+  html_document:
+    css: practical.css
+    self_contained: no
+---
+
+
+```{r setup, echo = FALSE}
+knitr::opts_chunk$set(comment = NA, 
+                      fig.width = 6, 
+                      fig.height = 6,
+                      fig.align = 'center',
+                      echo = TRUE, 
+                      eval = TRUE, 
+                      warning = FALSE)
+
+options(digits = 3)
+```
+
+<p align="center">
+<img width="100%" src="https://meetville.com/blog/wp-content/uploads/2015/01/imgonline-com-ua-Resize-quU8YQt7HJLDQEjt.jpg" margin=0><br>
+<font style="font-size:10px">adapted from [meetville.com](https://meetville.com/blog/wp-content/uploads/2015/01/imgonline-com-ua-Resize-quU8YQt7HJLDQEjt.jpg)</font>
+</p>
+
+
+# {.tabset .tabset-fade}
+
+## Overview
+
+This is your final assignment in this course. You will use all we learned during the course to understand, arrange, analyse, visualise and report on a dataset about medical no-shows in the city of Vitoria, Brazil.
+
+You should (at least) complete the following tasks
+
+1. load the two .csv files you find in `Datasets` into R objects 
+2. 
+
+## Tasks
+
+### A - Setup
+
+1. Open your `baselrbootcamp` R project. It should already have the folders `1_Data` and `2_Code`. Make sure that the data files listed in the `Datasets` section above are in your `1_Data` folder.
+
+```{r}
+# Done!
+```
+
+2. Open a new R script. At the top of the script, using comments, write your name and the date. Save it as a new file called `final_project.R` in the `2_Code` folder.  
+
+3. Using `library()` load the set of packages for this practical listed in the packages section above.
+
+4. For this practical, we'll use the `kc_house.csv` data. This dataset contains house sale prices for King County, Washington. It includes homes sold between May 2014 and May 2015. Using the following template, load the data into R and store it as a new object called `kc_house`.
+
+```{r, echo = TRUE, eval = FALSE, message = FALSE, warning = FALSE}
+kc_house <- read_csv(file = "XX")
+```
+
+
+
+## Datasets
+
+```{r, eval = TRUE, message = FALSE}
+library(tidyverse)
+appointments <- read_csv('1_Data/medical_noshows.csv')
+weather <- read_csv('1_Data/brazil_wheather.csv')
+```
+
+|File | Rows | Columns | Description |
+|:----|:-----|:------|:-----------------------------------------|
+|[medical_noshows.csv](1_Data/medical_noshows.csv) | 110527 | 14| Patient shows|no-shows for various cities in Brasil |
+|[brazil_wheather.csv](1_Data/brazil_weather.csv) | 214 | 10| Weather data for various cities in Brasil |
+
+### Variables in medical_noshows.csv
+
+|Variable | Description |
+|:--------|:-----------------------------|
+|PatientId | ID of a patient |
+|AppointmentID | ID for each appointment |
+|Gender | Male or Female|
+|ScheduledDay | The day of the actual appointment, when patients have to visit the doctor |
+|AppointmentDay | The day someone called or registered the appointment, this should be before the appointment|
+|Age | How old is the patient|
+|Neighbourhood | Where the appointment takes place. |
+|Scholarship | Ture of False. |
+|Observation| this is a broad topic, consider reading this article https://en.wikipedia.org/wiki/Bolsa_Fam%C3%ADlia |
+|Hypertension | True or False |
+|Diabetes | True or False |
+|Alcoholism | True or False |
+|Handicapped | True or False |
+|SMS_received | True: 1 or more messages sent to the patient|
+|No-show | 1: No, 2: Yes|
+
+### Variables in brazil_wheather.csv
+
+|Variable | Description |
+|:--------|:-----------------------------|
+|LON  |Longitude|
+|LAT  |Latitude|
+|YEAR  |Year| 
+|MM    |Month|
+|DD   |Day|
+|DOY |Day of Year|
+|YYYYMMDD|Date|    
+|RH2M   |Relative Humidity at 2 Meters|
+|T2M |Temperature at 2 Meters|
+|PRECTOT|Precipitation|
+
+
+## Packages
+
+|Package| Installation|
+|:------|:------|
+|`tidyverse`|`install.packages("tidyverse")`|
+|`tidylog`|`devtools::install_github("elbersb/tidylog")`|
+
+## Glossary
+
+*Wrangling*
+
+| Function| Package | Description |
+|:---|:------|:---------------------------------------------|
+|     `rename()`|`dplyr`|    Rename columns| 
+|     `select()`|`dplyr`|    Select columns based on name or index| 
+|     `filter()`|`dplyr`|    Select rows based on some logical criteria| 
+|     `arrange()`|`dplyr`|    Sort rows| 
+|     `mutate()`|`dplyr`|    Add new columns|
+|     `case_when()`|`dplyr`|    Recode values of a column| 
+|     `group_by(), summarise()`|`dplyr`|   Group data and then calculate summary statistics|
+|     `left_join()`|`dplyr`|   Combine multiple data sets using a key column|
+|     `spread()`|`tidyr`|    Convert long data to wide format - from rows to columns| 
+|     `gather()`|`tidyr`|    Convert wide data to long format - from columns to rows|
+
+*Statistical Tests*
+
+| Function| Hypothesis Test|
+|:------|:-------------------|
+|     `t.test()`|    One and two sample t-test|
+|     `cor.test()`|    Correlation test|
+|     `glm()`, `lm()`|    Generalized linear model and linear model|
+
+## Cheatsheet
+
+<figure>
+<center>
+<a href="https://www.rstudio.com/wp-content/uploads/2015/02/data-wrangling-cheatsheet.pdf">
+  <img src="https://image.slidesharecdn.com/data-wrangling-cheatsheet-160705210122/95/data-wrangling-with-dplyr-and-tidyr-cheat-sheet-1-638.jpg?cb=1467752577" alt="Trulli" style="width:70%">
+  <figcaption>https://www.rstudio.com/wp-content/uploads/2015/02/data-wrangling-cheatsheet.pdf</figcaption></a>
+</figure>
+
