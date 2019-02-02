@@ -11,7 +11,7 @@
 
 
 
-<title>Wrangling</title>
+<title>Wrangling_practical.utf8</title>
 
 <script src="Wrangling_practical_files/jquery-1.11.3/jquery.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -97,6 +97,9 @@ img {
 button.code-folding-btn:focus {
   outline: none;
 }
+summary {
+  display: list-item;
+}
 </style>
 
 
@@ -104,9 +107,70 @@ button.code-folding-btn:focus {
 <div class="container-fluid main-container">
 
 <!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "&#xe258;";
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
 <script>
 $(document).ready(function () {
   window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open')
+  });
 });
 </script>
 
@@ -116,25 +180,10 @@ $(document).ready(function () {
 
 
 
-
 <div class="fluid-row" id="header">
 
 
 
-<h1 class="title toc-ignore">Wrangling</h1>
-<h4 class="author"><em>Introduction to R<br>
-<table style='table-layout:fixed;width:100%;border:0;padding:0;margin:0'>
-<col width='10%'>
-<col width='10%'>
-<tr style="border:none">
-<td style="display:block;width:100%;text-align:left;vertical-align:bottom;padding:0;margin:0;border:none" nowrap>
-<a href='https://therbootcamp.github.io'> <font style='font-style:normal'>Bern R Bootcamp</font> </a> <a href='https://dwulff.github.io/Intro2R_Unibe/'> <i class='fas fa-clock' style='font-size:.9em;' ></i> </a> <a href='https://therbootcamp.github.io'> <i class='fas fa-home' style='font-size:.9em;'></i> </a> <a href='mailto:therbootcamp@gmail.com'> <i class='fas fa-envelope' style='font-size: .9em;'></i> </a> <a href='https://www.linkedin.com/company/basel-r-bootcamp/'> <i class='fab fa-linkedin' style='font-size: .9em;'></i> </a>
-</td>
-<td style="width:100%;vertical-align:bottom;text-align:right;padding:0;margin:0;border:none">
-<img src='https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/by-sa.png' style='height:15px;width:80px'/>
-</td>
-</tr>
-</table></em></h4>
 
 </div>
 
@@ -188,7 +237,7 @@ trial_act &lt;- read_csv(file = &quot;XX&quot;)</code></pre>
 trial_act</code></pre>
 <pre><code># A tibble: 2,139 x 27
    pidnum   age  wtkg  hemo  homo drugs karnof oprior   z30 zprior preanti
-    &lt;int&gt; &lt;int&gt; &lt;dbl&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt;  &lt;int&gt;  &lt;int&gt; &lt;int&gt;  &lt;int&gt;   &lt;int&gt;
+    &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt;   &lt;dbl&gt;
  1  10056    48  89.8     0     0     0    100      0     0      1       0
  2  10059    61  49.4     0     0     0     90      0     1      1     895
  3  10089    45  88.5     0     1     1     90      0     1      1     707
@@ -199,10 +248,10 @@ trial_act</code></pre>
  8  10190    41  66.2     0     1     1    100      0     1      1    1329
  9  10198    40  82.6     0     1     0     90      0     1      1    1074
 10  10229    35  78.0     0     1     0    100      0     1      1     964
-# ... with 2,129 more rows, and 16 more variables: race &lt;int&gt;,
-#   gender &lt;int&gt;, str2 &lt;int&gt;, strat &lt;int&gt;, symptom &lt;int&gt;, treat &lt;int&gt;,
-#   offtrt &lt;int&gt;, cd40 &lt;int&gt;, cd420 &lt;int&gt;, cd496 &lt;int&gt;, r &lt;int&gt;,
-#   cd80 &lt;int&gt;, cd820 &lt;int&gt;, cens &lt;int&gt;, days &lt;int&gt;, arms &lt;int&gt;</code></pre>
+# … with 2,129 more rows, and 16 more variables: race &lt;dbl&gt;, gender &lt;dbl&gt;,
+#   str2 &lt;dbl&gt;, strat &lt;dbl&gt;, symptom &lt;dbl&gt;, treat &lt;dbl&gt;, offtrt &lt;dbl&gt;,
+#   cd40 &lt;dbl&gt;, cd420 &lt;dbl&gt;, cd496 &lt;dbl&gt;, r &lt;dbl&gt;, cd80 &lt;dbl&gt;,
+#   cd820 &lt;dbl&gt;, cens &lt;dbl&gt;, days &lt;dbl&gt;, arms &lt;dbl&gt;</code></pre>
 <ol start="7" style="list-style-type: decimal">
 <li>Use the the <code>summary()</code> function to print more details on the columns of the datasets.</li>
 </ol>
@@ -344,7 +393,7 @@ trial_act &lt;- trial_act %&gt;%
   select(age_y)</code></pre>
 <pre><code># A tibble: 2,139 x 1
    age_y
-   &lt;int&gt;
+   &lt;dbl&gt;
  1    48
  2    61
  3    45
@@ -355,7 +404,7 @@ trial_act &lt;- trial_act %&gt;%
  8    41
  9    40
 10    35
-# ... with 2,129 more rows</code></pre>
+# … with 2,129 more rows</code></pre>
 <ol start="2" style="list-style-type: decimal">
 <li><p>Using <code>select()</code> select the columns <code>pidnum</code>, <code>age_y</code>, <code>gender</code>, and <code>weight_kg</code> (but don’t assign the result to anything)</p></li>
 <li><p>Now it’s time to create a new dataframe! Select the columns <code>pidnum</code>, <code>arms</code>, <code>cd40</code>, <code>cd420</code>, and <code>cd496</code> <em>and</em> assign the result to a new object called <code>CD4_wide</code>. The <code>cd40</code>, <code>cd420</code>, and <code>cd496</code> columns show patient’s CD4 T cell counts at baseline, 20 weeks, and 96 weeks. After you create <code>CD4_wide</code>, print it to make sure it worked!</p></li>
@@ -491,7 +540,7 @@ trial_act &lt;- trial_act %&gt;%
 trial_act</code></pre>
 <pre><code># A tibble: 2,139 x 34
    pidnum age_y weight_kg  hemo  homo drugs karnof oprior   z30 zprior
-    &lt;int&gt; &lt;int&gt;     &lt;dbl&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt;  &lt;int&gt;  &lt;int&gt; &lt;int&gt;  &lt;int&gt;
+    &lt;dbl&gt; &lt;dbl&gt;     &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt;
  1 940533    12      41.4     1     0     0    100      0     0      1
  2 950037    12      53.1     1     0     0    100      0     1      1
  3 950056    12      31       1     0     0    100      0     1      1
@@ -502,11 +551,11 @@ trial_act</code></pre>
  8 920050    14      54.2     1     0     0    100      0     1      1
  9 940544    14      41.1     1     0     0    100      0     0      1
 10 950061    14      64.3     1     0     0    100      0     1      1
-# ... with 2,129 more rows, and 24 more variables: preanti &lt;int&gt;,
-#   race &lt;int&gt;, gender &lt;int&gt;, str2 &lt;int&gt;, strat &lt;int&gt;, symptom &lt;int&gt;,
-#   treat &lt;int&gt;, offtrt &lt;int&gt;, cd40 &lt;int&gt;, cd420 &lt;int&gt;, cd496 &lt;int&gt;,
-#   r &lt;int&gt;, cd80 &lt;int&gt;, cd820 &lt;int&gt;, cens &lt;int&gt;, days &lt;int&gt;, arms &lt;int&gt;,
-#   age_m &lt;dbl&gt;, weight_lb &lt;dbl&gt;, cd_change_20 &lt;int&gt;, cd_change_960 &lt;int&gt;,
+# … with 2,129 more rows, and 24 more variables: preanti &lt;dbl&gt;,
+#   race &lt;dbl&gt;, gender &lt;dbl&gt;, str2 &lt;dbl&gt;, strat &lt;dbl&gt;, symptom &lt;dbl&gt;,
+#   treat &lt;dbl&gt;, offtrt &lt;dbl&gt;, cd40 &lt;dbl&gt;, cd420 &lt;dbl&gt;, cd496 &lt;dbl&gt;,
+#   r &lt;dbl&gt;, cd80 &lt;dbl&gt;, cd820 &lt;dbl&gt;, cens &lt;dbl&gt;, days &lt;dbl&gt;, arms &lt;dbl&gt;,
+#   age_m &lt;dbl&gt;, weight_lb &lt;dbl&gt;, cd_change_20 &lt;dbl&gt;, cd_change_960 &lt;dbl&gt;,
 #   gender_char &lt;chr&gt;, arms_char &lt;chr&gt;, agem &lt;dbl&gt;</code></pre>
 <ol start="2" style="list-style-type: decimal">
 <li>Now arrange the data in <em>descending</em> order of <code>age_y</code> (from highest to lowest). After, look the data to make sure it worked. To arrange data in descending order, just include <code>desc()</code> around the variable. E.g.; <code>data %&gt;% arrrange(desc(height))</code></li>
@@ -517,7 +566,7 @@ trial_act</code></pre>
 trial_act</code></pre>
 <pre><code># A tibble: 2,139 x 34
    pidnum age_y weight_kg  hemo  homo drugs karnof oprior   z30 zprior
-    &lt;int&gt; &lt;int&gt;     &lt;dbl&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt;  &lt;int&gt;  &lt;int&gt; &lt;int&gt;  &lt;int&gt;
+    &lt;dbl&gt; &lt;dbl&gt;     &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt;
  1  11438    70      73.9     0     1     0    100      0     1      1
  2 211360    70      63.1     0     1     0     90      0     0      1
  3 211284    69      81.6     0     1     0    100      0     0      1
@@ -528,11 +577,11 @@ trial_act</code></pre>
  8  50662    66      84.4     0     1     0    100      0     0      1
  9  11987    65      77.2     0     1     0     90      0     0      1
 10 140797    65      60.5     0     1     0     90      0     0      1
-# ... with 2,129 more rows, and 24 more variables: preanti &lt;int&gt;,
-#   race &lt;int&gt;, gender &lt;int&gt;, str2 &lt;int&gt;, strat &lt;int&gt;, symptom &lt;int&gt;,
-#   treat &lt;int&gt;, offtrt &lt;int&gt;, cd40 &lt;int&gt;, cd420 &lt;int&gt;, cd496 &lt;int&gt;,
-#   r &lt;int&gt;, cd80 &lt;int&gt;, cd820 &lt;int&gt;, cens &lt;int&gt;, days &lt;int&gt;, arms &lt;int&gt;,
-#   age_m &lt;dbl&gt;, weight_lb &lt;dbl&gt;, cd_change_20 &lt;int&gt;, cd_change_960 &lt;int&gt;,
+# … with 2,129 more rows, and 24 more variables: preanti &lt;dbl&gt;,
+#   race &lt;dbl&gt;, gender &lt;dbl&gt;, str2 &lt;dbl&gt;, strat &lt;dbl&gt;, symptom &lt;dbl&gt;,
+#   treat &lt;dbl&gt;, offtrt &lt;dbl&gt;, cd40 &lt;dbl&gt;, cd420 &lt;dbl&gt;, cd496 &lt;dbl&gt;,
+#   r &lt;dbl&gt;, cd80 &lt;dbl&gt;, cd820 &lt;dbl&gt;, cens &lt;dbl&gt;, days &lt;dbl&gt;, arms &lt;dbl&gt;,
+#   age_m &lt;dbl&gt;, weight_lb &lt;dbl&gt;, cd_change_20 &lt;dbl&gt;, cd_change_960 &lt;dbl&gt;,
 #   gender_char &lt;chr&gt;, arms_char &lt;chr&gt;, agem &lt;dbl&gt;</code></pre>
 <ol start="3" style="list-style-type: decimal">
 <li>You can sort the rows of dataframes with multiple columns by including many arguments to <code>arrange()</code>. Now sort the data by arms (<code>arms</code>) and then age_y (<code>age_y</code>). Print the result to make sure it looks right!</li>
@@ -545,7 +594,7 @@ trial_act</code></pre>
 trial_act</code></pre>
 <pre><code># A tibble: 2,139 x 34
    pidnum age_y weight_kg  hemo  homo drugs karnof oprior   z30 zprior
-    &lt;int&gt; &lt;int&gt;     &lt;dbl&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt;  &lt;int&gt;  &lt;int&gt; &lt;int&gt;  &lt;int&gt;
+    &lt;dbl&gt; &lt;dbl&gt;     &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt;
  1 960014    13      48.5     1     0     0    100      0     0      1
  2 960031    14      48.3     1     0     0    100      0     0      1
  3 990071    14      60       1     0     0    100      0     0      1
@@ -556,11 +605,11 @@ trial_act</code></pre>
  8 940519    18      56.8     1     0     0    100      0     1      1
  9 211314    19      50.8     0     0     0     90      0     0      1
 10 340767    19      74.8     0     1     0    100      0     0      1
-# ... with 2,129 more rows, and 24 more variables: preanti &lt;int&gt;,
-#   race &lt;int&gt;, gender &lt;int&gt;, str2 &lt;int&gt;, strat &lt;int&gt;, symptom &lt;int&gt;,
-#   treat &lt;int&gt;, offtrt &lt;int&gt;, cd40 &lt;int&gt;, cd420 &lt;int&gt;, cd496 &lt;int&gt;,
-#   r &lt;int&gt;, cd80 &lt;int&gt;, cd820 &lt;int&gt;, cens &lt;int&gt;, days &lt;int&gt;, arms &lt;int&gt;,
-#   age_m &lt;dbl&gt;, weight_lb &lt;dbl&gt;, cd_change_20 &lt;int&gt;, cd_change_960 &lt;int&gt;,
+# … with 2,129 more rows, and 24 more variables: preanti &lt;dbl&gt;,
+#   race &lt;dbl&gt;, gender &lt;dbl&gt;, str2 &lt;dbl&gt;, strat &lt;dbl&gt;, symptom &lt;dbl&gt;,
+#   treat &lt;dbl&gt;, offtrt &lt;dbl&gt;, cd40 &lt;dbl&gt;, cd420 &lt;dbl&gt;, cd496 &lt;dbl&gt;,
+#   r &lt;dbl&gt;, cd80 &lt;dbl&gt;, cd820 &lt;dbl&gt;, cens &lt;dbl&gt;, days &lt;dbl&gt;, arms &lt;dbl&gt;,
+#   age_m &lt;dbl&gt;, weight_lb &lt;dbl&gt;, cd_change_20 &lt;dbl&gt;, cd_change_960 &lt;dbl&gt;,
 #   gender_char &lt;chr&gt;, arms_char &lt;chr&gt;, agem &lt;dbl&gt;</code></pre>
 </div>
 <div id="f---filter-specific-rows-with-filter" class="section level3">
@@ -574,7 +623,7 @@ trial_act</code></pre>
   filter(gender_char == &quot;male&quot;)</code></pre>
 <pre><code># A tibble: 1,771 x 34
    pidnum age_y weight_kg  hemo  homo drugs karnof oprior   z30 zprior
-    &lt;int&gt; &lt;int&gt;     &lt;dbl&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt;  &lt;int&gt;  &lt;int&gt; &lt;int&gt;  &lt;int&gt;
+    &lt;dbl&gt; &lt;dbl&gt;     &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt;
  1 960014    13      48.5     1     0     0    100      0     0      1
  2 960031    14      48.3     1     0     0    100      0     0      1
  3 990071    14      60       1     0     0    100      0     0      1
@@ -585,11 +634,11 @@ trial_act</code></pre>
  8 211007    20      72.7     0     1     0     90      0     1      1
  9 261065    20      57.3     0     1     0    100      0     0      1
 10 490308    20      72       0     1     0    100      0     0      1
-# ... with 1,761 more rows, and 24 more variables: preanti &lt;int&gt;,
-#   race &lt;int&gt;, gender &lt;int&gt;, str2 &lt;int&gt;, strat &lt;int&gt;, symptom &lt;int&gt;,
-#   treat &lt;int&gt;, offtrt &lt;int&gt;, cd40 &lt;int&gt;, cd420 &lt;int&gt;, cd496 &lt;int&gt;,
-#   r &lt;int&gt;, cd80 &lt;int&gt;, cd820 &lt;int&gt;, cens &lt;int&gt;, days &lt;int&gt;, arms &lt;int&gt;,
-#   age_m &lt;dbl&gt;, weight_lb &lt;dbl&gt;, cd_change_20 &lt;int&gt;, cd_change_960 &lt;int&gt;,
+# … with 1,761 more rows, and 24 more variables: preanti &lt;dbl&gt;,
+#   race &lt;dbl&gt;, gender &lt;dbl&gt;, str2 &lt;dbl&gt;, strat &lt;dbl&gt;, symptom &lt;dbl&gt;,
+#   treat &lt;dbl&gt;, offtrt &lt;dbl&gt;, cd40 &lt;dbl&gt;, cd420 &lt;dbl&gt;, cd496 &lt;dbl&gt;,
+#   r &lt;dbl&gt;, cd80 &lt;dbl&gt;, cd820 &lt;dbl&gt;, cens &lt;dbl&gt;, days &lt;dbl&gt;, arms &lt;dbl&gt;,
+#   age_m &lt;dbl&gt;, weight_lb &lt;dbl&gt;, cd_change_20 &lt;dbl&gt;, cd_change_960 &lt;dbl&gt;,
 #   gender_char &lt;chr&gt;, arms_char &lt;chr&gt;, agem &lt;dbl&gt;</code></pre>
 <ol start="2" style="list-style-type: decimal">
 <li>Create a new dataframe called <code>trial_act_male</code> that only contains rows from males (hint: just assign what you did in the previous question to a new object!). After you create <code>trial_act_male</code>, print it to make sure it only contains data from males!</li>
@@ -600,7 +649,7 @@ trial_act</code></pre>
 trial_act_male</code></pre>
 <pre><code># A tibble: 1,771 x 34
    pidnum age_y weight_kg  hemo  homo drugs karnof oprior   z30 zprior
-    &lt;int&gt; &lt;int&gt;     &lt;dbl&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt;  &lt;int&gt;  &lt;int&gt; &lt;int&gt;  &lt;int&gt;
+    &lt;dbl&gt; &lt;dbl&gt;     &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt;
  1 960014    13      48.5     1     0     0    100      0     0      1
  2 960031    14      48.3     1     0     0    100      0     0      1
  3 990071    14      60       1     0     0    100      0     0      1
@@ -611,11 +660,11 @@ trial_act_male</code></pre>
  8 211007    20      72.7     0     1     0     90      0     1      1
  9 261065    20      57.3     0     1     0    100      0     0      1
 10 490308    20      72       0     1     0    100      0     0      1
-# ... with 1,761 more rows, and 24 more variables: preanti &lt;int&gt;,
-#   race &lt;int&gt;, gender &lt;int&gt;, str2 &lt;int&gt;, strat &lt;int&gt;, symptom &lt;int&gt;,
-#   treat &lt;int&gt;, offtrt &lt;int&gt;, cd40 &lt;int&gt;, cd420 &lt;int&gt;, cd496 &lt;int&gt;,
-#   r &lt;int&gt;, cd80 &lt;int&gt;, cd820 &lt;int&gt;, cens &lt;int&gt;, days &lt;int&gt;, arms &lt;int&gt;,
-#   age_m &lt;dbl&gt;, weight_lb &lt;dbl&gt;, cd_change_20 &lt;int&gt;, cd_change_960 &lt;int&gt;,
+# … with 1,761 more rows, and 24 more variables: preanti &lt;dbl&gt;,
+#   race &lt;dbl&gt;, gender &lt;dbl&gt;, str2 &lt;dbl&gt;, strat &lt;dbl&gt;, symptom &lt;dbl&gt;,
+#   treat &lt;dbl&gt;, offtrt &lt;dbl&gt;, cd40 &lt;dbl&gt;, cd420 &lt;dbl&gt;, cd496 &lt;dbl&gt;,
+#   r &lt;dbl&gt;, cd80 &lt;dbl&gt;, cd820 &lt;dbl&gt;, cens &lt;dbl&gt;, days &lt;dbl&gt;, arms &lt;dbl&gt;,
+#   age_m &lt;dbl&gt;, weight_lb &lt;dbl&gt;, cd_change_20 &lt;dbl&gt;, cd_change_960 &lt;dbl&gt;,
 #   gender_char &lt;chr&gt;, arms_char &lt;chr&gt;, agem &lt;dbl&gt;</code></pre>
 <ol start="3" style="list-style-type: decimal">
 <li>Filter only rows for patients under the age of 60.</li>
@@ -624,7 +673,7 @@ trial_act_male</code></pre>
   filter(age_y &lt; 60)</code></pre>
 <pre><code># A tibble: 2,110 x 34
    pidnum age_y weight_kg  hemo  homo drugs karnof oprior   z30 zprior
-    &lt;int&gt; &lt;int&gt;     &lt;dbl&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt;  &lt;int&gt;  &lt;int&gt; &lt;int&gt;  &lt;int&gt;
+    &lt;dbl&gt; &lt;dbl&gt;     &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt;
  1 960014    13      48.5     1     0     0    100      0     0      1
  2 960031    14      48.3     1     0     0    100      0     0      1
  3 990071    14      60       1     0     0    100      0     0      1
@@ -635,11 +684,11 @@ trial_act_male</code></pre>
  8 940519    18      56.8     1     0     0    100      0     1      1
  9 211314    19      50.8     0     0     0     90      0     0      1
 10 340767    19      74.8     0     1     0    100      0     0      1
-# ... with 2,100 more rows, and 24 more variables: preanti &lt;int&gt;,
-#   race &lt;int&gt;, gender &lt;int&gt;, str2 &lt;int&gt;, strat &lt;int&gt;, symptom &lt;int&gt;,
-#   treat &lt;int&gt;, offtrt &lt;int&gt;, cd40 &lt;int&gt;, cd420 &lt;int&gt;, cd496 &lt;int&gt;,
-#   r &lt;int&gt;, cd80 &lt;int&gt;, cd820 &lt;int&gt;, cens &lt;int&gt;, days &lt;int&gt;, arms &lt;int&gt;,
-#   age_m &lt;dbl&gt;, weight_lb &lt;dbl&gt;, cd_change_20 &lt;int&gt;, cd_change_960 &lt;int&gt;,
+# … with 2,100 more rows, and 24 more variables: preanti &lt;dbl&gt;,
+#   race &lt;dbl&gt;, gender &lt;dbl&gt;, str2 &lt;dbl&gt;, strat &lt;dbl&gt;, symptom &lt;dbl&gt;,
+#   treat &lt;dbl&gt;, offtrt &lt;dbl&gt;, cd40 &lt;dbl&gt;, cd420 &lt;dbl&gt;, cd496 &lt;dbl&gt;,
+#   r &lt;dbl&gt;, cd80 &lt;dbl&gt;, cd820 &lt;dbl&gt;, cens &lt;dbl&gt;, days &lt;dbl&gt;, arms &lt;dbl&gt;,
+#   age_m &lt;dbl&gt;, weight_lb &lt;dbl&gt;, cd_change_20 &lt;dbl&gt;, cd_change_960 &lt;dbl&gt;,
 #   gender_char &lt;chr&gt;, arms_char &lt;chr&gt;, agem &lt;dbl&gt;</code></pre>
 <ol start="4" style="list-style-type: decimal">
 <li>A colleague of yours named Tracy wants a datafame only containing data from females over the age of 40. Create this dataframe with <code>filter()</code> and call it <code>trial_act_Tracy</code>. After you create the dataframe, print it to make sure it looks correct!</li>
@@ -666,7 +715,7 @@ trial_act_male</code></pre>
 <pre class="r"><code>trial_act</code></pre>
 <pre><code># A tibble: 2,139 x 36
    pidnum age_y weight_kg  hemo  homo drugs karnof oprior   z30 zprior
-    &lt;int&gt; &lt;int&gt;     &lt;dbl&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt;  &lt;int&gt;  &lt;int&gt; &lt;int&gt;  &lt;int&gt;
+    &lt;dbl&gt; &lt;dbl&gt;     &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt;
  1 960014    13      48.5     1     0     0    100      0     0      1
  2 960031    14      48.3     1     0     0    100      0     0      1
  3 990071    14      60       1     0     0    100      0     0      1
@@ -677,12 +726,12 @@ trial_act_male</code></pre>
  8 940519    18      56.8     1     0     0    100      0     1      1
  9 211314    19      50.8     0     0     0     90      0     0      1
 10 340767    19      74.8     0     1     0    100      0     0      1
-# ... with 2,129 more rows, and 26 more variables: preanti &lt;int&gt;,
-#   race &lt;int&gt;, gender &lt;int&gt;, str2 &lt;int&gt;, strat &lt;int&gt;, symptom &lt;int&gt;,
-#   treat &lt;int&gt;, offtrt &lt;int&gt;, cd40 &lt;int&gt;, cd420 &lt;int&gt;, cd496 &lt;int&gt;,
-#   r &lt;int&gt;, cd80 &lt;int&gt;, cd820 &lt;int&gt;, cens &lt;int&gt;, days &lt;int&gt;, arms &lt;int&gt;,
-#   age_m &lt;dbl&gt;, weight_lb &lt;dbl&gt;, cd_change_20 &lt;int&gt;, cd_change_960 &lt;int&gt;,
-#   gender_char &lt;chr&gt;, arms_char &lt;chr&gt;, agem &lt;dbl&gt;, exercise &lt;int&gt;,
+# … with 2,129 more rows, and 26 more variables: preanti &lt;dbl&gt;,
+#   race &lt;dbl&gt;, gender &lt;dbl&gt;, str2 &lt;dbl&gt;, strat &lt;dbl&gt;, symptom &lt;dbl&gt;,
+#   treat &lt;dbl&gt;, offtrt &lt;dbl&gt;, cd40 &lt;dbl&gt;, cd420 &lt;dbl&gt;, cd496 &lt;dbl&gt;,
+#   r &lt;dbl&gt;, cd80 &lt;dbl&gt;, cd820 &lt;dbl&gt;, cens &lt;dbl&gt;, days &lt;dbl&gt;, arms &lt;dbl&gt;,
+#   age_m &lt;dbl&gt;, weight_lb &lt;dbl&gt;, cd_change_20 &lt;dbl&gt;, cd_change_960 &lt;dbl&gt;,
+#   gender_char &lt;chr&gt;, arms_char &lt;chr&gt;, agem &lt;dbl&gt;, exercise &lt;dbl&gt;,
 #   education &lt;chr&gt;</code></pre>
 </div>
 <div id="h---reshaping-with-gather-and-spread" class="section level3">
@@ -692,7 +741,7 @@ trial_act_male</code></pre>
 CD4_wide</code></pre>
 <pre><code># A tibble: 2,139 x 5
    pidnum  arms  cd40 cd420 cd496
-    &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt;
+    &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
  1 960014     0   283   271    NA
  2 960031     0   481   428   519
  3 990071     0   166   169    28
@@ -703,13 +752,13 @@ CD4_wide</code></pre>
  8 940519     0   276   150    34
  9 211314     0   298   267    NA
 10 340767     0   503   452    NA
-# ... with 2,129 more rows</code></pre>
+# … with 2,129 more rows</code></pre>
 <p>Our goal is to convert this data to a ‘long’ format, where each row represents a single CD4 T cell count for a specific patient, like this:</p>
 <pre class="r"><code># This is the same data in &#39;long&#39; format
 CD4_long</code></pre>
 <pre><code># A tibble: 6,417 x 4
    pidnum  arms time  value
-    &lt;int&gt; &lt;int&gt; &lt;chr&gt; &lt;int&gt;
+    &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt; &lt;dbl&gt;
  1 960014     0 cd40    283
  2 960031     0 cd40    481
  3 990071     0 cd40    166
@@ -720,7 +769,7 @@ CD4_long</code></pre>
  8 940519     0 cd40    276
  9 211314     0 cd40    298
 10 340767     0 cd40    503
-# ... with 6,407 more rows</code></pre>
+# … with 6,407 more rows</code></pre>
 <ol style="list-style-type: decimal">
 <li>Using the <code>gather()</code> function, create a new dataframe called <code>CD4_long</code> that shows the <code>CD4_wide</code> data in the ‘long’ format. To do this, use the following template. Set the grouping column to <code>time</code> and the new data column to <code>value</code>.</li>
 </ol>
@@ -738,7 +787,7 @@ CD4_long</code></pre>
 <pre class="r"><code>CD4_long</code></pre>
 <pre><code># A tibble: 6,417 x 4
    pidnum  arms time  value
-    &lt;int&gt; &lt;int&gt; &lt;chr&gt; &lt;int&gt;
+    &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt; &lt;dbl&gt;
  1 960014     0 cd40    283
  2 960031     0 cd40    481
  3 990071     0 cd40    166
@@ -749,7 +798,7 @@ CD4_long</code></pre>
  8 940519     0 cd40    276
  9 211314     0 cd40    298
 10 340767     0 cd40    503
-# ... with 6,407 more rows</code></pre>
+# … with 6,407 more rows</code></pre>
 <ol start="3" style="list-style-type: decimal">
 <li>Now use the <code>spread()</code> function to convert the long data bring the data <em>back</em> into the wide format! To do this, make the first argument <code>time</code>, and the second argument <code>value</code></li>
 </ol>
@@ -760,7 +809,7 @@ CD4_long</code></pre>
   spread(time, value)</code></pre>
 <pre><code># A tibble: 2,139 x 5
    pidnum  arms  cd40 cd420 cd496
-    &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt;
+    &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
  1  10056     2   422   477   660
  2  10059     3   162   218    NA
  3  10089     3   326   274   122
@@ -771,7 +820,7 @@ CD4_long</code></pre>
  8  10190     0   401   366   453
  9  10198     3   214   107     8
 10  10229     0   221   132    NA
-# ... with 2,129 more rows</code></pre>
+# … with 2,129 more rows</code></pre>
 </div>
 <div id="practice" class="section level3">
 <h3>Practice!</h3>
@@ -791,7 +840,7 @@ CD4_long</code></pre>
 trial_A</code></pre>
 <pre><code># A tibble: 126 x 36
    pidnum age_y weight_kg  hemo  homo drugs karnof oprior   z30 zprior
-    &lt;int&gt; &lt;int&gt;     &lt;dbl&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt;  &lt;int&gt;  &lt;int&gt; &lt;int&gt;  &lt;int&gt;
+    &lt;dbl&gt; &lt;dbl&gt;     &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt;
  1 630023    26      86.2     0     0     1     90      0     0      1
  2  10378    27      67.3     0     0     1     90      0     1      1
  3 320475    27      66.6     0     0     1     90      0     0      1
@@ -802,12 +851,12 @@ trial_A</code></pre>
  8 320365    34      86.0     0     0     1    100      0     0      1
  9 540015    34      72.6     0     0     1    100      0     0      1
 10 180917    35      77.7     0     0     1     90      0     1      1
-# ... with 116 more rows, and 26 more variables: preanti &lt;int&gt;,
-#   race &lt;int&gt;, gender &lt;int&gt;, str2 &lt;int&gt;, strat &lt;int&gt;, symptom &lt;int&gt;,
-#   treat &lt;int&gt;, offtrt &lt;int&gt;, cd40 &lt;int&gt;, cd420 &lt;int&gt;, cd496 &lt;int&gt;,
-#   r &lt;int&gt;, cd80 &lt;int&gt;, cd820 &lt;int&gt;, cens &lt;int&gt;, days &lt;int&gt;, arms &lt;int&gt;,
-#   age_m &lt;dbl&gt;, weight_lb &lt;dbl&gt;, cd_change_20 &lt;int&gt;, cd_change_960 &lt;int&gt;,
-#   gender_char &lt;chr&gt;, arms_char &lt;chr&gt;, agem &lt;dbl&gt;, exercise &lt;int&gt;,
+# … with 116 more rows, and 26 more variables: preanti &lt;dbl&gt;, race &lt;dbl&gt;,
+#   gender &lt;dbl&gt;, str2 &lt;dbl&gt;, strat &lt;dbl&gt;, symptom &lt;dbl&gt;, treat &lt;dbl&gt;,
+#   offtrt &lt;dbl&gt;, cd40 &lt;dbl&gt;, cd420 &lt;dbl&gt;, cd496 &lt;dbl&gt;, r &lt;dbl&gt;,
+#   cd80 &lt;dbl&gt;, cd820 &lt;dbl&gt;, cens &lt;dbl&gt;, days &lt;dbl&gt;, arms &lt;dbl&gt;,
+#   age_m &lt;dbl&gt;, weight_lb &lt;dbl&gt;, cd_change_20 &lt;dbl&gt;, cd_change_960 &lt;dbl&gt;,
+#   gender_char &lt;chr&gt;, arms_char &lt;chr&gt;, agem &lt;dbl&gt;, exercise &lt;dbl&gt;,
 #   education &lt;chr&gt;</code></pre>
 <ol start="2" style="list-style-type: decimal">
 <li>Add a new column to <code>trial_act</code> called <code>drugs_char</code> which is <code>&quot;User&quot;</code> when drugs == 1, and <code>&quot;Non User&quot;</code> when drugs == 0.</li>
@@ -821,7 +870,7 @@ trial_A</code></pre>
 trial_act</code></pre>
 <pre><code># A tibble: 2,139 x 37
    pidnum age_y weight_kg  hemo  homo drugs karnof oprior   z30 zprior
-    &lt;int&gt; &lt;int&gt;     &lt;dbl&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt;  &lt;int&gt;  &lt;int&gt; &lt;int&gt;  &lt;int&gt;
+    &lt;dbl&gt; &lt;dbl&gt;     &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt;
  1 960014    13      48.5     1     0     0    100      0     0      1
  2 960031    14      48.3     1     0     0    100      0     0      1
  3 990071    14      60       1     0     0    100      0     0      1
@@ -832,12 +881,12 @@ trial_act</code></pre>
  8 940519    18      56.8     1     0     0    100      0     1      1
  9 211314    19      50.8     0     0     0     90      0     0      1
 10 340767    19      74.8     0     1     0    100      0     0      1
-# ... with 2,129 more rows, and 27 more variables: preanti &lt;int&gt;,
-#   race &lt;int&gt;, gender &lt;int&gt;, str2 &lt;int&gt;, strat &lt;int&gt;, symptom &lt;int&gt;,
-#   treat &lt;int&gt;, offtrt &lt;int&gt;, cd40 &lt;int&gt;, cd420 &lt;int&gt;, cd496 &lt;int&gt;,
-#   r &lt;int&gt;, cd80 &lt;int&gt;, cd820 &lt;int&gt;, cens &lt;int&gt;, days &lt;int&gt;, arms &lt;int&gt;,
-#   age_m &lt;dbl&gt;, weight_lb &lt;dbl&gt;, cd_change_20 &lt;int&gt;, cd_change_960 &lt;int&gt;,
-#   gender_char &lt;chr&gt;, arms_char &lt;chr&gt;, agem &lt;dbl&gt;, exercise &lt;int&gt;,
+# … with 2,129 more rows, and 27 more variables: preanti &lt;dbl&gt;,
+#   race &lt;dbl&gt;, gender &lt;dbl&gt;, str2 &lt;dbl&gt;, strat &lt;dbl&gt;, symptom &lt;dbl&gt;,
+#   treat &lt;dbl&gt;, offtrt &lt;dbl&gt;, cd40 &lt;dbl&gt;, cd420 &lt;dbl&gt;, cd496 &lt;dbl&gt;,
+#   r &lt;dbl&gt;, cd80 &lt;dbl&gt;, cd820 &lt;dbl&gt;, cens &lt;dbl&gt;, days &lt;dbl&gt;, arms &lt;dbl&gt;,
+#   age_m &lt;dbl&gt;, weight_lb &lt;dbl&gt;, cd_change_20 &lt;dbl&gt;, cd_change_960 &lt;dbl&gt;,
+#   gender_char &lt;chr&gt;, arms_char &lt;chr&gt;, agem &lt;dbl&gt;, exercise &lt;dbl&gt;,
 #   education &lt;chr&gt;, drugs_char &lt;chr&gt;</code></pre>
 <ol start="3" style="list-style-type: decimal">
 <li>Create a new dataframe called <code>trial_B</code> from <code>trial_act</code> with the following restrictions:</li>
@@ -855,7 +904,7 @@ trial_act</code></pre>
 trial_B</code></pre>
 <pre><code># A tibble: 8 x 37
   pidnum age_y weight_kg  hemo  homo drugs karnof oprior   z30 zprior
-   &lt;int&gt; &lt;int&gt;     &lt;dbl&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt;  &lt;int&gt;  &lt;int&gt; &lt;int&gt;  &lt;int&gt;
+   &lt;dbl&gt; &lt;dbl&gt;     &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt;
 1 220489    45      70.9     0     0     1    100      0     0      1
 2 140744    30      81.2     0     1     1    100      0     0      1
 3  10962    41      81.9     0     0     1     90      0     0      1
@@ -864,12 +913,12 @@ trial_B</code></pre>
 6 250197    49      86.2     0     1     1     90      0     0      1
 7  50572    28      84.4     0     1     1     90      0     0      1
 8  50623    35      77       0     1     1    100      0     0      1
-# ... with 27 more variables: preanti &lt;int&gt;, race &lt;int&gt;, gender &lt;int&gt;,
-#   str2 &lt;int&gt;, strat &lt;int&gt;, symptom &lt;int&gt;, treat &lt;int&gt;, offtrt &lt;int&gt;,
-#   cd40 &lt;int&gt;, cd420 &lt;int&gt;, cd496 &lt;int&gt;, r &lt;int&gt;, cd80 &lt;int&gt;,
-#   cd820 &lt;int&gt;, cens &lt;int&gt;, days &lt;int&gt;, arms &lt;int&gt;, age_m &lt;dbl&gt;,
-#   weight_lb &lt;dbl&gt;, cd_change_20 &lt;int&gt;, cd_change_960 &lt;int&gt;,
-#   gender_char &lt;chr&gt;, arms_char &lt;chr&gt;, agem &lt;dbl&gt;, exercise &lt;int&gt;,
+# … with 27 more variables: preanti &lt;dbl&gt;, race &lt;dbl&gt;, gender &lt;dbl&gt;,
+#   str2 &lt;dbl&gt;, strat &lt;dbl&gt;, symptom &lt;dbl&gt;, treat &lt;dbl&gt;, offtrt &lt;dbl&gt;,
+#   cd40 &lt;dbl&gt;, cd420 &lt;dbl&gt;, cd496 &lt;dbl&gt;, r &lt;dbl&gt;, cd80 &lt;dbl&gt;,
+#   cd820 &lt;dbl&gt;, cens &lt;dbl&gt;, days &lt;dbl&gt;, arms &lt;dbl&gt;, age_m &lt;dbl&gt;,
+#   weight_lb &lt;dbl&gt;, cd_change_20 &lt;dbl&gt;, cd_change_960 &lt;dbl&gt;,
+#   gender_char &lt;chr&gt;, arms_char &lt;chr&gt;, agem &lt;dbl&gt;, exercise &lt;dbl&gt;,
 #   education &lt;chr&gt;, drugs_char &lt;chr&gt;</code></pre>
 </div>
 </div>
@@ -897,10 +946,10 @@ trial_B</code></pre>
 </tbody>
 </table>
 <p>The <code>trial_act</code> data set contains a randomized clinical trial to compare monotherapy with zidovudine or didanosine with combination therapy with zidovudine and didanosine or zidovudine and zalcitabine in adults infected with the human immunodeficiency virus type I whose CD4 T cell counts were between 200 and 500 per cubic millimeter.</p>
-<table style="width:75%;">
+<table>
 <colgroup>
-<col width="20%" />
-<col width="54%" />
+<col width="26%" />
+<col width="73%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -1043,11 +1092,11 @@ trial_B</code></pre>
 </div>
 <div id="glossary" class="section level2">
 <h2>Glossary</h2>
-<table style="width:83%;">
+<table>
 <colgroup>
-<col width="6%" />
-<col width="11%" />
-<col width="65%" />
+<col width="7%" />
+<col width="12%" />
+<col width="80%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -1163,7 +1212,7 @@ baselers %&gt;%
 <div id="resources" class="section level2">
 <h2>Resources</h2>
 <ul>
-<li>See <a href="https://cran.r-project.org/web/packages/dplyr/vignettes/dplyr.html" class="uri">https://cran.r-project.org/web/packages/dplyr/vignettes/dplyr.html</a> for the full dplyr vignette with lots of wrangling tips and tricks.</li>
+<li>See <a href="https://cran.r-project.org/web/packages/dplyr/vignettes/dplyr.html">https://cran.r-project.org/web/packages/dplyr/vignettes/dplyr.html</a> for the full dplyr vignette with lots of wrangling tips and tricks.</li>
 </ul>
 </div>
 </div>

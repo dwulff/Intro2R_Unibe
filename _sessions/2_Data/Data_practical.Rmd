@@ -1,4 +1,5 @@
 ---
+<<<<<<< HEAD
 title: "Data"
 subtitle: ""
 author: "
@@ -28,6 +29,26 @@ author: "
     </td>
   </tr>
 </table>"
+=======
+title: "Data practical"
+author: "Introduction to R<br/>
+  <a href='https://therbootcamp.github.io'>
+    Bern R Bootcamp
+  </a> 
+  <br>
+  <a href='https://dwulff.github.io/Intro2R_Unibe/'>
+    <i class='fas fa-clock' style='font-size:.9em;'></i>
+  </a>&#8239; 
+  <a href='https://therbootcamp.github.io'>
+    <i class='fas fa-home' style='font-size:.9em;' ></i>
+  </a>&#8239;
+  <a href='mailto:therbootcamp@gmail.com'>
+    <i class='fas fa-envelope' style='font-size: .9em;'></i>
+  </a>&#8239;
+  <a href='https://www.linkedin.com/company/basel-r-bootcamp/'>
+    <i class='fab fa-linkedin' style='font-size: .9em;'></i>
+  </a>"
+>>>>>>> 58ecebeed379df1bb6ba22a483e38282af11c685
 output:
   html_document:
     css: practical.css

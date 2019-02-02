@@ -3,7 +3,7 @@ title: "Statistics I"
 author: "
   Introduction to R<br>
   <a href='https://therbootcamp.github.io'>
-    R Bootcamp Bern
+    Bern R Bootcamp
   </a>
   <br>
   <a href='https://dwulff.github.io/Intro2R_Unibe/'>
@@ -29,7 +29,6 @@ output:
       countIncrementalSlides: false
       ratio: '16:9'
 ---
-
 layout: true
 
 <div class="my-footer">
