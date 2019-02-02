@@ -19,10 +19,9 @@ appointments <- read_csv('_sessions/FinalProject/1_Data/medical_noshows.csv')
 weather <- read_csv('_sessions/FinalProject/1_Data/brazil_wheather.csv')
 
 
-# Converting categorical variables to factors
-appointments$Gender <- factor(appointments$Gender, levels = c("M", "F"))
-appointments$NoShow <- factor((appointments$`No-show`))
-appointments$Neighbourhood <- factor((appointments$Neighbourhood))
+# remove quotes
+appointments$NoShow <- appointments$`No-show`
+appointments <- select(appointments, -`No-show`)
 
 # Converting all logical flags 
 appointments$Diabetes <- as.logical(appointments$Diabetes)
@@ -31,11 +30,6 @@ appointments$Hypertension <- as.logical(appointments$Hipertension)
 appointments$Handicapped <- as.logical(appointments$Handcap)
 appointments$Scholarship <- as.logical(appointments$Scholarship)
 appointments$SMS_received <- as.logical(appointments$SMS_received)
-
-
-appointments$Handcap <- NULL
-appointments$Hipertension <- NULL
-appointments$`No-show` <- NULL
 
 # write_csv('_sessions/FinalProject/1_Data/medical_noshows.csv') # run once!
 
@@ -57,5 +51,22 @@ GNresult <- cbind(city=row.names(GNresult),
                   subset(GNresult, select=c("lng", "lat", "adminName1")))
 
 write_csv(GNresult, '_sessions/FinalProject/1_Data/LatLonBrazil.csv')
+
+#get weather data
+
+library(nasapower)
+
+test_coord <- GNresult[1:3,2:3]
+
+                   get_power(community = "AG",
+                             lonlat = c(-47.8821658, -15.7942287),
+                             pars = c("RH2M", "T2M", "PRECTOT"),
+                             dates = c("2015-11-09", "2016-11-10"),
+                             temporal_average = "DAILY"
+)
+                   
+                   
+                   
+?get_power
 
 # https://www.kaggle.com/ravishkalra/medical-appointment-no-show-prediction
