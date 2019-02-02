@@ -12,7 +12,7 @@
 <meta name="author" content="Introduction to R   R Bootcamp Bern" />
 
 
-<title>Data practical</title>
+<title>Statistics I practical</title>
 
 <script src="StatisticsI_practical_files/jquery-1.11.3/jquery.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -98,9 +98,6 @@ img {
 button.code-folding-btn:focus {
   outline: none;
 }
-summary {
-  display: list-item;
-}
 </style>
 
 
@@ -108,70 +105,9 @@ summary {
 <div class="container-fluid main-container">
 
 <!-- tabsets -->
-
-<style type="text/css">
-.tabset-dropdown > .nav-tabs {
-  display: inline-table;
-  max-height: 500px;
-  min-height: 44px;
-  overflow-y: auto;
-  background: white;
-  border: 1px solid #ddd;
-  border-radius: 4px;
-}
-
-.tabset-dropdown > .nav-tabs > li.active:before {
-  content: "";
-  font-family: 'Glyphicons Halflings';
-  display: inline-block;
-  padding: 10px;
-  border-right: 1px solid #ddd;
-}
-
-.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
-  content: "&#xe258;";
-  border: none;
-}
-
-.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
-  content: "";
-  font-family: 'Glyphicons Halflings';
-  display: inline-block;
-  padding: 10px;
-  border-right: 1px solid #ddd;
-}
-
-.tabset-dropdown > .nav-tabs > li.active {
-  display: block;
-}
-
-.tabset-dropdown > .nav-tabs > li > a,
-.tabset-dropdown > .nav-tabs > li > a:focus,
-.tabset-dropdown > .nav-tabs > li > a:hover {
-  border: none;
-  display: inline-block;
-  border-radius: 4px;
-}
-
-.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
-  display: block;
-  float: none;
-}
-
-.tabset-dropdown > .nav-tabs > li {
-  display: none;
-}
-</style>
-
 <script>
 $(document).ready(function () {
   window.buildTabsets("TOC");
-});
-
-$(document).ready(function () {
-  $('.tabset-dropdown > .nav-tabs > li').click(function () {
-    $(this).parent().toggleClass('nav-tabs-open')
-  });
 });
 </script>
 
@@ -181,11 +117,12 @@ $(document).ready(function () {
 
 
 
+
 <div class="fluid-row" id="header">
 
 
 
-<h1 class="title toc-ignore">Data practical</h1>
+<h1 class="title toc-ignore">Statistics I practical</h1>
 <h4 class="author"><em>Introduction to R<br/> <a href='https://therbootcamp.github.io'> R Bootcamp Bern </a> <br> <a href='https://dwulff.github.io/Intro2R_Unibe/'> <i class='fas fa-clock' style='font-size:.9em;'></i> </a>  <a href='https://therbootcamp.github.io'> <i class='fas fa-home' style='font-size:.9em;' ></i> </a>  <a href='mailto:therbootcamp@gmail.com'> <i class='fas fa-envelope' style='font-size: .9em;'></i> </a>  <a href='https://www.linkedin.com/company/basel-r-bootcamp/'> <i class='fab fa-linkedin' style='font-size: .9em;'></i> </a></em></h4>
 
 </div>
@@ -209,12 +146,12 @@ $(document).ready(function () {
 <h2>Datasets</h2>
 <pre class="r"><code>library(tidyverse)
 kc_house &lt;- read_csv(&quot;https://raw.githubusercontent.com/therbootcamp/BaselRBootcamp_2018July/master/_sessions/_data//baselrbootcamp_data/kc_house.csv&quot;)</code></pre>
-<table>
+<table style="width:89%;">
 <colgroup>
 <col width="8%" />
-<col width="10%" />
+<col width="9%" />
 <col width="11%" />
-<col width="70%" />
+<col width="59%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -254,11 +191,11 @@ kc_house &lt;- read_csv(&quot;https://raw.githubusercontent.com/therbootcamp/Bas
 <div id="glossary" class="section level2">
 <h2>Glossary</h2>
 <p><em>Wrangling</em></p>
-<table>
+<table style="width:83%;">
 <colgroup>
-<col width="7%" />
-<col width="12%" />
-<col width="80%" />
+<col width="6%" />
+<col width="11%" />
+<col width="65%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -462,7 +399,7 @@ rsq(price_glm)</code></pre>
 <pre class="r"><code>kc_house</code></pre>
 <pre><code># A tibble: 21,613 x 21
    id    date                 price bedrooms bathrooms sqft_living sqft_lot
-   &lt;chr&gt; &lt;dttm&gt;               &lt;dbl&gt;    &lt;dbl&gt;     &lt;dbl&gt;       &lt;dbl&gt;    &lt;dbl&gt;
+   &lt;chr&gt; &lt;dttm&gt;               &lt;dbl&gt;    &lt;int&gt;     &lt;dbl&gt;       &lt;int&gt;    &lt;int&gt;
  1 7129… 2014-10-13 00:00:00 2.22e5        3      1           1180     5650
  2 6414… 2014-12-09 00:00:00 5.38e5        3      2.25        2570     7242
  3 5631… 2015-02-25 00:00:00 1.80e5        2      1            770    10000
@@ -473,11 +410,11 @@ rsq(price_glm)</code></pre>
  8 2008… 2015-01-15 00:00:00 2.92e5        3      1.5         1060     9711
  9 2414… 2015-04-15 00:00:00 2.30e5        3      1           1780     7470
 10 3793… 2015-03-12 00:00:00 3.23e5        3      2.5         1890     6560
-# … with 21,603 more rows, and 14 more variables: floors &lt;dbl&gt;,
-#   waterfront &lt;dbl&gt;, view &lt;dbl&gt;, condition &lt;dbl&gt;, grade &lt;dbl&gt;,
-#   sqft_above &lt;dbl&gt;, sqft_basement &lt;dbl&gt;, yr_built &lt;dbl&gt;,
-#   yr_renovated &lt;dbl&gt;, zipcode &lt;dbl&gt;, lat &lt;dbl&gt;, long &lt;dbl&gt;,
-#   sqft_living15 &lt;dbl&gt;, sqft_lot15 &lt;dbl&gt;</code></pre>
+# ... with 21,603 more rows, and 14 more variables: floors &lt;dbl&gt;,
+#   waterfront &lt;int&gt;, view &lt;int&gt;, condition &lt;int&gt;, grade &lt;int&gt;,
+#   sqft_above &lt;int&gt;, sqft_basement &lt;int&gt;, yr_built &lt;int&gt;,
+#   yr_renovated &lt;int&gt;, zipcode &lt;int&gt;, lat &lt;dbl&gt;, long &lt;dbl&gt;,
+#   sqft_living15 &lt;int&gt;, sqft_lot15 &lt;int&gt;</code></pre>
 <pre class="r"><code>summary(kc_house)</code></pre>
 <pre><code>      id                 date                         price        
  Length:21613       Min.   :2014-05-02 00:00:00   Min.   :  75000  
@@ -524,17 +461,17 @@ rsq(price_glm)</code></pre>
 <pre class="r"><code>head(kc_house)</code></pre>
 <pre><code># A tibble: 6 x 21
   id    date                 price bedrooms bathrooms sqft_living sqft_lot
-  &lt;chr&gt; &lt;dttm&gt;               &lt;dbl&gt;    &lt;dbl&gt;     &lt;dbl&gt;       &lt;dbl&gt;    &lt;dbl&gt;
+  &lt;chr&gt; &lt;dttm&gt;               &lt;dbl&gt;    &lt;int&gt;     &lt;dbl&gt;       &lt;int&gt;    &lt;int&gt;
 1 7129… 2014-10-13 00:00:00 2.22e5        3      1           1180     5650
 2 6414… 2014-12-09 00:00:00 5.38e5        3      2.25        2570     7242
 3 5631… 2015-02-25 00:00:00 1.80e5        2      1            770    10000
 4 2487… 2014-12-09 00:00:00 6.04e5        4      3           1960     5000
 5 1954… 2015-02-18 00:00:00 5.10e5        3      2           1680     8080
 6 7237… 2014-05-12 00:00:00 1.23e6        4      4.5         5420   101930
-# … with 14 more variables: floors &lt;dbl&gt;, waterfront &lt;dbl&gt;, view &lt;dbl&gt;,
-#   condition &lt;dbl&gt;, grade &lt;dbl&gt;, sqft_above &lt;dbl&gt;, sqft_basement &lt;dbl&gt;,
-#   yr_built &lt;dbl&gt;, yr_renovated &lt;dbl&gt;, zipcode &lt;dbl&gt;, lat &lt;dbl&gt;,
-#   long &lt;dbl&gt;, sqft_living15 &lt;dbl&gt;, sqft_lot15 &lt;dbl&gt;</code></pre>
+# ... with 14 more variables: floors &lt;dbl&gt;, waterfront &lt;int&gt;, view &lt;int&gt;,
+#   condition &lt;int&gt;, grade &lt;int&gt;, sqft_above &lt;int&gt;, sqft_basement &lt;int&gt;,
+#   yr_built &lt;int&gt;, yr_renovated &lt;int&gt;, zipcode &lt;int&gt;, lat &lt;dbl&gt;,
+#   long &lt;dbl&gt;, sqft_living15 &lt;int&gt;, sqft_lot15 &lt;int&gt;</code></pre>
 </div>
 <div id="b---recap" class="section level3">
 <h3>B - Recap</h3>
@@ -664,7 +601,7 @@ kc_house</code></pre>
 kc_house</code></pre>
 <pre><code># A tibble: 21,613 x 26
    id    date                 price bedrooms bathrooms living_sqft lot_sqft
-   &lt;chr&gt; &lt;dttm&gt;               &lt;dbl&gt;    &lt;dbl&gt;     &lt;dbl&gt;       &lt;dbl&gt;    &lt;dbl&gt;
+   &lt;chr&gt; &lt;dttm&gt;               &lt;dbl&gt;    &lt;int&gt;     &lt;dbl&gt;       &lt;int&gt;    &lt;int&gt;
  1 6762… 2014-10-13 00:00:00 7.70e6        6      8          12050    27600
  2 9808… 2014-06-11 00:00:00 7.06e6        5      4.5        10040    37325
  3 9208… 2014-09-19 00:00:00 6.88e6        6      7.75        9890    31374
@@ -675,11 +612,11 @@ kc_house</code></pre>
  8 1924… 2014-06-17 00:00:00 4.67e6        5      6.75        9640    13068
  9 7738… 2014-08-15 00:00:00 4.50e6        5      5.5         6640    40014
 10 3835… 2014-06-18 00:00:00 4.49e6        4      3           6430    27517
-# … with 21,603 more rows, and 19 more variables: floors &lt;dbl&gt;,
-#   waterfront &lt;dbl&gt;, view &lt;dbl&gt;, condition &lt;dbl&gt;, grade &lt;dbl&gt;,
-#   above_sqft &lt;dbl&gt;, basement_sqft &lt;dbl&gt;, built_yr &lt;dbl&gt;,
-#   renovated_yr &lt;dbl&gt;, zipcode &lt;dbl&gt;, lat &lt;dbl&gt;, long &lt;dbl&gt;,
-#   sqft_living15 &lt;dbl&gt;, sqft_lot15 &lt;dbl&gt;, living_sqm &lt;dbl&gt;,
+# ... with 21,603 more rows, and 19 more variables: floors &lt;dbl&gt;,
+#   waterfront &lt;int&gt;, view &lt;int&gt;, condition &lt;int&gt;, grade &lt;int&gt;,
+#   above_sqft &lt;int&gt;, basement_sqft &lt;int&gt;, built_yr &lt;int&gt;,
+#   renovated_yr &lt;int&gt;, zipcode &lt;int&gt;, lat &lt;dbl&gt;, long &lt;dbl&gt;,
+#   sqft_living15 &lt;int&gt;, sqft_lot15 &lt;int&gt;, living_sqm &lt;dbl&gt;,
 #   lot_sqm &lt;dbl&gt;, above_sqm &lt;dbl&gt;, basement_sqm &lt;dbl&gt;, mansion &lt;chr&gt;</code></pre>
 <ol start="6" style="list-style-type: decimal">
 <li>What percentage of houses sold for more than 1,000,000? Let’s answer this with <code>summarise()</code>.</li>
@@ -780,7 +717,7 @@ kc_house</code></pre>
             living = mean(living_sqm))</code></pre>
 <pre><code># A tibble: 116 x 3
    built_yr     N living
-      &lt;dbl&gt; &lt;int&gt;  &lt;dbl&gt;
+      &lt;int&gt; &lt;int&gt;  &lt;dbl&gt;
  1     1900    87   161.
  2     1901    29   164.
  3     1902    27   179.
@@ -791,7 +728,7 @@ kc_house</code></pre>
  8     1907    65   177.
  9     1908    86   158.
 10     1909    94   177.
-# … with 106 more rows</code></pre>
+# ... with 106 more rows</code></pre>
 <ol start="5" style="list-style-type: decimal">
 <li>Was that table too big? Try using the following code to get the results for each decade rather than each year!</li>
 </ol>
@@ -823,7 +760,7 @@ kc_house</code></pre>
            N = n())</code></pre>
 <pre><code># A tibble: 4 x 4
   zipcode price_mean price_median     N
-    &lt;dbl&gt;      &lt;dbl&gt;        &lt;dbl&gt; &lt;int&gt;
+    &lt;int&gt;      &lt;dbl&gt;        &lt;dbl&gt; &lt;int&gt;
 1   98001    280805.       260000   362
 2   98109    879624.       736000   109
 3   98117    576795.       544000   553
@@ -839,7 +776,7 @@ kc_house</code></pre>
 <pre><code># A tibble: 8 x 5
 # Groups:   zipcode [?]
   zipcode mansion price_mean price_median     N
-    &lt;dbl&gt; &lt;chr&gt;        &lt;dbl&gt;        &lt;dbl&gt; &lt;int&gt;
+    &lt;int&gt; &lt;chr&gt;        &lt;dbl&gt;        &lt;dbl&gt; &lt;int&gt;
 1   98001 No         277589.       260000   359
 2   98001 Yes        665667.       637000     3
 3   98109 No         833528.       730500   106
@@ -860,7 +797,7 @@ kc_house</code></pre>
            N = n())</code></pre>
 <pre><code># A tibble: 4 x 6
   zipcode price_mean price_median floors_min floors_max     N
-    &lt;dbl&gt;      &lt;dbl&gt;        &lt;dbl&gt;      &lt;dbl&gt;      &lt;dbl&gt; &lt;int&gt;
+    &lt;int&gt;      &lt;dbl&gt;        &lt;dbl&gt;      &lt;dbl&gt;      &lt;dbl&gt; &lt;int&gt;
 1   98001    280805.       260000          1        2.5   362
 2   98109    879624.       736000          1        3     109
 3   98117    576795.       544000          1        3     553
@@ -1049,7 +986,7 @@ Number of Fisher Scoring iterations: 2</code></pre>
   slice(1)</code></pre>
 <pre><code># A tibble: 1 x 2
   zipcode waterfront_p
-    &lt;dbl&gt;        &lt;dbl&gt;
+    &lt;int&gt;        &lt;dbl&gt;
 1   98070        0.203</code></pre>
 <ol start="2" style="list-style-type: decimal">
 <li>Which house had the highest price to living space ratio? To answer this, create a new variable called <code>price_to_living</code> that takes <code>price / living_sqm</code>. Then, sort the data in descending order of this variable, and select the first row with <code>slice()</code>! What id value do you get?</li>
@@ -1060,12 +997,12 @@ Number of Fisher Scoring iterations: 2</code></pre>
   slice(1)</code></pre>
 <pre><code># A tibble: 1 x 29
   id    date                 price bedrooms bathrooms living_sqft lot_sqft
-  &lt;chr&gt; &lt;dttm&gt;               &lt;dbl&gt;    &lt;dbl&gt;     &lt;dbl&gt;       &lt;dbl&gt;    &lt;dbl&gt;
+  &lt;chr&gt; &lt;dttm&gt;               &lt;dbl&gt;    &lt;int&gt;     &lt;dbl&gt;       &lt;int&gt;    &lt;int&gt;
 1 6021… 2015-04-07 00:00:00 874950        2         1        1080     4000
-# … with 22 more variables: floors &lt;dbl&gt;, waterfront &lt;dbl&gt;, view &lt;dbl&gt;,
-#   condition &lt;dbl&gt;, grade &lt;dbl&gt;, above_sqft &lt;dbl&gt;, basement_sqft &lt;dbl&gt;,
-#   built_yr &lt;dbl&gt;, renovated_yr &lt;dbl&gt;, zipcode &lt;dbl&gt;, lat &lt;dbl&gt;,
-#   long &lt;dbl&gt;, sqft_living15 &lt;dbl&gt;, sqft_lot15 &lt;dbl&gt;, living_sqm &lt;dbl&gt;,
+# ... with 22 more variables: floors &lt;dbl&gt;, waterfront &lt;int&gt;, view &lt;int&gt;,
+#   condition &lt;int&gt;, grade &lt;int&gt;, above_sqft &lt;int&gt;, basement_sqft &lt;int&gt;,
+#   built_yr &lt;int&gt;, renovated_yr &lt;int&gt;, zipcode &lt;int&gt;, lat &lt;dbl&gt;,
+#   long &lt;dbl&gt;, sqft_living15 &lt;int&gt;, sqft_lot15 &lt;int&gt;, living_sqm &lt;dbl&gt;,
 #   lot_sqm &lt;dbl&gt;, above_sqm &lt;dbl&gt;, basement_sqm &lt;dbl&gt;, mansion &lt;chr&gt;,
 #   residuals &lt;dbl&gt;, residuals_abs &lt;dbl&gt;, price_to_living &lt;dbl&gt;</code></pre>
 <ol start="3" style="list-style-type: decimal">
@@ -1078,7 +1015,7 @@ Number of Fisher Scoring iterations: 2</code></pre>
   slice(1:10)</code></pre>
 <pre><code># A tibble: 10 x 2
    zipcode price_mean
-     &lt;dbl&gt;      &lt;dbl&gt;
+     &lt;int&gt;      &lt;dbl&gt;
  1   98039   2160607.
  2   98004   1355927.
  3   98040   1194230.
@@ -1317,7 +1254,7 @@ X-squared = 300, df = 10, p-value &lt;2e-16</code></pre>
 <div id="additional-resources" class="section level2">
 <h2>Additional Resources</h2>
 <ul>
-<li>See <a href="https://cran.r-project.org/web/packages/dplyr/vignettes/dplyr.html">https://cran.r-project.org/web/packages/dplyr/vignettes/dplyr.html</a> for the full dplyr vignette with lots of wrangling tips and tricks.</li>
+<li>See <a href="https://cran.r-project.org/web/packages/dplyr/vignettes/dplyr.html" class="uri">https://cran.r-project.org/web/packages/dplyr/vignettes/dplyr.html</a> for the full dplyr vignette with lots of wrangling tips and tricks.</li>
 </ul>
 </div>
 </div>
