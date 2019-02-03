@@ -66,7 +66,7 @@ test_coord$lnglat <- noquote(paste0(test_coord$lng, ' ', test_coord$lat))
 c(test_coord$lnglat[1])
 
 res <- list()
-for (i in 1:3){
+for (i in 1:nrow(GNresult)){
   print(i)
   tmp <-  get_power(community = "AG",
                          lonlat = GNresult %>% slice(i) %>% 
