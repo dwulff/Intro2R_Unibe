@@ -9,7 +9,7 @@ library(nasapower)
 options(geonamesUsername="schultem")
 options(geonamesHost="api.geonames.org")
 
-weather <- read_csv('_sessions/FinalProject/1_Data/brazil_wheather.csv')
+# weather <- read_csv('_sessions/FinalProject/1_Data/brazil_wheather.csv')
 
 
 # PROCESS APPOINTMENTS ----------
@@ -54,17 +54,6 @@ GNsearch(name='MATA DA PRAIA', country="BR")
 
 GNresult = read_csv('_sessions/FinalProject/1_Data/latlon_brazil.csv')
 
-test_coord <- GNresult[1:3,2:3]
-
-                   # get_power(community = "AG",
-                   #           lonlat = c(-47.8821658, -15.7942287),
-                   #           pars = c("RH2M", "T2M", "PRECTOT"),
-                   #           dates = c("2015-11-09", "2016-11-10"),
-                   #           temporal_average = "DAILY")
- 
-test_coord$lnglat <- noquote(paste0(test_coord$lng, ' ', test_coord$lat))
-c(test_coord$lnglat[1])
-
 res <- list()
 for (i in 1:nrow(GNresult)){
   print(i)
@@ -72,11 +61,12 @@ for (i in 1:nrow(GNresult)){
                          lonlat = GNresult %>% slice(i) %>% 
                          select(lng, lat) %>% unlist(),
                          pars = c("RH2M", "T2M", "PRECTOT"),
-                         dates = c("2016-11-10", "2016-11-20"),
+                         dates = c("2016-04-29", "2016-06-08"),
                          temporal_average = "DAILY")
   class(tmp) = class(tmp)[-1] 
   res[[i]] = tmp
   }
-wheather = do.call(rbind, res)
-wheather
+weather = do.call(rbind, res)
+weather
 
+write_csv(weather, '_sessions/FinalProject/1_Data/weather_per_coordinate.csv')
