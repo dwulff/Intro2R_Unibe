@@ -1,5 +1,7 @@
 
 require(tidyverse)
+library(nasapower)
+
 
 d = read_csv('~/Downloads/KaggleV2-May-2016.csv')
 
@@ -13,7 +15,6 @@ min(d$ScheduledDay)
 max(d$ScheduledDay)
 
 
-library(nasapower)
 daily_single_ag <- get_power(community = "AG",
                              lonlat = c(-47.8821658, -15.7942287),
                              pars = c("RH2M", "T2M", "PRECTOT"),
@@ -39,6 +40,7 @@ write_csv(daily_single_ag, '1_Data/brazil_wheather.csv')
 
 
 
-PRECTOT Precipitation
-RH2M Relative Humidity at 2 Meters
-T2M Temperature at 2 Meters
+# PRECTOT Precipitation
+# RH2M Relative Humidity at 2 Meters
+# T2M Temperature at 2 Meters
+
