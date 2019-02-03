@@ -36,6 +36,10 @@ GNsearchAF <- function(x) {
   return(res[1, ])  
   }
 
+GNsearch(name='MATA DA PRAIA', country="BR")  
+
+
+
 # # loop over city names and reformat  
 # GNresult <- sapply(uni_neighbourhood, GNsearchAF)  
 # GNresult <- do.call(rbind, GNresult)  
@@ -61,14 +65,18 @@ test_coord <- GNresult[1:3,2:3]
 test_coord$lnglat <- noquote(paste0(test_coord$lng, ' ', test_coord$lat))
 c(test_coord$lnglat[1])
 
-res <- matrix(nrow=nrow(GNresult), ncol=3)
-for (i in 1:nrow(GNresult)){
+res <- list()
+for (i in 1:3){
   print(i)
-  res[i, ] <-  get_power(community = "AG",
-                       lonlat = c(-47.8821658, -15.7942287), # GNresult %>% slice(i) %>% select(lng, lat) %>% unlist() %>% round(2),
-                       pars = c("RH2M", "T2M", "PRECTOT"),
-                       dates = c("2016-11-09", "2016-11-10"),
-                       temporal_average = "DAILY")
-                }    
+  tmp <-  get_power(community = "AG",
+                         lonlat = GNresult %>% slice(i) %>% 
+                         select(lng, lat) %>% unlist(),
+                         pars = c("RH2M", "T2M", "PRECTOT"),
+                         dates = c("2016-11-10", "2016-11-20"),
+                         temporal_average = "DAILY")
+  class(tmp) = class(tmp)[-1] 
+  res[[i]] = tmp
+  }
+wheather = do.call(rbind, res)
+wheather
 
-?get_power
