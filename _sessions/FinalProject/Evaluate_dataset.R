@@ -8,16 +8,9 @@ library(geonames)
 options(geonamesUsername="schultem")
 options(geonamesHost="api.geonames.org")
 
-install.packages("rjson") 
-install_github("ropensci/geonames")
-
-
-
-
 # load dataset
 appointments <- read_csv('_sessions/FinalProject/1_Data/medical_noshows.csv')
 weather <- read_csv('_sessions/FinalProject/1_Data/brazil_wheather.csv')
-
 
 # remove quotes
 appointments$NoShow <- appointments$`No-show`
@@ -32,7 +25,6 @@ appointments$Scholarship <- as.logical(appointments$Scholarship)
 appointments$SMS_received <- as.logical(appointments$SMS_received)
 
 # write_csv('_sessions/FinalProject/1_Data/medical_noshows.csv') # run once!
-
 
 # we need coordinates for the locations in appointments ----
 neighbourhood <- appointments$Neighbourhood 
@@ -58,15 +50,24 @@ library(nasapower)
 
 test_coord <- GNresult[1:3,2:3]
 
-                   get_power(community = "AG",
-                             lonlat = c(-47.8821658, -15.7942287),
-                             pars = c("RH2M", "T2M", "PRECTOT"),
-                             dates = c("2015-11-09", "2016-11-10"),
-                             temporal_average = "DAILY"
-)
-                   
-                   
-                   
-?get_power
+                   # get_power(community = "AG",
+                   #           lonlat = c(-47.8821658, -15.7942287),
+                   #           pars = c("RH2M", "T2M", "PRECTOT"),
+                   #           dates = c("2015-11-09", "2016-11-10"),
+                   #           temporal_average = "DAILY")
+ 
+test_coord$lnglat <- noquote(paste0(test_coord$lng, ' ', test_coord$lat))
+c(test_coord$lnglat[1])
 
-# https://www.kaggle.com/ravishkalra/medical-appointment-no-show-prediction
+out1 <- NULL
+for (i in test_coord$lnglat){
+  print(i)
+  values <-  get_power(community = "AG",
+                       lonlat = c(i),
+                       pars = c("RH2M", "T2M", "PRECTOT"),
+                       dates = c("2016-11-09", "2016-11-10"),
+                       temporal_average = "DAILY")
+  out1 <- rbind(out1, values)
+                }    
+
+?get_power
