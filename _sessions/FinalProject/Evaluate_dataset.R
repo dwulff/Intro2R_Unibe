@@ -8,21 +8,13 @@ library(geonames)
 options(geonamesUsername="schultem")
 options(geonamesHost="api.geonames.org")
 
-install.packages("rjson") 
-install_github("ropensci/geonames")
-
-
-
-
 # load dataset
 appointments <- read_csv('_sessions/FinalProject/1_Data/medical_noshows.csv')
 weather <- read_csv('_sessions/FinalProject/1_Data/brazil_wheather.csv')
 
-
-# Converting categorical variables to factors
-appointments$Gender <- factor(appointments$Gender, levels = c("M", "F"))
-appointments$NoShow <- factor((appointments$`No-show`))
-appointments$Neighbourhood <- factor((appointments$Neighbourhood))
+# remove quotes
+appointments$NoShow <- appointments$`No-show`
+appointments <- select(appointments, -`No-show`)
 
 # Converting all logical flags 
 appointments$Diabetes <- as.logical(appointments$Diabetes)
@@ -32,13 +24,7 @@ appointments$Handicapped <- as.logical(appointments$Handcap)
 appointments$Scholarship <- as.logical(appointments$Scholarship)
 appointments$SMS_received <- as.logical(appointments$SMS_received)
 
-
-appointments$Handcap <- NULL
-appointments$Hipertension <- NULL
-appointments$`No-show` <- NULL
-
 # write_csv('_sessions/FinalProject/1_Data/medical_noshows.csv') # run once!
-
 
 # we need coordinates for the locations in appointments ----
 neighbourhood <- appointments$Neighbourhood 
@@ -58,4 +44,30 @@ GNresult <- cbind(city=row.names(GNresult),
 
 write_csv(GNresult, '_sessions/FinalProject/1_Data/LatLonBrazil.csv')
 
-# https://www.kaggle.com/ravishkalra/medical-appointment-no-show-prediction
+#get weather data
+
+library(nasapower)
+
+test_coord <- GNresult[1:3,2:3]
+
+                   # get_power(community = "AG",
+                   #           lonlat = c(-47.8821658, -15.7942287),
+                   #           pars = c("RH2M", "T2M", "PRECTOT"),
+                   #           dates = c("2015-11-09", "2016-11-10"),
+                   #           temporal_average = "DAILY")
+ 
+test_coord$lnglat <- noquote(paste0(test_coord$lng, ' ', test_coord$lat))
+c(test_coord$lnglat[1])
+
+out1 <- NULL
+for (i in test_coord$lnglat){
+  print(i)
+  values <-  get_power(community = "AG",
+                       lonlat = c(i),
+                       pars = c("RH2M", "T2M", "PRECTOT"),
+                       dates = c("2016-11-09", "2016-11-10"),
+                       temporal_average = "DAILY")
+  out1 <- rbind(out1, values)
+                }    
+
+?get_power
