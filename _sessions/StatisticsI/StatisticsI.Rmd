@@ -66,13 +66,13 @@ library(tidyverse)
 library(baselers)
 ```
 
-# Statistics
+# Statistics I
 
 .pull-left45[
 
 #### <high>Descriptive statistics</high> with `dplyr`
 
-```{r, eval = F}
+```{r, echo = T, eval = F}
 # Group-summarise idiom
 baselers %>%
   group_by(sex, eyecor) %>%
@@ -86,7 +86,7 @@ baselers %>%
 
 
 #### <high>Simply hypothesis test</high> with `stats`
-```{r, eval = F}
+```{r, eval = F, echo = T}
 # Simple hypothesis test
 t.test(baselers$happiness,
        baselers$fitness,

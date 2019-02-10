@@ -51,7 +51,7 @@ In this practical, you'll practice grouping and analysing data with the `dplyr` 
 By the end of this practical you will know how to:
 
 1. Group data and calculate summary statistics
-2. Run simple statistical analyses.
+2. Run simple statistical analyses
 
 ## Datasets
 
@@ -199,13 +199,13 @@ rsq(price_glm)
 
 ### A - Setup
 
-1. Open your `baselrbootcamp` R project. It should already have the folders `1_Data` and `2_Code`. Make sure that the data files listed in the `Datasets` section above are in your `1_Data` folder.
+1. Open your `bernrbootcamp` R project. It should already have the folders `1_Data` and `2_Code`. Make sure that the data files listed in the `Datasets` section above are in your `1_Data` folder.
 
 ```{r}
 # Done!
 ```
 
-2. Open a new R script. At the top of the script, using comments, write your name and the date. Save it as a new file called `analysing_practical.R` in the `2_Code` folder.  
+2. Open a new R script. At the top of the script, using comments, write your name and the date. Save it as a new file called `statisticsI_practical.R` in the `2_Code` folder.  
 3. Using `library()` load the set of packages for this practical listed in the packages section above.
 
 ```{r, message = FALSE, warning = FALSE, echo = FALSE, eval = TRUE}
@@ -220,7 +220,7 @@ kc_house <- read_csv(file = "XX")
 
 4. Using `print()`, `summary()`, and `head()`, explore the data to make sure it was loaded correctly.
 
-```{r}
+```{r, echo = FALSE, eval = FALSE}
 kc_house
 summary(kc_house)
 head(kc_house)
@@ -230,7 +230,7 @@ head(kc_house)
 
 1. Print the names of the `kc_house` data with `names()`.
 
-```{r}
+```{r, echo = FALSE, eval = FALSE}
 names(kc_house)
 ```
 
@@ -245,7 +245,7 @@ names(kc_house)
 |built_yr|yr_built |
 |renovated_yr|yr_renovated|
 
-```{r, echo = FALSE, eval = FALSE}
+```{r, echo = TRUE, eval = FALSE}
 kc_house <- kc_house %>%
   rename(NEW = OLD,
          NEW = OLD,
@@ -272,7 +272,7 @@ kc_house <- kc_house %>%
          XXX = XXX)
 ```
 
-```{r, eval = TRUE}
+```{r, echo = FALSE, eval = TRUE}
 kc_house <- kc_house %>%
   mutate(living_sqm = living_sqft * 0.093,
          lot_sqm = lot_sqft * 0.093,
@@ -282,14 +282,14 @@ kc_house <- kc_house %>%
 
 4. Add a new variable to the dataframe called `mansion` which is "Yes" when the *sum* of the house's living, above, and basement space is above 750 square meters.
 
-```{r, echo = FALSE, eval = FALSE}
+```{r, echo = TRUE, eval = FALSE}
 kc_house <- kc_house %>%
                 mutate(XXX = case_when(
                               XXX + XXX + XXX > XXX ~ "XXX",
                               XXXX + XXX + XXX <= XXX ~ "XXX"))
 ```
 
-```{r, eval = TRUE}
+```{r, echo = FALSE, eval = TRUE}
 kc_house <- kc_house %>%
                 mutate(mansion = case_when(
                               living_sqm + above_sqm +  basement_sqm > 750 ~ "Yes",
@@ -304,11 +304,11 @@ kc_house <- kc_house %>%
 mean(XXX$XXX)
 ```
 
-```{r}
+```{r, echo = FALSE, eval = FALSE}
 mean(kc_house$price)
 ```
 
-2. Now, do the same using `summarise()` using the following template. Do you get the same answer? What is different about the output from `summarise()` versus using the dollar sign?
+2. Now, do the same using `summarise()` with the following template. Do you get the same answer? What is different about the output from `summarise()` versus using the dollar sign?
 
 ```{r, echo = TRUE, eval = FALSE}
 kc_house %>%
@@ -317,7 +317,7 @@ kc_house %>%
   )
 ```
 
-```{r}
+```{r echo = FALSE, eval = FALSE}
 kc_house %>%
   summarise(
     price_mean = mean(price)
@@ -326,7 +326,7 @@ kc_house %>%
 
 3. What is the *median* price of all houses? Use the `median()` function!
 
-```{r}
+```{r echo = FALSE, eval = TRUE}
 kc_house %>%
   summarise(
     price_median = median(price)
@@ -335,7 +335,7 @@ kc_house %>%
 
 4. What was the highest selling price? Use the `max()` function!
 
-```{r}
+```{r, echo = FALSE, eval = TRUE}
 kc_house %>%
   summarise(
     price_max = max(price)
@@ -351,7 +351,7 @@ kc_house <- kc_house %>%
 kc_house
 ```
 
-```{r}
+```{r, echo = FALSE, eval = TRUE}
 kc_house <- kc_house %>%
   arrange(desc(price))
 
@@ -365,14 +365,14 @@ kc_house %>%
   summarise(mil_p = mean(XXX > 1000000))
 ```
 
-```{r}
+```{r, echo = FALSE, eval = TRUE}
 kc_house %>%
   summarise(mil_p = mean(price > 1000000))
 ```
 
 7. For mansions *only*, calculate the mean number of floors and bathrooms (hint: before summarising the data, use `filter()` to only select mansions!)
 
-```{r, echo = FALSE, eval = FALSE}
+```{r, echo = TRUE, eval = FALSE}
 kc_house %>%
   filter(XXX == XXX) %>%
   summarise(
@@ -382,7 +382,7 @@ kc_house %>%
 ```
 
 
-```{r}
+```{r, echo = FALSE, eval = TRUE}
 kc_house %>%
   filter(mansion == "Yes") %>%
   summarise(
@@ -401,7 +401,7 @@ kc_house %>%
   summarise(XXX = n())
 ```
 
-```{r}
+```{r, echo = FALSE, eval = TRUE}
 kc_house %>%
   group_by(mansion) %>%
   summarise(N = n())
@@ -416,7 +416,7 @@ kc_house %>%
             XXX = XXX(XXX))
 ```
 
-```{r}
+```{r, echo = FALSE, eval = TRUE}
 kc_house %>%
   group_by(mansion) %>%
   summarise(N = n(),
@@ -438,7 +438,7 @@ kc_house %>%
 
 4. Do houses built in later years tend to have more living space? To answer this, group the data by `built_yr`, and then calculate the mean number of living square meters. Be sure to also include the number of houses built in each year!
 
-```{r}
+```{r, echo = FALSE, eval = TRUE}
 kc_house %>%
   group_by(built_yr) %>%
   summarise(N = n(),
@@ -466,14 +466,14 @@ brumhilda <- kc_house %>%
   filter(XXX %in% c(XXX, XXX, XXX, XXX))
 ```
 
-```{r}
+```{r, echo = FALSE, eval = TRUE}
 brumhilda <- kc_house %>%
   filter(zipcode %in% c(98001, 98109, 98117, 98199))
 ```
 
 2. For each of the zip codes, calculate the `mean()` and `median()` selling price (as well as the number of houses) in each zip code.
 
-```{r}
+```{r, echo = FALSE, eval = TRUE}
 brumhilda %>%
   group_by(zipcode) %>%
   summarise(price_mean = mean(price),
@@ -483,7 +483,7 @@ brumhilda %>%
 
 3. Now Brumhilda wants the same data separated by whether or not the house is a mansion or not. Include these results by also grouping the data by `mansion` (as well as `zipcode`), and calculating the same summary statistics as before.
 
-```{r}
+```{r, echo = FALSE, eval = TRUE}
 brumhilda %>%
   group_by(zipcode, mansion) %>%
   summarise(price_mean = mean(price),
@@ -494,7 +494,7 @@ brumhilda %>%
 
 4. Ok that was good, but now she also wants to know what the maximum and minimum number of floors were in each group. Add these summary statistics!
 
-```{r}
+```{r, echo = FALSE, eval = TRUE}
 brumhilda %>%
   group_by(zipcode) %>%
   summarise(price_mean = mean(price),
@@ -514,34 +514,34 @@ waterfront_htest <- t.test(formula = XXX ~ XXX,
                            data = XXX)
 ```
 
-```{r}
+```{r, echo = FALSE, eval = TRUE}
 waterfront_htest <- t.test(formula = price ~ waterfront,
                            data = kc_house)
 ```
 
 2. Print your `waterfront_htest` object to see a printout of the main results.
 
-```{r}
+```{r, echo = FALSE, eval = TRUE}
 waterfront_htest
 ```
 
 3. Look at the names of your `waterfront_htest` object with `names()`.
 
-```{r}
+```{r, echo = FALSE, eval = TRUE}
 names(waterfront_htest)
 ```
 
 
 4. Using the `$`, print the test statistic (`statistic`) from your `waterfront_htest` object.
 
-```{r}
+```{r, echo = FALSE, eval = TRUE}
 waterfront_htest$statistic
 ```
 
 
 5. Now using `$`, print only the p-value (`p.value`) from the object.
 
-```{r}
+```{r, echo = FALSE, eval = TRUE}
 waterfront_htest$p.value
 ```
 
@@ -552,38 +552,38 @@ price_glm <- glm(formula = XXX ~ XXX + XXX + XXX + XXX + XXX + XXX,
                  data = XXX)
 ```
 
-```{r}
+```{r, echo = FALSE, eval = TRUE}
 price_glm <- glm(formula = price ~ bedrooms + bathrooms + living_sqm + waterfront + lat + long,
                  data = kc_house)
 ```
 
 7. Print your `price_glm` object. What do you see?
 
-```{r}
+```{r, echo = FALSE, eval = TRUE}
 price_glm
 ```
 
 8. Look at the names of your `price_glm` object with `names()`.
 
-```{r}
+```{r, echo = FALSE, eval = TRUE}
 names(price_glm)
 ```
 
 9. Using `$` print the coefficients from your analysis.
 
-```{r}
+```{r, echo = FALSE, eval = TRUE}
 price_glm$coefficients
 ```
 
 10. Using the `summary()` function, show summary results from your `price_glm` object.
 
-```{r}
+```{r, echo = FALSE, eval = TRUE}
 summary(price_glm)
 ```
 
 11. The `$residuals` element in your `price_glm` object contains the residuals (difference from the predicted and true dependent variable values). Add this vector as a new column called `residuals` to your `kc_house` object using `mutate()`
 
-```{r}
+```{r, echo = FALSE, eval = TRUE}
 kc_house <- kc_house %>%
   mutate(residuals = price_glm$residuals)
 ```
@@ -592,13 +592,13 @@ kc_house <- kc_house %>%
 12. Using the following template, create a histogram of the residuals.
 
 ```{r, echo = TRUE, eval = FALSE}
-ggplot(data = kc_house,
-       aes(x = residuals)) +
+ggplot(data = XXX,
+       aes(x = YYY)) +
   geom_histogram(col = "white") +
   labs(title = "Residual regression")
 ```
 
-```{r, fig.width = 6, fig.height = 4}
+```{r, fig.width = 6, fig.height = 4, echo=FALSE}
 ggplot(data = kc_house,
        aes(x = residuals)) +
   geom_histogram(col = "white") +
@@ -607,21 +607,28 @@ ggplot(data = kc_house,
 
 12. What is the mean of the residuals? How do you interpret this?
 
-```{r}
+```{r, echo = FALSE, eval = TRUE}
 kc_house %>% 
   summarise(resid_mean = mean(residuals))
 ```
 
 13. Now, create a new column called `residuals_abs` which shows the absolute value of the residuals (hint: use the `abs()` function).
 
-```{r}
+```{r, echo = FALSE, eval = TRUE}
 kc_house <- kc_house %>%
   mutate(residuals_abs = abs(price_glm$residuals))
 ```
 
 14. Create a histogram of the absolute value of the residuals.
 
-```{r, fig.width = 6, fig.height = 4}
+```{r, echo=TRUE, eval=FALSE}
+ggplot(data = XXX,
+       aes(x = YYY)) +
+  geom_histogram(col = "white") +
+  labs(title = "Residual regression")
+```
+
+```{r, fig.width = 6, fig.height = 4, echo=FALSE}
 ggplot(data = kc_house,
        aes(x = residuals_abs)) +
   geom_histogram(col = "white") +
@@ -642,7 +649,7 @@ kc_house %>%
 
 1. Which zipcode has the highest percentage of houses on the waterfront? (Hint: group by zipcode, calculate the percentage of houses on the waterfront using `mean()`, then sort the data in descending order) with `arrange()`, then select the first row with `slice()`. Once you find it, try searching for that zipcode on Google Maps and see if it's location makes sense!
 
-```{r}
+```{r, echo=FALSE, eval = TRUE}
 kc_house %>%
   group_by(zipcode) %>%
   summarise(waterfront_p = mean(waterfront)) %>%
@@ -652,7 +659,7 @@ kc_house %>%
 
 2. Which house had the highest price to living space ratio? To answer this, create a new variable called `price_to_living` that takes `price / living_sqm`. Then, sort the data in descending order of this variable, and select the first row with `slice()`! What id value do you get?
 
-```{r}
+```{r, echo=FALSE, eval = TRUE}
 kc_house %>%
   mutate(price_to_living = price / living_sqm) %>%
   arrange(desc(price_to_living)) %>%
@@ -661,7 +668,7 @@ kc_house %>%
 
 3. Which are the top 10 zip codes in terms of mean housing prices? To answer this, group the data by zipcode, calculate the mean price, arrange the dataset in descending order of mean price, then select the top 10 rows!
 
-```{r}
+```{r, echo=FALSE, eval = TRUE}
 kc_house %>%
   group_by(zipcode) %>%
   summarise(price_mean = mean(price)) %>%
@@ -694,7 +701,7 @@ kc_house %>%
 |     1997| 177|     606058|   3800000|             234|
 |     1998| 239|     594159|   1960000|             241|
 
-```{r}
+```{r, echo=FALSE, eval = FALSE}
 kc_house %>%
   filter(built_yr >= 1990 & built_yr < 1999) %>%
   group_by(built_yr) %>%
@@ -707,7 +714,7 @@ kc_house %>%
 
 5. Create a regression object called `living_glm` predicting the amount of living space (`living_sqm`) as a function of `bedrooms`, `bathrooms`, `waterfront`, and `built_yr`. Explore the object with `names()` and `summary()`. Which variables seem to predict living space?
 
-```{r}
+```{r, echo=FALSE, eval = TRUE}
 living_glm <- glm(formula = living_sqm ~ bedrooms + bathrooms + waterfront + built_yr,
                   data = kc_house)
 
@@ -722,11 +729,12 @@ summary(living_glm)
 # First look at a table
 
 table(kc_house$waterfront, kc_house$grade)
-
-chisq.test(table(kc_house$waterfront, kc_house$grade))
 ```
 
-
+```{r, echo=FALSE, eval = TRUE}
+# Then run the test
+chisq.test(table(kc_house$waterfront, kc_house$grade))
+```
 
 ## Additional Resources
 
