@@ -3,7 +3,7 @@ title: "Wrangling"
 author: "
   Introduction to R<br>
   <a href='https://therbootcamp.github.io'>
-    R Bootcamp Bern
+    Bern R Bootcamp
   </a>
   <br>
   <a href='https://dwulff.github.io/Intro2R_Unibe/'>

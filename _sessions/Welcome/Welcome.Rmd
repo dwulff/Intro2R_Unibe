@@ -3,7 +3,7 @@ title: "Welcome!"
 author: "
   Introduction to R<br>
   <a href='https://therbootcamp.github.io'>
-    R Bootcamp Bern
+    Bern R Bootcamp
   </a>
   <br>
   <a href='https://dwulff.github.io/Intro2R_Unibe/'>
@@ -85,7 +85,7 @@ knitr::opts_chunk$set(fig.align = 'center')
 Click the "Start Bootcamp" link in Ilias!
 
 
-<font size="6" color="#F62D73"><a href="www.therbootcamp.com"><b>www.therbootcamp.com</b></a></font><br><br>
+<font size="6" color="#F62D73"><a href="https://dwulff.github.io/Intro2R_Unibe/"><b>www.therbootcamp.com</b></a></font><br><br>
 
 ]
 
@@ -213,9 +213,9 @@ Each session contains a slide-based <high>introduction</high> and a hands-on <hi
 .pull-right5[
 <br>
 
-  <iframe src="_sessions/Data/Data_practical.html" height="480px" width = "500px"></iframe>
+  <iframe src="https://dwulff.github.io/Intro2R_Unibe/_sessions/Data/Data_practical.html" height="480px" width = "500px"></iframe>
 
-  Example practical:<a href="_sessions/Data/Data_practical.html"> Data </a>
+  Example practical:<a href="https://dwulff.github.io/Intro2R_Unibe/_sessions/Data/Data_practical.html"> Data </a>
 
 ]
 
@@ -347,12 +347,39 @@ Sometimes, you may find yourself in need of some <high>intensive help</high>. <b
 
 ---
 
+# Your goals
+
+.pull-left45[
+
+### Graphs | Data evaluation
+- ... filter and transform our data sets ... visualize  data
+- high amount of data that I need to read, sort and clean before plotting 
+- Data evaluation and graphs with R
+
+### Know X - want to update, switch to R 
+- how to do things in R instead of Stata
+- to refresh some old R knowledge, of course also want to learn something new
+
+### Stats
+- I want to learn about R to be more efficient with statistical analysis
+- I need R during my research
+]
+
+.pull-right45[
+
+<center>
+![](image/most_interested.png)
+</center>
+]
+
+---
+
 .pull-left35[
 <br><br><br><br><br><br><br><br><br>
 
 <p align="center">
   <font size=8><hfont><high>Questions?</high></hfont></font><br>
-  <font size = 4><a href = "https://therbootcamp.github.io/Intro2DataScience_2018Oct/">Link to schedule</a></font>
+  <font size = 4><a href = "https://dwulff.github.io/Intro2R_Unibe/">Link to schedule</a></font>
 </p>
 
 ]

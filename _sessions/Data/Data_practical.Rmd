@@ -64,9 +64,10 @@ In this practical you'll learn how to work with basic data objects and functions
 
 ### A - Getting setup
 
-1. Open your `baselrbootcamp` R project. It should already have the folders `1_Data` and `2_Code`.
+1. Open your `bernrbootcamp` R project. It should already have the folders `1_Data` and `2_Code`.
 
-2. Open a new R script and save it as a new file called `data_practical.R` in the `2_Code` folder. At the top of the script, using comments, write your name and the date. Then, load all package(s) listed in the Packages section above with `library()`. Make sure that each of the datasets listed above lie in your `1_Data` folder.
+2. Open a new R script and save it as a new file called `data_practical.R` in the `2_Code` folder. At the top of the script, using comments, write your name and the date. 
+Then, load all package(s) listed in the Packages section above with `library()`. Make sure that each of the datasets listed above lie in your `1_Data` folder.
 
 ### B - Creating vectors
 
@@ -550,7 +551,7 @@ write_csv(x = airbnb_zuerich,
 
 ### G - Creating data frames
 
-1. Using the `data.frame()` function, create a data frame called `ten_df` that contains each of vectors you just created: `id`, `age`, `sex`, `height`, `weight`.
+1. Using the `data.frame()` function, create a data frame called `ten_df` that contains each of the vectors you just created: `id`, `age`, `sex`, `height`, `weight`.
 
 ```{r, eval = FALSE, echo = TRUE}
 # Create data frame ten_df containing vectors id, age, sex, height, and weight.
@@ -608,7 +609,7 @@ max(ten_df$age)
 
 ```{r}
 # create tibble
-ten_tibble = tibble(id, sex, height, weight)
+ten_tibble = tibble(id, age, sex, height, weight)
 ```
 
 9. Print your new `ten_tibble` object, how does it look different from `ten_df`? Try calculating the maximum `age` from this object. Is it different from what you got before?
@@ -630,7 +631,7 @@ sum(XX == XX)
 
 ```{r}
 # Determine the frequency of a case in a vector
-sum(ten_tibble == "male")
+sum(ten_tibble$sex == "male")
 ```
 
 2. You can use logical vectors to select rows from a data frame based on certain criteria. using the following template, get the id values of Baselers who are younger than 30:

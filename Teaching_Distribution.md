@@ -1,10 +1,10 @@
 # BernR Verteilung
 
 ## Day 1
-Welcome MSM
-Intro2R DUW
-Data MSM
-Wrangling DUW
+    Welcome MSM
+    Intro2R DUW
+    Data MSM
+    Wrangling DUW
 
 ## Day 2
 Recap DUW
