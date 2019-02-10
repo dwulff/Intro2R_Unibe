@@ -9,7 +9,30 @@ library(nasapower)
 options(geonamesUsername="schultem")
 options(geonamesHost="api.geonames.org")
 
-# weather <- read_csv('_sessions/FinalProject/1_Data/brazil_wheather.csv')
+weather <- read_csv('_sessions/FinalProject/1_Data/weather_per_coordinate.csv')
+appointments <- read_csv('_sessions/FinalProject/1_Data/medical_noshows.csv')
+neighbourhood <- read_csv('_sessions/FinalProject/1_Data/latlon_brazil.csv')
+
+# fusion weather into correct position for loaction and day
+# there seems to be some digits not showing after the comma ..
+weather <-
+  weather %>%
+  mutate(LON = round(LON,1),
+         LAT = round(LAT,1))
+
+neighbourhood <-
+neighbourhood %>%
+  rename('LON' = 'lng',
+         'LAT' = 'lat') %>%
+  mutate(LON = round(LON,1),
+         LAT = round(LAT,1))
+
+# join weather (based on long lat) with neighbourhood (to add neighbourhood name)
+  neighbourhood <-
+  neighbourhood %>%
+    left_join(weather)
+
+  write_csv(neighbourhood, '_sessions/FinalProject/1_Data/weather.csv')
 
 
 # PROCESS APPOINTMENTS ----------
@@ -22,7 +45,7 @@ appointments = appointments %>%
   rename(NoShow = "No-show") %>%
   mutate_if(function(x) all(x %in% c(0, 1)), as.logical)
   
-# write_csv('_sessions/FinalProject/1_Data/medical_noshows.csv') # run once!
+# write_csv(appointments, '_sessions/FinalProject/1_Data/medical_noshows.csv') # run once!
 
 
 # GET COORDINATES -----------
@@ -69,4 +92,4 @@ for (i in 1:nrow(GNresult)){
 weather = do.call(rbind, res)
 weather
 
-write_csv(weather, '_sessions/FinalProject/1_Data/weather_per_coordinate.csv')
+# write_csv(weather, '_sessions/FinalProject/1_Data/weather_per_coordinate.csv')

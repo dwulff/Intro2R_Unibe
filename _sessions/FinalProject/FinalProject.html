@@ -198,7 +198,9 @@ $(document).ready(function () {
 <h1></h1>
 <div id="overview" class="section level2">
 <h2>Overview</h2>
-<p>This is your final assignment in this course. You will use all we learned during the course to understand, arrange, analyse, visualise and report on a dataset about medical no-shows in the city of Vitoria, Brazil.</p>
+<p>This is your final assignment in this course. You will use all we learned during the course to understand, arrange, analyse, visualise and report on a new dataset about medical appointments.</p>
+<p>What is the dataset about? There is a large number of medical appointments where patients end up canceling or simply do not show up. This practise comes with huge costs to the medical system - in this assignment we will try to understand what drives patients not to show up in a sample of medical appointments from Brasil.</p>
+<p>From the given list of parameters, such as Gender, Scheduled and Appointment Date difference, Age, Neighbourhood, sms_alert and certain conditions of a given patient, the model will predict, based on a studied dataset, whether the given appointment is likely to be a No-Show</p>
 <p>You should (at least) complete the following tasks</p>
 <ol style="list-style-type: decimal">
 <li>load the two .csv files you find in <code>Datasets</code> into R objects</li>
@@ -216,17 +218,32 @@ $(document).ready(function () {
 <ol start="2" style="list-style-type: decimal">
 <li><p>Open a new R script. At the top of the script, using comments, write your name and the date. Save it as a new file called <code>final_project.R</code> in the <code>2_Code</code> folder.</p></li>
 <li><p>Using <code>library()</code> load the set of packages for this practical listed in the packages section above.</p></li>
-<li><p>For this practical, we’ll use the <code>kc_house.csv</code> data. This dataset contains house sale prices for King County, Washington. It includes homes sold between May 2014 and May 2015. Using the following template, load the data into R and store it as a new object called <code>kc_house</code>.</p></li>
+<li><p>Read the <code>medical_noshows.csv</code> and the <code>weather.csv</code> files into two objects called <code>appointments</code> and <code>weather</code> respectively. Check out the content of the two datasets in Overview and Datasets above.</p></li>
 </ol>
-<pre class="r"><code>kc_house &lt;- read_csv(file = &quot;XX&quot;)</code></pre>
+</div>
+<div id="b---initial-data-inspection" class="section level3">
+<h3>B - Initial data inspection</h3>
+<ol start="5" style="list-style-type: decimal">
+<li>We want to first see what variables are in the dataset (check out Datasets above) and whether there are variables with impossible values. Generate an overview of all variables with minimum and maximum values, means and medians for all appropriate numeric variables.</li>
+</ol>
+<pre class="r"><code>summary(appointments)</code></pre>
+<ol start="6" style="list-style-type: decimal">
+<li>The</li>
+</ol>
 </div>
 </div>
 <div id="datasets" class="section level2">
 <h2>Datasets</h2>
 <pre class="r"><code>library(tidyverse)
 appointments &lt;- read_csv(&#39;1_Data/medical_noshows.csv&#39;)
-weather &lt;- read_csv(&#39;1_Data/brazil_wheather.csv&#39;)</code></pre>
+weather &lt;- read_csv(&#39;1_Data/weather.csv&#39;)</code></pre>
 <table>
+<colgroup>
+<col width="8%" />
+<col width="10%" />
+<col width="11%" />
+<col width="70%" />
+</colgroup>
 <thead>
 <tr class="header">
 <th align="left">File</th>
@@ -243,15 +260,15 @@ weather &lt;- read_csv(&#39;1_Data/brazil_wheather.csv&#39;)</code></pre>
 <td align="left">Patient shows</td>
 </tr>
 <tr class="even">
-<td align="left"><a href="1_Data/brazil_wheather.csv">brazil_wheather.csv</a></td>
-<td align="left">214</td>
+<td align="left"><a href="1_Data/weather_per_coordinate.csv">brazil_wheather.csv</a></td>
+<td align="left">2255</td>
 <td align="left">10</td>
-<td align="left">Weather data for various cities in Brasil</td>
+<td align="left">Weather data for various longitute and latitude coordinates in Brasil</td>
 </tr>
 </tbody>
 </table>
-<div id="variables-in-medical_noshows.csv" class="section level3">
-<h3>Variables in medical_noshows.csv</h3>
+<div id="variables-in-medical_noshows.csv-appointments" class="section level3">
+<h3>Variables in medical_noshows.csv (appointments)</h3>
 <table>
 <colgroup>
 <col width="23%" />
@@ -327,8 +344,8 @@ weather &lt;- read_csv(&#39;1_Data/brazil_wheather.csv&#39;)</code></pre>
 </tbody>
 </table>
 </div>
-<div id="variables-in-brazil_wheather.csv" class="section level3">
-<h3>Variables in brazil_wheather.csv</h3>
+<div id="variables-in-brazil_wheather.csv-weather" class="section level3">
+<h3>Variables in brazil_wheather.csv (weather)</h3>
 <table>
 <thead>
 <tr class="header">
@@ -396,14 +413,18 @@ weather &lt;- read_csv(&#39;1_Data/brazil_wheather.csv&#39;)</code></pre>
 <td align="left"><code>install.packages(&quot;tidyverse&quot;)</code></td>
 </tr>
 <tr class="even">
+<td align="left"><code>lubridate</code></td>
+<td align="left"><code>install.packages(&quot;lubridate&quot;)</code></td>
+</tr>
+<tr class="odd">
 <td align="left"><code>tidylog</code></td>
 <td align="left"><code>devtools::install_github(&quot;elbersb/tidylog&quot;)</code></td>
 </tr>
 </tbody>
 </table>
 </div>
-<div id="glossary" class="section level2">
-<h2>Glossary</h2>
+<div id="glossary-update" class="section level2">
+<h2>Glossary (UPDATE!)</h2>
 <p><em>Wrangling</em></p>
 <table>
 <colgroup>
@@ -495,13 +516,21 @@ weather &lt;- read_csv(&#39;1_Data/brazil_wheather.csv&#39;)</code></pre>
 </tbody>
 </table>
 </div>
-<div id="cheatsheet" class="section level2">
-<h2>Cheatsheet</h2>
+<div id="cheatsheets" class="section level2">
+<h2>Cheatsheets</h2>
 <figure>
 <center>
-<a href="https://www.rstudio.com/wp-content/uploads/2015/02/data-wrangling-cheatsheet.pdf"> <img src="https://image.slidesharecdn.com/data-wrangling-cheatsheet-160705210122/95/data-wrangling-with-dplyr-and-tidyr-cheat-sheet-1-638.jpg?cb=1467752577" alt="Trulli" style="width:70%">
+<a href="https://github.com/rstudio/cheatsheets/raw/master/data-transformation.pdf"> <img src="https://www.rstudio.com/wp-content/uploads/2018/08/data-transformation-600x464.png" alt="Dplyr" style="width:70%">
 <figcaption>
-<a href="https://www.rstudio.com/wp-content/uploads/2015/02/data-wrangling-cheatsheet.pdf" class="uri">https://www.rstudio.com/wp-content/uploads/2015/02/data-wrangling-cheatsheet.pdf</a>
+<a href="https://github.com/rstudio/cheatsheets/raw/master/data-transformation.pdf" class="uri">https://github.com/rstudio/cheatsheets/raw/master/data-transformation.pdf</a>
+</figcaption>
+</a>
+</figure>
+<figure>
+<center>
+<a href="https://github.com/rstudio/cheatsheets/raw/master/lubridate.pdf"> <img src="https://www.rstudio.com/wp-content/uploads/2018/08/lubridate-600x464.png" alt="Lubridate" style="width:70%">
+<figcaption>
+<a href="https://github.com/rstudio/cheatsheets/raw/master/lubridate.pdf" class="uri">https://github.com/rstudio/cheatsheets/raw/master/lubridate.pdf</a>
 </figcaption>
 </a>
 </figure>

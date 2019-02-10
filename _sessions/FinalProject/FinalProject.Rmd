@@ -46,7 +46,11 @@ options(digits = 3)
 
 ## Overview
 
-This is your final assignment in this course. You will use all we learned during the course to understand, arrange, analyse, visualise and report on a dataset about medical no-shows in the city of Vitoria, Brazil.
+This is your final assignment in this course. You will use all we learned during the course to understand, arrange, analyse, visualise and report on a new dataset about medical appointments.
+
+What is the dataset about? There is a large number of medical appointments where patients end up canceling or simply do not show up. This practise comes with huge costs to the medical system - in this assignment we will try to understand what drives patients not to show up in a sample of medical appointments from Brasil.
+
+From the given list of parameters, such as Gender, Scheduled and Appointment Date difference, Age, Neighbourhood, sms_alert and certain conditions of a given patient, the model will predict, based on a studied dataset, whether the given appointment is likely to be a No-Show
 
 You should (at least) complete the following tasks
 
@@ -67,28 +71,45 @@ You should (at least) complete the following tasks
 
 3. Using `library()` load the set of packages for this practical listed in the packages section above.
 
-4. For this practical, we'll use the `kc_house.csv` data. This dataset contains house sale prices for King County, Washington. It includes homes sold between May 2014 and May 2015. Using the following template, load the data into R and store it as a new object called `kc_house`.
+4. Read the `medical_noshows.csv` and the `weather.csv` files into two objects called `appointments` and `weather` respectively. Check out the content of the two datasets in Overview and Datasets above.
 
-```{r, echo = TRUE, eval = FALSE, message = FALSE, warning = FALSE}
-kc_house <- read_csv(file = "XX")
+```{r, echo = FALSE, eval = FALSE, message = FALSE, warning = FALSE}
+appointments <- read_csv('1_Data/medical_noshows.csv')
+weather <- read_csv('1_Data/weather.csv')
 ```
 
+### B - Initial data inspection
 
+1. We want to first see what variables are in the dataset (check out Datasets above) and whether there are variables with impossible values. Generate an overview of all variables with minimum and maximum values, means and medians for all appropriate numeric variables. Correct the variable(s) that stand out and provide a rational for what you did.
+
+```{r, echo = TRUE, eval = FALSE, message = FALSE, warning = FALSE}
+summary(appointments)
+
+appointments <-
+appointments %>%
+  filter(Age >= 0)
+```
+
+2. How many patients showed up for their appointment(s), how many did not?
+
+```{r, echo = TRUE, eval = FALSE, message = FALSE, warning = FALSE}
+table(appointments$NoShow)
+```
 
 ## Datasets
 
 ```{r, eval = TRUE, message = FALSE}
 library(tidyverse)
 appointments <- read_csv('1_Data/medical_noshows.csv')
-weather <- read_csv('1_Data/brazil_wheather.csv')
+weather <- read_csv('1_Data/weather.csv')
 ```
 
 |File | Rows | Columns | Description |
 |:----|:-----|:------|:-----------------------------------------|
 |[medical_noshows.csv](1_Data/medical_noshows.csv) | 110527 | 14| Patient shows|no-shows for various cities in Brasil |
-|[brazil_wheather.csv](1_Data/brazil_weather.csv) | 214 | 10| Weather data for various cities in Brasil |
+|[brazil_wheather.csv](1_Data/weather_per_coordinate.csv) | 2255 | 10| Weather data for various longitute and latitude coordinates in Brasil |
 
-### Variables in medical_noshows.csv
+### Variables in medical_noshows.csv (appointments)
 
 |Variable | Description |
 |:--------|:-----------------------------|
@@ -108,7 +129,7 @@ weather <- read_csv('1_Data/brazil_wheather.csv')
 |SMS_received | True: 1 or more messages sent to the patient|
 |No-show | 1: No, 2: Yes|
 
-### Variables in brazil_wheather.csv
+### Variables in brazil_wheather.csv (weather)
 
 |Variable | Description |
 |:--------|:-----------------------------|
@@ -129,9 +150,10 @@ weather <- read_csv('1_Data/brazil_wheather.csv')
 |Package| Installation|
 |:------|:------|
 |`tidyverse`|`install.packages("tidyverse")`|
+|`lubridate`|`install.packages("lubridate")`|
 |`tidylog`|`devtools::install_github("elbersb/tidylog")`|
 
-## Glossary
+## Glossary (UPDATE!)
 
 *Wrangling*
 
@@ -156,12 +178,18 @@ weather <- read_csv('1_Data/brazil_wheather.csv')
 |     `cor.test()`|    Correlation test|
 |     `glm()`, `lm()`|    Generalized linear model and linear model|
 
-## Cheatsheet
+## Cheatsheets
 
 <figure>
 <center>
-<a href="https://www.rstudio.com/wp-content/uploads/2015/02/data-wrangling-cheatsheet.pdf">
-  <img src="https://image.slidesharecdn.com/data-wrangling-cheatsheet-160705210122/95/data-wrangling-with-dplyr-and-tidyr-cheat-sheet-1-638.jpg?cb=1467752577" alt="Trulli" style="width:70%">
-  <figcaption>https://www.rstudio.com/wp-content/uploads/2015/02/data-wrangling-cheatsheet.pdf</figcaption></a>
+<a href="https://github.com/rstudio/cheatsheets/raw/master/data-transformation.pdf">
+  <img src="https://www.rstudio.com/wp-content/uploads/2018/08/data-transformation-600x464.png" alt="Dplyr" style="width:70%">
+  <figcaption>https://github.com/rstudio/cheatsheets/raw/master/data-transformation.pdf</figcaption></a>
 </figure>
 
+<figure>
+<center>
+<a href="https://github.com/rstudio/cheatsheets/raw/master/lubridate.pdf">
+  <img src="https://www.rstudio.com/wp-content/uploads/2018/08/lubridate-600x464.png" alt="Lubridate" style="width:70%">
+  <figcaption>https://github.com/rstudio/cheatsheets/raw/master/lubridate.pdf</figcaption></a>
+</figure>
