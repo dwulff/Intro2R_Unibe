@@ -1,36 +1,27 @@
 ---
-title: "Dynamic Reports"
-subtitle: "wiht RMarkdown"
-author: "
-<table style='table-layout:fixed;width:100%;border:0;padding:0;margin:0'><col width='10%'><col width='10%'>
-  <tr style='border:none'>
-    <td style='display:block;width:100%;text-align:left;vertical-align:bottom;padding:0;margin:0;border:none' nowrap>
-      <a href='https://dwulff.github.io/Intro2R_Unibe/'>
-        <i class='fas fa-clock' style='font-size:.9em;' ></i>
-      </a>
-      <a href='https://therbootcamp.github.io'>
-        <i class='fas fa-home' style='font-size:.9em;'></i>
-      </a>
-      <a href='mailto:therbootcamp@gmail.com'>
-        <i class='fas fa-envelope' style='font-size: .9em;'></i>
-      </a>
-      <a href='https://www.linkedin.com/company/basel-r-bootcamp/'>
-        <i class='fab fa-linkedin' style='font-size: .9em;'></i>
-      </a>
-        <a href='https://therbootcamp.github.io'>
-        <font style='font-style:normal'>Bern R Bootcamp</font>
-      </a>&nbsp;&nbsp;
-    </td>
-    <td style='width:100%;vertical-align:bottom;text-align:right;padding:0;margin:0;border:none'>
-      <img src='https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/by-sa.png' style='height:15px;width:80px'/>
-    </td>
-  </tr>
-</table>"
+title: "Dynamic Reports - Practical"
+author: "Introduction to R<br/>
+  <a href='https://therbootcamp.github.io'>
+    Bern R Bootcamp
+  </a> 
+  <br>
+  <a href='https://dwulff.github.io/Intro2R_Unibe/'>
+    <i class='fas fa-clock' style='font-size:.9em;'></i>
+  </a>&#8239; 
+  <a href='https://therbootcamp.github.io'>
+    <i class='fas fa-home' style='font-size:.9em;' ></i>
+  </a>&#8239;
+  <a href='mailto:therbootcamp@gmail.com'>
+    <i class='fas fa-envelope' style='font-size: .9em;'></i>
+  </a>&#8239;
+  <a href='https://www.linkedin.com/company/basel-r-bootcamp/'>
+    <i class='fab fa-linkedin' style='font-size: .9em;'></i>
+  </a>"
+
 output:
   html_document:
     css: practical.css
     self_contained: no
-    highlight: tango
 ---
 
 ```{r setup, include = FALSE}
@@ -46,6 +37,7 @@ options(digits = 3)
 
 library(baselers)
 library(tidyverse)
+mcdonalds <- read_csv("https://raw.githubusercontent.com/therbootcamp/BaselRBootcamp_2018July/master/_sessions/_data/complete/mcdonalds.csv")
 ```
 
 
@@ -55,10 +47,10 @@ library(tidyverse)
   <figcaption>www.rstudio.com</figcaption>
 </figure>
 
-## {.tabset}
+# {.tabset}
 
 
-### Overview
+## Overview
 
 By the end of this practical you will know how to:
 
@@ -70,48 +62,11 @@ By the end of this practical you will know how to:
 5. Include code output in sentences with inline chunks
 
 
-### Datasets
-
-```{r, eval = TRUE, message = FALSE}
-library(tidyverse)
-mcdonalds <- read_csv("https://raw.githubusercontent.com/therbootcamp/BaselRBootcamp_2018July/master/_sessions/_data/complete/mcdonalds.csv")
-```
-
-|File  |Description| Rows | Columns |
-|:----|:-----------------------------|:-----|:------|
-|[mcdonalds.csv](https://raw.githubusercontent.com/therbootcamp/BaselRBootcamp_2018July/master/_sessions/_data/complete/mcdonalds.csv)| Nutrition information from McDonalds menu items| 260 | 24 |
-|[happiness.csv](https://raw.githubusercontent.com/therbootcamp/BaselRBootcamp_2018July/master/_sessions/_data/complete/happiness.csv)| Results from the World Health Organisation happiness survey | 155 | 12 |
-
-### Packages
-
-|Package| Installation|
-|:------|:------|
-|`tidyverse`|`install.packages("tidyverse")`|
-|`knitr`|`install.packages("knitr")`|
-|`DT`|`install.packages("DT")`|
-|`broom`|`install.packages("broom")`|
-|`rmdformats`|`install.packages("rmdformats")`|
-
-### Cheatsheet
-
-<a href="https://www.rstudio.com/wp-content/uploads/2015/02/rmarkdown-cheatsheet.pdf">
-  <center><img src="http://westandproud.info/wp-content/uploads/2018/04/reproducible-and-interactive-research-with-regard-to-cheat-sheet-r-markdown.png" width="600px">
-</a>
-
-
-
-### References and Links
-
-- The `rmdformats` package has many nice templates for .Rmd files. Look at their GitHub page at [https://github.com/juba/rmdformats](https://github.com/juba/rmdformats) for examples. If you install the package from CRAN with `install.packages('rmdformats')`, you'll get lots of new templates when you open a new Markdown file in RStudio. 
-
-- If you want to use custom .css files, check out the the [R Studio HTML document guide](http://rmarkdown.rstudio.com/html_document_format.html#custom_css). You can also look at the .css files underlying the `rmdformats` package on their GitHub page here [https://github.com/juba/rmdformats](https://github.com/juba/rmdformats). For example, here is their .css file for the "html docco" template [https://raw.githubusercontent.com/juba/rmdformats/master/inst/templates/html_docco/docco.css](https://raw.githubusercontent.com/juba/rmdformats/master/inst/templates/html_docco/docco.css)
-
-
 ## Tasks
 
-## A - Setup
+### A - Setup
 
-1. Open your `baselrbootcamp` R project. It should already have the folders `1_Data` and `2_Code`. Make sure that the data files listed in the Datasets section above are in your `2_Data` folder
+1. Open your `bernrbootcamp` R project. It should already have the folders `1_Data` and `2_Code`. Make sure that the data files listed in the Datasets section above are in your `2_Data` folder
 
 ```{r}
 # Done!
@@ -149,11 +104,11 @@ knitr::include_graphics("https://raw.githubusercontent.com/therbootcamp/therboot
 knitr::include_graphics("https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/rmarkdown_ss_E.png")
 ```
 
-## B - Here's your goal!
+### B - Here's your goal!
 
-1. Your goal in this practical is to create as much of [this html document](https://therbootcamp.github.io/BaselRBootcamp_2018July/_sessions/DynamicReports/DynamicReports_answers.html) as you can! Open the document and keep it open in a separate window as you work through the practical.
+In this practical you will create as much of [this html document](https://dwulff.github.io/Intro2R_Unibe/_sessions/Reporting/DynamicReports_answers.html) as you can! Open the document and keep it open in a separate window as you work through the practical!
 
-## C - Load packages, data and set default chunk options
+### C - Load packages, data and set default chunk options
 
 1. The first chunk in your document already has the label `setup`. This is your setup chunk. This is a good place to load your packages and import your data. Inside of this chunk, write the comment `# Load Packages -------------`. Then, using the `library()` function, load the packages listed in the `Packages` section above. 
 
@@ -195,9 +150,9 @@ options(digits = 2)  # Round all output to 2 digits
 
 6. Knit your document! Make sure you see an output!
 
-## D - Add formatted text and an image
+### D - Add formatted text and an image
 
-1. Below your last markdown chunk, write the necessary text and Markdown tags to create the following sentence. Be sure to create italic text using single astricies \*ITALIC\* and and bold text using two astricies \*\*BOLD\*\*
+1. Below your last markdown chunk, write the necessary text and Markdown tags to create the following sentence. Be sure to create italic text using single astricies *\*italic\** and and bold text using two astricies \*\***bold**\*\*
 
 - In this practical, I will analyse two datasets and show reproducible results in a dynamic document created in R Markdown. R Markdown is great because I can integrate R code directly into my document, and easily use *italics* and **bold** using formatting tags.
 
@@ -227,7 +182,7 @@ include_graphics(path = "XXX")
 
 10. Knit the document!
 
-## E - Add a formatted table with `datatable()`
+### E - Add a formatted table with `datatable()`
 
 1. Add a new 3rd level header called "Data"
 
@@ -247,11 +202,11 @@ mcdonalds %>%
 
 5. Knit the document! Do you see your nicely formatted table?
 
-6. Play around with your table. Instead of selecting the first 6 columns, select the columns `Item`, `Category`, `Calories`, `Sodium`
+6. Play around with your table. Instead of selecting the first 6 columns, select the columns `Item`, `Category`, `Calories`, `Sodium` in your code.
 
 7. Knit the document!
 
-## F - Add plots
+### F - Add plots
 
 1. Add a new 3rd level header called "Calories Histogram"
 
@@ -334,7 +289,7 @@ kable(x = Calories_agg,
 knitr::include_graphics("https://github.com/therbootcamp/therbootcamp.github.io/blob/master/_sessions/_image/DynamicReports_CaloriesCategory.jpg?raw=true")
 ```
 
-## G - Add a table of statistical test results
+### G - Add a table of statistical test results
 
 Now let's show the results of a regression analysis predicting the sodium content of an item as a function of its calories.
 
@@ -362,14 +317,50 @@ knitr::include_graphics("https://github.com/therbootcamp/therbootcamp.github.io/
 3. Knit the document! Diagnose and correct any errors!
 
 
-## I - Add tabs!
+### H - Add tabs!
 
-1. Now it's time to convert some of your sections to tabs! To do this, just add the second level header `## {.tabset}`  *above* your `### Overview` header
+1. Up to this point, your results are presented in one long html-output - we want to add tabs now, to make reading the report easier. To do this, just add the second level header `## {.tabset}` *above* your `### Overview` header
 
 2. Knit your document! Do you see the tabs now?
 
 
-## X - Add results from the happiness survey
+### X - Add results from the happiness survey
 
-1. If you've gotten this far, then you've really gotten the hang of R Markdown! Try adding the correct combination of text, tags, and code to add all of the results from the `happiness` data contained here: [https://therbootcamp.github.io/BaselRBootcamp_2018July/_sessions/DynamicReports/DynamicReports_answers.html](https://therbootcamp.github.io/BaselRBootcamp_2018July/_sessions/DynamicReports/DynamicReports_answers.html)
+If you've gotten this far, then you've really gotten the hang of R Markdown! Try adding the correct combination of text, tags, and code to add all of the results from the `happiness` data contained here: [https://dwulff.github.io/Intro2R_Unibe/_sessions/Reporting/DynamicReports_answers.html](https://dwulff.github.io/Intro2R_Unibe/_sessions/Reporting/DynamicReports_answers.html)
 
+
+## Datasets
+
+```{r, eval = TRUE, message = FALSE}
+library(tidyverse)
+mcdonalds <- read_csv("https://raw.githubusercontent.com/therbootcamp/BaselRBootcamp_2018July/master/_sessions/_data/complete/mcdonalds.csv")
+```
+
+|File  |Description| Rows | Columns |
+|:----|:-----------------------------|:-----|:------|
+|[mcdonalds.csv](https://raw.githubusercontent.com/therbootcamp/BaselRBootcamp_2018July/master/_sessions/_data/complete/mcdonalds.csv)| Nutrition information from McDonalds menu items| 260 | 24 |
+|[happiness.csv](https://raw.githubusercontent.com/therbootcamp/BaselRBootcamp_2018July/master/_sessions/_data/complete/happiness.csv)| Results from the World Health Organisation happiness survey | 155 | 12 |
+
+## Packages
+
+|Package| Installation|
+|:------|:------|
+|`tidyverse`|`install.packages("tidyverse")`|
+|`knitr`|`install.packages("knitr")`|
+|`DT`|`install.packages("DT")`|
+|`broom`|`install.packages("broom")`|
+|`rmdformats`|`install.packages("rmdformats")`|
+
+## Cheatsheet
+
+<a href="https://github.com/rstudio/cheatsheets/raw/master/rmarkdown-2.0.pdf">
+  <center><img src="https://www.rstudio.com/wp-content/uploads/2018/08/rmarkdown-2.0-600x464.png" width="600px">
+</a>
+
+
+
+## References and Links
+
+- The `rmdformats` package has many nice templates for .Rmd files. Look at their GitHub page at [https://github.com/juba/rmdformats](https://github.com/juba/rmdformats) for examples. If you install the package from CRAN with `install.packages('rmdformats')`, you'll get lots of new templates when you open a new Markdown file in RStudio. 
+
+- If you want to use custom .css files, check out the the [R Studio HTML document guide](http://rmarkdown.rstudio.com/html_document_format.html#custom_css). You can also look at the .css files underlying the `rmdformats` package on their GitHub page here [https://github.com/juba/rmdformats](https://github.com/juba/rmdformats). For example, here is their .css file for the "html docco" template [https://raw.githubusercontent.com/juba/rmdformats/master/inst/templates/html_docco/docco.css](https://raw.githubusercontent.com/juba/rmdformats/master/inst/templates/html_docco/docco.css)

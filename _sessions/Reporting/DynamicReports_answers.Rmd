@@ -1,6 +1,6 @@
 ---
 title: "Dynamic Reports with RMarkdown"
-author: "Basel R Bootcamp"
+author: "Bern R Bootcamp"
 output: html_document
 ---
 

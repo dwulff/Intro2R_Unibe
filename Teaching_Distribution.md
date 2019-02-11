@@ -13,8 +13,8 @@ Statistics 2 DUW
 Plotting 1 DUW
 
 ## Day 3
-Recap MSM
+	Recap MSM
 Plotting 2 DUW
-Reporting MSM
+	Reporting MSM
 Case Study DUW+MSM
 Next Steps DUW+MSM
