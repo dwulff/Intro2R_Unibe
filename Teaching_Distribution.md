@@ -2,13 +2,13 @@
 
 ## Day 1
     Welcome MSM
-    Intro2R DUW
+Intro2R DUW
     Data MSM
-    Wrangling DUW
+Wrangling DUW
 
 ## Day 2
 Recap DUW
-Statistics 1 MSM
+    Statistics 1 MSM
 Statistics 2 DUW
 Plotting 1 DUW
 

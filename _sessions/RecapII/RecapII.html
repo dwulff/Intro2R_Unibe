@@ -3,7 +3,7 @@
   <head>
     <title>Recap II</title>
     <meta charset="utf-8">
-    <meta name="author" content="Basel R Bootcamp www.therbootcamp.com @therbootcamp" />
+    <meta name="author" content="Introduction to R   Bern R Bootcamp" />
     <link href="libs/remark-css/default.css" rel="stylesheet" />
     <link rel="stylesheet" href="baselrbootcamp.css" type="text/css" />
   </head>
@@ -12,19 +12,37 @@
 class: center, middle, inverse, title-slide
 
 # Recap II
-## First Weekend
-### Basel R Bootcamp<br/><a href='https://therbootcamp.github.io'>www.therbootcamp.com</a><br/><a href='https://twitter.com/therbootcamp'><span class="citation">@therbootcamp</span></a>
-### July 2018
+### Introduction to R<br> <a href='https://therbootcamp.github.io'> Bern R Bootcamp </a> <br> <a href='https://dwulff.github.io/Intro2R_Unibe/'> <i class='fas fa-clock' style='font-size:.9em;'></i> </a>  <a href='https://therbootcamp.github.io'> <i class='fas fa-home' style='font-size:.9em;' ></i> </a>  <a href='mailto:therbootcamp@gmail.com'> <i class='fas fa-envelope' style='font-size: .9em;'></i> </a>  <a href='https://www.linkedin.com/company/basel-r-bootcamp/'> <i class='fab fa-linkedin' style='font-size: .9em;'></i> </a>
+### February 2019
 
+---
+
+layout: true
+
+&lt;div class="my-footer"&gt;
+  &lt;span style="text-align:center"&gt;
+    &lt;span&gt; 
+      &lt;img src="https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/by-sa.png" height=14 style="vertical-align: middle"/&gt;
+    &lt;/span&gt;
+    &lt;a href="https://therbootcamp.github.io/"&gt;
+      &lt;span style="padding-left:82px"&gt; 
+        &lt;font color="#7E7E7E"&gt;
+          www.therbootcamp.com
+        &lt;/font&gt;
+      &lt;/span&gt;
+    &lt;/a&gt;
+    &lt;a href="https://therbootcamp.github.io/"&gt;
+      &lt;font color="#7E7E7E"&gt;
+       Introduction to R | February 2019
+      &lt;/font&gt;
+    &lt;/a&gt;
+    &lt;/span&gt;
+  &lt;/div&gt; 
 ---
 
 
 
-
-
-
-
-# Essentials: The 2&lt;sup&gt;4&lt;/sup&gt; Lessons of the R Bootcamp
+# Essentials: 12 basic R lessons
 
 .pull-left4[
 1. Everything is an object
@@ -36,20 +54,15 @@ class: center, middle, inverse, title-slide
 7. Functions expect certain object classes
 8. View help files using `?`
 9. Study errors and warnings
-10. Data is stored in data frames
-11. Select variables (vectors) using `$`
-12. Use RStudio and projects
-13. Use editor and shortcuts
-14. First load packages and data
-15. Use auto-complete
-16. Comment and format for readability
+10. Use RStudio and projects
+11. Use editor, shortcuts, and auto-complete
+12. Comment and format for readability
 ]
-
 ---
 
-# 3 Object types for data
-
 .pull-left4[
+
+# 3 Object types for data
 
 R has 3 main data objects...
 
@@ -57,7 +70,7 @@ R has 3 main data objects...
 - Can carry any data, incl. lists
 - Often used for function outputs
 
-&lt;high&gt;`data_frame`&lt;/high&gt; - R's spreadsheet
+&lt;high&gt;`tibble`&lt;/high&gt; - R's spreadsheet
 - Specific type of `list`
 - Typical data format
 - For multi-variable data sets
@@ -75,9 +88,9 @@ R has 3 main data objects...
 
 ---
 
-# Data Input/Output
-
 .pull-left45[
+
+# Data Input/Output
 
 Raw data can come in many shapes and sizes, but &lt;high&gt;R's got you covered&lt;/high&gt;.
 &lt;br&gt;&lt;br&gt;
@@ -99,14 +112,16 @@ Raw data can come in many shapes and sizes, but &lt;high&gt;R's got you covered&
 
 .pull-right45[
 
-&lt;img src="http://blog.datasift.com/wp-content/uploads/2014/10/ms-files-3.jpg"&gt;
+&lt;br&gt;&lt;br&gt;
+&lt;br&gt;&lt;br&gt;&lt;img src="http://s3.amazonaws.com/assets.datacamp.com/production/course_6012/datasets/01.01_read_packages.png"&gt;
 
 ]
 ---
+.pull-left4[
+
 
 # Finding the file path
 
-.pull-left4[
 
 1 - Identify the file path using the &lt;high&gt;auto-complete&lt;/high&gt;.  
 
@@ -121,12 +136,10 @@ Raw data can come in many shapes and sizes, but &lt;high&gt;R's got you covered&
 ] 
 
 .pull-right55[
-
+&lt;br&gt;&lt;br&gt;
 &lt;img src="https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/load_baselers_ss.jpg"&gt;&lt;/img&gt;
 
 ]
-
-
 
 ---
 .pull-left45[
@@ -165,9 +178,9 @@ Group data and summarise
 
 ---
 
-# Wrangling
-
 .pull-left4[
+
+# Wrangling
 
 1 - Start by assigning your result to a new object to save it!
 
@@ -211,9 +224,9 @@ baslers_agg &lt;- baselers %&gt;%
 
 ---
 
-# Stats? There is a package for that!
-
 .pull-left45[
+
+# Stats? There is a package for that!
 
 &lt;br&gt;
 
@@ -245,9 +258,9 @@ baslers_agg &lt;- baselers %&gt;%
 
 ---
 
-# Basic structure of statistical functions
-
 .pull-left4[
+
+# Basic structure of statistical functions
 
 Statistical functions always require a &lt;high&gt;data frame&lt;/high&gt; called `data`, e.g.,...
 
@@ -280,34 +293,18 @@ my_glm &lt;- glm(formula = income ~ age + height,
 
 
 ]
----
-
-
-# What is machine learning?
-
-.pull-left55[
-
-### Algorithms autonomously learning from data.
-
-Given data, an algorithm tunes its &lt;high&gt;parameters&lt;/high&gt; to match the data, understand how it works, and make predictions for what will occur in the future.
-&lt;br&gt;&lt;br&gt;
-&lt;p align="center"&gt;
-  &lt;img src="https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/mldiagram_A.png"&gt;
-&lt;/p&gt;
-]
-
-.pull-right4[
-
-&lt;p align="center"&gt;
-  &lt;img src="https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/machinelearningcartoon.png"&gt;
-&lt;/p&gt;
-
-]
 
 ---
+.pull-left4[
 # Today
 
-&lt;p&gt;&lt;font size=6&gt;&lt;b&gt;&lt;a href="https://therbootcamp.github.io/BaselRBootcamp_2018July"&gt;Schedule&lt;/a&gt;
+&lt;p&gt;&lt;font size=6&gt;&lt;b&gt;&lt;a href="https://dwulff.github.io/Intro2R_Unibe/"&gt;Schedule&lt;/a&gt;
+]
+
+.pull-right55[
+
+&lt;iframe src="https://dwulff.github.io/Intro2R_Unibe/" width="500" height="500"&gt;&lt;/iframe&gt;
+]
     </textarea>
 <script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
 <script>var slideshow = remark.create({
@@ -349,7 +346,7 @@ if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
 (function () {
   var script = document.createElement('script');
   script.type = 'text/javascript';
-  script.src  = 'https://cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
   if (location.protocol !== 'file:' && /^https?:/.test(script.src))
     script.src  = script.src.replace(/^https?:/, '');
   document.getElementsByTagName('head')[0].appendChild(script);

@@ -1,8 +1,24 @@
 ---
 title: "Recap II"
-subtitle: "First Weekend"
-author: "Basel R Bootcamp<br/><a href='https://therbootcamp.github.io'>www.therbootcamp.com</a><br/><a href='https://twitter.com/therbootcamp'>@therbootcamp</a>"
-date: "July 2018"
+author: "
+  Introduction to R<br>
+  <a href='https://therbootcamp.github.io'>
+    Bern R Bootcamp
+  </a>
+  <br>
+  <a href='https://dwulff.github.io/Intro2R_Unibe/'>
+    <i class='fas fa-clock' style='font-size:.9em;'></i>
+  </a>&#8239; 
+  <a href='https://therbootcamp.github.io'>
+    <i class='fas fa-home' style='font-size:.9em;' ></i>
+  </a>&#8239;
+  <a href='mailto:therbootcamp@gmail.com'>
+    <i class='fas fa-envelope' style='font-size: .9em;'></i>
+  </a>&#8239;
+  <a href='https://www.linkedin.com/company/basel-r-bootcamp/'>
+    <i class='fab fa-linkedin' style='font-size: .9em;'></i>
+  </a>"
+date: "February 2019"
 output:
   xaringan::moon_reader:
     css: ["default", "baselrbootcamp.css"]
@@ -13,9 +29,28 @@ output:
       countIncrementalSlides: false
       ratio: '16:9'
 ---
+layout: true
 
-
-
+<div class="my-footer">
+  <span style="text-align:center">
+    <span> 
+      <img src="https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/by-sa.png" height=14 style="vertical-align: middle"/>
+    </span>
+    <a href="https://therbootcamp.github.io/">
+      <span style="padding-left:82px"> 
+        <font color="#7E7E7E">
+          www.therbootcamp.com
+        </font>
+      </span>
+    </a>
+    <a href="https://therbootcamp.github.io/">
+      <font color="#7E7E7E">
+       Introduction to R | February 2019
+      </font>
+    </a>
+    </span>
+  </div> 
+---
 
 ```{r setup, include=FALSE}
 options(htmltools.dir.version = FALSE)
@@ -50,7 +85,7 @@ trial_X <- data.frame(id = 1:5,
 
 ```
 
-# Essentials: The 2<sup>4</sup> Lessons of the R Bootcamp
+# Essentials: 12 basic R lessons
 
 .pull-left4[
 1. Everything is an object
@@ -62,20 +97,15 @@ trial_X <- data.frame(id = 1:5,
 7. Functions expect certain object classes
 8. View help files using `?`
 9. Study errors and warnings
-10. Data is stored in data frames
-11. Select variables (vectors) using `$`
-12. Use RStudio and projects
-13. Use editor and shortcuts
-14. First load packages and data
-15. Use auto-complete
-16. Comment and format for readability
+10. Use RStudio and projects
+11. Use editor, shortcuts, and auto-complete
+12. Comment and format for readability
 ]
-
 ---
 
-# 3 Object types for data
-
 .pull-left4[
+
+# 3 Object types for data
 
 R has 3 main data objects...
 
@@ -83,7 +113,7 @@ R has 3 main data objects...
 - Can carry any data, incl. lists
 - Often used for function outputs
 
-<high>`data_frame`</high> - R's spreadsheet
+<high>`tibble`</high> - R's spreadsheet
 - Specific type of `list`
 - Typical data format
 - For multi-variable data sets
@@ -101,9 +131,9 @@ R has 3 main data objects...
 
 ---
 
-# Data Input/Output
-
 .pull-left45[
+
+# Data Input/Output
 
 Raw data can come in many shapes and sizes, but <high>R's got you covered</high>.
 <br><br>
@@ -125,14 +155,16 @@ Raw data can come in many shapes and sizes, but <high>R's got you covered</high>
 
 .pull-right45[
 
-<img src="http://blog.datasift.com/wp-content/uploads/2014/10/ms-files-3.jpg">
+<br><br>
+<br><br><img src="http://s3.amazonaws.com/assets.datacamp.com/production/course_6012/datasets/01.01_read_packages.png">
 
 ]
 ---
+.pull-left4[
+
 
 # Finding the file path
 
-.pull-left4[
 
 1 - Identify the file path using the <high>auto-complete</high>.  
 
@@ -147,12 +179,10 @@ Raw data can come in many shapes and sizes, but <high>R's got you covered</high>
 ] 
 
 .pull-right55[
-
+<br><br>
 <img src="https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/load_baselers_ss.jpg"></img>
 
 ]
-
-
 
 ---
 .pull-left45[
@@ -191,9 +221,9 @@ Group data and summarise
 
 ---
 
-# Wrangling
-
 .pull-left4[
+
+# Wrangling
 
 1 - Start by assigning your result to a new object to save it!
 
@@ -236,9 +266,9 @@ baslers_agg <- baselers %>%
 
 ---
 
-# Stats? There is a package for that!
-
 .pull-left45[
+
+# Stats? There is a package for that!
 
 <br>
 
@@ -270,9 +300,9 @@ baslers_agg <- baselers %>%
 
 ---
 
-# Basic structure of statistical functions
-
 .pull-left4[
+
+# Basic structure of statistical functions
 
 Statistical functions always require a <high>data frame</high> called `data`, e.g.,...
 
@@ -304,31 +334,15 @@ knitr::include_graphics("https://raw.githubusercontent.com/therbootcamp/Erfurt_2
 
 
 ]
----
-
-
-# What is machine learning?
-
-.pull-left55[
-
-### Algorithms autonomously learning from data.
-
-Given data, an algorithm tunes its <high>parameters</high> to match the data, understand how it works, and make predictions for what will occur in the future.
-<br><br>
-<p align="center">
-  <img src="https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/mldiagram_A.png">
-</p>
-]
-
-.pull-right4[
-
-<p align="center">
-  <img src="https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/machinelearningcartoon.png">
-</p>
-
-]
 
 ---
+.pull-left4[
 # Today
 
-<p><font size=6><b><a href="https://therbootcamp.github.io/BaselRBootcamp_2018July">Schedule</a>
+<p><font size=6><b><a href="https://dwulff.github.io/Intro2R_Unibe/">Schedule</a>
+]
+
+.pull-right55[
+
+<iframe src="https://dwulff.github.io/Intro2R_Unibe/" width="500" height="500"></iframe>
+]
