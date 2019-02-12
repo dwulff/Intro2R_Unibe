@@ -280,7 +280,7 @@ require(package_name)
 8. View help files using `?`
 9. Study errors and warnings
 10. Use RStudio and projects
-11. Use editor, shortcuts, and auto-complete
+11. Use editor and auto-complete
 12. Comment and format for readability
 ]
 
@@ -300,7 +300,7 @@ require(package_name)
 8. View help files using `?`
 9. Study errors and warnings
 10. Use RStudio and projects
-11. Use editor, shortcuts, and auto-complete
+11. Use editor and auto-complete
 12. Comment and format for readability
 ]
 
@@ -340,7 +340,7 @@ some_name
 8. View help files using `?`
 9. Study errors and warnings
 10. Use RStudio and projects
-11. Use editor, shortcuts, and auto-complete
+11. Use editor and auto-complete
 12. Comment and format for readability
 ]
 
@@ -381,7 +381,7 @@ class(tibble())
 8. View help files using `?`
 9. Study errors and warnings
 10. Use RStudio and projects
-11. Use editor, shortcuts, and auto-complete
+11. Use editor and auto-complete
 12. Comment and format for readability
 ]
 
@@ -419,7 +419,7 @@ class(some_name)
 8. View help files using `?`
 9. Study errors and warnings
 10. Use RStudio and projects
-11. Use editor, shortcuts, and auto-complete
+11. Use editor and auto-complete
 12. Comment and format for readability
 ]
 
@@ -456,7 +456,7 @@ mean(c(1, 2, 3, NA), na.rm = TRUE)
 8. View help files using `?`
 9. Study errors and warnings
 10. Use RStudio and projects
-11. Use editor, shortcuts, and auto-complete
+11. Use editor and auto-complete
 12. Comment and format for readability
 ]
 
@@ -490,7 +490,7 @@ mean(c(1, 2, 3), na.rm = "test")
 8. <high>View help files using `?`</high>
 9. Study errors and warnings
 10. Use RStudio and projects
-11. Use editor, shortcuts, and auto-complete
+11. Use editor and auto-complete
 12. Comment and format for readability
 ]
 
@@ -517,7 +517,7 @@ mean(c(1, 2, 3), na.rm = "test")
 8. <high>View help files using `?`</high>
 9. Study errors and warnings
 10. Use RStudio and projects
-11. Use editor, shortcuts, and auto-complete
+11. Use editor and auto-complete
 12. Comment and format for readability
 ]
 
@@ -543,7 +543,7 @@ mean(c(1, 2, 3), na.rm = "test")
 8. View help files using `?`
 9. <high>Study errors and warnings</high>
 10. Use RStudio and projects
-11. Use editor, shortcuts, and auto-complete
+11. Use editor and auto-complete
 12. Comment and format for readability
 ]
 
@@ -587,7 +587,7 @@ lenth(1)
 8. View help files using `?`
 9. <high>Study errors and warnings</high>
 10. Use RStudio and projects
-11. Use editor, shortcuts, and auto-complete
+11. Use editor and auto-complete
 12. Comment and format for readability
 ]
 
@@ -622,7 +622,7 @@ lenth(1)
 8. View help files using `?`
 9. Study errors and warnings
 10. <high>Use RStudio and projects</high>
-11. Use editor, shortcuts, and auto-complete
+11. Use editor and auto-complete
 12. Comment and format for readability
 ]
 
@@ -647,7 +647,7 @@ save workspace and history &#9679; set project specific options &#9679; access f
 8. View help files using `?`
 9. Study errors and warnings
 10. <high>Use RStudio and projects</high>
-11. Use editor, shortcuts, and auto-complete
+11. Use editor and auto-complete
 12. Comment and format for readability
 ]
 
@@ -676,7 +676,7 @@ Complement projects by a <high>folder structure</high> appropriate for your proj
 8. View help files using `?`
 9. Study errors and warnings
 10. Use RStudio and projects
-11. <high>Use editor, shortcuts, and auto-complete</high>
+11. <high>Use editor and auto-complete</high>
 12. Comment and format for readability
 ]
 
@@ -704,7 +704,7 @@ Shortcut to <high>rerun chunk</high>:<br><br2><font size = 6>  &#8984;/ctrl + &#
 8. View help files using `?`
 9. Study errors and warnings
 10. Use RStudio and projects
-11. <high>Use editor, shortcuts, and auto-complete</high>
+11. <high>Use editor and auto-complete</high>
 12. Comment and format for readability
 ]
 
@@ -741,7 +741,7 @@ baselers <- read_delim("baselers.txt",
 8. View help files using `?`
 9. Study errors and warnings
 10. Use RStudio and projects
-11. <high>Use editor, shortcuts, and auto-complete</high>
+11. <high>Use editor and auto-complete</high>
 12. Comment and format for readability
 ]
 
@@ -766,7 +766,7 @@ baselers <- read_delim("baselers.txt",
 8. View help files using `?`
 9. Study errors and warnings
 10. Use RStudio and projects
-11. <high>Use editor, shortcuts, and auto-complete</high>
+11. <high>Use editor and auto-complete</high>
 12. Comment and format for readability
 ]
 
@@ -791,7 +791,7 @@ baselers <- read_delim("baselers.txt",
 8. View help files using `?`
 9. Study errors and warnings
 10. Use RStudio and projects
-11. <high>Use editor, shortcuts, and auto-complete</high>
+11. <high>Use editor and auto-complete</high>
 12. Comment and format for readability
 ]
 
@@ -817,7 +817,7 @@ baselers <- read_delim("baselers.txt",
 8. View help files using `?`
 9. Study errors and warnings
 10. Use RStudio and projects
-11. Use editor, shortcuts, and auto-complete
+11. Use editor and auto-complete
 12. <high>Comment and format for readability</high>
 ]
 
@@ -859,7 +859,7 @@ my_data %>%
 8. View help files using `?`
 9. Study errors and warnings
 10. Use RStudio and projects
-11. Use editor, shortcuts, and auto-complete
+11. Use editor and auto-complete
 12. <high>Comment and format for readability</high>
 ]
 

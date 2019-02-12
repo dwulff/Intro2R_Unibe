@@ -302,9 +302,10 @@ Sometimes, you may find yourself in need of some <high>intensive help</high>. <b
 
 .pull-right6[
 
-<p align='center'><br><br><br><br>
-<img src="https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/tibits.jpg" height="400" vspace="10"><br>
-<a href="https://www.tibits.ch/de/restaurants.html#tibits-basel">Tibits.ch</a>
+<p align="center"><br><br><br><br>
+<img src="https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/tibits.jpg" height="400" vspace="10">
+<br>
+<font style="font-size:10px">from <a href="https://www.tibits.ch/de/restaurants.html">Tibits.ch</a></font>
 </p>
 
 ]
@@ -339,37 +340,43 @@ Sometimes, you may find yourself in need of some <high>intensive help</high>. <b
 
 ]
 
-.pull-right55[
-<br><br>
-<p align="center"><img src="https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/introductions.jpg" height="400"></p>
-<center><font size = 4>artofmanliness.com</font>
+.pull-right50[
+
+<p align="center"><br><br><br><br>
+<img src="https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/introductions.jpg" style="width:500px">
+<br>
+<font style="font-size:10px">from <a href="www.artofmanliness.com">artofmanliness.com</a></font>
+</p>
+
 ]
 
 ---
 
 # Your goals
 
-.pull-left45[
+.pull-left4[
 
-### Graphs | Data evaluation
-- ... filter and transform our data sets ... visualize  data
-- high amount of data that I need to read, sort and clean before plotting 
-- Data evaluation and graphs with R
+### Data & Graphs
+- Read in, sort, filter, transform data. 
+- Data evaluation and graphs with R.
 
-### Know X - want to update, switch to R 
-- how to do things in R instead of Stata
-- to refresh some old R knowledge, of course also want to learn something new
+### Know X - want to switch to R 
+- How to do things in R instead of, e.g., Stata.
+- Refresh some old R knowledge and learn something new.
 
-### Stats
-- I want to learn about R to be more efficient with statistical analysis
-- I need R during my research
+### Statistics
+- Learn about R to be more efficient with statistical analysis.
+- Use R for research.
 ]
 
-.pull-right45[
+.pull-right55[
 
-<center>
-![](image/most_interested.png)
-</center>
+<p align="center">
+<img src="image/most_interested.png" style="width:500px">
+<br>
+<font style="font-size:10px">Survey result</font>
+</p>
+
 ]
 
 ---
