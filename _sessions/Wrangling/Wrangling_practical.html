@@ -9,7 +9,6 @@
 <meta name="generator" content="pandoc" />
 
 
-<meta name="author" content="Introduction to R   Bern R Bootcamp" />
 
 
 <title>Wrangling</title>
@@ -123,7 +122,18 @@ $(document).ready(function () {
 
 
 <h1 class="title toc-ignore">Wrangling</h1>
-<h4 class="author"><em>Introduction to R<br/> <a href='https://therbootcamp.github.io'> Bern R Bootcamp </a> <br> <a href='https://dwulff.github.io/Intro2R_Unibe/'> <i class='fas fa-clock' style='font-size:.9em;'></i> </a>  <a href='https://therbootcamp.github.io'> <i class='fas fa-home' style='font-size:.9em;' ></i> </a>  <a href='mailto:therbootcamp@gmail.com'> <i class='fas fa-envelope' style='font-size: .9em;'></i> </a>  <a href='https://www.linkedin.com/company/basel-r-bootcamp/'> <i class='fab fa-linkedin' style='font-size: .9em;'></i> </a></em></h4>
+<h4 class="author"><em><table style='table-layout:fixed;width:100%;border:0;padding:0;margin:0'>
+<col width='10%'>
+<col width='10%'>
+<tr style="border:none">
+<td style="display:block;width:100%;text-align:left;vertical-align:bottom;padding:0;margin:0;border:none" nowrap>
+<font style='font-style:normal'>Introduction to R</font><br> <a href='https://dwulff.github.io/Intro2R_Unibe/'> <i class='fas fa-clock' style='font-size:.9em;' ></i> </a> <a href='https://therbootcamp.github.io'> <i class='fas fa-home' style='font-size:.9em;'></i> </a> <a href='mailto:therbootcamp@gmail.com'> <i class='fas fa-envelope' style='font-size: .9em;'></i> </a> <a href='https://www.linkedin.com/company/basel-r-bootcamp/'> <i class='fab fa-linkedin' style='font-size: .9em;'></i> </a> <a href='https://therbootcamp.github.io'> <font style='font-style:normal'>Bern R Bootcamp</font> </a>
+</td>
+<td style="width:100%;vertical-align:bottom;text-align:right;padding:0;margin:0;border:none">
+<img src='https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/by-sa.png' style='height:15px;width:80px'/>
+</td>
+</tr>
+</table></em></h4>
 
 </div>
 
@@ -862,6 +872,45 @@ trial_B</code></pre>
 #   education &lt;chr&gt;, drugs_char &lt;chr&gt;</code></pre>
 </div>
 </div>
+<div id="examples" class="section level2">
+<h2>Examples</h2>
+<pre class="r"><code># Wrangling with dplyr and tidyr ---------------------------
+
+library(tidyverse)    # Load tidyverse for dplyr and tidyr
+
+# Load baselers data
+baselers &lt;- read_csv(&quot;https://raw.githubusercontent.com/therbootcamp/baselers/master/inst/extdata/baselers.txt&quot;)
+
+# Perform many dplyr operations in a row
+
+baselers %&gt;%
+  
+  # Change some names
+  rename(age_y = age,
+         swimming = rhine) %&gt;%
+  
+  # Only include people over 30
+  filter(age_y &gt; 30) %&gt;%
+  
+  # Calculate some new columns
+  mutate(weight_lbs = weight * 2.22,
+         height_m = height / 100,
+         BMI = weight / height_m ^ 2,
+         
+         # Make binary version of sex
+         sex_bin = case_when(
+                      sex == &quot;male&quot; ~ 0,
+                      sex == &quot;female&quot; ~ 1),
+
+        # Show when height is greater than 150
+        height_lt_150 = case_when(
+                                height &lt; 150 ~ 1,
+                                height &gt;= 150 ~ 0)) %&gt;%
+  
+  # Sort in ascending order of sex, then
+  #  descending order of age
+  arrange(sex, desc(age_y)))</code></pre>
+</div>
 <div id="datasets" class="section level2">
 <h2>Datasets</h2>
 <table>
@@ -1004,34 +1053,13 @@ trial_B</code></pre>
 </tr>
 <tr class="odd">
 <td align="left">arms</td>
-<td align="left">treatment arm (0=zidovudine, 1=zidovudine and didanosine, 2=zidovudine and zalcitabine,</td>
-</tr>
-<tr class="even">
-<td align="left">3=didanosine).</td>
-<td align="left"></td>
+<td align="left">treatment arm (0=zidovudine, 1=zidovudine and didanosine, 2=zidovudine and zalcitabine, 3=didanosine).</td>
 </tr>
 </tbody>
 </table>
 </div>
-<div id="packages" class="section level2">
-<h2>Packages</h2>
-<table>
-<thead>
-<tr class="header">
-<th align="left">Package</th>
-<th align="left">Installation</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td align="left"><code>tidyverse</code></td>
-<td align="left"><code>install.packages(&quot;tidyverse&quot;)</code></td>
-</tr>
-</tbody>
-</table>
-</div>
-<div id="glossary" class="section level2">
-<h2>Glossary</h2>
+<div id="functions" class="section level2">
+<h2>Functions</h2>
 <table style="width:83%;">
 <colgroup>
 <col width="6%" />
@@ -1099,61 +1127,18 @@ trial_B</code></pre>
 </tbody>
 </table>
 </div>
-<div id="cheatsheet" class="section level2">
-<h2>Cheatsheet</h2>
-<figure>
-<center>
-<a href="https://www.rstudio.com/wp-content/uploads/2015/02/data-wrangling-cheatsheet.pdf"> <img src="https://image.slidesharecdn.com/data-wrangling-cheatsheet-160705210122/95/data-wrangling-with-dplyr-and-tidyr-cheat-sheet-1-638.jpg?cb=1467752577" alt="Trulli" style="width:70%">
-<figcaption>
-<a href="https://www.rstudio.com/wp-content/uploads/2015/02/data-wrangling-cheatsheet.pdf" class="uri">https://www.rstudio.com/wp-content/uploads/2015/02/data-wrangling-cheatsheet.pdf</a>
-</figcaption>
-</a>
-</figure>
-</div>
-<div id="examples" class="section level2">
-<h2>Examples</h2>
-<pre class="r"><code># Wrangling with dplyr and tidyr ---------------------------
-
-library(tidyverse)    # Load tidyverse for dplyr and tidyr
-
-# Load baselers data
-baselers &lt;- read_csv(&quot;https://raw.githubusercontent.com/therbootcamp/baselers/master/inst/extdata/baselers.txt&quot;)
-
-# Perform many dplyr operations in a row
-
-baselers %&gt;%
-  
-  # Change some names
-  rename(age_y = age,
-         swimming = rhine) %&gt;%
-  
-  # Only include people over 30
-  filter(age_y &gt; 30) %&gt;%
-  
-  # Calculate some new columns
-  mutate(weight_lbs = weight * 2.22,
-         height_m = height / 100,
-         BMI = weight / height_m ^ 2,
-         
-         # Make binary version of sex
-         sex_bin = case_when(
-                      sex == &quot;male&quot; ~ 0,
-                      sex == &quot;female&quot; ~ 1),
-
-        # Show when height is greater than 150
-        height_lt_150 = case_when(
-                                height &lt; 150 ~ 1,
-                                height &gt;= 150 ~ 0)) %&gt;%
-  
-  # Sort in ascending order of sex, then
-  #  descending order of age
-  arrange(sex, desc(age_y)))</code></pre>
-</div>
 <div id="resources" class="section level2">
 <h2>Resources</h2>
-<ul>
-<li>See <a href="https://cran.r-project.org/web/packages/dplyr/vignettes/dplyr.html" class="uri">https://cran.r-project.org/web/packages/dplyr/vignettes/dplyr.html</a> for the full dplyr vignette with lots of wrangling tips and tricks.</li>
-</ul>
+<div id="dplyr-vignette" class="section level3">
+<h3><code>dplyr</code> vignette</h3>
+<p>See <a href="https://cran.r-project.org/web/packages/dplyr/vignettes/dplyr.html" class="uri">https://cran.r-project.org/web/packages/dplyr/vignettes/dplyr.html</a> for the full dplyr vignette with lots of wrangling tips and tricks.</p>
+</div>
+<div id="cheatsheets" class="section level3">
+<h3>Cheatsheets</h3>
+<p align="center" width="100%">
+<a href="https://www.rstudio.com/wp-content/uploads/2015/02/data-wrangling-cheatsheet.pdf"> <img src="https://image.slidesharecdn.com/data-wrangling-cheatsheet-160705210122/95/data-wrangling-with-dplyr-and-tidyr-cheat-sheet-1-638.jpg?cb=1467752577" style="width:70%"></a> <br> <font style="font-size:10px">from <a href="https://www.rstudio.com/resources/cheatsheets/">R Studio</a></font>
+</p>
+</div>
 </div>
 </div>
 

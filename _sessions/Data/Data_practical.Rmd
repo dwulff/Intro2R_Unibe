@@ -676,80 +676,6 @@ mean(ten_tibble$age[ten_tibble$weight > 80])
 ten_tibble$id[ten_tibble$sex == "male" & ten_tibble$height < 165]
 ```
 
-
-## Datasets
-
-```{r, eval = TRUE, message = FALSE}
-library(tidyverse)
-library(haven)
-```
-
-|File | Rows | Columns | Description |
-|:----|:-----|:------|:-----------------------------------------|
-|[diamonds.csv](https://raw.githubusercontent.com/therbootcamp/BaselRBootcamp_2018July/master/_sessions/_data/baselrbootcamp_data/diamonds.csv) | 100 | 7 | Subset of the well-known diamonds data set containing specifications and prices of a large number of recorded diamonds.  |
-|[titanic.xls](https://raw.githubusercontent.com/therbootcamp/BaselRBootcamp_2018July/master/_sessions/_data/baselrbootcamp_data/titanic.xls) | 1309 | 14 | Information on the survival of titanic passengers. |
-|[sleep.sav](https://raw.githubusercontent.com/therbootcamp/BaselRBootcamp_2018July/master/_sessions/_data/baselrbootcamp_data/sleep.sav) | 271 | 55 | Survey on sleeping behavior completed by staff at the University of Melbourne. |
-|[airbnb_zuerich.sas7bdat](https://raw.githubusercontent.com/therbootcamp/BaselRBootcamp_2018July/master/_sessions/_data/baselrbootcamp_data/airbnb_zuerich.sas7bdat) | 2392 | 20 | Data on AirBnB listings in Zürich, Switzerland|
-
-
-## Packages
-
-|Package| Installation|
-|:------|:------|
-|`tidyverse`|`install.packages("tidyverse")`|
-|`readr`|`install.packages("readr")`|
-|`haven`|`install.packages("haven")`|
-|`readxl`|`install.packages("readxl")`|
-
-## Glossary
-
-*Creating vectors*
-
-| Function| Description|
-|:------|:--------|
-| `c("a", "b", "c")` |Create a character vector|
-| `c(1, 2, 3)`| Create a numeric vector|
-| `c(TRUE, FALSE, TRUE)`|    Create a logical vector|
-
-*Vector functions*
-
-| Function| Description|
-|:------|:--------|
-| `mean(x), median(x), sd(x), sum(x)` | Mean, median standard deviation, sum|
-| `max(x), min(x)`                    | Maximum, minimum|
-| `table(x)`                          | Table of frequency counts|
-| `round(x, digits)`                  | Round a numeric vector x to `digits`|
-
-*Accessing vectors from data frames*
-
-| Function| Description|
-|:------|:--------|
-| `df$name` |Access vector `name` from a data frame `df`|
-
-*Reading/writing text data*
-
-| Extension | File Type |Read | Write |
-|:------|:------|:--------------------------|:-----------------------------|
-| `.csv` | Comma-separated text |`read_csv(file)` | `write_csv(x, file)` |
-| `.csv` | Semi-colon separated text |`read_csv2(file)` | *not available* |
-| `.txt` |Other text | `read_delim(file)` |`write_delim(x, file)` | 
-
-*Reading/writing other data formats*
-
-|Extension| File Type | Read | Write|
-|:--------|:-----|:--------------------------|:-----------------------------|
-|`.xls`, `.xlsx`|Excel | `read_excel(file)` | `xlsx::write.xlsx()` |
-|`.sav`| SPSS | `read_spss(file)` | `write_spss(x, file)`| 
-|`.sas7bdat`| SAS | `read_sas(file)` | `write_sas(x, file)`|
-
-*Creating data frames from vectors*
-
-| Function| Description|
-|:------|:--------|
-| `data.frame(a, b, c)` | Create a data frame from vectors a, b, c|
-| `tibble(a, b, c)`     | Create a tibble from vectors a, b, c|
-
-
 ## Examples
 
 ```{r, eval = FALSE, echo = TRUE}
@@ -835,6 +761,79 @@ chickens <- read_sas("1_Data/chickens.sas7bdat")
 
 ```
 
+
+## Datasets
+
+```{r, eval = TRUE, message = FALSE}
+library(tidyverse)
+library(haven)
+```
+
+|File | Rows | Columns | Description |
+|:----|:-----|:------|:-----------------------------------------|
+|[diamonds.csv](https://raw.githubusercontent.com/therbootcamp/BaselRBootcamp_2018July/master/_sessions/_data/baselrbootcamp_data/diamonds.csv) | 100 | 7 | Subset of the well-known diamonds data set containing specifications and prices of a large number of recorded diamonds.  |
+|[titanic.xls](https://raw.githubusercontent.com/therbootcamp/BaselRBootcamp_2018July/master/_sessions/_data/baselrbootcamp_data/titanic.xls) | 1309 | 14 | Information on the survival of titanic passengers. |
+|[sleep.sav](https://raw.githubusercontent.com/therbootcamp/BaselRBootcamp_2018July/master/_sessions/_data/baselrbootcamp_data/sleep.sav) | 271 | 55 | Survey on sleeping behavior completed by staff at the University of Melbourne. |
+|[airbnb_zuerich.sas7bdat](https://raw.githubusercontent.com/therbootcamp/BaselRBootcamp_2018July/master/_sessions/_data/baselrbootcamp_data/airbnb_zuerich.sas7bdat) | 2392 | 20 | Data on AirBnB listings in Zürich, Switzerland|
+
+## Functions
+
+### Packages
+
+|Package| Installation|
+|:------|:------|
+|`tidyverse`|`install.packages("tidyverse")`|
+|`readr`|`install.packages("readr")`|
+|`haven`|`install.packages("haven")`|
+|`readxl`|`install.packages("readxl")`|
+
+### Functions
+
+*Creating vectors*
+
+| Function| Description|
+|:------|:--------|
+| `c("a", "b", "c")` |Create a character vector|
+| `c(1, 2, 3)`| Create a numeric vector|
+| `c(TRUE, FALSE, TRUE)`|    Create a logical vector|
+
+*Vector functions*
+
+| Function| Description|
+|:------|:--------|
+| `mean(x), median(x), sd(x), sum(x)` | Mean, median standard deviation, sum|
+| `max(x), min(x)`                    | Maximum, minimum|
+| `table(x)`                          | Table of frequency counts|
+| `round(x, digits)`                  | Round a numeric vector x to `digits`|
+
+*Accessing vectors from data frames*
+
+| Function| Description|
+|:------|:--------|
+| `df$name` |Access vector `name` from a data frame `df`|
+
+*Reading/writing text data*
+
+| Extension | File Type |Read | Write |
+|:------|:------|:--------------------------|:-----------------------------|
+| `.csv` | Comma-separated text |`read_csv(file)` | `write_csv(x, file)` |
+| `.csv` | Semi-colon separated text |`read_csv2(file)` | *not available* |
+| `.txt` |Other text | `read_delim(file)` |`write_delim(x, file)` | 
+
+*Reading/writing other data formats*
+
+|Extension| File Type | Read | Write|
+|:--------|:-----|:--------------------------|:-----------------------------|
+|`.xls`, `.xlsx`|Excel | `read_excel(file)` | `xlsx::write.xlsx()` |
+|`.sav`| SPSS | `read_spss(file)` | `write_spss(x, file)`| 
+|`.sas7bdat`| SAS | `read_sas(file)` | `write_sas(x, file)`|
+
+*Creating data frames from vectors*
+
+| Function| Description|
+|:------|:--------|
+| `data.frame(a, b, c)` | Create a data frame from vectors a, b, c|
+| `tibble(a, b, c)`     | Create a tibble from vectors a, b, c|
 
 ## Resources
 
