@@ -42,158 +42,15 @@ options(digits = 3)
   <figcaption>Wikipedia</figcaption>
 </figure>
 
-## {.tabset}
+# {.tabset .tabset-fade}
 
-### Overview
+## Overview
 
 In this practical you'll practice plotting data with the amazing `ggplot2` package. 
 
-### Datasets
-
-```{r, eval = TRUE, message = FALSE}
-library(tidyverse)
-library(plotly)
-library(ggthemes)
-mcdonalds <- read_csv("https://raw.githubusercontent.com/therbootcamp/BaselRBootcamp_2018July/master/_sessions/_data/baselrbootcamp_data/mcdonalds.csv")
-kc_house <- read_csv("https://raw.githubusercontent.com/therbootcamp/BaselRBootcamp_2018July/master/_sessions/_data/baselrbootcamp_data/kc_house.csv")
-```
-
-|File  |Rows | Columns |
-|:----|:-----|:------|
-|[mcdonalds.csv](https://raw.githubusercontent.com/therbootcamp/BaselRBootcamp_2018July/master/_sessions/_data/complete/mcdonalds.csv)| 260 | 24 |
-
-### Packages
-
-|Package| Installation|
-|:------|:------|
-|`tidyverse`|`install.packages("tidyverse")`|
-|`ggthemes`|`install.packages("ggthemes")`|
-|`plotly`|`install.packages("plotly")`|
-
-
-### Cheatsheet
-
-<figure>
-<center>
-<a href="https://www.rstudio.com/wp-content/uploads/2015/03/ggplot2-cheatsheet.pdf">
-  <img src="http://www.rstudio.com/wp-content/uploads/2015/03/ggplot2-cheatsheet.png" alt="Trulli" style="width:70%">
-  <figcaption>https://www.rstudio.com/wp-content/uploads/2015/03/ggplot2-cheatsheet.pdf</figcaption></a>
-</figure>
-
-### Examples
-
-The following examples will take you through the steps of creating both simple and complex plots with `ggplot2`. Try to go through each line of code and see how it works!
-
-```{r, eval = FALSE, echo = TRUE}
-# -----------------------------------------------
-# Examples of using ggplot2 on the mpg data
-# ------------------------------------------------
-
-library(tidyverse)         # Load tidyverse (which contains ggplot2!)
-
-mpg # Look at the mpg data
-
-# Just a blank space without any aesthetic mappings
-ggplot(data = mpg)
-
-# Now add a mapping where engine displacement (displ) and highway miles per gallon (hwy) are
-# mapped to the x and y aesthetics
-ggplot(data = mpg, 
-       mapping = aes(x = displ, y = hwy))   # Map displ to x-axis and hwy to y-axis
-
-#  Add points with geom_point()
-ggplot(data = mpg, 
-       mapping = aes(x = displ, y = hwy)) +
-       geom_point()     
-
-#  Add points with geom_count()
-ggplot(data = mpg, 
-       mapping = aes(x = displ, y = hwy)) +
-       geom_count()   
-
-# Again, but with some additional arguments
-# Also using a new theme temporarily
-
-ggplot(data = mpg, 
-       mapping = aes(x = displ, y = hwy)) +
-       geom_point(col = "red",                  # Red points
-                  size = 3,                     # Larger size
-                  alpha = .5,                   # Transparent points
-                  position = "jitter") +        # Jitter the points         
-         scale_x_continuous(limits = c(1, 15)) +  # Axis limits
-         scale_y_continuous(limits = c(0, 50)) +
-  theme_minimal()
-
-
-# Assign class to the color aesthetic and add labels with labs()
-
-ggplot(data = mpg, 
-  mapping = aes(x = displ, y = hwy, col = class)) +  # Change color based on class column
-  geom_point(size = 3, position = 'jitter') +
-  labs(x = "Engine Displacement in Liters",
-       y = "Highway miles per gallon",
-       title = "MPG data",
-       subtitle = "Cars with higher engine displacement tend to have lower highway mpg",
-       caption = "Source: mpg data in ggplot2")
-  
-
-# Add a regression line for each class
-
-ggplot(data = mpg, 
-       mapping = aes(x = displ, y = hwy, color = class)) +
-  geom_point(size = 3, alpha = .9) + 
-  geom_smooth(method = "lm")
-
-# Add a regression line for all classes
-
-ggplot(data = mpg, 
-       mapping = aes(x = displ, y = hwy, color = class)) +
-  geom_point(size = 3, alpha = .9) + 
-  geom_smooth(col = "blue", method = "lm")
-
-
-# Facet by class
-ggplot(data = mpg,
-       mapping = aes(x = displ, 
-                     y = hwy, 
-                     color = factor(cyl))) + 
-  geom_point() +
-  facet_wrap(~ class) 
-
-
-# Another fancier example
-
-ggplot(data = mpg, 
-       mapping = aes(x = cty, y = hwy)) + 
-       geom_count(aes(color = manufacturer)) +     # Add count geom (see ?geom_count)
-       geom_smooth() +                   # smoothed line without confidence interval
-       geom_text(data = filter(mpg, cty > 25), 
-                 aes(x = cty,y = hwy, 
-                     label = rownames(filter(mpg, cty > 25))),
-                     position = position_nudge(y = -1), 
-                                check_overlap = TRUE, 
-                     size = 5) + 
-       labs(x = "City miles per gallon", 
-            y = "Highway miles per gallon",
-            title = "City and Highway miles per gallon", 
-            subtitle = "Numbers indicate cars with highway mpg > 25",
-            caption = "Source: mpg data in ggplot2",
-            color = "Manufacturer", 
-            size = "Counts")
-```
-
-
-### References
-
-- The main `ggplot2` webpage at [http://ggplot2.tidyverse.org/](http://ggplot2.tidyverse.org/) has great tutorials and examples.
-
-- Check out Selva Prabhakaran's website for a nice gallery of ggplot2 graphics [http://r-statistics.co/Top50-Ggplot2-Visualizations-MasterList-R-Code.html](http://r-statistics.co/Top50-Ggplot2-Visualizations-MasterList-R-Code.html)
-
-- `ggplot2` is also great for making maps. For examples, check out Eric Anderson's page at [http://eriqande.github.io/rep-res-web/lectures/making-maps-with-R.html](http://eriqande.github.io/rep-res-web/lectures/making-maps-with-R.html)
-
 ## Tasks
 
-## A - Setup
+### A - Setup
 
 1. Open your `baselrbootcamp` R project. It should already have the folders `1_Data` and `2_Code`. Make sure that the data files listed in the `Datasets` section above are in your `1_Data` folder.
 
@@ -549,6 +406,151 @@ ggplot(mcdonalds, aes(x = XX,
 - Specify that the size of the points should correspond to their Calories. Do this with the `size` aesthetic.
 - Instead of mapping `Category` to the `color` aesthetic, try creating different facets for each `Category` with `facet_wrap(~ Category)`.
 - Try using a different plotting theme. For example, you can try `theme_excel()` included in the `ggthemes` package.
+
+
+## Datasets
+
+```{r, eval = TRUE, message = FALSE}
+library(tidyverse)
+library(plotly)
+library(ggthemes)
+mcdonalds <- read_csv("https://raw.githubusercontent.com/therbootcamp/BaselRBootcamp_2018July/master/_sessions/_data/baselrbootcamp_data/mcdonalds.csv")
+kc_house <- read_csv("https://raw.githubusercontent.com/therbootcamp/BaselRBootcamp_2018July/master/_sessions/_data/baselrbootcamp_data/kc_house.csv")
+```
+
+|File  |Rows | Columns |
+|:----|:-----|:------|
+|[mcdonalds.csv](https://raw.githubusercontent.com/therbootcamp/BaselRBootcamp_2018July/master/_sessions/_data/complete/mcdonalds.csv)| 260 | 24 |
+
+## Packages
+
+|Package| Installation|
+|:------|:------|
+|`tidyverse`|`install.packages("tidyverse")`|
+|`ggthemes`|`install.packages("ggthemes")`|
+|`plotly`|`install.packages("plotly")`|
+
+
+## Cheatsheet
+
+<figure>
+<center>
+<a href="https://www.rstudio.com/wp-content/uploads/2015/03/ggplot2-cheatsheet.pdf">
+  <img src="http://www.rstudio.com/wp-content/uploads/2015/03/ggplot2-cheatsheet.png" alt="Trulli" style="width:70%">
+  <figcaption>https://www.rstudio.com/wp-content/uploads/2015/03/ggplot2-cheatsheet.pdf</figcaption></a>
+</figure>
+
+# Examples
+
+The following examples will take you through the steps of creating both simple and complex plots with `ggplot2`. Try to go through each line of code and see how it works!
+
+```{r, eval = FALSE, echo = TRUE}
+# -----------------------------------------------
+# Examples of using ggplot2 on the mpg data
+# ------------------------------------------------
+
+library(tidyverse)         # Load tidyverse (which contains ggplot2!)
+
+mpg # Look at the mpg data
+
+# Just a blank space without any aesthetic mappings
+ggplot(data = mpg)
+
+# Now add a mapping where engine displacement (displ) and highway miles per gallon (hwy) are
+# mapped to the x and y aesthetics
+ggplot(data = mpg, 
+       mapping = aes(x = displ, y = hwy))   # Map displ to x-axis and hwy to y-axis
+
+#  Add points with geom_point()
+ggplot(data = mpg, 
+       mapping = aes(x = displ, y = hwy)) +
+       geom_point()     
+
+#  Add points with geom_count()
+ggplot(data = mpg, 
+       mapping = aes(x = displ, y = hwy)) +
+       geom_count()   
+
+# Again, but with some additional arguments
+# Also using a new theme temporarily
+
+ggplot(data = mpg, 
+       mapping = aes(x = displ, y = hwy)) +
+       geom_point(col = "red",                  # Red points
+                  size = 3,                     # Larger size
+                  alpha = .5,                   # Transparent points
+                  position = "jitter") +        # Jitter the points         
+         scale_x_continuous(limits = c(1, 15)) +  # Axis limits
+         scale_y_continuous(limits = c(0, 50)) +
+  theme_minimal()
+
+
+# Assign class to the color aesthetic and add labels with labs()
+
+ggplot(data = mpg, 
+  mapping = aes(x = displ, y = hwy, col = class)) +  # Change color based on class column
+  geom_point(size = 3, position = 'jitter') +
+  labs(x = "Engine Displacement in Liters",
+       y = "Highway miles per gallon",
+       title = "MPG data",
+       subtitle = "Cars with higher engine displacement tend to have lower highway mpg",
+       caption = "Source: mpg data in ggplot2")
+  
+
+# Add a regression line for each class
+
+ggplot(data = mpg, 
+       mapping = aes(x = displ, y = hwy, color = class)) +
+  geom_point(size = 3, alpha = .9) + 
+  geom_smooth(method = "lm")
+
+# Add a regression line for all classes
+
+ggplot(data = mpg, 
+       mapping = aes(x = displ, y = hwy, color = class)) +
+  geom_point(size = 3, alpha = .9) + 
+  geom_smooth(col = "blue", method = "lm")
+
+
+# Facet by class
+ggplot(data = mpg,
+       mapping = aes(x = displ, 
+                     y = hwy, 
+                     color = factor(cyl))) + 
+  geom_point() +
+  facet_wrap(~ class) 
+
+
+# Another fancier example
+
+ggplot(data = mpg, 
+       mapping = aes(x = cty, y = hwy)) + 
+       geom_count(aes(color = manufacturer)) +     # Add count geom (see ?geom_count)
+       geom_smooth() +                   # smoothed line without confidence interval
+       geom_text(data = filter(mpg, cty > 25), 
+                 aes(x = cty,y = hwy, 
+                     label = rownames(filter(mpg, cty > 25))),
+                     position = position_nudge(y = -1), 
+                                check_overlap = TRUE, 
+                     size = 5) + 
+       labs(x = "City miles per gallon", 
+            y = "Highway miles per gallon",
+            title = "City and Highway miles per gallon", 
+            subtitle = "Numbers indicate cars with highway mpg > 25",
+            caption = "Source: mpg data in ggplot2",
+            color = "Manufacturer", 
+            size = "Counts")
+```
+
+
+## References
+
+- The main `ggplot2` webpage at [http://ggplot2.tidyverse.org/](http://ggplot2.tidyverse.org/) has great tutorials and examples.
+
+- Check out Selva Prabhakaran's website for a nice gallery of ggplot2 graphics [http://r-statistics.co/Top50-Ggplot2-Visualizations-MasterList-R-Code.html](http://r-statistics.co/Top50-Ggplot2-Visualizations-MasterList-R-Code.html)
+
+- `ggplot2` is also great for making maps. For examples, check out Eric Anderson's page at [http://eriqande.github.io/rep-res-web/lectures/making-maps-with-R.html](http://eriqande.github.io/rep-res-web/lectures/making-maps-with-R.html)
+
 
 ### X - Challenges
 
