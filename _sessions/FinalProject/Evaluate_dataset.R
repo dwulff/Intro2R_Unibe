@@ -11,7 +11,35 @@ options(geonamesHost="api.geonames.org")
 
 weather <- read_csv('_sessions/FinalProject/1_Data/weather_per_coordinate.csv')
 appointments <- read_csv('_sessions/FinalProject/1_Data/medical_noshows.csv')
-neighbourhood <- read_csv('_sessions/FinalProject/1_Data/latlon_brazil.csv')
+# neighbourhood <- read_csv('_sessions/FinalProject/1_Data/latlon_brazil.csv')
+
+summary(appointments)
+
+# check out age
+range(appointments$Age, na.rm = TRUE)
+hist(appointments$Age)
+
+# there are two persons with age -1 - replace with NA
+appointments <-
+appointments %>%
+  mutate(Age = case_when(Age < 0 ~ as.integer(NA),
+                               TRUE ~ as.integer(Age)))
+
+
+# how many patients in the df
+length(unique(appointments$PatientId))
+# distribution of appointments
+plot(table(appointments$PatientId))
+hist(appointments$PatientId)
+
+
+
+
+
+
+
+
+
 
 # fusion weather into correct position for loaction and day
 # there seems to be some digits not showing after the comma ..
