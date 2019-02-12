@@ -127,7 +127,7 @@ $(document).ready(function () {
 <col width='10%'>
 <tr style="border:none">
 <td style="display:block;width:100%;text-align:left;vertical-align:bottom;padding:0;margin:0;border:none" nowrap>
-<font style='font-style:normal'>Introduction to R</font> <br> <a href='https://dwulff.github.io/Intro2R_Unibe/'> <i class='fas fa-clock' style='font-size:.9em;' ></i> </a> <a href='https://therbootcamp.github.io'> <i class='fas fa-home' style='font-size:.9em;'></i> </a> <a href='mailto:therbootcamp@gmail.com'> <i class='fas fa-envelope' style='font-size: .9em;'></i> </a> <a href='https://www.linkedin.com/company/basel-r-bootcamp/'> <i class='fab fa-linkedin' style='font-size: .9em;'></i> </a> <a href='https://therbootcamp.github.io'> <font style='font-style:normal'>Bern R Bootcamp</font> </a>  
+<font style='font-style:normal'>Introduction to R</font><br> <a href='https://dwulff.github.io/Intro2R_Unibe/'> <i class='fas fa-clock' style='font-size:.9em;' ></i> </a> <a href='https://therbootcamp.github.io'> <i class='fas fa-home' style='font-size:.9em;'></i> </a> <a href='mailto:therbootcamp@gmail.com'> <i class='fas fa-envelope' style='font-size: .9em;'></i> </a> <a href='https://www.linkedin.com/company/basel-r-bootcamp/'> <i class='fab fa-linkedin' style='font-size: .9em;'></i> </a> <a href='https://therbootcamp.github.io'> <font style='font-style:normal'>Bern R Bootcamp</font> </a>
 </td>
 <td style="width:100%;vertical-align:bottom;text-align:right;padding:0;margin:0;border:none">
 <img src='https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/by-sa.png' style='height:15px;width:80px'/>
@@ -443,6 +443,88 @@ XX$XX[young_30]</code></pre>
 </ol>
 </div>
 </div>
+<div id="examples" class="section level2">
+<h2>Examples</h2>
+<pre class="r"><code>library(tidyverse)
+library(readr)
+library(readxl)
+library(haven)
+
+# Create vectors of (fake) stock data
+name      &lt;- c(&quot;apple&quot;, &quot;microsoft&quot;, &quot;dell&quot;, &quot;google&quot;, &quot;twitter&quot;)
+yesterday &lt;- c(100, 89, 65, 54, 89)
+today     &lt;- c(102, 85, 72, 60, 95)
+
+# Summary statistics
+mean(today)
+mean(yesterday)
+
+# Show classes
+class(name)
+class(yesterday)
+
+# Operations of vectors
+change &lt;- today - yesterday
+change # Print result
+
+# Create a logical vector from two numerics
+increase &lt;- today &gt; yesterday
+increase # Print result
+
+# Create a tibble combining multiple vectors
+stocks &lt;- tibble(name, yesterday, today, change, increase)
+
+# Get column names
+names(stocks)
+
+# Access columns by name
+stocks$name
+stocks$today
+
+# Calculate descriptives on columns
+mean(stocks$yesterday)
+median(stocks$today)
+table(stocks$increase)
+max(stocks$increase)
+
+
+# read/write delim-separated -------------------
+
+# read chickens data
+chickens &lt;- read_csv(file = &quot;1_Data/chickens.csv&quot;)
+
+# fix header of chickens_nohead.csv with known column names
+chickens &lt;- read_csv(file = &quot;1_Data/chickens_nohead.csv&quot;,
+                     col_names = c(&quot;weight&quot;, &quot;time&quot;, &quot;chick&quot;, &quot;diet&quot;))
+
+# fix NA values of chickens_na.csv
+chickens &lt;- read_csv(file = &quot;1_Data/chickens_na.csv&quot;,
+                     na = c(&#39;NA&#39;, &#39;NULL&#39;))
+
+# write clean data to disc
+write_csv(x = chickens, 
+          path = &quot;1_Data/chickens_clean.csv&quot;)
+
+# fix types -------------------
+# Note: the survey data is fictional!
+
+# remove character from rating
+survey$rating[survey$rating == &quot;2,1&quot;] &lt;- 2.1
+
+# rerun type convert
+survey &lt;- type_convert(survey)
+
+# other formats -------------------
+
+# .xlsx (Excel)
+chickens &lt;- read_excel(&quot;1_Data/chickens.xlsx&quot;)
+
+# .sav (SPSS)
+chickens &lt;- read_spss(&quot;1_Data/chickens.sav&quot;)
+
+# .sad7bdata (SAS)
+chickens &lt;- read_sas(&quot;1_Data/chickens.sas7bdat&quot;)</code></pre>
+</div>
 <div id="datasets" class="section level2">
 <h2>Datasets</h2>
 <table style="width:89%;">
@@ -488,8 +570,10 @@ XX$XX[young_30]</code></pre>
 </tbody>
 </table>
 </div>
-<div id="packages" class="section level2">
-<h2>Packages</h2>
+<div id="functions" class="section level2">
+<h2>Functions</h2>
+<div id="packages" class="section level3">
+<h3>Packages</h3>
 <table>
 <thead>
 <tr class="header">
@@ -517,8 +601,8 @@ XX$XX[young_30]</code></pre>
 </tbody>
 </table>
 </div>
-<div id="glossary" class="section level2">
-<h2>Glossary</h2>
+<div id="functions-1" class="section level3">
+<h3>Functions</h3>
 <p><em>Creating vectors</em></p>
 <table>
 <thead>
@@ -666,87 +750,6 @@ XX$XX[young_30]</code></pre>
 </tbody>
 </table>
 </div>
-<div id="examples" class="section level2">
-<h2>Examples</h2>
-<pre class="r"><code>library(tidyverse)
-library(readr)
-library(readxl)
-library(haven)
-
-# Create vectors of (fake) stock data
-name      &lt;- c(&quot;apple&quot;, &quot;microsoft&quot;, &quot;dell&quot;, &quot;google&quot;, &quot;twitter&quot;)
-yesterday &lt;- c(100, 89, 65, 54, 89)
-today     &lt;- c(102, 85, 72, 60, 95)
-
-# Summary statistics
-mean(today)
-mean(yesterday)
-
-# Show classes
-class(name)
-class(yesterday)
-
-# Operations of vectors
-change &lt;- today - yesterday
-change # Print result
-
-# Create a logical vector from two numerics
-increase &lt;- today &gt; yesterday
-increase # Print result
-
-# Create a tibble combining multiple vectors
-stocks &lt;- tibble(name, yesterday, today, change, increase)
-
-# Get column names
-names(stocks)
-
-# Access columns by name
-stocks$name
-stocks$today
-
-# Calculate descriptives on columns
-mean(stocks$yesterday)
-median(stocks$today)
-table(stocks$increase)
-max(stocks$increase)
-
-
-# read/write delim-separated -------------------
-
-# read chickens data
-chickens &lt;- read_csv(file = &quot;1_Data/chickens.csv&quot;)
-
-# fix header of chickens_nohead.csv with known column names
-chickens &lt;- read_csv(file = &quot;1_Data/chickens_nohead.csv&quot;,
-                     col_names = c(&quot;weight&quot;, &quot;time&quot;, &quot;chick&quot;, &quot;diet&quot;))
-
-# fix NA values of chickens_na.csv
-chickens &lt;- read_csv(file = &quot;1_Data/chickens_na.csv&quot;,
-                     na = c(&#39;NA&#39;, &#39;NULL&#39;))
-
-# write clean data to disc
-write_csv(x = chickens, 
-          path = &quot;1_Data/chickens_clean.csv&quot;)
-
-# fix types -------------------
-# Note: the survey data is fictional!
-
-# remove character from rating
-survey$rating[survey$rating == &quot;2,1&quot;] &lt;- 2.1
-
-# rerun type convert
-survey &lt;- type_convert(survey)
-
-# other formats -------------------
-
-# .xlsx (Excel)
-chickens &lt;- read_excel(&quot;1_Data/chickens.xlsx&quot;)
-
-# .sav (SPSS)
-chickens &lt;- read_spss(&quot;1_Data/chickens.sav&quot;)
-
-# .sad7bdata (SAS)
-chickens &lt;- read_sas(&quot;1_Data/chickens.sas7bdat&quot;)</code></pre>
 </div>
 <div id="resources" class="section level2">
 <h2>Resources</h2>

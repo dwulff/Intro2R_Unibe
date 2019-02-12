@@ -1,22 +1,31 @@
 ---
 title: "Wrangling"
-author: "Introduction to R<br/>
-  <a href='https://therbootcamp.github.io'>
-    Bern R Bootcamp
-  </a> 
-  <br>
-  <a href='https://dwulff.github.io/Intro2R_Unibe/'>
-    <i class='fas fa-clock' style='font-size:.9em;'></i>
-  </a>&#8239; 
-  <a href='https://therbootcamp.github.io'>
-    <i class='fas fa-home' style='font-size:.9em;' ></i>
-  </a>&#8239;
-  <a href='mailto:therbootcamp@gmail.com'>
-    <i class='fas fa-envelope' style='font-size: .9em;'></i>
-  </a>&#8239;
-  <a href='https://www.linkedin.com/company/basel-r-bootcamp/'>
-    <i class='fab fa-linkedin' style='font-size: .9em;'></i>
-  </a>"
+author: "
+<table style='table-layout:fixed;width:100%;border:0;padding:0;margin:0'><col width='10%'><col width='10%'>
+  <tr style='border:none'>
+    <td style='display:block;width:100%;text-align:left;vertical-align:bottom;padding:0;margin:0;border:none' nowrap>
+      <font style='font-style:normal'>Introduction to R</font><br>
+      <a href='https://dwulff.github.io/Intro2R_Unibe/'>
+        <i class='fas fa-clock' style='font-size:.9em;' ></i>
+      </a>
+      <a href='https://therbootcamp.github.io'>
+        <i class='fas fa-home' style='font-size:.9em;'></i>
+      </a>
+      <a href='mailto:therbootcamp@gmail.com'>
+        <i class='fas fa-envelope' style='font-size: .9em;'></i>
+      </a>
+      <a href='https://www.linkedin.com/company/basel-r-bootcamp/'>
+        <i class='fab fa-linkedin' style='font-size: .9em;'></i>
+      </a>
+      <a href='https://therbootcamp.github.io'>
+        <font style='font-style:normal'>Bern R Bootcamp</font>
+      </a>
+    </td>
+    <td style='width:100%;vertical-align:bottom;text-align:right;padding:0;margin:0;border:none'>
+      <img src='https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/by-sa.png' style='height:15px;width:80px'/>
+    </td>
+  </tr>
+</table>"
 output:
   html_document:
     css: practical.css
@@ -561,6 +570,49 @@ trial_B <- trial_act %>%
 trial_B
 ```
 
+## Examples
+
+```{r, eval = FALSE, echo = TRUE}
+
+# Wrangling with dplyr and tidyr ---------------------------
+
+library(tidyverse)    # Load tidyverse for dplyr and tidyr
+
+# Load baselers data
+baselers <- read_csv("https://raw.githubusercontent.com/therbootcamp/baselers/master/inst/extdata/baselers.txt")
+
+# Perform many dplyr operations in a row
+
+baselers %>%
+  
+  # Change some names
+  rename(age_y = age,
+         swimming = rhine) %>%
+  
+  # Only include people over 30
+  filter(age_y > 30) %>%
+  
+  # Calculate some new columns
+  mutate(weight_lbs = weight * 2.22,
+         height_m = height / 100,
+         BMI = weight / height_m ^ 2,
+         
+         # Make binary version of sex
+         sex_bin = case_when(
+                      sex == "male" ~ 0,
+                      sex == "female" ~ 1),
+
+        # Show when height is greater than 150
+        height_lt_150 = case_when(
+                                height < 150 ~ 1,
+                                height >= 150 ~ 0)) %>%
+  
+  # Sort in ascending order of sex, then
+  #  descending order of age
+  arrange(sex, desc(age_y)))
+```
+
+
 
 ## Datasets
 
@@ -607,17 +659,9 @@ infected with the human immunodeficiency virus type I whose CD4 T cell counts we
 |cd820| CD8 T cell count at 20±5 weeks|
 |cens| indicator of observing the event in days|
 |days| number of days until the first occurrence of: (i) a decline in CD4 T cell count of at least 50 (ii) an event indicating progression to AIDS, or (iii) death.|
-|arms| treatment arm (0=zidovudine, 1=zidovudine and didanosine, 2=zidovudine and zalcitabine,
-3=didanosine).|
+|arms| treatment arm (0=zidovudine, 1=zidovudine and didanosine, 2=zidovudine and zalcitabine, 3=didanosine).|
 
-
-## Packages
-
-|Package| Installation|
-|:------|:------|
-|`tidyverse`|`install.packages("tidyverse")`|
-
-## Glossary
+## Functions
 
 | Function| Package | Description |
 |:---|:------|:---------------------------------------------|
@@ -632,59 +676,17 @@ infected with the human immunodeficiency virus type I whose CD4 T cell counts we
 |     `spread()`|`tidyr`|    Convert long data to wide format - from rows to columns| 
 |     `gather()`|`tidyr`|    Convert wide data to long format - from columns to rows|
 
-## Cheatsheet
-
-<figure>
-<center>
-<a href="https://www.rstudio.com/wp-content/uploads/2015/02/data-wrangling-cheatsheet.pdf">
-  <img src="https://image.slidesharecdn.com/data-wrangling-cheatsheet-160705210122/95/data-wrangling-with-dplyr-and-tidyr-cheat-sheet-1-638.jpg?cb=1467752577" alt="Trulli" style="width:70%">
-  <figcaption>https://www.rstudio.com/wp-content/uploads/2015/02/data-wrangling-cheatsheet.pdf</figcaption></a>
-</figure>
-
-## Examples
-
-```{r, eval = FALSE, echo = TRUE}
-
-# Wrangling with dplyr and tidyr ---------------------------
-
-library(tidyverse)    # Load tidyverse for dplyr and tidyr
-
-# Load baselers data
-baselers <- read_csv("https://raw.githubusercontent.com/therbootcamp/baselers/master/inst/extdata/baselers.txt")
-
-# Perform many dplyr operations in a row
-
-baselers %>%
-  
-  # Change some names
-  rename(age_y = age,
-         swimming = rhine) %>%
-  
-  # Only include people over 30
-  filter(age_y > 30) %>%
-  
-  # Calculate some new columns
-  mutate(weight_lbs = weight * 2.22,
-         height_m = height / 100,
-         BMI = weight / height_m ^ 2,
-         
-         # Make binary version of sex
-         sex_bin = case_when(
-                      sex == "male" ~ 0,
-                      sex == "female" ~ 1),
-
-        # Show when height is greater than 150
-        height_lt_150 = case_when(
-                                height < 150 ~ 1,
-                                height >= 150 ~ 0)) %>%
-  
-  # Sort in ascending order of sex, then
-  #  descending order of age
-  arrange(sex, desc(age_y)))
-```
-
-
 ## Resources
 
-- See [https://cran.r-project.org/web/packages/dplyr/vignettes/dplyr.html](https://cran.r-project.org/web/packages/dplyr/vignettes/dplyr.html) for the full dplyr vignette with lots of wrangling tips and tricks.
+### `dplyr` vignette
 
+See [https://cran.r-project.org/web/packages/dplyr/vignettes/dplyr.html](https://cran.r-project.org/web/packages/dplyr/vignettes/dplyr.html) for the full dplyr vignette with lots of wrangling tips and tricks.
+
+### Cheatsheets
+
+<p align="center" width="100%">
+<a href="https://www.rstudio.com/wp-content/uploads/2015/02/data-wrangling-cheatsheet.pdf">
+  <img src="https://image.slidesharecdn.com/data-wrangling-cheatsheet-160705210122/95/data-wrangling-with-dplyr-and-tidyr-cheat-sheet-1-638.jpg?cb=1467752577" style="width:70%"></a>
+  <br>
+  <font style="font-size:10px">from <a href="https://www.rstudio.com/resources/cheatsheets/">R Studio</a></font>
+</p>

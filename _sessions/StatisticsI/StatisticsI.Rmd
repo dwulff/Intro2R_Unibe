@@ -650,7 +650,7 @@ Alternative <high>arguments allow for variations</high>.
 
 .pull-right5[
 
-### t-test with `t.test()`
+### Wilcoxon test with `wilcox.test()`
 
 ```{r}
 # 2-sample wilcoxon rank test assuming equal variance
@@ -667,5 +667,5 @@ wilcox.test(baselers$happiness,
 
 class: middle, center
 
-<h1><a href="https://therbootcamp.github.io/appliedML_2019Jan/_sessions/Models/Models_practical.html">Practical</a></h1>
+<h1><a href="https://dwulff.github.io/Intro2R_Unibe/_sessions/StatisticsI/StatisticsI_practical.html">Practical</a></h1>
 
