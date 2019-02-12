@@ -70,6 +70,7 @@ baselers = readr::read_csv('../_data/baselers.csv')
 # Data
 
 .pull-left45[
+
 <font size=5>
 In this session you will get to know...
 <ul>
@@ -882,5 +883,5 @@ data <- jsonlite::read_json(file, ...)
 
 class: middle, center
 
-<h1><a href="https://therbootcamp.github.io/appliedML_2019Jan/_sessions/Models/Models_practical.html">Practical</a></h1>
+<h1><a href="https://dwulff.github.io/Intro2R_Unibe/_sessions/Data/Data_practical.html">Practical</a></h1>
 
