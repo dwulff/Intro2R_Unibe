@@ -223,13 +223,18 @@ $(document).ready(function () {
 </div>
 <div id="b---initial-data-inspection" class="section level3">
 <h3>B - Initial data inspection</h3>
-<ol start="5" style="list-style-type: decimal">
-<li>We want to first see what variables are in the dataset (check out Datasets above) and whether there are variables with impossible values. Generate an overview of all variables with minimum and maximum values, means and medians for all appropriate numeric variables.</li>
+<ol style="list-style-type: decimal">
+<li>We want to first see what variables are in the dataset (check out Datasets above) and whether there are variables with impossible values. Generate an overview of all variables with minimum and maximum values, means and medians for all appropriate numeric variables. Correct the variable(s) that stand out and provide a rational for what you did.</li>
 </ol>
-<pre class="r"><code>summary(appointments)</code></pre>
-<ol start="6" style="list-style-type: decimal">
-<li>The</li>
+<pre class="r"><code>summary(appointments)
+
+appointments &lt;-
+appointments %&gt;%
+  filter(Age &gt;= 0)</code></pre>
+<ol start="2" style="list-style-type: decimal">
+<li>How many patients showed up for their appointment(s), how many did not?</li>
 </ol>
+<pre class="r"><code>table(appointments$NoShow)</code></pre>
 </div>
 </div>
 <div id="datasets" class="section level2">
@@ -237,12 +242,12 @@ $(document).ready(function () {
 <pre class="r"><code>library(tidyverse)
 appointments &lt;- read_csv(&#39;1_Data/medical_noshows.csv&#39;)
 weather &lt;- read_csv(&#39;1_Data/weather.csv&#39;)</code></pre>
-<table>
+<table style="width:89%;">
 <colgroup>
 <col width="8%" />
-<col width="10%" />
+<col width="9%" />
 <col width="11%" />
-<col width="70%" />
+<col width="59%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -269,10 +274,10 @@ weather &lt;- read_csv(&#39;1_Data/weather.csv&#39;)</code></pre>
 </table>
 <div id="variables-in-medical_noshows.csv-appointments" class="section level3">
 <h3>Variables in medical_noshows.csv (appointments)</h3>
-<table>
+<table style="width:57%;">
 <colgroup>
-<col width="23%" />
-<col width="76%" />
+<col width="13%" />
+<col width="43%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -315,7 +320,7 @@ weather &lt;- read_csv(&#39;1_Data/weather.csv&#39;)</code></pre>
 </tr>
 <tr class="odd">
 <td align="left">Observation</td>
-<td align="left">this is a broad topic, consider reading this article <a href="https://en.wikipedia.org/wiki/Bolsa_Fam%C3%ADlia" class="uri">https://en.wikipedia.org/wiki/Bolsa_Fam%C3%ADlia</a></td>
+<td align="left">this is a broad topic, consider reading this article <a href="https://en.wikipedia.org/wiki/Bolsa_Fam%C3%ADlia">https://en.wikipedia.org/wiki/Bolsa_Fam%C3%ADlia</a></td>
 </tr>
 <tr class="even">
 <td align="left">Hypertension</td>
@@ -426,11 +431,11 @@ weather &lt;- read_csv(&#39;1_Data/weather.csv&#39;)</code></pre>
 <div id="glossary-update" class="section level2">
 <h2>Glossary (UPDATE!)</h2>
 <p><em>Wrangling</em></p>
-<table>
+<table style="width:83%;">
 <colgroup>
-<col width="7%" />
-<col width="12%" />
-<col width="80%" />
+<col width="6%" />
+<col width="11%" />
+<col width="65%" />
 </colgroup>
 <thead>
 <tr class="header">

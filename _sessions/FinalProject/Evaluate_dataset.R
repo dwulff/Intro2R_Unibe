@@ -69,11 +69,13 @@ neighbourhood %>%
 appointments <- read_csv('_sessions/FinalProject/1_Data/medical_noshows.csv')
 
 # dplyr magic
-appointments = appointments %>%
-  rename(NoShow = "No-show") %>%
-  mutate_if(function(x) all(x %in% c(0, 1)), as.logical)
-  
-# write_csv(appointments, '_sessions/FinalProject/1_Data/medical_noshows.csv') # run once!
+appointments <- appointments %>%
+  #rename(NoShow = "No-show") %>%
+  mutate_if(function(x) all(x %in% c(0, 1)), as.logical) %>%
+  select(-Scholarship)
+
+
+# write_csv(appointments, '_sessions/FinalProject/1_Data/appointments.csv') # run once!
 
 
 # GET COORDINATES -----------

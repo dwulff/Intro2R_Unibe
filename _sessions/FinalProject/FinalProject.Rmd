@@ -48,7 +48,7 @@ options(digits = 3)
 
 This is your final assignment in this course. You will use all we learned during the course to understand, arrange, analyse, visualise and report on a new dataset about medical appointments.
 
-What is the dataset about? There is a large number of medical appointments where patients end up canceling or simply do not show up. This practise comes with huge costs to the medical system - in this assignment we will try to understand what drives patients not to show up in a sample of medical appointments from Brasil.
+What is the dataset about? There is a large number of medical appointments where patients end up canceling or simply do not show up. This practise comes with costs to the medical system - in this assignment we will try to understand what drives patients not to show up in a sample of medical appointments from (Brasil).
 
 From the given list of parameters, such as Gender, Scheduled and Appointment Date difference, Age, Neighbourhood, sms_alert and certain conditions of a given patient, the model will predict, based on a studied dataset, whether the given appointment is likely to be a No-Show
 
@@ -61,17 +61,13 @@ You should (at least) complete the following tasks
 
 ### A - Setup
 
-1. Open your `baselrbootcamp` R project. It should already have the folders `1_Data` and `2_Code`. Make sure that the data files listed in the `Datasets` section above are in your `1_Data` folder.
-
-```{r}
-# Done!
-```
+1. Open your `bernrbootcamp` R project. It should already have the folders `1_Data` and `2_Code`. Make sure that the data files listed in the `Datasets` section above are in your `1_Data` folder.
 
 2. Open a new R script. At the top of the script, using comments, write your name and the date. Save it as a new file called `final_project.R` in the `2_Code` folder.  
 
 3. Using `library()` load the set of packages for this practical listed in the packages section above.
 
-4. Read the `medical_noshows.csv` and the `weather.csv` files into two objects called `appointments` and `weather` respectively. Check out the content of the two datasets in Overview and Datasets above.
+4. Read the `appointments.csv` and the `weather.csv` files into two objects called `appointments` and `weather` respectively. Check out the content of the two datasets in Overview and Datasets above.
 
 ```{r, echo = FALSE, eval = FALSE, message = FALSE, warning = FALSE}
 appointments <- read_csv('1_Data/medical_noshows.csv')
@@ -81,13 +77,16 @@ weather <- read_csv('1_Data/weather.csv')
 ### B - Initial data inspection
 
 1. We want to first see what variables are in the dataset (check out Datasets above) and whether there are variables with impossible values. Generate an overview of all variables with minimum and maximum values, means and medians for all appropriate numeric variables. Correct the variable(s) that stand out and provide a rational for what you did.
+Also rename Hipertension into Hyptertension and Handcap into Handicap.
 
 ```{r, echo = TRUE, eval = FALSE, message = FALSE, warning = FALSE}
 summary(appointments)
 
 appointments <-
 appointments %>%
-  filter(Age >= 0)
+  filter(Age >= 0) %>%
+  rename('Hypertension' = 'Hipertension',
+         'Handicap' = 'Handcap')
 ```
 
 2. How many patients showed up for their appointment(s), how many did not?
@@ -95,6 +94,69 @@ appointments %>%
 ```{r, echo = TRUE, eval = FALSE, message = FALSE, warning = FALSE}
 table(appointments$NoShow)
 ```
+
+3. How many patients are female|male? Who (PatientID) has the most number of appointments? Split that for gender.
+
+```{r, echo = TRUE, eval = FALSE, message = FALSE, warning = FALSE}
+  appointments %>%
+    group_by(PatientId,Gender) %>%
+    count(unique(PatientId)) %>%
+    arrange(desc(n))
+```
+
+4. Generate a simple plot with the age of all patients. 
+
+```{r}
+  ggplot(appointments, aes(PatientId, Age)) +
+  geom_point(alpha = 0.5) 
+```
+
+5. Summarise the number of particiants per age in years (range: ```range(appointments$Age)```) for the whole `appointments` dataset. Generate a line graph showing the distribution of patients per age. Now split this graph into two rows with  Female|Male and two columns with Show|No-Show - this will give you an age distribution with four panels.
+
+```{r}
+  appointments %>%
+  group_by(Age, Gender, NoShow) %>%
+  summarise(size = n()) %>%
+  ggplot(., aes(Age, size)) +
+  geom_line() +
+  facet_grid(Gender ~ NoShow)
+```
+
+6. Generate a new variable `age_group` which includes four groups [1:4] where 1: 'children' between 0 and 18 years, 2:  'young adults' between 19 and 30 years, 3: 'adults' (31:50 years) and 4 'old adults' (51:max(Age)) 
+
+
+```{r, eval = TRUE}
+  appointments <- 
+  appointments %>%
+    mutate(age_group = case_when(Age %in% c(0:18) ~ 'children',
+                                 Age %in% c(19:30) ~ 'young adults',
+                                 Age %in% c(31:50) ~ 'adults',
+                                 Age %in% c(51:max(Age)) ~ 'old adults'))
+
+```
+
+7. 
+
+```{r}
+  appointments %>%
+  group_by(age_group, Gender, NoShow) %>%
+  summarise(size = n()) %>%
+  ggplot(., aes(age_group, size, colour = Gender, group = Gender)) +
+  geom_point() +
+  facet_grid(NoShow ~ .)
+```
+
+D - Mapping out locations
+
+1. From the `weather` dataframe take the lon and lat coordinates and setup a dot for each location on the map of Brasil. Any inconsistencies? Hint: Checkout `qmplot()` from the `ggmap` package. 
+
+```{r, eval = TRUE, message = FALSE}
+qmplot(LON, LAT, data = weather, maptype = "toner-lite", color = I("red"))
+```
+
+2. There is a set of points off the coast of Brasil in the water - identify those points and remove them from the dataset.
+
+3. 
 
 ## Datasets
 
@@ -119,13 +181,11 @@ weather <- read_csv('1_Data/weather.csv')
 |ScheduledDay | The day of the actual appointment, when patients have to visit the doctor |
 |AppointmentDay | The day someone called or registered the appointment, this should be before the appointment|
 |Age | How old is the patient|
-|Neighbourhood | Where the appointment takes place. |
-|Scholarship | Ture of False. |
-|Observation| this is a broad topic, consider reading this article https://en.wikipedia.org/wiki/Bolsa_Fam%C3%ADlia |
-|Hypertension | True or False |
+|Neighbourhood | Where the patient is living|
+|Hipertension | True or False |
 |Diabetes | True or False |
 |Alcoholism | True or False |
-|Handicapped | True or False |
+|Handcap | Hanicapped - level 1:4, 1 lowest level |
 |SMS_received | True: 1 or more messages sent to the patient|
 |No-show | 1: No, 2: Yes|
 
