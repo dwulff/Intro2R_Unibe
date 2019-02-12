@@ -1,3 +1,4 @@
+
 # BernR Verteilung
 
 ## Day 1
@@ -10,7 +11,7 @@ Wrangling DUW
 Recap DUW
     Statistics 1 MSM
 Statistics 2 DUW
-Plotting 1 DUW
+    Plotting 1 MSM
 
 ## Day 3
 	Recap MSM
