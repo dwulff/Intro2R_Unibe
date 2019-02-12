@@ -74,7 +74,7 @@ In this practical you'll learn how to work with basic data objects and functions
 
 ### A - Getting setup
 
-1. Open your `bernrbootcamp` R project. It should already have the folders `1_Data` and `2_Code`.
+1. Open your `BernRBootcamp` R project. It should already have the folders `1_Data` and `2_Code`.
 
 2. Open a new R script and save it as a new file called `data_practical.R` in the `2_Code` folder. At the top of the script, using comments, write your name and the date. 
 Then, load all package(s) listed in the Packages section above with `library()`. Make sure that each of the datasets listed above lie in your `1_Data` folder.

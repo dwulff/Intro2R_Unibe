@@ -70,7 +70,7 @@ By the end of this practical you will know how to:
 
 ### A - Setup
 
-1. Open your `bernrbootcamp` R project. It should already have the folders `1_Data` and `2_Code`. Make sure that the data files listed in the `Datasets` section above are in your `1_Data` folder.
+1. Open your `BernRBootcamp` R project. It should already have the folders `1_Data` and `2_Code`. Make sure that the data files listed in the `Datasets` section above are in your `1_Data` folder.
 
 ```{r}
 # Done!
@@ -416,105 +416,6 @@ waterfront_htest$statistic
 waterfront_htest$p.value
 ```
 
-6. Which of the variables `bedrooms`, `bathrooms`, `living_sqm`,  `waterfront`, `lat` and `long` best predict a house's price (`price`)? Answer this by conducting a regression analysis using the `glm()` function and assign the result to `price_glm`. Fill in the XXXs in the code below.
-
-```{r, echo = TRUE, eval = FALSE}
-price_glm <- glm(formula = XXX ~ XXX + XXX + XXX + XXX + XXX + XXX,
-                 data = XXX)
-```
-
-```{r, echo = FALSE, eval = TRUE}
-price_glm <- glm(formula = price ~ bedrooms + bathrooms + living_sqm + waterfront + lat + long,
-                 data = kc_house)
-```
-
-7. Print your `price_glm` object. What do you see?
-
-```{r, echo = FALSE, eval = TRUE}
-price_glm
-```
-
-8. Look at the names of your `price_glm` object with `names()`.
-
-```{r, echo = FALSE, eval = TRUE}
-names(price_glm)
-```
-
-9. Using `$` print the coefficients from your analysis.
-
-```{r, echo = FALSE, eval = TRUE}
-price_glm$coefficients
-```
-
-10. Using the `summary()` function, show summary results from your `price_glm` object.
-
-```{r, echo = FALSE, eval = TRUE}
-summary(price_glm)
-```
-
-11. The `$residuals` element in your `price_glm` object contains the residuals (difference from the predicted and true dependent variable values). Add this vector as a new column called `residuals` to your `kc_house` object using `mutate()`
-
-```{r, echo = FALSE, eval = TRUE}
-kc_house <- kc_house %>%
-  mutate(residuals = price_glm$residuals)
-```
-
-
-12. Using the following template, create a histogram of the residuals.
-
-```{r, echo = TRUE, eval = FALSE}
-ggplot(data = XXX,
-       aes(x = YYY)) +
-  geom_histogram(col = "white") +
-  labs(title = "Residual regression")
-```
-
-```{r, fig.width = 6, fig.height = 4, echo=FALSE}
-ggplot(data = kc_house,
-       aes(x = residuals)) +
-  geom_histogram(col = "white") +
-  labs(title = "Residual regression")
-```
-
-12. What is the mean of the residuals? How do you interpret this?
-
-```{r, echo = FALSE, eval = TRUE}
-kc_house %>% 
-  summarise(resid_mean = mean(residuals))
-```
-
-13. Now, create a new column called `residuals_abs` which shows the absolute value of the residuals (hint: use the `abs()` function).
-
-```{r, echo = FALSE, eval = TRUE}
-kc_house <- kc_house %>%
-  mutate(residuals_abs = abs(price_glm$residuals))
-```
-
-14. Create a histogram of the absolute value of the residuals.
-
-```{r, echo=TRUE, eval=FALSE}
-ggplot(data = XXX,
-       aes(x = YYY)) +
-  geom_histogram(col = "white") +
-  labs(title = "Residual regression")
-```
-
-```{r, fig.width = 6, fig.height = 4, echo=FALSE}
-ggplot(data = kc_house,
-       aes(x = residuals_abs)) +
-  geom_histogram(col = "white") +
-  labs(title = "Residual regression")
-```
-
-15. What is the mean of the absolute value of the residuals? How do you interpret this? In general, do you think you can predict the price of a house very well based on the features in your regression model?
-
-```{r}
-kc_house %>% 
-  summarise(resid_abs_mean = mean(residuals_abs))
-
-# On average, the model's fitted values are off by 144,018. So the model isn't terribly accurate on average.
-
-```
 
 ### X - Challenges
 
@@ -584,6 +485,8 @@ kc_house %>%
 ```
 
 5. Create a regression object called `living_glm` predicting the amount of living space (`living_sqm`) as a function of `bedrooms`, `bathrooms`, `waterfront`, and `built_yr`. Explore the object with `names()` and `summary()`. Which variables seem to predict living space?
+
+### REPLACE WITH REGULAR TEST
 
 ```{r, echo=FALSE, eval = TRUE}
 living_glm <- glm(formula = living_sqm ~ bedrooms + bathrooms + waterfront + built_yr,

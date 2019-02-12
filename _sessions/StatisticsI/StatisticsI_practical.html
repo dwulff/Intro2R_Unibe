@@ -157,7 +157,7 @@ $(document).ready(function () {
 <div id="a---setup" class="section level3">
 <h3>A - Setup</h3>
 <ol style="list-style-type: decimal">
-<li><p>Open your <code>bernrbootcamp</code> R project. It should already have the folders <code>1_Data</code> and <code>2_Code</code>. Make sure that the data files listed in the <code>Datasets</code> section above are in your <code>1_Data</code> folder.</p></li>
+<li><p>Open your <code>BernRBootcamp</code> R project. It should already have the folders <code>1_Data</code> and <code>2_Code</code>. Make sure that the data files listed in the <code>Datasets</code> section above are in your <code>1_Data</code> folder.</p></li>
 <li>Open a new R script. At the top of the script, using comments, write your name and the date. Save it as a new file called <code>statisticsI_practical.R</code> in the <code>2_Code</code> folder.<br />
 </li>
 <li><p>Using <code>library()</code> load the set of packages for this practical listed in the packages section above.</p></li>
@@ -469,104 +469,6 @@ mean in group 0 mean in group 1
 <li>Now using <code>$</code>, print only the p-value (<code>p.value</code>) from the object.</li>
 </ol>
 <pre><code>[1] 1.38e-26</code></pre>
-<ol start="6" style="list-style-type: decimal">
-<li>Which of the variables <code>bedrooms</code>, <code>bathrooms</code>, <code>living_sqm</code>, <code>waterfront</code>, <code>lat</code> and <code>long</code> best predict a house’s price (<code>price</code>)? Answer this by conducting a regression analysis using the <code>glm()</code> function and assign the result to <code>price_glm</code>. Fill in the XXXs in the code below.</li>
-</ol>
-<pre class="r"><code>price_glm &lt;- glm(formula = XXX ~ XXX + XXX + XXX + XXX + XXX + XXX,
-                 data = XXX)</code></pre>
-<ol start="7" style="list-style-type: decimal">
-<li>Print your <code>price_glm</code> object. What do you see?</li>
-</ol>
-<pre><code>
-Call:  glm(formula = price ~ bedrooms + bathrooms + living_sqm + waterfront + 
-    lat + long, data = kc_house)
-
-Coefficients:
-(Intercept)     bedrooms    bathrooms   living_sqm   waterfront  
-  -65680578       -46146        17422         3157       790264  
-        lat         long  
-     675209      -275008  
-
-Degrees of Freedom: 21612 Total (i.e. Null);  21606 Residual
-Null Deviance:      2.91e+15 
-Residual Deviance: 1.09e+15     AIC: 594000</code></pre>
-<ol start="8" style="list-style-type: decimal">
-<li>Look at the names of your <code>price_glm</code> object with <code>names()</code>.</li>
-</ol>
-<pre><code> [1] &quot;coefficients&quot;      &quot;residuals&quot;         &quot;fitted.values&quot;    
- [4] &quot;effects&quot;           &quot;R&quot;                 &quot;rank&quot;             
- [7] &quot;qr&quot;                &quot;family&quot;            &quot;linear.predictors&quot;
-[10] &quot;deviance&quot;          &quot;aic&quot;               &quot;null.deviance&quot;    
-[13] &quot;iter&quot;              &quot;weights&quot;           &quot;prior.weights&quot;    
-[16] &quot;df.residual&quot;       &quot;df.null&quot;           &quot;y&quot;                
-[19] &quot;converged&quot;         &quot;boundary&quot;          &quot;model&quot;            
-[22] &quot;call&quot;              &quot;formula&quot;           &quot;terms&quot;            
-[25] &quot;data&quot;              &quot;offset&quot;            &quot;control&quot;          
-[28] &quot;method&quot;            &quot;contrasts&quot;         &quot;xlevels&quot;          </code></pre>
-<ol start="9" style="list-style-type: decimal">
-<li>Using <code>$</code> print the coefficients from your analysis.</li>
-</ol>
-<pre><code>(Intercept)    bedrooms   bathrooms  living_sqm  waterfront         lat 
-  -65680578      -46146       17422        3157      790264      675209 
-       long 
-    -275008 </code></pre>
-<ol start="10" style="list-style-type: decimal">
-<li>Using the <code>summary()</code> function, show summary results from your <code>price_glm</code> object.</li>
-</ol>
-<pre><code>
-Call:
-glm(formula = price ~ bedrooms + bathrooms + living_sqm + waterfront + 
-    lat + long, data = kc_house)
-
-Deviance Residuals: 
-     Min        1Q    Median        3Q       Max  
--1563708   -116127    -14138     84523   4180382  
-
-Coefficients:
-             Estimate Std. Error t value Pr(&gt;|t|)    
-(Intercept) -6.57e+07   1.41e+06  -46.51  &lt; 2e-16 ***
-bedrooms    -4.61e+04   2.05e+03  -22.53  &lt; 2e-16 ***
-bathrooms    1.74e+04   3.07e+03    5.67  1.4e-08 ***
-living_sqm   3.16e+03   2.95e+01  107.17  &lt; 2e-16 ***
-waterfront   7.90e+05   1.79e+04   44.14  &lt; 2e-16 ***
-lat          6.75e+05   1.12e+04   60.20  &lt; 2e-16 ***
-long        -2.75e+05   1.14e+04  -24.15  &lt; 2e-16 ***
----
-Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
-
-(Dispersion parameter for gaussian family taken to be 5.06e+10)
-
-    Null deviance: 2.9129e+15  on 21612  degrees of freedom
-Residual deviance: 1.0943e+15  on 21606  degrees of freedom
-AIC: 594064
-
-Number of Fisher Scoring iterations: 2</code></pre>
-<ol start="11" style="list-style-type: decimal">
-<li><p>The <code>$residuals</code> element in your <code>price_glm</code> object contains the residuals (difference from the predicted and true dependent variable values). Add this vector as a new column called <code>residuals</code> to your <code>kc_house</code> object using <code>mutate()</code></p></li>
-<li><p>Using the following template, create a histogram of the residuals.</p></li>
-</ol>
-<pre class="r"><code>ggplot(data = XXX,
-       aes(x = YYY)) +
-  geom_histogram(col = &quot;white&quot;) +
-  labs(title = &quot;Residual regression&quot;)</code></pre>
-<ol start="12" style="list-style-type: decimal">
-<li>What is the mean of the residuals? How do you interpret this?</li>
-</ol>
-<pre><code># A tibble: 1 x 1
-    resid_mean
-         &lt;dbl&gt;
-1 -0.000000151</code></pre>
-<ol start="13" style="list-style-type: decimal">
-<li><p>Now, create a new column called <code>residuals_abs</code> which shows the absolute value of the residuals (hint: use the <code>abs()</code> function).</p></li>
-<li><p>Create a histogram of the absolute value of the residuals.</p></li>
-</ol>
-<pre class="r"><code>ggplot(data = XXX,
-       aes(x = YYY)) +
-  geom_histogram(col = &quot;white&quot;) +
-  labs(title = &quot;Residual regression&quot;)</code></pre>
-<ol start="15" style="list-style-type: decimal">
-<li>What is the mean of the absolute value of the residuals? How do you interpret this? In general, do you think you can predict the price of a house very well based on the features in your regression model?</li>
-</ol>
 </div>
 <div id="x---challenges" class="section level3">
 <h3>X - Challenges</h3>
@@ -580,16 +482,16 @@ Number of Fisher Scoring iterations: 2</code></pre>
 <ol start="2" style="list-style-type: decimal">
 <li>Which house had the highest price to living space ratio? To answer this, create a new variable called <code>price_to_living</code> that takes <code>price / living_sqm</code>. Then, sort the data in descending order of this variable, and select the first row with <code>slice()</code>! What id value do you get?</li>
 </ol>
-<pre><code># A tibble: 1 x 29
+<pre><code># A tibble: 1 x 27
   id    date                 price bedrooms bathrooms living_sqft lot_sqft
   &lt;chr&gt; &lt;dttm&gt;               &lt;dbl&gt;    &lt;int&gt;     &lt;dbl&gt;       &lt;int&gt;    &lt;int&gt;
 1 6021… 2015-04-07 00:00:00 874950        2         1        1080     4000
-# ... with 22 more variables: floors &lt;dbl&gt;, waterfront &lt;int&gt;, view &lt;int&gt;,
+# ... with 20 more variables: floors &lt;dbl&gt;, waterfront &lt;int&gt;, view &lt;int&gt;,
 #   condition &lt;int&gt;, grade &lt;int&gt;, above_sqft &lt;int&gt;, basement_sqft &lt;int&gt;,
 #   built_yr &lt;int&gt;, renovated_yr &lt;int&gt;, zipcode &lt;int&gt;, lat &lt;dbl&gt;,
 #   long &lt;dbl&gt;, sqft_living15 &lt;int&gt;, sqft_lot15 &lt;int&gt;, living_sqm &lt;dbl&gt;,
 #   lot_sqm &lt;dbl&gt;, above_sqm &lt;dbl&gt;, basement_sqm &lt;dbl&gt;, mansion &lt;chr&gt;,
-#   residuals &lt;dbl&gt;, residuals_abs &lt;dbl&gt;, price_to_living &lt;dbl&gt;</code></pre>
+#   price_to_living &lt;dbl&gt;</code></pre>
 <ol start="3" style="list-style-type: decimal">
 <li>Which are the top 10 zip codes in terms of mean housing prices? To answer this, group the data by zipcode, calculate the mean price, arrange the dataset in descending order of mean price, then select the top 10 rows!</li>
 </ol>
@@ -688,6 +590,9 @@ Number of Fisher Scoring iterations: 2</code></pre>
 <ol start="5" style="list-style-type: decimal">
 <li>Create a regression object called <code>living_glm</code> predicting the amount of living space (<code>living_sqm</code>) as a function of <code>bedrooms</code>, <code>bathrooms</code>, <code>waterfront</code>, and <code>built_yr</code>. Explore the object with <code>names()</code> and <code>summary()</code>. Which variables seem to predict living space?</li>
 </ol>
+</div>
+<div id="replace-with-regular-test" class="section level3">
+<h3>REPLACE WITH REGULAR TEST</h3>
 <pre><code> [1] &quot;coefficients&quot;      &quot;residuals&quot;         &quot;fitted.values&quot;    
  [4] &quot;effects&quot;           &quot;R&quot;                 &quot;rank&quot;             
  [7] &quot;qr&quot;                &quot;family&quot;            &quot;linear.predictors&quot;

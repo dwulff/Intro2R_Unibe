@@ -1,0 +1,1150 @@
+---
+title: "Plotting I"
+author: "Introduction to R<br/>
+  <a href='https://therbootcamp.github.io'>
+    Bern R Bootcamp
+  </a> 
+  <br>
+  <a href='https://dwulff.github.io/Intro2R_Unibe/'>
+    <i class='fas fa-clock' style='font-size:.9em;'></i>
+  </a>&#8239; 
+  <a href='https://therbootcamp.github.io'>
+    <i class='fas fa-home' style='font-size:.9em;' ></i>
+  </a>&#8239;
+  <a href='mailto:therbootcamp@gmail.com'>
+    <i class='fas fa-envelope' style='font-size: .9em;'></i>
+  </a>&#8239;
+  <a href='https://www.linkedin.com/company/basel-r-bootcamp/'>
+    <i class='fab fa-linkedin' style='font-size: .9em;'></i>
+  </a>"
+date: "February 2019"
+output:
+  xaringan::moon_reader:
+    css: ["default", "baselrbootcamp.css"]
+    lib_dir: libs
+    nature:
+      highlightStyle: github
+      highlightLines: true
+      countIncrementalSlides: false
+      ratio: '16:9'
+---
+
+layout: true
+
+<div class="my-footer">
+  <span style="text-align:center">
+    <span> 
+      <img src="https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/by-sa.png" height=14 style="vertical-align: middle"/>
+    </span>
+    <a href="https://therbootcamp.github.io/">
+      <span style="padding-left:82px"> 
+        <font color="#7E7E7E">
+          www.therbootcamp.com
+        </font>
+      </span>
+    </a>
+    <a href="https://therbootcamp.github.io/">
+      <font color="#7E7E7E">
+       R Bootcamp Bern | February 2019
+      </font>
+    </a>
+    </span>
+  </div> 
+
+---
+
+
+```{r, eval = TRUE, echo = FALSE, warning=F,message=F}
+# Code to knit slides
+baselers <- readr::read_csv("../_data/baselers.csv")
+```
+
+
+```{r setup, include=FALSE}
+options(htmltools.dir.version = FALSE)
+# see: https://github.com/yihui/xaringan
+# install.packages("xaringan")
+# see: 
+# https://github.com/yihui/xaringan/wiki
+# https://github.com/gnab/remark/wiki/Markdown
+options(width=110)
+options(digits = 4)
+```
+
+```{r, echo = FALSE ,message = FALSE, warning = FALSE}
+knitr::opts_chunk$set(comment=NA, fig.width=6, fig.height=6, echo = TRUE, eval = TRUE, 
+                      message = FALSE, warning = FALSE, fig.align = 'center', dpi = 200)
+library(tidyverse)
+library(baselers)
+library(ggthemes)
+```
+
+
+.pull-left4[
+<br><br><br>
+> ### As good as R is for statistics, it's as good if not better for data visualisation
+> ### Nathaniel D. Phillips
+]
+
+.pull-right6[
+<br>
+```{r, echo = FALSE, out.width="100%", fig.align = 'center'}
+knitr::include_graphics("https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/ggplotgallery.png")
+```
+
+]
+
+---
+
+
+.pull-left45[
+
+# Base R Plotting
+
+The <high>classic framework</high> of plotting.
+
+Contains separate <high>function for each 'type'</high> of plot.
+
+E.g. `barplot()` for a bar plot, `boxplot()` for a box plot, and `plot()` for a scatterplot. 
+
+<br>
+
+```{r, eval = FALSE}
+# Histogram in base R
+hist(x = baselers$age,
+     xlab = "Age",
+     ylab = "Frequency",
+     main = "Baselers Age")
+```
+
+]
+
+.pull-right5[
+<br><br><br>
+```{r, echo = F}
+# Histogram in base R
+hist(x = baselers$age,
+     xlab = "Age",
+     ylab = "Frequency",
+     main = "Baselers Age")
+```
+
+]
+
+
+
+---
+
+
+.pull-left45[
+
+# Base R Plotting
+
+The <high>classic framework</high> of plotting.
+
+Contains separate <high>function for each 'type'</high> of plot.
+
+E.g. `barplot()` for a bar plot, `boxplot()` for a box plot, and `plot()` for a scatterplot. 
+
+<br>
+
+
+```{r, eval = F}
+# Boxplot in base R
+boxplot(formula = height ~ sex,
+        data = baselers,
+        xlab = "Sex",
+        ylab = "Height",
+        main = "Box plot")
+```
+
+]
+
+.pull-right45[
+<br><br><br>
+```{r, echo = F}
+# Boxplot in base R
+boxplot(formula = height ~ sex,
+        data = baselers,
+        xlab = "Sex",
+        ylab = "Height",
+        main = "Box plot")
+```
+
+]
+
+---
+
+
+.pull-left45[
+
+# Base R Plotting
+
+The <high>classic framework</high> of plotting.
+
+Contains separate <high>function for each 'type'</high> of plot.
+
+E.g. `barplot()` for a bar plot, `boxplot()` for a box plot, and `plot()` for a scatterplot. 
+
+<br>
+
+
+```{r, eval = F}
+# Scatterplot in base R
+plot(x = baselers$height,
+     y = baselers$income,
+     xlab = "Height",
+     ylab = "Income",
+     main = "Scatterplot")
+```
+
+]
+
+.pull-right45[
+<br><br><br>
+```{r, echo = F}
+# Scatterplot in base R
+plot(x = baselers$height,
+     y = baselers$income,
+     xlab = "Height",
+     ylab = "Income",
+     main = "Scatterplot")
+```
+
+]
+
+
+---
+
+# Problems with Base R plotting
+
+.pull-left35[
+
+- Default plots look pretty <high>outdated</high>.<br>
+
+- Plots can quickly require a <high>LOT of code</high>.<br>
+
+- Can't store plots as <high>objects</high> to reference and update later<br>
+
+<p align="center"><high>Solution: `ggplot2` </high></p>
+
+```{r, echo = FALSE, out.width = "45%"}
+knitr::include_graphics("https://www.r-graph-gallery.com/wp-content/uploads/2014/09/ggplot_hex.jpg")
+```
+
+
+
+]
+
+.pull-right55[
+
+This plot would take <high>a lot of code in Base R</high> but <high>just 10 lines of code</high>, 5 of which controlling the labels, in `ggplot2`.
+
+```{r, echo = FALSE, fig.width=7, fig.height = 4.5}
+# Add a regression line for all classes
+ggplot(data = mpg, mapping = aes(x = displ, y = hwy, color = class)) +
+  geom_point(size = 3, alpha = .9) + 
+  geom_smooth(col = "blue", method = "lm")+
+  labs(x = "Engine Displacement in Liters",
+       y = "Highway miles per gallon",
+       title = "MPG data",
+       subtitle = "Cars with higher engine displacement tend to have lower highway mpg",
+       caption = "Source: mpg data in ggplot2") + theme_bw()
+
+```
+
+
+]
+
+---
+
+# Grammar of Graphics in `ggplot2`
+
+.pull-left45[
+
+The <high>Grammar of graphics</high> breaks down plots into several key pieces:
+
+| Aesthetics| Description|
+|:------|:----|
+| Data| What dataframe contains the data?|
+| axes| What does the x-axis, y-axis, color (etc) represent?|
+| color| What does color represent? |
+| size | What does size represent? |
+| geometries| What kind of geometric object do you want to plot?|
+| facets| Should there be groups of plots?|
+
+]
+
+
+.pull-right45[
+
+```{r, echo = FALSE, fig.width = 7, fig.height = 5.5}
+# Add a regression line for all classes
+ggplot(data = mpg, mapping = aes(x = displ, y = hwy, color = class)) +
+  geom_point(size = 3, alpha = .9) + 
+  geom_smooth(col = "blue", method = "lm")+
+  labs(x = "Engine Displacement in Liters",
+       y = "Highway miles per gallon",
+       title = "MPG data",
+       subtitle = "Cars with higher engine displacement tend to have lower highway mpg",
+       caption = "Source: mpg data in ggplot2") + theme_bw()
+
+```
+
+]
+
+
+---
+
+# Our goal: Creating this plot
+
+.pull-left45[
+
+<high>Data</high>
+
+- Use the `mpg` tibble
+
+<high>Aesthetics</high>
+
+- Engine displacement (`disp`) on the x axis
+- Highway miles per gallon (`hwy`) on the y-axis
+- Color plotting elements by the `class` of car
+
+<high>Geometric objects</high>
+
+- Show data as points
+- Add a regression line
+
+<high>Labels and themes</high>
+
+- Add plotting labels
+- Use a black and white plotting theme
+
+]
+
+
+.pull-right45[
+
+```{r, echo = FALSE, fig.width = 7, fig.height = 5.5}
+# Add a regression line for all classes
+
+ggplot(data = mpg, 
+       mapping = aes(x = displ, y = hwy, color = class)) +
+  geom_point(size = 3, alpha = .9) + 
+  geom_smooth(col = "blue", method = "lm")+
+  labs(x = "Engine Displacement in Liters",
+       y = "Highway miles per gallon",
+       title = "MPG data",
+       subtitle = "Cars with higher engine displacement tend to have lower highway mpg",
+       caption = "Source: mpg data in ggplot2") + theme_bw()
+
+```
+
+
+]
+
+
+---
+
+# `ggplot()`
+
+
+.pull-left45[
+
+To <high>create a ggplot2 object</high>, use the `ggplot()` function
+
+`ggplot()` has two main arguments:
+
+- `data` - A data frame (aka `tibble`)
+- `mapping` - A call to `aes()`
+
+]
+
+
+.pull-right45[
+
+```{r, fig.width = 7, fig.height = 5.5}
+ggplot(data = mpg)
+```
+
+]
+
+
+---
+
+# `ggplot()`
+
+
+.pull-left45[
+
+An <high>aesthetic mapping</high> is a visual property of the objects in your plot. 
+
+Use `aes()` to assign columns in your dataframe to properties in your plot.
+
+Common aesthetics are...
+
+| aesthetics| Description|
+|:------|:----|
+|     `x`, `y`|    Data mapped to coordinates|
+|     `color`, `fill`|    Border and fill colors|
+|     `alpha`| Transparency|
+|    `size`|  Size|
+|    `shape`|  Shape|
+
+]
+
+.pull-right45[
+
+```{r, fig.width = 6, fig.height = 4.5}
+ggplot(data = mpg,
+       mapping = aes(x = displ, y = hwy))
+```
+
+]
+
+---
+
+# Adding elements to plots with `+`
+
+.pull-left45[
+
+Once you have specified the `data` argument, and global aesthetics with `mapping = aes()`, <high>add additional elements to the plot with `+`</high>.
+
+The `+` operator works just like the pipe `%>%` in `dplyr`. <high>It just means "and then..."</high>
+
+```{r, eval = FALSE, fig.width = 5, fig.height = 4, out.width = "90%"}
+ggplot(data = mpg,
+       mapping = aes(x = displ,
+                     y = hwy)) + #and then
+       geom_point() 
+```
+
+]
+
+
+.pull-right45[
+
+
+```{r, echo = FALSE, fig.width = 7, fig.height = 5.5}
+ggplot(data = mpg,
+       mapping = aes(x = displ, y = hwy)) + 
+  geom_point()
+```
+
+
+]
+
+
+---
+
+# Geometric objects (`geom`)
+
+
+.pull-left4[
+
+A <high>`geom`</high> is a geometric object in a plot that represents data
+
+To add a geom to a plot, just include ` + geom_X()` where X is the type of geom.
+
+Common geoms are...
+
+| geom| output|
+|:------|:----|
+|     `geom_point()`|    Points|
+|     `geom_bar()`|    Bar|
+|     `geom_boxplot()`| Boxplot
+|     `geom_count()`| Points with size reflecting frequency|
+|     `geom_smooth()`|  Smoothed line|
+
+]
+
+.pull-right45[
+
+```{r, echo = FALSE, fig.width = 7, fig.height = 5.5}
+ggplot(data = mpg,
+       mapping = aes(x = displ, y = hwy)) + 
+  geom_point()
+```
+
+
+]
+
+
+
+---
+
+
+.pull-left45[
+
+<br>
+## `geom_boxplot()`
+<br>
+
+```{r, fig.width = 6, fig.height = 4}
+ggplot(data = mpg,
+  mapping = aes(x = class,
+                y = hwy)) + 
+  geom_boxplot()
+```
+
+
+]
+
+.pull-right45[
+
+<br>
+## `geom_violin()`
+<br>
+
+```{r, out.width= "100%", fig.width = 6, fig.height = 4}
+ggplot(data = mpg,
+  mapping = aes(x = class,
+                y = hwy)) + 
+  geom_violin()
+```
+
+
+]
+
+
+
+---
+
+.pull-left45[
+
+<br>
+## `geom_bar()`
+<br>
+
+```{r, out.width= "100%", echo = TRUE, fig.width = 6, fig.height = 4}
+ggplot(data = mpg,
+  mapping = aes(x = class)) + 
+  geom_bar()
+```
+
+
+]
+
+
+.pull-right45[
+
+<br>
+## `geom_count()`
+<br>
+
+```{r, out.width= "100%", echo = TRUE, fig.width = 6, fig.height = 4}
+ggplot(data = mpg,
+  mapping = aes(x = displ,
+                y = hwy)) + 
+  geom_count()
+```
+
+]
+
+
+
+---
+
+# `aes()`
+
+.pull-left45[
+
+<high>`color`</high> geoms according to a variable. 
+
+```{r, fig.width = 7, fig.height = 5.5, eval = FALSE}
+ggplot(data = mpg,
+       mapping = aes(x = displ,
+                     y = hwy,
+                     color = class)) + 
+  geom_point()
+```
+
+
+<p align="center"> `mpg`</p>
+```{r, echo = FALSE, eval = TRUE}
+knitr::kable(mpg %>% sample_n(5) %>% select(displ, hwy, class, year), format = "markdown")
+```
+
+
+]
+
+.pull-right45[
+
+<br>
+```{r, fig.width = 7, fig.height = 5.5, echo = FALSE}
+ggplot(data = mpg,
+       mapping = aes(x = displ, y = hwy, color = class)) + 
+  geom_point()
+```
+
+
+]
+
+---
+
+
+# What's next?
+
+.pull-left45[
+
+```{r, fig.width = 7, fig.height = 5.5, echo = F}
+ggplot(data = mpg,
+       mapping = aes(x = displ, 
+                     y = hwy, 
+                     col = class)) + 
+  geom_point()
+```
+
+
+]
+
+
+.pull-right45[
+
+```{r, fig.width = 7, fig.height = 5.5, echo = FALSE}
+# Add a regression line for all classes
+
+ggplot(data = mpg, 
+       mapping = aes(x = displ, y = hwy, color = class)) +
+  geom_point(size = 3, alpha = .9) + 
+  geom_smooth(col = "blue", method = "lm")+
+  labs(x = "Engine Displacement in Liters",
+       y = "Highway miles per gallon",
+       title = "MPG data",
+       subtitle = "Cars with higher engine displacement tend to have lower highway mpg",
+       caption = "Source: mpg data in ggplot2") + theme_bw()
+
+```
+
+]
+
+
+---
+
+# `geom_smooth()`
+
+.pull-left45[
+
+`geom_smooth()` adds a <high>smoothed line</high>.
+
+Change how the line is created with `method` (e.g., `method = lm`).
+
+Color the line with `col`.
+
+<br>
+```{r, fig.width = 7, fig.height = 5.5, eval = F}
+ggplot(data = mpg, 
+       mapping = aes(x = displ, y = hwy,
+                     col = class)) +
+  geom_point() + 
+  geom_smooth(col = "blue")
+```
+
+]
+
+.pull-right45[
+
+
+```{r, fig.width = 7, fig.height = 5.5, echo = F}
+ggplot(data = mpg, 
+       mapping = aes(x = displ, y = hwy,
+                     col = class)) +
+  geom_point() + 
+  geom_smooth(col = "blue")
+```
+
+]
+
+---
+
+# `geom_smooth()`
+
+.pull-left45[
+
+`geom_smooth()` adds a <high>smoothed line</high>.
+
+Change how the line is created with `method` (e.g., `method = lm`).
+
+Color the line with `col`
+
+<br>
+```{r, fig.width = 7, fig.height = 5.5, eval = F}
+ggplot(data = mpg, 
+       mapping = aes(x = displ, y = hwy,
+                     col = class)) +
+  geom_point() + 
+  geom_smooth(col = "blue",
+              method = "lm")
+```
+
+]
+
+.pull-right45[
+
+
+```{r, fig.width = 7, fig.height = 5.5, echo = F}
+ggplot(data = mpg, 
+       mapping = aes(x = displ, y = hwy, col = class)) +
+  geom_point() + 
+  geom_smooth(col = "blue",
+              method = "lm")
+```
+
+]
+
+---
+
+# Overriding aesthetics
+
+.pull-left45[
+
+If you add additional plotting aesthetics, they will <high>override</high> the general plotting aesthetics.
+
+This is what happens, when you don't override...
+
+<br>
+```{r, fig.width = 7, fig.height = 5.5, eval = F}
+ggplot(data = mpg, 
+       mapping = aes(x = displ, y = hwy,
+                     col = class)) +
+  geom_point() + 
+  geom_smooth() # no overriding
+```
+
+]
+
+.pull-right45[
+
+
+```{r, fig.width = 7, fig.height = 5.5, echo = F}
+ggplot(data = mpg, 
+       mapping = aes(x = displ, y = hwy, col = class)) +
+  geom_point() + 
+  geom_smooth()
+```
+
+]
+
+
+---
+
+# What's next?
+
+.pull-left45[
+
+```{r, fig.width = 7, fig.height = 5.5, echo = FALSE}
+ggplot(data = mpg, 
+       mapping = aes(x = displ, y = hwy, col = class)) +
+  geom_point() + 
+  geom_smooth(col = "blue",
+              method = "lm")
+```
+
+]
+
+
+.pull-right45[
+
+```{r, fig.width = 7, fig.height = 5.5, echo = F}
+# Add a regression line for all classes
+
+ggplot(data = mpg, 
+       mapping = aes(x = displ, y = hwy, color = class)) +
+  geom_point(size = 3, alpha = .9) + 
+  geom_smooth(col = "blue", method = "lm")+
+  labs(x = "Engine Displacement in Liters",
+       y = "Highway miles per gallon",
+       title = "MPG data",
+       subtitle = "Cars with higher engine displacement tend to have lower highway mpg",
+       caption = "Source: mpg data in ggplot2") + theme_bw()
+
+```
+
+]
+
+
+---
+
+# `labs()`
+
+.pull-left45[
+
+You can add <high>labels</high> to a plot with the `labs()` function
+
+`labs()` arguments are ...
+
+- `title` - Main title
+- `subtitle` - Subtitle
+- `caption` - Caption below
+
+
+```{r, echo = TRUE, eval = FALSE}
+ggplot(...) +
+  labs(x = "Engine Displ...",
+       y = "Highway miles...",
+       title = "MPG data",
+       subtitle = "Cars with ...",
+       caption = "Source...")
+```
+
+]
+
+
+.pull-right45[
+
+```{r, echo = FALSE, fig.width = 7, fig.height = 5.5}
+
+ggplot(data = mpg, 
+       mapping = aes(x = displ, y = hwy, 
+                     col = class)) +
+  geom_point() + 
+  geom_smooth(col = "blue", method = "lm") +
+  labs(x = "Engine Displacement in Liters",
+       y = "Highway miles per gallon",
+       title = "MPG data",
+       subtitle = "Cars with higher engine displacement tend to have lower highway mpg",
+       caption = "Source: mpg data in ggplot2")
+```
+
+]
+
+
+---
+
+# What's next?
+
+.pull-left45[
+
+```{r, fig.width = 7, fig.height = 5.5, echo = FALSE}
+ggplot(data = mpg, 
+       mapping = aes(x = displ, y = hwy, 
+                     col = class)) +
+  geom_point() + 
+  geom_smooth(col = "blue", method = "lm") +
+  labs(x = "Engine Displacement in Liters",
+       y = "Highway miles per gallon",
+       title = "MPG data",
+       subtitle = "Cars with higher engine displacement tend to have lower highway mpg",
+       caption = "Source: mpg data in ggplot2")
+```
+
+]
+
+
+.pull-right45[
+
+```{r, echo = FALSE, fig.width = 7, fig.height = 5.5}
+# Add a regression line for all classes
+
+ggplot(data = mpg, 
+       mapping = aes(x = displ, y = hwy, color = class)) +
+  geom_point(size = 3, alpha = .9) + 
+  geom_smooth(col = "blue", method = "lm")+
+  labs(x = "Engine Displacement in Liters",
+       y = "Highway miles per gallon",
+       title = "MPG data",
+       subtitle = "Cars with higher engine displacement tend to have lower highway mpg",
+       caption = "Source: mpg data in ggplot2") + theme_bw()
+
+```
+
+]
+
+
+
+---
+
+# Themes with `theme_XX()`
+
+.pull-left45[
+
+A plotting <high>theme</high> controls many aspects of its <high>overall look</high>, from the background, to the grid lines, to the label font to the spacing between plot labels and the plotting space.
+
+Themes built into `ggplot2`
+
+`theme_bw()`<br>
+`theme_minimal()`<br>
+`theme_classic()`<br>
+`theme_light()`<br>
+`theme_void()`
+
+Themes from the `ggthemes` package
+
+`theme_excel()`<br>
+`theme_economist()`<br>
+etc.
+
+]
+
+.pull-right45[
+
+```{r, eval = F}
+ggplot(...) + 
+  theme_gray() # The Default theme
+```
+
+```{r, fig.width = 7, fig.height = 5.5, echo = FALSE}
+ggplot(data = mpg, 
+       mapping = aes(x = displ, y = hwy, 
+                     col = class)) +
+  geom_point() + 
+  geom_smooth(col = "blue", method = "lm") +
+  labs(x = "Engine Displ...",
+       y = "Highway miles...",
+       title = "MPG data",
+       subtitle = "Cars with ...",
+       caption = "Source...") + theme_gray()
+```
+
+]
+
+---
+
+# Themes with `theme_XX()`
+
+.pull-left45[
+
+A plotting <high>theme</high> controls many aspects of its <high>overall look</high>, from the background, to the grid lines, to the label font to the spacing between plot labels and the plotting space.
+
+Themes built into `ggplot2`
+
+`theme_bw()`<br>
+`theme_minimal()`<br>
+`theme_classic()`<br>
+`theme_light()`<br>
+`theme_void()`
+
+Themes from the `ggthemes` package
+
+`theme_excel()`<br>
+`theme_economist()`<br>
+etc.
+
+
+
+]
+
+.pull-right45[
+
+```{r, eval = F}
+ggplot(...) + 
+  theme_light()
+```
+
+```{r, fig.width = 7, fig.height = 5.5, echo = FALSE}
+ggplot(data = mpg, 
+       mapping = aes(x = displ, y = hwy, 
+                     col = class)) +
+  geom_point() + 
+  geom_smooth(col = "blue", method = "lm") +
+  labs(x = "Engine Displ...",
+       y = "Highway miles...",
+       title = "MPG data",
+       subtitle = "Cars with ...",
+       caption = "Source...") + theme_light()
+```
+
+]
+
+---
+
+# Themes with `theme_XX()`
+
+.pull-left45[
+
+A plotting <high>theme</high> controls many aspects of its <high>overall look</high>, from the background, to the grid lines, to the label font to the spacing between plot labels and the plotting space.
+
+Themes built into `ggplot2`
+
+`theme_bw()`<br>
+`theme_minimal()`<br>
+`theme_classic()`<br>
+`theme_light()`<br>
+`theme_void()`
+
+Themes from the `ggthemes` package
+
+`theme_excel()`<br>
+`theme_economist()`<br>
+etc.
+
+
+
+]
+
+.pull-right45[
+
+```{r, eval = F}
+ggplot(...) + 
+  theme_void()
+```
+
+```{r, fig.width = 7, fig.height = 5.5, echo = FALSE}
+ggplot(data = mpg, 
+       mapping = aes(x = displ, y = hwy, 
+                     col = class)) +
+  geom_point() + 
+  geom_smooth(col = "blue", method = "lm") +
+  labs(x = "Engine Displ...",
+       y = "Highway miles...",
+       title = "MPG data",
+       subtitle = "Cars with ...",
+       caption = "Source...") + theme_void()
+```
+
+]
+
+---
+
+# Themes with `theme_XX()`
+
+.pull-left45[
+
+A plotting <high>theme</high> controls many aspects of its <high>overall look</high>, from the background, to the grid lines, to the label font to the spacing between plot labels and the plotting space.
+
+Themes built into `ggplot2`
+
+`theme_bw()`<br>
+`theme_minimal()`<br>
+`theme_classic()`<br>
+`theme_light()`<br>
+`theme_void()`
+
+Themes from the `ggthemes` package
+
+`theme_excel()`<br>
+`theme_economist()`<br>
+etc.
+
+
+
+]
+
+.pull-right45[
+
+
+```{r, eval = F}
+ggplot(...) + 
+  theme_excel()
+```
+
+```{r, fig.width = 7, fig.height = 5.5, echo = FALSE}
+ggplot(data = mpg, 
+       mapping = aes(x = displ, y = hwy, 
+                     col = class)) +
+  geom_point() + 
+  geom_smooth(col = "blue", method = "lm") +
+  labs(x = "Engine Displ...",
+       y = "Highway miles...",
+       title = "MPG data",
+       subtitle = "Cars with ...",
+       caption = "Source...") + theme_excel()
+```
+
+]
+
+
+---
+
+# Themes with `theme_XX()`
+
+.pull-left45[
+
+A plotting <high>theme</high> controls many aspects of its <high>overall look</high>, from the background, to the grid lines, to the label font to the spacing between plot labels and the plotting space.
+
+Themes built into `ggplot2`:
+
+`theme_bw()`<br>
+`theme_minimal()`<br>
+`theme_classic()`<br>
+`theme_light()`<br>
+`theme_void()`
+
+Themes from the `ggthemes` package
+
+`theme_excel()`<br>
+`theme_economist()`<br>
+etc.
+
+
+]
+
+.pull-right45[
+
+```{r, eval = F}
+ggplot(...) + 
+  theme_economist()
+```
+
+```{r, fig.width = 7, fig.height = 5.5, echo = FALSE}
+ggplot(data = mpg, 
+       mapping = aes(x = displ, y = hwy, 
+                     col = class)) +
+  geom_point() + 
+  geom_smooth(col = "blue", method = "lm") +
+  labs(x = "Engine Displ...",
+       y = "Highway miles...",
+       title = "MPG data",
+       subtitle = "Cars with ...",
+       caption = "Source...") + theme_economist()
+```
+
+]
+
+---
+
+# Final result!
+
+
+.pull-left45[
+
+```{r, fig.width = 7, fig.height = 5.5, eval = F, echo = TRUE}
+ggplot(data = mpg, 
+       mapping = aes(x = displ, 
+                     y = hwy, 
+                     col = class)) +
+  geom_point() + 
+  geom_smooth(col = "blue", 
+              method = "lm")+
+  labs(x = "Engine Displ. in Liters",
+       y = "Highway miles per gallon",
+       title = "MPG data",
+       subtitle = "Cars with higher...",
+       caption = "Source: mpg data...") + 
+  theme_bw()
+
+```
+
+]
+
+
+.pull-right45[
+
+```{r, fig.width = 7, fig.height = 5.5, echo = FALSE}
+ggplot(data = mpg, 
+       mapping = aes(x = displ, 
+                     y = hwy, col = class)) +
+  geom_point() + 
+  geom_smooth(col = "blue", method = "lm")+
+  labs(x = "Engine Displacement in Liters",
+       y = "Highway miles per gallon",
+       title = "MPG data",
+       subtitle = "Cars with higher engine displacement tend to have lower highway mpg",
+       caption = "Source: mpg data in ggplot2") + 
+  theme_bw()
+
+```
+
+]
+
+
+---
+
+class: middle, center
+
+<h1><a href="https://dwulff.github.io/Intro2R_Unibe/_sessions/PlottingI/PlottingI_practical.html">Practical</a></h1>
+
+
+
+
+

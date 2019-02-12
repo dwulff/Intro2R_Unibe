@@ -36,4 +36,4 @@ output: html_document
 ## Schedule
 
 <p align="center"><br>
-    <a href=""><img border="0" alt="Feb2019Schedule" src="_sessions/welcome/image/schedule.png"></a><br>
+    <a href=""><img border="0" alt="Feb2019Schedule" src="_sessions/welcome/image/schedule.png" style="width:400px"></a><br>
