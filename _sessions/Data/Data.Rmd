@@ -310,31 +310,6 @@ baselers
 
 ---
 
-.pull-left45[
-
-# Tidy data
-
-1 - Each variable you measure should be in one column.
-
-2 - Each different observation of that variable should be in a different row.
-
-3 - There should be one table for each "kind" of variable.
-
-4 - If you have multiple tables, they should include a column in the table that allows them to be linked.
-
-<br><br>
-see <a href="http://worldpece.org/sites/default/files/datastyle.pdf">The Elements of Data Analytic Style</a> by Jeff Leek
-
-or <a href="https://style.tidyverse.org/index.html">The tidyverse style guide</a> by Hadley Wickham
-]
-
-.pull-right45[
-  <br><br><br>
-  <img src="https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/data_frame.png"></img>
-  ]
-
----
-
 # `vector`
 
 .pull-left45[
@@ -528,6 +503,31 @@ baselers$age[1:9] < 300
 
 .pull-left45[
 
+# Tidy data
+
+1 - Each variable you measure should be in one column.
+
+2 - Each different observation of that variable should be in a different row.
+
+3 - There should be one table for each "kind" of variable.
+
+4 - If you have multiple tables, they should include a column in the table that allows them to be linked.
+
+<br><br>
+see <a href="http://worldpece.org/sites/default/files/datastyle.pdf">The Elements of Data Analytic Style</a> by Jeff Leek
+
+or <a href="https://style.tidyverse.org/index.html">The tidyverse style guide</a> by Hadley Wickham
+]
+
+.pull-right45[
+  <br><br><br>
+  <img src="https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/data_frame.png"></img>
+  ]
+
+---
+
+.pull-left45[
+
 # Object Classes
 
 <br><br>
@@ -562,37 +562,6 @@ Functions have 3 elements:
 .pull-right5[
   <br><br><br>
   <img src="https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/function.png"></img>
-]
-
-
----
-
-# Documentation
-
-.pull-left5[
-
-R documentation (<high>help files</high> and <high>vignettes</high>) will become very easy to use once you are familiar with the basic R vocabulary. 
-
-Pay attention to...
-
-<high>Usage</high> - shows how to use function, its arguments and their defaults.<br><high>Arguments</high> - describes arguments, and their `class`.<br><high>Value</high> - describes what the function returns.<br><high>Examples</high> - provide working R code.
-
-```{r, eval = F}
-# To access help files
-?name_of_function
-
-# search help files
-??name_of_function
-
-```
-
-]
-
-.pull-right5[
-```{r}
-?cor
-```
-<p align="center"><img src="https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/help_cor.png" width="500"></p>
 ]
 
 ---
@@ -726,7 +695,7 @@ write_delim(data_object, file, ...)  # arbitrary-delimited
 
 1 - <high>Find the file</high> on your hard drive. Should be in your data folder inside your project.
 
-2 - <high>Open the file</high> in RStudio (right-click on the file in the *Files* pane) a text viewer, e.g., *TextEdit* (Mac), *TextWranger* (Mac), *WordPad* (Windows).
+2 - <high>Open the file</high> in RStudio (right-click on the file in the *Files* pane) a text viewer, e.g., *TextEdit* (Mac), *TextWrangler* (Mac), *WordPad* (Windows).
 <br><br><br>
 ```{r, eval=F}
 # Read with explicit column names
@@ -877,6 +846,35 @@ data <- jsonlite::read_json(file, ...)
 ]
 
 
+---
+
+# Documentation
+
+.pull-left5[
+
+R documentation (<high>help files</high> and <high>vignettes</high>) will become very easy to use once you are familiar with the basic R vocabulary. 
+
+Pay attention to...
+
+<high>Usage</high> - shows how to use function, its arguments and their defaults.<br><high>Arguments</high> - describes arguments, and their `class`.<br><high>Value</high> - describes what the function returns.<br><high>Examples</high> - provide working R code.
+
+```{r, eval = F}
+# To access help files
+?name_of_function
+
+# search help files
+??name_of_function
+
+```
+
+]
+
+.pull-right5[
+```{r}
+?cor
+```
+<p align="center"><img src="https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/help_cor.png" width="500"></p>
+]
 
 ---
 
