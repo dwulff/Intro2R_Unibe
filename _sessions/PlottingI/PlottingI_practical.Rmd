@@ -419,7 +419,6 @@ ggplot(mcdonalds, aes(x = XX,
 6. Play around! 
 
 - Specify that the size of the points should correspond to their Calories. Do this with the `size` aesthetic.
-- Instead of mapping `Category` to the `color` aesthetic, try creating different facets for each `Category` with `facet_wrap(~ Category)`.
 - Try using a different plotting theme. For example, you can try `theme_excel()` included in the `ggthemes` package.
 
 ## Examples
@@ -494,15 +493,6 @@ ggplot(data = mpg,
   geom_smooth(col = "blue", method = "lm")
 
 
-# Facet by class
-ggplot(data = mpg,
-       mapping = aes(x = displ, 
-                     y = hwy, 
-                     color = factor(cyl))) + 
-  geom_point() +
-  facet_wrap(~ class) 
-
-
 # Another fancier example
 
 ggplot(data = mpg, 
@@ -547,7 +537,6 @@ kc_house <- read_csv("https://raw.githubusercontent.com/therbootcamp/BaselRBootc
 |:------|:------|
 |`tidyverse`|`install.packages("tidyverse")`|
 |`ggthemes`|`install.packages("ggthemes")`|
-
 
 
 ## Resources
