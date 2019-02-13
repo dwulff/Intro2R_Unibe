@@ -68,6 +68,6 @@ output:
 ### Schedule
 
 
-<p align="center"><br>
+<p align="left"><br>
     <img border="0" alt="Feb2019Schedule" src="https://dwulff.github.io/Intro2R_Unibe/_sessions/Welcome/image/schedule.png" style="width:510px">
 </p>
