@@ -66,9 +66,9 @@ In this practical you'll do basic statistics in R. By the end of this practical 
 
 ```{r, echo = FALSE, eval = TRUE, include = FALSE}
 
-library(broom)
+library(BayesFactor)
+library(lme4)
 library(rsq)
-library(lubridate)
 library(tidyverse)
 
 gap <- read_csv("1_Data/gap.csv")
@@ -162,7 +162,7 @@ summary(mort_lm)
 
 7. GDP per capita is the better predictor of child mortality. Now play around a bit. Find out if the two predictors interact or whether any of the other `numeric` (!) varibles significantly improve the prediction of child mortality.
 
-### C - ANOVA models with `lm()`
+### C - AN(C)OVA models with `lm()`
 
 1. ANOVA's in R are also run using `lm()`. Technically, an ANOVA is a regression using dummy variables to code each of the predictor levels in the ANOVA. To see this, predict child mortality using `continent` and print the resulting model.
 
@@ -178,7 +178,19 @@ mort_lm <- lm(formula = childMort ~ continent,
 mort_lm
 ```
 
-2. You should have observed that 
+2. You should have observed that the model included four predictors, one for each value of `continent` except the first (`Africa`), which in this case is represented by the intercept (`(Intercept)`). Running an ANOVA we are, of course, usually interested in the main effect of the variable `continent` rather than that of the individual levels of the `continent` variable. To get the main effect and a typical ANOVA output, simply apply the `anova()` function to the linear model object. 
+
+```{r, eval = FALSE, echo = TRUE}
+mort_lm <- lm(formula = XX ~ continent,
+              data = XX)
+anova(mort_lm)
+```
+
+```{r}
+mort_lm <- lm(formula = childMort ~ continent,
+              data = gap)
+anova(mort_lm)
+```
 
 
 4. Evaluate the p-value of this test compare to what you got in the previous question when you used `cor.test()`?

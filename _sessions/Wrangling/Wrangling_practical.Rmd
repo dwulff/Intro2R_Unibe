@@ -133,34 +133,6 @@ summary(trial_act)
 summary(trial_act_demo)
 ```
 
-#### Tips
-
-In this practical you will do many operations on dataframes. Remember: when using `dplyr`, you can chain multiple functions together with the pipe `%>%`. When giving your answers to the questions in this practical, see how many operations you can chain with the pipe!
-
-```{r, echo = TRUE, eval = FALSE}
-baselers <- read_csv("1_Data/baselers.csv")
-
-# Method 1: Separate operations
-
-baselers <- baselers %>%
-              rename(Age_y = age)   # Change age to Age__y
-
-baselers <- baselers %>%
-              mutate(food_p = food / income)  # calculate food_p
-
-baselers <- baselers %>%
-              filter(sex == "m")    # Only include males
-
-# Method 2: Chain with the pipe!
-
-baselers <- read_csv("1_Data/baselers.csv")
-
-baselers <- baselers %>%
-              rename(Age_y = age) %>%             # Change age to Age__y
-              mutate(food_p = food / income) %>%  # calculate food_p
-              filter(sex == "m")                  # Only include males
-```
-
 ### B - Change column names with rename()
 
 1. Print the names of the `trial_act` data with `names(XXX)`
@@ -610,8 +582,35 @@ baselers %>%
   # Sort in ascending order of sex, then
   #  descending order of age
   arrange(sex, desc(age_y)))
-```
 
+# TIPP -------
+# In this practical you will do many operations on dataframes. Remember: when using `dplyr`, you can chain
+# multiple functions together with the pipe `%>%`. When giving your answers to the questions in this practical,
+# see how many operations you can chain with the pipe!
+
+baselers <- read_csv("1_Data/baselers.csv")
+
+# Method 1: Separate operations
+
+baselers <- baselers %>%
+              rename(Age_y = age)   # Change age to Age__y
+
+baselers <- baselers %>%
+              mutate(food_p = food / income)  # calculate food_p
+
+baselers <- baselers %>%
+              filter(sex == "m")    # Only include males
+
+# Method 2: Chain with the pipe!
+
+baselers <- read_csv("1_Data/baselers.csv")
+
+baselers <- baselers %>%
+              rename(Age_y = age) %>%             # Change age to Age__y
+              mutate(food_p = food / income) %>%  # calculate food_p
+              filter(sex == "m")                  # Only include males
+
+```
 
 
 ## Datasets

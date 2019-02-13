@@ -178,31 +178,6 @@ trial_act</code></pre>
 <ol start="7" style="list-style-type: decimal">
 <li>Use the the <code>summary()</code> function to print more details on the columns of the datasets.</li>
 </ol>
-<div id="tips" class="section level4">
-<h4>Tips</h4>
-<p>In this practical you will do many operations on dataframes. Remember: when using <code>dplyr</code>, you can chain multiple functions together with the pipe <code>%&gt;%</code>. When giving your answers to the questions in this practical, see how many operations you can chain with the pipe!</p>
-<pre class="r"><code>baselers &lt;- read_csv(&quot;1_Data/baselers.csv&quot;)
-
-# Method 1: Separate operations
-
-baselers &lt;- baselers %&gt;%
-              rename(Age_y = age)   # Change age to Age__y
-
-baselers &lt;- baselers %&gt;%
-              mutate(food_p = food / income)  # calculate food_p
-
-baselers &lt;- baselers %&gt;%
-              filter(sex == &quot;m&quot;)    # Only include males
-
-# Method 2: Chain with the pipe!
-
-baselers &lt;- read_csv(&quot;1_Data/baselers.csv&quot;)
-
-baselers &lt;- baselers %&gt;%
-              rename(Age_y = age) %&gt;%             # Change age to Age__y
-              mutate(food_p = food / income) %&gt;%  # calculate food_p
-              filter(sex == &quot;m&quot;)                  # Only include males</code></pre>
-</div>
 </div>
 <div id="b---change-column-names-with-rename" class="section level3">
 <h3>B - Change column names with rename()</h3>
@@ -464,7 +439,34 @@ baselers %&gt;%
   
   # Sort in ascending order of sex, then
   #  descending order of age
-  arrange(sex, desc(age_y)))</code></pre>
+  arrange(sex, desc(age_y)))
+
+# TIPP -------
+# In this practical you will do many operations on dataframes. Remember: when using `dplyr`, you can chain
+# multiple functions together with the pipe `%&gt;%`. When giving your answers to the questions in this practical,
+# see how many operations you can chain with the pipe!
+
+baselers &lt;- read_csv(&quot;1_Data/baselers.csv&quot;)
+
+# Method 1: Separate operations
+
+baselers &lt;- baselers %&gt;%
+              rename(Age_y = age)   # Change age to Age__y
+
+baselers &lt;- baselers %&gt;%
+              mutate(food_p = food / income)  # calculate food_p
+
+baselers &lt;- baselers %&gt;%
+              filter(sex == &quot;m&quot;)    # Only include males
+
+# Method 2: Chain with the pipe!
+
+baselers &lt;- read_csv(&quot;1_Data/baselers.csv&quot;)
+
+baselers &lt;- baselers %&gt;%
+              rename(Age_y = age) %&gt;%             # Change age to Age__y
+              mutate(food_p = food / income) %&gt;%  # calculate food_p
+              filter(sex == &quot;m&quot;)                  # Only include males</code></pre>
 </div>
 <div id="datasets" class="section level2">
 <h2>Datasets</h2>

@@ -157,74 +157,49 @@ $(document).ready(function () {
 <div id="a---getting-setup" class="section level3">
 <h3>A - Getting setup</h3>
 <ol style="list-style-type: decimal">
-<li><p>Open your <code>BernRBootcamp</code> R project. It should already have the folders <code>1_Data</code> and <code>2_Code</code>. Make sure that all of the data files listed above are contained in the <code>1_Data</code> folder</p></li>
-<li><p>Open a new R script and save it as a new file called <code>statistics_practical.R</code> in the <code>2_Code</code> folder. At the top of the script, using comments, write your name and the date. The, load the set of packages listed above with <code>library()</code>.</p></li>
-<li><p>For this practical, we’ll use the <code>kc_house.csv</code> data. This dataset contains house sale prices for King County, Washington. It includes homes sold between May 2014 and May 2015. Using the following template, load the data into R and store it as a new object called <code>kc_house</code>.</p></li>
+<li><p>Open your <code>BernRBootcamp</code> R project. It should already have the folders <code>1_Data</code> and <code>2_Code</code>. Make sure that all of the data files listed in the <code>Datasets</code> section are contained in the <code>1_Data</code> folder.</p></li>
+<li><p>Open a new R script and save it as a new file called <code>statisticsII_practical.R</code> in the <code>2_Code</code> folder. At the top of the script, using comments, write your name and the date. The, load the set of packages listed in the <code>Functions</code> section with <code>library()</code>.</p></li>
+<li><p>For this practical, we’ll use the <code>gap.csv</code> data. This dataset contains data from three years on economic and health variables of 139 countries. Using the following template, load the data into R and store it as a new object called <code>kc_house</code>.</p></li>
 </ol>
 <pre class="r"><code>gap &lt;- read_csv(file = &quot;XX&quot;)</code></pre>
 <ol start="4" style="list-style-type: decimal">
 <li>Using <code>print()</code>, <code>summary()</code>, and <code>head()</code>, explore the data to make sure it was loaded correctly.</li>
 </ol>
 </div>
-<div id="b---descriptive-statistics" class="section level3">
-<h3>B - Descriptive statistics</h3>
+<div id="b---regression-models-with-lm" class="section level3">
+<h3>B - Regression models with <code>lm()</code></h3>
 <ol style="list-style-type: decimal">
-<li><p>What was the mean price (<code>price</code>) of all houses?</p></li>
-<li><p>What was the median price (<code>price</code>) of all houses?</p></li>
-<li><p>What was the standard deviation price (<code>price</code>) of all houses?</p></li>
-<li><p>What were the minimum and maximum prices? Try using <code>min()</code>, <code>max()</code>, and <code>range()</code></p></li>
-<li><p>How many houses were on the waterfront (<code>waterfront</code>) and how many were not? (Hint: use <code>table()</code>)</p></li>
+<li>To begin with, evaluate the relationship between the health expenditure of the country (<code>healthExp</code>) and child mortality (<code>childMort</code>) using a regression with child mortality as the criterion and health expenditure as the predictor. Simply complete the code below.</li>
+</ol>
+<pre class="r"><code>mort_lm &lt;- lm(formula = XX ~ XX,
+              data = XX)</code></pre>
+<ol start="2" style="list-style-type: decimal">
+<li><p>Print your <code>mort_lm</code> object to see the main results.</p></li>
+<li><p>Use the <code>summary()</code> function to return a data frame containing the main results of the linear regression. Evalute the test results: Does health expenditure significantly predict child mortality? How much variance is explained by health expenditure (Tipp: look for Multiple R-squared)?</p></li>
+<li><p>You probably concluded correctly that health expenditure correctly predicts child mortality. One way to confirm this is via a simple plot by plugging the two variables into the code below (don’t worry you learn how to do fancier plots in the next sessions).</p></li>
+</ol>
+<pre class="r"><code>plot(gap$XX, gap$XX, log = &quot;xy&quot;)</code></pre>
+<ol start="5" style="list-style-type: decimal">
+<li>Health expenditure is strongly related to child mortality, but is it the best predictor. Run the regression again, this time adding the GDP per capita (<code>gdpPercap</code>) as a second predictor.</li>
+</ol>
+<pre class="r"><code>mort_lm &lt;- lm(formula = XX ~ XX + XX,
+              data = XX)</code></pre>
+<ol start="6" style="list-style-type: decimal">
+<li><p>Have the results changed? Which predictor is more strongly related to child mortality? Evaluate using <code>summary()</code>.</p></li>
+<li><p>GDP per capita is the better predictor of child mortality. Now play around a bit. Find out if the two predictors interact or whether any of the other <code>numeric</code> (!) varibles significantly improve the prediction of child mortality.</p></li>
 </ol>
 </div>
-<div id="c---t-tests-with-t.test" class="section level3">
-<h3>C - T tests with t.test()</h3>
+<div id="c---anova-models-with-lm" class="section level3">
+<h3>C - ANOVA models with <code>lm()</code></h3>
 <ol style="list-style-type: decimal">
-<li>Do houses on the waterfront sell for more than those not on the waterfront? Answer this by creating an object called <code>water_htest</code> which contains the result of the appropriate t-test using <code>t.test()</code>. Use the following template</li>
+<li>ANOVA’s in R are also run using <code>lm()</code>. Technically, an ANOVA is a regression using dummy variables to code each of the predictor levels in the ANOVA. To see this, predict child mortality using <code>continent</code> and print the resulting model.</li>
 </ol>
-<pre class="r"><code>water_htest &lt;- t.test(formula = XX ~ XX,
-                      data = XX)</code></pre>
+<pre class="r"><code>mort_lm &lt;- lm(formula = XX ~ continent,
+              data = XX)
+mort_lm</code></pre>
 <ol start="2" style="list-style-type: decimal">
-<li><p>Print your <code>water_htest</code> object to see summary results</p></li>
-<li><p>Apply the <code>summary()</code> function to <code>water_htest</code>. Do you see anything new or important?</p></li>
-<li><p>Look at the names of the <code>water_htest</code> with <code>names()</code>. What are the named elements of the object?</p></li>
-<li><p>Using the <code>$</code> operator, print the exact test statistic of the t-test.</p></li>
-<li><p>Again using the <code>$</code> operator, print the exact p-value of the test.</p></li>
-<li><p>Use the <code>tidy()</code> function to return a dataframe containing the main results of the test.</p></li>
-<li><p>Do houses on the waterfront also tend to have more (or less) living space (<code>sqft_living</code>)? Answer this by conducting the appropriate t-test and going through the same steps you did in the previous question</p></li>
-</ol>
-</div>
-<div id="d---correlation-tests-with-cor.test" class="section level3">
-<h3>D - Correlation tests with cor.test()</h3>
-<ol style="list-style-type: decimal">
-<li>Do houses built in later years tend to sell for more than older houses? Answer this by creating an object called <code>time_htest</code> which contains the result of the appropriate correlation test using <code>cor.test()</code> and the columns <code>yr_built</code> and <code>price</code>. Use the following template:</li>
-</ol>
-<pre class="r"><code># Note: cor.terst() is the only function (we know of)
-#  that uses formulas in the strange format
-#   formula = ~ X + Y instead of formula = Y ~ X
-
-time_htest &lt;- cor.test(formula = ~ XX + XX,
-                       data = XX)</code></pre>
-<ol start="2" style="list-style-type: decimal">
-<li><p>Print your <code>time_htest</code> object to see summary results</p></li>
-<li><p>Apply the <code>summary()</code> function to <code>time_htest</code>. Do you see anything new or important?</p></li>
-<li><p>Look at the names of the <code>time_htest</code> with <code>names()</code>. What are the named elements of the object?</p></li>
-<li><p>Using the <code>$</code> operator, print the exact correlation of the test (Hint: it’s called “estimate”)</p></li>
-<li><p>Again using the <code>$</code> operator, print the exact p-value of the test.</p></li>
-<li><p>Use the <code>tidy()</code> function to return a dataframe containing the main results of the test.</p></li>
-<li><p>Do houses in in better overall condition <code>condition</code> tend to sell at higher prices than those in worse condition? Answer this by conducting the appropriate correlation test and going through the same steps you did in the previous question.</p></li>
-</ol>
-</div>
-<div id="e---linear-regression-with-lm-and-glm" class="section level3">
-<h3>E - Linear Regression with lm() and glm()</h3>
-<ol style="list-style-type: decimal">
-<li>In a previous question, you used a correlation test to see if houses built in later years <code>yr_built</code> tend to sell for more than older houses. Now let’s repeat the same analysis using a regression analysis with <code>lm()</code>. Do to this, use the following template:</li>
-</ol>
-<pre class="r"><code>time_lm &lt;- lm(formula = XX ~ XX,
-                 data = XX)</code></pre>
-<ol start="2" style="list-style-type: decimal">
-<li><p>Print your <code>time_lm</code> object to see the main results.</p></li>
-<li><p>Use the <code>tidy()</code> function (from the <code>broom</code> package) to return a dataframe containing the main results of the test.</p></li>
-<li><p>How does the p-value of this test compare to what you got in the previous question when you used <code>cor.test()</code>?</p></li>
+<li><p>You should have observed that</p></li>
+<li><p>Evaluate the p-value of this test compare to what you got in the previous question when you used <code>cor.test()</code>?</p></li>
 <li><p>Which of the variables <code>bedrooms</code>, <code>bathrooms</code>, and <code>sqft_living</code> predict housing price? Answer this by conducting the appropriate regression analysis using <code>lm()</code> and assigning the result to an object <code>price_lm</code>. Use the following template:</p></li>
 </ol>
 <pre class="r"><code>price_lm &lt;- lm(formula = XX ~ XX + XX + XX,
@@ -614,14 +589,10 @@ price_Blm</code></pre>
 <td align="left"><code>install.packages(&quot;tidyverse&quot;)</code></td>
 </tr>
 <tr class="even">
-<td align="left"><code>broom</code></td>
-<td align="left"><code>install.packages(&quot;broom&quot;)</code></td>
-</tr>
-<tr class="odd">
 <td align="left"><code>lme4</code></td>
 <td align="left"><code>install.packages(&quot;lme4&quot;)</code></td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left"><code>BayesFactor</code></td>
 <td align="left"><code>install.packages(&quot;BayesFactor&quot;)</code></td>
 </tr>
@@ -668,8 +639,8 @@ price_Blm</code></pre>
 <td align="left"></td>
 </tr>
 <tr class="even">
-<td align="left"><code>tidy()</code></td>
-<td align="left"><code>broom</code></td>
+<td align="left"><code>anova()</code></td>
+<td align="left"><code>base</code></td>
 <td align="left"></td>
 </tr>
 <tr class="odd">
