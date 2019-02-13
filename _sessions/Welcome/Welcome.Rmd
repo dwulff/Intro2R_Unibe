@@ -137,10 +137,8 @@ Each session contains a slide-based <high>introduction</high> and a hands-on <hi
 
 .pull-right4[
 
-<p align="center">
-  <img src="https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/bernrbootcamp_schedule.png" height="550">
-  <font size = 3></font>
-</p>
+<p align="center"><img src="image/schedule.png"></p>
+<center><font size = 3></font></center>
 
 ]
 
