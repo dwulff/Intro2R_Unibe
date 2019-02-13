@@ -141,379 +141,40 @@ $(document).ready(function () {
 <p align="center">
 <img width="100%" src="image/hansrosling.png" margin=0><br> <font style="font-size:10px">from <a href="https://www.ted.com/talks/hans_rosling_the_truth_about_hiv">TED.com</a></font>
 </p>
-<div id="section" class="section level2 tabset">
-<h2></h2>
-<div id="overview" class="section level3">
-<h3>Overview</h3>
+<div id="section" class="section level1 tabset">
+<h1></h1>
+<div id="overview" class="section level2">
+<h2>Overview</h2>
 <p>In this practical you’ll do basic statistics in R. By the end of this practical you will know how to:</p>
 <ol style="list-style-type: decimal">
-<li>Calculate regression analyses with <code>glm()</code> and <code>lm()</code></li>
-<li>Explore statistical objects with <code>names()</code>, <code>summary()</code>, <code>print()</code>, <code>predict()</code></li>
-<li>Run mixed-model and Bayesian regressions using the <code>lme4</code> and <code>BayesFactor</code> packages</li>
+<li>Calculate regression analyses with <code>glm()</code> and <code>lm()</code>.</li>
+<li>Explore statistical objects with <code>names()</code>, <code>summary()</code>, <code>print()</code>, <code>predict()</code>.</li>
+<li>Run mixed-model and Bayesian regressions using the <code>lme4</code> and <code>BayesFactor</code> packages.</li>
 </ol>
 </div>
-<div id="datasets" class="section level3">
-<h3>Datasets</h3>
-<pre class="r"><code>library(tidyverse)
-kc_house &lt;- read_csv(&quot;https://raw.githubusercontent.com/therbootcamp/BaselRBootcamp_2018July/master/_sessions/_data//baselrbootcamp_data/kc_house.csv&quot;)</code></pre>
-<table style="width:89%;">
-<colgroup>
-<col width="8%" />
-<col width="9%" />
-<col width="11%" />
-<col width="59%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th align="left">File</th>
-<th align="left">Rows</th>
-<th align="left">Columns</th>
-<th align="left">Description</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td align="left"><a href="https://raw.githubusercontent.com/therbootcamp/BaselRBootcamp_2018July/master/_sessions/_data//baselrbootcamp_data/kc_house.csv">kc_house.csv</a></td>
-<td align="left">21613</td>
-<td align="left">21</td>
-<td align="left">House sale prices for King County between May 2014 and May 2015.</td>
-</tr>
-</tbody>
-</table>
-</div>
-<div id="packages" class="section level3">
-<h3>Packages</h3>
-<table>
-<thead>
-<tr class="header">
-<th align="left">Package</th>
-<th align="left">Installation</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td align="left"><code>tidyverse</code></td>
-<td align="left"><code>install.packages(&quot;tidyverse&quot;)</code></td>
-</tr>
-<tr class="even">
-<td align="left"><code>lubridate</code></td>
-<td align="left"><code>install.packages(&quot;lubridate&quot;)</code></td>
-</tr>
-<tr class="odd">
-<td align="left"><code>broom</code></td>
-<td align="left"><code>install.packages(&quot;broom&quot;)</code></td>
-</tr>
-<tr class="even">
-<td align="left"><code>rsq</code></td>
-<td align="left"><code>install.packages(&quot;rsq&quot;)</code></td>
-</tr>
-</tbody>
-</table>
-</div>
-<div id="glossary" class="section level3">
-<h3>Glossary</h3>
-<p><em>Descriptive Statistics</em></p>
-<table>
-<thead>
-<tr class="header">
-<th align="left">Function</th>
-<th align="left">Description</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td align="left"><code>table()</code></td>
-<td align="left">Frequency table</td>
-</tr>
-<tr class="even">
-<td align="left"><code>mean(), median(), mode()</code></td>
-<td align="left">Measures of central tendency</td>
-</tr>
-<tr class="odd">
-<td align="left"><code>sd(), range(), var()</code></td>
-<td align="left">Measures of variability</td>
-</tr>
-<tr class="even">
-<td align="left"><code>max(), min()</code></td>
-<td align="left">Extreme values</td>
-</tr>
-<tr class="odd">
-<td align="left"><code>summary()</code></td>
-<td align="left">Several summary statistics</td>
-</tr>
-</tbody>
-</table>
-<p><em>Statistical Tests</em></p>
-<table>
-<thead>
-<tr class="header">
-<th align="left">Function</th>
-<th align="left">Hypothesis Test</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td align="left"><code>t.test()</code></td>
-<td align="left">One and two sample t-test</td>
-</tr>
-<tr class="even">
-<td align="left"><code>cor.test()</code></td>
-<td align="left">Correlation test</td>
-</tr>
-<tr class="odd">
-<td align="left"><code>glm()</code>, <code>lm()</code></td>
-<td align="left">Generalized linear model and linear model</td>
-</tr>
-</tbody>
-</table>
-<p><em>Sampling Functions</em></p>
-<table>
-<thead>
-<tr class="header">
-<th align="left">Function</th>
-<th align="left">Description</th>
-<th align="left">Additional Help</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td align="left"><code>sample()</code></td>
-<td align="left">Draw a random sample of values from a vector</td>
-<td align="left"><code>?sample</code></td>
-</tr>
-<tr class="even">
-<td align="left"><code>rnorm()</code></td>
-<td align="left">Draw random values from a Normal distribution</td>
-<td align="left"><code>?rnorm()</code></td>
-</tr>
-<tr class="odd">
-<td align="left"><code>runif()</code></td>
-<td align="left">Draw random values from a Uniform distribution</td>
-<td align="left"><code>?runif()</code></td>
-</tr>
-</tbody>
-</table>
-</div>
-<div id="examples" class="section level3">
-<h3>Examples</h3>
-<pre class="r"><code># Examples of hypothesis tests on the diamonds -------------
-
-library(tidyverse)
-library(broom)
-library(rsq)
-
-# First few rows of the diamonds data
-
-diamonds
-
-# Descriptive statistics ------------------------
-
-mean(diamonds$carat)   # What is the mean carat?
-median(diamonds$price)   # What is the median price?
-max(diamonds$depth)    # What is the maximum depth?
-table(diamonds$color)    # How many observations for each color?
-
-
-# 2-sample t- test ---------------------------
-
-# Q: Is there a difference in the carats of color = E and color = I diamonds?
-
-htest_B &lt;- t.test(formula = carat ~ color,     # DV ~ IV
-                   alternative = &quot;two.sided&quot;,  # Two-sided test
-                   data = diamonds,         # The data
-                   subset = color %in% c(&quot;E&quot;, &quot;I&quot;)) # Compare Diet 1 and Diet 2
-
-htest_B  # Print result
-
-
-# Correlation test -----------------------
-
-# Q: Is there a correlation between carat and price?
-
-htest_C &lt;- cor.test(formula = ~ carat + price,
-                    data = diamonds)
-
-htest_C
-
-# A: Yes. r = 0.92, t(53938) = 551.51, p &lt; .001
-
-
-# Regression ----------------------------
-
-
-# Q: Create regression equation predicting price by carat, depth, table, and x
-
-price_glm &lt;- glm(formula = price ~ carat + depth + table + x,
-                  data = diamonds)
-
-# Print coefficients
-price_glm$coefficients
-
-# Tidy version
-tidy(price_glm)
-
-# Extract R-Squared
-rsq(price_glm)
-
-# -----
-# Simulation
-# ------
-
-# 100 random samples from a normal distribution with mean = 0, sd = 1
-samp_A &lt;- rnorm(n = 100, mean = 0, sd = 1)
-
-# 100 random samples from a Uniform distribution with bounds at 0, 10
-samp_B &lt;- runif(n = 100, min = 0, max = 10)
-
-# Calculate descriptives
-mean(samp_A)
-sd(samp_A)
-
-mean(samp_B)
-sd(samp_B)
-
-# Combine samples (plus tw new ones) in a tibble
-
-my_sim &lt;- tibble(A = samp_A,
-                 B = samp_B,
-                 C = rnorm(n = 100, mean = 0, sd = 1),
-                 error = rnorm(n = 100, mean = 5, sd = 10))
-
-# Add y, a linear function of A and B to my_sim
-my_sim &lt;- my_sim %&gt;%
-  mutate(y = 3 * A -8 * B + error)
-
-# Regress y on A, B and C
-my_glm &lt;- glm(y ~ A + B + C,
-              data = my_sim)
-
-# Look at results!
-tidy(my_glm)</code></pre>
-</div>
-</div>
-<div id="tasks" class="section level1">
-<h1>Tasks</h1>
+<div id="tasks" class="section level2">
+<h2>Tasks</h2>
 <div id="a---getting-setup" class="section level3">
 <h3>A - Getting setup</h3>
 <ol style="list-style-type: decimal">
-<li>Open your <code>baselrbootcamp</code> R project. It should already have the folders <code>1_Data</code> and <code>2_Code</code>. Make sure that all of the data files listed above are contained in the <code>1_Data</code> folder</li>
-</ol>
-<pre class="r"><code># Done!</code></pre>
-<ol start="2" style="list-style-type: decimal">
+<li><p>Open your <code>BernRBootcamp</code> R project. It should already have the folders <code>1_Data</code> and <code>2_Code</code>. Make sure that all of the data files listed above are contained in the <code>1_Data</code> folder</p></li>
 <li><p>Open a new R script and save it as a new file called <code>statistics_practical.R</code> in the <code>2_Code</code> folder. At the top of the script, using comments, write your name and the date. The, load the set of packages listed above with <code>library()</code>.</p></li>
 <li><p>For this practical, we’ll use the <code>kc_house.csv</code> data. This dataset contains house sale prices for King County, Washington. It includes homes sold between May 2014 and May 2015. Using the following template, load the data into R and store it as a new object called <code>kc_house</code>.</p></li>
 </ol>
-<pre class="r"><code>kc_house &lt;- read_csv(file = &quot;XX&quot;)</code></pre>
-<pre class="r"><code>kc_house &lt;- read_csv(file = &quot;1_Data/kc_house.csv&quot;)</code></pre>
+<pre class="r"><code>gap &lt;- read_csv(file = &quot;XX&quot;)</code></pre>
 <ol start="4" style="list-style-type: decimal">
 <li>Using <code>print()</code>, <code>summary()</code>, and <code>head()</code>, explore the data to make sure it was loaded correctly.</li>
 </ol>
-<pre class="r"><code>kc_house</code></pre>
-<pre><code># A tibble: 21,613 x 21
-   id    date                 price bedrooms bathrooms sqft_living sqft_lot
-   &lt;chr&gt; &lt;dttm&gt;               &lt;dbl&gt;    &lt;int&gt;     &lt;dbl&gt;       &lt;int&gt;    &lt;int&gt;
- 1 7129… 2014-10-13 00:00:00 2.22e5        3      1           1180     5650
- 2 6414… 2014-12-09 00:00:00 5.38e5        3      2.25        2570     7242
- 3 5631… 2015-02-25 00:00:00 1.80e5        2      1            770    10000
- 4 2487… 2014-12-09 00:00:00 6.04e5        4      3           1960     5000
- 5 1954… 2015-02-18 00:00:00 5.10e5        3      2           1680     8080
- 6 7237… 2014-05-12 00:00:00 1.23e6        4      4.5         5420   101930
- 7 1321… 2014-06-27 00:00:00 2.58e5        3      2.25        1715     6819
- 8 2008… 2015-01-15 00:00:00 2.92e5        3      1.5         1060     9711
- 9 2414… 2015-04-15 00:00:00 2.30e5        3      1           1780     7470
-10 3793… 2015-03-12 00:00:00 3.23e5        3      2.5         1890     6560
-# ... with 21,603 more rows, and 14 more variables: floors &lt;dbl&gt;,
-#   waterfront &lt;int&gt;, view &lt;int&gt;, condition &lt;int&gt;, grade &lt;int&gt;,
-#   sqft_above &lt;int&gt;, sqft_basement &lt;int&gt;, yr_built &lt;int&gt;,
-#   yr_renovated &lt;int&gt;, zipcode &lt;int&gt;, lat &lt;dbl&gt;, long &lt;dbl&gt;,
-#   sqft_living15 &lt;int&gt;, sqft_lot15 &lt;int&gt;</code></pre>
-<pre class="r"><code>summary(kc_house)</code></pre>
-<pre><code>      id                 date                         price        
- Length:21613       Min.   :2014-05-02 00:00:00   Min.   :  75000  
- Class :character   1st Qu.:2014-07-22 00:00:00   1st Qu.: 321950  
- Mode  :character   Median :2014-10-16 00:00:00   Median : 450000  
-                    Mean   :2014-10-29 04:38:01   Mean   : 540088  
-                    3rd Qu.:2015-02-17 00:00:00   3rd Qu.: 645000  
-                    Max.   :2015-05-27 00:00:00   Max.   :7700000  
-    bedrooms      bathrooms     sqft_living       sqft_lot      
- Min.   : 0.0   Min.   :0.00   Min.   :  290   Min.   :    520  
- 1st Qu.: 3.0   1st Qu.:1.75   1st Qu.: 1427   1st Qu.:   5040  
- Median : 3.0   Median :2.25   Median : 1910   Median :   7618  
- Mean   : 3.4   Mean   :2.11   Mean   : 2080   Mean   :  15107  
- 3rd Qu.: 4.0   3rd Qu.:2.50   3rd Qu.: 2550   3rd Qu.:  10688  
- Max.   :33.0   Max.   :8.00   Max.   :13540   Max.   :1651359  
-     floors       waterfront         view        condition   
- Min.   :1.00   Min.   :0.000   Min.   :0.00   Min.   :1.00  
- 1st Qu.:1.00   1st Qu.:0.000   1st Qu.:0.00   1st Qu.:3.00  
- Median :1.50   Median :0.000   Median :0.00   Median :3.00  
- Mean   :1.49   Mean   :0.008   Mean   :0.23   Mean   :3.41  
- 3rd Qu.:2.00   3rd Qu.:0.000   3rd Qu.:0.00   3rd Qu.:4.00  
- Max.   :3.50   Max.   :1.000   Max.   :4.00   Max.   :5.00  
-     grade         sqft_above   sqft_basement     yr_built   
- Min.   : 1.00   Min.   : 290   Min.   :   0   Min.   :1900  
- 1st Qu.: 7.00   1st Qu.:1190   1st Qu.:   0   1st Qu.:1951  
- Median : 7.00   Median :1560   Median :   0   Median :1975  
- Mean   : 7.66   Mean   :1788   Mean   : 292   Mean   :1971  
- 3rd Qu.: 8.00   3rd Qu.:2210   3rd Qu.: 560   3rd Qu.:1997  
- Max.   :13.00   Max.   :9410   Max.   :4820   Max.   :2015  
-  yr_renovated     zipcode           lat            long     
- Min.   :   0   Min.   :98001   Min.   :47.2   Min.   :-122  
- 1st Qu.:   0   1st Qu.:98033   1st Qu.:47.5   1st Qu.:-122  
- Median :   0   Median :98065   Median :47.6   Median :-122  
- Mean   :  84   Mean   :98078   Mean   :47.6   Mean   :-122  
- 3rd Qu.:   0   3rd Qu.:98118   3rd Qu.:47.7   3rd Qu.:-122  
- Max.   :2015   Max.   :98199   Max.   :47.8   Max.   :-121  
- sqft_living15    sqft_lot15    
- Min.   : 399   Min.   :   651  
- 1st Qu.:1490   1st Qu.:  5100  
- Median :1840   Median :  7620  
- Mean   :1987   Mean   : 12768  
- 3rd Qu.:2360   3rd Qu.: 10083  
- Max.   :6210   Max.   :871200  </code></pre>
-<pre class="r"><code>head(kc_house)</code></pre>
-<pre><code># A tibble: 6 x 21
-  id    date                 price bedrooms bathrooms sqft_living sqft_lot
-  &lt;chr&gt; &lt;dttm&gt;               &lt;dbl&gt;    &lt;int&gt;     &lt;dbl&gt;       &lt;int&gt;    &lt;int&gt;
-1 7129… 2014-10-13 00:00:00 2.22e5        3      1           1180     5650
-2 6414… 2014-12-09 00:00:00 5.38e5        3      2.25        2570     7242
-3 5631… 2015-02-25 00:00:00 1.80e5        2      1            770    10000
-4 2487… 2014-12-09 00:00:00 6.04e5        4      3           1960     5000
-5 1954… 2015-02-18 00:00:00 5.10e5        3      2           1680     8080
-6 7237… 2014-05-12 00:00:00 1.23e6        4      4.5         5420   101930
-# ... with 14 more variables: floors &lt;dbl&gt;, waterfront &lt;int&gt;, view &lt;int&gt;,
-#   condition &lt;int&gt;, grade &lt;int&gt;, sqft_above &lt;int&gt;, sqft_basement &lt;int&gt;,
-#   yr_built &lt;int&gt;, yr_renovated &lt;int&gt;, zipcode &lt;int&gt;, lat &lt;dbl&gt;,
-#   long &lt;dbl&gt;, sqft_living15 &lt;int&gt;, sqft_lot15 &lt;int&gt;</code></pre>
 </div>
 <div id="b---descriptive-statistics" class="section level3">
 <h3>B - Descriptive statistics</h3>
 <ol style="list-style-type: decimal">
-<li>What was the mean price (<code>price</code>) of all houses?</li>
+<li><p>What was the mean price (<code>price</code>) of all houses?</p></li>
+<li><p>What was the median price (<code>price</code>) of all houses?</p></li>
+<li><p>What was the standard deviation price (<code>price</code>) of all houses?</p></li>
+<li><p>What were the minimum and maximum prices? Try using <code>min()</code>, <code>max()</code>, and <code>range()</code></p></li>
+<li><p>How many houses were on the waterfront (<code>waterfront</code>) and how many were not? (Hint: use <code>table()</code>)</p></li>
 </ol>
-<pre class="r"><code>mean(kc_house$price)</code></pre>
-<pre><code>[1] 540088</code></pre>
-<ol start="2" style="list-style-type: decimal">
-<li>What was the median price (<code>price</code>) of all houses?</li>
-</ol>
-<pre class="r"><code>median(kc_house$price)</code></pre>
-<pre><code>[1] 450000</code></pre>
-<ol start="3" style="list-style-type: decimal">
-<li>What was the standard deviation price (<code>price</code>) of all houses?</li>
-</ol>
-<pre class="r"><code>sd(kc_house$price)</code></pre>
-<pre><code>[1] 367127</code></pre>
-<ol start="4" style="list-style-type: decimal">
-<li>What were the minimum and maximum prices? Try using <code>min()</code>, <code>max()</code>, and <code>range()</code></li>
-</ol>
-<pre class="r"><code>range(kc_house$price)</code></pre>
-<pre><code>[1]   75000 7700000</code></pre>
-<ol start="5" style="list-style-type: decimal">
-<li>How many houses were on the waterfront (<code>waterfront</code>) and how many were not? (Hint: use <code>table()</code>)</li>
-</ol>
-<pre class="r"><code>table(kc_house$waterfront)</code></pre>
-<pre><code>
-    0     1 
-21450   163 </code></pre>
 </div>
 <div id="c---t-tests-with-t.test" class="section level3">
 <h3>C - T tests with t.test()</h3>
@@ -522,66 +183,14 @@ tidy(my_glm)</code></pre>
 </ol>
 <pre class="r"><code>water_htest &lt;- t.test(formula = XX ~ XX,
                       data = XX)</code></pre>
-<pre class="r"><code>water_htest &lt;- t.test(formula = price ~ waterfront,
-                      data = kc_house)</code></pre>
 <ol start="2" style="list-style-type: decimal">
-<li>Print your <code>water_htest</code> object to see summary results</li>
-</ol>
-<pre class="r"><code>water_htest</code></pre>
-<pre><code>
-    Welch Two Sample t-test
-
-data:  price by waterfront
-t = -10, df = 200, p-value &lt;2e-16
-alternative hypothesis: true difference in means is not equal to 0
-95 percent confidence interval:
- -1303662  -956963
-sample estimates:
-mean in group 0 mean in group 1 
-         531564         1661876 </code></pre>
-<ol start="3" style="list-style-type: decimal">
-<li>Apply the <code>summary()</code> function to <code>water_htest</code>. Do you see anything new or important?</li>
-</ol>
-<pre class="r"><code>summary(water_htest)</code></pre>
-<pre><code>            Length Class  Mode     
-statistic   1      -none- numeric  
-parameter   1      -none- numeric  
-p.value     1      -none- numeric  
-conf.int    2      -none- numeric  
-estimate    2      -none- numeric  
-null.value  1      -none- numeric  
-alternative 1      -none- character
-method      1      -none- character
-data.name   1      -none- character</code></pre>
-<ol start="4" style="list-style-type: decimal">
-<li>Look at the names of the <code>water_htest</code> with <code>names()</code>. What are the named elements of the object?</li>
-</ol>
-<pre class="r"><code>names(water_htest)</code></pre>
-<pre><code>[1] &quot;statistic&quot;   &quot;parameter&quot;   &quot;p.value&quot;     &quot;conf.int&quot;    &quot;estimate&quot;   
-[6] &quot;null.value&quot;  &quot;alternative&quot; &quot;method&quot;      &quot;data.name&quot;  </code></pre>
-<ol start="5" style="list-style-type: decimal">
-<li>Using the <code>$</code> operator, print the exact test statistic of the t-test.</li>
-</ol>
-<pre class="r"><code>water_htest$statistic</code></pre>
-<pre><code>    t 
--12.9 </code></pre>
-<ol start="6" style="list-style-type: decimal">
-<li>Again using the <code>$</code> operator, print the exact p-value of the test.</li>
-</ol>
-<pre class="r"><code>water_htest$p.value</code></pre>
-<pre><code>[1] 1.38e-26</code></pre>
-<ol start="7" style="list-style-type: decimal">
-<li>Use the <code>tidy()</code> function to return a dataframe containing the main results of the test.</li>
-</ol>
-<pre class="r"><code>tidy(water_htest)</code></pre>
-<pre><code># A tibble: 1 x 10
-  estimate estimate1 estimate2 statistic  p.value parameter conf.low
-     &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt;
-1  -1.13e6   531564.  1661876.     -12.9 1.38e-26      162.  -1.30e6
-# ... with 3 more variables: conf.high &lt;dbl&gt;, method &lt;chr&gt;,
-#   alternative &lt;chr&gt;</code></pre>
-<ol start="8" style="list-style-type: decimal">
-<li>Do houses on the waterfront also tend to have more (or less) living space (<code>sqft_living</code>)? Answer this by conducting the appropriate t-test and going through the same steps you did in the previous question</li>
+<li><p>Print your <code>water_htest</code> object to see summary results</p></li>
+<li><p>Apply the <code>summary()</code> function to <code>water_htest</code>. Do you see anything new or important?</p></li>
+<li><p>Look at the names of the <code>water_htest</code> with <code>names()</code>. What are the named elements of the object?</p></li>
+<li><p>Using the <code>$</code> operator, print the exact test statistic of the t-test.</p></li>
+<li><p>Again using the <code>$</code> operator, print the exact p-value of the test.</p></li>
+<li><p>Use the <code>tidy()</code> function to return a dataframe containing the main results of the test.</p></li>
+<li><p>Do houses on the waterfront also tend to have more (or less) living space (<code>sqft_living</code>)? Answer this by conducting the appropriate t-test and going through the same steps you did in the previous question</p></li>
 </ol>
 </div>
 <div id="d---correlation-tests-with-cor.test" class="section level3">
@@ -595,81 +204,15 @@ data.name   1      -none- character</code></pre>
 
 time_htest &lt;- cor.test(formula = ~ XX + XX,
                        data = XX)</code></pre>
-<pre class="r"><code>time_htest &lt;- cor.test(formula = ~ yr_built + price,
-                       data = kc_house)</code></pre>
 <ol start="2" style="list-style-type: decimal">
-<li>Print your <code>time_htest</code> object to see summary results</li>
+<li><p>Print your <code>time_htest</code> object to see summary results</p></li>
+<li><p>Apply the <code>summary()</code> function to <code>time_htest</code>. Do you see anything new or important?</p></li>
+<li><p>Look at the names of the <code>time_htest</code> with <code>names()</code>. What are the named elements of the object?</p></li>
+<li><p>Using the <code>$</code> operator, print the exact correlation of the test (Hint: it’s called “estimate”)</p></li>
+<li><p>Again using the <code>$</code> operator, print the exact p-value of the test.</p></li>
+<li><p>Use the <code>tidy()</code> function to return a dataframe containing the main results of the test.</p></li>
+<li><p>Do houses in in better overall condition <code>condition</code> tend to sell at higher prices than those in worse condition? Answer this by conducting the appropriate correlation test and going through the same steps you did in the previous question.</p></li>
 </ol>
-<pre class="r"><code>time_htest</code></pre>
-<pre><code>
-    Pearson&#39;s product-moment correlation
-
-data:  yr_built and price
-t = 8, df = 20000, p-value = 2e-15
-alternative hypothesis: true correlation is not equal to 0
-95 percent confidence interval:
- 0.0407 0.0673
-sample estimates:
-  cor 
-0.054 </code></pre>
-<ol start="3" style="list-style-type: decimal">
-<li>Apply the <code>summary()</code> function to <code>time_htest</code>. Do you see anything new or important?</li>
-</ol>
-<pre class="r"><code>summary(time_htest)</code></pre>
-<pre><code>            Length Class  Mode     
-statistic   1      -none- numeric  
-parameter   1      -none- numeric  
-p.value     1      -none- numeric  
-estimate    1      -none- numeric  
-null.value  1      -none- numeric  
-alternative 1      -none- character
-method      1      -none- character
-data.name   1      -none- character
-conf.int    2      -none- numeric  </code></pre>
-<ol start="4" style="list-style-type: decimal">
-<li>Look at the names of the <code>time_htest</code> with <code>names()</code>. What are the named elements of the object?</li>
-</ol>
-<pre class="r"><code>names(time_htest)</code></pre>
-<pre><code>[1] &quot;statistic&quot;   &quot;parameter&quot;   &quot;p.value&quot;     &quot;estimate&quot;    &quot;null.value&quot; 
-[6] &quot;alternative&quot; &quot;method&quot;      &quot;data.name&quot;   &quot;conf.int&quot;   </code></pre>
-<ol start="5" style="list-style-type: decimal">
-<li>Using the <code>$</code> operator, print the exact correlation of the test (Hint: it’s called “estimate”)</li>
-</ol>
-<pre class="r"><code>time_htest$estimate</code></pre>
-<pre><code>  cor 
-0.054 </code></pre>
-<ol start="6" style="list-style-type: decimal">
-<li>Again using the <code>$</code> operator, print the exact p-value of the test.</li>
-</ol>
-<pre class="r"><code>time_htest$p.value</code></pre>
-<pre><code>[1] 1.93e-15</code></pre>
-<ol start="7" style="list-style-type: decimal">
-<li>Use the <code>tidy()</code> function to return a dataframe containing the main results of the test.</li>
-</ol>
-<pre class="r"><code>tidy(time_htest)</code></pre>
-<pre><code># A tibble: 1 x 8
-  estimate statistic  p.value parameter conf.low conf.high method
-     &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt;     &lt;int&gt;    &lt;dbl&gt;     &lt;dbl&gt; &lt;chr&gt; 
-1   0.0540      7.95 1.93e-15     21611   0.0407    0.0673 Pears…
-# ... with 1 more variable: alternative &lt;chr&gt;</code></pre>
-<ol start="8" style="list-style-type: decimal">
-<li>Do houses in in better overall condition <code>condition</code> tend to sell at higher prices than those in worse condition? Answer this by conducting the appropriate correlation test and going through the same steps you did in the previous question.</li>
-</ol>
-<pre class="r"><code>condition_htest &lt;- cor.test(formula = ~ condition + price,
-                       data = kc_house)
-
-condition_htest</code></pre>
-<pre><code>
-    Pearson&#39;s product-moment correlation
-
-data:  condition and price
-t = 5, df = 20000, p-value = 9e-08
-alternative hypothesis: true correlation is not equal to 0
-95 percent confidence interval:
- 0.0230 0.0497
-sample estimates:
-   cor 
-0.0364 </code></pre>
 </div>
 <div id="e---linear-regression-with-lm-and-glm" class="section level3">
 <h3>E - Linear Regression with lm() and glm()</h3>
@@ -678,212 +221,33 @@ sample estimates:
 </ol>
 <pre class="r"><code>time_lm &lt;- lm(formula = XX ~ XX,
                  data = XX)</code></pre>
-<pre class="r"><code>time_lm &lt;- lm(formula = price ~ yr_built,
-                 data = kc_house)</code></pre>
 <ol start="2" style="list-style-type: decimal">
-<li>Print your <code>time_lm</code> object to see the main results.</li>
-</ol>
-<pre class="r"><code>time_lm</code></pre>
-<pre><code>
-Call:
-lm(formula = price ~ yr_built, data = kc_house)
-
-Coefficients:
-(Intercept)     yr_built  
-    -790478          675  </code></pre>
-<ol start="3" style="list-style-type: decimal">
-<li>Use the <code>tidy()</code> function (from the <code>broom</code> package) to return a dataframe containing the main results of the test.</li>
-</ol>
-<pre class="r"><code>tidy(time_lm)</code></pre>
-<pre><code># A tibble: 2 x 5
-  term        estimate std.error statistic  p.value
-  &lt;chr&gt;          &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt;
-1 (Intercept) -790478.  167350.      -4.72 2.33e- 6
-2 yr_built        675.      84.9      7.95 1.93e-15</code></pre>
-<ol start="4" style="list-style-type: decimal">
-<li>How does the p-value of this test compare to what you got in the previous question when you used <code>cor.test()</code>?</li>
-</ol>
-<pre class="r"><code># Same!</code></pre>
-<ol start="5" style="list-style-type: decimal">
-<li>Which of the variables <code>bedrooms</code>, <code>bathrooms</code>, and <code>sqft_living</code> predict housing price? Answer this by conducting the appropriate regression analysis using <code>lm()</code> and assigning the result to an object <code>price_lm</code>. Use the following template:</li>
+<li><p>Print your <code>time_lm</code> object to see the main results.</p></li>
+<li><p>Use the <code>tidy()</code> function (from the <code>broom</code> package) to return a dataframe containing the main results of the test.</p></li>
+<li><p>How does the p-value of this test compare to what you got in the previous question when you used <code>cor.test()</code>?</p></li>
+<li><p>Which of the variables <code>bedrooms</code>, <code>bathrooms</code>, and <code>sqft_living</code> predict housing price? Answer this by conducting the appropriate regression analysis using <code>lm()</code> and assigning the result to an object <code>price_lm</code>. Use the following template:</p></li>
 </ol>
 <pre class="r"><code>price_lm &lt;- lm(formula = XX ~ XX + XX + XX,
                data = XX)</code></pre>
-<pre class="r"><code>price_lm &lt;- lm(formula = price ~ bedrooms + bathrooms + sqft_living,
-               data = kc_house)</code></pre>
 <ol start="6" style="list-style-type: decimal">
-<li>Print your <code>price_lm</code> object to see the main results.</li>
-</ol>
-<pre class="r"><code>price_lm</code></pre>
-<pre><code>
-Call:
-lm(formula = price ~ bedrooms + bathrooms + sqft_living, data = kc_house)
-
-Coefficients:
-(Intercept)     bedrooms    bathrooms  sqft_living  
-      74847       -57861         7933          309  </code></pre>
-<ol start="7" style="list-style-type: decimal">
-<li>Apply the <code>summary()</code> function to <code>price_lm</code>. Do you see anything new or important?</li>
-</ol>
-<pre class="r"><code>summary(price_lm)</code></pre>
-<pre><code>
-Call:
-lm(formula = price ~ bedrooms + bathrooms + sqft_living, data = kc_house)
-
-Residuals:
-     Min       1Q   Median       3Q      Max 
--1642456  -144268   -22821   102461  4180678 
-
-Coefficients:
-             Estimate Std. Error t value Pr(&gt;|t|)    
-(Intercept)  74847.14    6913.67   10.83   &lt;2e-16 ***
-bedrooms    -57860.89    2334.61  -24.78   &lt;2e-16 ***
-bathrooms     7932.71    3510.56    2.26    0.024 *  
-sqft_living    309.39       3.09  100.23   &lt;2e-16 ***
----
-Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
-
-Residual standard error: 258000 on 21609 degrees of freedom
-Multiple R-squared:  0.507, Adjusted R-squared:  0.507 
-F-statistic: 7.41e+03 on 3 and 21609 DF,  p-value: &lt;2e-16</code></pre>
-<ol start="8" style="list-style-type: decimal">
-<li>Look at the names of the <code>price_lm</code> with <code>names()</code>. What are the named elements of the object?</li>
-</ol>
-<pre class="r"><code>names(price_lm)</code></pre>
-<pre><code> [1] &quot;coefficients&quot;  &quot;residuals&quot;     &quot;effects&quot;       &quot;rank&quot;         
- [5] &quot;fitted.values&quot; &quot;assign&quot;        &quot;qr&quot;            &quot;df.residual&quot;  
- [9] &quot;xlevels&quot;       &quot;call&quot;          &quot;terms&quot;         &quot;model&quot;        </code></pre>
-<ol start="9" style="list-style-type: decimal">
-<li>Using the <code>$</code> operator, print a vector of the estimated coefficients of the analysis.</li>
-</ol>
-<pre class="r"><code>price_lm$coefficients</code></pre>
-<pre><code>(Intercept)    bedrooms   bathrooms sqft_living 
-      74847      -57861        7933         309 </code></pre>
-<ol start="10" style="list-style-type: decimal">
-<li>Use the <code>tidy()</code> function (from the <code>broom</code> package) to return a dataframe containing the main results of the test.</li>
-</ol>
-<pre class="r"><code>tidy(price_lm)</code></pre>
-<pre><code># A tibble: 4 x 5
-  term        estimate std.error statistic   p.value
-  &lt;chr&gt;          &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;
-1 (Intercept)   74847.   6914.       10.8  3.05e- 27
-2 bedrooms     -57861.   2335.      -24.8  9.81e-134
-3 bathrooms      7933.   3511.        2.26 2.39e-  2
-4 sqft_living     309.      3.09    100.   0.       </code></pre>
-<ol start="11" style="list-style-type: decimal">
-<li>Use the <code>rsq()</code> function (from the <code>rsq</code> package) to obtain the R-squared value. Does this match what you saw in your previous outputs?</li>
-</ol>
-<pre class="r"><code>rsq(price_lm)</code></pre>
-<pre><code>[1] 0.507</code></pre>
-<ol start="12" style="list-style-type: decimal">
-<li>Using the following template, create a new model called <code>everything_lm</code> that predicts housing prices based on <em>all</em> predictors in <code>kc_house</code> <em>except</em> for <code>id</code> and <code>date</code> (<code>id</code> is meaningless and date shouldn’t matter). Use the following template. Note that to include all predictors, we’ll use the <code>formula = y ~.</code> shortcut. We’ll also remove id and date from the dataset using <code>select()</code> before running the analysis.</li>
+<li><p>Print your <code>price_lm</code> object to see the main results.</p></li>
+<li><p>Apply the <code>summary()</code> function to <code>price_lm</code>. Do you see anything new or important?</p></li>
+<li><p>Look at the names of the <code>price_lm</code> with <code>names()</code>. What are the named elements of the object?</p></li>
+<li><p>Using the <code>$</code> operator, print a vector of the estimated coefficients of the analysis.</p></li>
+<li><p>Use the <code>tidy()</code> function (from the <code>broom</code> package) to return a dataframe containing the main results of the test.</p></li>
+<li><p>Use the <code>rsq()</code> function (from the <code>rsq</code> package) to obtain the R-squared value. Does this match what you saw in your previous outputs?</p></li>
+<li><p>Using the following template, create a new model called <code>everything_lm</code> that predicts housing prices based on <em>all</em> predictors in <code>kc_house</code> <em>except</em> for <code>id</code> and <code>date</code> (<code>id</code> is meaningless and date shouldn’t matter). Use the following template. Note that to include all predictors, we’ll use the <code>formula = y ~.</code> shortcut. We’ll also remove id and date from the dataset using <code>select()</code> before running the analysis.</p></li>
 </ol>
 <pre class="r"><code>everything_lm &lt;- lm(formula = XX ~.,
                     data = kc_house %&gt;% 
                              select(-id, -date))</code></pre>
-<pre class="r"><code>everything_lm &lt;- lm(formula = price ~.,
-                    data = kc_house %&gt;% 
-                             select(-id, -date))</code></pre>
 <ol start="13" style="list-style-type: decimal">
-<li>Print your <code>everything_lm</code> object to see the main results.</li>
-</ol>
-<pre class="r"><code>everything_lm</code></pre>
-<pre><code>
-Call:
-lm(formula = price ~ ., data = kc_house %&gt;% select(-id, -date))
-
-Coefficients:
-  (Intercept)       bedrooms      bathrooms    sqft_living       sqft_lot  
-     6.69e+06      -3.58e+04       4.11e+04       1.50e+02       1.29e-01  
-       floors     waterfront           view      condition          grade  
-     6.69e+03       5.83e+05       5.29e+04       2.64e+04       9.59e+04  
-   sqft_above  sqft_basement       yr_built   yr_renovated        zipcode  
-     3.11e+01             NA      -2.62e+03       1.98e+01      -5.82e+02  
-          lat           long  sqft_living15     sqft_lot15  
-     6.03e+05      -2.15e+05       2.17e+01      -3.83e-01  </code></pre>
-<ol start="14" style="list-style-type: decimal">
-<li>Apply the <code>summary()</code> function to <code>everything_lm</code>. Do you see anything new or important?</li>
-</ol>
-<pre class="r"><code>summary(everything_lm)</code></pre>
-<pre><code>
-Call:
-lm(formula = price ~ ., data = kc_house %&gt;% select(-id, -date))
-
-Residuals:
-     Min       1Q   Median       3Q      Max 
--1291725   -99229    -9739    77583  4333222 
-
-Coefficients: (1 not defined because of singularities)
-               Estimate Std. Error t value Pr(&gt;|t|)    
-(Intercept)    6.69e+06   2.93e+06    2.28   0.0225 *  
-bedrooms      -3.58e+04   1.89e+03  -18.91  &lt; 2e-16 ***
-bathrooms      4.11e+04   3.25e+03   12.65  &lt; 2e-16 ***
-sqft_living    1.50e+02   4.39e+00   34.23  &lt; 2e-16 ***
-sqft_lot       1.29e-01   4.79e-02    2.68   0.0073 ** 
-floors         6.69e+03   3.60e+03    1.86   0.0628 .  
-waterfront     5.83e+05   1.74e+04   33.58  &lt; 2e-16 ***
-view           5.29e+04   2.14e+03   24.71  &lt; 2e-16 ***
-condition      2.64e+04   2.35e+03   11.22  &lt; 2e-16 ***
-grade          9.59e+04   2.15e+03   44.54  &lt; 2e-16 ***
-sqft_above     3.11e+01   4.36e+00    7.14  9.7e-13 ***
-sqft_basement        NA         NA      NA       NA    
-yr_built      -2.62e+03   7.27e+01  -36.06  &lt; 2e-16 ***
-yr_renovated   1.98e+01   3.66e+00    5.42  6.0e-08 ***
-zipcode       -5.82e+02   3.30e+01  -17.66  &lt; 2e-16 ***
-lat            6.03e+05   1.07e+04   56.15  &lt; 2e-16 ***
-long          -2.15e+05   1.31e+04  -16.35  &lt; 2e-16 ***
-sqft_living15  2.17e+01   3.45e+00    6.29  3.3e-10 ***
-sqft_lot15    -3.83e-01   7.33e-02   -5.22  1.8e-07 ***
----
-Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
-
-Residual standard error: 201000 on 21595 degrees of freedom
-Multiple R-squared:   0.7,  Adjusted R-squared:   0.7 
-F-statistic: 2.96e+03 on 17 and 21595 DF,  p-value: &lt;2e-16</code></pre>
-<ol start="15" style="list-style-type: decimal">
-<li>Using the <code>$</code> operator, print a vector of the estimated coefficients of the analysis. Are the beta values for bedrooms, bathrooms, and sqft_living different from what you got in your previous analysis <code>price_lm</code>?</li>
-</ol>
-<pre class="r"><code>everything_lm$coefficients</code></pre>
-<pre><code>  (Intercept)      bedrooms     bathrooms   sqft_living      sqft_lot 
-     6.69e+06     -3.58e+04      4.11e+04      1.50e+02      1.29e-01 
-       floors    waterfront          view     condition         grade 
-     6.69e+03      5.83e+05      5.29e+04      2.64e+04      9.59e+04 
-   sqft_above sqft_basement      yr_built  yr_renovated       zipcode 
-     3.11e+01            NA     -2.62e+03      1.98e+01     -5.82e+02 
-          lat          long sqft_living15    sqft_lot15 
-     6.03e+05     -2.15e+05      2.17e+01     -3.83e-01 </code></pre>
-<ol start="16" style="list-style-type: decimal">
-<li>Use the <code>tidy()</code> function to return a dataframe containing the main results of the test.</li>
-</ol>
-<pre class="r"><code>tidy(everything_lm)</code></pre>
-<pre><code># A tibble: 18 x 5
-   term              estimate    std.error statistic   p.value
-   &lt;chr&gt;                &lt;dbl&gt;        &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;
- 1 (Intercept)    6690325.    2931485.          2.28 2.25e-  2
- 2 bedrooms        -35767.       1892.        -18.9  4.46e- 79
- 3 bathrooms        41144.       3254.         12.6  1.60e- 36
- 4 sqft_living        150.          4.39       34.2  4.47e-250
- 5 sqft_lot             0.129       0.0479      2.68 7.29e-  3
- 6 floors            6690.       3596.          1.86 6.28e-  2
- 7 waterfront      582960.      17360.         33.6  5.01e-241
- 8 view             52871.       2140.         24.7  6.54e-133
- 9 condition        26386.       2351.         11.2  3.87e- 29
-10 grade            95890.       2153.         44.5  0.       
-11 sqft_above          31.1         4.36        7.14 9.71e- 13
-12 yr_built         -2620.         72.7       -36.1  1.39e-276
-13 yr_renovated        19.8         3.66        5.42 6.03e-  8
-14 zipcode           -582.         33.0       -17.7  2.78e- 69
-15 lat             602748.      10735.         56.1  0.       
-16 long           -214730.      13134.        -16.3  1.01e- 59
-17 sqft_living15       21.7         3.45        6.29 3.26e- 10
-18 sqft_lot15          -0.383       0.0733     -5.22 1.78e-  7</code></pre>
-<ol start="17" style="list-style-type: decimal">
-<li>Use the <code>rsq()</code> function (from the <code>rsq</code> package) to obtain the R-squared value. How does this R-squared value compare to what you got in your previous regression <code>price_lm</code>?</li>
-</ol>
-<pre class="r"><code>rsq(everything_lm)</code></pre>
-<pre><code>[1] 0.7</code></pre>
-<ol start="18" style="list-style-type: decimal">
-<li>How well did the <code>everything_lm</code> model fit the actual housing prices? We can answer this by calculating the average difference between the fitted values and the true values directly. Using the following template, make this calculation. What do you find is the mean absolute difference between the fitted housing prices and the true prices?</li>
+<li><p>Print your <code>everything_lm</code> object to see the main results.</p></li>
+<li><p>Apply the <code>summary()</code> function to <code>everything_lm</code>. Do you see anything new or important?</p></li>
+<li><p>Using the <code>$</code> operator, print a vector of the estimated coefficients of the analysis. Are the beta values for bedrooms, bathrooms, and sqft_living different from what you got in your previous analysis <code>price_lm</code>?</p></li>
+<li><p>Use the <code>tidy()</code> function to return a dataframe containing the main results of the test.</p></li>
+<li><p>Use the <code>rsq()</code> function (from the <code>rsq</code> package) to obtain the R-squared value. How does this R-squared value compare to what you got in your previous regression <code>price_lm</code>?</p></li>
+<li><p>How well did the <code>everything_lm</code> model fit the actual housing prices? We can answer this by calculating the average difference between the fitted values and the true values directly. Using the following template, make this calculation. What do you find is the mean absolute difference between the fitted housing prices and the true prices?</p></li>
 </ol>
 <pre class="r"><code># True housing prices
 prices_true &lt;- kc_house$XX
@@ -899,21 +263,6 @@ mae &lt;- mean(XX)
 
 # Print the result!
 mae</code></pre>
-<pre class="r"><code># True housing prices
-prices_true &lt;- kc_house$price
-
-# Model fits (fitted.values)
-prices_fitted &lt;- everything_lm$fitted.values
-
-# Calculate absolute error between fitted and true values
-abs_error &lt;- abs(prices_true - prices_fitted)
-
-# Calculate mean absolute error
-mae &lt;- mean(abs_error)
-
-# Print the result!
-mae</code></pre>
-<pre><code>[1] 125923</code></pre>
 <ol start="19" style="list-style-type: decimal">
 <li>Using the following template, create a scatterplot showing the relationship between the fitted values of the <code>everything_lm</code> object and the true prices.</li>
 </ol>
@@ -932,22 +281,6 @@ ggplot(data = prices_results,
        x = &quot;Fitted housing price values&quot;,
        y = &#39;True values&#39;) + 
   theme_minimal()</code></pre>
-<pre class="r"><code># Create dataframe containing fitted and true prices
-prices_results &lt;- tibble(truth = kc_house$price,
-                         fitted = everything_lm$fitted.values)
-
-# Create scatterplot
-ggplot(data = prices_results,
-       aes(x = fitted, y = truth)) + 
-  geom_point(alpha = .1) +
-  geom_smooth(method = &#39;lm&#39;) +
-  labs(title = &quot;Fitted versus Predicted housing prices&quot;,
-       subtitle = paste0(&quot;Mean Absolute Error = &quot;, mae),
-       caption = &quot;Source: King County housing price Kaggle dataset&quot;,
-       x = &quot;Fitted housing price values&quot;,
-       y = &#39;True values&#39;) + 
-  theme_minimal()</code></pre>
-<p><img src="StatisticsII_practical_files/figure-html/unnamed-chunk-53-1.png" width="576" style="display: block; margin: auto;" /></p>
 </div>
 <div id="f---logistic-regression-with-glmfamily-binomial" class="section level3">
 <h3>F - Logistic regression with glm(family = ‘binomial’)</h3>
@@ -970,83 +303,13 @@ kc_house &lt;- kc_house %&gt;%
 million_glm &lt;- glm(formula = XX ~ XX + XX + XX + XX + XX,
                    data = kc_house,
                    family = &quot;XX&quot;)</code></pre>
-<pre class="r"><code>million_glm &lt;- glm(formula = million ~ bedrooms + bathrooms + floors + waterfront + yr_built,
-                   family = &quot;binomial&quot;,   # Logistic regression
-                   data = kc_house)</code></pre>
 <ol start="3" style="list-style-type: decimal">
-<li>Print your <code>million_glm</code> object to see the main results.</li>
-</ol>
-<pre class="r"><code>million_glm</code></pre>
-<pre><code>
-Call:  glm(formula = million ~ bedrooms + bathrooms + floors + waterfront + 
-    yr_built, family = &quot;binomial&quot;, data = kc_house)
-
-Coefficients:
-(Intercept)     bedrooms    bathrooms       floors   waterfront  
-    27.9298       0.0952       2.0412       0.4253       3.2701  
-   yr_built  
-    -0.0187  
-
-Degrees of Freedom: 21612 Total (i.e. Null);  21607 Residual
-Null Deviance:      10700 
-Residual Deviance: 7390     AIC: 7400</code></pre>
-<ol start="4" style="list-style-type: decimal">
-<li>Apply the <code>summary()</code> function to <code>million_glm</code>.</li>
-</ol>
-<pre class="r"><code>summary(million_glm)</code></pre>
-<pre><code>
-Call:
-glm(formula = million ~ bedrooms + bathrooms + floors + waterfront + 
-    yr_built, family = &quot;binomial&quot;, data = kc_house)
-
-Deviance Residuals: 
-   Min      1Q  Median      3Q     Max  
--3.918  -0.308  -0.218  -0.114   4.094  
-
-Coefficients:
-            Estimate Std. Error z value Pr(&gt;|z|)    
-(Intercept) 27.92982    2.15221   12.98  &lt; 2e-16 ***
-bedrooms     0.09524    0.03452    2.76   0.0058 ** 
-bathrooms    2.04122    0.05496   37.14  &lt; 2e-16 ***
-floors       0.42525    0.06898    6.16  7.1e-10 ***
-waterfront   3.27013    0.21185   15.44  &lt; 2e-16 ***
-yr_built    -0.01867    0.00112  -16.74  &lt; 2e-16 ***
----
-Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
-
-(Dispersion parameter for binomial family taken to be 1)
-
-    Null deviance: 10714.3  on 21612  degrees of freedom
-Residual deviance:  7391.1  on 21607  degrees of freedom
-AIC: 7403
-
-Number of Fisher Scoring iterations: 7</code></pre>
-<ol start="5" style="list-style-type: decimal">
-<li>Using the <code>$</code> operator, print a vector of the estimated beta values (coefficients) of the analysis.</li>
-</ol>
-<pre class="r"><code>million_glm$coefficients</code></pre>
-<pre><code>(Intercept)    bedrooms   bathrooms      floors  waterfront    yr_built 
-    27.9298      0.0952      2.0412      0.4253      3.2701     -0.0187 </code></pre>
-<ol start="6" style="list-style-type: decimal">
-<li>Use the <code>tidy()</code> function to return a dataframe containing the main results of the test.</li>
-</ol>
-<pre class="r"><code>tidy(million_glm)</code></pre>
-<pre><code># A tibble: 6 x 5
-  term        estimate std.error statistic   p.value
-  &lt;chr&gt;          &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;
-1 (Intercept)  27.9      2.15        13.0  1.65e- 38
-2 bedrooms      0.0952   0.0345       2.76 5.80e-  3
-3 bathrooms     2.04     0.0550      37.1  6.00e-302
-4 floors        0.425    0.0690       6.16 7.06e- 10
-5 waterfront    3.27     0.212       15.4  9.35e- 54
-6 yr_built     -0.0187   0.00112    -16.7  7.17e- 63</code></pre>
-<ol start="7" style="list-style-type: decimal">
-<li>You can get the fitted probability predictions that each house will sell for more than 1 Million by accessing the vector <code>million_glm$fitted.values</code>. Using this vector, calculate the average probability that houses will sell for more than 1 Million (hint: just take the mean!)</li>
-</ol>
-<pre class="r"><code>mean(million_glm$fitted.values)</code></pre>
-<pre><code>[1] 0.0678</code></pre>
-<ol start="8" style="list-style-type: decimal">
-<li>Using the following code, create a data frame showing the relationship between the fitted probability that a house sells for over 1 Million and the true probability:</li>
+<li><p>Print your <code>million_glm</code> object to see the main results.</p></li>
+<li><p>Apply the <code>summary()</code> function to <code>million_glm</code>.</p></li>
+<li><p>Using the <code>$</code> operator, print a vector of the estimated beta values (coefficients) of the analysis.</p></li>
+<li><p>Use the <code>tidy()</code> function to return a dataframe containing the main results of the test.</p></li>
+<li><p>You can get the fitted probability predictions that each house will sell for more than 1 Million by accessing the vector <code>million_glm$fitted.values</code>. Using this vector, calculate the average probability that houses will sell for more than 1 Million (hint: just take the mean!)</p></li>
+<li><p>Using the following code, create a data frame showing the relationship between the fitted probability that a house sells for over 1 Million and the true probability:</p></li>
 </ol>
 <pre class="r"><code># Just run it!
 
@@ -1057,28 +320,6 @@ million_fit &lt;- tibble(pred_million = million_glm$fitted.values,
                 summarise(true_prob = mean(true_million))
 
 million_fit</code></pre>
-<pre class="r"><code># Just run it!
-
-million_fit &lt;- tibble(pred_million = million_glm$fitted.values,
-                      true_million = kc_house$million) %&gt;%
-                mutate(fitted_cut = cut(pred_million, breaks = seq(0, 1, .1))) %&gt;%
-                group_by(fitted_cut) %&gt;%
-                summarise(true_prob = mean(true_million))
-
-million_fit</code></pre>
-<pre><code># A tibble: 10 x 2
-   fitted_cut true_prob
-   &lt;fct&gt;          &lt;dbl&gt;
- 1 (0,0.1]       0.0231
- 2 (0.1,0.2]     0.192 
- 3 (0.2,0.3]     0.292 
- 4 (0.3,0.4]     0.387 
- 5 (0.4,0.5]     0.562 
- 6 (0.5,0.6]     0.518 
- 7 (0.6,0.7]     0.550 
- 8 (0.7,0.8]     0.673 
- 9 (0.8,0.9]     0.574 
-10 (0.9,1]       0.837 </code></pre>
 <ol start="9" style="list-style-type: decimal">
 <li>Now plot the results using the following code:</li>
 </ol>
@@ -1093,18 +334,6 @@ ggplot(million_fit,
        subtitle = &quot;Using logistic regression with glm(family = &#39;binomial&#39;)&quot;) +
   scale_y_continuous(limits = c(0, 1)) +
   guides(col = FALSE)</code></pre>
-<pre class="r"><code># Just run it!
-
-ggplot(million_fit, 
-       aes(x = fitted_cut, y = true_prob, col = as.numeric(fitted_cut))) + 
-  geom_point(size = 2) +
-  labs(x = &quot;Fitted Probability&quot;,
-       y = &quot;True Probability&quot;,
-       title = &quot;Predicting the probability of a 1 Million house&quot;,
-       subtitle = &quot;Using logistic regression with glm(family = &#39;binomial&#39;)&quot;) +
-  scale_y_continuous(limits = c(0, 1)) +
-  guides(col = FALSE)</code></pre>
-<p><img src="StatisticsII_practical_files/figure-html/unnamed-chunk-65-1.png" width="576" style="display: block; margin: auto;" /></p>
 </div>
 <div id="g---using-predict-to-predict-new-values" class="section level3">
 <h3>G - Using predict() to predict new values</h3>
@@ -1124,71 +353,13 @@ DonaldsHouse &lt;- tibble(waterfront = X,
 # Predict the hear of donald&#39;s house
 predict(object = year_lm, 
         newdata = DonaldsHouse)</code></pre>
-<pre class="r"><code># Create regression model predicting year (yr_built)
-year_lm &lt;- lm(formula = yr_built ~ waterfront + bedrooms + floors + condition,
-              data = kc_house)
-
-# Define Donald&#39;s House
-DonaldsHouse &lt;- tibble(waterfront = 1,
-                       bedrooms = 3,
-                       floors = 2,
-                       condition = 4)
-
-# Predict the hear of donald&#39;s house
-predict(object = year_lm, 
-        newdata = DonaldsHouse)</code></pre>
-<pre><code>   1 
-1964 </code></pre>
 </div>
 <div id="x---advanced" class="section level3">
 <h3>X - Advanced</h3>
 <ol style="list-style-type: decimal">
-<li>Which variables in the dataset significantly predict the grade of a house? Answer this with a regression analysis.</li>
-</ol>
-<pre class="r"><code>grade_lm &lt;- lm(formula = grade ~ .,
-               data = kc_house %&gt;%
-                 select(-id, -date))
-
-
-tidy(grade_lm)</code></pre>
-<pre><code># A tibble: 19 x 5
-   term          estimate    std.error statistic   p.value
-   &lt;chr&gt;            &lt;dbl&gt;        &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;
- 1 (Intercept)   -1.10e+2 8.84          -12.4    2.15e- 35
- 2 price          8.77e-7 0.0000000239   36.7    1.66e-286
- 3 bedrooms      -7.26e-2 0.00575       -12.6    2.02e- 36
- 4 bathrooms      7.35e-2 0.00987         7.45   9.51e- 14
- 5 sqft_living    2.14e-4 0.0000135      15.8    3.61e- 56
- 6 sqft_lot       2.97e-7 0.000000145     2.05   4.06e-  2
- 7 floors         1.29e-1 0.0109         11.9    2.04e- 32
- 8 waterfront    -6.91e-1 0.0537        -12.9    1.11e- 37
- 9 view           2.97e-2 0.00658         4.52   6.20e-  6
-10 condition      3.22e-3 0.00714         0.451  6.52e-  1
-11 sqft_above     2.39e-4 0.0000131      18.2    1.09e- 73
-12 yr_built       9.15e-3 0.000218       42.1    0.       
-13 yr_renovated   3.86e-5 0.0000111       3.49   4.82e-  4
-14 zipcode        2.05e-5 0.000101        0.204  8.39e-  1
-15 lat            2.24e-1 0.0353          6.34   2.29e- 10
-16 long          -6.93e-1 0.0397        -17.4    1.50e- 67
-17 sqft_living15  4.00e-4 0.0000101      39.7    0.       
-18 sqft_lot15    -4.94e-7 0.000000222    -2.23   2.61e-  2
-19 millionTRUE    1.04e-3 0.0247          0.0420 9.66e-  1</code></pre>
-<ol start="2" style="list-style-type: decimal">
-<li>Is there an interaction between waterfront and year built (<code>yr_built</code>) on price? In other words, is the relationship between year built and price the same for homes on the waterfront and homes not on the waterfront? Answer this by conducting the appropriate regression analysis and interpret the results. Note: to include an interaction in a model, use the formula <code>y ~ X1 * X2</code> instead of <code>y ~ X1 + X2</code>.</li>
-</ol>
-<pre class="r"><code>int_lm &lt;- lm(formula = price ~ yr_built * waterfront,
-             data = kc_house)
-
-tidy(int_lm)</code></pre>
-<pre><code># A tibble: 4 x 5
-  term                  estimate std.error statistic  p.value
-  &lt;chr&gt;                    &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt;
-1 (Intercept)           -777635.  161032.      -4.83 1.38e- 6
-2 yr_built                  664.      81.7      8.13 4.49e-16
-3 waterfront          -27465838. 1950333.     -14.1  7.67e-45
-4 yr_built:waterfront     14577.     994.      14.7  1.79e-48</code></pre>
-<ol start="3" style="list-style-type: decimal">
-<li>How well can a regression analysis based on houses sold in 2014 predict housing costs in the 2015? To answer this we’ll create a regression model based on houses sold in 2014 and then use that model to predict the prices of houses sold in 2015. To start, we’ll need to create two new dataframes <code>kc_house_2014</code> and <code>kc_house_2015</code>. Run the code in the following chunk to do this.</li>
+<li><p>Which variables in the dataset significantly predict the grade of a house? Answer this with a regression analysis.</p></li>
+<li><p>Is there an interaction between waterfront and year built (<code>yr_built</code>) on price? In other words, is the relationship between year built and price the same for homes on the waterfront and homes not on the waterfront? Answer this by conducting the appropriate regression analysis and interpret the results. Note: to include an interaction in a model, use the formula <code>y ~ X1 * X2</code> instead of <code>y ~ X1 + X2</code>.</p></li>
+<li><p>How well can a regression analysis based on houses sold in 2014 predict housing costs in the 2015? To answer this we’ll create a regression model based on houses sold in 2014 and then use that model to predict the prices of houses sold in 2015. To start, we’ll need to create two new dataframes <code>kc_house_2014</code> and <code>kc_house_2015</code>. Run the code in the following chunk to do this.</p></li>
 </ol>
 <pre class="r"><code># Just run it!
 
@@ -1207,29 +378,13 @@ kc_house_2014 &lt;- kc_house %&gt;%
 kc_house_2015 &lt;- kc_house %&gt;%
   filter(year_sold == 2015)</code></pre>
 <ol start="4" style="list-style-type: decimal">
-<li>Create a regression model called <code>price_2014_lm</code> that models housing prices in 2014 using only the <code>kc_house_2014</code> data. Note that you may wish to exclude some variables such as <code>id</code>, <code>date</code>, <code>million</code> and <code>year_sold</code>.</li>
+<li><p>Create a regression model called <code>price_2014_lm</code> that models housing prices in 2014 using only the <code>kc_house_2014</code> data. Note that you may wish to exclude some variables such as <code>id</code>, <code>date</code>, <code>million</code> and <code>year_sold</code>.</p></li>
+<li><p>Create a regression model called <code>price_2015_lm</code> that models housing prices in 2015 using only the <code>kc_house_2015</code> data. Include the same exclusion and transformation criterion you used in the previous question.</p></li>
+<li><p>Explore and compare the two models, do they look very similar? Very different?</p></li>
+<li><p>Calculate the mean absolute error of each model applied to the dataset in which they were created. That is, what was the mean absolute fitted error of each model?</p></li>
+<li><p>Using <code>predict()</code>, predict the 2015 housing data based on the <code>price_2014_lm</code> model.</p></li>
+<li><p>Calculate the mean absolute error of the <code>price_2014_lm</code> model when applied to the 2015 data. How different was the mean error compared to the mean fitting error of the <code>price_2015_lm</code> model?</p></li>
 </ol>
-<pre class="r"><code># on your own!</code></pre>
-<ol start="5" style="list-style-type: decimal">
-<li>Create a regression model called <code>price_2015_lm</code> that models housing prices in 2015 using only the <code>kc_house_2015</code> data. Include the same exclusion and transformation criterion you used in the previous question.</li>
-</ol>
-<pre class="r"><code># on your own!</code></pre>
-<ol start="6" style="list-style-type: decimal">
-<li>Explore and compare the two models, do they look very similar? Very different?</li>
-</ol>
-<pre class="r"><code># on your own!</code></pre>
-<ol start="7" style="list-style-type: decimal">
-<li>Calculate the mean absolute error of each model applied to the dataset in which they were created. That is, what was the mean absolute fitted error of each model?</li>
-</ol>
-<pre class="r"><code># on your own!</code></pre>
-<ol start="8" style="list-style-type: decimal">
-<li>Using <code>predict()</code>, predict the 2015 housing data based on the <code>price_2014_lm</code> model.</li>
-</ol>
-<pre class="r"><code># on your own!</code></pre>
-<ol start="9" style="list-style-type: decimal">
-<li>Calculate the mean absolute error of the <code>price_2014_lm</code> model when applied to the 2015 data. How different was the mean error compared to the mean fitting error of the <code>price_2015_lm</code> model?</li>
-</ol>
-<pre class="r"><code># on your own!</code></pre>
 </div>
 <div id="generating-random-samples-from-distributions" class="section level3">
 <h3>Generating random samples from distributions</h3>
@@ -1249,58 +404,10 @@ sd(XX)
 
 t.test(x = XX,   # Vector of values
        mu = XX)  # Mean under null hypothesis</code></pre>
-<pre class="r"><code># Generate 100 samples from a Normal distribution with mean = 100 and sd = 5
-samp_100 &lt;- rnorm(n = 100, mean = 10, sd = 5)
-
-# Print result
-samp_100</code></pre>
-<pre><code>  [1]  3.745  8.766 20.872 11.818  1.136 11.168  7.453  7.240  7.918 14.046
- [11]  4.657  6.562 11.408  9.434 10.639 10.618 12.200  5.951 12.608 13.038
- [21]  7.743 13.225 10.719  7.757  8.813  2.358  6.502 11.395  4.590  5.166
- [31] 15.151 12.906 13.201 19.248  9.358  7.681 12.255  4.182  9.763  8.503
- [41] 20.635 12.111 10.048 10.662 18.059  8.033  3.037  7.762 10.262  2.597
- [51] 16.728 17.794  9.565  8.248 19.914  1.109  4.320  6.464  5.751  5.180
- [61]  5.828 -0.741  9.130  5.874 10.410 14.149  5.637  2.676 13.212 12.575
- [71] 19.620  3.900 17.929  5.327 11.305  2.265  7.149 16.453 13.661  7.471
- [81]  9.362  2.589 16.370  3.234 12.092 13.688 10.591 10.883  8.415  8.205
- [91] 13.816  0.742 10.221 13.239 14.003 13.222 11.083 12.851 10.428  5.295</code></pre>
-<pre class="r"><code># Calcultae sample mean and standard deviation.
-mean(samp_100)</code></pre>
-<pre><code>[1] 9.64</code></pre>
-<pre class="r"><code>sd(samp_100)</code></pre>
-<pre><code>[1] 4.8</code></pre>
-<pre class="r"><code>t.test(x = samp_100,   # Vector of values
-       mu = 10)  # Mean under null hypothesis</code></pre>
-<pre><code>
-    One Sample t-test
-
-data:  samp_100
-t = -0.7, df = 100, p-value = 0.5
-alternative hypothesis: true mean is not equal to 10
-95 percent confidence interval:
-  8.69 10.59
-sample estimates:
-mean of x 
-     9.64 </code></pre>
 <ol start="12" style="list-style-type: decimal">
 <li><p>Repeat the previous block of code several times and look at how the output changes. How do the p-values change when you keep drawing random samples?</p></li>
 <li><p>Change the mean under the null hypothesis to 15 instead of 10 and run the code again several times. What happens to the p-values?</p></li>
-</ol>
-<pre class="r"><code>t.test(x = samp_100,   # Vector of values
-       mu = 15)  # Mean under null hypothesis</code></pre>
-<pre><code>
-    One Sample t-test
-
-data:  samp_100
-t = -10, df = 100, p-value &lt;2e-16
-alternative hypothesis: true mean is not equal to 15
-95 percent confidence interval:
-  8.69 10.59
-sample estimates:
-mean of x 
-     9.64 </code></pre>
-<ol start="14" style="list-style-type: decimal">
-<li>Look at the code below. As you can see, I generate 4 variables x1, x2, x3 and noise. I then create a dependent variable y that is a function of these variables. Finally, I conduct a regression analysis. <em>Before you run the code</em>, what do you expect the value of the <code>coefficients</code> of the regression equation will be? Test your prediction by running the code and exploring the <code>my_lm</code> object.</li>
+<li><p>Look at the code below. As you can see, I generate 4 variables x1, x2, x3 and noise. I then create a dependent variable y that is a function of these variables. Finally, I conduct a regression analysis. <em>Before you run the code</em>, what do you expect the value of the <code>coefficients</code> of the regression equation will be? Test your prediction by running the code and exploring the <code>my_lm</code> object.</p></li>
 </ol>
 <pre class="r"><code># Generate independent variables
 x1 &lt;- rnorm(n = 100, mean = 10, sd = 1)
@@ -1322,39 +429,272 @@ my_lm &lt;- lm(formula = y ~ x1 + x2 + x3,
 <ol start="15" style="list-style-type: decimal">
 <li>Adjust the code above so that the coefficients for the regression equation will be (close to) <code>(Intercept) = -50</code>, <code>x1 = -3</code>, <code>x2 = 10</code>, <code>x3 = 15</code></li>
 </ol>
-<pre class="r"><code># Generate independent variables
-x1 &lt;- rnorm(n = 100, mean = 10, sd = 1)
-x2 &lt;- rnorm(n = 100, mean = 20, sd = 10)
-x3 &lt;- rnorm(n = 100, mean = -5, sd = 5)
-
-# Generate noise
-noise &lt;- rnorm(n = 100, mean = 0, sd = 1)
-
-# Create dependent variable
-y &lt;- -3 * x1 + 10 * x2 + 15 * x3 + -50 + noise
-
-# Combine all into a tibble
-my_data &lt;- tibble(x1, x2, x3, y)
-
-# Calculate my_lm
-my_lm &lt;- lm(formula = y ~ x1 + x2 + x3,
-              data = my_data)
-
-my_lm</code></pre>
-<pre><code>
-Call:
-lm(formula = y ~ x1 + x2 + x3, data = my_data)
-
-Coefficients:
-(Intercept)           x1           x2           x3  
-     -49.24        -3.02         9.98        14.99  </code></pre>
 </div>
-<div id="additional-resources" class="section level2">
-<h2>Additional Resources</h2>
+</div>
+<div id="examples" class="section level2">
+<h2>Examples</h2>
+<pre class="r"><code># Examples of regression models on the diamonds dataset -------------
+
+library(tidyverse)
+library(broom)
+library(BayesFactor)
+library(lme4)
+
+# First few rows of the diamonds data
+
+diamonds
+
+# Regression ----------------------------
+
+# Q: Run regression predicting price by carat and depth
+
+price_lm &lt;- lm(formula = price ~ carat + depth,
+               data = diamonds)
+
+# Print coefficients
+price_lm$coefficients
+
+# Regular summary
+summary(price_lm)
+
+# Tidy version
+tidy(price_lm)
+
+
+# Q: Run regression predicting price by carat and depth and their interaction
+
+price_lm &lt;- lm(formula = price ~ carat * depth,
+               data = diamonds)
+
+# Print coefficients
+price_lm$coefficients
+
+# Regular summary
+summary(price_lm)
+
+# Tidy version
+tidy(price_lm)
+
+
+# ANOVA ----------------------------
+
+# Q: Run ANOVA predicting price by color and cut
+
+# transform to factor
+dimaonds$cut = as.factor(dimaonds$cut)
+dimaonds$color = as.factor(dimaonds$color)
+
+# Run model
+price_lm &lt;- lm(formula = price ~ cut + color,
+               data = diamonds)
+
+# Print coefficients
+price_lm$coefficients
+
+# Regular summary
+summary(price_lm)
+
+# Tidy version
+tidy(price_lm)
+
+# ANOVA version
+anova(price_lm)
+
+# Mixed-effects regression ----------------------------
+
+# Q: Run mixed-effect regression predicting carat and depth with the impact of carat varying across color.
+
+# Run model
+price_lme &lt;- lmer(formula = price ~ carat + depth + (1 + carat|color),
+                  data = diamonds)
+
+# Regular summary
+summary(price_lme)
+
+
+# Bayesian regression ----------------------------
+
+# Q: Run Bayesian regression predicting carat and depth
+
+# Run model
+price_Blm &lt;- regressionBF(formula = price ~ carat + depth,
+                  data = diamonds)
+
+# Regular summary
+price_Blm</code></pre>
+</div>
+<div id="datasets" class="section level2">
+<h2>Datasets</h2>
+<table style="width:89%;">
+<colgroup>
+<col width="8%" />
+<col width="9%" />
+<col width="11%" />
+<col width="59%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="left">File</th>
+<th align="left">Rows</th>
+<th align="left">Columns</th>
+<th align="left">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left"><a href="https://raw.githubusercontent.com/therbootcamp/Intro2R_Unibe/master/_sessions/_StatisticsII/1_Data/gap.csv">gap.csv</a></td>
+<td align="left">417</td>
+<td align="left">9</td>
+<td align="left">Country statistics from 1997, 2002, and 2007 from the Gapminder Foundation.</td>
+</tr>
+</tbody>
+</table>
+<p>The Gapminder Foundation is a non-profit venture registered in Stockholm, Sweden, that promotes sustainable global development and achievement of the United Nations Millennium Development Goals by increased use and understanding of statistics and other information about social, economic and environmental development at local, national and global levels (see <a href="https://www.gapminder.org">Gapminder.org</a>). The present dataset is an excerpt of their database holding data from three years on economic and health variables of 139 countries.</p>
+<table>
+<thead>
+<tr class="header">
+<th align="left">File</th>
+<th align="left">Rows</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">country</td>
+<td align="left">country name</td>
+</tr>
+<tr class="even">
+<td align="left">continent</td>
+<td align="left">country’s continent</td>
+</tr>
+<tr class="odd">
+<td align="left">year</td>
+<td align="left">measurement year</td>
+</tr>
+<tr class="even">
+<td align="left">lifeExp</td>
+<td align="left">life expectancy at birth, in years</td>
+</tr>
+<tr class="odd">
+<td align="left">pop</td>
+<td align="left">country’s population</td>
+</tr>
+<tr class="even">
+<td align="left">gdpPercap</td>
+<td align="left">country’s GDP per capita (US$)</td>
+</tr>
+<tr class="odd">
+<td align="left">childMort</td>
+<td align="left">child mortality (0-5 year-olds dying per 1,000 born)</td>
+</tr>
+<tr class="even">
+<td align="left">co2Emit</td>
+<td align="left">CO2 emissions (tonnes per person)</td>
+</tr>
+<tr class="odd">
+<td align="left">healthExp</td>
+<td align="left">Government health spending per person (international $)</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="functions" class="section level2">
+<h2>Functions</h2>
+<div id="packages" class="section level3">
+<h3>Packages</h3>
+<table>
+<thead>
+<tr class="header">
+<th align="left">Package</th>
+<th align="left">Installation</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left"><code>tidyverse</code></td>
+<td align="left"><code>install.packages(&quot;tidyverse&quot;)</code></td>
+</tr>
+<tr class="even">
+<td align="left"><code>broom</code></td>
+<td align="left"><code>install.packages(&quot;broom&quot;)</code></td>
+</tr>
+<tr class="odd">
+<td align="left"><code>lme4</code></td>
+<td align="left"><code>install.packages(&quot;lme4&quot;)</code></td>
+</tr>
+<tr class="even">
+<td align="left"><code>BayesFactor</code></td>
+<td align="left"><code>install.packages(&quot;BayesFactor&quot;)</code></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="functions-1" class="section level3">
+<h3>Functions</h3>
+<p><em>Model functions</em></p>
+<table>
+<thead>
+<tr class="header">
+<th align="left">Function</th>
+<th align="left">Package</th>
+<th align="left">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left"><code>|    | | |</code></td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr class="even">
+<td align="left"><code>glm()</code>, <code>lm()</code></td>
+<td align="left">Generalized linear model and linear model</td>
+<td align="left"></td>
+</tr>
+</tbody>
+</table>
+<p><em>Inspect models</em></p>
+<table>
+<thead>
+<tr class="header">
+<th align="left">Function</th>
+<th align="left">Package</th>
+<th align="left">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left"><code>summary()</code></td>
+<td align="left"><code>base</code></td>
+<td align="left"></td>
+</tr>
+<tr class="even">
+<td align="left"><code>tidy()</code></td>
+<td align="left"><code>broom</code></td>
+<td align="left"></td>
+</tr>
+<tr class="odd">
+<td align="left"><code>predict()</code></td>
+<td align="left"><code>stats</code></td>
+<td align="left">Predict</td>
+</tr>
+<tr class="even">
+<td align="left"><code>names()</code></td>
+<td align="left"><code>base</code></td>
+<td align="left">Print names of model contents.</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div id="resources" class="section level2">
+<h2>Resources</h2>
+<div id="documentations" class="section level3">
+<h3>Documentations</h3>
 <ul>
 <li><p>For more advanced mixed level ANOVAs with random effects, consult the <code>afex</code> and <code>lmer</code> packages.</p></li>
 <li><p>To do Bayesian versions of common hypothesis tests, try using the <code>BayesFactor</code> package. <a href="https://cran.r-project.org/web/packages/BayesFactor/vignettes/manual.html">BayesFactor Guide Link</a></p></li>
 </ul>
+</div>
 </div>
 </div>
 

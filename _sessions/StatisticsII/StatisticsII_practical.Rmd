@@ -37,9 +37,10 @@ knitr::opts_chunk$set(comment = NA,
                       fig.width = 6, 
                       fig.height = 6,
                       fig.align = 'center',
-                      echo = TRUE, 
-                      eval = TRUE, 
-                      warning = FALSE)
+                      echo = FALSE, 
+                      eval = FALSE, 
+                      warning = FALSE,
+                      message = FALSE)
 
 options(digits = 3)
 ```
@@ -56,9 +57,9 @@ options(digits = 3)
 
 In this practical you'll do basic statistics in R. By the end of this practical you will know how to:
 
-1. Calculate regression analyses with `glm()` and `lm()`
-2. Explore statistical objects with `names()`, `summary()`, `print()`, `predict()`
-3. Run mixed-model and Bayesian regressions using the `lme4` and `BayesFactor` packages
+1. Calculate regression analyses with `glm()` and `lm()`.
+2. Explore statistical objects with `names()`, `summary()`, `print()`, `predict()`.
+3. Run mixed-model and Bayesian regressions using the `lme4` and `BayesFactor` packages.
 
 
 ## Tasks
@@ -77,219 +78,63 @@ gap <- read_csv("1_Data/gap.csv")
 
 ### A - Getting setup
 
-1. Open your `baselrbootcamp` R project. It should already have the folders `1_Data` and `2_Code`. Make sure that all of the data files listed above are contained in the `1_Data` folder
+1. Open your `BernRBootcamp` R project. It should already have the folders `1_Data` and `2_Code`. Make sure that all of the data files listed in the `Datasets` section are contained in the `1_Data` folder.
 
 ```{r}
 # Done!
 ```
 
-2. Open a new R script and save it as a new file called `statistics_practical.R` in the `2_Code` folder. At the top of the script, using comments, write your name and the date. The, load the set of packages listed above with `library()`.
+2. Open a new R script and save it as a new file called `statisticsII_practical.R` in the `2_Code` folder. At the top of the script, using comments, write your name and the date. The, load the set of packages listed in the `Functions` section with `library()`.
 
-3. For this practical, we'll use the `kc_house.csv` data. This dataset contains house sale prices for King County, Washington. It includes homes sold between May 2014 and May 2015. Using the following template, load the data into R and store it as a new object called `kc_house`.
+3. For this practical, we'll use the `gap.csv` data. This dataset contains data from three years on economic and health variables of 139 countries. Using the following template, load the data into R and store it as a new object called `kc_house`.
 
-```{r, echo = TRUE, eval = FALSE, message = FALSE, warning = FALSE}
-kc_house <- read_csv(file = "XX")
+```{r, echo = TRUE, eval = FALSE}
+gap <- read_csv(file = "XX")
 ```
 
-```{r, eval = FALSE}
-kc_house <- read_csv(file = "1_Data/kc_house.csv")
+```{r}
+gap <- read_csv(file = "1_Data/gap.csv")
 ```
 
 4. Using `print()`, `summary()`, and `head()`, explore the data to make sure it was loaded correctly.
 
 ```{r}
-kc_house
-summary(kc_house)
-head(kc_house)
+gap
+summary(gap)
+head(gap)
 ```
 
+### B - Regression models with `lm()`
 
-### B - Descriptive statistics
-
-1. What was the mean price (`price`) of all houses?
-
-```{r}
-mean(kc_house$price)
-```
-
-2. What was the median price (`price`) of all houses?
-
-```{r}
-median(kc_house$price)
-```
-
-3. What was the standard deviation price (`price`) of all houses?
-
-```{r}
-sd(kc_house$price)
-```
-
-4. What were the minimum and maximum prices? Try using `min()`, `max()`, and `range()`
-
-```{r}
-range(kc_house$price)
-```
-
-5. How many houses were on the waterfront (`waterfront`) and how many were not? (Hint: use `table()`)
-
-```{r}
-table(kc_house$waterfront)
-```
-
-### C - T tests with t.test()
-
-1. Do houses on the waterfront sell for more than those not on the waterfront? Answer this by creating an object called `water_htest` which contains the result of the appropriate t-test using `t.test()`. Use the following template
+1. To begin with, evaluate the relationship between the health expenditure of the country (`healthExp`) and child mortality (`childMort`) using a regression with child mortality as the criterion and health expenditure as the predictor. Simply complete the code below.
 
 ```{r, eval = FALSE, echo = TRUE}
-water_htest <- t.test(formula = XX ~ XX,
-                      data = XX)
-```
-
-```{r}
-water_htest <- t.test(formula = price ~ waterfront,
-                      data = kc_house)
-```
-
-2. Print your `water_htest` object to see summary results
-
-```{r}
-water_htest
-```
-
-
-3. Apply the `summary()` function to `water_htest`. Do you see anything new or important?
-
-```{r}
-summary(water_htest)
-```
-
-4. Look at the names of the `water_htest` with `names()`. What are the named elements of the object?
-
-```{r}
-names(water_htest)
-```
-
-5. Using the `$` operator, print the exact test statistic of the t-test.
-
-```{r}
-water_htest$statistic
-```
-
-6. Again using the `$` operator, print the exact p-value of the test.
-
-```{r}
-water_htest$p.value
-```
-
-7. Use the `tidy()` function to return a dataframe containing the main results of the test.
-
-```{r}
-tidy(water_htest)
-```
-
-8. Do houses on the waterfront also tend to have more (or less) living space (`sqft_living`)? Answer this by conducting the appropriate t-test and going through the same steps you did in the previous question
-
-### D - Correlation tests with cor.test()
-
-1. Do houses built in later years tend to sell for more than older houses? Answer this by creating an object called `time_htest` which contains the result of the appropriate correlation test using `cor.test()` and the columns `yr_built` and `price`. Use the following template:
-
-```{r, eval = FALSE, echo = TRUE}
-# Note: cor.terst() is the only function (we know of)
-#  that uses formulas in the strange format
-#   formula = ~ X + Y instead of formula = Y ~ X
-
-time_htest <- cor.test(formula = ~ XX + XX,
-                       data = XX)
-```
-
-```{r}
-time_htest <- cor.test(formula = ~ yr_built + price,
-                       data = kc_house)
-```
-
-
-2. Print your `time_htest` object to see summary results
-
-
-```{r}
-time_htest
-```
-
-3. Apply the `summary()` function to `time_htest`. Do you see anything new or important?
-
-```{r}
-summary(time_htest)
-```
-
-
-4. Look at the names of the `time_htest` with `names()`. What are the named elements of the object?
-
-```{r}
-names(time_htest)
-```
-
-
-5. Using the `$` operator, print the exact correlation of the test (Hint: it's called "estimate")
-
-```{r}
-time_htest$estimate
-```
-
-
-6. Again using the `$` operator, print the exact p-value of the test.
-
-```{r}
-time_htest$p.value
-```
-
-
-7. Use the `tidy()` function to return a dataframe containing the main results of the test.
-
-```{r}
-tidy(time_htest)
-```
-
-
-8. Do houses in in better overall condition `condition` tend to sell at higher prices than those in worse condition? Answer this by conducting the appropriate correlation test and going through the same steps you did in the previous question.
-
-```{r}
-condition_htest <- cor.test(formula = ~ condition + price,
-                       data = kc_house)
-
-condition_htest
-```
-
-
-### E - Linear Regression with lm() and glm()
-
-1. In a previous question, you used a correlation test to see if houses built in later years `yr_built`  tend to sell for more than older houses. Now let's repeat the same analysis using a regression analysis with `lm()`. Do to this, use the following template:
-
-```{r, eval = FALSE, echo = TRUE}
-time_lm <- lm(formula = XX ~ XX,
-                 data = XX)
+mort_lm <- lm(formula = XX ~ XX,
+              data = XX)
 ```
 
 
 ```{r}
-time_lm <- lm(formula = price ~ yr_built,
-                 data = kc_house)
+mort_lm <- lm(formula = childMort ~ healthExp,
+              data = gap)
 ```
 
-2. Print your `time_lm` object to see the main results.
+2. Print your `mort_lm` object to see the main results.
 
 ```{r}
-time_lm
+mort_lm
 ```
 
 
-3. Use the `tidy()` function (from the `broom` package) to return a dataframe containing the main results of the test.
+3. Use the `summary()` function to return a data frame containing the main results of the linear regression. Evalute the test results: Does health expenditure significantly predict child mortality? How much variance is explained by health expenditure (Tipp: look for Multiple R-squared)?
 
 ```{r}
-tidy(time_lm)
+summary(mort_lm)
 ```
 
 
-4. How does the p-value of this test compare to what you got in the previous question when you used `cor.test()`?
+
+4. Evaluate the p-value of this test compare to what you got in the previous question when you used `cor.test()`?
 
 ```{r}
 # Same!
