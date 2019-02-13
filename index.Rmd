@@ -69,4 +69,6 @@ output:
 
 
 <p align="center"><br>
-    <img border="0" alt="Jan2019Schedule" src="_sessions/welcome/image/schedule.png" style="width:510px"></a><br>
+    <img border="0" alt="Feb2019Schedule" src="_sessions/Welcome/image/schedule.png" style="width:510px">
+    </a><br>
+</p>
