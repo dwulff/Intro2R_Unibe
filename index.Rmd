@@ -31,7 +31,7 @@ output:
 
 ### Links
 
-##### Data sets
+##### Data sets: <a href="https://dwulff.github.io/Intro2R_Unibe/1_Data/BernRBootcamp_Day1.zip">Day 1</a>
 
 #####  PDFs
 
