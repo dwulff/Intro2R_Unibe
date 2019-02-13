@@ -663,6 +663,14 @@ infected with the human immunodeficiency virus type I whose CD4 T cell counts we
 
 ## Functions
 
+### Packages
+
+|Package| Installation|
+|:------|:------|
+|`tidyverse`|`install.packages("tidyverse")`|
+
+### Functions
+
 | Function| Package | Description |
 |:---|:------|:---------------------------------------------|
 |     `rename()`|`dplyr`|    Rename columns| 

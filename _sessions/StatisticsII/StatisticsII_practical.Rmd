@@ -132,6 +132,53 @@ mort_lm
 summary(mort_lm)
 ```
 
+4. You probably concluded correctly that health expenditure correctly predicts child mortality. One way to confirm this is via a simple plot by plugging the two variables into the code below (don't worry you learn how to do fancier plots in the next sessions).
+
+```{r, echo = TRUE, eval = FALSE}
+plot(gap$XX, gap$XX, log = "xy")
+```
+
+```{r}
+plot(gap$healthExp, gap$childMort, log = "xy")
+```
+
+5. Health expenditure is strongly related to child mortality, but is it the best predictor. Run the regression again, this time adding the GDP per capita (`gdpPercap`) as a second predictor.
+
+```{r, eval = FALSE, echo = TRUE}
+mort_lm <- lm(formula = XX ~ XX + XX,
+              data = XX)
+```
+
+```{r}
+mort_lm <- lm(formula = childMort ~ healthExp + gdpPercap,
+              data = gap)
+```
+
+6. Have the results changed? Which predictor is more strongly related to child mortality? Evaluate using `summary()`.  
+
+```{r}
+summary(mort_lm)
+```
+
+7. GDP per capita is the better predictor of child mortality. Now play around a bit. Find out if the two predictors interact or whether any of the other `numeric` (!) varibles significantly improve the prediction of child mortality.
+
+### C - ANOVA models with `lm()`
+
+1. ANOVA's in R are also run using `lm()`. Technically, an ANOVA is a regression using dummy variables to code each of the predictor levels in the ANOVA. To see this, predict child mortality using `continent` and print the resulting model.
+
+```{r, eval = FALSE, echo = TRUE}
+mort_lm <- lm(formula = XX ~ continent,
+              data = XX)
+mort_lm
+```
+
+```{r}
+mort_lm <- lm(formula = childMort ~ continent,
+              data = gap)
+mort_lm
+```
+
+2. You should have observed that 
 
 
 4. Evaluate the p-value of this test compare to what you got in the previous question when you used `cor.test()`?
@@ -772,7 +819,6 @@ The Gapminder Foundation is a non-profit venture registered in Stockholm, Sweden
 |Package| Installation|
 |:------|:------|
 |`tidyverse`|`install.packages("tidyverse")`|
-|`broom`|`install.packages("broom")`|
 |`lme4`|`install.packages("lme4")`|
 |`BayesFactor`|`install.packages("BayesFactor")`|
 
@@ -791,7 +837,7 @@ The Gapminder Foundation is a non-profit venture registered in Stockholm, Sweden
 | Function| Package | Description |
 |:------|:-------------------|:-------------------|
 |     `summary()`|  `base`  | |
-|     `tidy()`| `broom`   | |
+|     `anova()`|  `base`  | |
 |     `predict()` | `stats` | Predict  |
 |     `names()` | `base` | Print names of model contents. |
 

@@ -300,18 +300,18 @@ patients
 
 ```r
 # results tibble
-patients
+results
 ```
 
 ```
 ## # A tibble: 5 x 3
-##      ID    X1    X2
+##      id   t_1   t_2
 ##   &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
-## 1     1    37     1
-## 2     2    65     2
-## 3     3    57     2
-## 4     4    34     1
-## 5     5    45     2
+## 1     4   100   105
+## 2    92   134   150
+## 3     1   123   135
+## 4     2   143   140
+## 5    99   102    68
 ```
 
 ]
@@ -571,12 +571,78 @@ combined &lt;- patients %&gt;%
 
 
 ```r
-# Show a few variables
-combined %&gt;%
-  select(id, arm, age, t_1, t_2)
+# Show combined data set
+combined 
 ```
 
 ]
+
+---
+
+
+.pull-left4[
+
+# 2 dirty data sets
+
+### Goals
+
+&lt;b&gt;1&lt;/b&gt; &lt;i&gt;Rename&lt;/i&gt; - Give meaningful &lt;high&gt;variable names&lt;/high&gt;.&lt;br&gt;&lt;br&gt;
+&lt;b&gt;2&lt;/b&gt; &lt;i&gt;Recode&lt;/i&gt; - Use appropriate &lt;high&gt;units&lt;/high&gt; and &lt;high&gt;labels&lt;/high&gt; for nominal variables.&lt;br&gt;&lt;br&gt;
+&lt;b&gt;3&lt;/b&gt; &lt;i&gt;Join&lt;/i&gt; - &lt;high&gt;Combine&lt;/high&gt; datasets.&lt;br&gt;&lt;br&gt;
+&lt;b&gt;4&lt;/b&gt; &lt;i&gt;Sort&lt;/i&gt; - &lt;high&gt;Sort&lt;/high&gt; tibble by age. &lt;br&gt;&lt;br&gt;
+&lt;b&gt;5&lt;/b&gt; &lt;i&gt;Filter&lt;/i&gt; - Select relevant &lt;high&gt;cases&lt;/high&gt;. &lt;br&gt;&lt;br&gt;
+&lt;b&gt;6&lt;/b&gt; &lt;i&gt;Select&lt;/i&gt; - Select relevant &lt;high&gt;variables&lt;/high&gt;.&lt;br&gt;&lt;br&gt;
+&lt;b&gt;7&lt;/b&gt; &lt;i&gt;Spread&lt;/i&gt; - Change to &lt;high&gt;wide format&lt;/high&gt;.&lt;br&gt;&lt;br&gt;
+
+
+]
+
+.pull-right45[
+
+&lt;br&gt;&lt;br2&gt;
+
+
+
+
+```r
+# patients tibble
+patients
+```
+
+```
+## # A tibble: 5 x 3
+##      ID    X1    X2
+##   &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+## 1     1    37     1
+## 2     2    65     2
+## 3     3    57     2
+## 4     4    34     1
+## 5     5    45     2
+```
+
+
+
+
+
+```r
+# results tibble
+results
+```
+
+```
+## # A tibble: 5 x 3
+##      id   t_1   t_2
+##   &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+## 1     4   100   105
+## 2    92   134   150
+## 3     1   123   135
+## 4     2   143   140
+## 5    99   102    68
+```
+
+]
+
+
 
 ---
 
@@ -614,20 +680,19 @@ combined &lt;- patients %&gt;%
 # Join with results with left_join()
   left_join(results, by = "id")
 
-# Show a few variables
-combined %&gt;%
-  select(id, arm, age, t_1, t_2)
+# Show combined data set
+combined
 ```
 
 ```
-## # A tibble: 5 x 5
-##      id   arm   age   t_1   t_2
-##   &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
-## 1     1     1    37   123   135
-## 2     2     2    65   143   140
-## 3     3     2    57    NA    NA
-## 4     4     1    34   100   105
-## 5     5     2    45    NA    NA
+## # A tibble: 5 x 6
+##      id   age   arm arm_lab   t_1   t_2
+##   &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;   &lt;dbl&gt; &lt;dbl&gt;
+## 1     1    37     1 placebo   123   135
+## 2     2    65     2 drug      143   140
+## 3     3    57     2 drug       NA    NA
+## 4     4    34     1 placebo   100   105
+## 5     5    45     2 drug       NA    NA
 ```
 
 ]
@@ -1139,7 +1204,7 @@ combined %&gt;%
 ##  8     3 arm   2    
 ##  9     4 arm   1    
 ## 10     5 arm   2    
-## # … with 15 more rows
+## # ... with 15 more rows
 ```
 
 ]
@@ -1310,7 +1375,7 @@ if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
 (function () {
   var script = document.createElement('script');
   script.type = 'text/javascript';
-  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  script.src  = 'https://cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML';
   if (location.protocol !== 'file:' && /^https?:/.test(script.src))
     script.src  = script.src.replace(/^https?:/, '');
   document.getElementsByTagName('head')[0].appendChild(script);

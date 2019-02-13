@@ -286,7 +286,7 @@ results <- tibble(id = c(4, 92, 1, 2, 99),
 
 ```{r}
 # results tibble
-patients
+results
 ```
 
 ]
@@ -480,12 +480,63 @@ combined <- patients %>%
 ```
 
 ```{r, eval = F}
-# Show a few variables
-combined %>%
-  select(id, arm, age, t_1, t_2)
+# Show combined data set
+combined 
 ```
 
 ]
+
+---
+
+
+.pull-left4[
+
+# 2 dirty data sets
+
+### Goals
+
+<b>1</b> <i>Rename</i> - Give meaningful <high>variable names</high>.<br><br>
+<b>2</b> <i>Recode</i> - Use appropriate <high>units</high> and <high>labels</high> for nominal variables.<br><br>
+<b>3</b> <i>Join</i> - <high>Combine</high> datasets.<br><br>
+<b>4</b> <i>Sort</i> - <high>Sort</high> tibble by age. <br><br>
+<b>5</b> <i>Filter</i> - Select relevant <high>cases</high>. <br><br>
+<b>6</b> <i>Select</i> - Select relevant <high>variables</high>.<br><br>
+<b>7</b> <i>Spread</i> - Change to <high>wide format</high>.<br><br>
+
+
+]
+
+.pull-right45[
+
+<br><br2>
+
+```{r, echo = F}
+patients <- tibble(ID = c(1, 2, 3, 4, 5),
+                   X1 = c(37, 65, 57, 34, 45),
+                   X2 = c(1, 2, 2, 1, 2))
+
+```
+
+```{r}
+# patients tibble
+patients
+```
+
+
+```{r, echo = F}
+results <- tibble(id = c(4, 92, 1, 2, 99),
+                  t_1 = c(100, 134, 123, 143, 102),
+                  t_2 = c(105, 150, 135, 140,68))
+```
+
+```{r}
+# results tibble
+results
+```
+
+]
+
+
 
 ---
 
@@ -521,9 +572,8 @@ combined <- patients %>%
 # Join with results with left_join()
   left_join(results, by = "id")
 
-# Show a few variables
-combined %>%
-  select(id, arm, age, t_1, t_2)
+# Show combined data set
+combined
 ```
 
 ]
