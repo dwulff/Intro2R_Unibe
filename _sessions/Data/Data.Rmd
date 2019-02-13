@@ -189,7 +189,7 @@ reg_results$coefficients[,c(1,3)]
 
 .pull-left45[
 
-# `tibble`
+# Data frame <font style="font-size:32px">(or `tibble`)</font>
 
 <br><br>
 1 - Are `list`s containing <high>`vector`s of equal length</high> representing the variables.
