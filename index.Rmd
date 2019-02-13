@@ -67,5 +67,4 @@ output:
 
 ### Schedule
 
-<p align="center"><br>
-    <a href=""><img border="0" alt="Feb2019Schedule" src="_sessions/welcome/image/schedule.png" style="width:400px"></a><br>
+![BernRSchedule](_sessions/welcome/image/schedule.png)
