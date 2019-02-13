@@ -66,8 +66,7 @@ options(width=110)
 options(digits = 4)
 ```
 
-
-# Essentials: The 2<sup>4</sup> Lessons of the R Bootcamp
+# Essentials: 12 basic R lessons
 
 .pull-left4[
 1. Everything is an object
@@ -79,13 +78,9 @@ options(digits = 4)
 7. Functions expect certain object classes
 8. View help files using `?`
 9. Study errors and warnings
-10. Data is stored in data frames
-11. Select variables (vectors) using `$`
-12. Use RStudio and projects
-13. Use editor and shortcuts
-14. First load packages and data
-15. Use auto-complete
-16. Comment and format for readability
+10. Use RStudio and projects
+11. Use editor and auto-complete
+12. Comment and format for readability
 ]
 
 ---
@@ -100,7 +95,7 @@ R has 3 main data objects...
 - Can carry any data, incl. lists
 - Often used for function outputs
 
-<high>`data_frame`</high> - R's spreadsheet
+<high>`tibbles`</high> - R's spreadsheet
 - Specific type of `list`
 - Typical data format
 - For multi-variable data sets
@@ -195,7 +190,7 @@ Raw data can come in many shapes and sizes, but <high>R's got you covered</high>
 
 .pull-right45[
 
-<img src="http://blog.datasift.com/wp-content/uploads/2014/10/ms-files-3.jpg">
+<img src="http://uc3.co/wp-content/uploads/2012/10/cloud-hoskins.jpg">
 
 ]
 ---
@@ -309,7 +304,7 @@ DO_SOMETHING %>% # AND THEN...
 
 .pull-right6[
 
-<img src="/_sessions/_images/schedule.png" height="580" align="center">
+<img src="https://dwulff.github.io/Intro2R_Unibe/_sessions/Welcome/image/schedule.png" height="580" align="center">
 
 
 ]

@@ -46,8 +46,7 @@ layout: true
 
 
 
-
-# Essentials: The 2&lt;sup&gt;4&lt;/sup&gt; Lessons of the R Bootcamp
+# Essentials: 12 basic R lessons
 
 .pull-left4[
 1. Everything is an object
@@ -59,13 +58,9 @@ layout: true
 7. Functions expect certain object classes
 8. View help files using `?`
 9. Study errors and warnings
-10. Data is stored in data frames
-11. Select variables (vectors) using `$`
-12. Use RStudio and projects
-13. Use editor and shortcuts
-14. First load packages and data
-15. Use auto-complete
-16. Comment and format for readability
+10. Use RStudio and projects
+11. Use editor and auto-complete
+12. Comment and format for readability
 ]
 
 ---
@@ -80,7 +75,7 @@ R has 3 main data objects...
 - Can carry any data, incl. lists
 - Often used for function outputs
 
-&lt;high&gt;`data_frame`&lt;/high&gt; - R's spreadsheet
+&lt;high&gt;`tibbles`&lt;/high&gt; - R's spreadsheet
 - Specific type of `list`
 - Typical data format
 - For multi-variable data sets
@@ -176,7 +171,7 @@ Raw data can come in many shapes and sizes, but &lt;high&gt;R's got you covered&
 
 .pull-right45[
 
-&lt;img src="http://blog.datasift.com/wp-content/uploads/2014/10/ms-files-3.jpg"&gt;
+&lt;img src="http://uc3.co/wp-content/uploads/2012/10/cloud-hoskins.jpg"&gt;
 
 ]
 ---
@@ -290,7 +285,7 @@ DO_SOMETHING %&gt;% # AND THEN...
 
 .pull-right6[
 
-&lt;img src="/_sessions/_images/schedule.png" height="580" align="center"&gt;
+&lt;img src="https://dwulff.github.io/Intro2R_Unibe/_sessions/Welcome/image/schedule.png" height="580" align="center"&gt;
 
 
 ]
@@ -335,7 +330,7 @@ if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
 (function () {
   var script = document.createElement('script');
   script.type = 'text/javascript';
-  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  script.src  = 'https://cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML';
   if (location.protocol !== 'file:' && /^https?:/.test(script.src))
     script.src  = script.src.replace(/^https?:/, '');
   document.getElementsByTagName('head')[0].appendChild(script);

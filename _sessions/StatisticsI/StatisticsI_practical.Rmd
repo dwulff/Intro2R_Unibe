@@ -40,7 +40,8 @@ knitr::opts_chunk$set(comment = NA,
                       fig.align = 'center',
                       echo = FALSE, 
                       eval = FALSE, 
-                      warning = FALSE)
+                      warning = FALSE,
+                      message = FALSE)
 
 options(digits = 3)
 
@@ -79,19 +80,19 @@ By the end of this practical you will know how to:
 2. Open a new R script. At the top of the script, using comments, write your name and the date. Save it as a new file called `statisticsI_practical.R` in the `2_Code` folder.  
 3. Using `library()` load the set of packages for this practical listed in the packages section above.
 
-```{r, message = FALSE, warning = FALSE, echo = FALSE, eval = TRUE}
+```{r}
 library(tidyverse)
 ```
 
 3. For this practical, we'll use the `kc_house.csv` data. This dataset contains house sale prices for King County, Washington. It includes homes sold between May 2014 and May 2015. Using the following template, load the data into R and store it as a new object called `kc_house`.
 
-```{r, echo = TRUE, eval = FALSE, message = FALSE, warning = FALSE}
+```{r, echo = TRUE, eval = FALSE}
 kc_house <- read_csv(file = "XX")
 ```
 
 4. Using `print()`, `summary()`, and `head()`, explore the data to make sure it was loaded correctly.
 
-```{r, echo = FALSE, eval = FALSE}
+```{r}
 kc_house
 summary(kc_house)
 head(kc_house)
@@ -101,7 +102,7 @@ head(kc_house)
 
 1. Print the names of the `kc_house` data with `names()`.
 
-```{r, echo = FALSE, eval = FALSE}
+```{r}
 names(kc_house)
 ```
 
@@ -123,7 +124,7 @@ kc_house <- kc_house %>%
          NEW = OLD)
 ```
 
-```{r, echo = FALSE, eval = TRUE}
+```{r}
 kc_house <- kc_house %>%
   rename(living_sqft = sqft_living,
          lot_sqft = sqft_lot,
@@ -143,7 +144,7 @@ kc_house <- kc_house %>%
          XXX = XXX)
 ```
 
-```{r, echo = FALSE, eval = TRUE}
+```{r}
 kc_house <- kc_house %>%
   mutate(living_sqm = living_sqft * 0.093,
          lot_sqm = lot_sqft * 0.093,
@@ -160,7 +161,7 @@ kc_house <- kc_house %>%
                               XXXX + XXX + XXX <= XXX ~ "XXX"))
 ```
 
-```{r, echo = FALSE, eval = TRUE}
+```{r}
 kc_house <- kc_house %>%
                 mutate(mansion = case_when(
                               living_sqm + above_sqm +  basement_sqm > 750 ~ "Yes",
@@ -175,7 +176,7 @@ kc_house <- kc_house %>%
 mean(XXX$XXX)
 ```
 
-```{r, echo = FALSE, eval = FALSE}
+```{r}
 mean(kc_house$price)
 ```
 
@@ -188,7 +189,7 @@ kc_house %>%
   )
 ```
 
-```{r echo = FALSE, eval = FALSE}
+```{r}
 kc_house %>%
   summarise(
     price_mean = mean(price)
@@ -197,7 +198,7 @@ kc_house %>%
 
 3. What is the *median* price of all houses? Use the `median()` function!
 
-```{r echo = FALSE, eval = TRUE}
+```{r}
 kc_house %>%
   summarise(
     price_median = median(price)
@@ -206,7 +207,7 @@ kc_house %>%
 
 4. What was the highest selling price? Use the `max()` function!
 
-```{r, echo = FALSE, eval = TRUE}
+```{r}
 kc_house %>%
   summarise(
     price_max = max(price)
@@ -222,7 +223,7 @@ kc_house <- kc_house %>%
 kc_house
 ```
 
-```{r, echo = FALSE, eval = TRUE}
+```{r}
 kc_house <- kc_house %>%
   arrange(desc(price))
 
@@ -236,7 +237,7 @@ kc_house %>%
   summarise(mil_p = mean(XXX > 1000000))
 ```
 
-```{r, echo = FALSE, eval = TRUE}
+```{r}
 kc_house %>%
   summarise(mil_p = mean(price > 1000000))
 ```
@@ -253,7 +254,7 @@ kc_house %>%
 ```
 
 
-```{r, echo = FALSE, eval = TRUE}
+```{r}
 kc_house %>%
   filter(mansion == "Yes") %>%
   summarise(
@@ -272,7 +273,7 @@ kc_house %>%
   summarise(XXX = n())
 ```
 
-```{r, echo = FALSE, eval = TRUE}
+```{r}
 kc_house %>%
   group_by(mansion) %>%
   summarise(N = n())
@@ -287,7 +288,7 @@ kc_house %>%
             XXX = XXX(XXX))
 ```
 
-```{r, echo = FALSE, eval = TRUE}
+```{r}
 kc_house %>%
   group_by(mansion) %>%
   summarise(N = n(),
@@ -296,7 +297,7 @@ kc_house %>%
 
 3. Using `group_by()` and `summarise()`, create a dataframe showing the same results as the following table.
 
-```{r, echo = FALSE, eval = TRUE, results = 'asis'}
+```{r, results = 'asis'}
 kc_house %>%
   group_by(mansion) %>%
   summarise(N = n(),
@@ -309,7 +310,7 @@ kc_house %>%
 
 4. Do houses built in later years tend to have more living space? To answer this, group the data by `built_yr`, and then calculate the mean number of living square meters. Be sure to also include the number of houses built in each year!
 
-```{r, echo = FALSE, eval = TRUE}
+```{r}
 kc_house %>%
   group_by(built_yr) %>%
   summarise(N = n(),
@@ -337,14 +338,14 @@ brumhilda <- kc_house %>%
   filter(XXX %in% c(XXX, XXX, XXX, XXX))
 ```
 
-```{r, echo = FALSE, eval = TRUE}
+```{r}
 brumhilda <- kc_house %>%
   filter(zipcode %in% c(98001, 98109, 98117, 98199))
 ```
 
 2. For each of the zip codes, calculate the `mean()` and `median()` selling price (as well as the number of houses) in each zip code.
 
-```{r, echo = FALSE, eval = TRUE}
+```{r}
 brumhilda %>%
   group_by(zipcode) %>%
   summarise(price_mean = mean(price),
@@ -354,7 +355,7 @@ brumhilda %>%
 
 3. Now Brumhilda wants the same data separated by whether or not the house is a mansion or not. Include these results by also grouping the data by `mansion` (as well as `zipcode`), and calculating the same summary statistics as before.
 
-```{r, echo = FALSE, eval = TRUE}
+```{r}
 brumhilda %>%
   group_by(zipcode, mansion) %>%
   summarise(price_mean = mean(price),
@@ -365,7 +366,7 @@ brumhilda %>%
 
 4. Ok that was good, but now she also wants to know what the maximum and minimum number of floors were in each group. Add these summary statistics!
 
-```{r, echo = FALSE, eval = TRUE}
+```{r}
 brumhilda %>%
   group_by(zipcode) %>%
   summarise(price_mean = mean(price),
@@ -378,50 +379,70 @@ brumhilda %>%
 
 ### F - Statistics
 
-1. Let's see if there is a significant difference between the selling prices of houses on the waterfront versus those not on the waterfront. To do this, we'll conduct a t-test using the `t.test()` function and assign the result to `waterfront_htest`. Fill in the XXXs in the code below, such that the dependent variable is `price` and the independent variable is `waterfront`
+1. Let's see if there is a significant difference between the selling prices of houses on the waterfront versus those not on the waterfront. To do this, you'll conduct a t-test using the `t.test()` function and assign the result to `waterfront_htest`. To prepare for the t-test, you need to create two vectors carrying the prices for the houses on the waterfront and those not on the waterfront. (Note: this is a bit of a hack that we don't need when speciying models the proper way -> next session)
 
 ```{r, echo = TRUE, eval = FALSE}
-waterfront_htest <- t.test(formula = XXX ~ XXX,
-                           data = XXX)
+# create list separating values for waterfron yes and no
+prices <- kc_house %>%
+  mutate(waterfront_lab = 
+           case_when(waterfront == 0 ~ 'no_waterfront',
+                     waterfront == 1 ~ 'waterfront')) %>%
+  with(split(price, waterfront_lab))
+
+# show names
 ```
 
-```{r, echo = FALSE, eval = TRUE}
-waterfront_htest <- t.test(formula = price ~ waterfront,
-                           data = kc_house)
+2. Fill in the XXs in the code below, such that `x` becomes the `'no_waterfront'` prices and `y` becomes the `'waterfront'` prices.
+
+```{r, echo = TRUE, eval = FALSE}
+waterfront_htest <- t.test(x = prices$XX, y = prices$XX)
+```
+
+```{r}
+waterfront_htest <- t.test(x = prices$no_waterfront, y = prices$waterfront)
 ```
 
 2. Print your `waterfront_htest` object to see a printout of the main results.
 
-```{r, echo = FALSE, eval = TRUE}
+```{r}
 waterfront_htest
 ```
 
 3. Look at the names of your `waterfront_htest` object with `names()`.
 
-```{r, echo = FALSE, eval = TRUE}
+```{r}
 names(waterfront_htest)
 ```
 
 
 4. Using the `$`, print the test statistic (`statistic`) from your `waterfront_htest` object.
 
-```{r, echo = FALSE, eval = TRUE}
+```{r}
 waterfront_htest$statistic
 ```
 
 
 5. Now using `$`, print only the p-value (`p.value`) from the object.
 
-```{r, echo = FALSE, eval = TRUE}
+```{r}
 waterfront_htest$p.value
 ```
 
+6. Run a Wilcoxon test instead of the t-test to evalute whether the result is robust. Is the result the same?
+
+```{r, echo = TRUE, eval = FALSE}
+wilcox.test(x = prices$XX, y = prices$XX)
+```
+
+```{r, echo = TRUE, eval = FALSE}
+wilcox.test(x = prices$no_waterfront, y = prices$waterfront)
+```
 
 ### X - Challenges
 
 1. Which zipcode has the highest percentage of houses on the waterfront? (Hint: group by zipcode, calculate the percentage of houses on the waterfront using `mean()`, then sort the data in descending order) with `arrange()`, then select the first row with `slice()`. Once you find it, try searching for that zipcode on Google Maps and see if it's location makes sense!
 
-```{r, echo=FALSE, eval = TRUE}
+```{r}
 kc_house %>%
   group_by(zipcode) %>%
   summarise(waterfront_p = mean(waterfront)) %>%
@@ -431,7 +452,7 @@ kc_house %>%
 
 2. Which house had the highest price to living space ratio? To answer this, create a new variable called `price_to_living` that takes `price / living_sqm`. Then, sort the data in descending order of this variable, and select the first row with `slice()`! What id value do you get?
 
-```{r, echo=FALSE, eval = TRUE}
+```{r‚}
 kc_house %>%
   mutate(price_to_living = price / living_sqm) %>%
   arrange(desc(price_to_living)) %>%
@@ -440,7 +461,7 @@ kc_house %>%
 
 3. Which are the top 10 zip codes in terms of mean housing prices? To answer this, group the data by zipcode, calculate the mean price, arrange the dataset in descending order of mean price, then select the top 10 rows!
 
-```{r, echo=FALSE, eval = TRUE}
+```{r}
 kc_house %>%
   group_by(zipcode) %>%
   summarise(price_mean = mean(price)) %>%
@@ -450,7 +471,7 @@ kc_house %>%
 
 4. Create the following dataframe *exactly* as it appears.
 
-```{r, eval = FALSE, echo = FALSE}
+```{r}
 kc_house %>%
   filter(built_yr >= 1990 & built_yr < 1999) %>%
   group_by(built_yr) %>%
@@ -473,7 +494,7 @@ kc_house %>%
 |     1997| 177|     606058|   3800000|             234|
 |     1998| 239|     594159|   1960000|             241|
 
-```{r, echo=FALSE, eval = FALSE}
+```{r}
 kc_house %>%
   filter(built_yr >= 1990 & built_yr < 1999) %>%
   group_by(built_yr) %>%
@@ -484,28 +505,14 @@ kc_house %>%
   knitr::kable(digits = 0)
 ```
 
-5. Create a regression object called `living_glm` predicting the amount of living space (`living_sqm`) as a function of `bedrooms`, `bathrooms`, `waterfront`, and `built_yr`. Explore the object with `names()` and `summary()`. Which variables seem to predict living space?
-
-### REPLACE WITH REGULAR TEST
-
-```{r, echo=FALSE, eval = TRUE}
-living_glm <- glm(formula = living_sqm ~ bedrooms + bathrooms + waterfront + built_yr,
-                  data = kc_house)
-
-names(living_glm)
-
-summary(living_glm)
-```
-
-6. The `chisq.test()` function allows you to do conduct a chi square test testing the relationship between two nominal variables. Look at the help menu to see how the function works. Then, conduct a chi-square test to see if there is a relationship between whether a house is on the waterfront and the grade of the house. Do houses on the waterfront tend to have higher (or lower) grades than houses not on the waterfront?
+5. The `chisq.test()` function allows you to do conduct a chi square test testing the relationship between two nominal variables. Look at the help menu to see how the function works. Then, conduct a chi-square test to see if there is a relationship between whether a house is on the waterfront and the grade of the house. Do houses on the waterfront tend to have higher (or lower) grades than houses not on the waterfront?
 
 ```{r}
 # First look at a table
-
 table(kc_house$waterfront, kc_house$grade)
 ```
 
-```{r, echo=FALSE, eval = TRUE}
+```{r}
 # Then run the test
 chisq.test(table(kc_house$waterfront, kc_house$grade))
 ```
@@ -574,30 +581,20 @@ diamonds
 
 # Q: Is there a difference in the carats of color = E and color = I diamonds?
 
-htest_B <- t.test(formula = carat ~ color,     # DV ~ IV
-                   alternative = "two.sided",  # Two-sided test
-                   data = diamonds,         # The data
-                   subset = color %in% c("E", "I")) # Compare Diet 1 and Diet 2
+# split data
+carat <- diamonds %>%
+  filter(color %in% c("E", "I")) %>%
+  with(split(carat, color))
 
-htest_B  # Print result
+# run t-test
+htest <- t.test(carat$E, carat$I,
+                alternative = "two.sided")  # Two-sided test
+htest  # Print result
 
-
-# Regression ----------------------------
-
-
-# Q: Create regression equation predicting price by carat, depth, table, and x
-
-price_glm <- glm(formula = price ~ carat + depth + table + x,
-                  data = diamonds)
-
-# Print coefficients
-price_glm$coefficients
-
-# Tidy version
-tidy(price_glm)
-
-# Extract R-Squared
-rsq(price_glm)
+# run wilcoxon test
+htest <- wilcox.test(carat$E, carat$I,
+                alternative = "two.sided")  # Two-sided test
+htest  # Print result
 
 
 ```
