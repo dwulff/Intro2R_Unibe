@@ -44,17 +44,15 @@ knitr::opts_chunk$set(comment = NA,
 options(digits = 3)
 ```
 
+<p align="center">
+<img width="100%" src="image/hansrosling.png" margin=0><br>
+<font style="font-size:10px">from [TED.com](https://www.ted.com/talks/hans_rosling_the_truth_about_hiv)</font>
+</p>
 
-<figure>
-<center>
-  <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b7/Seattle_-_Craftsman_revival_houses.jpg/300px-Seattle_-_Craftsman_revival_houses.jpg" alt="Trulli" style="width:50%">
-  <figcaption>https://en.wikipedia.org/wiki/Seattle_box</figcaption>
-</figure>
-
-## {.tabset}
+# {.tabset}
 
 
-### Overview
+## Overview
 
 In this practical you'll do basic statistics in R. By the end of this practical you will know how to:
 
@@ -62,163 +60,18 @@ In this practical you'll do basic statistics in R. By the end of this practical 
 2. Explore statistical objects with `names()`, `summary()`, `print()`, `predict()`
 3. Run mixed-model and Bayesian regressions using the `lme4` and `BayesFactor` packages
 
-### Datasets
 
-```{r, eval = TRUE, message = FALSE}
-library(tidyverse)
-kc_house <- read_csv("https://raw.githubusercontent.com/therbootcamp/BaselRBootcamp_2018July/master/_sessions/_data//baselrbootcamp_data/kc_house.csv")
-```
-
-|File | Rows | Columns | Description |
-|:----|:-----|:------|:-----------------------------------------|
-|[kc_house.csv](https://raw.githubusercontent.com/therbootcamp/BaselRBootcamp_2018July/master/_sessions/_data//baselrbootcamp_data/kc_house.csv) | 21613 | 21|House sale prices for King County between May 2014 and May 2015. |
-
-### Packages
-
-|Package| Installation|
-|:------|:------|
-|`tidyverse`|`install.packages("tidyverse")`|
-|`lubridate`|`install.packages("lubridate")`|
-|`broom`|`install.packages("broom")`|
-|`rsq`|`install.packages("rsq")`|
-
-### Glossary
-
-*Descriptive Statistics*
-
-| Function| Description|
-|:------|:--------|
-| `table()` | Frequency table |
-|     `mean(), median(), mode()`| Measures of central tendency|
-|     `sd(), range(), var()`|    Measures of variability|
-|     `max(), min()`|    Extreme values|
-| `summary()`| Several summary statistics |
-
-*Statistical Tests*
-
-| Function| Hypothesis Test|
-|:------|:-------------------|
-|     `t.test()`|    One and two sample t-test|
-|     `cor.test()`|    Correlation test|
-|     `glm()`, `lm()`|    Generalized linear model and linear model|
-
-*Sampling Functions*
-
-| Function| Description| Additional Help |
-|:------|:--------|:----|
-|     `sample()`|    Draw a random sample of values from a vector| `?sample`
-|     `rnorm()`|    Draw random values from a Normal distribution| `?rnorm()`
-|     `runif()`|    Draw random values from a Uniform distribution| `?runif()`
-
-
-### Examples
-
-```{r, eval = FALSE, echo = TRUE, message = FALSE, warning = FALSE}
-
-# Examples of hypothesis tests on the diamonds -------------
-
-library(tidyverse)
-library(broom)
-library(rsq)
-
-# First few rows of the diamonds data
-
-diamonds
-
-# Descriptive statistics ------------------------
-
-mean(diamonds$carat)   # What is the mean carat?
-median(diamonds$price)   # What is the median price?
-max(diamonds$depth)    # What is the maximum depth?
-table(diamonds$color)    # How many observations for each color?
-
-
-# 2-sample t- test ---------------------------
-
-# Q: Is there a difference in the carats of color = E and color = I diamonds?
-
-htest_B <- t.test(formula = carat ~ color,     # DV ~ IV
-                   alternative = "two.sided",  # Two-sided test
-                   data = diamonds,         # The data
-                   subset = color %in% c("E", "I")) # Compare Diet 1 and Diet 2
-
-htest_B  # Print result
-
-
-# Correlation test -----------------------
-
-# Q: Is there a correlation between carat and price?
-
-htest_C <- cor.test(formula = ~ carat + price,
-                    data = diamonds)
-
-htest_C
-
-# A: Yes. r = 0.92, t(53938) = 551.51, p < .001
-
-
-# Regression ----------------------------
-
-
-# Q: Create regression equation predicting price by carat, depth, table, and x
-
-price_glm <- glm(formula = price ~ carat + depth + table + x,
-                  data = diamonds)
-
-# Print coefficients
-price_glm$coefficients
-
-# Tidy version
-tidy(price_glm)
-
-# Extract R-Squared
-rsq(price_glm)
-
-# -----
-# Simulation
-# ------
-
-# 100 random samples from a normal distribution with mean = 0, sd = 1
-samp_A <- rnorm(n = 100, mean = 0, sd = 1)
-
-# 100 random samples from a Uniform distribution with bounds at 0, 10
-samp_B <- runif(n = 100, min = 0, max = 10)
-
-# Calculate descriptives
-mean(samp_A)
-sd(samp_A)
-
-mean(samp_B)
-sd(samp_B)
-
-# Combine samples (plus tw new ones) in a tibble
-
-my_sim <- tibble(A = samp_A,
-                 B = samp_B,
-                 C = rnorm(n = 100, mean = 0, sd = 1),
-                 error = rnorm(n = 100, mean = 5, sd = 10))
-
-# Add y, a linear function of A and B to my_sim
-my_sim <- my_sim %>%
-  mutate(y = 3 * A -8 * B + error)
-
-# Regress y on A, B and C
-my_glm <- glm(y ~ A + B + C,
-              data = my_sim)
-
-# Look at results!
-tidy(my_glm)
-```
-
-# Tasks
+## Tasks
 
 ```{r, echo = FALSE, eval = TRUE, include = FALSE}
-kc_house <- read_csv("https://raw.githubusercontent.com/therbootcamp/BaselRBootcamp_2018July/master/_sessions/_data//baselrbootcamp_data/kc_house.csv")
 
 library(broom)
 library(rsq)
 library(lubridate)
 library(tidyverse)
+
+gap <- read_csv("1_Data/gap.csv")
+
 ```
 
 
@@ -949,8 +802,158 @@ my_lm <- lm(formula = y ~ x1 + x2 + x3,
 my_lm
 ```
 
+## Examples
 
-## Additional Resources
+```{r, eval = FALSE, echo = TRUE, message = FALSE, warning = FALSE}
+
+# Examples of regression models on the diamonds dataset -------------
+
+library(tidyverse)
+library(broom)
+library(BayesFactor)
+library(lme4)
+
+# First few rows of the diamonds data
+
+diamonds
+
+# Regression ----------------------------
+
+# Q: Run regression predicting price by carat and depth
+
+price_lm <- lm(formula = price ~ carat + depth,
+               data = diamonds)
+
+# Print coefficients
+price_lm$coefficients
+
+# Regular summary
+summary(price_lm)
+
+# Tidy version
+tidy(price_lm)
+
+
+# Q: Run regression predicting price by carat and depth and their interaction
+
+price_lm <- lm(formula = price ~ carat * depth,
+               data = diamonds)
+
+# Print coefficients
+price_lm$coefficients
+
+# Regular summary
+summary(price_lm)
+
+# Tidy version
+tidy(price_lm)
+
+
+# ANOVA ----------------------------
+
+# Q: Run ANOVA predicting price by color and cut
+
+# transform to factor
+dimaonds$cut = as.factor(dimaonds$cut)
+dimaonds$color = as.factor(dimaonds$color)
+
+# Run model
+price_lm <- lm(formula = price ~ cut + color,
+               data = diamonds)
+
+# Print coefficients
+price_lm$coefficients
+
+# Regular summary
+summary(price_lm)
+
+# Tidy version
+tidy(price_lm)
+
+# ANOVA version
+anova(price_lm)
+
+# Mixed-effects regression ----------------------------
+
+# Q: Run mixed-effect regression predicting carat and depth with the impact of carat varying across color.
+
+# Run model
+price_lme <- lmer(formula = price ~ carat + depth + (1 + carat|color),
+                  data = diamonds)
+
+# Regular summary
+summary(price_lme)
+
+
+# Bayesian regression ----------------------------
+
+# Q: Run Bayesian regression predicting carat and depth
+
+# Run model
+price_Blm <- regressionBF(formula = price ~ carat + depth,
+                  data = diamonds)
+
+# Regular summary
+price_Blm
+
+
+```
+
+## Datasets
+
+|File | Rows | Columns | Description |
+|:----|:-----|:------|:-----------------------------------------|
+|[gap.csv](https://raw.githubusercontent.com/therbootcamp/Intro2R_Unibe/master/_sessions/_StatisticsII/1_Data/gap.csv) | 417 | 9 | Country statistics from 1997, 2002, and 2007 from the Gapminder Foundation. |
+
+The Gapminder Foundation is a non-profit venture registered in Stockholm, Sweden, that promotes sustainable global development and achievement of the United Nations Millennium Development Goals by increased use and understanding of statistics and other information about social, economic and environmental development at local, national and global levels (see [Gapminder.org](https://www.gapminder.org)). The present dataset is an excerpt of their database holding data from three years on economic and health variables of 139 countries.
+
+
+|File | Rows |
+|:-------------|:-------------------------------------|
+|country| country name|
+|continent| country's continent|
+|year| measurement year|
+|lifeExp| life expectancy at birth, in years |
+|pop| country's population|
+|gdpPercap| country's GDP per capita (US$)|
+|childMort| child mortality (0-5 year-olds dying per 1,000 born)|
+|co2Emit| CO2 emissions (tonnes per person) |
+|healthExp| Government health spending per person (international $)|
+
+## Functions
+
+### Packages
+
+|Package| Installation|
+|:------|:------|
+|`tidyverse`|`install.packages("tidyverse")`|
+|`broom`|`install.packages("broom")`|
+|`lme4`|`install.packages("lme4")`|
+|`BayesFactor`|`install.packages("BayesFactor")`|
+
+### Functions
+
+*Model functions*
+
+| Function| Package | Description |
+|:------|:-------------------|:-------------------|
+|     ``|    | |
+|     ``|    | |
+|     `glm()`, `lm()`|    Generalized linear model and linear model| |
+
+*Inspect models*
+
+| Function| Package | Description |
+|:------|:-------------------|:-------------------|
+|     `summary()`|  `base`  | |
+|     `tidy()`| `broom`   | |
+|     `predict()` | `stats` | Predict  |
+|     `names()` | `base` | Print names of model contents. |
+
+
+## Resources
+
+### Documentations
 
 - For more advanced mixed level ANOVAs with random effects, consult the `afex` and `lmer` packages.
 
