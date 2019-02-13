@@ -223,7 +223,7 @@ score <- c(8, 4, 6, 3, 7, 3)
 score
 
 # Mean: Base-R-way
-mean(x = score, digits = 1)
+round(mean(x = score), digits = 1)
 
 # Mean: Tidyverse-style (with %>%)
 score %>%     # AND THEN

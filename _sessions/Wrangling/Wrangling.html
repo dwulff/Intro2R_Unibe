@@ -223,11 +223,11 @@ score
 
 ```r
 # Mean: Base-R-way
-mean(x = score, digits = 1)
+round(mean(x = score), digits = 1)
 ```
 
 ```
-## [1] 5.167
+## [1] 5.2
 ```
 
 ```r
@@ -1139,7 +1139,7 @@ combined %&gt;%
 ##  8     3 arm   2    
 ##  9     4 arm   1    
 ## 10     5 arm   2    
-## # ... with 15 more rows
+## # … with 15 more rows
 ```
 
 ]
@@ -1310,7 +1310,7 @@ if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
 (function () {
   var script = document.createElement('script');
   script.type = 'text/javascript';
-  script.src  = 'https://cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
   if (location.protocol !== 'file:' && /^https?:/.test(script.src))
     script.src  = script.src.replace(/^https?:/, '');
   document.getElementsByTagName('head')[0].appendChild(script);
