@@ -138,13 +138,9 @@ $(document).ready(function () {
 </div>
 
 
-<figure>
-<center>
-<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b7/Seattle_-_Craftsman_revival_houses.jpg/300px-Seattle_-_Craftsman_revival_houses.jpg" alt="Trulli" style="width:50%">
-<figcaption>
-<a href="https://en.wikipedia.org/wiki/Seattle_box" class="uri">https://en.wikipedia.org/wiki/Seattle_box</a>
-</figcaption>
-</figure>
+<p align="center">
+<img width="100%" src="image/hansrosling.png" margin=0><br> <font style="font-size:10px">from <a href="https://www.ted.com/talks/hans_rosling_the_truth_about_hiv">TED.com</a></font>
+</p>
 <div id="section" class="section level2 tabset">
 <h2></h2>
 <div id="overview" class="section level3">
@@ -1258,37 +1254,34 @@ samp_100 &lt;- rnorm(n = 100, mean = 10, sd = 5)
 
 # Print result
 samp_100</code></pre>
-<pre><code>  [1]  7.7888 10.0773  9.2699 13.3501  7.8260 13.0419 11.7887 11.2969
-  [9]  7.2328  6.6037  6.2429 10.5957 11.5859  9.7823 15.9011  4.2438
- [17]  5.7196  2.6510 22.6039  8.7623 18.6934 12.5741 11.7790  6.8995
- [25] 15.1875  8.2709 17.6237 18.2078 12.7246 15.9113  2.1695 15.0798
- [33]  7.2884 -1.3569  7.6766  4.6272 15.7470 12.3231 12.3210 17.4309
- [41] 10.1546  5.4940 11.9024 12.0809  3.9363  6.0464 13.2512 15.5951
- [49]  3.4399 11.4396 17.2230  5.1912 -1.5314 16.1535 27.3805 14.6859
- [57]  7.4304  2.5057 15.7574 14.2335  8.1486 12.9220  9.9475  4.2592
- [65] 12.0342  1.0353  9.3054 16.3329  9.4782 10.5602 26.1288  6.5072
- [73] 11.2528 11.7168 15.5909 11.8411 13.3359  6.4290 16.9470 14.9246
- [81] 11.6970  6.7604  8.7824 22.4388  9.1820 15.9416 15.1830  8.9925
- [89]  8.6521  3.8603  4.1595  5.1493 11.7523  2.6171 10.8901 -0.0357
- [97]  1.7897  8.8493  6.8370  1.0397</code></pre>
+<pre><code>  [1]  3.745  8.766 20.872 11.818  1.136 11.168  7.453  7.240  7.918 14.046
+ [11]  4.657  6.562 11.408  9.434 10.639 10.618 12.200  5.951 12.608 13.038
+ [21]  7.743 13.225 10.719  7.757  8.813  2.358  6.502 11.395  4.590  5.166
+ [31] 15.151 12.906 13.201 19.248  9.358  7.681 12.255  4.182  9.763  8.503
+ [41] 20.635 12.111 10.048 10.662 18.059  8.033  3.037  7.762 10.262  2.597
+ [51] 16.728 17.794  9.565  8.248 19.914  1.109  4.320  6.464  5.751  5.180
+ [61]  5.828 -0.741  9.130  5.874 10.410 14.149  5.637  2.676 13.212 12.575
+ [71] 19.620  3.900 17.929  5.327 11.305  2.265  7.149 16.453 13.661  7.471
+ [81]  9.362  2.589 16.370  3.234 12.092 13.688 10.591 10.883  8.415  8.205
+ [91] 13.816  0.742 10.221 13.239 14.003 13.222 11.083 12.851 10.428  5.295</code></pre>
 <pre class="r"><code># Calcultae sample mean and standard deviation.
 mean(samp_100)</code></pre>
-<pre><code>[1] 10.3</code></pre>
+<pre><code>[1] 9.64</code></pre>
 <pre class="r"><code>sd(samp_100)</code></pre>
-<pre><code>[1] 5.59</code></pre>
+<pre><code>[1] 4.8</code></pre>
 <pre class="r"><code>t.test(x = samp_100,   # Vector of values
        mu = 10)  # Mean under null hypothesis</code></pre>
 <pre><code>
     One Sample t-test
 
 data:  samp_100
-t = 0.6, df = 100, p-value = 0.6
+t = -0.7, df = 100, p-value = 0.5
 alternative hypothesis: true mean is not equal to 10
 95 percent confidence interval:
-  9.22 11.44
+  8.69 10.59
 sample estimates:
 mean of x 
-     10.3 </code></pre>
+     9.64 </code></pre>
 <ol start="12" style="list-style-type: decimal">
 <li><p>Repeat the previous block of code several times and look at how the output changes. How do the p-values change when you keep drawing random samples?</p></li>
 <li><p>Change the mean under the null hypothesis to 15 instead of 10 and run the code again several times. What happens to the p-values?</p></li>
@@ -1299,13 +1292,13 @@ mean of x
     One Sample t-test
 
 data:  samp_100
-t = -8, df = 100, p-value = 4e-13
+t = -10, df = 100, p-value &lt;2e-16
 alternative hypothesis: true mean is not equal to 15
 95 percent confidence interval:
-  9.22 11.44
+  8.69 10.59
 sample estimates:
 mean of x 
-     10.3 </code></pre>
+     9.64 </code></pre>
 <ol start="14" style="list-style-type: decimal">
 <li>Look at the code below. As you can see, I generate 4 variables x1, x2, x3 and noise. I then create a dependent variable y that is a function of these variables. Finally, I conduct a regression analysis. <em>Before you run the code</em>, what do you expect the value of the <code>coefficients</code> of the regression equation will be? Test your prediction by running the code and exploring the <code>my_lm</code> object.</li>
 </ol>
@@ -1354,7 +1347,7 @@ lm(formula = y ~ x1 + x2 + x3, data = my_data)
 
 Coefficients:
 (Intercept)           x1           x2           x3  
-     -49.55        -3.04         9.99        14.99  </code></pre>
+     -49.24        -3.02         9.98        14.99  </code></pre>
 </div>
 <div id="additional-resources" class="section level2">
 <h2>Additional Resources</h2>

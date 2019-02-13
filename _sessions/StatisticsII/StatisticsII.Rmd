@@ -668,9 +668,9 @@ options(width=55)
 
 ```{r}
 # Bayesian regression
-my_bm <- lmBF(formula = income ~ 
-              age + height + age:height,
-              data = baselers)
+my_bm <- regressionBF(formula = income ~ 
+                      age + height,
+                      data = baselers)
 summary(my_bm)
 ```
 ]

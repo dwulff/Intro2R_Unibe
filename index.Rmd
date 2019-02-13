@@ -31,7 +31,7 @@ output:
 
 ### Links
 
-##### Data sets
+##### Data sets: <a href="https://dwulff.github.io/Intro2R_Unibe/1_Data/BernRBootcamp_Day1.zip">Day 1</a>
 
 #####  PDFs
 
@@ -68,5 +68,6 @@ output:
 ### Schedule
 
 
-<p align="center"><br>
-    <img border="0" alt="Jan2019Schedule" src="_sessions/welcome/image/schedule.png" style="width:510px"></a><br>
+<p align="left"><br>
+    <img border="0" alt="Feb2019Schedule" src="https://dwulff.github.io/Intro2R_Unibe/_sessions/Welcome/image/schedule.png" style="width:510px">
+</p>
