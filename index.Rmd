@@ -31,7 +31,7 @@ output:
 
 ### Links
 
-##### [**Data sets**](https://raw.githubusercontent.com/therbootcamp/Intro2DataScience_2018Oct/master/_sessions/_data/baselrbootcamp_data.zip)
+##### Data sets
 
 #####  PDFs
 
@@ -67,4 +67,6 @@ output:
 
 ### Schedule
 
-![BernRSchedule](_sessions/welcome/image/schedule.png)
+
+<p align="center"><br>
+    <img border="0" alt="Jan2019Schedule" src="_sessions/welcome/image/schedule.png" style="width:510px"></a><br>

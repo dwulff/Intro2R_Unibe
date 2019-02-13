@@ -166,7 +166,7 @@ reg_results$coefficients
 
 .pull-left45[
 
-# `tibble`
+# Data frame &lt;font style="font-size:32px"&gt;(or `tibble`)&lt;/font&gt;
 
 &lt;br&gt;&lt;br&gt;
 1 - Are `list`s containing &lt;high&gt;`vector`s of equal length&lt;/high&gt; representing the variables.
@@ -205,20 +205,20 @@ baselers
 ```
 ## # A tibble: 10,000 x 20
 ##      id sex     age height weight income
-##   &lt;dbl&gt; &lt;chr&gt; &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;
+##   &lt;int&gt; &lt;chr&gt; &lt;int&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;
 ## 1     1 male     44   174.  113.    6300
 ## 2     2 male     65   180.   75.2  10900
 ## 3     3 fema…    31   168.   55.5   5100
 ## 4     4 male     27   209    93.8   4200
 ## 5     5 male     24   177.   NA     4000
 ##   education confession children
-##   &lt;chr&gt;     &lt;chr&gt;         &lt;dbl&gt;
+##   &lt;chr&gt;     &lt;chr&gt;         &lt;int&gt;
 ## 1 SEK_III   catholic          2
 ## 2 obligato… confessio…        2
 ## 3 SEK_III   &lt;NA&gt;              2
 ## 4 SEK_III   catholic          2
 ## 5 SEK_III   catholic          1
-## # … with 9,995 more rows, and 11 more
+## # ... with 9,995 more rows, and 11 more
 ## #   variables
 ```
 ]
@@ -311,20 +311,20 @@ baselers
 ```
 ## # A tibble: 10,000 x 20
 ##      id sex     age height weight income
-##   &lt;dbl&gt; &lt;chr&gt; &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;
+##   &lt;int&gt; &lt;chr&gt; &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;
 ## 1     1 male     88   174.  113.    6300
 ## 2     2 male    130   180.   75.2  10900
 ## 3     3 fema…    62   168.   55.5   5100
 ## 4     4 male     54   209    93.8   4200
 ## 5     5 male     48   177.   NA     4000
 ##   education confession children
-##   &lt;chr&gt;     &lt;chr&gt;         &lt;dbl&gt;
+##   &lt;chr&gt;     &lt;chr&gt;         &lt;int&gt;
 ## 1 SEK_III   catholic          2
 ## 2 obligato… confessio…        2
 ## 3 SEK_III   &lt;NA&gt;              2
 ## 4 SEK_III   catholic          2
 ## 5 SEK_III   catholic          1
-## # … with 9,995 more rows, and 11 more
+## # ... with 9,995 more rows, and 11 more
 ## #   variables
 ```
 
@@ -815,10 +815,14 @@ baselers &lt;- read_csv(file = "1_Data/baselers.csv")
 ```
 ## Parsed with column specification:
 ## cols(
-##   .default = col_double(),
+##   .default = col_integer(),
 ##   sex = col_character(),
+##   height = col_double(),
+##   weight = col_double(),
+##   income = col_double(),
 ##   education = col_character(),
 ##   confession = col_character(),
+##   food = col_double(),
 ##   fasnacht = col_character(),
 ##   eyecor = col_character()
 ## )
@@ -835,20 +839,20 @@ baselers
 ```
 ## # A tibble: 10,000 x 20
 ##      id sex     age height weight income
-##   &lt;dbl&gt; &lt;chr&gt; &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;
+##   &lt;int&gt; &lt;chr&gt; &lt;int&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;
 ## 1     1 male     44   174.  113.    6300
 ## 2     2 male     65   180.   75.2  10900
 ## 3     3 fema…    31   168.   55.5   5100
 ## 4     4 male     27   209    93.8   4200
 ## 5     5 male     24   177.   NA     4000
 ##   education confession children
-##   &lt;chr&gt;     &lt;chr&gt;         &lt;dbl&gt;
+##   &lt;chr&gt;     &lt;chr&gt;         &lt;int&gt;
 ## 1 SEK_III   catholic          2
 ## 2 obligato… confessio…        2
 ## 3 SEK_III   &lt;NA&gt;              2
 ## 4 SEK_III   catholic          2
 ## 5 SEK_III   catholic          1
-## # … with 9,995 more rows, and 11 more
+## # ... with 9,995 more rows, and 11 more
 ## #   variables
 ```
 
@@ -1024,7 +1028,7 @@ if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
 (function () {
   var script = document.createElement('script');
   script.type = 'text/javascript';
-  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  script.src  = 'https://cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML';
   if (location.protocol !== 'file:' && /^https?:/.test(script.src))
     script.src  = script.src.replace(/^https?:/, '');
   document.getElementsByTagName('head')[0].appendChild(script);
