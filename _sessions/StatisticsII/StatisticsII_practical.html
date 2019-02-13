@@ -147,8 +147,8 @@ $(document).ready(function () {
 <h2>Overview</h2>
 <p>In this practical you’ll do basic statistics in R. By the end of this practical you will know how to:</p>
 <ol style="list-style-type: decimal">
-<li>Calculate regression analyses with <code>glm()</code> and <code>lm()</code>.</li>
-<li>Explore statistical objects with <code>names()</code>, <code>summary()</code>, <code>print()</code>, <code>predict()</code>.</li>
+<li>Run regression analyses with <code>glm()</code> and <code>lm()</code>.</li>
+<li>Evaluate and explore statistical objects with <code>summary()</code>, <code>anova()</code>, and <code>names()</code>.</li>
 <li>Run mixed-model and Bayesian regressions using the <code>lme4</code> and <code>BayesFactor</code> packages.</li>
 </ol>
 </div>
@@ -159,7 +159,7 @@ $(document).ready(function () {
 <ol style="list-style-type: decimal">
 <li><p>Open your <code>BernRBootcamp</code> R project. It should already have the folders <code>1_Data</code> and <code>2_Code</code>. Make sure that all of the data files listed in the <code>Datasets</code> section are contained in the <code>1_Data</code> folder.</p></li>
 <li><p>Open a new R script and save it as a new file called <code>statisticsII_practical.R</code> in the <code>2_Code</code> folder. At the top of the script, using comments, write your name and the date. The, load the set of packages listed in the <code>Functions</code> section with <code>library()</code>.</p></li>
-<li><p>For this practical, we’ll use the <code>gap.csv</code> data. This dataset contains data from three years on economic and health variables of 139 countries. Using the following template, load the data into R and store it as a new object called <code>kc_house</code>.</p></li>
+<li><p>For this practical, we’ll use the <code>gap.csv</code> data. This dataset contains data from three years on economic and health variables of 139 countries. Using the following template, load the data into R and store it as a new object called <code>gap</code>.</p></li>
 </ol>
 <pre class="r"><code>gap &lt;- read_csv(file = &quot;XX&quot;)</code></pre>
 <ol start="4" style="list-style-type: decimal">
@@ -175,7 +175,7 @@ $(document).ready(function () {
               data = XX)</code></pre>
 <ol start="2" style="list-style-type: decimal">
 <li><p>Print your <code>mort_lm</code> object to see the main results.</p></li>
-<li><p>Use the <code>summary()</code> function to return a data frame containing the main results of the linear regression. Evalute the test results: Does health expenditure significantly predict child mortality? How much variance is explained by health expenditure (Tipp: look for Multiple R-squared)?</p></li>
+<li><p>Use the <code>summary()</code> function to return a data frame containing the main results of the linear regression. Evaluate the test results: Does health expenditure significantly predict child mortality? How much variance is explained by health expenditure (Tip: look for Multiple R-squared)?</p></li>
 <li><p>You probably concluded correctly that health expenditure correctly predicts child mortality. One way to confirm this is via a simple plot by plugging the two variables into the code below (don’t worry you learn how to do fancier plots in the next sessions).</p></li>
 </ol>
 <pre class="r"><code>plot(gap$XX, gap$XX, log = &quot;xy&quot;)</code></pre>
@@ -186,223 +186,109 @@ $(document).ready(function () {
               data = XX)</code></pre>
 <ol start="6" style="list-style-type: decimal">
 <li><p>Have the results changed? Which predictor is more strongly related to child mortality? Evaluate using <code>summary()</code>.</p></li>
-<li><p>GDP per capita is the better predictor of child mortality. Now play around a bit. Find out if the two predictors interact or whether any of the other <code>numeric</code> (!) varibles significantly improve the prediction of child mortality.</p></li>
+<li><p>GDP per capita is the better predictor of child mortality. Now play around a bit. Find out if the two predictors interact or whether any of the other <code>numeric</code> (!) variables significantly improve the prediction of child mortality.</p></li>
 </ol>
 </div>
-<div id="c---anova-models-with-lm" class="section level3">
-<h3>C - ANOVA models with <code>lm()</code></h3>
+<div id="c---ancova-models-with-lm" class="section level3">
+<h3>C - AN(C)OVA models with <code>lm()</code></h3>
 <ol style="list-style-type: decimal">
-<li>ANOVA’s in R are also run using <code>lm()</code>. Technically, an ANOVA is a regression using dummy variables to code each of the predictor levels in the ANOVA. To see this, predict child mortality using <code>continent</code> and print the resulting model.</li>
+<li>ANOVAs in R are also run using <code>lm()</code>. Technically, an ANOVA is a regression using dummy variables to code each of the predictor levels in the ANOVA. To see this, predict child mortality using <code>continent</code> and print the resulting model.</li>
 </ol>
-<pre class="r"><code>mort_lm &lt;- lm(formula = XX ~ continent,
-              data = XX)
-mort_lm</code></pre>
+<pre class="r"><code>mort_anova &lt;- lm(formula = XX ~ continent,
+                 data = XX)
+mort_anova</code></pre>
 <ol start="2" style="list-style-type: decimal">
-<li><p>You should have observed that</p></li>
-<li><p>Evaluate the p-value of this test compare to what you got in the previous question when you used <code>cor.test()</code>?</p></li>
-<li><p>Which of the variables <code>bedrooms</code>, <code>bathrooms</code>, and <code>sqft_living</code> predict housing price? Answer this by conducting the appropriate regression analysis using <code>lm()</code> and assigning the result to an object <code>price_lm</code>. Use the following template:</p></li>
+<li>You should have observed that the model included four predictors, one for each value of <code>continent</code> except the first (<code>Africa</code>), which in this case is represented by the intercept (<code>(Intercept)</code>). Running an ANOVA we are, of course, usually interested in the main effect of the variable <code>continent</code> rather than that of the individual levels of the <code>continent</code> variable. To get the main effect and a typical ANOVA output, simply apply the <code>anova()</code> function to the linear model object.</li>
 </ol>
-<pre class="r"><code>price_lm &lt;- lm(formula = XX ~ XX + XX + XX,
-               data = XX)</code></pre>
-<ol start="6" style="list-style-type: decimal">
-<li><p>Print your <code>price_lm</code> object to see the main results.</p></li>
-<li><p>Apply the <code>summary()</code> function to <code>price_lm</code>. Do you see anything new or important?</p></li>
-<li><p>Look at the names of the <code>price_lm</code> with <code>names()</code>. What are the named elements of the object?</p></li>
-<li><p>Using the <code>$</code> operator, print a vector of the estimated coefficients of the analysis.</p></li>
-<li><p>Use the <code>tidy()</code> function (from the <code>broom</code> package) to return a dataframe containing the main results of the test.</p></li>
-<li><p>Use the <code>rsq()</code> function (from the <code>rsq</code> package) to obtain the R-squared value. Does this match what you saw in your previous outputs?</p></li>
-<li><p>Using the following template, create a new model called <code>everything_lm</code> that predicts housing prices based on <em>all</em> predictors in <code>kc_house</code> <em>except</em> for <code>id</code> and <code>date</code> (<code>id</code> is meaningless and date shouldn’t matter). Use the following template. Note that to include all predictors, we’ll use the <code>formula = y ~.</code> shortcut. We’ll also remove id and date from the dataset using <code>select()</code> before running the analysis.</p></li>
-</ol>
-<pre class="r"><code>everything_lm &lt;- lm(formula = XX ~.,
-                    data = kc_house %&gt;% 
-                             select(-id, -date))</code></pre>
-<ol start="13" style="list-style-type: decimal">
-<li><p>Print your <code>everything_lm</code> object to see the main results.</p></li>
-<li><p>Apply the <code>summary()</code> function to <code>everything_lm</code>. Do you see anything new or important?</p></li>
-<li><p>Using the <code>$</code> operator, print a vector of the estimated coefficients of the analysis. Are the beta values for bedrooms, bathrooms, and sqft_living different from what you got in your previous analysis <code>price_lm</code>?</p></li>
-<li><p>Use the <code>tidy()</code> function to return a dataframe containing the main results of the test.</p></li>
-<li><p>Use the <code>rsq()</code> function (from the <code>rsq</code> package) to obtain the R-squared value. How does this R-squared value compare to what you got in your previous regression <code>price_lm</code>?</p></li>
-<li><p>How well did the <code>everything_lm</code> model fit the actual housing prices? We can answer this by calculating the average difference between the fitted values and the true values directly. Using the following template, make this calculation. What do you find is the mean absolute difference between the fitted housing prices and the true prices?</p></li>
-</ol>
-<pre class="r"><code># True housing prices
-prices_true &lt;- kc_house$XX
-
-# Model fits (fitted.values)
-prices_fitted &lt;- everything_lm$XX
-
-# Calculate absolute error between fitted and true values
-abs_error &lt;- abs(XX - XX)
-
-# Calculate mean absolute error
-mae &lt;- mean(XX)
-
-# Print the result!
-mae</code></pre>
-<ol start="19" style="list-style-type: decimal">
-<li>Using the following template, create a scatterplot showing the relationship between the fitted values of the <code>everything_lm</code> object and the true prices.</li>
-</ol>
-<pre class="r"><code># Create dataframe containing fitted and true prices
-prices_results &lt;- tibble(truth = XX,
-                         fitted = XX)
-
-# Create scatterplot
-ggplot(data = prices_results,
-       aes(x = fitted, y = truth)) + 
-  geom_point(alpha = .1) +
-  geom_smooth(method = &#39;lm&#39;) +
-  labs(title = &quot;Fitted versus Predicted housing prices&quot;,
-       subtitle = paste0(&quot;Mean Absolute Error = &quot;, mae),
-       caption = &quot;Source: King County housing price Kaggle dataset&quot;,
-       x = &quot;Fitted housing price values&quot;,
-       y = &#39;True values&#39;) + 
-  theme_minimal()</code></pre>
-</div>
-<div id="f---logistic-regression-with-glmfamily-binomial" class="section level3">
-<h3>F - Logistic regression with glm(family = ‘binomial’)</h3>
-<ol style="list-style-type: decimal">
-<li>In the next set of analyses, we’ll use logistic regression to predict whether or not a house will sell for over $1,000,000. First, we’ll need to create a new binary variable in the <code>kc_house</code> called <code>million</code> that is 1 when the price is over 1 million, and 0 when it is not. Run the following code to create this new variable</li>
-</ol>
-<pre class="r"><code># Create a new binary variable called million that
-#  indicates when houses sell for more than 1 million
-
-# Note: 1e6 is a shortcut for 1000000
-
-kc_house &lt;- kc_house %&gt;%
-                mutate(million = price &gt; 1e6)</code></pre>
-<ol start="2" style="list-style-type: decimal">
-<li>Using the following template, use the <code>glm()</code> function to conduct a logistic regression to see which of the variables <code>bedrooms</code>, <code>bathrooms</code>, <code>floors</code>, <code>waterfront</code>, <code>yr_built</code> predict whether or not a house will sell for over 1 Million. Be sure to include the argument <code>family = 'binomial'</code> to tell <code>glm()</code> that we are conducting a logistic regression analysis.</li>
-</ol>
-<pre class="r"><code># Logistic regression analysis predicting which houses will sell for
-#   more than 1 Million
-
-million_glm &lt;- glm(formula = XX ~ XX + XX + XX + XX + XX,
-                   data = kc_house,
-                   family = &quot;XX&quot;)</code></pre>
+<pre class="r"><code>mort_anova &lt;- lm(formula = XX ~ continent,
+                 data = XX)
+anova(mort_anova)</code></pre>
 <ol start="3" style="list-style-type: decimal">
-<li><p>Print your <code>million_glm</code> object to see the main results.</p></li>
-<li><p>Apply the <code>summary()</code> function to <code>million_glm</code>.</p></li>
-<li><p>Using the <code>$</code> operator, print a vector of the estimated beta values (coefficients) of the analysis.</p></li>
-<li><p>Use the <code>tidy()</code> function to return a dataframe containing the main results of the test.</p></li>
-<li><p>You can get the fitted probability predictions that each house will sell for more than 1 Million by accessing the vector <code>million_glm$fitted.values</code>. Using this vector, calculate the average probability that houses will sell for more than 1 Million (hint: just take the mean!)</p></li>
-<li><p>Using the following code, create a data frame showing the relationship between the fitted probability that a house sells for over 1 Million and the true probability:</p></li>
+<li>Interested in evaluating a main effect while accounting for another continuous variable, i.e., to run an ANCOVA? Simply add continuous predictors to the formula. Predict child mortality by continent and GDP per capita and apply the <code>anova()</code> function.</li>
 </ol>
-<pre class="r"><code># Just run it!
-
-million_fit &lt;- tibble(pred_million = million_glm$fitted.values,
-                      true_million = kc_house$million) %&gt;%
-                mutate(fitted_cut = cut(pred_million, breaks = seq(0, 1, .1))) %&gt;%
-                group_by(fitted_cut) %&gt;%
-                summarise(true_prob = mean(true_million))
-
-million_fit</code></pre>
-<ol start="9" style="list-style-type: decimal">
-<li>Now plot the results using the following code:</li>
-</ol>
-<pre class="r"><code># Just run it!
-
-ggplot(million_fit, 
-       aes(x = fitted_cut, y = true_prob, col = as.numeric(fitted_cut))) + 
-  geom_point(size = 2) +
-  labs(x = &quot;Fitted Probability&quot;,
-       y = &quot;True Probability&quot;,
-       title = &quot;Predicting the probability of a 1 Million house&quot;,
-       subtitle = &quot;Using logistic regression with glm(family = &#39;binomial&#39;)&quot;) +
-  scale_y_continuous(limits = c(0, 1)) +
-  guides(col = FALSE)</code></pre>
 </div>
-<div id="g---using-predict-to-predict-new-values" class="section level3">
-<h3>G - Using predict() to predict new values</h3>
+<div id="d---logistic-regression-using-glm" class="section level3">
+<h3>D - Logistic regression using <code>glm()</code></h3>
+<p>Logistic regressions (and regular regressions) can be run using <code>glm()</code>, R’s general linear model function. It works just like the regular <code>lm()</code> function, adding only a <code>family</code> argument that specifies the probabilistic function linking the predictors and the criterion. For logistic regression this is <code>family = 'binomial'</code> to specify a logistic link function.</p>
 <ol style="list-style-type: decimal">
-<li>Your friend Donald just bought a house whose building records have been lost. She wants to know what year her house was likely built. Help Donald figure out when his house was built by conducting the appropriate regression analysis, and then using the specifics of his house to predict the year that his house was built using the <code>predict()</code> function. You know that his house is on the waterfront, has 3 bedrooms, 2 floors and has a condition of 4. The following block of code may help you!</li>
+<li><p>Prior running a logistic regression, you will have to create your criterion, as there is currently no categorical, two-valued (binary) variable included in the dataset. Create a variable called <code>co2_largermed</code> in the <code>gap</code> dataset that carries a <code>1</code> if CO2 emissions per person are higher than the median value of that variable and <code>0</code> if they are smaller or equal. (Tip: Use <code>mutate()</code>, <code>case_when()</code>, and <code>median(x, na.rm = TRUE)</code>).</p></li>
+<li><p>Now run a logistic regression predicting <code>co2_largermed</code> using population (<code>pop</code>) and GDP per capita (<code>gdpPercap</code>) and evaluate the result using <code>summary()</code>. See code below. (Note: Don’t worry about the warning, if you receive one)</p></li>
 </ol>
-<pre class="r"><code># Create regression model predicting year (yr_built)
-year_lm &lt;- lm(formula = XX ~ XX + XX + XX + XX,
-              data = XX)
+<pre class="r"><code>co2_glm &lt;- glm(formula = co2_largermed ~ XX + XX,
+               data = XX,
+               family = &quot;XX&quot;)
+summary(co2_glm)</code></pre>
+<ol start="3" style="list-style-type: decimal">
+<li><p>Not very surprisingly, both high population (<code>pop</code>) and high GDP per capita (<code>gdpPercap</code>) seem to be associated with higher than median CO2 emission. However, it is possible that the interaction of the two variables is behind the effect, i.e., that CO2 emissions are large only for countries with high GDP per capita <em>and</em> high population. Test this by also including the interaction effect via <code>var_1 * var_2</code>.</p></li>
+<li><p>Indeed, it seems that interaction is most important for the prediction of CO2 emissions. But again there is a caveat. By default R implements the interaction of two predictors using their uncentered product as the interaction term. As a result the interaction term will be highly correlated with the original predictors, rendering it difficult to interpret the results. To deal with this issue, create new, centered versions of <code>pop</code> and <code>gdpPercap</code> called <code>pop_cent</code> and <code>gdpPercap_cent</code> using <code>mutate()</code> and <code>scale(scale = FALSE)</code>.</p></li>
+<li><p>Now, evaluate the model formula <code>co2_largermed ~ pop + gdpPercap + pop_scaled:gdpPercap_scaled</code>, which implements the interaction of the scaled and centered variables. (I.e., run the logistic regression with the above formula and apply <code>summary()</code>).</p></li>
+<li><p>All three, the two variables and their interaction, significantly predict higher than median CO2 emissions. This was obscured before because of the inter-correlation between the predictors. If you like, you can confirm that both models, with centered and uncentered interactions, predict the criterion equally well using <code>rsq()</code> from the <code>rsq</code> package. The <code>rsq()</code> function computes the overall R-squared value for generalized linear models.</p></li>
+</ol>
+<pre class="r"><code>co2_cent_glm &lt;- glm(formula = co2_largermed ~ pop + gdpPercap +      
+                    pop_cent:gdpPercap_cent,
+                    data = gap,
+                    family = &quot;binomial&quot;)
 
-# Define Donald&#39;s House
-DonaldsHouse &lt;- tibble(waterfront = X,
-                       bedrooms = X,
-                       floors = X,
-                       condition = X)
+co2_noncent_glm &lt;- glm(formula = co2_largermed ~ pop * gdpPercap,
+                       data = gap,
+                       family = &quot;binomial&quot;)
 
-# Predict the hear of donald&#39;s house
-predict(object = year_lm, 
-        newdata = DonaldsHouse)</code></pre>
+
+rsq(co2_cent_glm)
+rsq(co2_noncent_glm)</code></pre>
 </div>
-<div id="x---advanced" class="section level3">
-<h3>X - Advanced</h3>
+<div id="e---working-with-statistical-objects" class="section level3">
+<h3>E - Working with statistical objects</h3>
 <ol style="list-style-type: decimal">
-<li><p>Which variables in the dataset significantly predict the grade of a house? Answer this with a regression analysis.</p></li>
-<li><p>Is there an interaction between waterfront and year built (<code>yr_built</code>) on price? In other words, is the relationship between year built and price the same for homes on the waterfront and homes not on the waterfront? Answer this by conducting the appropriate regression analysis and interpret the results. Note: to include an interaction in a model, use the formula <code>y ~ X1 * X2</code> instead of <code>y ~ X1 + X2</code>.</p></li>
-<li><p>How well can a regression analysis based on houses sold in 2014 predict housing costs in the 2015? To answer this we’ll create a regression model based on houses sold in 2014 and then use that model to predict the prices of houses sold in 2015. To start, we’ll need to create two new dataframes <code>kc_house_2014</code> and <code>kc_house_2015</code>. Run the code in the following chunk to do this.</p></li>
+<li>Statistical objects as returned from <code>lm()</code> and <code>glm()</code> contain a lot of result objects. To see this, inspect the final <code>mort_lm</code> object of section B using <code>names()</code>.</li>
 </ol>
-<pre class="r"><code># Just run it!
+<pre class="r"><code>names(XX)</code></pre>
+<ol start="2" style="list-style-type: decimal">
+<li>The <code>lm</code> object includes among others objects the vector of residuals, i.e., the error committed in predicting each point of the criterion. Using the residuals central assumptions of a regression can be tested, namely that the true relationship is linear and that error variance is of equal size across the entire predictor space. Evaluate the two assumptions by plotting the residuals (y-axis) onto the fitted values (x-axis). If both assumptions are true, then the residuals should scatter equally broad across the range of fitted values with an average of roughly zero.</li>
+</ol>
+<pre class="r"><code>plot(mort_lm$XX, mort_lm$XX)</code></pre>
+<ol start="3" style="list-style-type: decimal">
+<li>Obviously the assumptions are not met. The reason for this is largely that all three variables are extremely right-skewed. Deal with this by rerunning the model with log-transformed versions of all three variables (see below). Recreate the plot. Has anything changed? Assumptions met?</li>
+</ol>
+<pre class="r"><code>mort_lm &lt;- lm(formula = log(XX) ~ log(XX) + log(XX),
+              data = XX)</code></pre>
+</div>
+<div id="f---mixed-effects-models" class="section level3">
+<h3>F - Mixed-effects models</h3>
+<p>So far we have ignored the fact that there were three measurements for each country and that those data should be modeled as repeated measurements. One way to do this is via linear mixed-effects models.</p>
+<ol style="list-style-type: decimal">
+<li>Specify a repeated measurement model by including a random intercept for countries in a regression model predicting child mortality with GDP per capita. See the code below. (Note: Ignore the warning, if you receive one)</li>
+</ol>
+<pre class="r"><code>mort_lmer &lt;- lmer(formula = childMort ~ gdpPercap + (1|country),
+                  data = gap)</code></pre>
+<ol start="2" style="list-style-type: decimal">
+<li>Print <code>mort_lmer</code> and evaluate using <code>summary()</code>. Notice any difference to the typical <code>lm()</code> outputs?</li>
+</ol>
+<p>There are, at least, two important observations. First, there are no p-values associated with the t-values, which is due to the fact that mixed-effects models require complex adjustments for the degrees of freedom required to determine p-values. Second, there are two sections of effects, random and fixed. The random effects refer to the ones estimated on the country level, whereas the fixed effects refer to ones estimated irrespective of country.</p>
+<ol start="3" style="list-style-type: decimal">
+<li>When running mixed-effects models it is recommended to evaluate, whether the inclusion of random effects is indicated, i.e., delivers a substantially better fit to the data. To test this, you can use <code>anova()</code> compare the <code>mort_lmer</code> to the standard <code>lm()</code> model predicting child mortality with GDP per capita. A significant result will indicate that the model without random intercepts is significantly worse than the model with random intercepts.</li>
+</ol>
+</div>
+<div id="g---bayesian-models" class="section level3">
+<h3>G - Bayesian models</h3>
+<p>Finally, let us turn to new (old) kid in town, Bayesian statistics. With today’s computing power, long existing Bayesian statistics have become a viable alternative for practically all <em>Frequentist</em> (i.e., classic) analysis approaches. In R, Bayesian methods for linear models have been made available among others through the <code>BayesFactor</code> package.</p>
+<ol style="list-style-type: decimal">
+<li>Run a Bayesian regression using the <code>regressionBF</code> function of the <code>BayesFactor</code> package predicting child mortality using GDP per capita. (Note: Contrary to other functions <code>regressionBF()</code> and other <code>BayesFactor</code> functions require that NAs are removed beforehand).</li>
+</ol>
+<pre class="r"><code># Bayesian lm
+mort_blm &lt;- regressionBF(formula = childMort ~ gdpPercap,
+                         data = gap %&gt;% filter(!is.na(childMort)))</code></pre>
+<ol start="2" style="list-style-type: decimal">
+<li><p>Evaluate <code>mort_blm</code> by printing it. You’ll see a very different output showing only the BayesFactor, a metric specifying the amount of evidence in the data against the hypothesis of the predictor having no effect on the criterion.</p></li>
+<li><p>What is missing from the output are the actual estimates for the predictor. To extract those, you need to sample from the posterior distribution and then average across the samples.</p></li>
+</ol>
+<pre class="r"><code># sample from posterior
+post &lt;- posterior(mort_blm, iterations = 1000)
 
-# Add year_sold to kc_house
-
-kc_house &lt;- kc_house %&gt;%
-  mutate(year_sold = year(ymd(date)))
-
-# Create kc_house_2014, 
-#    Only houses sold in 2014
-kc_house_2014 &lt;- kc_house %&gt;%
-  filter(year_sold == 2014)
-
-# Create kc_house_2015, 
-#     Only houses sold in 2015
-kc_house_2015 &lt;- kc_house %&gt;%
-  filter(year_sold == 2015)</code></pre>
+# get estimates
+colMeans(as.matrix(post))</code></pre>
 <ol start="4" style="list-style-type: decimal">
-<li><p>Create a regression model called <code>price_2014_lm</code> that models housing prices in 2014 using only the <code>kc_house_2014</code> data. Note that you may wish to exclude some variables such as <code>id</code>, <code>date</code>, <code>million</code> and <code>year_sold</code>.</p></li>
-<li><p>Create a regression model called <code>price_2015_lm</code> that models housing prices in 2015 using only the <code>kc_house_2015</code> data. Include the same exclusion and transformation criterion you used in the previous question.</p></li>
-<li><p>Explore and compare the two models, do they look very similar? Very different?</p></li>
-<li><p>Calculate the mean absolute error of each model applied to the dataset in which they were created. That is, what was the mean absolute fitted error of each model?</p></li>
-<li><p>Using <code>predict()</code>, predict the 2015 housing data based on the <code>price_2014_lm</code> model.</p></li>
-<li><p>Calculate the mean absolute error of the <code>price_2014_lm</code> model when applied to the 2015 data. How different was the mean error compared to the mean fitting error of the <code>price_2015_lm</code> model?</p></li>
-</ol>
-</div>
-<div id="generating-random-samples-from-distributions" class="section level3">
-<h3>Generating random samples from distributions</h3>
-<ol start="10" style="list-style-type: decimal">
-<li><p>You can easily generate random samples from statistical distributions in R. To see all of them, run <code>?distributions</code>. For example, to generate samples from the well known Normal distribution, you can use <code>rnorm()</code>. Look at the help menu for <code>rnorm()</code> to see its arguments.</p></li>
-<li><p>Let’s explore the <code>rnorm()</code> function. Using <code>rnorm()</code>, create a new object <code>samp_100</code> which is 100 samples from a Normal distribution with mean 10 and standard deviation 5. Print the object to see what the elements look like. What should the mean and standard deviation of this sample? be? Test it by evaluating its mean and standard deviation directly using the appropriate functions. Then, do a one-sample t-test on this sample against the null hypothesis that the true mean is 10. What are the results? Use the following code template to help!</p></li>
-</ol>
-<pre class="r"><code># Generate 100 samples from a Normal distribution with mean = 10 and sd = 5
-samp_100 &lt;- rnorm(n = XX, mean = XX, sd = XX)
-
-# Print result
-samp_100
-
-# Calcultae sample mean and standard deviation.
-mean(XX)
-sd(XX)
-
-t.test(x = XX,   # Vector of values
-       mu = XX)  # Mean under null hypothesis</code></pre>
-<ol start="12" style="list-style-type: decimal">
-<li><p>Repeat the previous block of code several times and look at how the output changes. How do the p-values change when you keep drawing random samples?</p></li>
-<li><p>Change the mean under the null hypothesis to 15 instead of 10 and run the code again several times. What happens to the p-values?</p></li>
-<li><p>Look at the code below. As you can see, I generate 4 variables x1, x2, x3 and noise. I then create a dependent variable y that is a function of these variables. Finally, I conduct a regression analysis. <em>Before you run the code</em>, what do you expect the value of the <code>coefficients</code> of the regression equation will be? Test your prediction by running the code and exploring the <code>my_lm</code> object.</p></li>
-</ol>
-<pre class="r"><code># Generate independent variables
-x1 &lt;- rnorm(n = 100, mean = 10, sd = 1)
-x2 &lt;- rnorm(n = 100, mean = 20, sd = 10)
-x3 &lt;- rnorm(n = 100, mean = -5, sd = 5)
-
-# Generate noise
-noise &lt;- rnorm(n = 100, mean = 0, sd = 1)
-
-# Create dependent variable
-y &lt;- 3 * x1 + 2 * x2 - 5 * x3 + 100 + noise
-
-# Combine all into a tibble
-my_data &lt;- tibble(x1, x2, x3, y)
-
-# Calculate my_lm
-my_lm &lt;- lm(formula = y ~ x1 + x2 + x3,
-              data = my_data)</code></pre>
-<ol start="15" style="list-style-type: decimal">
-<li>Adjust the code above so that the coefficients for the regression equation will be (close to) <code>(Intercept) = -50</code>, <code>x1 = -3</code>, <code>x2 = 10</code>, <code>x3 = 15</code></li>
+<li>Compare the estimate of the effect of GDP per capita on child mortality from the Bayesian method to the one from the standard <code>lm()</code>. How similar are they?</li>
 </ol>
 </div>
 </div>
@@ -589,10 +475,14 @@ price_Blm</code></pre>
 <td align="left"><code>install.packages(&quot;tidyverse&quot;)</code></td>
 </tr>
 <tr class="even">
+<td align="left"><code>rsq</code></td>
+<td align="left"><code>install.packages(&quot;rsq&quot;)</code></td>
+</tr>
+<tr class="odd">
 <td align="left"><code>lme4</code></td>
 <td align="left"><code>install.packages(&quot;lme4&quot;)</code></td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left"><code>BayesFactor</code></td>
 <td align="left"><code>install.packages(&quot;BayesFactor&quot;)</code></td>
 </tr>
@@ -602,7 +492,12 @@ price_Blm</code></pre>
 <div id="functions-1" class="section level3">
 <h3>Functions</h3>
 <p><em>Model functions</em></p>
-<table>
+<table style="width:69%;">
+<colgroup>
+<col width="11%" />
+<col width="29%" />
+<col width="29%" />
+</colgroup>
 <thead>
 <tr class="header">
 <th align="left">Function</th>
@@ -612,14 +507,19 @@ price_Blm</code></pre>
 </thead>
 <tbody>
 <tr class="odd">
-<td align="left"><code>|    | | |</code></td>
-<td align="left"></td>
-<td align="left"></td>
+<td align="left"><code>lm()</code>, <code>glm()</code></td>
+<td align="left"><code>stats</code></td>
+<td align="left">(Generalized) linear models</td>
 </tr>
 <tr class="even">
-<td align="left"><code>glm()</code>, <code>lm()</code></td>
-<td align="left">Generalized linear model and linear model</td>
-<td align="left"></td>
+<td align="left"><code>lmer()</code>, <code>glmer()</code></td>
+<td align="left"><code>lme4</code></td>
+<td align="left">(Generalized) linear mixed-effects models</td>
+</tr>
+<tr class="odd">
+<td align="left"><code>regressionBF()</code>, <code>lmBF()</code></td>
+<td align="left"><code>BayesFactor</code></td>
+<td align="left">Bayesian (generalized, mixed-effects) linear models</td>
 </tr>
 </tbody>
 </table>
@@ -634,24 +534,24 @@ price_Blm</code></pre>
 </thead>
 <tbody>
 <tr class="odd">
-<td align="left"><code>summary()</code></td>
+<td align="left"><code>print()</code></td>
 <td align="left"><code>base</code></td>
-<td align="left"></td>
+<td align="left">Standard printout</td>
 </tr>
 <tr class="even">
-<td align="left"><code>anova()</code></td>
+<td align="left"><code>summary()</code></td>
 <td align="left"><code>base</code></td>
-<td align="left"></td>
+<td align="left">Standard model evaluation</td>
 </tr>
 <tr class="odd">
-<td align="left"><code>predict()</code></td>
+<td align="left"><code>anova()</code></td>
 <td align="left"><code>stats</code></td>
-<td align="left">Predict</td>
+<td align="left">ANOVA model evaluation and model comparison</td>
 </tr>
 <tr class="even">
 <td align="left"><code>names()</code></td>
 <td align="left"><code>base</code></td>
-<td align="left">Print names of model contents.</td>
+<td align="left">Print names of objects contained in model output</td>
 </tr>
 </tbody>
 </table>

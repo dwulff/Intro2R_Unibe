@@ -57,8 +57,8 @@ options(digits = 3)
 
 In this practical you'll do basic statistics in R. By the end of this practical you will know how to:
 
-1. Calculate regression analyses with `glm()` and `lm()`.
-2. Explore statistical objects with `names()`, `summary()`, `print()`, `predict()`.
+1. Run regression analyses with `glm()` and `lm()`.
+2. Evaluate and explore statistical objects with `summary()`, `anova()`, and `names()`.
 3. Run mixed-model and Bayesian regressions using the `lme4` and `BayesFactor` packages.
 
 
@@ -86,7 +86,7 @@ gap <- read_csv("1_Data/gap.csv")
 
 2. Open a new R script and save it as a new file called `statisticsII_practical.R` in the `2_Code` folder. At the top of the script, using comments, write your name and the date. The, load the set of packages listed in the `Functions` section with `library()`.
 
-3. For this practical, we'll use the `gap.csv` data. This dataset contains data from three years on economic and health variables of 139 countries. Using the following template, load the data into R and store it as a new object called `kc_house`.
+3. For this practical, we'll use the `gap.csv` data. This dataset contains data from three years on economic and health variables of 139 countries. Using the following template, load the data into R and store it as a new object called `gap`.
 
 ```{r, echo = TRUE, eval = FALSE}
 gap <- read_csv(file = "XX")
@@ -126,7 +126,7 @@ mort_lm
 ```
 
 
-3. Use the `summary()` function to return a data frame containing the main results of the linear regression. Evalute the test results: Does health expenditure significantly predict child mortality? How much variance is explained by health expenditure (Tipp: look for Multiple R-squared)?
+3. Use the `summary()` function to return a data frame containing the main results of the linear regression. Evaluate the test results: Does health expenditure significantly predict child mortality? How much variance is explained by health expenditure (Tip: look for Multiple R-squared)?
 
 ```{r}
 summary(mort_lm)
@@ -160,551 +160,239 @@ mort_lm <- lm(formula = childMort ~ healthExp + gdpPercap,
 summary(mort_lm)
 ```
 
-7. GDP per capita is the better predictor of child mortality. Now play around a bit. Find out if the two predictors interact or whether any of the other `numeric` (!) varibles significantly improve the prediction of child mortality.
+7. GDP per capita is the better predictor of child mortality. Now play around a bit. Find out if the two predictors interact or whether any of the other `numeric` (!) variables significantly improve the prediction of child mortality.
 
 ### C - AN(C)OVA models with `lm()`
 
-1. ANOVA's in R are also run using `lm()`. Technically, an ANOVA is a regression using dummy variables to code each of the predictor levels in the ANOVA. To see this, predict child mortality using `continent` and print the resulting model.
+1. ANOVAs in R are also run using `lm()`. Technically, an ANOVA is a regression using dummy variables to code each of the predictor levels in the ANOVA. To see this, predict child mortality using `continent` and print the resulting model.
 
 ```{r, eval = FALSE, echo = TRUE}
-mort_lm <- lm(formula = XX ~ continent,
-              data = XX)
-mort_lm
+mort_anova <- lm(formula = XX ~ continent,
+                 data = XX)
+mort_anova
 ```
 
 ```{r}
-mort_lm <- lm(formula = childMort ~ continent,
-              data = gap)
-mort_lm
+mort_anova <- lm(formula = childMort ~ continent,
+                 data = gap)
+mort_anova
 ```
 
 2. You should have observed that the model included four predictors, one for each value of `continent` except the first (`Africa`), which in this case is represented by the intercept (`(Intercept)`). Running an ANOVA we are, of course, usually interested in the main effect of the variable `continent` rather than that of the individual levels of the `continent` variable. To get the main effect and a typical ANOVA output, simply apply the `anova()` function to the linear model object. 
 
 ```{r, eval = FALSE, echo = TRUE}
-mort_lm <- lm(formula = XX ~ continent,
-              data = XX)
-anova(mort_lm)
+mort_anova <- lm(formula = XX ~ continent,
+                 data = XX)
+anova(mort_anova)
 ```
 
 ```{r}
-mort_lm <- lm(formula = childMort ~ continent,
-              data = gap)
-anova(mort_lm)
+mort_anova <- lm(formula = childMort ~ continent,
+                 data = gap)
+anova(mort_anova)
 ```
 
-
-4. Evaluate the p-value of this test compare to what you got in the previous question when you used `cor.test()`?
+3. Interested in evaluating a main effect while accounting for another continuous variable, i.e., to run an ANCOVA? Simply add continuous predictors to the formula. Predict child mortality by continent and GDP per capita and apply the `anova()` function.
 
 ```{r}
-# Same!
+mort_anova <- lm(formula = childMort ~ continent + gdpPercap,
+                 data = gap)
+anova(mort_anova)
 ```
 
+### D - Logistic regression using `glm()`
 
-5. Which of the variables `bedrooms`, `bathrooms`, and `sqft_living` predict housing price? Answer this by conducting the appropriate regression analysis using `lm()` and assigning the result to an object `price_lm`. Use the following template:
+Logistic regressions (and regular regressions) can be run using `glm()`, R's general linear model function. It works just like the regular `lm()` function, adding only a `family` argument that specifies the probabilistic function linking the predictors and the criterion. For logistic regression this is `family = 'binomial'` to specify a logistic link function.   
 
-```{r, eval = FALSE, echo = TRUE}
-price_lm <- lm(formula = XX ~ XX + XX + XX,
-               data = XX)
-```
+1. Prior running a logistic regression, you will have to create your criterion, as there is currently no categorical, two-valued (binary) variable included in the dataset. Create a variable called `co2_largermed` in the `gap` dataset that carries a `1` if CO2 emissions per person are higher than the median value of that variable and `0` if they are smaller or equal. (Tip: Use `mutate()`, `case_when()`, and `median(x, na.rm = TRUE)`).
 
 ```{r}
-price_lm <- lm(formula = price ~ bedrooms + bathrooms + sqft_living,
-               data = kc_house)
+gap <- gap %>%
+  mutate(co2_largermed = case_when(
+    co2Emit > median(co2Emit, na.rm=T) ~ 1,
+    co2Emit <= median(co2Emit, na.rm=T) ~ 0
+  ))
 ```
 
-
-6. Print your `price_lm` object to see the main results.
-
-```{r}
-price_lm
-```
-
-7. Apply the `summary()` function to `price_lm`. Do you see anything new or important?
-
-```{r}
-summary(price_lm)
-```
-
-8. Look at the names of the `price_lm` with `names()`. What are the named elements of the object?
-
-```{r}
-names(price_lm)
-```
-
-9. Using the `$` operator, print a vector of the estimated coefficients of the analysis.
-
-```{r}
-price_lm$coefficients
-```
-
-10. Use the `tidy()` function (from the `broom` package) to return a dataframe containing the main results of the test.
-
-```{r}
-tidy(price_lm)
-```
-
-
-11. Use the `rsq()` function (from the `rsq` package) to obtain the R-squared value. Does this match what you saw in your previous outputs?
-
-```{r}
-rsq(price_lm)
-```
-
-12. Using the following template, create a new model called `everything_lm` that predicts housing prices based on *all* predictors in `kc_house` *except* for `id` and `date` (`id` is meaningless and date shouldn't matter). Use the following template. Note that to include all predictors, we'll use the `formula = y ~.` shortcut. We'll also remove id and date from the dataset using `select()` before running the analysis.
+2. Now run a logistic regression predicting `co2_largermed` using population (`pop`) and GDP per capita (`gdpPercap`) and evaluate the result using `summary()`. See code below. (Note: Don't worry about the warning, if you receive one)
 
 ```{r, echo = TRUE, eval = FALSE}
-everything_lm <- lm(formula = XX ~.,
-                    data = kc_house %>% 
-                             select(-id, -date))
-```
-
-
-```{r}
-everything_lm <- lm(formula = price ~.,
-                    data = kc_house %>% 
-                             select(-id, -date))
-```
-
-13. Print your `everything_lm` object to see the main results.
-
-
-```{r}
-everything_lm
-```
-
-14. Apply the `summary()` function to `everything_lm`. Do you see anything new or important?
-
-```{r}
-summary(everything_lm)
-```
-
-15. Using the `$` operator, print a vector of the estimated coefficients of the analysis. Are the beta values for bedrooms, bathrooms, and sqft_living different from what you got in your previous analysis `price_lm`?
-
-```{r}
-everything_lm$coefficients
-```
-
-16. Use the `tidy()` function to return a dataframe containing the main results of the test.
-
-```{r}
-tidy(everything_lm)
-```
-
-17. Use the `rsq()` function (from the `rsq` package) to obtain the R-squared value. How does this R-squared value compare to what you got in your previous regression `price_lm`?
-
-```{r}
-rsq(everything_lm)
-```
-
-18. How well did the `everything_lm` model fit the actual housing prices? We can answer this by calculating the average difference between the fitted values and the true values directly. Using the following template, make this calculation. What do you find is the mean absolute difference between the fitted housing prices and the true prices?
-
-```{r, echo = TRUE, eval = FALSE}
-# True housing prices
-prices_true <- kc_house$XX
-
-# Model fits (fitted.values)
-prices_fitted <- everything_lm$XX
-
-# Calculate absolute error between fitted and true values
-abs_error <- abs(XX - XX)
-
-# Calculate mean absolute error
-mae <- mean(XX)
-
-# Print the result!
-mae
-```
-
-
-```{r}
-# True housing prices
-prices_true <- kc_house$price
-
-# Model fits (fitted.values)
-prices_fitted <- everything_lm$fitted.values
-
-# Calculate absolute error between fitted and true values
-abs_error <- abs(prices_true - prices_fitted)
-
-# Calculate mean absolute error
-mae <- mean(abs_error)
-
-# Print the result!
-mae
-```
-
-
-19. Using the following template, create a scatterplot showing the relationship between the fitted values of the `everything_lm` object and the true prices.
-
-```{r, echo = TRUE, eval = FALSE}
-# Create dataframe containing fitted and true prices
-prices_results <- tibble(truth = XX,
-                         fitted = XX)
-
-# Create scatterplot
-ggplot(data = prices_results,
-       aes(x = fitted, y = truth)) + 
-  geom_point(alpha = .1) +
-  geom_smooth(method = 'lm') +
-  labs(title = "Fitted versus Predicted housing prices",
-       subtitle = paste0("Mean Absolute Error = ", mae),
-       caption = "Source: King County housing price Kaggle dataset",
-       x = "Fitted housing price values",
-       y = 'True values') + 
-  theme_minimal()
+co2_glm <- glm(formula = co2_largermed ~ XX + XX,
+               data = XX,
+               family = "XX")
+summary(co2_glm)
 ```
 
 ```{r}
-# Create dataframe containing fitted and true prices
-prices_results <- tibble(truth = kc_house$price,
-                         fitted = everything_lm$fitted.values)
-
-# Create scatterplot
-ggplot(data = prices_results,
-       aes(x = fitted, y = truth)) + 
-  geom_point(alpha = .1) +
-  geom_smooth(method = 'lm') +
-  labs(title = "Fitted versus Predicted housing prices",
-       subtitle = paste0("Mean Absolute Error = ", mae),
-       caption = "Source: King County housing price Kaggle dataset",
-       x = "Fitted housing price values",
-       y = 'True values') + 
-  theme_minimal()
+co2_glm <- glm(formula = co2_largermed ~ pop + gdpPercap,
+               data = gap,
+               family = "binomial")
+summary(co2_glm)
 ```
 
+3. Not very surprisingly, both high population (`pop`) and high GDP per capita (`gdpPercap`) seem to be associated with higher than median CO2 emission. However, it is possible that the interaction of the two variables is behind the effect, i.e., that CO2 emissions are large only for countries with high GDP per capita *and* high population. Test this by also including the interaction effect via `var_1 * var_2`.   
 
+```{r}
+co2_glm <- glm(formula = co2_largermed ~ pop * gdpPercap,
+               data = gap,
+               family = "binomial")
+summary(co2_glm)
+```
 
-### F - Logistic regression with glm(family = 'binomial')
+4. Indeed, it seems that interaction is most important for the prediction of CO2 emissions. But again there is a caveat. By default R implements the interaction of two predictors using their uncentered product as the interaction term. As a result the interaction term will be highly correlated with the original predictors, rendering it difficult to interpret the results. To deal with this issue, create new, centered versions of `pop` and `gdpPercap` called `pop_cent` and `gdpPercap_cent` using `mutate()` and `scale(scale = FALSE)`.
 
-1. In the next set of analyses, we'll use logistic regression to predict whether or not a house will sell for over \$1,000,000. First, we'll need to create a new binary variable in the `kc_house` called `million` that is 1 when the price is over 1 million, and 0 when it is not. Run the following code to create this new variable
+```{r}
+gap <- gap %>%
+  mutate(pop_cent = scale(pop, scale = FALSE),
+         gdpPercap_cent = scale(gdpPercap, scale = FALSE))
+```
+
+5. Now, evaluate the model formula `co2_largermed ~ pop + gdpPercap + pop_scaled:gdpPercap_scaled`, which implements the interaction of the scaled and centered variables. (I.e., run the logistic regression with the above formula and apply `summary()`).
+
+```{r}
+co2_glm <- glm(formula = co2_largermed ~ pop + gdpPercap +      
+               pop_cent:gdpPercap_cent,
+               data = gap,
+               family = "binomial")
+summary(co2_glm)
+```
+
+6. All three, the two variables and their interaction, significantly predict higher than median CO2 emissions. This was obscured before because of the inter-correlation between the predictors. If you like, you can confirm that both models, with centered and uncentered interactions, predict the criterion equally well using `rsq()` from the `rsq` package. The `rsq()` function computes the overall R-squared value for generalized linear models. 
 
 ```{r, echo = TRUE}
-# Create a new binary variable called million that
-#  indicates when houses sell for more than 1 million
+co2_cent_glm <- glm(formula = co2_largermed ~ pop + gdpPercap +      
+                    pop_cent:gdpPercap_cent,
+                    data = gap,
+                    family = "binomial")
 
-# Note: 1e6 is a shortcut for 1000000
+co2_noncent_glm <- glm(formula = co2_largermed ~ pop * gdpPercap,
+                       data = gap,
+                       family = "binomial")
 
-kc_house <- kc_house %>%
-                mutate(million = price > 1e6)
+
+rsq(co2_cent_glm)
+rsq(co2_noncent_glm)
 ```
 
-2. Using the following template, use the `glm()` function to conduct a logistic regression to see which of the variables `bedrooms`, `bathrooms`, `floors`, `waterfront`, `yr_built` predict whether or not a house will sell for over 1 Million. Be sure to include the argument `family = 'binomial'` to tell `glm()` that we are conducting a logistic regression analysis. 
+### E - Working with statistical objects
 
-```{r, echo = TRUE, eval = FALSE}
-# Logistic regression analysis predicting which houses will sell for
-#   more than 1 Million
+1. Statistical objects as returned from `lm()` and `glm()` contain a lot of result objects. To see this, inspect the final `mort_lm` object of section B using `names()`.
 
-million_glm <- glm(formula = XX ~ XX + XX + XX + XX + XX,
-                   data = kc_house,
-                   family = "XX")
-```
-
-```{r}
-million_glm <- glm(formula = million ~ bedrooms + bathrooms + floors + waterfront + yr_built,
-                   family = "binomial",   # Logistic regression
-                   data = kc_house)
-```
-
-3. Print your `million_glm` object to see the main results.
-
-```{r}
-million_glm
-```
-
-
-4. Apply the `summary()` function to `million_glm`.
-
-
-```{r}
-summary(million_glm)
-```
-
-5. Using the `$` operator, print a vector of the estimated beta values (coefficients) of the analysis.
-
-
-```{r}
-million_glm$coefficients
-```
-
-6. Use the `tidy()` function to return a dataframe containing the main results of the test.
-
-
-```{r}
-tidy(million_glm)
-```
-
-7. You can get the fitted probability predictions that each house will sell for more than 1 Million by accessing the vector `million_glm$fitted.values`. Using this vector, calculate the average probability that houses will sell for more than 1 Million (hint: just take the mean!)
-
-```{r}
-mean(million_glm$fitted.values)
-```
-
-8. Using the following code, create a data frame showing the relationship between the fitted probability that a house sells for over 1 Million and the true probability: 
-
-```{r, echo = TRUE, eval = FALSE}
-# Just run it!
-
-million_fit <- tibble(pred_million = million_glm$fitted.values,
-                      true_million = kc_house$million) %>%
-                mutate(fitted_cut = cut(pred_million, breaks = seq(0, 1, .1))) %>%
-                group_by(fitted_cut) %>%
-                summarise(true_prob = mean(true_million))
-
-million_fit
+```{r, eval = FALSE, echo = TRUE}
+names(XX)
 ```
 
 ```{r}
-# Just run it!
-
-million_fit <- tibble(pred_million = million_glm$fitted.values,
-                      true_million = kc_house$million) %>%
-                mutate(fitted_cut = cut(pred_million, breaks = seq(0, 1, .1))) %>%
-                group_by(fitted_cut) %>%
-                summarise(true_prob = mean(true_million))
-
-million_fit
+names(mort_lm)
 ```
 
-9. Now plot the results using the following code:
+2. The `lm` object includes among others objects the vector of residuals, i.e., the error committed in predicting each point of the criterion. Using the residuals central assumptions of a regression can be tested, namely that the true relationship is linear and that error variance is of equal size across the entire predictor space.
+  Evaluate the two assumptions by plotting the residuals (y-axis) onto the fitted values (x-axis). If both assumptions are true, then the residuals should scatter equally broad across the range of fitted values with an average of roughly zero.
 
-```{r, echo = TRUE, eval = FALSE}
-# Just run it!
-
-ggplot(million_fit, 
-       aes(x = fitted_cut, y = true_prob, col = as.numeric(fitted_cut))) + 
-  geom_point(size = 2) +
-  labs(x = "Fitted Probability",
-       y = "True Probability",
-       title = "Predicting the probability of a 1 Million house",
-       subtitle = "Using logistic regression with glm(family = 'binomial')") +
-  scale_y_continuous(limits = c(0, 1)) +
-  guides(col = FALSE)
+```{r, eval = FALSE, echo = TRUE}
+plot(mort_lm$XX, mort_lm$XX)
 ```
-
 
 ```{r}
-# Just run it!
-
-ggplot(million_fit, 
-       aes(x = fitted_cut, y = true_prob, col = as.numeric(fitted_cut))) + 
-  geom_point(size = 2) +
-  labs(x = "Fitted Probability",
-       y = "True Probability",
-       title = "Predicting the probability of a 1 Million house",
-       subtitle = "Using logistic regression with glm(family = 'binomial')") +
-  scale_y_continuous(limits = c(0, 1)) +
-  guides(col = FALSE)
+plot(mort_lm$fitted.values, mort_lm$residuals)
 ```
 
+3. Obviously the assumptions are not met. The reason for this is largely that all three variables are extremely right-skewed. Deal with this by rerunning the model with log-transformed versions of all three variables (see below). Recreate the plot. Has anything changed? Assumptions met?
 
-### G - Using predict() to predict new values
-
-1. Your friend Donald just bought a house whose building records have been lost. She wants to know what year her house was likely built. Help Donald figure out when his house was built by conducting the appropriate regression analysis, and then using the specifics of his house to predict the year that his house was built using the `predict()` function. You know that his house is on the waterfront, has 3 bedrooms, 2 floors and has a condition of 4. The following block of code may help you!
-
-```{r, echo = TRUE, eval = FALSE}
-# Create regression model predicting year (yr_built)
-year_lm <- lm(formula = XX ~ XX + XX + XX + XX,
+```{r, eval = FALSE, echo = TRUE}
+mort_lm <- lm(formula = log(XX) ~ log(XX) + log(XX),
               data = XX)
-
-# Define Donald's House
-DonaldsHouse <- tibble(waterfront = X,
-                       bedrooms = X,
-                       floors = X,
-                       condition = X)
-
-# Predict the hear of donald's house
-predict(object = year_lm, 
-        newdata = DonaldsHouse)
 ```
 
 ```{r}
-# Create regression model predicting year (yr_built)
-year_lm <- lm(formula = yr_built ~ waterfront + bedrooms + floors + condition,
-              data = kc_house)
+mort_lm <- lm(formula = log(childMort) ~ log(healthExp) + log(gdpPercap),
+              data = gap)
 
-# Define Donald's House
-DonaldsHouse <- tibble(waterfront = 1,
-                       bedrooms = 3,
-                       floors = 2,
-                       condition = 4)
-
-# Predict the hear of donald's house
-predict(object = year_lm, 
-        newdata = DonaldsHouse)
-```
-
-### X - Advanced
-
-1. Which variables in the dataset significantly predict the grade of a house? Answer this with a regression analysis.
-
-```{r}
-grade_lm <- lm(formula = grade ~ .,
-               data = kc_house %>%
-                 select(-id, -date))
-
-
-tidy(grade_lm)
+plot(mort_lm$fitted.values, mort_lm$residuals)
 ```
 
 
-2. Is there an interaction between waterfront and year built (`yr_built`) on price? In other words, is the relationship between year built and price the same for homes on the waterfront and homes not on the waterfront? Answer this by conducting the appropriate regression analysis and interpret the results. Note: to include an interaction in a model, use the formula `y ~ X1 * X2` instead of `y ~ X1 + X2`.
+### F - Mixed-effects models
 
-```{r}
-int_lm <- lm(formula = price ~ yr_built * waterfront,
-             data = kc_house)
+So far we have ignored the fact that there were three measurements for each country and that those data should be modeled as repeated measurements. One way to do this is via linear mixed-effects models. 
 
-tidy(int_lm)
-```
+1. Specify a repeated measurement model by including a random intercept for countries in a regression model predicting child mortality with GDP per capita. See the code below. (Note: Ignore the warning, if you receive one)
 
-3. How well can a regression analysis based on houses sold in 2014 predict housing costs in the 2015? To answer this we'll create a regression model based on houses sold in 2014 and then use that model to predict the prices of houses sold in 2015. To start, we'll need to create two new dataframes `kc_house_2014` and `kc_house_2015`. Run the code in the following chunk to do this.
-
-```{r, echo = TRUE, eval = FALSE}
-# Just run it!
-
-# Add year_sold to kc_house
-
-kc_house <- kc_house %>%
-  mutate(year_sold = year(ymd(date)))
-
-# Create kc_house_2014, 
-#    Only houses sold in 2014
-kc_house_2014 <- kc_house %>%
-  filter(year_sold == 2014)
-
-# Create kc_house_2015, 
-#     Only houses sold in 2015
-kc_house_2015 <- kc_house %>%
-  filter(year_sold == 2015)
-```
-
-4. Create a regression model called `price_2014_lm` that models housing prices in 2014 using only the `kc_house_2014` data. Note that you may wish to exclude some variables such as `id`, `date`, `million` and `year_sold`.
-
-```{r}
-# on your own!
-```
-
-
-5. Create a regression model called `price_2015_lm` that models housing prices in 2015 using only the `kc_house_2015` data. Include the same exclusion and transformation criterion you used in the previous question.
-
-```{r}
-# on your own!
-```
-
-
-6. Explore and compare the two models, do they look very similar? Very different?
-
-```{r}
-# on your own!
-```
-
-7. Calculate the mean absolute error of each model applied to the dataset in which they were created. That is, what was the mean absolute fitted error of each model?
-
-```{r}
-# on your own!
-```
-
-8. Using `predict()`, predict the 2015 housing data based on the `price_2014_lm` model.
-
-```{r}
-# on your own!
-```
-
-9. Calculate the mean absolute error of the `price_2014_lm` model when applied to the 2015 data. How different was the mean error compared to the mean fitting error of the `price_2015_lm` model?
-
-```{r}
-# on your own!
-```
-
-### Generating random samples from distributions
-
-10. You can easily generate random samples from statistical distributions in R. To see all of them, run `?distributions`. For example, to generate samples from the well known Normal distribution, you can use `rnorm()`. Look at the help menu for `rnorm()` to see its arguments. 
-
-11. Let's explore the `rnorm()` function. Using `rnorm()`, create a new object `samp_100` which is 100 samples from a Normal distribution with mean 10 and standard deviation 5. Print the object to see what the elements look like. What should the mean and standard deviation of this sample? be? Test it by evaluating its mean and standard deviation directly using the appropriate functions. Then, do a one-sample t-test on this sample against the null hypothesis that the true mean is 10. What are the results? Use the following code template to help!
-
-```{r, echo = TRUE, eval = FALSE}
-# Generate 100 samples from a Normal distribution with mean = 10 and sd = 5
-samp_100 <- rnorm(n = XX, mean = XX, sd = XX)
-
-# Print result
-samp_100
-
-# Calcultae sample mean and standard deviation.
-mean(XX)
-sd(XX)
-
-t.test(x = XX,   # Vector of values
-       mu = XX)  # Mean under null hypothesis
+```{r, eval = FALSE, echo = TRUE}
+mort_lmer <- lmer(formula = childMort ~ gdpPercap + (1|country),
+                  data = gap)
 ```
 
 ```{r}
-# Generate 100 samples from a Normal distribution with mean = 100 and sd = 5
-samp_100 <- rnorm(n = 100, mean = 10, sd = 5)
-
-# Print result
-samp_100
-
-# Calcultae sample mean and standard deviation.
-mean(samp_100)
-sd(samp_100)
-
-t.test(x = samp_100,   # Vector of values
-       mu = 10)  # Mean under null hypothesis
+mort_lmer <- lmer(formula = childMort ~ gdpPercap + (1|country),
+                  data = gap)
 ```
 
-12. Repeat the previous block of code several times and look at how the output changes. How do the p-values change when you keep drawing random samples?
-
-13. Change the mean under the null hypothesis to 15 instead of 10 and run the code again several times. What happens to the p-values?
+2. Print `mort_lmer` and evaluate using `summary()`. Notice any difference to the typical `lm()` outputs?
 
 ```{r}
-t.test(x = samp_100,   # Vector of values
-       mu = 15)  # Mean under null hypothesis
+mort_lmer
+summary(mort_lmer)
 ```
 
-14. Look at the code below. As you can see, I generate 4 variables x1, x2, x3 and noise. I then create a dependent variable y that is a function of these variables. Finally, I conduct a regression analysis. *Before you run the code*, what do you expect the value of the `coefficients` of the regression equation will be?  Test your prediction by running the code and exploring the `my_lm` object.
+There are, at least, two important observations. First, there are no p-values associated with the t-values, which is due to the fact that mixed-effects models require complex adjustments for the degrees of freedom required to determine p-values. Second, there are two sections of effects, random and fixed. The random effects refer to the ones estimated on the country level, whereas the fixed effects refer to ones estimated irrespective of country. 
 
-```{r, echo = TRUE, eval = FALSE}
-# Generate independent variables
-x1 <- rnorm(n = 100, mean = 10, sd = 1)
-x2 <- rnorm(n = 100, mean = 20, sd = 10)
-x3 <- rnorm(n = 100, mean = -5, sd = 5)
-
-# Generate noise
-noise <- rnorm(n = 100, mean = 0, sd = 1)
-
-# Create dependent variable
-y <- 3 * x1 + 2 * x2 - 5 * x3 + 100 + noise
-
-# Combine all into a tibble
-my_data <- tibble(x1, x2, x3, y)
-
-# Calculate my_lm
-my_lm <- lm(formula = y ~ x1 + x2 + x3,
-              data = my_data)
-```
-
-15. Adjust the code above so that the coefficients for the regression equation will be (close to) `(Intercept) = -50`, `x1 = -3`, `x2 = 10`, `x3 = 15`
+3. When running mixed-effects models it is recommended to evaluate, whether the inclusion of random effects is indicated, i.e., delivers a substantially better fit to the data. To test this, you can use `anova()` compare the `mort_lmer` to the standard `lm()` model predicting child mortality with GDP per capita. A significant result will indicate that the model without random intercepts is significantly worse than the model with random intercepts.
 
 ```{r}
-# Generate independent variables
-x1 <- rnorm(n = 100, mean = 10, sd = 1)
-x2 <- rnorm(n = 100, mean = 20, sd = 10)
-x3 <- rnorm(n = 100, mean = -5, sd = 5)
+# standard lm
+mort_lm <- lm(formula = childMort ~ gdpPercap,
+              data = gap)
 
-# Generate noise
-noise <- rnorm(n = 100, mean = 0, sd = 1)
-
-# Create dependent variable
-y <- -3 * x1 + 10 * x2 + 15 * x3 + -50 + noise
-
-# Combine all into a tibble
-my_data <- tibble(x1, x2, x3, y)
-
-# Calculate my_lm
-my_lm <- lm(formula = y ~ x1 + x2 + x3,
-              data = my_data)
-
-my_lm
+# compare with anova
+anova(mort_lmer, mort_lm)
 ```
+
+### G - Bayesian models
+
+Finally, let us turn to new (old) kid in town, Bayesian statistics. With today's computing power, long existing Bayesian statistics have become a viable alternative for practically all *Frequentist* (i.e., classic) analysis approaches. In R, Bayesian methods for linear models have been made available among others through the `BayesFactor` package. 
+
+1. Run a Bayesian regression using the `regressionBF` function of the `BayesFactor` package predicting child mortality using GDP per capita. (Note: Contrary to other functions `regressionBF()` and other `BayesFactor` functions require that NAs are removed beforehand).
+
+```{r, eval = FALSE, echo = TRUE}
+# Bayesian lm
+mort_blm <- regressionBF(formula = childMort ~ gdpPercap,
+                         data = gap %>% filter(!is.na(childMort)))
+
+```
+
+```{r}
+# Bayesian lm
+mort_blm <- regressionBF(formula = childMort ~ gdpPercap,
+                         data = gap %>% filter(!is.na(childMort)))
+
+```
+
+2. Evaluate `mort_blm` by printing it. You'll see a very different output showing only the BayesFactor, a metric specifying the amount of evidence in the data against the hypothesis of the predictor having no effect on the criterion.
+
+```{r}
+mort_blm
+```
+
+3. What is missing from the output are the actual estimates for the predictor. To extract those, you need to sample from the posterior distribution and then average across the samples.  
+
+```{r, eval = FALSE, echo = TRUE}
+# sample from posterior
+post <- posterior(mort_blm, iterations = 1000)
+
+# get estimates
+colMeans(as.matrix(post))
+```
+
+```{r}
+# sample from posterior
+post <- posterior(mort_blm, iterations = 1000)
+
+# get estimates
+colMeans(as.matrix(post))
+```
+
+4. Compare the estimate of the effect of GDP per capita on child mortality from the Bayesian method to the one from the standard `lm()`. How similar are they? 
 
 ## Examples
 
@@ -831,6 +519,7 @@ The Gapminder Foundation is a non-profit venture registered in Stockholm, Sweden
 |Package| Installation|
 |:------|:------|
 |`tidyverse`|`install.packages("tidyverse")`|
+|`rsq`|`install.packages("rsq")`|
 |`lme4`|`install.packages("lme4")`|
 |`BayesFactor`|`install.packages("BayesFactor")`|
 
@@ -840,19 +529,18 @@ The Gapminder Foundation is a non-profit venture registered in Stockholm, Sweden
 
 | Function| Package | Description |
 |:------|:-------------------|:-------------------|
-|     ``|    | |
-|     ``|    | |
-|     `glm()`, `lm()`|    Generalized linear model and linear model| |
+|     `lm()`, `glm()`|  `stats`  |  (Generalized) linear models |
+|     `lmer()`, `glmer()` | `lme4` | (Generalized) linear mixed-effects models |
+|     `regressionBF()`, `lmBF()`| `BayesFactor` | Bayesian (generalized, mixed-effects) linear models |
 
 *Inspect models*
 
 | Function| Package | Description |
 |:------|:-------------------|:-------------------|
-|     `summary()`|  `base`  | |
-|     `anova()`|  `base`  | |
-|     `predict()` | `stats` | Predict  |
-|     `names()` | `base` | Print names of model contents. |
-
+|     `print()`|  `base`  | Standard printout |
+|     `summary()`|  `base`  |  Standard model evaluation |
+|     `anova()`|  `stats`  | ANOVA model evaluation and model comparison |
+|     `names()` | `base` | Print names of objects contained in model output  |
 
 ## Resources
 
