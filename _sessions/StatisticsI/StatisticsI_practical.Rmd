@@ -434,7 +434,7 @@ waterfront_htest$p.value
 wilcox.test(x = prices$XX, y = prices$XX)
 ```
 
-```{r, echo = TRUE, eval = FALSE}
+```{r}
 wilcox.test(x = prices$no_waterfront, y = prices$waterfront)
 ```
 
