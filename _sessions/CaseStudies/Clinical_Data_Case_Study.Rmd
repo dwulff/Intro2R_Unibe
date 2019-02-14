@@ -1,6 +1,6 @@
 ---
 title: "Case Study: Dimarta Clinical Trial"
-author: "Introduction to Data Science with R, October 2018<br/><a href='https://therbootcamp.github.io'>www.therbootcamp.com</a><br/><a href='https://twitter.com/therbootcamp'>@therbootcamp</a>"
+author: "Introduction toR, February 2019<br/><a href='https://therbootcamp.github.io'>www.therbootcamp.com</a><br/><a href='https://twitter.com/therbootcamp'>@therbootcamp</a>"
 output:
   html_document:
     css: practical.css
@@ -182,9 +182,9 @@ biomarker_df <- read_csv("XXX/XXX")
 
 ```{r, echo = FALSE, eval = TRUE, message = FALSE}
 ## read in datasets
-trial_df <- read_csv("_sessions/CaseStudies/1_Data/dimarta_trial.csv")
-demographics_df <- read_csv("_sessions/CaseStudies/1_Data/dimarta_demographics.csv")
-biomarker_df <- read_csv("_sessions/CaseStudies/1_Data/dimarta_biomarker.csv")
+trial_df <- read_csv("1_Data/dimarta_trial.csv")
+demographics_df <- read_csv("1_Data/dimarta_demographics.csv")
+biomarker_df <- read_csv("1_Data/dimarta_biomarker.csv")
 ```
 
 

@@ -1,8 +1,24 @@
 ---
 title: "Case Studies"
-subtitle: ""
-author: "Introduction to Data Science with R<br/><a href='https://therbootcamp.github.io'>www.therbootcamp.com</a><br/><a href='https://twitter.com/therbootcamp'>@therbootcamp</a>"
-date: "October 2018"
+author: "
+  Introduction to R<br>
+  <a href='https://therbootcamp.github.io'>
+    Bern R Bootcamp
+  </a>
+  <br>
+  <a href='https://dwulff.github.io/Intro2R_Unibe/'>
+    <i class='fas fa-clock' style='font-size:.9em;'></i>
+  </a>&#8239; 
+  <a href='https://therbootcamp.github.io'>
+    <i class='fas fa-home' style='font-size:.9em;' ></i>
+  </a>&#8239;
+  <a href='mailto:therbootcamp@gmail.com'>
+    <i class='fas fa-envelope' style='font-size: .9em;'></i>
+  </a>&#8239;
+  <a href='https://www.linkedin.com/company/basel-r-bootcamp/'>
+    <i class='fab fa-linkedin' style='font-size: .9em;'></i>
+  </a>"
+date: "February 2019"
 output:
   xaringan::moon_reader:
     css: ["default", "baselrbootcamp.css"]
@@ -13,17 +29,28 @@ output:
       countIncrementalSlides: false
       ratio: '16:9'
 ---
-
 layout: true
 
-<div class="my-footer"><span>
-<a href="https://therbootcamp.github.io/"><font color="#7E7E7E">Introduction to Data Science with R, October 2018</font></a>
-&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
-<a href="https://therbootcamp.github.io/"><font color="#7E7E7E">www.therbootcamp.com</font></a>
-</span></div> 
-
+<div class="my-footer">
+  <span style="text-align:center">
+    <span> 
+      <img src="https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/by-sa.png" height=14 style="vertical-align: middle"/>
+    </span>
+    <a href="https://therbootcamp.github.io/">
+      <span style="padding-left:82px"> 
+        <font color="#7E7E7E">
+          www.therbootcamp.com
+        </font>
+      </span>
+    </a>
+    <a href="https://therbootcamp.github.io/">
+      <font color="#7E7E7E">
+       Introduction to R | February 2019
+      </font>
+    </a>
+    </span>
+  </div> 
 ---
-
 ```{r setup, include=FALSE}
 options(htmltools.dir.version = FALSE)
 # see: https://github.com/yihui/xaringan
@@ -49,7 +76,7 @@ Analyse a clinical trial comparing the effectiveness of clinical drugs.<br>
 knitr::include_graphics("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS_hbV6L48NKZ-eU39RAx0Lb02lb0LC6ftxSQcwOq6Lf0C6m9Fd")
 ```
 
-[Clinical Trial Case Study](https://therbootcamp.github.io/Intro2DataScience_2018Oct/_sessions/CaseStudies/Clinical_Data_Case_Study.html)
+[Clinical Trial Case Study](https://dwulff.github.io/Intro2R_Unibe/_sessions/CaseStudies/Clinical_Data_Case_Study.html)
 
 ]
 
@@ -63,7 +90,7 @@ Study the development of key financial markets across the last 20 years<br>
 knitr::include_graphics("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSVoAJwqOBeBlDUx1c-NuQ3TpgS86fpMlnbreACyDKYfOZfJ9bd")
 ```
 <br><br><br>
-[Finance Case Study](https://therbootcamp.github.io/Intro2DataScience_2018Oct/_sessions/CaseStudies/Financial_Data_Case_Study.html)
+[Finance Case Study](https://dwulff.github.io/Intro2R_Unibe/_sessions/CaseStudies/Financial_Data_Case_Study.html)
 
 ]
 
