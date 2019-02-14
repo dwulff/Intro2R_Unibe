@@ -281,7 +281,39 @@ kc_house</code></pre>
   summarise(N = n(),
             XXX = XXX(XXX))</code></pre>
 <ol start="3" style="list-style-type: decimal">
-<li><p>Using <code>group_by()</code> and <code>summarise()</code>, create a dataframe showing the same results as the following table.</p></li>
+<li>Using <code>group_by()</code> and <code>summarise()</code>, create a dataframe showing the same results as the following table.</li>
+</ol>
+<table>
+<thead>
+<tr class="header">
+<th align="left">mansion</th>
+<th align="right">N</th>
+<th align="right">price_min</th>
+<th align="right">price_mean</th>
+<th align="right">price_median</th>
+<th align="right">price_max</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">No</td>
+<td align="right">20862</td>
+<td align="right">75000</td>
+<td align="right">504024</td>
+<td align="right">441000</td>
+<td align="right">3100000</td>
+</tr>
+<tr class="even">
+<td align="left">Yes</td>
+<td align="right">751</td>
+<td align="right">404000</td>
+<td align="right">1541915</td>
+<td align="right">1300000</td>
+<td align="right">7700000</td>
+</tr>
+</tbody>
+</table>
+<ol start="4" style="list-style-type: decimal">
 <li><p>Do houses built in later years tend to have more living space? To answer this, group the data by <code>built_yr</code>, and then calculate the mean number of living square meters. Be sure to also include the number of houses built in each year!</p></li>
 <li><p>Was that table too big? Try using the following code to get the results for each decade rather than each year!</p></li>
 </ol>

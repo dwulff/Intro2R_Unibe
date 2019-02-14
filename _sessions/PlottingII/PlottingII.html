@@ -245,6 +245,60 @@ ggplot(data = mpg,
 
 # `theme()`
 
+.pull-left45[
+
+To &lt;high&gt;customize the appearance of your plot use `theme()`.
+
+`theme()` has &lt;high&gt;87 arguments&lt;/high&gt; allowing to fine-tune, e.g., the background, the axes, the legend, etc. 
+
+Arguments are specified via `element_*()` helper functions, mostly `element_rect()` or `element_line()`.
+
+
+```r
+# use theme to change appearance
+myplot + 
+  theme(argument = element_*(), 
+        argument = element_*(),
+        etc.)
+```
+
+]
+
+
+.pull-right45[
+
+&lt;p align="center"&gt;
+&lt;img src="image/theme.png"&gt;
+&lt;/p&gt;
+]
+
+---
+
+# Background color: `theme()`
+
+.pull-left45[
+
+Address the &lt;high&gt;panel background&lt;/high&gt; using `panel.background` and that of the &lt;high&gt;plot background&lt;/high&gt; using `plot.background` and change the color using `element_rect(fill = color)`.
+
+
+```r
+# use theme
+myplot + 
+  theme(
+    panel.background = 
+      element_rect(fill = 'tomato'), 
+    plot.background = 
+      element_rect(fill = 'burlywood'))
+```
+
+]
+
+
+.pull-right45[
+
+&lt;img src="PlottingII_files/figure-html/unnamed-chunk-15-1.png" style="display: block; margin: auto;" /&gt;
+
+]
 
 
 ---

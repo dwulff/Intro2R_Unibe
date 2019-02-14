@@ -124,7 +124,7 @@ kc_house <- kc_house %>%
          NEW = OLD)
 ```
 
-```{r}
+```{r, eval = TRUE}
 kc_house <- kc_house %>%
   rename(living_sqft = sqft_living,
          lot_sqft = sqft_lot,
@@ -144,7 +144,7 @@ kc_house <- kc_house %>%
          XXX = XXX)
 ```
 
-```{r}
+```{r, eval = TRUE}
 kc_house <- kc_house %>%
   mutate(living_sqm = living_sqft * 0.093,
          lot_sqm = lot_sqft * 0.093,
@@ -161,7 +161,7 @@ kc_house <- kc_house %>%
                               XXXX + XXX + XXX <= XXX ~ "XXX"))
 ```
 
-```{r}
+```{r, eval = TRUE}
 kc_house <- kc_house %>%
                 mutate(mansion = case_when(
                               living_sqm + above_sqm +  basement_sqm > 750 ~ "Yes",
@@ -297,7 +297,7 @@ kc_house %>%
 
 3. Using `group_by()` and `summarise()`, create a dataframe showing the same results as the following table.
 
-```{r, results = 'asis'}
+```{r, results = 'asis', eval = TRUE, echo = FALSE}
 kc_house %>%
   group_by(mansion) %>%
   summarise(N = n(),

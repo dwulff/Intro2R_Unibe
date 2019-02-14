@@ -275,6 +275,109 @@ ggplot(data = mpg,
 
 # `theme()`
 
+.pull-left45[
+
+To <high>customize the appearance of your plot use `theme()`.
+
+`theme()` has <high>87 arguments</high> allowing to fine-tune, e.g., the background, the axes, the legend, etc. 
+
+Arguments are specified via `element_*()` helper functions, mostly `element_rect()` or `element_line()`.
+
+```{r, eval = F}
+# use theme to change appearance
+myplot + 
+  theme(argument = element_*(), 
+        argument = element_*(),
+        etc.)
+
+```
+
+]
+
+
+.pull-right45[
+
+<p align="center">
+<img src="image/theme.png">
+</p>
+]
+
+---
+
+# Background color: `theme()`
+
+.pull-left45[
+
+Address the <high>panel background</high> using `panel.background` and that of the <high>plot background</high> using `plot.background` and change the color using `element_rect(fill = color)`.
+
+```{r, eval = F}
+# change panel and 
+myplot + 
+  theme(
+    panel.background = 
+      element_rect(fill = 'tomato'), 
+    plot.background = 
+      element_rect(fill = 'burlywood'))
+
+```
+
+]
+
+
+.pull-right45[
+
+```{r, fig.width = 7, fig.height = 5.5, echo = FALSE}
+# use theme
+myplot + 
+  theme(
+    panel.background = element_rect(fill = 'tomato'), 
+    plot.background = element_rect(fill = 'burlywood'))
+
+```
+
+]
+
+---
+
+# Background grid: `theme()`
+
+.pull-left45[
+
+Address the <high>panel grid lines</high> using `panel.background` and that of the <high>plot background</high> using `plot.background` and change the color using `element_rect(fill = color)`.
+
+```{r, eval = F}
+# change panel and 
+myplot + 
+  theme(
+    panel.background = 
+      element_rect(fill = 'tomato'), 
+    plot.background = 
+      element_rect(fill = 'burlywood'),
+    panel.grid.major = 
+      element_line(colour = "salmon", size=2),
+    panel.grid.minor = 
+      element_line(colour = "khaki", size=.5),
+    )
+
+```
+
+]
+
+
+.pull-right45[
+
+```{r, fig.width = 7, fig.height = 5.5, echo = FALSE}
+# use theme
+myplot + 
+  theme(
+    panel.background = element_rect(fill = 'tomato'), 
+    plot.background = element_rect(fill = 'burlywood'),
+    )
+
+```
+
+]
+
 
 
 ---
