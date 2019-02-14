@@ -446,7 +446,7 @@ tidy(price_lm)
 # Q: Run ANOVA predicting price by color and cut
 
 # transform to factor
-dimaonds$cut = as.factor(dimaonds$cut)
+dimaonds$cut = as.factor(diamonds$cut)
 dimaonds$color = as.factor(dimaonds$color)
 
 # Run model
