@@ -269,9 +269,9 @@ anova(mort_anova)</code></pre>
                family = &quot;XX&quot;)
 summary(co2_glm)</code></pre>
 <ol start="3" style="list-style-type: decimal">
-<li><p>Not very surprisingly, both high population (<code>pop</code>) and high GDP per capita (<code>gdpPercap</code>) seem to be associated with higher than median CO2 emission. However, it is possible that the interaction of the two variables is behind the effect, i.e., that CO2 emissions are large only for countries with high GDP per capita <em>and</em> high population. Test this by also including the interaction effect via <code>var_1 * var_2</code>.</p></li>
+<li><p>Not very surprisingly, both high population (<code>pop</code>) and high GDP per capita (<code>gdpPercap</code>) seem to be associated with higher than median CO2 emission. However, it is possible that the interaction of the two variables is driving the effect, i.e., that CO2 emissions are large only for countries with high GDP per capita <em>and</em> high population. Test this by also including the interaction effect via <code>var_1 * var_2</code>.</p></li>
 <li><p>Indeed, it seems that interaction is most important for the prediction of CO2 emissions. But again there is a caveat. By default R implements the interaction of two predictors using their uncentered product as the interaction term. As a result the interaction term will be highly correlated with the original predictors, rendering it difficult to interpret the results. To deal with this issue, create new, centered versions of <code>pop</code> and <code>gdpPercap</code> called <code>pop_cent</code> and <code>gdpPercap_cent</code> using <code>mutate()</code> and <code>scale(scale = FALSE)</code>.</p></li>
-<li><p>Now, evaluate the model formula <code>co2_largermed ~ pop + gdpPercap + pop_scaled:gdpPercap_scaled</code>, which implements the interaction of the scaled and centered variables. (I.e., run the logistic regression with the above formula and apply <code>summary()</code>).</p></li>
+<li><p>Now, evaluate the model formula <code>co2_largermed ~ pop + gdpPercap + pop_scaled:gdpPercap_scaled</code>, which implements the interaction of the scaled and centered variables, (i.e., run the logistic regression with the above formula and apply <code>summary()</code>).</p></li>
 <li><p>All three, the two variables and their interaction, significantly predict higher than median CO2 emissions. This was obscured before because of the inter-correlation between the predictors. If you like, you can confirm that both models, with centered and uncentered interactions, predict the criterion equally well using <code>rsq()</code> from the <code>rsq</code> package. The <code>rsq()</code> function computes the overall R-squared value for generalized linear models.</p></li>
 </ol>
 <pre class="r"><code>co2_cent_glm &lt;- glm(formula = co2_largermed ~ pop + gdpPercap +      
@@ -290,7 +290,7 @@ rsq(co2_noncent_glm)</code></pre>
 <div id="e---working-with-statistical-objects" class="section level3">
 <h3>E - Working with statistical objects</h3>
 <ol style="list-style-type: decimal">
-<li>Statistical objects as returned from <code>lm()</code> and <code>glm()</code> contain a lot of result objects. To see this, inspect the final <code>mort_lm</code> object of section B using <code>names()</code>.</li>
+<li>Statistical objects as returned from <code>lm()</code> and <code>glm()</code> contain a lot of result objects. To see those, inspect the final <code>mort_lm</code> object of section B using <code>names()</code>.</li>
 </ol>
 <pre class="r"><code>names(XX)</code></pre>
 <ol start="2" style="list-style-type: decimal">
@@ -327,7 +327,8 @@ rsq(co2_noncent_glm)</code></pre>
 </ol>
 <pre class="r"><code># Bayesian lm
 mort_blm &lt;- regressionBF(formula = childMort ~ gdpPercap,
-                         data = gap %&gt;% filter(!is.na(childMort)))</code></pre>
+                         data = gap %&gt;% 
+                         filter(!is.na(childMort)))</code></pre>
 <ol start="2" style="list-style-type: decimal">
 <li><p>Evaluate <code>mort_blm</code> by printing it. You’ll see a very different output showing only the BayesFactor, a metric specifying the amount of evidence in the data against the hypothesis of the predictor having no effect on the criterion.</p></li>
 <li><p>What is missing from the output are the actual estimates for the predictor. To extract those, you need to sample from the posterior distribution and then average across the samples.</p></li>

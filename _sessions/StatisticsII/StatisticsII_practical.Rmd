@@ -41,7 +41,6 @@ knitr::opts_chunk$set(comment = NA,
                       eval = FALSE, 
                       warning = FALSE,
                       message = FALSE)
-
 options(digits = 3)
 ```
 
@@ -357,7 +356,8 @@ Finally, let us turn to new (old) kid in town, Bayesian statistics. With today's
 ```{r, eval = FALSE, echo = TRUE}
 # Bayesian lm
 mort_blm <- regressionBF(formula = childMort ~ gdpPercap,
-                         data = gap %>% filter(!is.na(childMort)))
+                         data = gap %>% 
+                         filter(!is.na(childMort)))
 
 ```
 
