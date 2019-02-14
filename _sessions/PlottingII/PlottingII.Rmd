@@ -83,8 +83,8 @@ library(ggthemes)
 # Customizing plots
 
 .pull-left45[
-
-<font style="font-size:26px">
+<br2>
+<font style="font-size:24px">
 <b>1</b> <high>Store</high> and customize plot as a <high><mono>gg</mono> object</high>.
 <br><br>
 <b>2</b> Create multiple plots using <high>facetting</high>.
@@ -243,44 +243,7 @@ ggplot(data = mpg,
 
 Faceting = <high>same plot for different groups</high>.
 
-Use `facet_grid()` to create plots of one (set of) variables against another.
-
-```{r, fig.width = 7, fig.height = 5.5, echo = TRUE, eval = FALSE}
-# With faceting
-ggplot(data = mpg, 
-       mapping = aes(x = displ, 
-                     y = hwy)) + 
-  geom_point() + theme_bw() +
-  facet_grid(rows = 2) 
-```
-
-
-]
-
-.pull-right45[
-
-```{r, fig.width = 7, fig.height = 5.5, echo = FALSE}
-# With faceting
-ggplot(data = mpg, 
-       mapping = aes(x = displ, 
-                     y = hwy)) + 
-  geom_point() + theme_bw() +
-  facet_grid(rows = 2) 
-```
-
-]
-
-
-
----
-
-# `facet_grid()`
-
-.pull-left4[
-
-Faceting = <high>same plot for different groups</high>.
-
-Use `facet_grid()` to <high>control</high> how the plots are facetted.
+Use `facet_grid()` to create plots of one (set of) variable against those another.
 
 ```{r, fig.width = 7, fig.height = 5.5, echo = TRUE, eval = FALSE}
 # With faceting
@@ -306,8 +269,6 @@ ggplot(data = mpg,
 ```
 
 ]
-
-
 
 
 ---

@@ -436,7 +436,7 @@ baselers %>%
 |:-----|:-------| 
 | `lm()`, `glm()`| (Generalized) linear models  |
 | `lmer()`, `glmer()` | (Generalized) mixed-linear models |
-| `stan_glm()` | Bayesian (generalized) linear models |
+| `regressionBF()` | Bayesian (generalized) linear models |
 
 
 ]

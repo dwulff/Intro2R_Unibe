@@ -54,8 +54,8 @@ layout: true
 # Customizing plots
 
 .pull-left45[
-
-&lt;font style="font-size:26px"&gt;
+&lt;br2&gt;
+&lt;font style="font-size:24px"&gt;
 &lt;b&gt;1&lt;/b&gt; &lt;high&gt;Store&lt;/high&gt; and customize plot as a &lt;high&gt;&lt;mono&gt;gg&lt;/mono&gt; object&lt;/high&gt;.
 &lt;br&gt;&lt;br&gt;
 &lt;b&gt;2&lt;/b&gt; Create multiple plots using &lt;high&gt;facetting&lt;/high&gt;.
@@ -219,38 +219,7 @@ ggplot(data = mpg,
 
 Faceting = &lt;high&gt;same plot for different groups&lt;/high&gt;.
 
-Use `facet_grid()` to &lt;high&gt;control&lt;/high&gt; how the plots are facetted.
-
-
-```r
-# With faceting
-ggplot(data = mpg, 
-       mapping = aes(x = displ, 
-                     y = hwy)) + 
-  geom_point() + theme_bw() +
-  facet_grid(rows = 2) 
-```
-
-
-]
-
-.pull-right45[
-
-&lt;img src="PlottingII_files/figure-html/unnamed-chunk-12-1.png" style="display: block; margin: auto;" /&gt;
-
-]
-
-
-
----
-
-# `facet_grid()`
-
-.pull-left4[
-
-Faceting = &lt;high&gt;same plot for different groups&lt;/high&gt;.
-
-Use `facet_grid()` to &lt;high&gt;control&lt;/high&gt; how the plots are facetted.
+Use `facet_grid()` to create plots of one (set of) variable against those another.
 
 
 ```r
@@ -267,11 +236,9 @@ ggplot(data = mpg,
 
 .pull-right45[
 
-&lt;img src="PlottingII_files/figure-html/unnamed-chunk-14-1.png" style="display: block; margin: auto;" /&gt;
+&lt;img src="PlottingII_files/figure-html/unnamed-chunk-12-1.png" style="display: block; margin: auto;" /&gt;
 
 ]
-
-
 
 
 ---
