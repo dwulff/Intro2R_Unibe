@@ -79,7 +79,8 @@ library(tidyverse)
 library(baselers)
 library(ggthemes)
 library(extrafont)
-loadfonts()
+library(gridExtra)
+#loadfonts()
 ```
 
 # Customizing plots
@@ -472,7 +473,7 @@ myplot
 
 .pull-left45[
 
-Change the <high>axes labels</high> using the ` axis.title.x` and ` axis.title.y` arguments and `element_text(colour, size, lineend, ...)`.
+Change the <high>axes labels</high> using the ` axis.title.x` and ` axis.title.y` arguments and `element_text(family, face, ...)`.
 
 ```{r, eval = F}
 # change grid line color
@@ -491,13 +492,19 @@ myplot +
 
 ]
 
-
 .pull-right45[
 
 ```{r, fig.width = 7, fig.height = 5.5, echo = FALSE}
 # change grid line color
 myplot = myplot + 
   theme(
+    axis.line.x = 
+      element_line(colour = "deeppink", 
+                   size = 3.5, 
+                   lineend = "butt"),
+    axis.line.y = 
+      element_line(colour = "deeppink", 
+                   size = 3.5),
     axis.title.x = 
       element_text(
                    family = "Comic Sans MS", 
@@ -514,27 +521,103 @@ myplot
 
 ---
 
-# Options, Options, Options
+.pull-left45[
 
-.pull.left45[
+# Further arguments<font style="font-size:16px"> (incomplete)</font>
 
-### `theme()` arguments
+<u><mono>theme()</mono></u>
 
-| Argument | Description |
-|:---|:-----------------------------|
-| `rename()` | Rename columns | 
+<table style="width:100%">
+  <tr>
+    <td> <b>Argument</b> </td>
+    <td> <b>Description</b> </td>
+  </tr>
+  <tr>
+    <td> <mono>axis.title.*</mono> </td>
+    <td> Everything about the axis labels </td>
+  </tr>
+  <tr>
+    <td> <mono>axis.ticks.*</mono> </td>
+    <td> Everything about the axis tick marks </td>
+  </tr>
+  <tr>
+    <td> <mono>axis.line.*</mono> </td>
+    <td> Everything about the axis line </td>
+  </tr>
+  <tr>
+    <td> <mono>legend.*</mono> </td>
+    <td> Everything about the legend </td>
+  </tr>
+  <tr>
+    <td> <mono>panel.*</mono> </td>
+    <td> Everything about the panel (inner plot region) </td>
+  </tr>
+  <tr>
+    <td> <mono>plot.*</mono> </td>
+    <td> Everything about the plot (outer plot region) </td>
+  </tr>
+  <tr>
+    <td> <mono>strip.*</mono> </td>
+    <td> Everything about facet headers </td>
+  </tr>
+</table>
 
 ]
 
 .pull-right45[
 
-### `element_rect()` arguments
+<br>
 
-| Argument | Description |
-|:---|:-----------------------------|
-| `rename()` | Rename columns | 
+<u><mono>element_rect()</mono></u>
 
-### `element_rect()` arguments
+<table style="width:100%">
+  <tr>
+    <td> <b>Argument</b> </td>
+    <td> <b>Description</b> </td>
+  </tr>
+  <tr>
+    <td> <mono>fill</mono> </td>
+    <td> Fill color </td>
+  </tr>
+  <tr>
+    <td> <mono>colour</mono> </td>
+    <td> Border color </td>
+  </tr>
+</table>
+
+<u><mono>element_line()</mono></u>
+
+<table style="width:100%">
+  <tr>
+    <td> <b>Argument</b> </td>
+    <td> <b>Description</b> </td>
+  </tr>
+  <tr>
+    <td> <mono>size</mono> </td>
+    <td> Line size </td>
+  </tr>
+  <tr>
+    <td> <mono>linetype</mono> </td>
+    <td> Type of line (solid, dashed, etc.) </td>
+  </tr>
+</table>
+
+<u><mono>element_text()</mono></u>
+
+<table style="width:100%">
+  <tr>
+    <td> <b>Argument</b> </td>
+    <td> <b>Description</b> </td>
+  </tr>
+  <tr>
+    <td> <mono>face</mono> </td>
+    <td> Font face </td>
+  </tr>
+  <tr>
+    <td> <mono>colour</mono> </td>
+    <td> Font colour </td>
+  </tr>
+</table>
 
 ]
 
@@ -543,26 +626,269 @@ myplot
 
 # Create themes
 
-```{}
+.pull-left45[
 
-get_theme()
-
+```{r}
+# define my theme
+mytheme = theme(
+    panel.background = 
+      element_rect(fill = 'tomato'), 
+    plot.background = 
+      element_rect(fill = 'burlywood'),
+    panel.grid.major = element_line(
+      colour = "salmon", size = 3),
+    panel.grid.minor = element_line(
+      colour = "seagreen", size = 1.5),
+    axis.line.x = element_line(
+      colour = "deeppink", size = 3.5, 
+      lineend = "butt"),
+    axis.line.y = element_line(
+      colour = "deeppink", size = 3.5),
+    axis.title.x = element_text(
+      family = "Comic Sans MS", size = 30),
+    axis.title.y = element_text(
+      family = "Comic Sans MS", size = 30)
+  )
 ```
 
+]
+
+.pull-right45[
+
+```{r, echo = F}
+myplot <- ggplot(data = mpg,
+                 aes(x = displ,
+                     y = hwy)) + 
+              geom_point() + 
+              theme_bw()
+```
+
+```{r, fig.width = 7, fig.height = 5.5, echo = TRUE}
+myplot
+```
+
+]
+
 ---
 
-# Saving Themes
+# Create themes
+
+.pull-left45[
+
+```{r}
+# define my theme
+mytheme = theme(
+    panel.background = 
+      element_rect(fill = 'tomato'), 
+    plot.background = 
+      element_rect(fill = 'burlywood'),
+    panel.grid.major = element_line(
+      colour = "salmon", size = 3),
+    panel.grid.minor = element_line(
+      colour = "seagreen", size = 1.5),
+    axis.line.x = element_line(
+      colour = "deeppink", size = 3.5, 
+      lineend = "butt"),
+    axis.line.y = element_line(
+      colour = "deeppink", size = 3.5),
+    axis.title.x = element_text(
+      family = "Comic Sans MS", size = 30),
+    axis.title.y = element_text(
+      family = "Comic Sans MS", size = 30)
+  )
+```
+
+]
+
+.pull-right45[
+
+```{r, echo = F}
+myplot <- ggplot(data = mpg,
+                 aes(x = displ,
+                     y = hwy)) + 
+              geom_point() + 
+              theme_bw()
+```
+
+```{r, fig.width = 7, fig.height = 5.5, echo = TRUE}
+myplot + mytheme
+```
+
+]
+
+---
+
+# Scales
+
+.pull-left45[
+
+<high>`Scales` control</high> many automatic aspects of the plot such as the axis limits or the color scale.
+
+<u>Scale functions</u>
 
 
+<table style="width:100%">
+  <tr>
+    <td> <b>Function</b> </td>
+    <td> <b>Description</b> </td>
+  </tr>
+  <tr>
+    <td> <mono>scale_color_*</mono>, <mono>scale_fill_*</mono> </td>
+    <td> Control coloring </td>
+  </tr>
+    <tr>
+    <td> <mono>scale_scale_xy*</mono> </td>
+    <td> Control axis dimensions  </td>
+  </tr>
+  <tr>
+    <td> <mono>scale_size_*</mono> </td>
+    <td> Control geom sizes  </td>
+  </tr>
+  <tr>
+    <td> <mono>scale_alpha_*</mono> </td>
+    <td> Control transparency  </td>
+  </tr>
+  <tr>
+    <td> ... </td>
+    <td> ...  </td>
+  </tr>
+</table>
 
 
+]
+
+.pull-right45[
+
+```{r, echo = F}
+# orginal plot
+myplot = ggplot(data = mpg,
+       aes(x = displ, y = hwy,
+           size = cyl, color = class)) + 
+  geom_point() + theme_bw()
+```
+
+```{r, fig.width = 7, fig.height = 5.5, echo = TRUE}
+myplot
+```
+
+
+]
+
+---
+
+# Scales
+
+.pull-left45[
+
+<high>`Scales` control</high> many automatic aspects of the plot such as the axis limits or the color scale.
+
+<u>Scale functions</u>
+
+
+<table style="width:100%">
+  <tr>
+    <td> <b>Function</b> </td>
+    <td> <b>Description</b> </td>
+  </tr>
+  <tr>
+    <td> <mono>scale_color_*</mono>, <mono>scale_fill_*</mono> </td>
+    <td> Control coloring </td>
+  </tr>
+    <tr>
+    <td> <mono>scale_scale_xy*</mono> </td>
+    <td> Control axis dimensions  </td>
+  </tr>
+  <tr>
+    <td> <mono>scale_size_*</mono> </td>
+    <td> Control geom sizes  </td>
+  </tr>
+  <tr>
+    <td> <mono>scale_alpha_*</mono> </td>
+    <td> Control transparency  </td>
+  </tr>
+  <tr>
+    <td> ... </td>
+    <td> ...  </td>
+  </tr>
+</table>
+
+
+]
+
+.pull-right45[
+
+```{r, echo = F}
+# orginal plot
+myplot = ggplot(data = mpg,
+       aes(x = displ, y = hwy,
+           size = cyl, color = class)) + 
+  geom_point() + theme_bw()
+```
+
+```{r, fig.width = 7, fig.height = 5.5, echo = TRUE}
+myplot + scale_x_continuous(limits=c(1, 30) )
+```
 
 
 ---
 
-# Plotly
+# Multiple panels
 
+.pull-left45[
 
+Using `grid.arrange()` from the `gridExtra` package, <high>multiple plots</high> (as `gg` objects) can be placed next to or on top of each other in multiple panels.  
+
+```{r, eval = F}
+grid.arrange(plot1, 
+             plot2,
+             nrow = number,
+             ncol = number)
+```
+
+]
+
+.pull-right45[
+
+```{r, echo = F}
+myplot <- ggplot(data = mpg,
+                 aes(x = displ,
+                     y = hwy)) + 
+              geom_point() + 
+              theme_bw()
+```
+
+```{r, fig.width = 7, fig.height = 5.5, echo = TRUE}
+grid.arrange(myplot, myplot + mytheme, 
+             nrow = 1)
+```
+
+]
+
+---
+
+# Multiple panels
+
+.pull-left45[
+
+Using `grid.arrange()` from the `gridExtra` package, <high>multiple plots</high> (as `gg` objects) can be placed next to or on top of each other in multiple panels.  
+
+```{r, eval = F}
+grid.arrange(plot1, 
+             plot2,
+             nrow = number,
+             ncol = number)
+```
+
+]
+
+.pull-right45[
+
+```{r, fig.width = 7, fig.height = 5.5, echo = TRUE}
+grid.arrange(myplot, myplot + mytheme, 
+             ncol = 1)
+```
+
+]
 
 ---
 
@@ -570,31 +896,48 @@ get_theme()
 
 .pull-left5[
 
-To <high>save plots</high> to a file (e.g., `.jpg`, `.pdf`, `.png`), use the `ggsave()` function.
+To create an <high>image file</high> of a plot (e.g., `.jpg`, `.pdf`, `.png`), use the `ggsave()` function.
 
-`ggsave()` main arguments are...
 
-|Argument| Definition|
-|:-------|:----------|
-|`filename`|File name|
-|`plot`|Plotting object|
-|`device`|File type (e.g.; "pdf", "jpeg", "png")|
-|`path`|File path to save plot|
-|`width`|Plot width (inches)|
-|`height`|Plot height (inches)|
+<u>Arguments</u>
+
+<table style="width:100%">
+  <tr>
+    <td> <b>Argument</b> </td>
+    <td> <b>Description</b> </td>
+  </tr>
+  <tr>
+    <td> <mono>filename</mono> </td>
+    <td> Name of the to-be-created file </td>
+  </tr>
+  <tr>
+    <td> <mono>device</mono> </td>
+    <td> File type (e.g.; "pdf", "jpeg", "png") </td>
+  </tr>
+  <tr>
+    <td> <mono>path</mono> </td>
+    <td> Folder to store image in </td>
+  </tr>
+  <tr>
+    <td> <mono>width</mono>, <mono>height</mono>  </td>
+    <td> Plot width, height (e.g., inches) </td>
+  </tr>
+</table>
 
 ]
 
 
 .pull-right45[
 
-Save ggplot object called myplot to a pdf file...<br>
 ```{r, eval = FALSE}
 # Create myplot object
-myplot <- ggplot(...)
+myplot <- ggplot(data = mpg,
+                 aes(x = displ, y = hwy)) + 
+            geom_point() + 
+            mytheme
 
 # Create "myplot.pdf", from myplot
-ggsave(filename = "myplot.pdf",
+ggsave(filename = "myplot",
        plot = myplot,
        device = "pdf",
        path = "figures",
@@ -602,9 +945,65 @@ ggsave(filename = "myplot.pdf",
        height = 4)
 ```
 
+]
 
+---
+
+# `ggsave()`
+
+.pull-left5[
+
+To create an <high>image file</high> of a plot (e.g., `.jpg`, `.pdf`, `.png`), use the `ggsave()` function.
+
+
+<u>Arguments</u>
+
+<table style="width:100%">
+  <tr>
+    <td> <b>Argument</b> </td>
+    <td> <b>Description</b> </td>
+  </tr>
+  <tr>
+    <td> <mono>filename</mono> </td>
+    <td> Name of the to-be-created file </td>
+  </tr>
+  <tr>
+    <td> <mono>device</mono> </td>
+    <td> File type (e.g.; "pdf", "jpeg", "png") </td>
+  </tr>
+  <tr>
+    <td> <mono>path</mono> </td>
+    <td> Folder to store image in </td>
+  </tr>
+  <tr>
+    <td> <mono>width</mono>, <mono>height</mono>  </td>
+    <td> Plot width, height (e.g., inches) </td>
+  </tr>
+</table>
 
 ]
+
+
+.pull-right45[
+
+```{r, eval = FALSE}
+# Create myplot object
+myplot <- ggplot(data = mpg,
+                 aes(x = displ, y = hwy)) + 
+            geom_point() + 
+            mytheme
+
+# Create "myplot.png", from myplot
+ggsave(filename = "myplot",
+       plot = myplot,
+       device = "png",
+       path = "figures",
+       width = 6, 
+       height = 4)
+```
+
+]
+
 
 
 ---

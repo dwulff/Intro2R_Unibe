@@ -398,7 +398,7 @@ myplot +
 
 .pull-left45[
 
-Change the &lt;high&gt;axes labels&lt;/high&gt; using the ` axis.title.x` and ` axis.title.y` arguments and `element_text(colour, size, lineend, ...)`.
+Change the &lt;high&gt;axes labels&lt;/high&gt; using the ` axis.title.x` and ` axis.title.y` arguments and `element_text(family, face, ...)`.
 
 
 ```r
@@ -417,7 +417,6 @@ myplot +
 
 ]
 
-
 .pull-right45[
 
 &lt;img src="PlottingII_files/figure-html/unnamed-chunk-23-1.png" style="display: block; margin: auto;" /&gt;
@@ -427,27 +426,103 @@ myplot +
 
 ---
 
-# Options, Options, Options
+.pull-left45[
 
-.pull.left45[
+# Further arguments&lt;font style="font-size:16px"&gt; (incomplete)&lt;/font&gt;
 
-### `theme()` arguments
+&lt;u&gt;&lt;mono&gt;theme()&lt;/mono&gt;&lt;/u&gt;
 
-| Argument | Description |
-|:---|:-----------------------------|
-| `rename()` | Rename columns | 
+&lt;table style="width:100%"&gt;
+  &lt;tr&gt;
+    &lt;td&gt; &lt;b&gt;Argument&lt;/b&gt; &lt;/td&gt;
+    &lt;td&gt; &lt;b&gt;Description&lt;/b&gt; &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td&gt; &lt;mono&gt;axis.title.*&lt;/mono&gt; &lt;/td&gt;
+    &lt;td&gt; Everything about the axis labels &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td&gt; &lt;mono&gt;axis.ticks.*&lt;/mono&gt; &lt;/td&gt;
+    &lt;td&gt; Everything about the axis tick marks &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td&gt; &lt;mono&gt;axis.line.*&lt;/mono&gt; &lt;/td&gt;
+    &lt;td&gt; Everything about the axis line &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td&gt; &lt;mono&gt;legend.*&lt;/mono&gt; &lt;/td&gt;
+    &lt;td&gt; Everything about the legend &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td&gt; &lt;mono&gt;panel.*&lt;/mono&gt; &lt;/td&gt;
+    &lt;td&gt; Everything about the panel (inner plot region) &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td&gt; &lt;mono&gt;plot.*&lt;/mono&gt; &lt;/td&gt;
+    &lt;td&gt; Everything about the plot (outer plot region) &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td&gt; &lt;mono&gt;strip.*&lt;/mono&gt; &lt;/td&gt;
+    &lt;td&gt; Everything about facet headers &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/table&gt;
 
 ]
 
 .pull-right45[
 
-### `element_rect()` arguments
+&lt;br&gt;
 
-| Argument | Description |
-|:---|:-----------------------------|
-| `rename()` | Rename columns | 
+&lt;u&gt;&lt;mono&gt;element_rect()&lt;/mono&gt;&lt;/u&gt;
 
-### `element_rect()` arguments
+&lt;table style="width:100%"&gt;
+  &lt;tr&gt;
+    &lt;td&gt; &lt;b&gt;Argument&lt;/b&gt; &lt;/td&gt;
+    &lt;td&gt; &lt;b&gt;Description&lt;/b&gt; &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td&gt; &lt;mono&gt;fill&lt;/mono&gt; &lt;/td&gt;
+    &lt;td&gt; Fill color &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td&gt; &lt;mono&gt;colour&lt;/mono&gt; &lt;/td&gt;
+    &lt;td&gt; Border color &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/table&gt;
+
+&lt;u&gt;&lt;mono&gt;element_line()&lt;/mono&gt;&lt;/u&gt;
+
+&lt;table style="width:100%"&gt;
+  &lt;tr&gt;
+    &lt;td&gt; &lt;b&gt;Argument&lt;/b&gt; &lt;/td&gt;
+    &lt;td&gt; &lt;b&gt;Description&lt;/b&gt; &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td&gt; &lt;mono&gt;size&lt;/mono&gt; &lt;/td&gt;
+    &lt;td&gt; Line size &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td&gt; &lt;mono&gt;linetype&lt;/mono&gt; &lt;/td&gt;
+    &lt;td&gt; Type of line (solid, dashed, etc.) &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/table&gt;
+
+&lt;u&gt;&lt;mono&gt;element_text()&lt;/mono&gt;&lt;/u&gt;
+
+&lt;table style="width:100%"&gt;
+  &lt;tr&gt;
+    &lt;td&gt; &lt;b&gt;Argument&lt;/b&gt; &lt;/td&gt;
+    &lt;td&gt; &lt;b&gt;Description&lt;/b&gt; &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td&gt; &lt;mono&gt;face&lt;/mono&gt; &lt;/td&gt;
+    &lt;td&gt; Font face &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td&gt; &lt;mono&gt;colour&lt;/mono&gt; &lt;/td&gt;
+    &lt;td&gt; Font colour &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/table&gt;
 
 ]
 
@@ -456,26 +531,261 @@ myplot +
 
 # Create themes
 
-```{}
+.pull-left45[
 
-get_theme()
 
+```r
+# define my theme
+mytheme = theme(
+    panel.background = 
+      element_rect(fill = 'tomato'), 
+    plot.background = 
+      element_rect(fill = 'burlywood'),
+    panel.grid.major = element_line(
+      colour = "salmon", size = 3),
+    panel.grid.minor = element_line(
+      colour = "seagreen", size = 1.5),
+    axis.line.x = element_line(
+      colour = "deeppink", size = 3.5, 
+      lineend = "butt"),
+    axis.line.y = element_line(
+      colour = "deeppink", size = 3.5),
+    axis.title.x = element_text(
+      family = "Comic Sans MS", size = 30),
+    axis.title.y = element_text(
+      family = "Comic Sans MS", size = 30)
+  )
 ```
 
+]
+
+.pull-right45[
+
+
+
+
+```r
+myplot
+```
+
+&lt;img src="PlottingII_files/figure-html/unnamed-chunk-26-1.png" style="display: block; margin: auto;" /&gt;
+
+]
+
 ---
 
-# Saving Themes
+# Create themes
+
+.pull-left45[
+
+
+```r
+# define my theme
+mytheme = theme(
+    panel.background = 
+      element_rect(fill = 'tomato'), 
+    plot.background = 
+      element_rect(fill = 'burlywood'),
+    panel.grid.major = element_line(
+      colour = "salmon", size = 3),
+    panel.grid.minor = element_line(
+      colour = "seagreen", size = 1.5),
+    axis.line.x = element_line(
+      colour = "deeppink", size = 3.5, 
+      lineend = "butt"),
+    axis.line.y = element_line(
+      colour = "deeppink", size = 3.5),
+    axis.title.x = element_text(
+      family = "Comic Sans MS", size = 30),
+    axis.title.y = element_text(
+      family = "Comic Sans MS", size = 30)
+  )
+```
+
+]
+
+.pull-right45[
 
 
 
 
+```r
+myplot + mytheme
+```
+
+&lt;img src="PlottingII_files/figure-html/unnamed-chunk-29-1.png" style="display: block; margin: auto;" /&gt;
+
+]
+
+---
+
+# Scales
+
+.pull-left45[
+
+&lt;high&gt;`Scales` control&lt;/high&gt; many automatic aspects of the plot such as the axis limits or the color scale.
+
+&lt;u&gt;Scale functions&lt;/u&gt;
+
+
+&lt;table style="width:100%"&gt;
+  &lt;tr&gt;
+    &lt;td&gt; &lt;b&gt;Function&lt;/b&gt; &lt;/td&gt;
+    &lt;td&gt; &lt;b&gt;Description&lt;/b&gt; &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td&gt; &lt;mono&gt;scale_color_*&lt;/mono&gt;, &lt;mono&gt;scale_fill_*&lt;/mono&gt; &lt;/td&gt;
+    &lt;td&gt; Control coloring &lt;/td&gt;
+  &lt;/tr&gt;
+    &lt;tr&gt;
+    &lt;td&gt; &lt;mono&gt;scale_scale_xy*&lt;/mono&gt; &lt;/td&gt;
+    &lt;td&gt; Control axis dimensions  &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td&gt; &lt;mono&gt;scale_size_*&lt;/mono&gt; &lt;/td&gt;
+    &lt;td&gt; Control geom sizes  &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td&gt; &lt;mono&gt;scale_alpha_*&lt;/mono&gt; &lt;/td&gt;
+    &lt;td&gt; Control transparency  &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td&gt; ... &lt;/td&gt;
+    &lt;td&gt; ...  &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/table&gt;
+
+
+]
+
+.pull-right45[
+
+
+
+
+```r
+myplot
+```
+
+&lt;img src="PlottingII_files/figure-html/unnamed-chunk-31-1.png" style="display: block; margin: auto;" /&gt;
+
+
+]
+
+---
+
+# Scales
+
+.pull-left45[
+
+&lt;high&gt;`Scales` control&lt;/high&gt; many automatic aspects of the plot such as the axis limits or the color scale.
+
+&lt;u&gt;Scale functions&lt;/u&gt;
+
+
+&lt;table style="width:100%"&gt;
+  &lt;tr&gt;
+    &lt;td&gt; &lt;b&gt;Function&lt;/b&gt; &lt;/td&gt;
+    &lt;td&gt; &lt;b&gt;Description&lt;/b&gt; &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td&gt; &lt;mono&gt;scale_color_*&lt;/mono&gt;, &lt;mono&gt;scale_fill_*&lt;/mono&gt; &lt;/td&gt;
+    &lt;td&gt; Control coloring &lt;/td&gt;
+  &lt;/tr&gt;
+    &lt;tr&gt;
+    &lt;td&gt; &lt;mono&gt;scale_scale_xy*&lt;/mono&gt; &lt;/td&gt;
+    &lt;td&gt; Control axis dimensions  &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td&gt; &lt;mono&gt;scale_size_*&lt;/mono&gt; &lt;/td&gt;
+    &lt;td&gt; Control geom sizes  &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td&gt; &lt;mono&gt;scale_alpha_*&lt;/mono&gt; &lt;/td&gt;
+    &lt;td&gt; Control transparency  &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td&gt; ... &lt;/td&gt;
+    &lt;td&gt; ...  &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/table&gt;
+
+
+]
+
+.pull-right45[
+
+
+
+
+```r
+myplot + scale_x_continuous(limits=c(1, 30) )
+```
+
+&lt;img src="PlottingII_files/figure-html/unnamed-chunk-33-1.png" style="display: block; margin: auto;" /&gt;
 
 
 ---
 
-# Plotly
+# Multiple panels
+
+.pull-left45[
+
+Using `grid.arrange()` from the `gridExtra` package, &lt;high&gt;multiple plots&lt;/high&gt; (as `gg` objects) can be placed next to or on top of each other in multiple panels.  
 
 
+```r
+grid.arrange(plot1, 
+             plot2,
+             nrow = number,
+             ncol = number)
+```
+
+]
+
+.pull-right45[
+
+
+
+
+```r
+grid.arrange(myplot, myplot + mytheme, 
+             nrow = 1)
+```
+
+&lt;img src="PlottingII_files/figure-html/unnamed-chunk-36-1.png" style="display: block; margin: auto;" /&gt;
+
+]
+
+---
+
+# Multiple panels
+
+.pull-left45[
+
+Using `grid.arrange()` from the `gridExtra` package, &lt;high&gt;multiple plots&lt;/high&gt; (as `gg` objects) can be placed next to or on top of each other in multiple panels.  
+
+
+```r
+grid.arrange(plot1, 
+             plot2,
+             nrow = number,
+             ncol = number)
+```
+
+]
+
+.pull-right45[
+
+
+```r
+grid.arrange(myplot, myplot + mytheme, 
+             ncol = 1)
+```
+
+&lt;img src="PlottingII_files/figure-html/unnamed-chunk-38-1.png" style="display: block; margin: auto;" /&gt;
+
+]
 
 ---
 
@@ -483,32 +793,49 @@ get_theme()
 
 .pull-left5[
 
-To &lt;high&gt;save plots&lt;/high&gt; to a file (e.g., `.jpg`, `.pdf`, `.png`), use the `ggsave()` function.
+To create an &lt;high&gt;image file&lt;/high&gt; of a plot (e.g., `.jpg`, `.pdf`, `.png`), use the `ggsave()` function.
 
-`ggsave()` main arguments are...
 
-|Argument| Definition|
-|:-------|:----------|
-|`filename`|File name|
-|`plot`|Plotting object|
-|`device`|File type (e.g.; "pdf", "jpeg", "png")|
-|`path`|File path to save plot|
-|`width`|Plot width (inches)|
-|`height`|Plot height (inches)|
+&lt;u&gt;Arguments&lt;/u&gt;
+
+&lt;table style="width:100%"&gt;
+  &lt;tr&gt;
+    &lt;td&gt; &lt;b&gt;Argument&lt;/b&gt; &lt;/td&gt;
+    &lt;td&gt; &lt;b&gt;Description&lt;/b&gt; &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td&gt; &lt;mono&gt;filename&lt;/mono&gt; &lt;/td&gt;
+    &lt;td&gt; Name of the to-be-created file &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td&gt; &lt;mono&gt;device&lt;/mono&gt; &lt;/td&gt;
+    &lt;td&gt; File type (e.g.; "pdf", "jpeg", "png") &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td&gt; &lt;mono&gt;path&lt;/mono&gt; &lt;/td&gt;
+    &lt;td&gt; Folder to store image in &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td&gt; &lt;mono&gt;width&lt;/mono&gt;, &lt;mono&gt;height&lt;/mono&gt;  &lt;/td&gt;
+    &lt;td&gt; Plot width, height (e.g., inches) &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/table&gt;
 
 ]
 
 
 .pull-right45[
 
-Save ggplot object called myplot to a pdf file...&lt;br&gt;
 
 ```r
 # Create myplot object
-myplot &lt;- ggplot(...)
+myplot &lt;- ggplot(data = mpg,
+                 aes(x = displ, y = hwy)) + 
+            geom_point() + 
+            mytheme
 
 # Create "myplot.pdf", from myplot
-ggsave(filename = "myplot.pdf",
+ggsave(filename = "myplot",
        plot = myplot,
        device = "pdf",
        path = "figures",
@@ -516,9 +843,66 @@ ggsave(filename = "myplot.pdf",
        height = 4)
 ```
 
+]
 
+---
+
+# `ggsave()`
+
+.pull-left5[
+
+To create an &lt;high&gt;image file&lt;/high&gt; of a plot (e.g., `.jpg`, `.pdf`, `.png`), use the `ggsave()` function.
+
+
+&lt;u&gt;Arguments&lt;/u&gt;
+
+&lt;table style="width:100%"&gt;
+  &lt;tr&gt;
+    &lt;td&gt; &lt;b&gt;Argument&lt;/b&gt; &lt;/td&gt;
+    &lt;td&gt; &lt;b&gt;Description&lt;/b&gt; &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td&gt; &lt;mono&gt;filename&lt;/mono&gt; &lt;/td&gt;
+    &lt;td&gt; Name of the to-be-created file &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td&gt; &lt;mono&gt;device&lt;/mono&gt; &lt;/td&gt;
+    &lt;td&gt; File type (e.g.; "pdf", "jpeg", "png") &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td&gt; &lt;mono&gt;path&lt;/mono&gt; &lt;/td&gt;
+    &lt;td&gt; Folder to store image in &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td&gt; &lt;mono&gt;width&lt;/mono&gt;, &lt;mono&gt;height&lt;/mono&gt;  &lt;/td&gt;
+    &lt;td&gt; Plot width, height (e.g., inches) &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/table&gt;
 
 ]
+
+
+.pull-right45[
+
+
+```r
+# Create myplot object
+myplot &lt;- ggplot(data = mpg,
+                 aes(x = displ, y = hwy)) + 
+            geom_point() + 
+            mytheme
+
+# Create "myplot.png", from myplot
+ggsave(filename = "myplot",
+       plot = myplot,
+       device = "png",
+       path = "figures",
+       width = 6, 
+       height = 4)
+```
+
+]
+
 
 
 ---

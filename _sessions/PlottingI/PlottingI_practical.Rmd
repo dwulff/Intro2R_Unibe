@@ -140,7 +140,7 @@ ggplot(mcdonalds, aes(x = Calories, y = SaturatedFat, col = Category)) +
   theme_minimal()
 ```
 
-1. Using `ggplot()`, create the following blank plot using the `data` and `mapping` arguments (but no geom). Use `calories` for the x aesthetic and `SaturatedFat` for the y aesthetic
+1. Using `ggplot()`, create the following blank plot using the `data` and `mapping` arguments (but no geom). Use `Calories` for the x aesthetic and `SaturatedFat` for the y aesthetic
 
 ```{r, echo = TRUE, eval = FALSE, fig.width = 6, fig.height = 4}
 ggplot(data = mcdonalds, 
