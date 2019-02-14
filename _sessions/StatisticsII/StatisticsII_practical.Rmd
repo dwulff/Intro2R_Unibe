@@ -230,7 +230,7 @@ co2_glm <- glm(formula = co2_largermed ~ pop + gdpPercap,
 summary(co2_glm)
 ```
 
-3. Not very surprisingly, both high population (`pop`) and high GDP per capita (`gdpPercap`) seem to be associated with higher than median CO2 emission. However, it is possible that the interaction of the two variables is behind the effect, i.e., that CO2 emissions are large only for countries with high GDP per capita *and* high population. Test this by also including the interaction effect via `var_1 * var_2`.   
+3. Not very surprisingly, both high population (`pop`) and high GDP per capita (`gdpPercap`) seem to be associated with higher than median CO2 emission. However, it is possible that the interaction of the two variables is driving the effect, i.e., that CO2 emissions are large only for countries with high GDP per capita *and* high population. Test this by also including the interaction effect via `var_1 * var_2`.   
 
 ```{r}
 co2_glm <- glm(formula = co2_largermed ~ pop * gdpPercap,
@@ -247,7 +247,7 @@ gap <- gap %>%
          gdpPercap_cent = scale(gdpPercap, scale = FALSE))
 ```
 
-5. Now, evaluate the model formula `co2_largermed ~ pop + gdpPercap + pop_scaled:gdpPercap_scaled`, which implements the interaction of the scaled and centered variables. (I.e., run the logistic regression with the above formula and apply `summary()`).
+5. Now, evaluate the model formula `co2_largermed ~ pop + gdpPercap + pop_scaled:gdpPercap_scaled`, which implements the interaction of the scaled and centered variables, (i.e., run the logistic regression with the above formula and apply `summary()`).
 
 ```{r}
 co2_glm <- glm(formula = co2_largermed ~ pop + gdpPercap +      
@@ -276,7 +276,7 @@ rsq(co2_noncent_glm)
 
 ### E - Working with statistical objects
 
-1. Statistical objects as returned from `lm()` and `glm()` contain a lot of result objects. To see this, inspect the final `mort_lm` object of section B using `names()`.
+1. Statistical objects as returned from `lm()` and `glm()` contain a lot of result objects. To see those, inspect the final `mort_lm` object of section B using `names()`.
 
 ```{r, eval = FALSE, echo = TRUE}
 names(XX)
