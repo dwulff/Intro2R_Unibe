@@ -79,6 +79,7 @@ library(tidyverse)
 library(baselers)
 library(ggthemes)
 library(extrafont)
+loadfonts()
 ```
 
 # Customizing plots
@@ -478,11 +479,12 @@ Change the <high>axes labels</high> using the ` axis.title.x` and ` axis.title.y
 myplot + 
   theme(
     axis.title.x = 
-      element_text(family = "Comic Sans MS", 
-                   size = 3.5),
+      element_text(
+                   family = "Comic Sans MS", 
+                   size = 30),
     axis.title.y = 
       element_text(family = "Comic Sans MS", 
-                   size = 3.5)
+                   size = 30)
     )
 
 ```
@@ -497,11 +499,12 @@ myplot +
 myplot = myplot + 
   theme(
     axis.title.x = 
-      element_text(family = "URWGothic", 
-                   size = 3.5),
+      element_text(
+                   family = "Comic Sans MS", 
+                   size = 30),
     axis.title.y = 
-      element_text(family = "URWGothic", 
-                   size = 3.5)
+      element_text(family = "Comic Sans MS", 
+                   size = 30)
     )
 myplot
 ```
