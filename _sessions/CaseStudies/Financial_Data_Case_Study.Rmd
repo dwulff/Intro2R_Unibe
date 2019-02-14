@@ -1,6 +1,6 @@
 ---
 title: "Case Study: Financial Data"
-author: "Introduction to  R, February 2019<br/><a href='https://therbootcamp.github.io'>www.therbootcamp.com</a><br/><a href='https://twitter.com/therbootcamp'>@therbootcamp</a>"
+author: "Introduction to R, February 2019<br/><a href='https://therbootcamp.github.io'>www.therbootcamp.com</a><br/><a href='https://twitter.com/therbootcamp'>@therbootcamp</a>"
 output:
   html_document:
     css: practical.css
@@ -24,8 +24,8 @@ library(tidyverse)
 
 <figure>
 <center>
-  <img src="https://www.techemergence.com/wp-content/uploads/2016/08/Machine-Learning-in-Finance.jpg" alt="Trulli">
-  <figcaption><a href="https://www.techemergence.com/wp-content/uploads/2016/08/Machine-Learning-in-Finance.jpg">source</a></figcaption>
+  <img src="https://static.memrise.com/uploads/course_photos/3146044000150629230223.jpg" alt="Memrise">
+  <figcaption><a href="https://static.memrise.com/uploads/course_photos/3146044000150629230223.jpg">source</a></figcaption>
 </figure>
 
 
@@ -76,7 +76,7 @@ library(haven)
 |     Date (currently unnamed)|  Current day|
 |     Rate (currently unnamed)|  Day's exchange rate in terms of 1 US Dollar. E.g., a value of .75 means that the respective currency is worth a fraction of .75 of 1 US Dollar|
 
-# Tasks
+### Tasks
 
 ## A - Getting setup
 
@@ -332,7 +332,7 @@ financial %>%
   )
 ```
 
-### References
+## References
 
 - [weforum.org "What's the relationship between stock returns and exchange rates?"](https://www.weforum.org/agenda/2015/07/whats-the-relationship-between-stock-returns-and-exchange-rates/)
 

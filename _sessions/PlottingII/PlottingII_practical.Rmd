@@ -202,7 +202,7 @@ ggplot(data = mpg,
 
 ## Tasks
 
-## A - Setup
+### A - Setup
 
 1. Open your `baselrbootcamp` R project. It should already have the folders `1_Data` and `2_Code`. Make sure that the data files listed in the `Datasets` section above are in your `1_Data` folder.
 
