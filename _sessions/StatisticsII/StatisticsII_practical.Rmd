@@ -495,7 +495,7 @@ price_Blm
 
 |File | Rows | Columns | Description |
 |:----|:-----|:------|:-----------------------------------------|
-|[gap.csv](https://raw.githubusercontent.com/therbootcamp/Intro2R_Unibe/master/_sessions/_StatisticsII/1_Data/gap.csv) | 417 | 9 | Country statistics from 1997, 2002, and 2007 from the Gapminder Foundation. |
+|[gap.csv](https://raw.githubusercontent.com/therbootcamp/Intro2R_Unibe/master/_sessions/StatisticsII/1_Data/gap.csv) | 417 | 9 | Country statistics from 1997, 2002, and 2007 from the Gapminder Foundation. |
 
 The Gapminder Foundation is a non-profit venture registered in Stockholm, Sweden, that promotes sustainable global development and achievement of the United Nations Millennium Development Goals by increased use and understanding of statistics and other information about social, economic and environmental development at local, national and global levels (see [Gapminder.org](https://www.gapminder.org)). The present dataset is an excerpt of their database holding data from three years on economic and health variables of 139 countries.
 
