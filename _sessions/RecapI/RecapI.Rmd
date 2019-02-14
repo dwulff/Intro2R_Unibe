@@ -1,6 +1,6 @@
 ---
-title: "Recap"
-author: "R Bootcamp Bern<br/>
+title: "Recap I"
+author: "Bern R Bootcamp<br/>
   <a href='https://therbootcamp.github.io'>
     R Bootcamp Bern
   </a> 
