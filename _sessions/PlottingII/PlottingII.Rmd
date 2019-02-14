@@ -80,99 +80,41 @@ library(baselers)
 library(ggthemes)
 ```
 
-
----
-
 # Customizing plots
-
----
-
-# Customizing Themes
-
----
-
-# Saving Themes
-
-
-
-
----
-
-# `facet_wrap()`
 
 .pull-left45[
 
-Faceting = <high>same plot for different groups</high>.
-
-To facet plots, use `facet_wrap()`
-
-```{r, fig.width = 7, fig.height = 5.5, echo = TRUE, eval = F}
-# Without faceting
-ggplot(data = mpg, 
-       mapping = aes(x = displ, 
-                     y = hwy)) + 
-  geom_point()
-```
-
+<font style="font-size:26px">
+<b>1</b> <high>Store</high> and customize plot as a <high><mono>gg</mono> object</high>.
+<br><br>
+<b>2</b> Create multiple plots using <high>facetting</high>.
+<br><br>
+<b>3</b> Use <high>themes</high> to control every <high>detail</high> of the plot.
+<br><br>
+<b>4</b> Create your <high>own themes</high>.
+<br><br>
+<b>5</b> Create <high>image files</high> in <mono>.pdf</mono>, <mono>.png</mono>, etc.
+</font>
 ]
+
 
 .pull-right45[
 
-```{r, fig.width = 7, fig.height = 5.5, echo = FALSE}
-# Without faceting
-ggplot(data = mpg, 
-       mapping = aes(x = displ, 
-                     y = hwy)) + 
-  geom_point()
-```
+<img src="image/button_sm.jpeg" style="width:400px">
 
 ]
+
 
 ---
 
-# `facet_wrap()`
+# The <mono>gg</mono> object
 
 .pull-left4[
 
-Faceting = <high>same plot for different groups</high>.
-
-To facet plots, use `facet_wrap()`
-
-```{r, fig.width = 7, fig.height = 5.5, echo = TRUE, eval = FALSE}
-# With faceting
-ggplot(data = mpg, 
-       mapping = aes(x = displ, 
-                     y = hwy)) + 
-  geom_point()  +
-  facet_wrap(~ class)  # Tilde first
-```
-
-
-]
-
-.pull-right45[
-
-```{r, fig.width = 7, fig.height = 5.5, echo = FALSE}
-# With faceting
-ggplot(data = mpg, 
-       mapping = aes(x = displ, 
-                     y = hwy)) + 
-  geom_point()  +
-  facet_wrap(~ class)  # Tilde first!
-```
-
-]
-
----
-
-# Assigning a ggplot to an object
-
-.pull-left4[
-
-1) ggplot returns an object of the class `gg`.<br>
-2) You can assign the result of `ggplot` to an <high>object</high>.<br>
-3) Evaluating the object will show the plot.<br>
-4) You can even edit existing <high>`ggplot` objects</high>.<br>
+<b>1</b> ggplot returns an object of the class `gg`.<br>
+<b>2</b> You can assign the result of `ggplot` to an <high>object</high>.<br>
+<b>3</b> Evaluating the object will show the plot.<br>
+<b>4</b> You can even edit existing <high>`ggplot` objects</high>.<br>
 
 ```{r, fig.width = 8}
 # Create myplot
@@ -196,14 +138,14 @@ myplot # Evaluate myplot
 
 ---
 
-# Assigning a ggplot to an object
+# The <mono>gg</mono> object
 
 .pull-left4[
 
-1) ggplot returns an object of the class `gg`.<br>
-2) You can assign the result of `ggplot` to an object.<br>
-3) Evaluating the object will show the plot.<br>
-4) You can even edit existing <high>`ggplot` objects</high>.<br>
+<b>1</b> ggplot returns an object of the class `gg`.<br>
+<b>2</b> You can assign the result of `ggplot` to an <high>object</high>.<br>
+<b>3</b> Evaluating the object will show the plot.<br>
+<b>4</b> You can even edit existing <high>`ggplot` objects</high>.<br>
 
 ```{r, fig.width = 7, fig.height = 5.5}
 # Create myplot
@@ -225,6 +167,167 @@ myplot +
 ```
 
 ]
+
+---
+
+# `facet_wrap()`
+
+.pull-left45[
+
+Faceting = <high>same plot for different groups</high>.
+
+To facet plots, use, e.g., `facet_wrap()`.
+
+```{r, fig.width = 7, fig.height = 5.5, echo = TRUE, eval = F}
+# Without faceting
+ggplot(data = mpg, 
+       mapping = aes(x = displ, 
+                     y = hwy)) + 
+  geom_point() + theme_bw()
+```
+
+]
+
+.pull-right45[
+
+```{r, fig.width = 7, fig.height = 5.5, echo = FALSE}
+# Without faceting
+ggplot(data = mpg, 
+       mapping = aes(x = displ, 
+                     y = hwy)) + 
+  geom_point() + theme_bw()
+```
+
+]
+
+---
+
+# `facet_wrap()`
+
+.pull-left4[
+
+Faceting = <high>same plot for different groups</high>.
+
+To facet plots, use, e.g., `facet_wrap()`.
+
+```{r, fig.width = 7, fig.height = 5.5, echo = TRUE, eval = FALSE}
+# With faceting
+ggplot(data = mpg, 
+       mapping = aes(x = displ, 
+                     y = hwy)) + 
+  geom_point() + theme_bw() +
+  facet_wrap(~ class)  # Tilde first
+```
+
+
+]
+
+.pull-right45[
+
+```{r, fig.width = 7, fig.height = 5.5, echo = FALSE}
+# With faceting
+ggplot(data = mpg, 
+       mapping = aes(x = displ, 
+                     y = hwy)) + 
+  geom_point() + theme_bw() +
+  facet_wrap(~ class)  # Tilde first!
+```
+
+]
+
+---
+
+# `facet_grid()`
+
+.pull-left4[
+
+Faceting = <high>same plot for different groups</high>.
+
+Use `facet_grid()` to create plots of one (set of) variables against another.
+
+```{r, fig.width = 7, fig.height = 5.5, echo = TRUE, eval = FALSE}
+# With faceting
+ggplot(data = mpg, 
+       mapping = aes(x = displ, 
+                     y = hwy)) + 
+  geom_point() + theme_bw() +
+  facet_grid(rows = 2) 
+```
+
+
+]
+
+.pull-right45[
+
+```{r, fig.width = 7, fig.height = 5.5, echo = FALSE}
+# With faceting
+ggplot(data = mpg, 
+       mapping = aes(x = displ, 
+                     y = hwy)) + 
+  geom_point() + theme_bw() +
+  facet_grid(rows = 2) 
+```
+
+]
+
+
+
+---
+
+# `facet_grid()`
+
+.pull-left4[
+
+Faceting = <high>same plot for different groups</high>.
+
+Use `facet_grid()` to <high>control</high> how the plots are facetted.
+
+```{r, fig.width = 7, fig.height = 5.5, echo = TRUE, eval = FALSE}
+# With faceting
+ggplot(data = mpg, 
+       mapping = aes(x = displ, 
+                     y = hwy)) + 
+  geom_point() + theme_bw() +
+  facet_grid(drv ~ class) 
+```
+
+
+]
+
+.pull-right45[
+
+```{r, fig.width = 7, fig.height = 5.5, echo = FALSE}
+# With faceting
+ggplot(data = mpg, 
+       mapping = aes(x = displ, 
+                     y = hwy)) + 
+  geom_point() + theme_bw() +
+  facet_grid(drv ~ class) 
+```
+
+]
+
+
+
+
+---
+
+# `theme()`
+
+
+
+---
+
+# Customizing Themes
+
+---
+
+# Saving Themes
+
+
+
+
+
 
 ---
 

@@ -51,88 +51,41 @@ layout: true
 
 
 
-
----
-
 # Customizing plots
-
----
-
-# Customizing Themes
-
----
-
-# Saving Themes
-
-
-
-
----
-
-# `facet_wrap()`
 
 .pull-left45[
 
-Faceting = &lt;high&gt;same plot for different groups&lt;/high&gt;.
-
-To facet plots, use `facet_wrap()`
-
-
-```r
-# Without faceting
-ggplot(data = mpg, 
-       mapping = aes(x = displ, 
-                     y = hwy)) + 
-  geom_point()
-```
-
+&lt;font style="font-size:26px"&gt;
+&lt;b&gt;1&lt;/b&gt; &lt;high&gt;Store&lt;/high&gt; and customize plot as a &lt;high&gt;&lt;mono&gt;gg&lt;/mono&gt; object&lt;/high&gt;.
+&lt;br&gt;&lt;br&gt;
+&lt;b&gt;2&lt;/b&gt; Create multiple plots using &lt;high&gt;facetting&lt;/high&gt;.
+&lt;br&gt;&lt;br&gt;
+&lt;b&gt;3&lt;/b&gt; Use &lt;high&gt;themes&lt;/high&gt; to control every &lt;high&gt;detail&lt;/high&gt; of the plot.
+&lt;br&gt;&lt;br&gt;
+&lt;b&gt;4&lt;/b&gt; Create your &lt;high&gt;own themes&lt;/high&gt;.
+&lt;br&gt;&lt;br&gt;
+&lt;b&gt;5&lt;/b&gt; Create &lt;high&gt;image files&lt;/high&gt; in &lt;mono&gt;.pdf&lt;/mono&gt;, &lt;mono&gt;.png&lt;/mono&gt;, etc.
+&lt;/font&gt;
 ]
+
 
 .pull-right45[
 
-&lt;img src="PlottingII_files/figure-html/unnamed-chunk-4-1.png" style="display: block; margin: auto;" /&gt;
+&lt;img src="image/button_sm.jpeg" style="width:400px"&gt;
 
 ]
+
 
 ---
 
-# `facet_wrap()`
+# The &lt;mono&gt;gg&lt;/mono&gt; object
 
 .pull-left4[
 
-Faceting = &lt;high&gt;same plot for different groups&lt;/high&gt;.
-
-To facet plots, use `facet_wrap()`
-
-
-```r
-# With faceting
-ggplot(data = mpg, 
-       mapping = aes(x = displ, 
-                     y = hwy)) + 
-  geom_point()  +
-  facet_wrap(~ class)  # Tilde first
-```
-
-
-]
-
-.pull-right45[
-
-&lt;img src="PlottingII_files/figure-html/unnamed-chunk-6-1.png" style="display: block; margin: auto;" /&gt;
-
-]
-
----
-
-# Assigning a ggplot to an object
-
-.pull-left4[
-
-1) ggplot returns an object of the class `gg`.&lt;br&gt;
-2) You can assign the result of `ggplot` to an &lt;high&gt;object&lt;/high&gt;.&lt;br&gt;
-3) Evaluating the object will show the plot.&lt;br&gt;
-4) You can even edit existing &lt;high&gt;`ggplot` objects&lt;/high&gt;.&lt;br&gt;
+&lt;b&gt;1&lt;/b&gt; ggplot returns an object of the class `gg`.&lt;br&gt;
+&lt;b&gt;2&lt;/b&gt; You can assign the result of `ggplot` to an &lt;high&gt;object&lt;/high&gt;.&lt;br&gt;
+&lt;b&gt;3&lt;/b&gt; Evaluating the object will show the plot.&lt;br&gt;
+&lt;b&gt;4&lt;/b&gt; You can even edit existing &lt;high&gt;`ggplot` objects&lt;/high&gt;.&lt;br&gt;
 
 
 ```r
@@ -158,20 +111,20 @@ class(myplot)
 myplot # Evaluate myplot
 ```
 
-&lt;img src="PlottingII_files/figure-html/unnamed-chunk-8-1.png" style="display: block; margin: auto;" /&gt;
+&lt;img src="PlottingII_files/figure-html/unnamed-chunk-4-1.png" style="display: block; margin: auto;" /&gt;
 
 ]
 
 ---
 
-# Assigning a ggplot to an object
+# The &lt;mono&gt;gg&lt;/mono&gt; object
 
 .pull-left4[
 
-1) ggplot returns an object of the class `gg`.&lt;br&gt;
-2) You can assign the result of `ggplot` to an object.&lt;br&gt;
-3) Evaluating the object will show the plot.&lt;br&gt;
-4) You can even edit existing &lt;high&gt;`ggplot` objects&lt;/high&gt;.&lt;br&gt;
+&lt;b&gt;1&lt;/b&gt; ggplot returns an object of the class `gg`.&lt;br&gt;
+&lt;b&gt;2&lt;/b&gt; You can assign the result of `ggplot` to an &lt;high&gt;object&lt;/high&gt;.&lt;br&gt;
+&lt;b&gt;3&lt;/b&gt; Evaluating the object will show the plot.&lt;br&gt;
+&lt;b&gt;4&lt;/b&gt; You can even edit existing &lt;high&gt;`ggplot` objects&lt;/high&gt;.&lt;br&gt;
 
 
 ```r
@@ -198,9 +151,147 @@ myplot +
   geom_smooth() # add geom
 ```
 
+&lt;img src="PlottingII_files/figure-html/unnamed-chunk-6-1.png" style="display: block; margin: auto;" /&gt;
+
+]
+
+---
+
+# `facet_wrap()`
+
+.pull-left45[
+
+Faceting = &lt;high&gt;same plot for different groups&lt;/high&gt;.
+
+To facet plots, use, e.g., `facet_wrap()`.
+
+
+```r
+# Without faceting
+ggplot(data = mpg, 
+       mapping = aes(x = displ, 
+                     y = hwy)) + 
+  geom_point() + theme_bw()
+```
+
+]
+
+.pull-right45[
+
+&lt;img src="PlottingII_files/figure-html/unnamed-chunk-8-1.png" style="display: block; margin: auto;" /&gt;
+
+]
+
+---
+
+# `facet_wrap()`
+
+.pull-left4[
+
+Faceting = &lt;high&gt;same plot for different groups&lt;/high&gt;.
+
+To facet plots, use, e.g., `facet_wrap()`.
+
+
+```r
+# With faceting
+ggplot(data = mpg, 
+       mapping = aes(x = displ, 
+                     y = hwy)) + 
+  geom_point() + theme_bw() +
+  facet_wrap(~ class)  # Tilde first
+```
+
+
+]
+
+.pull-right45[
+
 &lt;img src="PlottingII_files/figure-html/unnamed-chunk-10-1.png" style="display: block; margin: auto;" /&gt;
 
 ]
+
+---
+
+# `facet_grid()`
+
+.pull-left4[
+
+Faceting = &lt;high&gt;same plot for different groups&lt;/high&gt;.
+
+Use `facet_grid()` to &lt;high&gt;control&lt;/high&gt; how the plots are facetted.
+
+
+```r
+# With faceting
+ggplot(data = mpg, 
+       mapping = aes(x = displ, 
+                     y = hwy)) + 
+  geom_point() + theme_bw() +
+  facet_grid(rows = 2) 
+```
+
+
+]
+
+.pull-right45[
+
+&lt;img src="PlottingII_files/figure-html/unnamed-chunk-12-1.png" style="display: block; margin: auto;" /&gt;
+
+]
+
+
+
+---
+
+# `facet_grid()`
+
+.pull-left4[
+
+Faceting = &lt;high&gt;same plot for different groups&lt;/high&gt;.
+
+Use `facet_grid()` to &lt;high&gt;control&lt;/high&gt; how the plots are facetted.
+
+
+```r
+# With faceting
+ggplot(data = mpg, 
+       mapping = aes(x = displ, 
+                     y = hwy)) + 
+  geom_point() + theme_bw() +
+  facet_grid(drv ~ class) 
+```
+
+
+]
+
+.pull-right45[
+
+&lt;img src="PlottingII_files/figure-html/unnamed-chunk-14-1.png" style="display: block; margin: auto;" /&gt;
+
+]
+
+
+
+
+---
+
+# `theme()`
+
+
+
+---
+
+# Customizing Themes
+
+---
+
+# Saving Themes
+
+
+
+
+
 
 ---
 
