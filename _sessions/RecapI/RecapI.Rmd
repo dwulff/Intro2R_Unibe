@@ -292,7 +292,7 @@ DO_SOMETHING %>% # AND THEN...
 
 class: middle, center
 
-<h1><a href="https://dwulff.github.io/Intro2R_Unibe/1_Data/BernRBootcamp_Day1.zip">Downloads</a></h1>
+<h1><a href="https://dwulff.github.io/Intro2R_Unibe/1_Data/BernRBootcamp_Day2.zip">Downloads</a></h1>
 
 
 ---
