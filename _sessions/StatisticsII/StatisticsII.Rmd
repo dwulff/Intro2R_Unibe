@@ -168,7 +168,7 @@ knitr::opts_chunk$set(warning = FALSE)
     <td> (Generalized) mixed-linear models </td>
   </tr>
   <tr>
-    <td> <mono>stan_glm()</mono> </td>
+    <td> <mono>regressionBF()</mono> </td>
     <td> Bayesian (gen.) linear models </td>
   </tr>
 </table>
