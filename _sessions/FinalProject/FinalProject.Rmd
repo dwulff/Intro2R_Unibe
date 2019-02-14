@@ -1,6 +1,6 @@
 ---
 title: "Final Project"
-<<<<<<< .merge_file_UCNkPR
+subtitle: ""
 author: "
 <table style='table-layout:fixed;width:100%;border:0;padding:0;margin:0'><col width='10%'><col width='10%'>
   <tr style='border:none'>
@@ -27,41 +27,18 @@ author: "
     </td>
   </tr>
 </table>"
-=======
-author: "Introduction to R<br/>
-  <a href='https://therbootcamp.github.io'>
-     Bern R Bootcamp
-  </a> 
-  <br>
-  <a href='https://dwulff.github.io/Intro2R_Unibe/'>
-    <i class='fas fa-clock' style='font-size:.9em;'></i>
-  </a>&#8239; 
-  <a href='https://therbootcamp.github.io'>
-    <i class='fas fa-home' style='font-size:.9em;' ></i>
-  </a>&#8239;
-  <a href='mailto:therbootcamp@gmail.com'>
-    <i class='fas fa-envelope' style='font-size: .9em;'></i>
-  </a>&#8239;
-  <a href='https://www.linkedin.com/company/basel-r-bootcamp/'>
-    <i class='fab fa-linkedin' style='font-size: .9em;'></i>
-  </a>"
->>>>>>> .merge_file_vDTQVH
 output:
   html_document:
     css: practical.css
     self_contained: no
+
 ---
 
-<<<<<<< .merge_file_UCNkPR
-=======
-
->>>>>>> .merge_file_vDTQVH
-```{r setup, echo = FALSE}
+```{r setup, echo = FALSE, message = FALSE}
 knitr::opts_chunk$set(comment = NA, 
                       fig.width = 6, 
                       fig.height = 6,
                       fig.align = 'center',
-<<<<<<< .merge_file_UCNkPR
                       echo = FALSE, 
                       eval = FALSE, 
                       warning = FALSE)
@@ -69,13 +46,7 @@ knitr::opts_chunk$set(comment = NA,
 options(digits = 3)
 library(tidyverse)
 library(lubridate)
-=======
-                      echo = TRUE, 
-                      eval = TRUE, 
-                      warning = FALSE)
-
-options(digits = 3)
->>>>>>> .merge_file_vDTQVH
+library(ggmap)
 ```
 
 <p align="center">
@@ -167,27 +138,24 @@ table(appointments$NoShow)
 6. Generate a new variable `age_group` which includes four groups [1:4] where 1: 'children' between 0 and 18 years, 2:  'young adults' between 19 and 30 years, 3: 'adults' (31:50 years) and 4 'old adults' (51:max(Age)) 
 
 
-```{r, eval = TRUE}
-  appointments <- 
+```{r}
+  appointments <-
   appointments %>%
     mutate(age_group = case_when(Age %in% c(0:18) ~ 'children',
                                  Age %in% c(19:30) ~ 'young adults',
                                  Age %in% c(31:50) ~ 'adults',
                                  Age %in% c(51:max(Age)) ~ 'old adults'))
-
 ```
 
-<<<<<<< .merge_file_UCNkPR
+
 7. Plot the four age groups on the x-axis and the size of the groups on the y-axis (call this variable: number_cases). Connect the points ina line graph, separated for gender. Facet the graph into two parts, with noshow 'No' on top and nowshow 'Yes' on bottom. So ultimately you should have 4 lines, 2 in each panel. 
-=======
-7. 
->>>>>>> .merge_file_vDTQVH
+
 
 ```{r}
   appointments %>%
   group_by(age_group, Gender, NoShow) %>%
-<<<<<<< .merge_file_UCNkPR
-  summarise(number_cases = n()) %>%
+  summarise(number_cases = n(),
+            size = n()) %>%
   ggplot(., aes(age_group, size, colour = Gender, group = Gender)) +
   geom_line() +
   facet_grid(NoShow ~ .)
@@ -202,12 +170,9 @@ appointments %>%
   mutate(AppointmentDay = date(AppointmentDay)) %>%
   mutate(time_diff = AppointmentDay - ScheduledDate) %>%
   filter(!time_diff < 0)
-```
 
-```{r, echo = TRUE, eval = TRUE}
 dim(appointments)
 ```
-
 
 9. Categorize lead days
 
@@ -220,29 +185,15 @@ appointments %>%
                                time_diff %in% c(8:31) ~ '8-31 days',
                                time_diff %in% c(32:max(time_diff)) ~ '32+ days'))
 ```
-0
-1-2
-3-7
-8-31
-32+
 
 ### C - 
 
 ### D - Mapping out locations
-=======
-  summarise(size = n()) %>%
-  ggplot(., aes(age_group, size, colour = Gender, group = Gender)) +
-  geom_point() +
-  facet_grid(NoShow ~ .)
-```
-
-D - Mapping out locations
->>>>>>> .merge_file_vDTQVH
 
 1. From the `weather` dataframe take the lon and lat coordinates and setup a dot for each location on the map of Brasil. Any inconsistencies? Hint: Checkout `qmplot()` from the `ggmap` package. 
 
 ```{r, eval = TRUE, message = FALSE}
-qmplot(LON, LAT, data = weather, maptype = "toner-lite", color = I("red"))
+#qmplot(LON, LAT, data = weather, maptype = "toner-lite", color = I("red"))
 ```
 
 2. There is a set of points off the coast of Brasil in the water - identify those points and remove them from the dataset.

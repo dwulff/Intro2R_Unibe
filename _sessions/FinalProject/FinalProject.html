@@ -9,10 +9,9 @@
 <meta name="generator" content="pandoc" />
 
 
-<meta name="author" content="Introduction to R   Bern R Bootcamp" />
 
 
-<title>Final Project</title>
+<title>FinalProject.utf8</title>
 
 <script src="FinalProject_files/jquery-1.11.3/jquery.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -185,8 +184,6 @@ $(document).ready(function () {
 
 
 
-<h1 class="title toc-ignore">Final Project</h1>
-<h4 class="author"><em>Introduction to R<br/> <a href='https://therbootcamp.github.io'> Bern R Bootcamp </a> <br> <a href='https://dwulff.github.io/Intro2R_Unibe/'> <i class='fas fa-clock' style='font-size:.9em;'></i> </a>  <a href='https://therbootcamp.github.io'> <i class='fas fa-home' style='font-size:.9em;' ></i> </a>  <a href='mailto:therbootcamp@gmail.com'> <i class='fas fa-envelope' style='font-size: .9em;'></i> </a>  <a href='https://www.linkedin.com/company/basel-r-bootcamp/'> <i class='fab fa-linkedin' style='font-size: .9em;'></i> </a></em></h4>
 
 </div>
 
@@ -199,7 +196,7 @@ $(document).ready(function () {
 <div id="overview" class="section level2">
 <h2>Overview</h2>
 <p>This is your final assignment in this course. You will use all we learned during the course to understand, arrange, analyse, visualise and report on a new dataset about medical appointments.</p>
-<p>What is the dataset about? There is a large number of medical appointments where patients end up canceling or simply do not show up. This practise comes with huge costs to the medical system - in this assignment we will try to understand what drives patients not to show up in a sample of medical appointments from Brasil.</p>
+<p>What is the dataset about? There is a large number of medical appointments where patients end up canceling or simply do not show up. This practise comes with costs to the medical system - in this assignment we will try to understand what drives patients not to show up in a sample of medical appointments from (Brasil).</p>
 <p>From the given list of parameters, such as Gender, Scheduled and Appointment Date difference, Age, Neighbourhood, sms_alert and certain conditions of a given patient, the model will predict, based on a studied dataset, whether the given appointment is likely to be a No-Show</p>
 <p>You should (at least) complete the following tasks</p>
 <ol style="list-style-type: decimal">
@@ -212,42 +209,64 @@ $(document).ready(function () {
 <div id="a---setup" class="section level3">
 <h3>A - Setup</h3>
 <ol style="list-style-type: decimal">
-<li>Open your <code>baselrbootcamp</code> R project. It should already have the folders <code>1_Data</code> and <code>2_Code</code>. Make sure that the data files listed in the <code>Datasets</code> section above are in your <code>1_Data</code> folder.</li>
-</ol>
-<pre class="r"><code># Done!</code></pre>
-<ol start="2" style="list-style-type: decimal">
+<li><p>Open your <code>bernrbootcamp</code> R project. It should already have the folders <code>1_Data</code> and <code>2_Code</code>. Make sure that the data files listed in the <code>Datasets</code> section above are in your <code>1_Data</code> folder.</p></li>
 <li><p>Open a new R script. At the top of the script, using comments, write your name and the date. Save it as a new file called <code>final_project.R</code> in the <code>2_Code</code> folder.</p></li>
 <li><p>Using <code>library()</code> load the set of packages for this practical listed in the packages section above.</p></li>
-<li><p>Read the <code>medical_noshows.csv</code> and the <code>weather.csv</code> files into two objects called <code>appointments</code> and <code>weather</code> respectively. Check out the content of the two datasets in Overview and Datasets above.</p></li>
+<li><p>Read the <code>appointments.csv</code> and the <code>weather.csv</code> files into two objects called <code>appointments</code> and <code>weather</code> respectively. Check out the content of the two datasets in Overview and Datasets above.</p></li>
 </ol>
 </div>
 <div id="b---initial-data-inspection" class="section level3">
 <h3>B - Initial data inspection</h3>
 <ol style="list-style-type: decimal">
-<li>We want to first see what variables are in the dataset (check out Datasets above) and whether there are variables with impossible values. Generate an overview of all variables with minimum and maximum values, means and medians for all appropriate numeric variables. Correct the variable(s) that stand out and provide a rational for what you did.</li>
+<li>We want to first see what variables are in the dataset (check out Datasets above) and whether there are variables with impossible values. Generate an overview of all variables with minimum and maximum values, means and medians for all appropriate numeric variables. Correct the variable(s) that stand out and provide a rational for what you did. Also rename Hipertension into Hyptertension and Handcap into Handicap.</li>
 </ol>
 <pre class="r"><code>summary(appointments)
 
 appointments &lt;-
 appointments %&gt;%
-  filter(Age &gt;= 0)</code></pre>
+  filter(Age &gt;= 0) %&gt;%
+  rename(&#39;Hypertension&#39; = &#39;Hipertension&#39;,
+         &#39;Handicap&#39; = &#39;Handcap&#39;)</code></pre>
 <ol start="2" style="list-style-type: decimal">
 <li>How many patients showed up for their appointment(s), how many did not?</li>
 </ol>
 <pre class="r"><code>table(appointments$NoShow)</code></pre>
+<ol start="3" style="list-style-type: decimal">
+<li>How many patients are female|male? Who (PatientID) has the most number of appointments? Split that for gender.</li>
+</ol>
+<pre class="r"><code>  appointments %&gt;%
+    group_by(PatientId,Gender) %&gt;%
+    count(unique(PatientId)) %&gt;%
+    arrange(desc(n))</code></pre>
+<ol start="4" style="list-style-type: decimal">
+<li><p>Generate a simple plot with the age of all patients.</p></li>
+<li><p>Summarise the number of particiants per age in years (range: <code>range(appointments$Age)</code>) for the whole <code>appointments</code> dataset. Generate a line graph showing the distribution of patients per age. Now split this graph into two rows with Female|Male and two columns with Show|No-Show - this will give you an age distribution with four panels.</p></li>
+<li><p>Generate a new variable <code>age_group</code> which includes four groups [1:4] where 1: ‘children’ between 0 and 18 years, 2: ‘young adults’ between 19 and 30 years, 3: ‘adults’ (31:50 years) and 4 ‘old adults’ (51:max(Age))</p></li>
+<li><p>Plot the four age groups on the x-axis and the size of the groups on the y-axis (call this variable: number_cases). Connect the points ina line graph, separated for gender. Facet the graph into two parts, with noshow ‘No’ on top and nowshow ‘Yes’ on bottom. So ultimately you should have 4 lines, 2 in each panel.</p></li>
+<li><p>We want to explore the time difference between making an appointment and actually having an appointment a little more. Using the <code>lubridate()</code> package extract Year-Month-Day from <code>ScheduledDay</code> and write this date information (without time) into a new variable <code>ScheduledDate</code> (Hint: <code>date()</code> ). Convert <code>AppointmentDay</code> to the date class, too. We want to get the distribution of time between scheduled appointment date and actual appointment day - write this difference (in days) in a new variable called <code>time_diff</code>. There are some appointments with a negative <code>time_diff</code>. We assume that these are based on typos - remove them from the dataset.</p></li>
+<li><p>Categorize lead days</p></li>
+</ol>
+</div>
+<div id="c--" class="section level3">
+<h3>C -</h3>
+</div>
+<div id="d---mapping-out-locations" class="section level3">
+<h3>D - Mapping out locations</h3>
+<ol style="list-style-type: decimal">
+<li><p>From the <code>weather</code> dataframe take the lon and lat coordinates and setup a dot for each location on the map of Brasil. Any inconsistencies? Hint: Checkout <code>qmplot()</code> from the <code>ggmap</code> package.</p></li>
+<li><p>There is a set of points off the coast of Brasil in the water - identify those points and remove them from the dataset.</p></li>
+<li></li>
+</ol>
 </div>
 </div>
 <div id="datasets" class="section level2">
 <h2>Datasets</h2>
-<pre class="r"><code>library(tidyverse)
-appointments &lt;- read_csv(&#39;1_Data/medical_noshows.csv&#39;)
-weather &lt;- read_csv(&#39;1_Data/weather.csv&#39;)</code></pre>
-<table style="width:89%;">
+<table>
 <colgroup>
 <col width="8%" />
-<col width="9%" />
+<col width="10%" />
 <col width="11%" />
-<col width="59%" />
+<col width="70%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -274,10 +293,10 @@ weather &lt;- read_csv(&#39;1_Data/weather.csv&#39;)</code></pre>
 </table>
 <div id="variables-in-medical_noshows.csv-appointments" class="section level3">
 <h3>Variables in medical_noshows.csv (appointments)</h3>
-<table style="width:57%;">
+<table>
 <colgroup>
-<col width="13%" />
-<col width="43%" />
+<col width="23%" />
+<col width="76%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -312,18 +331,10 @@ weather &lt;- read_csv(&#39;1_Data/weather.csv&#39;)</code></pre>
 </tr>
 <tr class="odd">
 <td align="left">Neighbourhood</td>
-<td align="left">Where the appointment takes place.</td>
+<td align="left">Where the patient is living</td>
 </tr>
 <tr class="even">
-<td align="left">Scholarship</td>
-<td align="left">Ture of False.</td>
-</tr>
-<tr class="odd">
-<td align="left">Observation</td>
-<td align="left">this is a broad topic, consider reading this article <a href="https://en.wikipedia.org/wiki/Bolsa_Fam%C3%ADlia">https://en.wikipedia.org/wiki/Bolsa_Fam%C3%ADlia</a></td>
-</tr>
-<tr class="even">
-<td align="left">Hypertension</td>
+<td align="left">Hipertension</td>
 <td align="left">True or False</td>
 </tr>
 <tr class="odd">
@@ -335,8 +346,8 @@ weather &lt;- read_csv(&#39;1_Data/weather.csv&#39;)</code></pre>
 <td align="left">True or False</td>
 </tr>
 <tr class="odd">
-<td align="left">Handicapped</td>
-<td align="left">True or False</td>
+<td align="left">Handcap</td>
+<td align="left">Hanicapped - level 1:4, 1 lowest level</td>
 </tr>
 <tr class="even">
 <td align="left">SMS_received</td>
@@ -431,11 +442,11 @@ weather &lt;- read_csv(&#39;1_Data/weather.csv&#39;)</code></pre>
 <div id="glossary-update" class="section level2">
 <h2>Glossary (UPDATE!)</h2>
 <p><em>Wrangling</em></p>
-<table style="width:83%;">
+<table>
 <colgroup>
-<col width="6%" />
-<col width="11%" />
-<col width="65%" />
+<col width="7%" />
+<col width="12%" />
+<col width="80%" />
 </colgroup>
 <thead>
 <tr class="header">
