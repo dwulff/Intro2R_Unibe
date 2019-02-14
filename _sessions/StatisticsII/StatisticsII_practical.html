@@ -11,7 +11,7 @@
 
 
 
-<title>Statistics II</title>
+<title>StatisticsII_practical.utf8</title>
 
 <script src="StatisticsII_practical_files/jquery-1.11.3/jquery.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -97,6 +97,9 @@ img {
 button.code-folding-btn:focus {
   outline: none;
 }
+summary {
+  display: list-item;
+}
 </style>
 
 
@@ -104,9 +107,70 @@ button.code-folding-btn:focus {
 <div class="container-fluid main-container">
 
 <!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "&#xe258;";
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
 <script>
 $(document).ready(function () {
   window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open')
+  });
 });
 </script>
 
@@ -116,24 +180,10 @@ $(document).ready(function () {
 
 
 
-
 <div class="fluid-row" id="header">
 
 
 
-<h1 class="title toc-ignore">Statistics II</h1>
-<h4 class="author"><em><table style='table-layout:fixed;width:100%;border:0;padding:0;margin:0'>
-<col width='10%'>
-<col width='10%'>
-<tr style="border:none">
-<td style="display:block;width:100%;text-align:left;vertical-align:bottom;padding:0;margin:0;border:none" nowrap>
-<font style='font-style:normal'>Introduction to R</font><br> <a href='https://dwulff.github.io/Intro2R_Unibe/'> <i class='fas fa-clock' style='font-size:.9em;' ></i> </a> <a href='https://therbootcamp.github.io'> <i class='fas fa-home' style='font-size:.9em;'></i> </a> <a href='mailto:therbootcamp@gmail.com'> <i class='fas fa-envelope' style='font-size: .9em;'></i> </a> <a href='https://www.linkedin.com/company/basel-r-bootcamp/'> <i class='fab fa-linkedin' style='font-size: .9em;'></i> </a> <a href='https://therbootcamp.github.io'> <font style='font-style:normal'>Bern R Bootcamp</font> </a>
-</td>
-<td style="width:100%;vertical-align:bottom;text-align:right;padding:0;margin:0;border:none">
-<img src='https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/by-sa.png' style='height:15px;width:80px'/>
-</td>
-</tr>
-</table></em></h4>
 
 </div>
 
@@ -219,9 +269,9 @@ anova(mort_anova)</code></pre>
                family = &quot;XX&quot;)
 summary(co2_glm)</code></pre>
 <ol start="3" style="list-style-type: decimal">
-<li><p>Not very surprisingly, both high population (<code>pop</code>) and high GDP per capita (<code>gdpPercap</code>) seem to be associated with higher than median CO2 emission. However, it is possible that the interaction of the two variables is behind the effect, i.e., that CO2 emissions are large only for countries with high GDP per capita <em>and</em> high population. Test this by also including the interaction effect via <code>var_1 * var_2</code>.</p></li>
+<li><p>Not very surprisingly, both high population (<code>pop</code>) and high GDP per capita (<code>gdpPercap</code>) seem to be associated with higher than median CO2 emission. However, it is possible that the interaction of the two variables is driving the effect, i.e., that CO2 emissions are large only for countries with high GDP per capita <em>and</em> high population. Test this by also including the interaction effect via <code>var_1 * var_2</code>.</p></li>
 <li><p>Indeed, it seems that interaction is most important for the prediction of CO2 emissions. But again there is a caveat. By default R implements the interaction of two predictors using their uncentered product as the interaction term. As a result the interaction term will be highly correlated with the original predictors, rendering it difficult to interpret the results. To deal with this issue, create new, centered versions of <code>pop</code> and <code>gdpPercap</code> called <code>pop_cent</code> and <code>gdpPercap_cent</code> using <code>mutate()</code> and <code>scale(scale = FALSE)</code>.</p></li>
-<li><p>Now, evaluate the model formula <code>co2_largermed ~ pop + gdpPercap + pop_scaled:gdpPercap_scaled</code>, which implements the interaction of the scaled and centered variables. (I.e., run the logistic regression with the above formula and apply <code>summary()</code>).</p></li>
+<li><p>Now, evaluate the model formula <code>co2_largermed ~ pop + gdpPercap + pop_scaled:gdpPercap_scaled</code>, which implements the interaction of the scaled and centered variables, (i.e., run the logistic regression with the above formula and apply <code>summary()</code>).</p></li>
 <li><p>All three, the two variables and their interaction, significantly predict higher than median CO2 emissions. This was obscured before because of the inter-correlation between the predictors. If you like, you can confirm that both models, with centered and uncentered interactions, predict the criterion equally well using <code>rsq()</code> from the <code>rsq</code> package. The <code>rsq()</code> function computes the overall R-squared value for generalized linear models.</p></li>
 </ol>
 <pre class="r"><code>co2_cent_glm &lt;- glm(formula = co2_largermed ~ pop + gdpPercap +      
@@ -240,7 +290,7 @@ rsq(co2_noncent_glm)</code></pre>
 <div id="e---working-with-statistical-objects" class="section level3">
 <h3>E - Working with statistical objects</h3>
 <ol style="list-style-type: decimal">
-<li>Statistical objects as returned from <code>lm()</code> and <code>glm()</code> contain a lot of result objects. To see this, inspect the final <code>mort_lm</code> object of section B using <code>names()</code>.</li>
+<li>Statistical objects as returned from <code>lm()</code> and <code>glm()</code> contain a lot of result objects. To see those, inspect the final <code>mort_lm</code> object of section B using <code>names()</code>.</li>
 </ol>
 <pre class="r"><code>names(XX)</code></pre>
 <ol start="2" style="list-style-type: decimal">
@@ -277,7 +327,8 @@ rsq(co2_noncent_glm)</code></pre>
 </ol>
 <pre class="r"><code># Bayesian lm
 mort_blm &lt;- regressionBF(formula = childMort ~ gdpPercap,
-                         data = gap %&gt;% filter(!is.na(childMort)))</code></pre>
+                         data = gap %&gt;% 
+                         filter(!is.na(childMort)))</code></pre>
 <ol start="2" style="list-style-type: decimal">
 <li><p>Evaluate <code>mort_blm</code> by printing it. You’ll see a very different output showing only the BayesFactor, a metric specifying the amount of evidence in the data against the hypothesis of the predictor having no effect on the criterion.</p></li>
 <li><p>What is missing from the output are the actual estimates for the predictor. To extract those, you need to sample from the posterior distribution and then average across the samples.</p></li>
@@ -342,7 +393,7 @@ tidy(price_lm)
 # Q: Run ANOVA predicting price by color and cut
 
 # transform to factor
-dimaonds$cut = as.factor(dimaonds$cut)
+dimaonds$cut = as.factor(diamonds$cut)
 dimaonds$color = as.factor(dimaonds$color)
 
 # Run model
@@ -386,12 +437,12 @@ price_Blm</code></pre>
 </div>
 <div id="datasets" class="section level2">
 <h2>Datasets</h2>
-<table style="width:89%;">
+<table>
 <colgroup>
 <col width="8%" />
-<col width="9%" />
+<col width="10%" />
 <col width="11%" />
-<col width="59%" />
+<col width="70%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -492,11 +543,11 @@ price_Blm</code></pre>
 <div id="functions-1" class="section level3">
 <h3>Functions</h3>
 <p><em>Model functions</em></p>
-<table style="width:69%;">
+<table>
 <colgroup>
-<col width="11%" />
-<col width="29%" />
-<col width="29%" />
+<col width="14%" />
+<col width="42%" />
+<col width="42%" />
 </colgroup>
 <thead>
 <tr class="header">

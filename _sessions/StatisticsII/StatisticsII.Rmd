@@ -337,7 +337,7 @@ my_lm <- lm(formula = income ~ age + height + age : height,
             data = baselers)
 ```
 
-To include, both <high>main effects and interactions</high>, use <high><mono>x1:x2</mono></high>.
+To include, both <high>main effects and interactions</high>, use <high><mono>x1*x2</mono></high>.
 
 ```{r}
 # Include both main effects and interactions for age and height
