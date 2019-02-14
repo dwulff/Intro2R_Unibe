@@ -268,19 +268,8 @@ mcdonalds &lt;- mcdonalds %&gt;%
 <li>Remove the <code>fill = Category</code> aesthetic entirely.</li>
 </ul>
 </div>
-<div id="d---adjusting-colors" class="section level3">
-<h3>D - Adjusting colors</h3>
-<p><img src="PlottingI_practical_files/figure-html/unnamed-chunk-30-1.png" width="576" style="display: block; margin: auto;" /></p>
-<ol style="list-style-type: decimal">
-<li><p>Create a scatterplot showing the relationship between <code>Cholesterol</code> and <code>Protein</code> .</p></li>
-<li><p>Color the points according to their Calories by specifying the <code>col</code> aesthetic.</p></li>
-<li><p>Change the colors by including the additional argument <code>+ scale_colour_gradient(low = &quot;blue&quot;, high = &quot;red&quot;)</code>.</p></li>
-<li><p>Use a gray color palette by using <code>scale_color_grey()</code> instead of <code>scale_colour_gradient()</code>.</p></li>
-<li><p>Customize! Look at all of the named colors in R by running <code>colors()</code>. Then, use two new colors in your plot.</p></li>
-</ol>
-</div>
-<div id="e---summary-statistics" class="section level3">
-<h3>E - Summary statistics</h3>
+<div id="d---summary-statistics" class="section level3">
+<h3>D - Summary statistics</h3>
 <ol style="list-style-type: decimal">
 <li>Create the following plot showing the mean number of calories for each menu category using the following template:</li>
 </ol>
@@ -289,7 +278,7 @@ mcdonalds &lt;- mcdonalds %&gt;%
                fun.y = &quot;mean&quot;) +
   labs(title = &quot;XX&quot;,
        subtitle = &quot;XX&quot;)</code></pre>
-<p><img src="PlottingI_practical_files/figure-html/unnamed-chunk-32-1.png" width="960" style="display: block; margin: auto;" /></p>
+<p><img src="PlottingI_practical_files/figure-html/unnamed-chunk-31-1.png" width="960" style="display: block; margin: auto;" /></p>
 <ol start="2" style="list-style-type: decimal">
 <li>Customize your plot!</li>
 </ol>
@@ -299,10 +288,10 @@ mcdonalds &lt;- mcdonalds %&gt;%
 <li>Add overlapping points showing the individual items using <code>geom_point()</code>, <code>geom_count()</code> or <code>geom_jitter()</code>.</li>
 </ul>
 </div>
-<div id="f---adding-labels" class="section level3">
-<h3>F - Adding labels</h3>
+<div id="e---adding-labels" class="section level3">
+<h3>E - Adding labels</h3>
 <p>Let’s create the following plot with additional point labels using <code>geom_text()</code>:</p>
-<p><img src="PlottingI_practical_files/figure-html/unnamed-chunk-33-1.png" width="768" style="display: block; margin: auto;" /></p>
+<p><img src="PlottingI_practical_files/figure-html/unnamed-chunk-32-1.png" width="768" style="display: block; margin: auto;" /></p>
 <ol style="list-style-type: decimal">
 <li>Start with the following template</li>
 </ol>

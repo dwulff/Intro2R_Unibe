@@ -768,6 +768,7 @@ myplot = ggplot(data = mpg,
 ```
 
 ```{r, fig.width = 7, fig.height = 5.5, echo = TRUE}
+# Original plot
 myplot
 ```
 
@@ -826,8 +827,186 @@ myplot = ggplot(data = mpg,
 ```
 
 ```{r, fig.width = 7, fig.height = 5.5, echo = TRUE}
-myplot + scale_x_continuous(limits=c(1, 30) )
+myplot + 
+  scale_x_continuous(limits = c(1, 30))
 ```
+
+]
+
+---
+
+# Scales
+
+.pull-left45[
+
+<high>`Scales` control</high> many automatic aspects of the plot such as the axis limits or the color scale.
+
+<u>Scale functions</u>
+
+
+<table style="width:100%">
+  <tr>
+    <td> <b>Function</b> </td>
+    <td> <b>Description</b> </td>
+  </tr>
+  <tr>
+    <td> <mono>scale_color_*</mono>, <mono>scale_fill_*</mono> </td>
+    <td> Control coloring </td>
+  </tr>
+    <tr>
+    <td> <mono>scale_scale_xy*</mono> </td>
+    <td> Control axis dimensions  </td>
+  </tr>
+  <tr>
+    <td> <mono>scale_size_*</mono> </td>
+    <td> Control geom sizes  </td>
+  </tr>
+  <tr>
+    <td> <mono>scale_alpha_*</mono> </td>
+    <td> Control transparency  </td>
+  </tr>
+  <tr>
+    <td> ... </td>
+    <td> ...  </td>
+  </tr>
+</table>
+
+
+]
+
+.pull-right45[
+
+```{r, echo = F}
+# orginal plot
+myplot = ggplot(data = mpg,
+       aes(x = displ, y = hwy,
+           size = cyl, color = class)) + 
+  geom_point() + theme_bw()
+```
+
+```{r, fig.width = 7, fig.height = 5.5, echo = TRUE}
+myplot + 
+  scale_x_reverse()
+```
+
+]
+
+---
+
+# Scales
+
+.pull-left45[
+
+<high>`Scales` control</high> many automatic aspects of the plot such as the axis limits or the color scale.
+
+<u>Scale functions</u>
+
+
+<table style="width:100%">
+  <tr>
+    <td> <b>Function</b> </td>
+    <td> <b>Description</b> </td>
+  </tr>
+  <tr>
+    <td> <mono>scale_color_*</mono>, <mono>scale_fill_*</mono> </td>
+    <td> Control coloring </td>
+  </tr>
+    <tr>
+    <td> <mono>scale_scale_xy*</mono> </td>
+    <td> Control axis dimensions  </td>
+  </tr>
+  <tr>
+    <td> <mono>scale_size_*</mono> </td>
+    <td> Control geom sizes  </td>
+  </tr>
+  <tr>
+    <td> <mono>scale_alpha_*</mono> </td>
+    <td> Control transparency  </td>
+  </tr>
+  <tr>
+    <td> ... </td>
+    <td> ...  </td>
+  </tr>
+</table>
+
+
+]
+
+.pull-right45[
+
+```{r, echo = F}
+# orginal plot
+myplot = ggplot(data = mpg,
+       aes(x = displ, y = hwy,
+           size = cyl, color = class)) + 
+  geom_point() + theme_bw()
+```
+
+```{r, fig.width = 7, fig.height = 5.5, echo = TRUE}
+myplot + 
+  scale_colour_hue(h = c(160, 260))
+```
+
+]
+
+---
+
+# Scales
+
+.pull-left45[
+
+<high>`Scales` control</high> many automatic aspects of the plot such as the axis limits or the color scale.
+
+<u>Scale functions</u>
+
+
+<table style="width:100%">
+  <tr>
+    <td> <b>Function</b> </td>
+    <td> <b>Description</b> </td>
+  </tr>
+  <tr>
+    <td> <mono>scale_color_*</mono>, <mono>scale_fill_*</mono> </td>
+    <td> Control coloring </td>
+  </tr>
+    <tr>
+    <td> <mono>scale_scale_xy_*</mono> </td>
+    <td> Control axis dimensions  </td>
+  </tr>
+  <tr>
+    <td> <mono>scale_size_*</mono> </td>
+    <td> Control geom sizes  </td>
+  </tr>
+  <tr>
+    <td> <mono>scale_alpha_*</mono> </td>
+    <td> Control transparency  </td>
+  </tr>
+  <tr>
+    <td> ... </td>
+    <td> ...  </td>
+  </tr>
+</table>
+
+
+]
+
+.pull-right45[
+
+```{r, echo = F}
+# orginal plot
+myplot = ggplot(data = mpg,
+       aes(x = displ, y = hwy,
+           size = cyl, color = class)) + 
+  geom_point() + theme_bw()
+```
+
+```{r, fig.width = 7, fig.height = 5.5, echo = TRUE}
+myplot + 
+  scale_size(range = c(1, 15))
+```
+
+]
+
 
 
 ---

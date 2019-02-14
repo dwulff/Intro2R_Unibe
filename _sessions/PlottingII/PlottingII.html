@@ -664,6 +664,7 @@ myplot + mytheme
 
 
 ```r
+# Original plot
 myplot
 ```
 
@@ -719,10 +720,179 @@ myplot
 
 
 ```r
-myplot + scale_x_continuous(limits=c(1, 30) )
+myplot + 
+  scale_x_continuous(limits = c(1, 30))
 ```
 
 &lt;img src="PlottingII_files/figure-html/unnamed-chunk-33-1.png" style="display: block; margin: auto;" /&gt;
+
+]
+
+---
+
+# Scales
+
+.pull-left45[
+
+&lt;high&gt;`Scales` control&lt;/high&gt; many automatic aspects of the plot such as the axis limits or the color scale.
+
+&lt;u&gt;Scale functions&lt;/u&gt;
+
+
+&lt;table style="width:100%"&gt;
+  &lt;tr&gt;
+    &lt;td&gt; &lt;b&gt;Function&lt;/b&gt; &lt;/td&gt;
+    &lt;td&gt; &lt;b&gt;Description&lt;/b&gt; &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td&gt; &lt;mono&gt;scale_color_*&lt;/mono&gt;, &lt;mono&gt;scale_fill_*&lt;/mono&gt; &lt;/td&gt;
+    &lt;td&gt; Control coloring &lt;/td&gt;
+  &lt;/tr&gt;
+    &lt;tr&gt;
+    &lt;td&gt; &lt;mono&gt;scale_scale_xy*&lt;/mono&gt; &lt;/td&gt;
+    &lt;td&gt; Control axis dimensions  &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td&gt; &lt;mono&gt;scale_size_*&lt;/mono&gt; &lt;/td&gt;
+    &lt;td&gt; Control geom sizes  &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td&gt; &lt;mono&gt;scale_alpha_*&lt;/mono&gt; &lt;/td&gt;
+    &lt;td&gt; Control transparency  &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td&gt; ... &lt;/td&gt;
+    &lt;td&gt; ...  &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/table&gt;
+
+
+]
+
+.pull-right45[
+
+
+
+
+```r
+myplot + 
+  scale_x_reverse()
+```
+
+&lt;img src="PlottingII_files/figure-html/unnamed-chunk-35-1.png" style="display: block; margin: auto;" /&gt;
+
+]
+
+---
+
+# Scales
+
+.pull-left45[
+
+&lt;high&gt;`Scales` control&lt;/high&gt; many automatic aspects of the plot such as the axis limits or the color scale.
+
+&lt;u&gt;Scale functions&lt;/u&gt;
+
+
+&lt;table style="width:100%"&gt;
+  &lt;tr&gt;
+    &lt;td&gt; &lt;b&gt;Function&lt;/b&gt; &lt;/td&gt;
+    &lt;td&gt; &lt;b&gt;Description&lt;/b&gt; &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td&gt; &lt;mono&gt;scale_color_*&lt;/mono&gt;, &lt;mono&gt;scale_fill_*&lt;/mono&gt; &lt;/td&gt;
+    &lt;td&gt; Control coloring &lt;/td&gt;
+  &lt;/tr&gt;
+    &lt;tr&gt;
+    &lt;td&gt; &lt;mono&gt;scale_scale_xy*&lt;/mono&gt; &lt;/td&gt;
+    &lt;td&gt; Control axis dimensions  &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td&gt; &lt;mono&gt;scale_size_*&lt;/mono&gt; &lt;/td&gt;
+    &lt;td&gt; Control geom sizes  &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td&gt; &lt;mono&gt;scale_alpha_*&lt;/mono&gt; &lt;/td&gt;
+    &lt;td&gt; Control transparency  &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td&gt; ... &lt;/td&gt;
+    &lt;td&gt; ...  &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/table&gt;
+
+
+]
+
+.pull-right45[
+
+
+
+
+```r
+myplot + 
+  scale_colour_hue(h = c(160, 260))
+```
+
+&lt;img src="PlottingII_files/figure-html/unnamed-chunk-37-1.png" style="display: block; margin: auto;" /&gt;
+
+]
+
+---
+
+# Scales
+
+.pull-left45[
+
+&lt;high&gt;`Scales` control&lt;/high&gt; many automatic aspects of the plot such as the axis limits or the color scale.
+
+&lt;u&gt;Scale functions&lt;/u&gt;
+
+
+&lt;table style="width:100%"&gt;
+  &lt;tr&gt;
+    &lt;td&gt; &lt;b&gt;Function&lt;/b&gt; &lt;/td&gt;
+    &lt;td&gt; &lt;b&gt;Description&lt;/b&gt; &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td&gt; &lt;mono&gt;scale_color_*&lt;/mono&gt;, &lt;mono&gt;scale_fill_*&lt;/mono&gt; &lt;/td&gt;
+    &lt;td&gt; Control coloring &lt;/td&gt;
+  &lt;/tr&gt;
+    &lt;tr&gt;
+    &lt;td&gt; &lt;mono&gt;scale_scale_xy_*&lt;/mono&gt; &lt;/td&gt;
+    &lt;td&gt; Control axis dimensions  &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td&gt; &lt;mono&gt;scale_size_*&lt;/mono&gt; &lt;/td&gt;
+    &lt;td&gt; Control geom sizes  &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td&gt; &lt;mono&gt;scale_alpha_*&lt;/mono&gt; &lt;/td&gt;
+    &lt;td&gt; Control transparency  &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td&gt; ... &lt;/td&gt;
+    &lt;td&gt; ...  &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/table&gt;
+
+
+]
+
+.pull-right45[
+
+
+
+
+```r
+myplot + 
+  scale_size(range = c(1, 15))
+```
+
+&lt;img src="PlottingII_files/figure-html/unnamed-chunk-39-1.png" style="display: block; margin: auto;" /&gt;
+
+]
+
 
 
 ---
@@ -753,7 +923,7 @@ grid.arrange(myplot, myplot + mytheme,
              nrow = 1)
 ```
 
-&lt;img src="PlottingII_files/figure-html/unnamed-chunk-36-1.png" style="display: block; margin: auto;" /&gt;
+&lt;img src="PlottingII_files/figure-html/unnamed-chunk-42-1.png" style="display: block; margin: auto;" /&gt;
 
 ]
 
@@ -783,7 +953,7 @@ grid.arrange(myplot, myplot + mytheme,
              ncol = 1)
 ```
 
-&lt;img src="PlottingII_files/figure-html/unnamed-chunk-38-1.png" style="display: block; margin: auto;" /&gt;
+&lt;img src="PlottingII_files/figure-html/unnamed-chunk-44-1.png" style="display: block; margin: auto;" /&gt;
 
 ]
 

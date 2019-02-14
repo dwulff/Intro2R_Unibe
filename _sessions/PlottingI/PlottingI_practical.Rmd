@@ -324,30 +324,8 @@ ggplot(data = mcdonalds, aes(x = Category, y = Calories, fill = Category)) +
 - Instead of using `geom_violin()`, try `geom_boxplot()`.
 - Remove the `fill = Category` aesthetic entirely.
 
-### D - Adjusting colors
 
-```{r, echo = FALSE, eval = TRUE, fig.width=6, fig.height = 4}
-ggplot(mcdonalds, aes(x = Cholesterol,
-                      y = Protein, 
-                      col = Calories)) + 
-  geom_point() +
-  scale_colour_gradient(low = "blue", high = "red") +
-  labs(title = "Playing with colors in ggplot",
-       subtitle = "Using scale_colour_gradient()")
-```
-
-1. Create a scatterplot showing the relationship between `Cholesterol` and `Protein` .
-
-2. Color the points according to their Calories by specifying the `col` aesthetic.
-
-3. Change the colors by including the additional argument ` + scale_colour_gradient(low = "blue", high = "red")`.
-
-4. Use a gray color palette by using `scale_color_grey()` instead of `scale_colour_gradient()`.
-
-5. Customize! Look at all of the named colors in R by running `colors()`. Then, use two new colors in your plot.
- 
-
-### E - Summary statistics
+### D - Summary statistics
 
 1. Create the following plot showing the mean number of calories for each menu category using the following template:
 
@@ -374,7 +352,7 @@ ggplot(mcdonalds, aes(x = Category, y = Calories)) +
 - Add overlapping points showing the individual items using `geom_point()`, `geom_count()` or `geom_jitter()`.
 
 
-### F - Adding labels
+### E - Adding labels
 
 Let's create the following plot with additional point labels using `geom_text()`:
 
