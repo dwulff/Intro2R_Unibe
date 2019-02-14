@@ -392,6 +392,64 @@ myplot +
 
 ]
 
+---
+
+# Axes: `theme()`
+
+.pull-left45[
+
+Change the &lt;high&gt;axes labels&lt;/high&gt; using the ` axis.title.x` and ` axis.title.y` arguments and `element_text(colour, size, lineend, ...)`.
+
+
+```r
+# change grid line color
+myplot + 
+  theme(
+    axis.title.x = 
+      element_text(family = "Comic Sans MS", 
+                   size = 3.5),
+    axis.title.y = 
+      element_text(family = "Comic Sans MS", 
+                   size = 3.5)
+    )
+```
+
+]
+
+
+.pull-right45[
+
+&lt;img src="PlottingII_files/figure-html/unnamed-chunk-23-1.png" style="display: block; margin: auto;" /&gt;
+
+]
+
+
+---
+
+# Options, Options, Options
+
+.pull.left45[
+
+### `theme()` arguments
+
+| Argument | Description |
+|:---|:-----------------------------|
+| `rename()` | Rename columns | 
+
+]
+
+.pull-right45[
+
+### `element_rect()` arguments
+
+| Argument | Description |
+|:---|:-----------------------------|
+| `rename()` | Rename columns | 
+
+### `element_rect()` arguments
+
+]
+
 
 ---
 

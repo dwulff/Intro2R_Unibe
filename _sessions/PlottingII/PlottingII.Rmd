@@ -78,6 +78,7 @@ knitr::opts_chunk$set(comment=NA, fig.width=6, fig.height=6, echo = TRUE, eval =
 library(tidyverse)
 library(baselers)
 library(ggthemes)
+library(extrafont)
 ```
 
 # Customizing plots
@@ -461,6 +462,77 @@ myplot = myplot +
     )
 myplot
 ```
+
+]
+
+---
+
+# Axes: `theme()`
+
+.pull-left45[
+
+Change the <high>axes labels</high> using the ` axis.title.x` and ` axis.title.y` arguments and `element_text(colour, size, lineend, ...)`.
+
+```{r, eval = F}
+# change grid line color
+myplot + 
+  theme(
+    axis.title.x = 
+      element_text(family = "Comic Sans MS", 
+                   size = 3.5),
+    axis.title.y = 
+      element_text(family = "Comic Sans MS", 
+                   size = 3.5)
+    )
+
+```
+
+]
+
+
+.pull-right45[
+
+```{r, fig.width = 7, fig.height = 5.5, echo = FALSE}
+# change grid line color
+myplot = myplot + 
+  theme(
+    axis.line.x = 
+      element_line(colour = "deeppink", 
+                   size = 3.5, 
+                   lineend = "butt"),
+    axis.line.y = 
+      element_line(colour = "deeppink", 
+                   size = 3.5)
+    )
+myplot
+```
+
+]
+
+
+---
+
+# Options, Options, Options
+
+.pull.left45[
+
+### `theme()` arguments
+
+| Argument | Description |
+|:---|:-----------------------------|
+| `rename()` | Rename columns | 
+
+]
+
+.pull-right45[
+
+### `element_rect()` arguments
+
+| Argument | Description |
+|:---|:-----------------------------|
+| `rename()` | Rename columns | 
+
+### `element_rect()` arguments
 
 ]
 
