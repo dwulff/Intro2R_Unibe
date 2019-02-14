@@ -1,5 +1,33 @@
 ---
 title: "Final Project"
+<<<<<<< .merge_file_UCNkPR
+author: "
+<table style='table-layout:fixed;width:100%;border:0;padding:0;margin:0'><col width='10%'><col width='10%'>
+  <tr style='border:none'>
+    <td style='display:block;width:100%;text-align:left;vertical-align:bottom;padding:0;margin:0;border:none' nowrap>
+      <font style='font-style:normal'>Introduction to R</font><br>
+      <a href='https://dwulff.github.io/Intro2R_Unibe/'>
+        <i class='fas fa-clock' style='font-size:.9em;' ></i>
+      </a>
+      <a href='https://therbootcamp.github.io'>
+        <i class='fas fa-home' style='font-size:.9em;'></i>
+      </a>
+      <a href='mailto:therbootcamp@gmail.com'>
+        <i class='fas fa-envelope' style='font-size: .9em;'></i>
+      </a>
+      <a href='https://www.linkedin.com/company/basel-r-bootcamp/'>
+        <i class='fab fa-linkedin' style='font-size: .9em;'></i>
+      </a>
+      <a href='https://therbootcamp.github.io'>
+        <font style='font-style:normal'>Bern R Bootcamp</font>
+      </a>
+    </td>
+    <td style='width:100%;vertical-align:bottom;text-align:right;padding:0;margin:0;border:none'>
+      <img src='https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/by-sa.png' style='height:15px;width:80px'/>
+    </td>
+  </tr>
+</table>"
+=======
 author: "Introduction to R<br/>
   <a href='https://therbootcamp.github.io'>
      Bern R Bootcamp
@@ -17,23 +45,37 @@ author: "Introduction to R<br/>
   <a href='https://www.linkedin.com/company/basel-r-bootcamp/'>
     <i class='fab fa-linkedin' style='font-size: .9em;'></i>
   </a>"
+>>>>>>> .merge_file_vDTQVH
 output:
   html_document:
     css: practical.css
     self_contained: no
 ---
 
+<<<<<<< .merge_file_UCNkPR
+=======
 
+>>>>>>> .merge_file_vDTQVH
 ```{r setup, echo = FALSE}
 knitr::opts_chunk$set(comment = NA, 
                       fig.width = 6, 
                       fig.height = 6,
                       fig.align = 'center',
+<<<<<<< .merge_file_UCNkPR
+                      echo = FALSE, 
+                      eval = FALSE, 
+                      warning = FALSE)
+
+options(digits = 3)
+library(tidyverse)
+library(lubridate)
+=======
                       echo = TRUE, 
                       eval = TRUE, 
                       warning = FALSE)
 
 options(digits = 3)
+>>>>>>> .merge_file_vDTQVH
 ```
 
 <p align="center">
@@ -135,11 +177,59 @@ table(appointments$NoShow)
 
 ```
 
+<<<<<<< .merge_file_UCNkPR
+7. Plot the four age groups on the x-axis and the size of the groups on the y-axis (call this variable: number_cases). Connect the points ina line graph, separated for gender. Facet the graph into two parts, with noshow 'No' on top and nowshow 'Yes' on bottom. So ultimately you should have 4 lines, 2 in each panel. 
+=======
 7. 
+>>>>>>> .merge_file_vDTQVH
 
 ```{r}
   appointments %>%
   group_by(age_group, Gender, NoShow) %>%
+<<<<<<< .merge_file_UCNkPR
+  summarise(number_cases = n()) %>%
+  ggplot(., aes(age_group, size, colour = Gender, group = Gender)) +
+  geom_line() +
+  facet_grid(NoShow ~ .)
+```
+
+8. We want to explore the time difference between making an appointment and actually having an appointment a little more. Using the `lubridate()` package extract Year-Month-Day from `ScheduledDay` and write this date information (without time) into a new variable `ScheduledDate` (Hint: `date()` ). Convert `AppointmentDay` to the date class, too. We want to get the distribution of time between scheduled appointment date and actual appointment day - write this difference (in days) in a new variable called `time_diff`. There are some appointments with a negative `time_diff`. We assume that these are based on typos - remove them from the dataset.
+
+```{r}
+appointments <- 
+appointments %>%
+  mutate(ScheduledDate = date(ScheduledDay)) %>%
+  mutate(AppointmentDay = date(AppointmentDay)) %>%
+  mutate(time_diff = AppointmentDay - ScheduledDate) %>%
+  filter(!time_diff < 0)
+```
+
+```{r, echo = TRUE, eval = TRUE}
+dim(appointments)
+```
+
+
+9. Categorize lead days
+
+```{r}
+appointments <- 
+appointments %>%
+  mutate(lead_days = case_when(time_diff == 0 ~ '0 days',
+                               time_diff %in% c(1:2) ~ '1-2 days',
+                               time_diff %in% c(3:7) ~ '3-7 days',
+                               time_diff %in% c(8:31) ~ '8-31 days',
+                               time_diff %in% c(32:max(time_diff)) ~ '32+ days'))
+```
+0
+1-2
+3-7
+8-31
+32+
+
+### C - 
+
+### D - Mapping out locations
+=======
   summarise(size = n()) %>%
   ggplot(., aes(age_group, size, colour = Gender, group = Gender)) +
   geom_point() +
@@ -147,6 +237,7 @@ table(appointments$NoShow)
 ```
 
 D - Mapping out locations
+>>>>>>> .merge_file_vDTQVH
 
 1. From the `weather` dataframe take the lon and lat coordinates and setup a dot for each location on the map of Brasil. Any inconsistencies? Hint: Checkout `qmplot()` from the `ggmap` package. 
 
