@@ -402,33 +402,33 @@ waterfront_htest <- t.test(x = prices$XX, y = prices$XX)
 waterfront_htest <- t.test(x = prices$no_waterfront, y = prices$waterfront)
 ```
 
-2. Print your `waterfront_htest` object to see a printout of the main results.
+3. Print your `waterfront_htest` object to see a printout of the main results.
 
 ```{r}
 waterfront_htest
 ```
 
-3. Look at the names of your `waterfront_htest` object with `names()`.
+4. Look at the names of your `waterfront_htest` object with `names()`.
 
 ```{r}
 names(waterfront_htest)
 ```
 
 
-4. Using the `$`, print the test statistic (`statistic`) from your `waterfront_htest` object.
+5. Using the `$`, print the test statistic (`statistic`) from your `waterfront_htest` object.
 
 ```{r}
 waterfront_htest$statistic
 ```
 
 
-5. Now using `$`, print only the p-value (`p.value`) from the object.
+6. Now using `$`, print only the p-value (`p.value`) from the object.
 
 ```{r}
 waterfront_htest$p.value
 ```
 
-6. Run a Wilcoxon test instead of the t-test to evalute whether the result is robust. Is the result the same?
+7. Run a Wilcoxon test instead of the t-test to evalute whether the result is robust. Is the result the same?
 
 ```{r, echo = TRUE, eval = FALSE}
 wilcox.test(x = prices$XX, y = prices$XX)

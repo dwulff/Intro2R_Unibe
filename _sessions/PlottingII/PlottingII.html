@@ -282,7 +282,7 @@ Address the &lt;high&gt;panel background&lt;/high&gt; using `panel.background` a
 
 
 ```r
-# use theme
+# change panel and plot color
 myplot + 
   theme(
     panel.background = 
@@ -300,10 +300,108 @@ myplot +
 
 ]
 
+---
+
+# Background grid: `theme()`
+
+.pull-left45[
+
+Address the &lt;high&gt;grid line colors&lt;/high&gt; using `panel.grid.major` (large grid lines) and `panel.grid.minor` (small grid lines) and change the color using `element_line(colour = color)`.
+
+
+```r
+# change grid line color
+myplot + 
+  theme(
+    panel.grid.major = 
+      element_line(colour = "salmon"),
+    panel.grid.minor = 
+      element_line(colour = "seagreen")
+    )
+```
+
+]
+
+
+.pull-right45[
+
+&lt;img src="PlottingII_files/figure-html/unnamed-chunk-17-1.png" style="display: block; margin: auto;" /&gt;
+
+]
 
 ---
 
-# Customizing Themes
+# Background grid: `theme()`
+
+.pull-left45[
+
+Change the &lt;high&gt;grid line sizes&lt;/high&gt; using `element_line(size = number)`.
+
+
+```r
+# change grid line color
+myplot + 
+  theme(
+    panel.grid.major = 
+      element_line(colour = "salmon",
+                   size = 3),
+    panel.grid.minor = 
+      element_line(colour = "seagreen",
+                   size = 1.5)
+    )
+```
+
+]
+
+
+.pull-right45[
+
+&lt;img src="PlottingII_files/figure-html/unnamed-chunk-19-1.png" style="display: block; margin: auto;" /&gt;
+
+]
+
+---
+
+# Axes: `theme()`
+
+.pull-left45[
+
+Change the &lt;high&gt;axes&lt;/high&gt; using the ` axis.line.x` and ` axis.line.y` arguments and `element_line(colour, size, lineend, ...)`.
+
+
+```r
+# change grid line color
+myplot + 
+  theme(
+    axis.line.x = 
+      element_line(colour = "deeppink", 
+                   size = 3.5, 
+                   lineend = "butt"),
+    axis.line.y = 
+      element_line(colour = "deeppink", 
+                   size = 3.5)
+    )
+```
+
+]
+
+
+.pull-right45[
+
+&lt;img src="PlottingII_files/figure-html/unnamed-chunk-21-1.png" style="display: block; margin: auto;" /&gt;
+
+]
+
+
+---
+
+# Create themes
+
+```{}
+
+get_theme()
+
+```
 
 ---
 

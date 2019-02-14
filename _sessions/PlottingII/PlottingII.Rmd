@@ -311,7 +311,7 @@ myplot +
 Address the <high>panel background</high> using `panel.background` and that of the <high>plot background</high> using `plot.background` and change the color using `element_rect(fill = color)`.
 
 ```{r, eval = F}
-# change panel and 
+# change panel and plot color
 myplot + 
   theme(
     panel.background = 
@@ -327,12 +327,12 @@ myplot +
 .pull-right45[
 
 ```{r, fig.width = 7, fig.height = 5.5, echo = FALSE}
-# use theme
-myplot + 
+# change panel and plot color
+myplot = myplot + 
   theme(
     panel.background = element_rect(fill = 'tomato'), 
     plot.background = element_rect(fill = 'burlywood'))
-
+myplot
 ```
 
 ]
@@ -343,20 +343,16 @@ myplot +
 
 .pull-left45[
 
-Address the <high>panel grid lines</high> using `panel.background` and that of the <high>plot background</high> using `plot.background` and change the color using `element_rect(fill = color)`.
+Address the <high>grid line colors</high> using `panel.grid.major` (large grid lines) and `panel.grid.minor` (small grid lines) and change the color using `element_line(colour = color)`.
 
 ```{r, eval = F}
-# change panel and 
+# change grid line color
 myplot + 
   theme(
-    panel.background = 
-      element_rect(fill = 'tomato'), 
-    plot.background = 
-      element_rect(fill = 'burlywood'),
     panel.grid.major = 
-      element_line(colour = "salmon", size=2),
+      element_line(colour = "salmon"),
     panel.grid.minor = 
-      element_line(colour = "khaki", size=.5),
+      element_line(colour = "seagreen")
     )
 
 ```
@@ -367,11 +363,37 @@ myplot +
 .pull-right45[
 
 ```{r, fig.width = 7, fig.height = 5.5, echo = FALSE}
-# use theme
+# change grid line color
+myplot = myplot + 
+  theme(
+    panel.grid.major = 
+      element_line(colour = "salmon"),
+    panel.grid.minor = 
+      element_line(colour = "seagreen")
+    )
+myplot
+```
+
+]
+
+---
+
+# Background grid: `theme()`
+
+.pull-left45[
+
+Change the <high>grid line sizes</high> using `element_line(size = number)`.
+
+```{r, eval = F}
+# change grid line color
 myplot + 
   theme(
-    panel.background = element_rect(fill = 'tomato'), 
-    plot.background = element_rect(fill = 'burlywood'),
+    panel.grid.major = 
+      element_line(colour = "salmon",
+                   size = 3),
+    panel.grid.minor = 
+      element_line(colour = "seagreen",
+                   size = 1.5)
     )
 
 ```
@@ -379,10 +401,79 @@ myplot +
 ]
 
 
+.pull-right45[
+
+```{r, fig.width = 7, fig.height = 5.5, echo = FALSE}
+# change grid line color
+myplot = myplot + 
+  theme(
+    panel.grid.major = 
+      element_line(colour = "salmon",
+                   size = 3),
+    panel.grid.minor = 
+      element_line(colour = "seagreen",
+                   size = 1.5)
+    )
+myplot
+```
+
+]
 
 ---
 
-# Customizing Themes
+# Axes: `theme()`
+
+.pull-left45[
+
+Change the <high>axes</high> using the ` axis.line.x` and ` axis.line.y` arguments and `element_line(colour, size, lineend, ...)`.
+
+```{r, eval = F}
+# change grid line color
+myplot + 
+  theme(
+    axis.line.x = 
+      element_line(colour = "deeppink", 
+                   size = 3.5, 
+                   lineend = "butt"),
+    axis.line.y = 
+      element_line(colour = "deeppink", 
+                   size = 3.5)
+    )
+
+```
+
+]
+
+
+.pull-right45[
+
+```{r, fig.width = 7, fig.height = 5.5, echo = FALSE}
+# change grid line color
+myplot = myplot + 
+  theme(
+    axis.line.x = 
+      element_line(colour = "deeppink", 
+                   size = 3.5, 
+                   lineend = "butt"),
+    axis.line.y = 
+      element_line(colour = "deeppink", 
+                   size = 3.5)
+    )
+myplot
+```
+
+]
+
+
+---
+
+# Create themes
+
+```{}
+
+get_theme()
+
+```
 
 ---
 
