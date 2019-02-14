@@ -47,7 +47,7 @@ mcdonalds <- read_csv("1_Data/mcdonalds.csv")
 ```
 
 <p align="center" width="100%">
-  <img src="image/burgers.jpg" alt="Trulli" style="width:100%;height:280px">
+  <img src="image/burgers.jpg" alt="Trulli" style="width:100%">
   <br>
   <font style="font-size:10px">from <a href="https://www.today.com/recipes/anne-burell-s-killer-turkey-burgers-recipe-t146616">today.com</a></font>
 </p>
