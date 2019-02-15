@@ -71,13 +71,13 @@ options(digits = 4)
 <br><br><br><br><br>
 #  Hello Data Scientist!
 
-In 2 days, 6 sessions, and 16 hours you have come a long way.
+In 3 days, 9 sessions, and 21 hours you have come a long way.
 
 ]
 
 .pull-right4[
 
-<img src="https://github.com/therbootcamp/therbootcamp.github.io/blob/master/_sessions/_image/schedule_2018Oct_Intro2DS.png?raw=true" height="580" align="center">
+<img src="https://dwulff.github.io/Intro2R_Unibe/_sessions/Welcome/image/schedule.png" height="580" align="center">
 ]
 
 ---
@@ -491,7 +491,7 @@ The web is a great place to learn about R.
 <a href="https://github.com/dwulff"><b>github.com/dwulff</b></a><br>
 <font size=4><i>packages: </i></font> 
 <a href="https://cran.r-project.org/web/packages/cstab/index.html"><b>cstab</b></a>, <br>
-<a href="https://cran.r-project.org/web/packages/mousetrap/index.html"><b>mousetrap</b></a>, <a href="https://github.com/dwulff/choicepp"><b>choicepp</b>
+<a href="https://cran.r-project.org/web/packages/mousetrap/index.html"><b>mousetrap</b></a>, <a href="https://cran.r-project.org/web/packages/memnet/index.html"><b>memnet</b> <a href="https://github.com/dwulff/choicepp"><b>choicepp</b>
 </p>  
   
     </th>
