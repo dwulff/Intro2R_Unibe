@@ -1,27 +1,36 @@
 ---
-title: "Dynamic Reports - Practical"
-author: "Introduction to R<br/>
-  <a href='https://therbootcamp.github.io'>
-    Bern R Bootcamp
-  </a> 
-  <br>
-  <a href='https://dwulff.github.io/Intro2R_Unibe/'>
-    <i class='fas fa-clock' style='font-size:.9em;'></i>
-  </a>&#8239; 
-  <a href='https://therbootcamp.github.io'>
-    <i class='fas fa-home' style='font-size:.9em;' ></i>
-  </a>&#8239;
-  <a href='mailto:therbootcamp@gmail.com'>
-    <i class='fas fa-envelope' style='font-size: .9em;'></i>
-  </a>&#8239;
-  <a href='https://www.linkedin.com/company/basel-r-bootcamp/'>
-    <i class='fab fa-linkedin' style='font-size: .9em;'></i>
-  </a>"
-
+title: "Dynamic Reports"
+author: "
+<table style='table-layout:fixed;width:100%;border:0;padding:0;margin:0'><col width='10%'><col width='10%'>
+  <tr style='border:none'>
+    <td style='display:block;width:100%;text-align:left;vertical-align:bottom;padding:0;margin:0;border:none' nowrap>
+      <font style='font-style:normal'>Introduction to R</font><br>
+      <a href='https://dwulff.github.io/Intro2R_Unibe/'>
+        <i class='fas fa-clock' style='font-size:.9em;' ></i>
+      </a>
+      <a href='https://therbootcamp.github.io'>
+        <i class='fas fa-home' style='font-size:.9em;'></i>
+      </a>
+      <a href='mailto:therbootcamp@gmail.com'>
+        <i class='fas fa-envelope' style='font-size: .9em;'></i>
+      </a>
+      <a href='https://www.linkedin.com/company/basel-r-bootcamp/'>
+        <i class='fab fa-linkedin' style='font-size: .9em;'></i>
+      </a>
+      <a href='https://therbootcamp.github.io'>
+        <font style='font-style:normal'>Bern R Bootcamp</font>
+      </a>
+    </td>
+    <td style='width:100%;vertical-align:bottom;text-align:right;padding:0;margin:0;border:none'>
+      <img src='https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/by-sa.png' style='height:15px;width:80px'/>
+    </td>
+  </tr>
+</table>"
 output:
   html_document:
     css: practical.css
     self_contained: no
+---
 ---
 
 ```{r setup, include = FALSE}
@@ -41,11 +50,10 @@ mcdonalds <- read_csv("https://raw.githubusercontent.com/therbootcamp/BaselRBoot
 ```
 
 
-<figure>
-<center>
-  <img src="https://d33wubrfki0l68.cloudfront.net/00ed9c32053cbc805efa51b66be570558480a4c8/7a292/images/rmarkdownoutputformats.png" alt="Trulli" style="width:40%">
-  <figcaption>www.rstudio.com</figcaption>
-</figure>
+<p align="center">
+<img width="100%" src="image/reporting.png" margin=0><br>
+<font style="font-size:10px">adapted from [dertreasurer.de](https://www.dertreasurer.de/news/software-it/neue-technologien-helfen-beim-reporting-60631/)</font>
+</p>
 
 # {.tabset}
 
@@ -341,7 +349,9 @@ mcdonalds <- read_csv("https://raw.githubusercontent.com/therbootcamp/BaselRBoot
 |[mcdonalds.csv](https://raw.githubusercontent.com/therbootcamp/BaselRBootcamp_2018July/master/_sessions/_data/complete/mcdonalds.csv)| Nutrition information from McDonalds menu items| 260 | 24 |
 |[happiness.csv](https://raw.githubusercontent.com/therbootcamp/BaselRBootcamp_2018July/master/_sessions/_data/complete/happiness.csv)| Results from the World Health Organisation happiness survey | 155 | 12 |
 
-## Packages
+## Functions
+
+### Happiness
 
 |Package| Installation|
 |:------|:------|
@@ -351,16 +361,19 @@ mcdonalds <- read_csv("https://raw.githubusercontent.com/therbootcamp/BaselRBoot
 |`broom`|`install.packages("broom")`|
 |`rmdformats`|`install.packages("rmdformats")`|
 
-## Cheatsheet
+
+## Resources
+
+### Documentation
+
+- The `rmdformats` package has many nice templates for .Rmd files. Look at their GitHub page at [https://github.com/juba/rmdformats](https://github.com/juba/rmdformats) for examples. If you install the package from CRAN with `install.packages('rmdformats')`, you'll get lots of new templates when you open a new Markdown file in RStudio. 
+
+- If you want to use custom .css files, check out the the [R Studio HTML document guide](http://rmarkdown.rstudio.com/html_document_format.html#custom_css). You can also look at the .css files underlying the `rmdformats` package on their GitHub page here [https://github.com/juba/rmdformats](https://github.com/juba/rmdformats). For example, here is their .css file for the "html docco" template [https://raw.githubusercontent.com/juba/rmdformats/master/inst/templates/html_docco/docco.css](https://raw.githubusercontent.com/juba/rmdformats/master/inst/templates/html_docco/docco.css)
+
+### Cheatsheet
 
 <a href="https://github.com/rstudio/cheatsheets/raw/master/rmarkdown-2.0.pdf">
   <center><img src="https://www.rstudio.com/wp-content/uploads/2018/08/rmarkdown-2.0-600x464.png" width="600px">
 </a>
 
 
-
-## References and Links
-
-- The `rmdformats` package has many nice templates for .Rmd files. Look at their GitHub page at [https://github.com/juba/rmdformats](https://github.com/juba/rmdformats) for examples. If you install the package from CRAN with `install.packages('rmdformats')`, you'll get lots of new templates when you open a new Markdown file in RStudio. 
-
-- If you want to use custom .css files, check out the the [R Studio HTML document guide](http://rmarkdown.rstudio.com/html_document_format.html#custom_css). You can also look at the .css files underlying the `rmdformats` package on their GitHub page here [https://github.com/juba/rmdformats](https://github.com/juba/rmdformats). For example, here is their .css file for the "html docco" template [https://raw.githubusercontent.com/juba/rmdformats/master/inst/templates/html_docco/docco.css](https://raw.githubusercontent.com/juba/rmdformats/master/inst/templates/html_docco/docco.css)

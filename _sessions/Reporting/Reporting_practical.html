@@ -9,20 +9,19 @@
 <meta name="generator" content="pandoc" />
 
 
-<meta name="author" content="Introduction to R   Bern R Bootcamp" />
 
 
-<title>Dynamic Reports - Practical</title>
+<title>Dynamic Reports</title>
 
-<script src="DynamicReports_practical_files/jquery-1.11.3/jquery.min.js"></script>
+<script src="Reporting_practical_files/jquery-1.11.3/jquery.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<link href="DynamicReports_practical_files/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet" />
-<script src="DynamicReports_practical_files/bootstrap-3.3.5/js/bootstrap.min.js"></script>
-<script src="DynamicReports_practical_files/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
-<script src="DynamicReports_practical_files/bootstrap-3.3.5/shim/respond.min.js"></script>
-<script src="DynamicReports_practical_files/navigation-1.1/tabsets.js"></script>
-<link href="DynamicReports_practical_files/highlightjs-9.12.0/default.css" rel="stylesheet" />
-<script src="DynamicReports_practical_files/highlightjs-9.12.0/highlight.js"></script>
+<link href="Reporting_practical_files/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet" />
+<script src="Reporting_practical_files/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="Reporting_practical_files/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="Reporting_practical_files/bootstrap-3.3.5/shim/respond.min.js"></script>
+<script src="Reporting_practical_files/navigation-1.1/tabsets.js"></script>
+<link href="Reporting_practical_files/highlightjs-9.12.0/default.css" rel="stylesheet" />
+<script src="Reporting_practical_files/highlightjs-9.12.0/highlight.js"></script>
 
 <style type="text/css">code{white-space: pre;}</style>
 <style type="text/css">
@@ -98,9 +97,6 @@ img {
 button.code-folding-btn:focus {
   outline: none;
 }
-summary {
-  display: list-item;
-}
 </style>
 
 
@@ -108,70 +104,9 @@ summary {
 <div class="container-fluid main-container">
 
 <!-- tabsets -->
-
-<style type="text/css">
-.tabset-dropdown > .nav-tabs {
-  display: inline-table;
-  max-height: 500px;
-  min-height: 44px;
-  overflow-y: auto;
-  background: white;
-  border: 1px solid #ddd;
-  border-radius: 4px;
-}
-
-.tabset-dropdown > .nav-tabs > li.active:before {
-  content: "";
-  font-family: 'Glyphicons Halflings';
-  display: inline-block;
-  padding: 10px;
-  border-right: 1px solid #ddd;
-}
-
-.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
-  content: "&#xe258;";
-  border: none;
-}
-
-.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
-  content: "";
-  font-family: 'Glyphicons Halflings';
-  display: inline-block;
-  padding: 10px;
-  border-right: 1px solid #ddd;
-}
-
-.tabset-dropdown > .nav-tabs > li.active {
-  display: block;
-}
-
-.tabset-dropdown > .nav-tabs > li > a,
-.tabset-dropdown > .nav-tabs > li > a:focus,
-.tabset-dropdown > .nav-tabs > li > a:hover {
-  border: none;
-  display: inline-block;
-  border-radius: 4px;
-}
-
-.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
-  display: block;
-  float: none;
-}
-
-.tabset-dropdown > .nav-tabs > li {
-  display: none;
-}
-</style>
-
 <script>
 $(document).ready(function () {
   window.buildTabsets("TOC");
-});
-
-$(document).ready(function () {
-  $('.tabset-dropdown > .nav-tabs > li').click(function () {
-    $(this).parent().toggleClass('nav-tabs-open')
-  });
 });
 </script>
 
@@ -181,23 +116,32 @@ $(document).ready(function () {
 
 
 
+
 <div class="fluid-row" id="header">
 
 
 
-<h1 class="title toc-ignore">Dynamic Reports - Practical</h1>
-<h4 class="author"><em>Introduction to R<br/> <a href='https://therbootcamp.github.io'> Bern R Bootcamp </a> <br> <a href='https://dwulff.github.io/Intro2R_Unibe/'> <i class='fas fa-clock' style='font-size:.9em;'></i> </a>  <a href='https://therbootcamp.github.io'> <i class='fas fa-home' style='font-size:.9em;' ></i> </a>  <a href='mailto:therbootcamp@gmail.com'> <i class='fas fa-envelope' style='font-size: .9em;'></i> </a>  <a href='https://www.linkedin.com/company/basel-r-bootcamp/'> <i class='fab fa-linkedin' style='font-size: .9em;'></i> </a></em></h4>
+<h1 class="title toc-ignore">Dynamic Reports</h1>
+<h4 class="author"><em><table style='table-layout:fixed;width:100%;border:0;padding:0;margin:0'>
+<col width='10%'>
+<col width='10%'>
+<tr style="border:none">
+<td style="display:block;width:100%;text-align:left;vertical-align:bottom;padding:0;margin:0;border:none" nowrap>
+<font style='font-style:normal'>Introduction to R</font><br> <a href='https://dwulff.github.io/Intro2R_Unibe/'> <i class='fas fa-clock' style='font-size:.9em;' ></i> </a> <a href='https://therbootcamp.github.io'> <i class='fas fa-home' style='font-size:.9em;'></i> </a> <a href='mailto:therbootcamp@gmail.com'> <i class='fas fa-envelope' style='font-size: .9em;'></i> </a> <a href='https://www.linkedin.com/company/basel-r-bootcamp/'> <i class='fab fa-linkedin' style='font-size: .9em;'></i> </a> <a href='https://therbootcamp.github.io'> <font style='font-style:normal'>Bern R Bootcamp</font> </a>
+</td>
+<td style="width:100%;vertical-align:bottom;text-align:right;padding:0;margin:0;border:none">
+<img src='https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/by-sa.png' style='height:15px;width:80px'/>
+</td>
+</tr>
+</table></em></h4>
 
 </div>
 
 
-<figure>
-<center>
-<img src="https://d33wubrfki0l68.cloudfront.net/00ed9c32053cbc805efa51b66be570558480a4c8/7a292/images/rmarkdownoutputformats.png" alt="Trulli" style="width:40%">
-<figcaption>
-www.rstudio.com
-</figcaption>
-</figure>
+<hr />
+<p align="center">
+<img width="100%" src="image/reporting.png" margin=0><br> <font style="font-size:10px">adapted from <a href="https://www.dertreasurer.de/news/software-it/neue-technologien-helfen-beim-reporting-60631/">dertreasurer.de</a></font>
+</p>
 <div id="section" class="section level1 tabset">
 <h1></h1>
 <div id="overview" class="section level2">
@@ -303,7 +247,7 @@ include_graphics(path = &quot;XXX&quot;)</code></pre>
 <li><p>Include the appropriate text and formatting to write the sentence below. When writing the number of columns and rows, use in-line chunks to get the data directly from the <code>mcdonalds</code> object! You can get the number of columns with <code>ncol(mcdonalds)</code> and the number of rows with <code>nrow(mcdonalds)</code></p></li>
 </ol>
 <ul>
-<li>The <code>mcdonalds</code> data has 24 columns and 260 rows. Each row corresponds to a different menu item. The data originally come from <a href="https://www.kaggle.com/mcdonalds/nutrition-facts">https://www.kaggle.com/mcdonalds/nutrition-facts</a>.</li>
+<li>The <code>mcdonalds</code> data has 24 columns and 260 rows. Each row corresponds to a different menu item. The data originally come from <a href="https://www.kaggle.com/mcdonalds/nutrition-facts" class="uri">https://www.kaggle.com/mcdonalds/nutrition-facts</a>.</li>
 </ul>
 <ol start="10" style="list-style-type: decimal">
 <li>Knit the document!</li>
@@ -421,17 +365,17 @@ kable(x = tidy(cal_sod_lm),
 </div>
 <div id="x---add-results-from-the-happiness-survey" class="section level3">
 <h3>X - Add results from the happiness survey</h3>
-<p>If you’ve gotten this far, then you’ve really gotten the hang of R Markdown! Try adding the correct combination of text, tags, and code to add all of the results from the <code>happiness</code> data contained here: <a href="https://dwulff.github.io/Intro2R_Unibe/_sessions/Reporting/DynamicReports_answers.html">https://dwulff.github.io/Intro2R_Unibe/_sessions/Reporting/DynamicReports_answers.html</a></p>
+<p>If you’ve gotten this far, then you’ve really gotten the hang of R Markdown! Try adding the correct combination of text, tags, and code to add all of the results from the <code>happiness</code> data contained here: <a href="https://dwulff.github.io/Intro2R_Unibe/_sessions/Reporting/DynamicReports_answers.html" class="uri">https://dwulff.github.io/Intro2R_Unibe/_sessions/Reporting/DynamicReports_answers.html</a></p>
 </div>
 </div>
 <div id="datasets" class="section level2">
 <h2>Datasets</h2>
-<table>
+<table style="width:72%;">
 <colgroup>
-<col width="10%" />
-<col width="62%" />
-<col width="12%" />
-<col width="14%" />
+<col width="8%" />
+<col width="43%" />
+<col width="9%" />
+<col width="11%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -457,8 +401,10 @@ kable(x = tidy(cal_sod_lm),
 </tbody>
 </table>
 </div>
-<div id="packages" class="section level2">
-<h2>Packages</h2>
+<div id="functions" class="section level2">
+<h2>Functions</h2>
+<div id="happiness" class="section level3">
+<h3>Happiness</h3>
 <table>
 <thead>
 <tr class="header">
@@ -490,18 +436,22 @@ kable(x = tidy(cal_sod_lm),
 </tbody>
 </table>
 </div>
-<div id="cheatsheet" class="section level2">
-<h2>Cheatsheet</h2>
+</div>
+<div id="resources" class="section level2">
+<h2>Resources</h2>
+<div id="documentation" class="section level3">
+<h3>Documentation</h3>
+<ul>
+<li><p>The <code>rmdformats</code> package has many nice templates for .Rmd files. Look at their GitHub page at <a href="https://github.com/juba/rmdformats" class="uri">https://github.com/juba/rmdformats</a> for examples. If you install the package from CRAN with <code>install.packages('rmdformats')</code>, you’ll get lots of new templates when you open a new Markdown file in RStudio.</p></li>
+<li><p>If you want to use custom .css files, check out the the <a href="http://rmarkdown.rstudio.com/html_document_format.html#custom_css">R Studio HTML document guide</a>. You can also look at the .css files underlying the <code>rmdformats</code> package on their GitHub page here <a href="https://github.com/juba/rmdformats" class="uri">https://github.com/juba/rmdformats</a>. For example, here is their .css file for the “html docco” template <a href="https://raw.githubusercontent.com/juba/rmdformats/master/inst/templates/html_docco/docco.css" class="uri">https://raw.githubusercontent.com/juba/rmdformats/master/inst/templates/html_docco/docco.css</a></p></li>
+</ul>
+</div>
+<div id="cheatsheet" class="section level3">
+<h3>Cheatsheet</h3>
 <a href="https://github.com/rstudio/cheatsheets/raw/master/rmarkdown-2.0.pdf">
 <center>
 <p><img src="https://www.rstudio.com/wp-content/uploads/2018/08/rmarkdown-2.0-600x464.png" width="600px"> </a></p>
 </div>
-<div id="references-and-links" class="section level2">
-<h2>References and Links</h2>
-<ul>
-<li><p>The <code>rmdformats</code> package has many nice templates for .Rmd files. Look at their GitHub page at <a href="https://github.com/juba/rmdformats">https://github.com/juba/rmdformats</a> for examples. If you install the package from CRAN with <code>install.packages('rmdformats')</code>, you’ll get lots of new templates when you open a new Markdown file in RStudio.</p></li>
-<li><p>If you want to use custom .css files, check out the the <a href="http://rmarkdown.rstudio.com/html_document_format.html#custom_css">R Studio HTML document guide</a>. You can also look at the .css files underlying the <code>rmdformats</code> package on their GitHub page here <a href="https://github.com/juba/rmdformats">https://github.com/juba/rmdformats</a>. For example, here is their .css file for the “html docco” template <a href="https://raw.githubusercontent.com/juba/rmdformats/master/inst/templates/html_docco/docco.css">https://raw.githubusercontent.com/juba/rmdformats/master/inst/templates/html_docco/docco.css</a></p></li>
-</ul>
 </div>
 </div>
 
