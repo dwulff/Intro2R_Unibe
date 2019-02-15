@@ -250,11 +250,15 @@ appointments %&gt;%
 <div id="d---adding-the-weather" class="section level3">
 <h3>D - Adding the weather</h3>
 <ol style="list-style-type: decimal">
-<li>We want to add the weather information to our <code>appointments</code> tibble. We will do this for each <code>AppointmentDay</code>. Join the two datasets adding all variables from <code>weather</code> to <code>appointments</code> based</li>
+<li><p>We want to add the weather information to our <code>appointments</code> tibble. We will join the two datasets adding <code>RH2M</code>, <code>T2M</code> and <code>PRECTOT</code> from <code>weather</code> to <code>appointments</code>. You want to join these by <code>AppointmentDay</code> (from <code>appointements</code>) and <code>YYYYMMDD</code> (from <code>weather</code>) - Hint: <code>left_join()</code>. Call the new dataset: <code>full_df</code>.</p></li>
+<li><p>Check that you <code>full_df</code> dataframe has the following size:</p></li>
 </ol>
 </div>
-<div id="e---presenting-the-results" class="section level3">
-<h3>E - Presenting the results</h3>
+<div id="e--" class="section level3">
+<h3>E -</h3>
+</div>
+<div id="f---presenting-the-results" class="section level3">
+<h3>F - Presenting the results</h3>
 <ol style="list-style-type: decimal">
 <li><p>Generate a new file with <code>File - R Markdown - Document</code> (with the default: HTML). Save this file to your <code>BernRBootcamp</code> folder.</p></li>
 <li><p>Document your 3 central insights out of this dataset. Describe what the insights are with your own words and document them with figures, statistics and tables produced with R code in your Marddown file <code>FinalReport.html</code>.</p></li>
