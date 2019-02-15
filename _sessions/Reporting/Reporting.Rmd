@@ -593,6 +593,7 @@ knitr::include_graphics("https://raw.githubusercontent.com/therbootcamp/therboot
 
 ---
 
-# Questions?
+class: middle, center
 
-<h1><a href="https://dwulff.github.io/Intro2R_Unibe/_sessions/Reporting/DynamicReports_practical.html">Practical</a></h1>
+<h1><a href="https://dwulff.github.io/Intro2R_Unibe/_sessions/Reporting/Reporting_practical.html">Practical</a></h1>
+
