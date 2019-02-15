@@ -235,14 +235,14 @@ options(digits = 2)  # Round all output to 2 digits</code></pre>
 <li><p>Create a new third level header with the text “Overview” using three hashtags <code>### Overview</code></p></li>
 <li><p>Knit the document!</p></li>
 <li><p>Create a new code chunk by either clicking the “Insert - R” button, or by using the “Command + Option + I”&quot; shortcut on Mac</p></li>
-<li><p>Now it’s time to add an image to your document! In the chunk you just created, use the following template to include an image of a burger in your document. You can find the image here: <a href="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4d/Cheeseburger.jpg/2560px-Cheeseburger.jpg" class="uri">https://upload.wikimedia.org/wikipedia/commons/thumb/4/4d/Cheeseburger.jpg/2560px-Cheeseburger.jpg</a>.</p></li>
+<li><p>Now it’s time to add an image to your document! In the chunk you just created, use the following template to include an image of a burger in your document. You can find the image here: <a href="https://dwulff.github.io/Intro2R_Unibe/_sessions/PlottingI/image/burgers.jpg">link</a>. (Tip: Use right click and copy link address to copy the link)</p></li>
 </ol>
 <pre class="r"><code># Include a buger image
 
 include_graphics(path = &quot;XXX&quot;)</code></pre>
 <ol start="6" style="list-style-type: decimal">
 <li><p>Knit the document!</p></li>
-<li><p>Was your image too big? To make the image a bit smaller, include the chunk argument <code>out.width = &quot;30%&quot;</code>.</p></li>
+<li><p>Was your image too big? To make the image a bit smaller, include the chunk argument <code>out.width = &quot;30%&quot;</code>. Note: chunk options are specified within the curly brackets, i.e., <code>{r, option = value}</code>.</p></li>
 <li><p>Knit the document!</p></li>
 <li><p>Include the appropriate text and formatting to write the sentence below. When writing the number of columns and rows, use in-line chunks to get the data directly from the <code>mcdonalds</code> object! You can get the number of columns with <code>ncol(mcdonalds)</code> and the number of rows with <code>nrow(mcdonalds)</code></p></li>
 </ol>

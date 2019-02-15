@@ -170,7 +170,9 @@ options(digits = 2)  # Round all output to 2 digits
 
 4. Create a new code chunk by either clicking the "Insert - R" button, or by using the "Command + Option + I"" shortcut on Mac
 
-5. Now it's time to add an image to your document! In the chunk you just created, use the following template to include an image of a burger in your document. You can find the image here: https://upload.wikimedia.org/wikipedia/commons/thumb/4/4d/Cheeseburger.jpg/2560px-Cheeseburger.jpg.
+5. Now it's time to add an image to your document! In the chunk you just created, use the following template to include an image of a burger in your document. You can find the image here: [link](https://dwulff.github.io/Intro2R_Unibe/_sessions/PlottingI/image/burgers.jpg). (Tip: Use right click and copy link address to copy the link)
+
+
 
 ```{r, out.width = "30%", fig.cap="Source: Wikipedia", echo = TRUE, eval = FALSE}
 # Include a buger image
@@ -180,7 +182,7 @@ include_graphics(path = "XXX")
 
 6. Knit the document!
 
-7. Was your image too big? To make the image a bit smaller, include the chunk argument `out.width = "30%"`.
+7. Was your image too big? To make the image a bit smaller, include the chunk argument `out.width = "30%"`. Note: chunk options are specified within the curly brackets, i.e., `{r, option = value}`.
 
 8. Knit the document!
 
