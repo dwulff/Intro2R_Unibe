@@ -97,6 +97,9 @@ img {
 button.code-folding-btn:focus {
   outline: none;
 }
+summary {
+  display: list-item;
+}
 </style>
 
 
@@ -104,14 +107,74 @@ button.code-folding-btn:focus {
 <div class="container-fluid main-container">
 
 <!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "&#xe258;";
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
 <script>
 $(document).ready(function () {
   window.buildTabsets("TOC");
 });
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open')
+  });
+});
 </script>
 
 <!-- code folding -->
-
 
 
 
@@ -162,14 +225,14 @@ $(document).ready(function () {
 </div>
 <div id="b---data-io" class="section level3">
 <h3>B - Data I/O</h3>
-<ol start="2" style="list-style-type: decimal">
+<ol style="list-style-type: decimal">
 <li><p>Using <code>read_csv()</code>, load the <code>dimarta_trial.csv</code>, <code>dimarta_demographics.csv</code>, and <code>dimarta_biomarker.csv</code> datasets as <em>three</em> new objects called <code>trial_df</code>, <code>demographics_df</code>, and <code>biomarker_df</code>.</p></li>
 <li><p>Get a first impression of the objects you just created by exploring them with a mixture of the <code>View()</code>, <code>head()</code>, <code>names()</code>, and <code>str()</code> functions. Were they all loaded correctly?</p></li>
 </ol>
 <pre class="r"><code>trial_df</code></pre>
 <pre><code># A tibble: 300 x 6
    PatientID   arm histamine_start histamine_end qol_start qol_end
-   &lt;chr&gt;     &lt;int&gt;           &lt;dbl&gt;         &lt;dbl&gt;     &lt;int&gt;   &lt;int&gt;
+   &lt;chr&gt;     &lt;dbl&gt;           &lt;dbl&gt;         &lt;dbl&gt;     &lt;dbl&gt;   &lt;dbl&gt;
  1 txdjezeo      1            58.6          67.0         3       3
  2 htxfjlxk      3            36.1          28.0         3       4
  3 vkdqhyez      1            57.7          57.3         2       2
@@ -180,11 +243,11 @@ $(document).ready(function () {
  8 fdfmcoto      2            20.2          18.9         2       2
  9 rwsbykxe      2            48.3          43.0         3       3
 10 xocueqqe      3            48.6          55.2         1       1
-# ... with 290 more rows</code></pre>
+# … with 290 more rows</code></pre>
 <pre class="r"><code>demographics_df</code></pre>
 <pre><code># A tibble: 300 x 5
    PatientID   age gender site   diseasestatus
-   &lt;chr&gt;     &lt;int&gt;  &lt;int&gt; &lt;chr&gt;  &lt;chr&gt;        
+   &lt;chr&gt;     &lt;dbl&gt;  &lt;dbl&gt; &lt;chr&gt;  &lt;chr&gt;        
  1 pkyivajv     36      0 Tokyo  Mid          
  2 dbuvrwfq     39      0 Paris  Late         
  3 jhuztppp     30      0 Tokyo  Mid          
@@ -195,7 +258,7 @@ $(document).ready(function () {
  8 igobmmvj     48      0 Tokyo  Late         
  9 lcrtmerg     35      0 London Late         
 10 fjjrnsnt     43      1 London Mid          
-# ... with 290 more rows</code></pre>
+# … with 290 more rows</code></pre>
 <pre class="r"><code>biomarker_df</code></pre>
 <pre><code># A tibble: 900 x 3
    PatientID Biomarker BiomarkerStatus
@@ -210,7 +273,7 @@ $(document).ready(function () {
  8 glzcbmby  ms        FALSE          
  9 gxnsybdt  dw        TRUE           
 10 fzrhdpdu  np        FALSE          
-# ... with 890 more rows</code></pre>
+# … with 890 more rows</code></pre>
 </div>
 <div id="c---data-wrangling" class="section level3">
 <h3>C - Data Wrangling</h3>
@@ -263,7 +326,7 @@ biomarker_wide_df &lt;- biomarker_df %&gt;%
 <pre class="r"><code>dimarta_df</code></pre>
 <pre><code># A tibble: 300 x 14
    PatientID StudyArm histamine_start histamine_end qol_start qol_end   age
-   &lt;chr&gt;     &lt;chr&gt;              &lt;dbl&gt;         &lt;dbl&gt;     &lt;int&gt;   &lt;int&gt; &lt;int&gt;
+   &lt;chr&gt;     &lt;chr&gt;              &lt;dbl&gt;         &lt;dbl&gt;     &lt;dbl&gt;   &lt;dbl&gt; &lt;dbl&gt;
  1 txdjezeo  placebo             58.6          67.0         3       3    39
  2 htxfjlxk  dimarta             36.1          28.0         3       4    42
  3 vkdqhyez  placebo             57.7          57.3         2       2    47
@@ -274,7 +337,7 @@ biomarker_wide_df &lt;- biomarker_df %&gt;%
  8 fdfmcoto  adiclax             20.2          18.9         2       2    50
  9 rwsbykxe  adiclax             48.3          43.0         3       3    35
 10 xocueqqe  dimarta             48.6          55.2         1       1    42
-# ... with 290 more rows, and 7 more variables: gender &lt;int&gt;, site &lt;chr&gt;,
+# … with 290 more rows, and 7 more variables: gender &lt;dbl&gt;, site &lt;chr&gt;,
 #   diseasestatus &lt;chr&gt;, gender_c &lt;chr&gt;, dw &lt;lgl&gt;, ms &lt;lgl&gt;, np &lt;lgl&gt;</code></pre>
 <ol start="8" style="list-style-type: decimal">
 <li>Using the <code>mean()</code> function, calculate the mean age of all patients.</li>
@@ -317,7 +380,7 @@ biomarker_wide_df &lt;- biomarker_df %&gt;%
 <pre><code># A tibble: 300 x 15
 # Groups:   StudyArm, gender_c [6]
    PatientID StudyArm histamine_start histamine_end qol_start qol_end   age
-   &lt;chr&gt;     &lt;chr&gt;              &lt;dbl&gt;         &lt;dbl&gt;     &lt;int&gt;   &lt;int&gt; &lt;int&gt;
+   &lt;chr&gt;     &lt;chr&gt;              &lt;dbl&gt;         &lt;dbl&gt;     &lt;dbl&gt;   &lt;dbl&gt; &lt;dbl&gt;
  1 txdjezeo  placebo             58.6          67.0         3       3    39
  2 htxfjlxk  dimarta             36.1          28.0         3       4    42
  3 vkdqhyez  placebo             57.7          57.3         2       2    47
@@ -328,7 +391,7 @@ biomarker_wide_df &lt;- biomarker_df %&gt;%
  8 fdfmcoto  adiclax             20.2          18.9         2       2    50
  9 rwsbykxe  adiclax             48.3          43.0         3       3    35
 10 xocueqqe  dimarta             48.6          55.2         1       1    42
-# ... with 290 more rows, and 8 more variables: gender &lt;int&gt;, site &lt;chr&gt;,
+# … with 290 more rows, and 8 more variables: gender &lt;dbl&gt;, site &lt;chr&gt;,
 #   diseasestatus &lt;chr&gt;, gender_c &lt;chr&gt;, dw &lt;lgl&gt;, ms &lt;lgl&gt;, np &lt;lgl&gt;,
 #   Counts &lt;int&gt;</code></pre>
 <ol start="12" style="list-style-type: decimal">
@@ -351,7 +414,7 @@ dimarta_df %&gt;%
   select(qol_change)</code></pre>
 <pre><code># A tibble: 300 x 1
    qol_change
-        &lt;int&gt;
+        &lt;dbl&gt;
  1          0
  2          1
  3          0
@@ -362,7 +425,7 @@ dimarta_df %&gt;%
  8          0
  9          0
 10          0
-# ... with 290 more rows</code></pre>
+# … with 290 more rows</code></pre>
 <ol start="14" style="list-style-type: decimal">
 <li>Calculate the percentage of patients who tested positive for each of the three biomarkers (Hint: If you calculate the <code>mean()</code> of a logical vector, you will get the percentage of TRUE values!)</li>
 </ol>
