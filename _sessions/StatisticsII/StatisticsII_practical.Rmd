@@ -500,7 +500,7 @@ price_Blm
 The Gapminder Foundation is a non-profit venture registered in Stockholm, Sweden, that promotes sustainable global development and achievement of the United Nations Millennium Development Goals by increased use and understanding of statistics and other information about social, economic and environmental development at local, national and global levels (see [Gapminder.org](https://www.gapminder.org)). The present dataset is an excerpt of their database holding data from three years on economic and health variables of 139 countries.
 
 
-|File | Rows |
+|Variable | Description |
 |:-------------|:-------------------------------------|
 |country| country name|
 |continent| country's continent|

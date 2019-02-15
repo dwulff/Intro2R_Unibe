@@ -401,14 +401,11 @@ ggplot(mcdonalds, aes(x = XX,
 
 ## Examples
 
-The following examples will take you through the steps of creating both simple and complex plots with `ggplot2`. Try to go through each line of code and see how it works!
-
 ```{r, eval = FALSE, echo = TRUE}
-# -----------------------------------------------
-# Examples of using ggplot2 on the mpg data
-# ------------------------------------------------
 
-library(tidyverse)         # Load tidyverse (which contains ggplot2!)
+# ggplot2 -----------------------
+
+library(tidyverse) # Load tidyverse (contains ggplot2!)
 
 mpg # Look at the mpg data
 

@@ -43,174 +43,44 @@ knitr::opts_chunk$set(comment = NA,
                       message = FALSE)
 
 options(digits = 3)
-```
 
-<figure>
-<center>
-  <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4d/Cheeseburger.jpg/2560px-Cheeseburger.jpg" alt="Trulli" style="width:60%">
-  <figcaption>Wikipedia</figcaption>
-</figure>
-
-## {.tabset}
-
-### Overview
-
-In this practical you'll practice plotting data with the amazing `ggplot2` package. 
-
-### Datasets
-
-```{r, eval = TRUE, message = FALSE}
 library(tidyverse)
-library(plotly)
+library(gridExtra)
 library(ggthemes)
-mcdonalds <- read_csv("https://raw.githubusercontent.com/therbootcamp/BaselRBootcamp_2018July/master/_sessions/_data/baselrbootcamp_data/mcdonalds.csv")
-kc_house <- read_csv("https://raw.githubusercontent.com/therbootcamp/BaselRBootcamp_2018July/master/_sessions/_data/baselrbootcamp_data/kc_house.csv")
+require(ggmap)
+
+crime = read_csv('1_Data/crime.csv')
+
 ```
 
-|File  |Rows | Columns |
-|:----|:-----|:------|
-|[mcdonalds.csv](https://raw.githubusercontent.com/therbootcamp/BaselRBootcamp_2018July/master/_sessions/_data/complete/mcdonalds.csv)| 260 | 24 |
+<p align="center">
+<img width="100%" src="image/crime.png" margin=0><br>
+<font style="font-size:10px">adapted from [paherald.sk.ca](http://www.trueloveproperty.co.uk/houses-sale-ingham/)</font>
+</p>
 
-### Packages
+# {.tabset}
 
-|Package| Installation|
-|:------|:------|
-|`tidyverse`|`install.packages("tidyverse")`|
-|`ggthemes`|`install.packages("ggthemes")`|
-|`plotly`|`install.packages("plotly")`|
+## Overview
 
+In this practical you'll practice customizing plots created using the `ggplot2` package. By the end of this practical you will know how to:
 
-### Cheatsheet
-
-<figure>
-<center>
-<a href="https://www.rstudio.com/wp-content/uploads/2015/03/ggplot2-cheatsheet.pdf">
-  <img src="http://www.rstudio.com/wp-content/uploads/2015/03/ggplot2-cheatsheet.png" alt="Trulli" style="width:70%">
-  <figcaption>https://www.rstudio.com/wp-content/uploads/2015/03/ggplot2-cheatsheet.pdf</figcaption></a>
-</figure>
-
-### Examples
-
-The following examples will take you through the steps of creating both simple and complex plots with `ggplot2`. Try to go through each line of code and see how it works!
-
-```{r, eval = FALSE, echo = TRUE}
-# -----------------------------------------------
-# Examples of using ggplot2 on the mpg data
-# ------------------------------------------------
-
-library(tidyverse)         # Load tidyverse (which contains ggplot2!)
-
-mpg # Look at the mpg data
-
-# Just a blank space without any aesthetic mappings
-ggplot(data = mpg)
-
-# Now add a mapping where engine displacement (displ) and highway miles per gallon (hwy) are
-# mapped to the x and y aesthetics
-ggplot(data = mpg, 
-       mapping = aes(x = displ, y = hwy))   # Map displ to x-axis and hwy to y-axis
-
-#  Add points with geom_point()
-ggplot(data = mpg, 
-       mapping = aes(x = displ, y = hwy)) +
-       geom_point()     
-
-#  Add points with geom_count()
-ggplot(data = mpg, 
-       mapping = aes(x = displ, y = hwy)) +
-       geom_count()   
-
-# Again, but with some additional arguments
-# Also using a new theme temporarily
-
-ggplot(data = mpg, 
-       mapping = aes(x = displ, y = hwy)) +
-       geom_point(col = "red",                  # Red points
-                  size = 3,                     # Larger size
-                  alpha = .5,                   # Transparent points
-                  position = "jitter") +        # Jitter the points         
-         scale_x_continuous(limits = c(1, 15)) +  # Axis limits
-         scale_y_continuous(limits = c(0, 50)) +
-  theme_minimal()
-
-
-# Assign class to the color aesthetic and add labels with labs()
-
-ggplot(data = mpg, 
-  mapping = aes(x = displ, y = hwy, col = class)) +  # Change color based on class column
-  geom_point(size = 3, position = 'jitter') +
-  labs(x = "Engine Displacement in Liters",
-       y = "Highway miles per gallon",
-       title = "MPG data",
-       subtitle = "Cars with higher engine displacement tend to have lower highway mpg",
-       caption = "Source: mpg data in ggplot2")
-  
-
-# Add a regression line for each class
-
-ggplot(data = mpg, 
-       mapping = aes(x = displ, y = hwy, color = class)) +
-  geom_point(size = 3, alpha = .9) + 
-  geom_smooth(method = "lm")
-
-# Add a regression line for all classes
-
-ggplot(data = mpg, 
-       mapping = aes(x = displ, y = hwy, color = class)) +
-  geom_point(size = 3, alpha = .9) + 
-  geom_smooth(col = "blue", method = "lm")
-
-
-# Facet by class
-ggplot(data = mpg,
-       mapping = aes(x = displ, 
-                     y = hwy, 
-                     color = factor(cyl))) + 
-  geom_point() +
-  facet_wrap(~ class) 
-
-
-# Another fancier example
-
-ggplot(data = mpg, 
-       mapping = aes(x = cty, y = hwy)) + 
-       geom_count(aes(color = manufacturer)) +     # Add count geom (see ?geom_count)
-       geom_smooth() +                   # smoothed line without confidence interval
-       geom_text(data = filter(mpg, cty > 25), 
-                 aes(x = cty,y = hwy, 
-                     label = rownames(filter(mpg, cty > 25))),
-                     position = position_nudge(y = -1), 
-                                check_overlap = TRUE, 
-                     size = 5) + 
-       labs(x = "City miles per gallon", 
-            y = "Highway miles per gallon",
-            title = "City and Highway miles per gallon", 
-            subtitle = "Numbers indicate cars with highway mpg > 25",
-            caption = "Source: mpg data in ggplot2",
-            color = "Manufacturer", 
-            size = "Counts")
-```
-
-
-### References
-
-- The main `ggplot2` webpage at [http://ggplot2.tidyverse.org/](http://ggplot2.tidyverse.org/) has great tutorials and examples.
-
-- Check out Selva Prabhakaran's website for a nice gallery of ggplot2 graphics [http://r-statistics.co/Top50-Ggplot2-Visualizations-MasterList-R-Code.html](http://r-statistics.co/Top50-Ggplot2-Visualizations-MasterList-R-Code.html)
-
-- `ggplot2` is also great for making maps. For examples, check out Eric Anderson's page at [http://eriqande.github.io/rep-res-web/lectures/making-maps-with-R.html](http://eriqande.github.io/rep-res-web/lectures/making-maps-with-R.html)
+1. Use facetting to create multiple plots.
+2. Use scaling to alter the plots dimensions.
+3. Alter and store themes to adjust a plots appearance.
+4. Create multiple plots in one using `grid.arrange()`.
+5. Create image files using `ggsave()`.
 
 ## Tasks
 
-## A - Setup
+### A - Setup
 
-1. Open your `baselrbootcamp` R project. It should already have the folders `1_Data` and `2_Code`. Make sure that the data files listed in the `Datasets` section above are in your `1_Data` folder.
+1. Open your `BernRBootcamp` R project. It should already have the folders `1_Data` and `2_Code`. Make sure that the data files listed in the `Datasets` section above are in your `1_Data` folder.
 
 ```{r}
 # Done!
 ```
 
-2. Open a new R script. At the top of the script, using comments, write your name and the date. Save it as a new file called `plotting_practical.R` in the `2_Code` folder.  
+2. Open a new R script. At the top of the script, using comments, write your name and the date. Save it as a new file called `plottingII_practical.R` in the `2_Code` folder.  
 
 3. Using `library()` load the set of packages for this practical listed in the packages section above.
 
@@ -219,344 +89,421 @@ ggplot(data = mpg,
 ## DATE
 ## Plotting Practical
 
-library(XX)     
 library(XX)
-#...
+library(XX)
+library(XX)
 ```
+
+4. For this practical, we'll use the `crime.csv` data set, containing crime data of US counties across various states. Using `read_csv()`, load the data into R and store it as a new object called `crime`.
 
 ```{r}
-library(tidyverse)
+crime <- read_csv("1_Data/crime.csv")
 ```
 
-4. For this practical, we'll use the `mcondalds.csv` data set, which contains nutrition information about items from McDonalds. Using `read_csv()`, load the data into R and store it as a new object called `mcdonalds`.
+5. Take a look at the first few rows of the data set(s) by printing them to the console.
 
 ```{r}
-mcdonalds <- read_csv("1_Data/mcdonalds.csv")
+crime
 ```
 
-5. Take a look at the first few rows of the dataset(s) by printing them to the console.
 
-```{r}
-mcdonalds
-```
+### B - Create facets
 
-6. You'll notice that the `mcdonalds` data frame has many column names with spaces and 'bad' characters like parentheses. Run the following code to fix that!
+1. To begin with, create a basic scatter plot (using `geom_points()`) pitting each of the 7 crime indicators (`murders`, `robberies`, `assaults`, `burglaries`, `larcenies`, `autoTheft`, `arsons`) against the percentage of people using public transportation (`PctUsePubTrans`). 
 
 ```{r, echo = TRUE, eval = FALSE}
-# Clean up the names of mcdonalds
-mcdonalds <- mcdonalds %>%
-  select(-contains("% Daily Value")) %>%  # Remove all '% Daily Value' columns
-  rename_all(.funs = ~ gsub(" ", "", .))  # no more spaces!
-```
-
-```{r, echo = FALSE, eval = TRUE}
-# Clean up the names of mcdonalds
-mcdonalds <- mcdonalds %>%
-  select(-contains("% Daily Value")) %>%  # Remove all '% Daily Value' columns
-  rename_all(.funs = ~ gsub(" ", "", .))  # no more spaces!
-```
-
-7. Now print the dataset again, do the names look better?
-
-```{r}
-mcdonalds
-```
-
-### B - Building a plot step-by-step
-
-In this section, you'll build the following plot step by step.
-
-```{r, echo = FALSE, eval = TRUE, fig.width = 7, fig.height = 4}
-ggplot(mcdonalds, aes(x = Calories, y = SaturatedFat, col = Category)) +
-  geom_point() +
-  geom_smooth(col = "black") +
-  labs(title = "McDonalds Nutrition",
-       subtitle = "Each point is a menu item",
-       caption = "Source: Kaggle.com") +
-  xlim(0, 1250) +
-  theme_minimal()
-```
-
-1. Using `ggplot()`, create the following blank plot using the `data` and `mapping` arguments (but no geom). Use `calories` for the x aesthetic and `SaturatedFat` for the y aesthetic
-
-```{r, echo = TRUE, eval = FALSE, fig.width = 6, fig.height = 4}
-ggplot(data = mcdonalds, 
-       mapping = aes(x = XX, y = XX))
-```
-
-```{r, fig.width = 7, fig.height = 4}
-ggplot(mcdonalds, aes(x = Calories, y = SaturatedFat))
-```
-
-2. Using `geom_point()`, add points to the plot
-
-```{r, echo = TRUE, eval = FALSE, fig.width = 6, fig.height = 4}
-ggplot(data = mcdonalds, 
-       mapping = aes(x = XX, y = XX)) +
+ggplot(data = crime,
+       mapping = aes(x = XX, y = XX)) + 
   geom_point()
+
+# and so on
 ```
 
-```{r, fig.width = 7, fig.height = 4}
-ggplot(mcdonalds, aes(x = Calories, y = SaturatedFat)) +
-  geom_point()
-```
-
-3. Using the `color` aesthetic mapping, color the points by their `Category`.
-
-```{r, echo = TRUE, eval = FALSE, fig.width = 6, fig.height = 4}
-ggplot(mcdonalds, aes(x = XX, y = XX, col = XX)) +
-  geom_point() 
-```
-
-```{r, fig.width = 7, fig.height = 4}
-ggplot(mcdonalds, aes(x = Calories, y = SaturatedFat, col = Category)) +
-  geom_point()
-```
-
-4. Add a smoothed average line using `geom_smooth()`.
-
-```{r, echo = TRUE, eval = FALSE, fig.width = 6, fig.height = 4}
-ggplot(mcdonalds, aes(x = XX, y = XX, col = XX)) +
-  geom_point() +
-  geom_smooth() 
-```
-
-```{r, fig.width = 7, fig.height = 4}
-ggplot(mcdonalds, aes(x = Calories, y = SaturatedFat, col = Category)) +
-  geom_point() +
-  geom_smooth()
-```
-
-5. Oops! Did you get several smoothed lines instead of just one? Fix this by specifying that the line should have one color: `"black"`. When you do, you should then only see one line.
-
-```{r, echo = TRUE, eval = FALSE, fig.width = 6, fig.height = 4}
-ggplot(mcdonalds, aes(x = XX, y = XX, col = XX)) +
-  geom_point() +
-  geom_smooth(col = "XX") 
-```
-
-```{r, fig.width = 7, fig.height = 4}
-ggplot(mcdonalds, aes(x = Calories, y = SaturatedFat, col = Category)) +
-  geom_point() +
-  geom_smooth(col = "black")
-```
-
-6. Add appropriate labels using the `labs()` function.
-
-```{r, echo = TRUE, eval = FALSE, fig.width = 8, fig.height = 2}
-ggplot(mcdonalds, aes(x = XX, y = XX, col = XX)) +
-  geom_point() +
-  geom_smooth(col = "XX") +
-  labs(title = "XX",
-       subtitle = "XX",
-       caption = "XX")
-```
-
-```{r, fig.width = 7, fig.height = 4}
-ggplot(mcdonalds, aes(x = Calories, y = SaturatedFat, col = Category)) +
-  geom_point() +
-  geom_smooth(col = "black") +
-  labs(title = "McDonalds Nutrition",
-       subtitle = "Each point is a menu item",
-       caption = "Source: Kaggle.com")
-```
-
-7. Set the limits of the x-axis to `0` and `1250` using `xlim()`.
-
-```{r, echo = TRUE, eval = FALSE, fig.width = 8, fig.height = 2}
-ggplot(mcdonalds, aes(x = XX, y = XX, col = XX)) +
-  geom_point() +
-  geom_smooth(col = "XX") +
-  labs(title = "XX",
-       subtitle = "XX",
-       caption = "XX") +
-  xlim(XX, XX)
-```
-
-```{r, fig.width = 7, fig.height = 4}
-ggplot(mcdonalds, aes(x = Calories, y = SaturatedFat, col = Category)) +
-  geom_point() +
-  geom_smooth(col = "black") +
-  labs(title = "McDonalds Nutrition",
-       subtitle = "Each point is a menu item",
-       caption = "Source: Kaggle.com") +
-  xlim(0, 1250)
-```
-
-8. Finally, set the plotting theme to `theme_minimal()`. You should now have the final plot!
-
-```{r, echo = TRUE, eval = FALSE, fig.width = 8, fig.height = 2}
-ggplot(mcdonalds, aes(x = XX, y = XX, col = XX)) +
-  geom_point() +
-  geom_smooth(col = "XX") +
-  labs(title = "XX",
-       subtitle = "XX",
-       caption = "XX")+
-  xlim(XX, XX) +
-  theme_minimal()
-```
-
-```{r, fig.width = 7, fig.height = 4}
-ggplot(mcdonalds, aes(x = Calories, y = SaturatedFat, col = Category)) +
-  geom_point() +
-  geom_smooth(col = "black") +
-  labs(title = "McDonalds Nutrition",
-       subtitle = "Each point is a menu item",
-       caption = "Source: Kaggle.com") +
-  xlim(0, 1250) +
-  theme_minimal()
-```
-
-
-### C - Adding multiple geoms
-
-1. Create the following plot showing the relationship between menu category and calories
-
-```{r, eval = FALSE, echo = TRUE, fig.width = 8, fig.height = 3}
-ggplot(data = mcdonalds, aes(x = XX, y = XX, fill = XX)) +
-  geom_violin() +
-  guides(fill = FALSE) +
-  labs(title = "XX",
-       subtitle = "XX")
-```
-
-
-```{r, eval = TRUE, echo = FALSE, fig.width = 8, fig.height = 3}
-ggplot(data = mcdonalds, aes(x = Category, y = Calories, fill = Category)) +
-  geom_violin() +
-  guides(fill = FALSE) +
-  labs(title = "McDonalds",
-       subtitle = "Calorie distribution by menu category")
-```
-
-
-2. Include the additional argument `+ stat_summary(fun.y = "mean", geom = "point", col = "white", size = 4)` to include points showing the mean of each distribution
-
-```{r, fig.width = 8, fig.height = 3}
-ggplot(data = mcdonalds, aes(x = Category, y = Calories, fill = Category)) +
-  geom_violin() +
-  guides(fill = FALSE) +
-  stat_summary(fun.y = "mean", geom = "point", col = "white", size = 4) +
-  labs(title = "McDonalds",
-       subtitle = "Calorie distribution by menu category")
-```
-
-3. Now add `+ geom_jitter(width = .1, alpha = .5)` to your plot, what do you see?
-
-```{r, fig.width = 8, fig.height = 3}
-ggplot(data = mcdonalds, aes(x = Category, y = Calories, fill = Category)) +
-  geom_violin() +
-  geom_jitter(width = .1, alpha = .5) +
-  guides(fill = FALSE) +
-  stat_summary(fun.y = "mean", geom = "point", col = "white", size = 4) +
-  labs(title = "McDonalds",
-       subtitle = "Calorie distribution by menu category")
-```
-
-4. Play around with your plotting arguments to see how the results change! Each time you make a change, run the plot again to see your new output!
-
-- Change the summary function in `stat_summary()` from `"mean"` to `"median"`.
-- Change the size of the points in `stat_summary()` to something much bigger (or smaller).
-- Change the `width` argument in `geom_jitter()` to `width = 0`.
-- Instead of using `geom_violin()`, try `geom_boxplot()`.
-- Remove the `fill = Category` aesthetic entirely.
-
-### D - Using facets
-
-1. Create the following plot showing the relationship between `Sodium` and `Calories`.
-
-```{r, eval = FALSE, echo = TRUE}
-ggplot(XX, aes(x = XX, y = XX)) +
-  geom_point(alpha = .2) +
-  facet_wrap(~ XX) +
-  labs(title = "XX",
-       subtitle = "XX") +
-  theme_minimal()
-```
-
-```{r, }
-ggplot(mcdonalds, aes(x = Sodium, y = Calories)) +
-  geom_point(alpha = .2) +
-  facet_wrap(~Category) +
-  labs(title = "McDonales",
-       subtitle = "Sodium vs. Calories") +
-  theme_minimal()
-```
-
-
-2. Try the following ways to customise your plot:
-
-- Color the points by `Category`.
-- Add a smoothed line to each plot with `geom_smooth()`.
-
-
-### E - Adjusting colors
-
-```{r, echo = FALSE, eval = TRUE, fig.width=6, fig.height = 4}
-ggplot(mcdonalds, aes(x = Cholesterol,
-                      y = Protein, 
-                      col = Calories)) + 
-  geom_point() +
-  scale_colour_gradient(low = "blue", high = "red") +
-  labs(title = "Playing with colors in ggplot",
-       subtitle = "Using scale_colour_gradient()")
-```
-
-1. Create a scatterplot showing the relationship between `Cholesterol` and `Protein` .
-
-2. Color the points according to their Calories by specifying the `col` aesthetic.
-
-3. Change the colors by including the additional argument ` + scale_colour_gradient(low = "blue", high = "red")`.
-
-4. Use a gray color palette by using `scale_color_grey()` instead of `scale_colour_gradient()`.
-
-5. Customize! Look at all of the named colors in R by running `colors()`. Then, use two new colors in your plot.
- 
-
-### F - Summary statistics
-
-1. Create the following plot showing the mean number of calories for each menu category using the following template:
-
-```{r, eval = FALSE, echo = TRUE}
-ggplot(XX, aes(x = XX, y = X)) +
-  stat_summary(geom = "bar", 
-               fun.y = "mean") +
-  labs(title = "XX",
-       subtitle = "XX")
-```
-
-```{r, eval = TRUE, fig.width = 10, fig.height = 4}
-ggplot(mcdonalds, aes(x = Category, y = Calories)) +
-  stat_summary(geom = "bar", 
-               fun.y = "mean") +
-  labs(title = "Calories by McDonalds menu category",
-       subtitle = "Bars represent means")
-```
-
-2. Customize your plot!
-
-- Instead of showing the `"mean"`, show the `"median"`.
-- Give each bar a different color.
-- Add overlapping points showing the individual items using `geom_point()`, `geom_count()` or `geom_jitter()`.
-
-
-### G - Saving plots
-
-1. It's time to save your favorite plot to an image file! Pick your favorite plot you've created so far. Then, assign the plot to a new object called `mcdonalds_gg` using `mcdonalds_gg <- ggplot(...)`
-
-```{r, eval = FALSE, echo = TRUE}
-mcdonalds_gg <- ggplot(...) + ... # Include your plotting code here
-```
-
-2. Evaluate your `mcdonalds_gg` object to see that it does indeed contain your plot.
-
-3. Save your plot to a .pdf-file called `mcdonalds.pdf` using `ggsave()`. When you finish, find your plot in `3_Figures` and open it to see how it looks! 
+2. None of these looked very informative, right? This is because the counts of the each of the crime measures is heavily right skewed. You will learn more about scaling later, but for now add `scale_y_log10()` to fix this. Run the plots again. 
 
 ```{r, echo = TRUE, eval = FALSE}
-# Save mcdonalds_gg to a pdf file
-ggsave(filename = "3_Figures/mcdonalds", 
+ggplot(data = crime,
+       mapping = aes(x = XX, y = XX)) + 
+  geom_point() + 
+  scale_y_log10()
+
+# and so on
+```
+
+3. This should have been more telling. Pretty much all crimes seem to have been positively related to the percentage of individuals using public transportation. Interesting! But wasn't it a bit of a pain to derive this insight by created 7 separate plots. Let's fix this using facets. To do this, first, create a *long* version of the `crime` data set called `crime_long`, using the code below. (Note the use of `crime_vars` as a positive selector for `gather()`).
+
+```{r, echo = TRUE, eval = TRUE}
+# vector of crime variables
+crime_vars = c("murders","robberies","assaults","burglaries","larcenies","autoTheft","arsons")
+
+# transform to long
+crime_long <- crime %>% 
+  gather(crime_var, frequency, crime_vars)
+```
+
+4. Using the the `crime_long` data set, you can now make use of the amazing power of `ggplot2`'s facet functions, such as `facet_wrap()`. Use `facet_wrap()` to automatically plot crime frequency against the percentage of people using public transportation for each of the crime variables. 
+
+```{r, echo = TRUE, eval = FALSE}
+ggplot(data = crime_long,
+       mapping = aes(x = XX, y = XX)) + 
+  geom_point() + 
+  scale_y_log10() + 
+  facet_wrap(~ XX)
+```
+
+```{r}
+ggplot(data = crime_long,
+       mapping = aes(x = PctUsePubTrans, y = frequency)) + 
+  geom_point() + 
+  scale_y_log10() + 
+  facet_wrap(~ crime_var)
+```
+
+5. This was much more efficient, right? Now explore the relationship of frequency to other variables, such as `medIncome`, `TotalPctDiv`, or `PctNotHSGrad`, for each of the crime measures. What variables do predict, which kind of crime? Explore!
+
+### C - Customize plots using `theme()`
+
+Now that we have an informative plot, let's focus on making it a bit more "pretty"", using ggplot's `theme()` function. The goal is to create a plot that looks like the plot below.  
+
+```{r, eval = TRUE, echo = FALSE}
+ggplot(data = crime_long,
+       mapping = aes(x = PctUsePubTrans, y = frequency)) + 
+  geom_point() + 
+  scale_y_log10() + 
+  facet_wrap(~ crime_var) +
+  theme(
+    panel.background = element_rect(fill='white'),
+    panel.grid.major = element_line(color = 'grey75',
+                                    size = .25),
+    panel.grid.minor = element_line(color = 'grey75',
+                                    size = .1),
+    strip.background = element_rect(fill='white'),
+    strip.text = element_text(face='italic', size=12, hjust=1),
+    axis.title.y = element_text(size=12,margin=margin(r = 10)),
+    axis.title.x = element_text(size=12,margin=margin(t = 10)),
+    panel.spacing = unit(1.1, "lines")
+    
+  ) + 
+  labs(x = '% public transportation', y = 'Crime frequency')
+```
+
+
+1. To begin with store one of the facetted plots of section B as `crime_facets`.
+
+```{r}
+crime_facets <- XX
+```
+
+2. Now let's begin changing its appearance. First, change the color of the background to `"white"` of the panel using the `panel.background` argument and the `element_rect()` function.
+
+```{r, echo = TRUE, eval = FALSE}
+crime_facets + 
+  theme(
+    panel.background = element_rect(fill = XX)
+    )
+```
+
+```{r}
+crime_facets + 
+  theme(
+    panel.background = element_rect(fill = 'white')
+    )
+```
+
+3. Next, change the major and minor grid lines to color `"grey75"` and sizes `.25` and `.1`, respectively, using the `panel.grid.major` and `panel.grid.minor` arguments and the `element_line()` function.
+
+```{r, echo = TRUE, eval = FALSE}
+crime_facets + 
+  theme(
+    panel.background = element_rect(fill = XX),
+    panel.grid.major = element_line(color = XX, size = XX),
+    panel.grid.minor = element_line(color = XX, size = XX)
+    )
+```
+
+```{r}
+crime_facets + 
+  theme(
+    panel.background = element_rect(fill = 'white'),
+    panel.grid.major = element_line(color = 'grey75', size = .25),
+    panel.grid.minor = element_line(color = 'grey75', size = .1)
+    )
+```
+
+4. Next, change the strip background - the background of the panel headers - to color `"white"` using the `strip.background` argument and the `element_rect()` function.
+
+```{r, echo = TRUE, eval = FALSE}
+crime_facets + 
+  theme(
+    panel.background = element_rect(fill = XX),
+    panel.grid.major = element_line(color = XX, size = XX),
+    panel.grid.minor = element_line(color = XX, size = XX),
+    strip.background = element_rect(fill = XX),
+    )
+```
+
+```{r}
+crime_facets + 
+  theme(
+    panel.background = element_rect(fill = 'white'),
+    panel.grid.major = element_line(color = 'grey75', size = .25),
+    panel.grid.minor = element_line(color = 'grey75', size = .1),
+    strip.background = element_rect(fill = 'white')
+    )
+```
+
+5. Next, change the font in the strip to `"italic"`, adjust it to the right side, and set size to `12` using the `strip.text` argument and the `element_text()` function. See `?element_text()`.
+
+```{r, echo = TRUE, eval = FALSE}
+crime_facets + 
+  theme(
+    panel.background = element_rect(fill = XX),
+    panel.grid.major = element_line(color = XX, size = XX),
+    panel.grid.minor = element_line(color = XX, size = XX),
+    strip.background = element_rect(fill = XX),
+    strip.text = element_text(face = XX, size = XX, hjust = XX)
+    )
+```
+
+```{r}
+crime_facets + 
+  theme(
+    panel.background = element_rect(fill = 'white'),
+    panel.grid.major = element_line(color = 'grey75', size = .25),
+    panel.grid.minor = element_line(color = 'grey75', size = .1),
+    strip.background = element_rect(fill = 'white'),
+    strip.text = element_text(face = 'italic', size = 12, hjust = 1)
+    )
+```
+
+6. Next, set the font size of the axis labels also to `12` and add a margin of `10` to the top and right side, respectively, of the labels respectively, using `axis.title.x` and `axis.title.y` functions and the `element_text()` and `margin` functions. See `?margins()`.
+
+```{r, echo = TRUE, eval = FALSE}
+crime_facets + 
+  theme(
+    panel.background = element_rect(fill = XX),
+    panel.grid.major = element_line(color = XX, size = XX),
+    panel.grid.minor = element_line(color = XX, size = XX),
+    strip.background = element_rect(fill = XX),
+    strip.text = element_text(face = XX, size = XX, hjust = XX),
+    axis.title.x = element_text(size = XX, margin = margin(t = XX)),
+    axis.title.y = element_text(size = XX, margin = margin(r = XX)),
+    )
+```
+
+```{r}
+crime_facets + 
+  theme(
+    panel.background = element_rect(fill = 'white'),
+    panel.grid.major = element_line(color = 'grey75', size = .25),
+    panel.grid.minor = element_line(color = 'grey75', size = .1),
+    strip.background = element_rect(fill = 'white'),
+    strip.text = element_text(face = 'italic', size = 12, hjust = 1),
+    axis.title.x = element_text(size = 12, margin = margin(t = 10)),
+    axis.title.y = element_text(size = 12, margin = margin(r = 10))
+    )
+```
+
+7. Finally, increase the spacing between the panels slightly by setting the space between to `1.1` `"lines"` using the `panel.spacing` argument and the `unit` function. 
+
+```{r, echo = TRUE, eval = FALSE}
+crime_facets + 
+  theme(
+    panel.background = element_rect(fill = XX),
+    panel.grid.major = element_line(color = XX, size = XX),
+    panel.grid.minor = element_line(color = XX, size = XX),
+    strip.background = element_rect(fill = XX),
+    strip.text = element_text(face = XX, size = XX, hjust = XX),
+    axis.title.x = element_text(size = XX, margin = margin(t = XX)),
+    axis.title.y = element_text(size = XX, margin = margin(r = XX)),
+    panel.spacing = unit(XX, units = XX)
+    )
+```
+
+```{r}
+crime_facets + 
+  theme(
+    panel.background = element_rect(fill = 'white'),
+    panel.grid.major = element_line(color = 'grey75', size = .25),
+    panel.grid.minor = element_line(color = 'grey75', size = .1),
+    strip.background = element_rect(fill = 'white'),
+    strip.text = element_text(face = 'italic', size = 12, hjust = 1),
+    axis.title.x = element_text(size = 12, margin = margin(t = 10)),
+    axis.title.y = element_text(size = 12, margin = margin(r = 10)),
+    panel.spacing = unit(1.1, units = "lines")
+    )
+```
+
+8. Did you manage to reproduce the plot above? One other thing seems missing. Add appropriate labels using the `labs()` function.
+
+```{r, echo = TRUE, eval = FALSE}
+crime_facets + 
+  theme(
+    panel.background = element_rect(fill = XX),
+    panel.grid.major = element_line(color = XX, size = XX),
+    panel.grid.minor = element_line(color = XX, size = XX),
+    strip.background = element_rect(fill = XX),
+    strip.text = element_text(face = XX, size = XX, hjust = XX),
+    axis.title.x = element_text(size = XX, margin = margin(t = XX)),
+    axis.title.y = element_text(size = XX, margin = margin(r = XX)),
+    panel.spacing = unit(XX, units = XX)
+    ) + 
+  labs(x = XX, y = XX)
+```
+
+```{r}
+crime_facets + 
+  theme(
+    panel.background = element_rect(fill = 'white'),
+    panel.grid.major = element_line(color = 'grey75', size = .25),
+    panel.grid.minor = element_line(color = 'grey75', size = .1),
+    strip.background = element_rect(fill = 'white'),
+    strip.text = element_text(face = 'italic', size = 12, hjust = 1),
+    axis.title.x = element_text(size = 12, margin = margin(t = 10)),
+    axis.title.y = element_text(size = 12, margin = margin(r = 10)),
+    panel.spacing = unit(1.1, units = "lines")
+    ) + 
+  labs(x = '% public transportation', y = 'Crime frequency')
+```
+
+### D - Customize plots using `theme()`
+
+1. When you managed to reproduce the target theme, save all of the theme setting in an independent object called `crime_theme`.
+
+```{r, echo = TRUE, eval = FALSE}
+crime_theme <- theme(
+  XX = XX,
+  XX = XX,
+  ...
+  )
+```
+
+```{r}
+crime_theme <- theme(
+    panel.background = element_rect(fill = 'white'),
+    panel.grid.major = element_line(color = 'grey75', size = .25),
+    panel.grid.minor = element_line(color = 'grey75', size = .1),
+    strip.background = element_rect(fill = 'white'),
+    strip.text = element_text(face = 'italic', size = 12, hjust = 1),
+    axis.title.x = element_text(size = 12, margin = margin(t = 10)),
+    axis.title.y = element_text(size = 12, margin = margin(r = 10)),
+    panel.spacing = unit(1.1, units = "lines")
+    )
+```
+
+2. Now create new plots with different variables on x-axis and simply add the `crime_theme` in order to apply your personalized theme.
+
+```{r, echo = TRUE, eval = FALSE}
+new_crime_plot + crime_theme
+```
+
+3. If you don't like your theme, go back and make changes to it, and then apply your new theme onto your plots. Go explore! Try out other arguments of `theme()` (see `?theme`), such as `axis.ticks` or `strip.placement`.
+
+### E - Scaling
+
+When creating a plot `ggplot` automatically chooses sensible dimensions for your plot in terms of x- and y-axis limits, geom sizes, or colors. However, all of these aspects of the plot can also be controlled manually or semi-manually using various `scale_*` functions.
+
+1. Before playing around with them, add one more element to your plot, which will help you to realize the importance of scaling. That is, color the points according to state by *mapping* the `state` variable onto the `color` argument and size the points according to the county's population by *mapping* the `population` variable onto the `size` argument. Store the resulting plot in an object called `crime_plot`.
+
+```{r, echo = TRUE, eval = FALSE}
+crime_plot <- 
+  ggplot(data = crime_long,
+       mapping = aes(x = XX, y = XX,
+                     color = XX, size = XX)) + 
+  geom_point() + 
+  scale_y_log10() + 
+  facet_wrap(~ XX) + 
+  crime_theme
+```
+
+```{r}
+crime_plot <- ggplot(data = crime_long,
+       mapping = aes(x = PctUsePubTrans, y = frequency,
+                     color = state, size = population)) + 
+  geom_point() + 
+  scale_y_log10() + 
+  facet_wrap(~ crime_var) + 
+  crime_theme
+crime_plot
+```
+
+2. First, using `scale_size()` and the `range` argument, change the scaling of the points to reduce the degree of overlap among the points (see `?scale_size`). Try out a few numbers (smaller than 10) to create a version of the plot with a decent trade-off between point size and point overlap.
+
+```{r, echo = TRUE, eval = FALSE}
+crime_plot + scale_size(range = c(XX, XX))
+```
+
+```{r}
+crime_plot + scale_size(range = c(.5, 3))
+```
+
+3. You may find that still some of the larger points are cropped off at the upper end of the panels. Fix this by increasing the y-axis limits using the `scale_y_log10()` function. Set the limits to `0` and `2e+5` (i.e., `200,000`). (Note that R will tell you that this will overwrite the previous use of `scale_y_log10()`, which is what we intend to do).
+
+```{r, echo = TRUE, eval = FALSE}
+crime_plot + 
+  scale_size(range = c(XX, XX)) + 
+  scale_y_continuous(limits = c(XX, XX))
+```
+
+```{r}
+crime_plot + 
+  scale_size(range = c(.5, 3)) + 
+  scale_y_log10(limits = c(1, 2e+5))
+```
+
+4. Next, change the colors to a different, possibly more appropriate color scheme. One way to this is via the `scale_color_gradient()` or similar functions. Another is to use a specific, pre-defined scheme, such as `scale_color_colorblind()`. Use the latter. You will see that the colors have much more contrast making it distinguishing the colors based on luminescence alone easier. 
+
+```{r, echo = TRUE, eval = FALSE}
+crime_plot + 
+  scale_size(range = c(XX, XX)) + 
+  scale_y_log10(limits = c(1, XX)) + 
+  scale_color_colorblind()
+```
+
+```{r}
+crime_plot + 
+  scale_size(range = c(.5, 3)) + 
+  scale_y_log10(limits = c(1, 2e+5)) + 
+  scale_color_colorblind()
+```
+
+5. Another approach to changing colors is to supply them manually, e.g., using `scale_color_manual()`. Try assigning your own choice of colors. You may pick them from `colors()` or generate them using, for instance, the `viridis` function from the `viridis` package (you may need to run `install.packages('viridis')` before using it), which provides an optimized set of colors designed to be (1) colorful, (2) perceptually uniform, (3) robust to colorblindness, (4) and pretty. Take the latter approach, i.e., use the `viridis()` function to generate colors, in the context of the `scale_color_manual()` function.       
+
+```{r, echo = TRUE, eval = FALSE}
+crime_plot + 
+  scale_size(range = c(XX, XX)) + 
+  scale_y_log10(limits = c(1, XX)) + 
+  scale_color_manual(values = viridis(7))
+```
+
+```{r}
+crime_plot + 
+  scale_size(range = c(.5, 3)) + 
+  scale_y_log10(limits = c(1, 2e+5)) + 
+  scale_color_manual(values = viridis(7))
+```
+
+6. Alright the plot fairly pretty and readable now. But there is always more to be done and tastes differ, of course. Go explore!
+
+
+### F - Creating image files
+
+1. When you have found a plot that suits your taste, it's time to save it as an image file. Store your favorite plot in a new object called `crime_final`.
+
+```{r, eval = FALSE, echo = TRUE}
+crime_final <- ggplot(...) + ... # Include your plotting code here
+```
+
+2. Run your `crime_final` object to see that it does indeed contain your plot.
+
+3. Save your plot to a `.pdf`-file called `crime_final` using `ggsave()`. When you finish, find your plot in `3_Figures` and open it to see how it looks! 
+
+```{r, echo = TRUE, eval = FALSE}
+# Save crime_final to a pdf file
+ggsave(filename = "crime_plot", 
+       plot = crime_final,
        device = "pdf", 
-       plot = mcdonalds_gg,
+       path = '3_Figures',
        width = 4, 
        height = 4, 
        units = "in")
@@ -564,141 +511,410 @@ ggsave(filename = "3_Figures/mcdonalds",
 
 4. Play around with the `width` and `height` arguments to change the dimensions of the plot.
 
-5. Customize your code to create a jpeg image called `mcdonalds.jpeg`
+5. Customize the code to create a `.png` image.
 
 
-### H - Adding labels
+### X - Advanced: Maps 
 
-Let's create the following plot with additional point labels using `geom_text()`:
+1. `ggplot2` also allows you to work with maps. The code below, plots a simple globe representation of the world.
+
+```{r, echo = TRUE, eval = TRUE, fig.width = 8, fig.height = 4}
+world <- map_data("world")
+map <- ggplot() +
+  geom_polygon(data = world,  aes(long, lat, group = group), fill = "grey") +
+  coord_map("ortho", orientation = c(30, 55, 0)) +
+  theme_void()
+map
+```
+
+2. You can add points to the map by creating a `locations` tibble containing longitude (`lon`) and latitude (`lat`) values and then using it in, e.g., `geom_points()`.    
+
+```{r, echo = TRUE, fig.width = 8, fig.height = 4}
+# define locations tibble
+locations <- tibble(
+  city = c('Basel', 'New Delhi'),
+  lon = c(7.58,  77.21),
+  lat = c(47.55, 28.64))
+
+# add locations to map
+map + 
+  geom_point(data = locations, 
+             mapping = aes(x = lon, y = lat), 
+             color = "steelblue", size = 4)
+
+```
+
+3. In a similar fashion you can also add lines. Though, for lines it is required to plot the map in flat manner.
+
+```{r, echo = TRUE, fig.width = 8, fig.height = 4}
+# define locations tibble
+itineraries <- tibble(
+  city = c('Basel-New Delhi'),
+  lon_start = 7.58,
+  lon_end = 77.21,
+  lat_start = 47.55,
+  lat_end = 28.64)
+
+# flat map
+map <- ggplot() +
+  geom_polygon(data = world,  aes(long, lat, group = group), fill = "grey") +
+  theme_void()
+
+# add locations to map
+map + 
+  geom_curve(data = itineraries,
+             mapping = aes(x = lon_start, y = lat_start,
+                           xend = lon_end, yend = lat_end),
+                           col = 'steelblue', lty = 2, lwd = 1.2) +
+  geom_point(data = locations, 
+             mapping = aes(x = lon, y = lat), 
+             color = "steelblue", size = 4)
+
+```
+
+4. A great companion for maps in `ggplot2` is the `ggmap` package. Provided you have created an API key [**here**](https://developers.google.com/maps/documentation/geocoding/get-api-key) and registered it using the `register_google()` function, you can use the `geocode()` function to easily identify locations of maps or regions. 
+
+```{r, echo = TRUE, eval = FALSE, fig.width = 8, fig.height = 4}
+# register API
+register_google(XXX)
+
+# my travel itenerary
+itinerary <- c('New York', 'Buenos Aires', 'Basel', 'Cape town', 'Mumbai', 'Beijing', 'Sydney', 'Auckland')
+
+# get locations
+locations <- itinerary %>% geocode()
+
+# itineraries
+itineraries <- tibble(
+  lon_start = locations$lon[-length(itinerary)],
+  lat_start = locations$lat[-length(itinerary)],  
+  lon_end = locations$lon[-1],
+  lat_end = locations$lat[-1]
+  ) 
+
+# flat map
+map <- ggplot() +
+  geom_polygon(data = world,  aes(long, lat, group = group), fill = "grey") +
+  theme_void()
+
+# add locations to map
+map + 
+  geom_curve(data = itineraries,
+             mapping = aes(x = lon_start, y = lat_start,
+                           xend = lon_end, yend = lat_end),
+                           col = 'steelblue', lty = 2, lwd = 1.2) +
+  geom_point(data = locations, 
+             mapping = aes(x = lon, y = lat), 
+             color = "steelblue", size = 4)
+
+```
 
 ```{r, echo = FALSE, eval = TRUE, fig.width = 8, fig.height = 4}
-ggplot(mcdonalds, aes(x = Sugars, 
-                      y = Calories, 
-                      col = Category, 
-                      label = Item)) +
-  geom_point() +
-  geom_text(data = mcdonalds %>% 
-            filter(Calories > 1100),
-            col = "black", 
-            check_overlap = TRUE, 
-            hjust = "left") +
-  xlim(0, 150) +
-  ylim(0, 2000) +
-  theme_minimal() +
-  labs(title = "Adding labels to a plot with geom_text()")
+# register API
+register_google('AIzaSyD3Qjgf-skqll06EBy3iZg2BvMzJMKP474')
+
+# my travel itenerary
+itinerary <- c('New York', 'Buenos Aires', 'Basel', 'Cape town', 'Mumbai', 'Beijing', 'Sydney', 'Auckland')
+
+# get locations
+locations <- itinerary %>% geocode()
+
+# itineraries
+itineraries <- tibble(
+  lon_start = locations$lon[-length(itinerary)],
+  lat_start = locations$lat[-length(itinerary)],  
+  lon_end = locations$lon[-1],
+  lat_end = locations$lat[-1]
+  ) 
+
+# flat map
+map <- ggplot() +
+  geom_polygon(data = world,  aes(long, lat, group = group), fill = "grey") +
+  theme_void()
+
+# add locations to map
+map + 
+  geom_curve(data = itineraries,
+             mapping = aes(x = lon_start, y = lat_start,
+                           xend = lon_end, yend = lat_end),
+                           col = 'steelblue', lty = 2, lwd = 1.2) +
+  geom_point(data = locations, 
+             mapping = aes(x = lon, y = lat), 
+             color = "steelblue", size = 4)
+
 ```
 
-1. Start with the following template
 
-```{r, echo = TRUE, eval = FALSE}
-ggplot(mcdonalds, aes(x = XX, 
-                      y = XX, 
-                      col = XX)) +
-  geom_point() +
-  xlim(XX, XX) +
-  ylim(XX, XX) +
-  theme_minimal() +
-  labs(title = "XX")
-```
-
-2. Try adding labels to the plot indicating which item each point represents by adding `+ geom_text()`.
-
-3. Where are the labels? Ah, we didn't tell `ggplot` which column in the data represents the item descriptions. Fix this by specifying the `label` aesthetic in your first call to the `aes()` function. That is, include `label = Item` underneath the line `col = XX`. Now you should see lots of labels!
-
-4. Customize your `geom_text()` by including the arguments: `geom_text(col = "black", check_overlap = TRUE, hjust = "left")`.
-
-5. Using the `data` argument in `geom_text()`, specify that the labels should only apply to items over 1100 calories (hint: `geom_text(data = mcdonalds %>% filter(XX > XX))`)
-
-6. Play around! 
-
-- Specify that the size of the points should correspond to their Calories. Do this with the `size` aesthetic.
-- Instead of mapping `Category` to the `color` aesthetic, try creating different facets for each `Category` with `facet_wrap(~ Category)`.
-- Try using a different plotting theme. For example, you can try `theme_excel()` included in the `ggthemes` package.
-
-### I - Make your plots interactive with `plotly::ggplotly()`
+### X - Advanced: Interactive with `plotly::ggplotly()`
 
 1. With the `ggplotly()`-function from the `plotly` package, you can turn any `ggplot` object into an interactive plot like the one below! Run the following code to see it in action.
 
 ```{r, echo = TRUE, eval = TRUE, fig.width = 8, fig.height = 4}
 # Create a standard ggplot object
-MyPlot <- ggplot(data = mcdonalds,
-                 aes(x = Calories, y = TotalFat, col = Category)) + 
+crime_plot <- ggplot(data = crime_long,
+                     mapping = aes(x = PctUsePubTrans, y = frequency,
+                     color = state, size = population)) + 
+  geom_point() + 
+  scale_y_log10()
   geom_point()
 
 
 # Make it interactive with ggplotly()!
 library(plotly)
-ggplotly(MyPlot)
+ggplotly(crime_plot)
 ```
 
 2. Play around with your plot! See what happens when you hover over the points with your mouse. You can even zoom in by dragging your mouse.
 
 3. Try turning one of your favorite previous plots into an interactive `plotly` plot using the `ggplotly()` function!
 
-### X - Challenges
 
-For these challenges, use the `kc_house` dataset. Load the data as `kc_house`
 
-1. Make this plot
-- Hint: use `scale_color_gradient(low = "green", high = "red") `)
+## Examples
 
-```{r, echo = FALSE, eval = TRUE, fig.width = 7, fig.height = 4}
-ggplot(data = kc_house,
-       aes(x = bedrooms, y = bathrooms, col = price)) +
-  geom_count() +
-  labs(title = "King County Housing Prices",
-       subtitle = "Lighter color = higher price",
-       x = "# of Bedrooms",
-       y = "# of Bathrooms") +
-scale_color_gradient(low = "green", high = "red") +
-  xlim(c(0, 12)) +
-  theme_bw()
+```{r, eval = FALSE, echo = TRUE}
+
+# ggplot2 -----------------------
+
+library(tidyverse) # Load tidyverse (contains ggplot2!)
+
+# create a scatter plot of highway miles per gallon against engine displacement
+ggplot(data = mpg, 
+       mapping = aes(x = displ, y = hwy)) +
+       geom_point()  
+
+# Store plot objects ------------
+
+# store
+my_plot <- ggplot(data = mpg, 
+       mapping = aes(x = displ, y = hwy)) +
+       geom_point()  
+
+# evaluate (aka plot)
+my_plot
+
+# Facets ------------
+
+# create separate plots for each car class
+my_plot <- my_plot + facet_wrap(~class)
+
+# plot
+my_plot
+
+# Customize themes ------------
+
+# change panel background to 'green'
+my_plot +
+  theme(
+    panel.background = element_rect(fill='green')
+  )
+
+# change grid lines
+my_plot +
+  theme(
+    panel.grid.major = element_line(color = 'red', size = 2),
+    panel.grid.minor = element_line(color = 'blue', size = 1)
+  )
+
+# change strip background and text
+my_plot +
+  theme(
+    strip.background = element_rect(fill = 'blue'),
+    strip.text = element_text(face = 'bold', size = 12)
+  )
+
+# change axis titles
+my_plot +
+  theme(
+    axis.title.y = element_text(size = 12, margin = margin(r = 10)),
+    axis.title.x = element_text(size = 12, margin = margin(t = 10))
+  )
+
+# change panel spacing
+my_plot +
+  theme(
+    panel.spacing = unit(2, "lines")
+  )
+
+# Store themes ------------
+
+# create theme
+my_theme <- theme(
+  panel.background = element_rect(fill='green'),
+  panel.grid.major = element_line(color = 'red', size = 2),
+  panel.grid.minor = element_line(color = 'blue', size = 1),
+  strip.background = element_rect(fill = 'blue'),
+  strip.text = element_text(face = 'bold', size = 12),
+  strip.background = element_rect(fill = 'blue'),
+  strip.text = element_text(face = 'bold', size = 12),
+  axis.title.y = element_text(size = 12, margin = margin(r = 10)),
+  axis.title.x = element_text(size = 12, margin = margin(t = 10)),
+  panel.spacing = unit(2, "lines")
+)
+
+# apply theme
+my_plot + my_theme # no parentheses
+
+# Scaling ------------
+
+# change x-axis scaling
+my_plot + scale_x_continuous(limits = c(0, 10))
+
+# change coloring
+ggplot(data = mpg, 
+       mapping = aes(x = displ, y = hwy,
+                     color = class)) +
+       geom_point() +
+  scale_color_manual(values = viridis(7))
+  
+# Create image files ------------
+
+# create pdf of my_plot
+ggsave(filename = "my_plot_name", 
+       plot = my_plot,
+       device = "pdf", 
+       path = 'plotting_folder',
+       width = 4, 
+       height = 4, 
+       units = "in")
+
 ```
 
-2. Make this plot 
-- Hint: take the log of price with `log(price)`
 
-```{r, echo = FALSE, eval = TRUE, fig.width = 7, fig.height = 4}
-ggplot(data = kc_house,
-       aes(x = yr_built, y = log(price))) +
-  geom_count(alpha = .01) +
-  geom_smooth() +
-  stat_summary(size = .1) +
-  guides(size = FALSE) +
-  ylim(c(11, 15)) +
-  labs(x = "Year Built",
-       y = "Price (log-scale)",
-       title = "Selling Seattle price of houses by year",
-       subtitle = "Points indicate mean by year",
-       caption = 'Line created by gam()') +
-  theme_minimal()
-```
+## Datasets
 
-3. Make this plot
-- Hint: Start by creating an aggregated dataset with median home prices of the top 20 zipcodes. Then, use this dataset in ggplot!
+|File | Rows | Columns | 
+|:----|:-----|:------|
+|[crime.csv](https://raw.githubusercontent.com/therbootcamp/Intro2R_Unibe/master/_sessions/PLottingII/1_Data/crime.csv) | 1071 | 36 | 
 
-```{r, eval = TRUE, echo = FALSE, fig.height = 3, fig.width = 5.5}
-agg <- kc_house %>%
-  group_by(zipcode) %>%
-  summarise(price_median = median(price)) %>%
-  arrange(desc(price_median)) %>%
-  mutate(zipcode = factor(zipcode, levels = zipcode, ordered = TRUE)) %>%
-  slice(1:20) %>%
-  mutate(rank = 1:20)
+The `crime` data set is subsets of the Communities and Crime Unnormalized Data Set data set from the UCI Machine Learning Repository. Find variable descriptions below or at [**Communities and Crime Unnormalized Data Set**](https://archive.ics.uci.edu/ml/datasets/Communities+and+Crime+Unnormalized)
 
-ggplot(agg,
-       aes(x = rank, y = price_median, label = zipcode, size = price_median, alpha = price_median)) +
-  geom_point(col = "skyblue") +
-  geom_text(aes(x = rank, y = price_median), nudge_x = .7, nudge_y = 200000, angle = 45, size = 3, col = "black") +
-  labs(y = "Median Home Price",
-       x = "Rank",
-       title = "Top 10 Most Expensive King County Zipcodes") +
-  scale_x_continuous(breaks = 1:20) +
-  ylim(c(0, 2300000)) +
-    guides(size = FALSE, alpha = FALSE) +
-  theme_minimal() +
-  theme(panel.grid.major.x = element_blank(),
-        panel.grid.minor.x = element_blank())
-```
+#### Variable descriptions
+
+|Variable | Description |
+|:-------------|:-------------------------------------|
+|communityname| Community name |
+|state|  US state (by 2 letter postal abbreviation) |
+|population| population for community |
+|householdsize| mean people per household |
+|pctUrban| number of people living in areas classified as urban |
+|medIncome| median household income |
+|pctWSocSec| percentage of households with social security income in 1989 |
+|pctWRetire| percentage of households with retirement income in 1989 |
+|whitePerCap| per capita income for caucasians  |
+|blackPerCap| per capita income for african americans |
+|AsianPerCap| per capita income for people with asian  |
+|HispPerCap| per capita income for people with hispanic heritage |
+|PctPopUnderPov| percentage of people under the poverty level |
+|PctNotHSGrad| percentage of people 25 and over that are not high school graduates |
+|PctUnemployed|  percentage of people 16 and over, in the labor force, and unemployed |
+|TotalPctDiv| percentage of population who are divorced |
+|PersPerFam| mean number of people per family  |
+|PctWorkMom| percentage of moms of kids under 18 in labor force |
+|NumImmig| total number of people known to be foreign born |
+|PctImmigRecent| percentage of immigrants who immigated within last 3 years |
+|PctNotSpeakEnglWell|  percent of people who do not speak English well  |
+|RentMedian| rental housing - median rent  |
+|NumInShelters| number of people in homeless shelters  |
+|NumStreet| number of homeless people counted in the street |
+|PctForeignBorn| percent of people foreign born |
+|PctBornSameState| percent of people born in the same state as currently living |
+|LandArea| land area in square miles |
+|PopDens| population density in persons per square mile  |
+|PctUsePubTrans| percent of people using public transit for commuting |
+|murders| number of murders in 1995 |
+|robberies| number of robberies in 1995 |
+|assaults| number of assaults in 1995 |
+|burglaries| number of burglaries in 1995  |
+|larcenies| number of larcenies in 1995 |
+|autoTheft| number of auto thefts in 1995  |
+|arsons|  number of arsons in 1995 |
+
+## Functions
+
+### Packages
+
+|Package| Installation|
+|:------|:------|
+|`tidyverse`|`install.packages("tidyverse")`|
+
+#### Optional
+
+|Package| Installation|
+|:------|:------|
+|`viridis`|`install.packages("viridis")`|
+|`ggmap`|`install.packages("ggmap")`|
+|`plotly`|`install.packages("plotly")`|
+
+### Functions
+
+*Facets*
+
+| Function| Package | Description |
+|:---|:------|:---------------------------------------------|
+| `facet_wrap()`|`ggplot2`| Create facets that wrap to fit the screen | 
+| `facet_grid()`|`ggplot2`| Create facets along one or more variables in a grid | 
+
+*themes*
+
+| Function| Package | Description |
+|:---|:------|:---------------------------------------------|
+| `theme()`|`ggplot2`| Customize theme (see `?theme`) | 
+| `element_rect()`|`ggplot2`| Customize rect elements of theme | 
+| `element_line()`|`ggplot2`| Customize line elements of theme | 
+| `element_text()`|`ggplot2`| Customize text elements of theme | 
+| `element_blank()`|`ggplot2`| Remove elements from theme | 
+
+*scales*
+
+| Function| Package | Description |
+|:---|:------|:---------------------------------------------|
+| `scale_x_*()`, `scale_y_*()`| `ggplot2` | Various functions to control the x- and y-axes | 
+| `scale_size_*()`| `ggplot2` | Various functions to control sizes | 
+| `scale_color_*()`| `ggplot2` | Various functions to control colors | 
+| `scale_fill_*()`| `ggplot2` | Various functions to control fill colors | 
+| `scale_alpha_*()`| `ggplot2` | Various functions to control color transparency | 
+
+*colors*
+
+| Function| Package | Description |
+|:---|:------|:---------------------------------------------|
+| `viridis()` | `viridis` | Generate colors from the viridis palette | 
+
+*maps*
+
+| Function| Package | Description |
+|:---|:------|:---------------------------------------------|
+| `geom_polygon()` | `ggplot2` | Geom used to draw map elements |
+| `register_google()` | `ggmap` | Register Google API |
+| `geocode()` | `ggmap` | Extract geocode for location (e.g., city) |
+
+*plotly*
+
+| Function| Package | Description |
+|:---|:------|:---------------------------------------------|
+| `ggplotly()` | `plotly` | Plotlify any `ggplot` plot (i.e., make it interactive) |
+
+
+## Resources
+
+### Documentation
+
+- The main `ggplot2` webpage at [http://ggplot2.tidyverse.org/](http://ggplot2.tidyverse.org/) has great tutorials and examples.
+
+- Check out Selva Prabhakaran's website for a nice gallery of ggplot2 graphics [http://r-statistics.co/Top50-Ggplot2-Visualizations-MasterList-R-Code.html](http://r-statistics.co/Top50-Ggplot2-Visualizations-MasterList-R-Code.html)
+
+- `ggplot2` is also great for making maps. For examples, check out Eric Anderson's page at [http://eriqande.github.io/rep-res-web/lectures/making-maps-with-R.html](http://eriqande.github.io/rep-res-web/lectures/making-maps-with-R.html)
+
+
+### Cheatsheet
+
+<p align="center" width="100%">
+<a href="https://www.rstudio.com/wp-content/uploads/2015/03/ggplot2-cheatsheet.pdf">
+  <img src="http://www.rstudio.com/wp-content/uploads/2015/03/ggplot2-cheatsheet.png" style="width:70%"></a>
+  <br>
+  <font style="font-size:10px">from <a href="https://www.rstudio.com/resources/cheatsheets/">R Studio</a></font>
+</p>
+
 
 

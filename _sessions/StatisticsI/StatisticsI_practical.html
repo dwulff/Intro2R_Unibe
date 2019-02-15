@@ -356,7 +356,7 @@ prices &lt;- kc_house %&gt;%
 <li>Fill in the XXs in the code below, such that <code>x</code> becomes the <code>'no_waterfront'</code> prices and <code>y</code> becomes the <code>'waterfront'</code> prices.</li>
 </ol>
 <pre class="r"><code>waterfront_htest &lt;- t.test(x = prices$XX, y = prices$XX)</code></pre>
-<ol start="2" style="list-style-type: decimal">
+<ol start="3" style="list-style-type: decimal">
 <li><p>Print your <code>waterfront_htest</code> object to see a printout of the main results.</p></li>
 <li><p>Look at the names of your <code>waterfront_htest</code> object with <code>names()</code>.</p></li>
 <li><p>Using the <code>$</code>, print the test statistic (<code>statistic</code>) from your <code>waterfront_htest</code> object.</p></li>
@@ -364,7 +364,6 @@ prices &lt;- kc_house %&gt;%
 <li><p>Run a Wilcoxon test instead of the t-test to evalute whether the result is robust. Is the result the same?</p></li>
 </ol>
 <pre class="r"><code>wilcox.test(x = prices$XX, y = prices$XX)</code></pre>
-<pre class="r"><code>wilcox.test(x = prices$no_waterfront, y = prices$waterfront)</code></pre>
 </div>
 <div id="x---challenges" class="section level3">
 <h3>X - Challenges</h3>
@@ -557,6 +556,7 @@ htest  # Print result</code></pre>
 </tr>
 </tbody>
 </table>
+<p>1</p>
 </div>
 <div id="functions" class="section level2">
 <h2>Functions</h2>

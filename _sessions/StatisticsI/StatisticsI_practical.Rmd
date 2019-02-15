@@ -606,7 +606,7 @@ htest  # Print result
 |File | Rows | Columns | Description |
 |:----|:-----|:------|:-----------------------------------------|
 |[kc_house.csv](https://raw.githubusercontent.com/therbootcamp/BaselRBootcamp_2018July/master/_sessions/_data//baselrbootcamp_data/kc_house.csv) | 21613 | 21|House sale prices for King County between May 2014 and May 2015. |
-
+1
 
 ## Functions
 
