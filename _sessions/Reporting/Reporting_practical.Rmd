@@ -342,7 +342,7 @@ mcdonalds <- read_csv("https://raw.githubusercontent.com/therbootcamp/BaselRBoot
 |File  |Description| Rows | Columns |
 |:----|:-----------------------------|:-----|:------|
 |[mcdonalds.csv](https://raw.githubusercontent.com/therbootcamp/BaselRBootcamp_2018July/master/_sessions/_data/complete/mcdonalds.csv)| Nutrition information from McDonalds menu items| 260 | 24 |
-|[happiness.csv](https://raw.githubusercontent.com/therbootcamp/BaselRBootcamp_2018July/master/_sessions/_data/complete/happiness.csv)| Results from the World Health Organisation happiness survey | 155 | 12 |
+
 
 ## Functions
 
