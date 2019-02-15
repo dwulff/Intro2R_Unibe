@@ -1,5 +1,5 @@
 ---
-title: "Dynamic Reports"
+title: "Reporting"
 author: "
 <table style='table-layout:fixed;width:100%;border:0;padding:0;margin:0'><col width='10%'><col width='10%'>
   <tr style='border:none'>
@@ -350,7 +350,7 @@ mcdonalds <- read_csv("https://raw.githubusercontent.com/therbootcamp/BaselRBoot
 
 ## Functions
 
-### Happiness
+### Packages
 
 |Package| Installation|
 |:------|:------|
