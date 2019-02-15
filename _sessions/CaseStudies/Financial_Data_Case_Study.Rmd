@@ -69,18 +69,19 @@ Below you will find several tasks that will guide you through these steps. For t
 
 ## Tasks
 
-### A - Getting setup
+### A - Getting Setup
 
-1. Open your `baselrbootcamp` R project. It should already have the folders `1_Data` and `2_Code`. Inside of the `1_Data` folder, you should have all of the data sets listed in the Datasets section above!
+1. Open your `bernrbootcamp` R project. It should already have the folders `1_Data` and `2_Code`.
 
-2. Open a new R script and save it as a new file in your `R` folder called `financial_casestudy.R`. At the top of the script, using comments, write your name and the date. Then, load the `tidyverse` package. Here's how the top of your script should look:
+2. We want to generate an R Markdown document for this case study. In RStudio, click File -- New File -- R Markdown -- Document -- Html. 
+Save your markdown file *in your main project directory* under the name `financial_casestudy.Rmd`. 
 
-```{r, echo = TRUE}
-## My Name
-## The Date
-## Financial Data - Case Study
+3. At the top of the script load the `tidyverse` package. 
 
-library(tidyverse)
+4. From time to time - don't forget to `Knit` your code with the Knit-Button.
+
+```{r, echo = FALSE, fig.align = 'center', eval = TRUE, out.width = "60%"}
+knitr::include_graphics("https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/rmarkdown_ss_D.png")
 ```
 
 ### B - Data
