@@ -202,7 +202,7 @@ $(document).ready(function () {
 
 
 <p align="center">
-<img width="100%" src="https://meetville.com/blog/wp-content/uploads/2015/01/imgonline-com-ua-Resize-quU8YQt7HJLDQEjt.jpg" margin=0><br> <font style="font-size:10px">adapted from <a href="https://meetville.com/blog/wp-content/uploads/2015/01/imgonline-com-ua-Resize-quU8YQt7HJLDQEjt.jpg">meetville.com</a></font>
+<img width="80%" src="https://meetville.com/blog/wp-content/uploads/2015/01/imgonline-com-ua-Resize-quU8YQt7HJLDQEjt.jpg" margin=0><br> <font style="font-size:10px">adapted from <a href="https://meetville.com/blog/wp-content/uploads/2015/01/imgonline-com-ua-Resize-quU8YQt7HJLDQEjt.jpg">meetville.com</a></font>
 </p>
 <div id="section" class="section level1 tabset tabset-fade">
 <h1></h1>
@@ -210,11 +210,12 @@ $(document).ready(function () {
 <h2>Overview</h2>
 <p>This is your final assignment in this course. You will use all we learned during the course to understand, arrange, analyse, visualise and report on a new dataset about medical appointments.</p>
 <p>What is the dataset about? There is a large number of medical appointments where patients end up canceling or simply do not show up. This practise comes with costs to the medical system - in this assignment we will try to understand what drives patients not to show up in a sample of medical appointments from Vitoria, Espirito Santo, Brazil.</p>
-<p>From the given list of parameters, such as Gender, Scheduled and Appointment Date difference, Age, Neighbourhood, sms_alert and certain conditions of a given patient, the model will predict, based on a studied dataset, whether the given appointment is likely to be a No-Show</p>
 <p>You should (at least) complete the following tasks</p>
 <ol style="list-style-type: decimal">
-<li>load the two .csv files you find in <code>Datasets</code> into R objects</li>
-<li></li>
+<li>load the two .csv files you find in <code>Datasets</code> into R objects.</li>
+<li>Work through A:D cleaning, visualising and fusioning the two tibbles.</li>
+<li>Run statistical models (in E) predicting whether a patient is a no-show for an appointment.</li>
+<li>Prepare two documents (with code examples) documenting your work - a .html document and a .html presentation (you are expected to use the slides from this presentation to talk us through what you did and what you found out).</li>
 </ol>
 </div>
 <div id="tasks" class="section level2">
@@ -231,44 +232,32 @@ $(document).ready(function () {
 <div id="b---initial-data-inspection" class="section level3">
 <h3>B - Initial data inspection</h3>
 <ol style="list-style-type: decimal">
-<li>We want to first see what variables are in the dataset (check out Datasets above) and whether there are variables with impossible values. Generate an overview of all variables with minimum and maximum values, means and medians for all appropriate numeric variables. Correct the variable(s) that stand out and provide a rational for what you did. Also rename Hipertension into Hyptertension and Handcap into Handicap.</li>
-</ol>
-<pre class="r"><code>summary(appointments)
-
-appointments &lt;-
-appointments %&gt;%
-  filter(Age &gt;= 0) %&gt;%
-  rename(&#39;Hypertension&#39; = &#39;Hipertension&#39;,
-         &#39;Handicap&#39; = &#39;Handcap&#39;)</code></pre>
-<ol start="2" style="list-style-type: decimal">
-<li>How many patients showed up for their appointment(s), how many did not?</li>
-</ol>
-<pre class="r"><code>table(appointments$NoShow)</code></pre>
-<ol start="3" style="list-style-type: decimal">
-<li>How many patients are female|male? Who (PatientID) has the most number of appointments? Split that for gender.</li>
-</ol>
-<pre class="r"><code>  appointments %&gt;%
-    group_by(PatientId,Gender) %&gt;%
-    count(unique(PatientId)) %&gt;%
-    arrange(desc(n))</code></pre>
-<ol start="4" style="list-style-type: decimal">
+<li><p>We want to first see what variables are in the dataset (check out Datasets above) and whether there are variables with impossible values. Generate an overview of all variables with minimum and maximum values, means and medians for all appropriate numeric variables. Correct the variable(s) that stand out and provide a rational for what you did. Also rename Hipertension into Hyptertension and Handcap into Handicap.</p></li>
+<li><p>How many patients showed up for their appointment(s), how many did not?</p></li>
+<li><p>How many patients are female, how many are male? Who (PatientID) has the most number of appointments? Split that analysis (most number of appointments) for gender.</p></li>
 <li><p>Generate a simple plot with the age of all patients.</p></li>
 <li><p>Summarise the number of particiants per age in years (range: <code>range(appointments$Age)</code>) for the whole <code>appointments</code> dataset. Generate a line graph showing the distribution of patients per age. Now split this graph into two rows with Female|Male and two columns with Show|No-Show - this will give you an age distribution with four panels.</p></li>
 <li><p>Generate a new variable <code>age_group</code> which includes four groups [1:4] where 1: ‘children’ between 0 and 18 years, 2: ‘young adults’ between 19 and 30 years, 3: ‘adults’ (31:50 years) and 4 ‘old adults’ (51:max(Age))</p></li>
-<li><p>Plot the four age groups on the x-axis and the size of the groups on the y-axis (call this variable: number_cases). Connect the points ina line graph, separated for gender. Facet the graph into two parts, with noshow ‘No’ on top and nowshow ‘Yes’ on bottom. So ultimately you should have 4 lines, 2 in each panel.</p></li>
+<li><p>Plot the four age groups on the x-axis and the size of the groups on the y-axis (call this variable: number_cases). Connect the points with a line graph, separated for gender. Facet the graph into two parts, with <code>noshow</code> ‘No’ on top and <code>nowshow</code> ‘Yes’ on bottom. So ultimately you should have 4 lines, 2 in each panel.</p></li>
+</ol>
+</div>
+<div id="c---playing-with-time" class="section level3">
+<h3>C - Playing with time</h3>
+<ol style="list-style-type: decimal">
 <li><p>We want to explore the time difference between making an appointment and actually having an appointment a little more. Using the <code>lubridate()</code> package extract Year-Month-Day from <code>ScheduledDay</code> and write this date information (without time) into a new variable <code>ScheduledDate</code> (Hint: <code>date()</code> ). Convert <code>AppointmentDay</code> to the date class, too. We want to get the distribution of time between scheduled appointment date and actual appointment day - write this difference (in days) in a new variable called <code>time_diff</code>. There are some appointments with a negative <code>time_diff</code>. We assume that these are based on typos - remove them from the dataset.</p></li>
-<li><p>Categorize lead days</p></li>
+<li><p>Categorize lead days - we now want to categorize the <code>time_diff</code> variable into a new varialbe called <code>lead_days</code> with five categories: ‘0 days’, ‘1-2 days’, ‘3-7 days’, ‘8-31 days’, ‘32+ days’.</p></li>
 </ol>
 </div>
 <div id="d---adding-the-weather" class="section level3">
 <h3>D - Adding the weather</h3>
 <ol style="list-style-type: decimal">
-<li><p>We want to add the weather information to our <code>appointments</code> tibble. We will join the two datasets adding <code>RH2M</code>, <code>T2M</code> and <code>PRECTOT</code> from <code>weather</code> to <code>appointments</code>. You want to join these by <code>AppointmentDay</code> (from <code>appointements</code>) and <code>YYYYMMDD</code> (from <code>weather</code>) - Hint: <code>left_join()</code>. Call the new dataset: <code>full_df</code>.</p></li>
-<li><p>Check that you <code>full_df</code> dataframe has the following size:</p></li>
+<li><p>Weather could have a strong influence for going to the doctor. The <code>weather</code> tibble provide information about the weather in Vitoria.We will join the two datasets adding <code>RH2M</code>, <code>T2M</code> and <code>PRECTOT</code> from <code>weather</code> to <code>appointments</code>. You want to join these by <code>AppointmentDay</code> (from <code>appointements</code>) and <code>YYYYMMDD</code> (from <code>weather</code>) - Hint: <code>left_join()</code>. Call the new dataset: <code>full_df</code>.</p></li>
+<li><p>Check that you <code>full_df</code> dataframe has the following dimension:</p></li>
 </ol>
 </div>
-<div id="e--" class="section level3">
-<h3>E -</h3>
+<div id="e---predicting" class="section level3">
+<h3>E - Predicting</h3>
+<p>From the given list of parameters, such as gender, time difference between making an appointment and the actual appointment, demographic variables, the weather on the appointment day build different models that predict whether the a patient will be a no show for his/her appointment.</p>
 </div>
 <div id="f---presenting-the-results" class="section level3">
 <h3>F - Presenting the results</h3>

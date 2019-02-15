@@ -50,7 +50,7 @@ library(ggmap)
 ```
 
 <p align="center">
-<img width="100%" src="https://meetville.com/blog/wp-content/uploads/2015/01/imgonline-com-ua-Resize-quU8YQt7HJLDQEjt.jpg" margin=0><br>
+<img width="80%" src="https://meetville.com/blog/wp-content/uploads/2015/01/imgonline-com-ua-Resize-quU8YQt7HJLDQEjt.jpg" margin=0><br>
 <font style="font-size:10px">adapted from [meetville.com](https://meetville.com/blog/wp-content/uploads/2015/01/imgonline-com-ua-Resize-quU8YQt7HJLDQEjt.jpg)</font>
 </p>
 
@@ -63,12 +63,12 @@ This is your final assignment in this course. You will use all we learned during
 
 What is the dataset about? There is a large number of medical appointments where patients end up canceling or simply do not show up. This practise comes with costs to the medical system - in this assignment we will try to understand what drives patients not to show up in a sample of medical appointments from Vitoria, Espirito Santo, Brazil.
 
-From the given list of parameters, such as Gender, Scheduled and Appointment Date difference, Age, Neighbourhood, sms_alert and certain conditions of a given patient, the model will predict, based on a studied dataset, whether the given appointment is likely to be a No-Show
-
 You should (at least) complete the following tasks
 
-1. load the two .csv files you find in `Datasets` into R objects 
-2. 
+1. load the two .csv files you find in `Datasets` into R objects.
+2. Work through A:D cleaning, visualising and fusioning the two tibbles.
+3. Run statistical models (in E) predicting whether a patient is a no-show for an appointment.
+4. Prepare two documents (with code examples) documenting your work - a .html document and a .html presentation (you are expected to use the slides from this presentation to talk us through what you did and what you found out).
 
 ## Tasks
 
@@ -92,7 +92,7 @@ weather <- read_csv('1_Data/weather.csv')
 1. We want to first see what variables are in the dataset (check out Datasets above) and whether there are variables with impossible values. Generate an overview of all variables with minimum and maximum values, means and medians for all appropriate numeric variables. Correct the variable(s) that stand out and provide a rational for what you did.
 Also rename Hipertension into Hyptertension and Handcap into Handicap.
 
-```{r, echo = TRUE, eval = FALSE, message = FALSE, warning = FALSE}
+```{r, echo = FALSE, eval = FALSE, message = FALSE, warning = FALSE}
 summary(appointments)
 
 appointments <-
@@ -104,13 +104,13 @@ appointments %>%
 
 2. How many patients showed up for their appointment(s), how many did not?
 
-```{r, echo = TRUE, eval = FALSE, message = FALSE, warning = FALSE}
+```{r, echo = FALSE, eval = FALSE, message = FALSE, warning = FALSE}
 table(appointments$NoShow)
 ```
 
-3. How many patients are female|male? Who (PatientID) has the most number of appointments? Split that for gender.
+3. How many patients are female, how many are male? Who (PatientID) has the most number of appointments? Split that analysis (most number of appointments) for gender.
 
-```{r, echo = TRUE, eval = FALSE, message = FALSE, warning = FALSE}
+```{r, echo = FALSE, eval = FALSE, message = FALSE, warning = FALSE}
   appointments %>%
     group_by(PatientId,Gender) %>%
     count(unique(PatientId)) %>%
@@ -148,7 +148,7 @@ table(appointments$NoShow)
 ```
 
 
-7. Plot the four age groups on the x-axis and the size of the groups on the y-axis (call this variable: number_cases). Connect the points ina line graph, separated for gender. Facet the graph into two parts, with noshow 'No' on top and nowshow 'Yes' on bottom. So ultimately you should have 4 lines, 2 in each panel. 
+7. Plot the four age groups on the x-axis and the size of the groups on the y-axis (call this variable: number_cases). Connect the points with a line graph, separated for gender. Facet the graph into two parts, with `noshow` 'No' on top and `nowshow` 'Yes' on bottom. So ultimately you should have 4 lines, 2 in each panel. 
 
 
 ```{r}
@@ -161,7 +161,9 @@ table(appointments$NoShow)
   facet_grid(NoShow ~ .)
 ```
 
-8. We want to explore the time difference between making an appointment and actually having an appointment a little more. Using the `lubridate()` package extract Year-Month-Day from `ScheduledDay` and write this date information (without time) into a new variable `ScheduledDate` (Hint: `date()` ). Convert `AppointmentDay` to the date class, too. We want to get the distribution of time between scheduled appointment date and actual appointment day - write this difference (in days) in a new variable called `time_diff`. There are some appointments with a negative `time_diff`. We assume that these are based on typos - remove them from the dataset.
+### C - Playing with time
+
+1. We want to explore the time difference between making an appointment and actually having an appointment a little more. Using the `lubridate()` package extract Year-Month-Day from `ScheduledDay` and write this date information (without time) into a new variable `ScheduledDate` (Hint: `date()` ). Convert `AppointmentDay` to the date class, too. We want to get the distribution of time between scheduled appointment date and actual appointment day - write this difference (in days) in a new variable called `time_diff`. There are some appointments with a negative `time_diff`. We assume that these are based on typos - remove them from the dataset.
 
 ```{r}
 appointments <- 
@@ -174,7 +176,7 @@ appointments %>%
 dim(appointments)
 ```
 
-9. Categorize lead days
+2. Categorize lead days - we now want to categorize the `time_diff` variable into a new varialbe called `lead_days` with five categories: '0 days', '1-2 days', '3-7 days', '8-31 days', '32+ days'.
 
 ```{r}
 appointments <- 
@@ -189,7 +191,7 @@ appointments %>%
 
 ### D - Adding the weather
 
-1. We want to add the weather information to our `appointments` tibble. We will join the two datasets adding `RH2M`, `T2M` and `PRECTOT` from `weather` to `appointments`. You want to join these by `AppointmentDay` (from `appointements`) and `YYYYMMDD` (from `weather`) - Hint: `left_join()`. Call the new dataset: `full_df`.
+1. Weather could have a strong influence for going to the doctor. The `weather` tibble provide information about the weather in Vitoria.We will join the two datasets adding `RH2M`, `T2M` and `PRECTOT` from `weather` to `appointments`. You want to join these by `AppointmentDay` (from `appointements`) and `YYYYMMDD` (from `weather`) - Hint: `left_join()`. Call the new dataset: `full_df`.
 
 ```{r}
 weather <- 
@@ -202,13 +204,16 @@ appointments %>%
 
 ```
 
-2. Check that you `full_df` dataframe has the following size:
+2. Check that you `full_df` dataframe has the following dimension:
 
 ```{r}
 dim(full_df)
 ```
 
-### E - 
+### E - Predicting
+
+From the given list of parameters, such as gender, time difference between making an appointment and the actual appointment, demographic variables, the weather on the appointment day build different models that predict whether the a patient will be a no show for his/her appointment.
+
 
 ### F - Presenting the results
 
