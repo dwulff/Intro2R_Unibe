@@ -536,7 +536,7 @@ myplot +
 
 ```r
 # define my theme
-mytheme = theme(
+mytheme &lt;- theme(
     panel.background = 
       element_rect(fill = 'tomato'), 
     plot.background = 
@@ -581,7 +581,7 @@ myplot
 
 ```r
 # define my theme
-mytheme = theme(
+mytheme &lt;- theme(
     panel.background = 
       element_rect(fill = 'tomato'), 
     plot.background = 
@@ -1121,7 +1121,7 @@ if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
 (function () {
   var script = document.createElement('script');
   script.type = 'text/javascript';
-  script.src  = 'https://cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
   if (location.protocol !== 'file:' && /^https?:/.test(script.src))
     script.src  = script.src.replace(/^https?:/, '');
   document.getElementsByTagName('head')[0].appendChild(script);
