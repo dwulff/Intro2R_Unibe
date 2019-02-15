@@ -197,9 +197,7 @@ data %>%
 
 <br><br><br><br>
 
-```{r}
-```
-
+`group_by(sex)` - what happens?
 ]
 
 
