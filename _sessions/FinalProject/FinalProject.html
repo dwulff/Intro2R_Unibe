@@ -196,7 +196,7 @@ $(document).ready(function () {
 <div id="overview" class="section level2">
 <h2>Overview</h2>
 <p>This is your final assignment in this course. You will use all we learned during the course to understand, arrange, analyse, visualise and report on a new dataset about medical appointments.</p>
-<p>What is the dataset about? There is a large number of medical appointments where patients end up canceling or simply do not show up. This practise comes with costs to the medical system - in this assignment we will try to understand what drives patients not to show up in a sample of medical appointments from (Brasil).</p>
+<p>What is the dataset about? There is a large number of medical appointments where patients end up canceling or simply do not show up. This practise comes with costs to the medical system - in this assignment we will try to understand what drives patients not to show up in a sample of medical appointments from Vitoria, Espirito Santo, Brazil.</p>
 <p>From the given list of parameters, such as Gender, Scheduled and Appointment Date difference, Age, Neighbourhood, sms_alert and certain conditions of a given patient, the model will predict, based on a studied dataset, whether the given appointment is likely to be a No-Show</p>
 <p>You should (at least) complete the following tasks</p>
 <ol style="list-style-type: decimal">
@@ -210,7 +210,7 @@ $(document).ready(function () {
 <h3>A - Setup</h3>
 <ol style="list-style-type: decimal">
 <li><p>Open your <code>bernrbootcamp</code> R project. It should already have the folders <code>1_Data</code> and <code>2_Code</code>. Make sure that the data files listed in the <code>Datasets</code> section above are in your <code>1_Data</code> folder.</p></li>
-<li><p>Open a new R script. At the top of the script, using comments, write your name and the date. Save it as a new file called <code>final_project.R</code> in the <code>2_Code</code> folder.</p></li>
+<li><p>Open a new R script. At the top of the script, using comments, write your name and the date. Save it as a new file called <code>final_project.R</code> in the <code>bernrbootcamp</code> folder.</p></li>
 <li><p>Using <code>library()</code> load the set of packages for this practical listed in the packages section above.</p></li>
 <li><p>Read the <code>appointments.csv</code> and the <code>weather.csv</code> files into two objects called <code>appointments</code> and <code>weather</code> respectively. Check out the content of the two datasets in Overview and Datasets above.</p></li>
 </ol>
@@ -247,27 +247,25 @@ appointments %&gt;%
 <li><p>Categorize lead days</p></li>
 </ol>
 </div>
-<div id="c--" class="section level3">
-<h3>C -</h3>
-</div>
-<div id="d---mapping-out-locations" class="section level3">
-<h3>D - Mapping out locations</h3>
+<div id="d---adding-the-weather" class="section level3">
+<h3>D - Adding the weather</h3>
 <ol style="list-style-type: decimal">
-<li><p>From the <code>weather</code> dataframe take the lon and lat coordinates and setup a dot for each location on the map of Brasil. Any inconsistencies? Hint: Checkout <code>qmplot()</code> from the <code>ggmap</code> package.</p></li>
-<li><p>There is a set of points off the coast of Brasil in the water - identify those points and remove them from the dataset.</p></li>
-<li></li>
+<li>We want to add the weather information to our <code>appointments</code> tibble. We will do this for each <code>AppointmentDay</code>. Join the two datasets adding all variables from <code>weather</code> to <code>appointments</code> based</li>
+</ol>
+</div>
+<div id="e---presenting-the-results" class="section level3">
+<h3>E - Presenting the results</h3>
+<ol style="list-style-type: decimal">
+<li><p>Generate a new file with <code>File - R Markdown - Document</code> (with the default: HTML). Save this file to your <code>BernRBootcamp</code> folder.</p></li>
+<li><p>Document your 3 central insights out of this dataset. Describe what the insights are with your own words and document them with figures, statistics and tables produced with R code in your Marddown file <code>FinalReport.html</code>.</p></li>
+<li><p>Generate a new file with <code>File - R Markdown - Presentation</code> (with the default: HTML Isoslides). Save this file to your <code>BernRBootcamp</code> folder <code>FinalPresentation.html</code>.</p></li>
+<li><p>Prepare a 15 minute presentation documenting your approach to the Document your 3 central insights out of this dataset. Describe what the insights are with your own words and document them with figures, statistics and tables produced with R code in your Marddown file.</p></li>
 </ol>
 </div>
 </div>
 <div id="datasets" class="section level2">
 <h2>Datasets</h2>
 <table>
-<colgroup>
-<col width="8%" />
-<col width="10%" />
-<col width="11%" />
-<col width="70%" />
-</colgroup>
 <thead>
 <tr class="header">
 <th align="left">File</th>
@@ -284,10 +282,10 @@ appointments %&gt;%
 <td align="left">Patient shows</td>
 </tr>
 <tr class="even">
-<td align="left"><a href="1_Data/weather_per_coordinate.csv">brazil_wheather.csv</a></td>
-<td align="left">2255</td>
+<td align="left"><a href="1_Data/weather.csv">wheather.csv</a></td>
+<td align="left">41</td>
 <td align="left">10</td>
-<td align="left">Weather data for various longitute and latitude coordinates in Brasil</td>
+<td align="left">Weather data for Vitoria Brasil</td>
 </tr>
 </tbody>
 </table>
@@ -331,7 +329,7 @@ appointments %&gt;%
 </tr>
 <tr class="odd">
 <td align="left">Neighbourhood</td>
-<td align="left">Where the patient is living</td>
+<td align="left">Where the patient was born</td>
 </tr>
 <tr class="even">
 <td align="left">Hipertension</td>

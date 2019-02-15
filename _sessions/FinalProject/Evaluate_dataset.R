@@ -74,7 +74,7 @@ appointments <- appointments %>%
   mutate_if(function(x) all(x %in% c(0, 1)), as.logical) %>%
   select(-Scholarship)
 
-
+appointments$AppointmentDay <- date(appointments$AppointmentDay)
 # write_csv(appointments, '_sessions/FinalProject/1_Data/appointments.csv') # run once!
 
 
@@ -89,7 +89,8 @@ GNsearchAF <- function(x) {
   return(res[1, ])  
   }
 
-GNsearch(name='MATA DA PRAIA', country="BR")  
+GNsearch(name='Vitória, Espírito Santo', country="BR")  
+# 20.2976° S, 40.2958° W
 
 
 
@@ -122,4 +123,13 @@ for (i in 1:nrow(GNresult)){
 weather = do.call(rbind, res)
 weather
 
-# write_csv(weather, '_sessions/FinalProject/1_Data/weather_per_coordinate.csv')
+# get daily weather
+weather <- 
+get_power(community = "AG",
+          lonlat = c(20.2976, 40.2958),
+          pars = c("RH2M", "T2M", "PRECTOT"),
+          dates = c("2016-04-29", "2016-06-08"),
+          temporal_average = "DAILY")
+
+
+write_csv(weather, '_sessions/FinalProject/1_Data/weather_per_coordinate.csv')
