@@ -82,7 +82,7 @@ In this practical you'll practice customizing plots created using the `ggplot2` 
 
 2. Open a new R script. At the top of the script, using comments, write your name and the date. Save it as a new file called `plottingII_practical.R` in the `2_Code` folder.  
 
-3. Using `library()` load the set of packages for this practical listed in the packages section above.
+3. Using `library()` load the set of packages for this practical listed in the functions section above.
 
 ```{r, eval = FALSE, echo = TRUE}
 ## NAME
@@ -187,7 +187,6 @@ ggplot(data = crime_long,
   labs(x = '% public transportation', y = 'Crime frequency')
 ```
 
-### A - Setup
 
 1. To begin with store one of the facetted plots of section B as `crime_facets`.
 
