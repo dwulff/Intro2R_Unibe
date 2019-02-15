@@ -11,7 +11,7 @@
 
 
 
-<title>Reporting_practical.utf8</title>
+<title>Reporting</title>
 
 <script src="Reporting_practical_files/jquery-1.11.3/jquery.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -97,9 +97,6 @@ img {
 button.code-folding-btn:focus {
   outline: none;
 }
-summary {
-  display: list-item;
-}
 </style>
 
 
@@ -107,70 +104,9 @@ summary {
 <div class="container-fluid main-container">
 
 <!-- tabsets -->
-
-<style type="text/css">
-.tabset-dropdown > .nav-tabs {
-  display: inline-table;
-  max-height: 500px;
-  min-height: 44px;
-  overflow-y: auto;
-  background: white;
-  border: 1px solid #ddd;
-  border-radius: 4px;
-}
-
-.tabset-dropdown > .nav-tabs > li.active:before {
-  content: "";
-  font-family: 'Glyphicons Halflings';
-  display: inline-block;
-  padding: 10px;
-  border-right: 1px solid #ddd;
-}
-
-.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
-  content: "&#xe258;";
-  border: none;
-}
-
-.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
-  content: "";
-  font-family: 'Glyphicons Halflings';
-  display: inline-block;
-  padding: 10px;
-  border-right: 1px solid #ddd;
-}
-
-.tabset-dropdown > .nav-tabs > li.active {
-  display: block;
-}
-
-.tabset-dropdown > .nav-tabs > li > a,
-.tabset-dropdown > .nav-tabs > li > a:focus,
-.tabset-dropdown > .nav-tabs > li > a:hover {
-  border: none;
-  display: inline-block;
-  border-radius: 4px;
-}
-
-.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
-  display: block;
-  float: none;
-}
-
-.tabset-dropdown > .nav-tabs > li {
-  display: none;
-}
-</style>
-
 <script>
 $(document).ready(function () {
   window.buildTabsets("TOC");
-});
-
-$(document).ready(function () {
-  $('.tabset-dropdown > .nav-tabs > li').click(function () {
-    $(this).parent().toggleClass('nav-tabs-open')
-  });
 });
 </script>
 
@@ -180,15 +116,28 @@ $(document).ready(function () {
 
 
 
+
 <div class="fluid-row" id="header">
 
 
 
+<h1 class="title toc-ignore">Reporting</h1>
+<h4 class="author"><em><table style='table-layout:fixed;width:100%;border:0;padding:0;margin:0'>
+<col width='10%'>
+<col width='10%'>
+<tr style="border:none">
+<td style="display:block;width:100%;text-align:left;vertical-align:bottom;padding:0;margin:0;border:none" nowrap>
+<font style='font-style:normal'>Introduction to R</font><br> <a href='https://dwulff.github.io/Intro2R_Unibe/'> <i class='fas fa-clock' style='font-size:.9em;' ></i> </a> <a href='https://therbootcamp.github.io'> <i class='fas fa-home' style='font-size:.9em;'></i> </a> <a href='mailto:therbootcamp@gmail.com'> <i class='fas fa-envelope' style='font-size: .9em;'></i> </a> <a href='https://www.linkedin.com/company/basel-r-bootcamp/'> <i class='fab fa-linkedin' style='font-size: .9em;'></i> </a> <a href='https://therbootcamp.github.io'> <font style='font-style:normal'>Bern R Bootcamp</font> </a>
+</td>
+<td style="width:100%;vertical-align:bottom;text-align:right;padding:0;margin:0;border:none">
+<img src='https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/by-sa.png' style='height:15px;width:80px'/>
+</td>
+</tr>
+</table></em></h4>
 
 </div>
 
 
-<hr />
 <p align="center">
 <img width="100%" src="image/reporting.png" margin=0><br> <font style="font-size:10px">adapted from <a href="https://www.dertreasurer.de/news/software-it/neue-technologien-helfen-beim-reporting-60631/">dertreasurer.de</a></font>
 </p>
@@ -297,7 +246,7 @@ include_graphics(path = &quot;XXX&quot;)</code></pre>
 <li><p>Include the appropriate text and formatting to write the sentence below. When writing the number of columns and rows, use in-line chunks to get the data directly from the <code>mcdonalds</code> object! You can get the number of columns with <code>ncol(mcdonalds)</code> and the number of rows with <code>nrow(mcdonalds)</code></p></li>
 </ol>
 <ul>
-<li>The <code>mcdonalds</code> data has 24 columns and 260 rows. Each row corresponds to a different menu item. The data originally come from <a href="https://www.kaggle.com/mcdonalds/nutrition-facts">https://www.kaggle.com/mcdonalds/nutrition-facts</a>.</li>
+<li>The <code>mcdonalds</code> data has 24 columns and 260 rows. Each row corresponds to a different menu item. The data originally come from <a href="https://www.kaggle.com/mcdonalds/nutrition-facts" class="uri">https://www.kaggle.com/mcdonalds/nutrition-facts</a>.</li>
 </ul>
 <ol start="10" style="list-style-type: decimal">
 <li>Knit the document!</li>
@@ -476,8 +425,8 @@ kable(x = tidy(cal_sod_lm),
 <div id="documentation" class="section level3">
 <h3>Documentation</h3>
 <ul>
-<li><p>The <code>rmdformats</code> package has many nice templates for .Rmd files. Look at their GitHub page at <a href="https://github.com/juba/rmdformats">https://github.com/juba/rmdformats</a> for examples. If you install the package from CRAN with <code>install.packages('rmdformats')</code>, you’ll get lots of new templates when you open a new Markdown file in RStudio.</p></li>
-<li><p>If you want to use custom .css files, check out the the <a href="http://rmarkdown.rstudio.com/html_document_format.html#custom_css">R Studio HTML document guide</a>. You can also look at the .css files underlying the <code>rmdformats</code> package on their GitHub page here <a href="https://github.com/juba/rmdformats">https://github.com/juba/rmdformats</a>. For example, here is their .css file for the “html docco” template <a href="https://raw.githubusercontent.com/juba/rmdformats/master/inst/templates/html_docco/docco.css">https://raw.githubusercontent.com/juba/rmdformats/master/inst/templates/html_docco/docco.css</a></p></li>
+<li><p>The <code>rmdformats</code> package has many nice templates for .Rmd files. Look at their GitHub page at <a href="https://github.com/juba/rmdformats" class="uri">https://github.com/juba/rmdformats</a> for examples. If you install the package from CRAN with <code>install.packages('rmdformats')</code>, you’ll get lots of new templates when you open a new Markdown file in RStudio.</p></li>
+<li><p>If you want to use custom .css files, check out the the <a href="http://rmarkdown.rstudio.com/html_document_format.html#custom_css">R Studio HTML document guide</a>. You can also look at the .css files underlying the <code>rmdformats</code> package on their GitHub page here <a href="https://github.com/juba/rmdformats" class="uri">https://github.com/juba/rmdformats</a>. For example, here is their .css file for the “html docco” template <a href="https://raw.githubusercontent.com/juba/rmdformats/master/inst/templates/html_docco/docco.css" class="uri">https://raw.githubusercontent.com/juba/rmdformats/master/inst/templates/html_docco/docco.css</a></p></li>
 </ul>
 </div>
 <div id="cheatsheet" class="section level3">
