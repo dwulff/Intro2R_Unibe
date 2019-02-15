@@ -786,7 +786,7 @@ ggsave(filename = "my_plot_name",
 
 |File | Rows | Columns | 
 |:----|:-----|:------|
-|[crime.csv](https://raw.githubusercontent.com/therbootcamp/Intro2R_Unibe/master/_sessions/PLottingII/1_Data/crime.csv) | 1071 | 36 | 
+|[crime.csv](https://raw.githubusercontent.com/therbootcamp/Intro2R_Unibe/master/_sessions/PlottingII/1_Data/crime.csv) | 1071 | 36 | 
 
 The `crime` data set is subsets of the Communities and Crime Unnormalized Data Set data set from the UCI Machine Learning Repository. Find variable descriptions below or at [**Communities and Crime Unnormalized Data Set**](https://archive.ics.uci.edu/ml/datasets/Communities+and+Crime+Unnormalized)
 
