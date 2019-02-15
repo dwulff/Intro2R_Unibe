@@ -1,6 +1,6 @@
 ---
 title: "Case Study: Dimarta Clinical Trial"
-author: "Introduction to Data Science with R, October 2018<br/><a href='https://therbootcamp.github.io'>www.therbootcamp.com</a><br/><a href='https://twitter.com/therbootcamp'>@therbootcamp</a>"
+author: "Introduction to R, February 2019<br/><a href='https://therbootcamp.github.io'>www.therbootcamp.com</a><br/><a href='https://twitter.com/therbootcamp'>@therbootcamp</a>"
 output:
   html_document:
     css: practical.css
@@ -91,16 +91,16 @@ trial_df$qol_end <- trial_df$qol_start + round(rnorm(n = 300, mean = 0, sd = 1),
 
 
 
-## {.tabset}
+# {.tabset}
 
 
-### Overview
+## Overview
 
 In this case study, we will look at the results of a clinical trial exploring the effectiveness of a new medication called dimarta on reducing histamine in patients with a disease that leads to chronically high histamine levels. In the study, 300 patients were assigned to one of three different treatment arms. One arm was given a placebo. The other arm was given adiclax -- the standard of care for the disease. Finally, the third arm was given dimarta. There were two main measures of interest in the trial: patient's changes in histamine from the beginning to the end of the trial, and their change in quality of life (measured by self report). 
 
 In addition to exploring the effects of the three medications, the researchers are interested in the extent to which three different biomarkers, dw, ms, and np, are correlated with therapeutic outcomes. In other words, to patients that express one or more of these biomarkers have better, or worse, outcomes that those that do not express these biomarkers?
 
-### Datasets
+## Datasets
 
 ```{r, eval = TRUE, message = FALSE}
 library(tidyverse)
@@ -152,9 +152,9 @@ Table: Table3. `dimarta_biomarker.csv` variable description:
 
 
 
-# Tasks
+## Tasks
 
-## A - Getting Setup
+### A - Getting Setup
 
 1. Open your `baselrbootcamp` R project. It should already have the folders `1_Data` and `2_Code`.
 
@@ -168,7 +168,7 @@ Table: Table3. `dimarta_biomarker.csv` variable description:
 library(tidyverse)
 ```
 
-## B - Data I/O
+### B - Data I/O
 
 2. Using `read_csv()`, load the `dimarta_trial.csv`, `dimarta_demographics.csv`, and `dimarta_biomarker.csv` datasets as *three* new objects called `trial_df`, `demographics_df`, and `biomarker_df`.
 
@@ -182,9 +182,9 @@ biomarker_df <- read_csv("XXX/XXX")
 
 ```{r, echo = FALSE, eval = TRUE, message = FALSE}
 ## read in datasets
-trial_df <- read_csv("_sessions/CaseStudies/1_Data/dimarta_trial.csv")
-demographics_df <- read_csv("_sessions/CaseStudies/1_Data/dimarta_demographics.csv")
-biomarker_df <- read_csv("_sessions/CaseStudies/1_Data/dimarta_biomarker.csv")
+trial_df <- read_csv("1_Data/dimarta_trial.csv")
+demographics_df <- read_csv("1_Data/dimarta_demographics.csv")
+biomarker_df <- read_csv("1_Data/dimarta_biomarker.csv")
 ```
 
 
@@ -196,7 +196,7 @@ demographics_df
 biomarker_df
 ```
 
-## C - Data Wrangling
+### C - Data Wrangling
 
 1. Change the name of the column `arm` in the `trial_df` data to `StudyArm`.
 
@@ -425,7 +425,7 @@ dimarta_df %>%
   )
 ```
 
-## D - Plotting
+### D - Plotting
 
 1. Create boxplots showing the relationship between study arm and histamine change.
 
@@ -539,7 +539,7 @@ ggplot(data = dimarta_df,
        caption = "Dimarta")
 ```
 
-## D - Statistics
+### E - Statistics
 
 1. Create a regression model predicting final histamine levels as a function of all variables in the dataset that make clinical sense to include. Call it `full_glm`.
 

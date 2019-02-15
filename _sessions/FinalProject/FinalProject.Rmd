@@ -200,6 +200,19 @@ appointments %>%
 
 3. 
 
+### E - Presenting the results
+
+1. Generate a new file with `File - R Markdown - Document` (with the default: HTML). Save this file to your `BernRBootcamp` folder. 
+
+2. Document your 3 central insights out of this dataset. Describe what the insights are with your own words and document them with figures, statistics and tables produced with R code in your Marddown file `FinalReport.html`.   
+
+3. Generate a new file with `File - R Markdown - Presentation` (with the default: HTML Isoslides). Save this file to your `BernRBootcamp` folder `FinalPresentation.html`. 
+
+4. Prepare a 15 minute presentation documenting your approach to the Document your 3 central insights out of this dataset. Describe what the insights are with your own words and document them with figures, statistics and tables produced with R code in your Marddown file.   
+ 
+
+
+
 ## Datasets
 
 ```{r, eval = TRUE, message = FALSE}
@@ -254,44 +267,3 @@ weather <- read_csv('1_Data/weather.csv')
 |`tidyverse`|`install.packages("tidyverse")`|
 |`lubridate`|`install.packages("lubridate")`|
 |`tidylog`|`devtools::install_github("elbersb/tidylog")`|
-
-## Glossary (UPDATE!)
-
-*Wrangling*
-
-| Function| Package | Description |
-|:---|:------|:---------------------------------------------|
-|     `rename()`|`dplyr`|    Rename columns| 
-|     `select()`|`dplyr`|    Select columns based on name or index| 
-|     `filter()`|`dplyr`|    Select rows based on some logical criteria| 
-|     `arrange()`|`dplyr`|    Sort rows| 
-|     `mutate()`|`dplyr`|    Add new columns|
-|     `case_when()`|`dplyr`|    Recode values of a column| 
-|     `group_by(), summarise()`|`dplyr`|   Group data and then calculate summary statistics|
-|     `left_join()`|`dplyr`|   Combine multiple data sets using a key column|
-|     `spread()`|`tidyr`|    Convert long data to wide format - from rows to columns| 
-|     `gather()`|`tidyr`|    Convert wide data to long format - from columns to rows|
-
-*Statistical Tests*
-
-| Function| Hypothesis Test|
-|:------|:-------------------|
-|     `t.test()`|    One and two sample t-test|
-|     `cor.test()`|    Correlation test|
-|     `glm()`, `lm()`|    Generalized linear model and linear model|
-
-## Cheatsheets
-
-<figure>
-<center>
-<a href="https://github.com/rstudio/cheatsheets/raw/master/data-transformation.pdf">
-  <img src="https://www.rstudio.com/wp-content/uploads/2018/08/data-transformation-600x464.png" alt="Dplyr" style="width:70%">
-  <figcaption>https://github.com/rstudio/cheatsheets/raw/master/data-transformation.pdf</figcaption></a>
-</figure>
-
-<figure>
-<center>
-<a href="https://github.com/rstudio/cheatsheets/raw/master/lubridate.pdf">
-  <img src="https://www.rstudio.com/wp-content/uploads/2018/08/lubridate-600x464.png" alt="Lubridate" style="width:70%">
-  <figcaption>https://github.com/rstudio/cheatsheets/raw/master/lubridate.pdf</figcaption></a>
-</figure>

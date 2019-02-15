@@ -595,8 +595,4 @@ knitr::include_graphics("https://raw.githubusercontent.com/therbootcamp/therboot
 
 # Questions?
 
-## [Dynamic Reports Practical](https://therbootcamp.github.io/BaselRBootcamp_2018July/_sessions/DynamicReports/DynamicReports_practical.html)
-
-```{r, echo = FALSE, out.width = "80%"}
-knitr::include_graphics("https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/minichunk_big_ss.png")
-```
+<h1><a href="https://dwulff.github.io/Intro2R_Unibe/_sessions/Reporting/DynamicReports_practical.html">Practical</a></h1>

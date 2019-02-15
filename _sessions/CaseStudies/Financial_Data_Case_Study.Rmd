@@ -1,6 +1,6 @@
 ---
 title: "Case Study: Financial Data"
-author: "Introduction to Data Science with R, October 2018<br/><a href='https://therbootcamp.github.io'>www.therbootcamp.com</a><br/><a href='https://twitter.com/therbootcamp'>@therbootcamp</a>"
+author: "Introduction to R, February 2019<br/><a href='https://therbootcamp.github.io'>www.therbootcamp.com</a><br/><a href='https://twitter.com/therbootcamp'>@therbootcamp</a>"
 output:
   html_document:
     css: practical.css
@@ -24,14 +24,14 @@ library(tidyverse)
 
 <figure>
 <center>
-  <img src="https://www.techemergence.com/wp-content/uploads/2016/08/Machine-Learning-in-Finance.jpg" alt="Trulli">
-  <figcaption><a href="https://www.techemergence.com/wp-content/uploads/2016/08/Machine-Learning-in-Finance.jpg">source</a></figcaption>
+  <img src="https://static.memrise.com/uploads/course_photos/3146044000150629230223.jpg" alt="Memrise">
+  <figcaption><a href="https://static.memrise.com/uploads/course_photos/3146044000150629230223.jpg">source</a></figcaption>
 </figure>
 
 
-## {.tabset}
+# {.tabset}
 
-### Overview
+## Overview
 
 In this case study, you will analyse historic data of three major stock indices, the **Dow Jones**, the **DAX**, and the **Nikkei**, and the exchange rates between the **US dollar**, the **Euro**, and the **Yen**. Using this data, you will address several questions. 
 
@@ -76,9 +76,9 @@ library(haven)
 |     Date (currently unnamed)|  Current day|
 |     Rate (currently unnamed)|  Day's exchange rate in terms of 1 US Dollar. E.g., a value of .75 means that the respective currency is worth a fraction of .75 of 1 US Dollar|
 
-# Tasks
+## Tasks
 
-## A - Getting setup
+### A - Getting setup
 
 1. Open your `baselrbootcamp` R project. It should already have the folders `1_Data` and `2_Code`. Inside of the `1_Data` folder, you should have all of the data sets listed in the Datasets section above!
 
@@ -92,7 +92,7 @@ library(haven)
 library(tidyverse)
 ```
 
-## B - Data
+### B - Data
 
 1. In this practical, you will load three external data sets `\^DJI.csv`, `\^GDAXI.csv`, and `\^N225.csv`. However, two of these data files are not yet tidy. Specifically, `\^GDAXI.csv` and `\^N225.csv` include a specific character string to represent missings in the data and is not identify by R as such. To identify the `NA`-character string in the data open one of them in a text viewer, (via RStudio or via, e.g., *textedit*). Do you see the string value that indicates missing data? 
 
@@ -156,7 +156,7 @@ yen_usd <- yen_usd %>%
 
 7. Now you should have tidier data! Go ahead an explore the data a bit. What data do they contain? Consider using `summary` or `skimr::skim()`.
 
-## C - Wrangling
+### C - Wrangling
 
 1. Before we can begin the analysis of the data, we to join the individual data frames into a single data frame called `financial_data` that contains only the dates variable (`Date`), the stock index (unadjusted) closing prices (`Close`), as well as the exchange rates. Begin by joining `dow` and `dax` using `inner_join()`, selecting only the `Date` and `Close` variables of each data frame. See code below.
 
@@ -242,7 +242,7 @@ financial_long
 7. Now your data is tidy proper (at least with regard to the analyses required here)! Go ahead an explore the data a bit. What data do they contain? Consider using `summary` or `skimr::skim()`.
 
 
-## D - Analysing and Plotting
+### D - Analysing and Plotting
 
 1. Plot the development of each of the stock indices over the available time periods. First, select rows corresponding to the stock index prices. Then use the `ggplot()`-function to start a plot. Then, Map `Date` to `x` and `value` to `y` in the `aes()`-function. And, finally, add a `geom_line()`. Does the plot look right?
 

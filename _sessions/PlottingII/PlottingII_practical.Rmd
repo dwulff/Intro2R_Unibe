@@ -187,6 +187,10 @@ ggplot(data = crime_long,
   labs(x = '% public transportation', y = 'Crime frequency')
 ```
 
+<<<<<<< HEAD
+=======
+### A - Setup
+>>>>>>> e9bd8b596c1db3c7e4ac77cf020a846af2279d9a
 
 1. To begin with store one of the facetted plots of section B as `crime_facets`.
 
