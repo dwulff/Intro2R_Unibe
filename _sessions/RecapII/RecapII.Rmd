@@ -28,8 +28,9 @@ output:
       highlightLines: true
       countIncrementalSlides: false
       ratio: '16:9'
-
+      
 ---
+
 layout: true
 
 <div class="my-footer">
@@ -50,8 +51,11 @@ layout: true
       </font>
     </a>
     </span>
-  </div> 
+  </div>
+  
+  
 ---
+
 
 ```{r setup, include=FALSE}
 options(htmltools.dir.version = FALSE)
