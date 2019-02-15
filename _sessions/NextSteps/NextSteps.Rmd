@@ -108,27 +108,22 @@ In 2 days, 6 sessions, and 16 hours you have come a long way.
 
 
 
-# Next steps
+# Stuff we didn't cover
 
 .pull-left4[
-<font size = 4><i>What we would have liked to cover</i><br>
+
 <font size = 6>
+
 1. Networks<br>
 2. Statistics<br>
 3. Machine learning<br>
 4. Text analysis<br>
 5. Rcpp<br>
 6. Forms<br>
-7. R on servers<br>
+
 </font>
 <br>
 
-<font size = 4><i>How to continue</i><br>
-<font size = 6>
-8. Books<br>
-9. Websites R<br>
-10. Groups<br>
-</font>
 ]
 
 .pull-right5[
@@ -137,12 +132,30 @@ In 2 days, 6 sessions, and 16 hours you have come a long way.
 </p>
 ]
 
+---
+
+# Networks
+
+A <high>social graph</high> of package Co-authors using [`tidyverse`](https://cran.r-project.org/web/packages/tidyverse/index.html) plus [`ggraph`](https://cran.r-project.org/web/packages/ggraph/index.html), an extension for [`ggplot2`](https://cran.r-project.org/web/packages/ggplot2/index.html) for graphs (aka networks) and [`igraph`](https://cran.r-project.org/web/packages/igraph/index.html), an extremely powerful library for network analysis. Find the code and additional explanations [here](https://www.r-bloggers.com/exploring-the-cran-social-network/).
+
+.pull-left[
+  <p align="center"><img src="https://i1.wp.com/www.pieceofk.fr/wp-content/uploads/2017/09/Rplot04.png?zoom=2&w=450" width=450><br>
+  <font size=2>source <a href="https://www.r-bloggers.com/exploring-the-cran-social-network/">R-bloggers.com</a></p>
+  ]
+
+.pull-right[
+<p align="center">
+<br><br>
+  <img src="https://i1.wp.com/www.pieceofk.fr/wp-content/uploads/2017/09/Rplot02.png?zoom=2&w=450" width=450><br><br><br>
+  <font size=2>source <a href="https://www.r-bloggers.com/exploring-the-cran-social-network/">R-bloggers.com</a></p>
+  ]
+
 
 ---
 
 .pull-left5[
 
-# Stats packages
+# Stats
 
 > "It's easy to lie with statistics; it is easier to lie without them."
 
@@ -162,7 +175,7 @@ In 2 days, 6 sessions, and 16 hours you have come a long way.
 .pull-right4[
 <br><br>
 <p align = "center">
-<img src="https://discourse-cdn-sjc1.com/business6/uploads/analyticsvidhya/143/8d72f17e0b2a743d.png" height = 500><br>
+<img src="https://imgs.xkcd.com/comics/p_values_2x.png" height = 500><br>
 <font size=2><a href="http://www.xkcd.com/">xkcd.com</a>
 </p>
 ]
@@ -224,45 +237,6 @@ In 2 days, 6 sessions, and 16 hours you have come a long way.
 
 ]
 
-
----
-
-# Deep learning
-
-<img src="https://cdn-images-1.medium.com/max/1600/1*R9Vd96dBUU2fJO9dnK0igA.png">
-
----
-
-# Deep learning: Tensorflow
-
-.pull-left5[
-```{r, eval = F}
-# Get Keras
-install.packages(keras)
-library(keras)
-install_keras()
-
-# Define model
-model <- keras_model_sequential() 
-model %>% 
-  layer_dense(units = 256,
-              activation = 'relu', 
-              input_shape = c(784)) %>% 
-  layer_dropout(rate = 0.4) %>% 
-  layer_dense(units = 128, 
-              activation = 'relu') %>%
-  layer_dropout(rate = 0.3) %>%
-  layer_dense(units = 10, 
-              activation = 'softmax')
-```
-]
-
-.pull-right45[
-<a href="https://tensorflow.rstudio.com/"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/11/TensorFlowLogo.svg/2000px-TensorFlowLogo.svg.png" height = 400></a>
-
-]
-
-
 ---
 
 # Text analysis
@@ -307,28 +281,6 @@ model %>%
 
 
 
-
-
-
----
-
-# Network analysis
-
-A <high>social graph</high> of package Co-authors using [`tidyverse`](https://cran.r-project.org/web/packages/tidyverse/index.html) plus [`ggraph`](https://cran.r-project.org/web/packages/ggraph/index.html), an extension for [`ggplot2`](https://cran.r-project.org/web/packages/ggplot2/index.html) for graphs (aka networks) and [`igraph`](https://cran.r-project.org/web/packages/igraph/index.html), an extremely powerful library for network analysis. Find the code and additional explanations [here](https://www.r-bloggers.com/exploring-the-cran-social-network/).
-
-.pull-left[
-  <p align="center"><img src="https://i1.wp.com/www.pieceofk.fr/wp-content/uploads/2017/09/Rplot04.png?zoom=2&w=450" width=450><br>
-  <font size=2>source <a href="https://www.r-bloggers.com/exploring-the-cran-social-network/">R-bloggers.com</a></p>
-  ]
-
-.pull-right[
-<p align="center">
-<br><br>
-  <img src="https://i1.wp.com/www.pieceofk.fr/wp-content/uploads/2017/09/Rplot02.png?zoom=2&w=450" width=450><br><br><br>
-  <font size=2>source <a href="https://www.r-bloggers.com/exploring-the-cran-social-network/">R-bloggers.com</a></p>
-  ]
-
-
 ---
 
 # Rcpp
@@ -367,44 +319,10 @@ ggmap(get_map(c(7.588576, 47.559601),zoom=16))
 
 .pull-right45[
 
-<p align="center"><br><br><iframe src="https://docs.google.com/forms/d/e/1FAIpQLSeWa5uwZqD7O_jj5h59UFCR-iqrLmFdbc37untHUVbwRUrXWw/viewform?embedded=true" width="430" height="550">Wird geladen...</iframe></p>
+<p align="center"><br><br><iframe src="https://docs.google.com/forms/d/e/1FAIpQLSdGYg5kPpINYoHJ9ronAr8eEE6w8Y9SG0r-oqGv-tw_sWh-UQ/viewform?embedded=true" width="430" height="550">Wird geladen...</iframe></p>
 
 
 ]
-
-
----
-
-# R on servers
-
-With the need for more computing power for, e.g., machine learning, R is also moving more and more to the <high>server and cluster sphere</high>. Rstudio offers a convenient (and free) solution to access [RStudio](https://www.rstudio.com/products/rstudio/) sessions on a <high>remote linux server</high> via a browser. RStdudio also offers the `sparklyr` package integrating the [Spark](https://spark.apache.org/) architecture for efficient cluster computing with `dplyr`. Other packages exist to interface with [Hadoop](http://hadoop.apache.org/) (`RHadoop`) and [SQL](https://de.wikipedia.org/wiki/SQL) (`RSQLite`). 
-
-.pull-left6[
-
-<p align="left">
-  <img src="https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/rstudiologin.png" width=435></p>
-
-]
-
-.pull-right4[
-
-<p align="left">
-  <img src="https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/rserver_square.png" width=330>
-
-]
-
----
-
-# Remote databases
-
-R provides <high>all necessary tools to pull data from or directly work with</high> remote databases such as, e.g., a `SQL` database. Find out more at:
-
-<br><br>
-<div class="center_text_2">
-  <span>
-  <a href="https://db.rstudio.com/">db.rstudio.com</a>
-  </span>
-</div> 
 
 
 ---
@@ -527,8 +445,6 @@ Here is a very incomplete series of good books. They are ordered by complexity, 
 
 The web is a great place to learn about R. 
 
-<font size = 4><i>Best begin your journey with:</i></font>
-
 [Google](www.google.com) or [Rseek](www.rseek.org), which is a wrapper around google to maximize hits related to R. However, most of the time Google works just fine. Just be sure to add *r* to the the search query. 
 
 <font size = 4><i>Then you will most likely be redirected to one of two pages</i></font>
@@ -541,7 +457,7 @@ The web is a great place to learn about R.
 ]
 
 .pull-right5[
-<p align="left" style="padding: 0 0px"><br><br><br><br><br><br><br><br><br>
+<p align="left" style="padding: 0 0px"><br><br><br><br><br><br><br>
     <a href="https://www.google.com/"><img border="0" alt="W3Schools" src="https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/google.png" height="100"></a><img border="0" alt="W3Schools" src="https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/comma.png" height="50"><a href="http://rseek.org/"><img border="0" alt="W3Schools" src="https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/rseek.png" height="100" style="margin-left:10px; margin-buttom:10px"></a><br><br><br><br>
     <a href="https://www.r-bloggers.com/"><img border="0" alt="W3Schools" src="https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/rbloggers.png" height="105" style="margin-bottom:10px"></a><br>
   <a href="https://stackoverflow.com/"><img border="0" alt="W3Schools" src="https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/stackoverflow.png" height="105"></a>
@@ -552,34 +468,22 @@ The web is a great place to learn about R.
 
 ---
 
-# R meetup groups
+# Meet other R enthusiasts at...
 
-Great place to meet other <high>R enthusiast</high> in and outside of industry and see interesting presentions on R's latest developments. 
-
-.pull-left5[
-<p align="left">
-    <a href="https://www.meetup.com/de-DE/BaselR/"><img border="0" alt="W3Schools" src="https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/baselr.png" height="400"></a>
-]
-
-.pull-right5[
-
-<p align="left">
-    <a href="https://www.meetup.com/de-DE/Zurich-R-User-Group/?chapter_analytics_code=UA-94107719-1"><img border="0" alt="W3Schools" src="https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/zurichr.png" height="400"></a>
-
-]
+<p align="center">
+<img src="image/bernr.png" style="height:440px">
+</p>
 
 ---
 
 # Consulting
-
-Feel free to contact us.
 
 <table class="tg"  style="cellspacing:0; cellpadding:0; border:none">
   <tr>
     <th class="tg-yw4l">
     
   <p align="center"><br>
-    <a href="www.dirkwulff.org"><img border="0" alt="W3Schools" src="https://www.mpib-berlin.mpg.de/sites/default/files/imagecache/marginal/dirk_wulff2smallnarrow.jpg" height="230"></a><br>
+    <a href="www.dirkwulff.org"><img border="0" alt="W3Schools" src="https://therbootcamp.github.io/assets/img/dirk_square_small2.png" height="230" style="border-radius:50%"></a><br>
 
 <p align="center">
 <font size = 5>Dr. Dirk Wulff</font><br><br>
@@ -592,7 +496,7 @@ Feel free to contact us.
   
     </th>
     <th class="tg-yw4l"><p align="center"><br>
-    <a href="www.nathanieldphillips.com/"><img border="0" alt="W3Schools" src="https://avatars3.githubusercontent.com/u/8480980?v=4&s=460" height="230"></a><br>
+    <a href="www.nathanieldphillips.com/"><img border="0" alt="W3Schools" src="https://therbootcamp.github.io/assets/img/nathaniel_square_small.png" height="230" style="border-radius:50%"></a><br>
 
 <p align="center">
 <font size = 5>Dr. Nathaniel Phillips</font><br><br>
@@ -602,38 +506,40 @@ Feel free to contact us.
 <a href="https://github.com/ndphillips/yarrr"><b>yarrr</b></a>, <br>
 <a href="https://github.com/ndphillips/FFTrees"><b>FFTrees</b></a></th>
 
- <th class="tg-yw4l"><p align="center">
+<th class="tg-yw4l">
+ <p align="center">
 <p align="center"><br>
-    <a href="https://psychologie.unibas.ch/de/personen/markus-steiner/about-me/"><img border="0" alt="W3Schools" src="https://avatars0.githubusercontent.com/u/26483702?s=400&u=d2bfbcee6585b175144fbd2cb17d1bab9a2bac05&v=4" height="230"></a><br>
+    <a href="https://psychologie.unibas.ch/de/personen/markus-steiner/about-me/"><img border="0" alt="W3Schools" src="https://therbootcamp.github.io/assets/img/markus_square2.png" height="230" style="border-radius:50%"></a><br>
 
 <p align="center">
 <font size = 5>Markus Steiner</font><br><br>
 <a href="https://github.com/mdsteiner"><b>github.com/mdsteiner</b></a><br>
 <font size=4><i>package: </i></font> 
 <a href="https://github.com/ndphillips/ShinyPsych"><b>ShinyPsych</b> <br><br><br>
-</p></th></tr>
+</p></th>
+
+<th class="tg-yw4l">
+ <p align="center">
+<p align="center"><br>
+    <a href="www.schulte-mecklenbeck.com"><img border="0" alt="W3Schools" src="https://therbootcamp.github.io/assets/img/michael_square.png" height="230" style="border-radius:50%"></a><br>
+
+<p align="center">
+<font size = 5>Dr Michael Schulte-M.</font><br><br>
+<a href="www.schulte-mecklenbeck.com"><b>schulte-mecklenbeck.com</b></a><br>
+<a href="https://github.com/schultem"><b>github.com/schultem</b></a><br> <br><br>
+</p></th>
+
+
+</tr>
+
 </table>
 
 ---
 
-# Next courses
+# Next Bootcamps
+
 
 .pull-left45[
-
-<p align="center">
-
-<a href = "https://advancedstudies.unibas.ch/courses/course/applied-machine-learning-with-r-208291">
-<font style="font-size:26px;weight:700"> Applied Machine Learning with R </font><br>
-<br>
-<img src="image/machine_learning.png" height="260px" width="480px"></img><br>
-
-<high>2 days, January 19-20, 2019</high></a>
-
-</p>
-
-]
-
-.pull-right45[
 
 
 <p align="center">
@@ -644,14 +550,30 @@ Feel free to contact us.
 <br>
 <img src="image/statistics.png" height="260px" width="480px"></img><br>
 
-<high>2 days, February/March, 2019</high><br><br><br>
+<high>2 days, April 6-7, 2019</high><br><br><br>
 </a>
-<i>Depending on pre-registration!</i>
 
 </p>
 
 
 ]
+
+.pull-right45[
+
+<p align="center">
+
+<a href = "https://advancedstudies.unibas.ch/courses/course/applied-machine-learning-with-r-208291">
+<font style="font-size:26px;weight:700"> Applied Machine Learning with R </font><br>
+<br>
+<img src="image/machine_learning.png" height="260px" width="480px"></img><br>
+
+<high>2 days, May 11-12, 2019</high></a>
+
+</p>
+
+]
+
+
 
 ---
 
