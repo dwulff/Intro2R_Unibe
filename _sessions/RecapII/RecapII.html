@@ -47,7 +47,7 @@ layout: true
 
 # Statistics I
 
-#### &lt;high&gt;Descriptive statistics&lt;/high&gt; with `dplyr`
+#### &lt;high&gt;Descriptive statistics&lt;/high&gt; with &lt;mono&gt;dplyr&lt;/mono&gt;
 
 
 ```r
@@ -63,7 +63,8 @@ baselers %&gt;%
 ```
 
 
-#### &lt;high&gt;Simple hypothesis tests&lt;/high&gt; with `stats`
+#### &lt;high&gt;Simple hypothesis tests&lt;/high&gt; with &lt;mono&gt;stats&lt;/mono&gt;
+
 
 ```r
 # Simple hypothesis test
@@ -75,7 +76,7 @@ t.test(baselers$happiness,
 ]
 
 .pull-right45[
-
+&lt;br&gt;&lt;br&gt;&lt;br&gt;
 &lt;p align = "center"&gt;
 &lt;img src="image/null_hypothesis.png" height=430px&gt;&lt;br&gt;
 &lt;font style="font-size:10px"&gt;from &lt;a href="https://xkcd.com/892/"&gt;xkcd.com&lt;/a&gt;&lt;/font&gt;
@@ -83,10 +84,11 @@ t.test(baselers$happiness,
 
 ]
 
+
 ---
 
 
-# `summarise()`
+# &lt;mono&gt;summarise()&lt;/mono&gt;
 
 .pull-left45[
 
@@ -132,11 +134,12 @@ baselers %&gt;%
 
 
 ]
+
 ---
 
-.pull-left45[
+# &lt;mono&gt;group_by()&lt;/mono&gt; + &lt;mono&gt;summarise()&lt;/mono&gt;
 
-# `group_by()` + `summarise()`
+.pull-left45[
 
 Use `group_by()` to &lt;high&gt;group data&lt;/high&gt; according to one or more columns.
 
@@ -160,31 +163,6 @@ data %&gt;%
 
 .pull-right5[
 
-&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;
-
-`group_by(sex)` - what happens?
-]
-
-
----
-
-
-.pull-left25[
-
-# Full pipeline
-
-
-Combine &lt;high&gt;tranformation&lt;/high&gt;, &lt;high&gt;organization&lt;/high&gt;, and &lt;high&gt;aggregating&lt;/high&gt; operations at once!
-
-Just use the &lt;high&gt;pipe %&gt;%&lt;/high&gt;.
-
-It can easily happen, that your pipes get very long - the &lt;a href="https://github.com/elbersb/tidylog"&gt;tidylog package&lt;/a&gt; can come in handy for that.
-
-
-]
-
-.pull-right65[
-&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;
 
 ```r
 baselers %&gt;%
@@ -197,24 +175,36 @@ baselers %&gt;%
 ```
 
 ]
+
+
 ---
 
-.pull-left25[
+# &lt;mono&gt;group_by()&lt;/mono&gt; + &lt;mono&gt;summarise()&lt;/mono&gt;
 
-# Full pipeline
+.pull-left45[
+
+Use `group_by()` to &lt;high&gt;group data&lt;/high&gt; according to one or more columns.
+
+Then, use `summarise()` to &lt;high&gt;calculate summary statistics&lt;/high&gt; for each group.
+
+You can include &lt;high&gt;one or more&lt;/high&gt; grouping variables.
 
 
-Combine &lt;high&gt;tranformation&lt;/high&gt;, &lt;high&gt;organization&lt;/high&gt;, and &lt;high&gt;aggregating&lt;/high&gt; operations at once!
-
-Just use the &lt;high&gt;pipe %&gt;%&lt;/high&gt;.
-
-It can easily happen, that your pipes get very long - the &lt;a href="https://github.com/elbersb/tidylog"&gt;tidylog package&lt;/a&gt; can come in handy for that.
+```r
+data %&gt;%
+  group_by(A, B, ...) %&gt;%
+  summarise(
+    NAME = SUMMARY_FUN(A),
+    NAME = SUMMARY_FUN(B),
+    ...
+  )
+```
 
 
 ]
 
-.pull-right65[
-&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;
+.pull-right5[
+
 
 ```r
 baselers %&gt;%
@@ -238,121 +228,90 @@ baselers %&gt;%
 
 ---
 
-.pull-left45[
-
-# Stats? There is a package for that!
-
-&lt;br&gt;
-
-| Package| Models|
-|------:|:----|
-| `stats`|Generalized linear model|
-|     `afex`|   Anovas|
-|     `lme4`|   Mixed effects regression|
-|     `rpart`|    Decision Trees|
-|     `BayesFactor`| Bayesian statistics|
-|     `igraph`| Network analysis|
-|     `neuralnet`| Neural networks|
-|     `MatchIt`| Matching and causal inference|
-|     `survival`| Longitudinal survival analysis|
-|     ...| Anything you can ever want!|
-
-
-
-]
-
-.pull-right5[
-
-&lt;p align="center"&gt;
-  &lt;img src="https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/statistical_procedures.png" height="450px" vspace="20"&gt;
-&lt;/p&gt;
-
-]
-
----
+.pull-left3[
 
 # Decision tree
 
+]
+
+.pull-right6[
+
 &lt;p align="center"&gt;
-  &lt;img src="https://s3-eu-west-1.amazonaws.com/pfigshare-u-previews/98305/preview.jpg" height="450px" vspace="20"&gt;
+  &lt;img src="https://s3-eu-west-1.amazonaws.com/pfigshare-u-previews/98305/preview.jpg" height="580px" vspace="20"&gt;
 &lt;/p&gt;
 
-
----
-
-.pull-left4[
-
-# Basic structure of statistical functions
-
-Statistical functions always require a &lt;high&gt;data frame&lt;/high&gt; called `data`, e.g.,...
-
-
-|sex    | age| height| weight| income|
-|:------|---:|------:|------:|------:|
-|male   |  44|  174.3|  113.4|   6300|
-|male   |  65|  180.3|   75.2|  10900|
-|female |  31|  168.3|   55.5|   5100|
-&lt;br&gt;
-They also require a &lt;high&gt;formula&lt;/high&gt; that specifies a &lt;high&gt;dependent&lt;/high&gt; variable (y) as a function of one or more &lt;high&gt;independent&lt;/high&gt; variables (x1, x2, ...) in the form:
-
-&lt;p align='center'&gt;&lt;font size = 6&gt;formula = y ~ x1 + x2 +...&lt;/font&gt;&lt;/p&gt;
-
-]
-
-.pull-right55[
-
-How to create a statistical object:
-
-
-```r
-# Predict income with age and height
-my_glm &lt;- glm(formula = XXX ~ XXX + XXX,
-              data = XXX)
-```
-
-
-![](https://raw.githubusercontent.com/therbootcamp/Erfurt_2018June/master/_sessions/_image/formula_description.png)&lt;!-- --&gt;
-
-
 ]
 
 ---
 
-.pull-left4[
+# Statistical functions like &lt;mono&gt;lm()&lt;/mono&gt;
 
-# Basic structure of statistical functions
+.pull-left3[
 
-Statistical functions always require a &lt;high&gt;data frame&lt;/high&gt; called `data`, e.g.,...
+Statistical functions work with two types of objects... 
 
 
-|sex    | age| height| weight| income|
-|:------|---:|------:|------:|------:|
-|male   |  44|  174.3|  113.4|   6300|
-|male   |  65|  180.3|   75.2|  10900|
-|female |  31|  168.3|   55.5|   5100|
+(1) A &lt;high&gt;`tibble`&lt;/high&gt; in place of the `data` argument.
+
+(2) A &lt;high&gt;`formula`&lt;/high&gt; in place of the `formula` argument.
+
 &lt;br&gt;
-They also require a &lt;high&gt;formula&lt;/high&gt; that specifies a &lt;high&gt;dependent&lt;/high&gt; variable (y) as a function of one or more &lt;high&gt;independent&lt;/high&gt; variables (x1, x2, ...) in the form:
+&lt;high&gt;`Formulas`&lt;/high&gt; specifies a &lt;high&gt;criterion&lt;/high&gt; (y) as a function of one or more &lt;high&gt;predictors&lt;/high&gt; (x1, x2, ...) in the form:
 
-&lt;p align='center'&gt;&lt;font size = 6&gt;formula = y ~ x1 + x2 +...&lt;/font&gt;&lt;/p&gt;
+&lt;mono&gt;formula = y ~ x1 + x2 +...&lt;mono&gt;
 
 ]
 
-.pull-right55[
-
-How to create a statistical object:
+.pull-right65[
 
 
 ```r
-# Predict income with age and height
-my_glm &lt;- glm(formula = income ~ age + height,
-              data = baselers)
+# Example: Create regression object (my_glm)
+my_glm &lt;- lm(formula = XX ~ XX + XX,
+             data = XX)
 ```
 
-
-![](https://raw.githubusercontent.com/therbootcamp/Erfurt_2018June/master/_sessions/_image/formula_description.png)&lt;!-- --&gt;
-
+&lt;p align="center"&gt;
+&lt;img src="https://raw.githubusercontent.com/therbootcamp/Erfurt_2018June/master/_sessions/_image/formula_description.png"&gt;
+&lt;/p&gt;
 
 ]
+
+---
+
+# Statistical functions like &lt;mono&gt;lm()&lt;/mono&gt;
+
+.pull-left3[
+
+Statistical functions work with two types of objects... 
+
+
+(1) A &lt;high&gt;`tibble`&lt;/high&gt; in place of the `data` argument.
+
+(2) A &lt;high&gt;`formula`&lt;/high&gt; in place of the `formula` argument.
+
+&lt;br&gt;
+&lt;high&gt;`Formulas`&lt;/high&gt; specifies a &lt;high&gt;criterion&lt;/high&gt; (y) as a function of one or more &lt;high&gt;predictors&lt;/high&gt; (x1, x2, ...) in the form:
+
+&lt;mono&gt;formula = y ~ x1 + x2 +...&lt;mono&gt;
+
+]
+
+.pull-right65[
+
+
+```r
+# Example: Create regression object (my_glm)
+my_glm &lt;- lm(formula = income ~ age + height,
+             data = baselers)
+```
+
+&lt;p align="center"&gt;
+&lt;img src="https://raw.githubusercontent.com/therbootcamp/Erfurt_2018June/master/_sessions/_image/formula_description.png"&gt;
+&lt;/p&gt;
+
+]
+
 
 ---
 
@@ -425,7 +384,7 @@ ggplot(data = mpg,
 
 .pull-right45[
 &lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;
-![](RecapII_files/figure-html/unnamed-chunk-19-1.png)&lt;!-- --&gt;
+![](RecapII_files/figure-html/unnamed-chunk-16-1.png)&lt;!-- --&gt;
 
 ]
 
@@ -455,7 +414,7 @@ ggplot(data = mpg,
 
 .pull-right45[
 &lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;
-![](RecapII_files/figure-html/unnamed-chunk-21-1.png)&lt;!-- --&gt;
+![](RecapII_files/figure-html/unnamed-chunk-18-1.png)&lt;!-- --&gt;
 
 ]
 
@@ -527,7 +486,7 @@ if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
 (function () {
   var script = document.createElement('script');
   script.type = 'text/javascript';
-  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  script.src  = 'https://cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML';
   if (location.protocol !== 'file:' && /^https?:/.test(script.src))
     script.src  = script.src.replace(/^https?:/, '');
   document.getElementsByTagName('head')[0].appendChild(script);

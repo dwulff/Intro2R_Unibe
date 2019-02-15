@@ -28,6 +28,7 @@ output:
       highlightLines: true
       countIncrementalSlides: false
       ratio: '16:9'
+
 ---
 layout: true
 
@@ -94,7 +95,7 @@ library(baselers)
 
 # Statistics I
 
-#### <high>Descriptive statistics</high> with `dplyr`
+#### <high>Descriptive statistics</high> with <mono>dplyr</mono>
 
 ```{r, echo = T, eval = F}
 # Group-summarise idiom
@@ -109,7 +110,8 @@ baselers %>%
 ```
 
 
-#### <high>Simple hypothesis tests</high> with `stats`
+#### <high>Simple hypothesis tests</high> with <mono>stats</mono>
+
 ```{r, eval = F, echo = T}
 # Simple hypothesis test
 t.test(baselers$happiness,
@@ -120,7 +122,7 @@ t.test(baselers$happiness,
 ]
 
 .pull-right45[
-
+<br><br><br>
 <p align = "center">
 <img src="image/null_hypothesis.png" height=430px><br>
 <font style="font-size:10px">from <a href="https://xkcd.com/892/">xkcd.com</a></font>
@@ -128,10 +130,11 @@ t.test(baselers$happiness,
 
 ]
 
+
 ---
 
 
-# `summarise()`
+# <mono>summarise()</mono>
 
 .pull-left45[
 
@@ -168,11 +171,12 @@ baselers %>%
 
 
 ]
+
 ---
 
-.pull-left45[
+# <mono>group_by()</mono> + <mono>summarise()</mono>
 
-# `group_by()` + `summarise()`
+.pull-left45[
 
 Use `group_by()` to <high>group data</high> according to one or more columns.
 
@@ -195,31 +199,6 @@ data %>%
 
 .pull-right5[
 
-<br><br><br><br>
-
-`group_by(sex)` - what happens?
-]
-
-
----
-
-
-.pull-left25[
-
-# Full pipeline
-
-
-Combine <high>tranformation</high>, <high>organization</high>, and <high>aggregating</high> operations at once!
-
-Just use the <high>pipe %>%</high>.
-
-It can easily happen, that your pipes get very long - the <a href="https://github.com/elbersb/tidylog">tidylog package</a> can come in handy for that.
-
-
-]
-
-.pull-right65[
-<br><br><br><br>
 ```{r echo = TRUE, eval=FALSE}
 baselers %>%
   group_by(sex) %>%
@@ -231,25 +210,36 @@ baselers %>%
 ```
 
 ]
+
+
 ---
 
-.pull-left25[
+# <mono>group_by()</mono> + <mono>summarise()</mono>
 
-# Full pipeline
+.pull-left45[
 
+Use `group_by()` to <high>group data</high> according to one or more columns.
 
-Combine <high>tranformation</high>, <high>organization</high>, and <high>aggregating</high> operations at once!
+Then, use `summarise()` to <high>calculate summary statistics</high> for each group.
 
-Just use the <high>pipe %>%</high>.
+You can include <high>one or more</high> grouping variables.
 
-It can easily happen, that your pipes get very long - the <a href="https://github.com/elbersb/tidylog">tidylog package</a> can come in handy for that.
+```{r, echo = TRUE, eval = FALSE}
+data %>%
+  group_by(A, B, ...) %>%
+  summarise(
+    NAME = SUMMARY_FUN(A),
+    NAME = SUMMARY_FUN(B),
+    ...
+  )
+```
 
 
 ]
 
-.pull-right65[
-<br><br><br><br>
-```{r}
+.pull-right5[
+
+```{r echo = TRUE, eval=TRUE}
 baselers %>%
   group_by(sex) %>%
   summarise(
@@ -263,119 +253,88 @@ baselers %>%
 
 ---
 
-.pull-left45[
-
-# Stats? There is a package for that!
-
-<br>
-
-| Package| Models|
-|------:|:----|
-| `stats`|Generalized linear model|
-|     `afex`|   Anovas|
-|     `lme4`|   Mixed effects regression|
-|     `rpart`|    Decision Trees|
-|     `BayesFactor`| Bayesian statistics|
-|     `igraph`| Network analysis|
-|     `neuralnet`| Neural networks|
-|     `MatchIt`| Matching and causal inference|
-|     `survival`| Longitudinal survival analysis|
-|     ...| Anything you can ever want!|
-
-
-
-]
-
-.pull-right5[
-
-<p align="center">
-  <img src="https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/statistical_procedures.png" height="450px" vspace="20">
-</p>
-
-]
-
----
+.pull-left3[
 
 # Decision tree
 
+]
+
+.pull-right6[
+
 <p align="center">
-  <img src="https://s3-eu-west-1.amazonaws.com/pfigshare-u-previews/98305/preview.jpg" height="450px" vspace="20">
+  <img src="https://s3-eu-west-1.amazonaws.com/pfigshare-u-previews/98305/preview.jpg" height="580px" vspace="20">
 </p>
 
-
----
-
-.pull-left4[
-
-# Basic structure of statistical functions
-
-Statistical functions always require a <high>data frame</high> called `data`, e.g.,...
-
-```{r, echo = FALSE}
-baselers %>%
-  slice(1:3) %>% select(2:6) %>% knitr::kable(format = 'markdown')
-```
-<br>
-They also require a <high>formula</high> that specifies a <high>dependent</high> variable (y) as a function of one or more <high>independent</high> variables (x1, x2, ...) in the form:
-
-<p align='center'><font size = 6>formula = y ~ x1 + x2 +...</font></p>
-
-]
-
-.pull-right55[
-
-How to create a statistical object:
-
-```{r eval=FALSE}
-# Predict income with age and height
-my_glm <- glm(formula = XXX ~ XXX + XXX,
-              data = XXX)
-```
-
-
-```{r, echo = FALSE}
-knitr::include_graphics("https://raw.githubusercontent.com/therbootcamp/Erfurt_2018June/master/_sessions/_image/formula_description.png")
-```
-
-
 ]
 
 ---
 
-.pull-left4[
+# Statistical functions like <mono>lm()</mono>
 
-# Basic structure of statistical functions
+.pull-left3[
 
-Statistical functions always require a <high>data frame</high> called `data`, e.g.,...
+Statistical functions work with two types of objects... 
 
-```{r, echo = FALSE}
-baselers %>%
-  slice(1:3) %>% select(2:6) %>% knitr::kable(format = 'markdown')
-```
+
+(1) A <high>`tibble`</high> in place of the `data` argument.
+
+(2) A <high>`formula`</high> in place of the `formula` argument.
+
 <br>
-They also require a <high>formula</high> that specifies a <high>dependent</high> variable (y) as a function of one or more <high>independent</high> variables (x1, x2, ...) in the form:
+<high>`Formulas`</high> specifies a <high>criterion</high> (y) as a function of one or more <high>predictors</high> (x1, x2, ...) in the form:
 
-<p align='center'><font size = 6>formula = y ~ x1 + x2 +...</font></p>
+<mono>formula = y ~ x1 + x2 +...<mono>
 
 ]
 
-.pull-right55[
+.pull-right65[
 
-How to create a statistical object:
+```{r, eval = F}
+# Example: Create regression object (my_glm)
+my_glm <- lm(formula = XX ~ XX + XX,
+             data = XX)
+```
+
+<p align="center">
+<img src="https://raw.githubusercontent.com/therbootcamp/Erfurt_2018June/master/_sessions/_image/formula_description.png">
+</p>
+
+]
+
+---
+
+# Statistical functions like <mono>lm()</mono>
+
+.pull-left3[
+
+Statistical functions work with two types of objects... 
+
+
+(1) A <high>`tibble`</high> in place of the `data` argument.
+
+(2) A <high>`formula`</high> in place of the `formula` argument.
+
+<br>
+<high>`Formulas`</high> specifies a <high>criterion</high> (y) as a function of one or more <high>predictors</high> (x1, x2, ...) in the form:
+
+<mono>formula = y ~ x1 + x2 +...<mono>
+
+]
+
+.pull-right65[
 
 ```{r}
-# Predict income with age and height
-my_glm <- glm(formula = income ~ age + height,
-              data = baselers)
+# Example: Create regression object (my_glm)
+my_glm <- lm(formula = income ~ age + height,
+             data = baselers)
 ```
 
-
-```{r, echo = FALSE}
-knitr::include_graphics("https://raw.githubusercontent.com/therbootcamp/Erfurt_2018June/master/_sessions/_image/formula_description.png")
-```
-
+<p align="center">
+<img src="https://raw.githubusercontent.com/therbootcamp/Erfurt_2018June/master/_sessions/_image/formula_description.png">
+</p>
 
 ]
+
 
 ---
 
