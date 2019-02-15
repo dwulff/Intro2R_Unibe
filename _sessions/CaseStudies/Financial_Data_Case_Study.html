@@ -11,7 +11,7 @@
 
 
 
-<title>Case study: Finance</title>
+<title>Financial_Data_Case_Study.utf8</title>
 
 <script src="Financial_Data_Case_Study_files/jquery-1.11.3/jquery.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -97,6 +97,9 @@ img {
 button.code-folding-btn:focus {
   outline: none;
 }
+summary {
+  display: list-item;
+}
 </style>
 
 
@@ -104,9 +107,70 @@ button.code-folding-btn:focus {
 <div class="container-fluid main-container">
 
 <!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "&#xe258;";
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
 <script>
 $(document).ready(function () {
   window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open')
+  });
 });
 </script>
 
@@ -116,24 +180,10 @@ $(document).ready(function () {
 
 
 
-
 <div class="fluid-row" id="header">
 
 
 
-<h1 class="title toc-ignore">Case study: Finance</h1>
-<h4 class="author"><em><table style='table-layout:fixed;width:100%;border:0;padding:0;margin:0'>
-<col width='10%'>
-<col width='10%'>
-<tr style="border:none">
-<td style="display:block;width:100%;text-align:left;vertical-align:bottom;padding:0;margin:0;border:none" nowrap>
-<font style='font-style:normal'>Introduction to R</font><br> <a href='https://dwulff.github.io/Intro2R_Unibe/'> <i class='fas fa-clock' style='font-size:.9em;' ></i> </a> <a href='https://therbootcamp.github.io'> <i class='fas fa-home' style='font-size:.9em;'></i> </a> <a href='mailto:therbootcamp@gmail.com'> <i class='fas fa-envelope' style='font-size: .9em;'></i> </a> <a href='https://www.linkedin.com/company/basel-r-bootcamp/'> <i class='fab fa-linkedin' style='font-size: .9em;'></i> </a> <a href='https://therbootcamp.github.io'> <font style='font-style:normal'>Bern R Bootcamp</font> </a>
-</td>
-<td style="width:100%;vertical-align:bottom;text-align:right;padding:0;margin:0;border:none">
-<img src='https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/by-sa.png' style='height:15px;width:80px'/>
-</td>
-</tr>
-</table></em></h4>
 
 </div>
 
@@ -157,16 +207,14 @@ $(document).ready(function () {
 <div id="tasks" class="section level2">
 <h2>Tasks</h2>
 <div id="a---getting-setup" class="section level3">
-<h3>A - Getting setup</h3>
+<h3>A - Getting Setup</h3>
 <ol style="list-style-type: decimal">
-<li><p>Open your <code>baselrbootcamp</code> R project. It should already have the folders <code>1_Data</code> and <code>2_Code</code>. Inside of the <code>1_Data</code> folder, you should have all of the data sets listed in the Datasets section above!</p></li>
-<li><p>Open a new R script and save it as a new file in your <code>R</code> folder called <code>financial_casestudy.R</code>. At the top of the script, using comments, write your name and the date. Then, load the <code>tidyverse</code> package. Here’s how the top of your script should look:</p></li>
+<li><p>Open your <code>bernrbootcamp</code> R project. It should already have the folders <code>1_Data</code> and <code>2_Code</code>.</p></li>
+<li><p>We want to generate an R Markdown document for this case study. In RStudio, click File – New File – R Markdown – Document – Html. Save your markdown file <em>in your main project directory</em> under the name <code>financial_casestudy.Rmd</code>.</p></li>
+<li><p>At the top of the script load the <code>tidyverse</code> package.</p></li>
+<li><p>From time to time - don’t forget to <code>Knit</code> your code with the Knit-Button.</p></li>
 </ol>
-<pre class="r"><code>## My Name
-## The Date
-## Financial Data - Case Study
-
-library(tidyverse)</code></pre>
+<p><img src="https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/rmarkdown_ss_D.png" width="60%" style="display: block; margin: auto;" /></p>
 </div>
 <div id="b---data" class="section level3">
 <h3>B - Data</h3>
@@ -184,7 +232,7 @@ cols(
   Low = col_double(),
   Close = col_double(),
   `Adj Close` = col_double(),
-  Volume = col_integer()
+  Volume = col_double()
 )</code></pre>
 <pre class="r"><code>dax &lt;- read_csv(file = &#39;1_Data/^GDAXI.csv&#39;, na = &#39;null&#39;)</code></pre>
 <pre><code>Parsed with column specification:
@@ -195,7 +243,7 @@ cols(
   Low = col_double(),
   Close = col_double(),
   `Adj Close` = col_double(),
-  Volume = col_integer()
+  Volume = col_double()
 )</code></pre>
 <pre class="r"><code>nik &lt;- read_csv(file = &#39;1_Data/^N225.csv&#39;, na = &#39;null&#39;)</code></pre>
 <pre><code>Parsed with column specification:
@@ -206,7 +254,7 @@ cols(
   Low = col_double(),
   Close = col_double(),
   `Adj Close` = col_double(),
-  Volume = col_integer()
+  Volume = col_double()
 )</code></pre>
 <ol start="3" style="list-style-type: decimal">
 <li>Load in the exchange rate data sets, <code>euro-dollar.txt</code> and <code>yen-dollar.txt</code>, from the <code>1_Data</code> folder as two new objects called <code>eur_usd</code> and <code>yen_usd</code>. To do this, use the <code>read_delim()</code>-function and <code>\t</code> as the <code>delim</code>-argument, telling R that the data is tab-delimited.</li>
@@ -242,7 +290,7 @@ eur_usd </code></pre>
  8 14 Jan 1999         1.17
  9 15 Jan 1999         1.16
 10 18 Jan 1999         1.16
-# ... with 6,535 more rows</code></pre>
+# … with 6,535 more rows</code></pre>
 <pre class="r"><code>yen_usd</code></pre>
 <pre><code># A tibble: 8,764 x 2
    `02 Jan 1990` `0.006838`
@@ -257,7 +305,7 @@ eur_usd </code></pre>
  8 12 Jan 1990      0.00688
  9 16 Jan 1990      0.00687
 10 17 Jan 1990      0.00687
-# ... with 8,754 more rows</code></pre>
+# … with 8,754 more rows</code></pre>
 <ol start="5" style="list-style-type: decimal">
 <li>To fix the data, first load the data again and use the <code>col_names</code>-argument to explicitly assign the column names to be <code>Date</code> and <code>Rate</code>. This will prevent R to take names from the first row of the data.</li>
 </ol>
@@ -314,7 +362,7 @@ financial</code></pre>
  8 1988-01-11   1945.    988.
  9 1988-01-12   1929.    987.
 10 1988-01-13   1925.    966.
-# ... with 7,567 more rows</code></pre>
+# … with 7,567 more rows</code></pre>
 <ol start="2" style="list-style-type: decimal">
 <li>Inspect the data! What has R done with the names of the two <code>Close</code> variables? Run the code again, this time using the <code>suffix</code>-argument to give both variables suffixes preserve the origin of these variables, e.g., <code>suffix = c(_dow','_dax')</code>.</li>
 </ol>
@@ -338,7 +386,7 @@ financial</code></pre>
  8 1988-01-11     1945.      988.
  9 1988-01-12     1929.      987.
 10 1988-01-13     1925.      966.
-# ... with 7,567 more rows</code></pre>
+# … with 7,567 more rows</code></pre>
 <ol start="3" style="list-style-type: decimal">
 <li>Looks better now? OK, now that you know how to join two data sets repeat the steps until all five data sets are included in <code>financial</code>. Remember, we only want the dates variable (<code>Date</code>), the stock index (unadjusted) closing prices (<code>Close</code>). Note if you have trouble fixing all variables names using the <code>suffix</code>-argument you can also take of this at the end using <code>rename()</code>.</li>
 </ol>
@@ -401,7 +449,7 @@ financial_long</code></pre>
  8 1999-01-13  1999 Close_dow 9350.
  9 1999-01-14  1999 Close_dow 9121.
 10 1999-01-15  1999 Close_dow 9341.
-# ... with 45,910 more rows</code></pre>
+# … with 45,910 more rows</code></pre>
 <ol start="7" style="list-style-type: decimal">
 <li>Now your data is tidy proper (at least with regard to the analyses required here)! Go ahead an explore the data a bit. What data do they contain? Consider using <code>summary</code> or <code>skimr::skim()</code>.</li>
 </ol>
