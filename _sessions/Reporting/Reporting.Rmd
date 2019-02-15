@@ -28,8 +28,10 @@ output:
       highlightLines: true
       countIncrementalSlides: false
       ratio: '16:9'
+
 ---
-layout: true
+
+#layout: true
 
 <div class="my-footer">
   <span style="text-align:center">
@@ -50,6 +52,7 @@ layout: true
     </a>
     </span>
   </div> 
+
 ---
 
 ```{r setup, include=FALSE}
