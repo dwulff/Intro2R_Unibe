@@ -524,9 +524,9 @@ The web is a great place to learn about R.
     <a href="www.schulte-mecklenbeck.com"><img border="0" alt="W3Schools" src="https://therbootcamp.github.io/assets/img/michael_square.png" height="230" style="border-radius:50%"></a><br>
 
 <p align="center">
-<font size = 5>Dr Michael Schulte-M.</font><br><br>
+<font size = 5>Dr Michael Schulte-M.</font><br>
 <a href="www.schulte-mecklenbeck.com"><b>schulte-mecklenbeck.com</b></a><br>
-<a href="https://github.com/schultem"><b>github.com/schultem</b></a><br> <br><br>
+<a href="https://github.com/schultem"><b>github.com/schultem</b></a><br><br>
 </p></th>
 
 
