@@ -356,7 +356,6 @@ mcdonalds <- read_csv("https://raw.githubusercontent.com/therbootcamp/BaselRBoot
 |`broom`|`install.packages("broom")`|
 |`rmdformats`|`install.packages("rmdformats")`|
 
-
 ## Resources
 
 ### Documentation
