@@ -1,5 +1,5 @@
 ---
-title: "Dynamic Reports"
+title: "Reporting"
 author: "
 <table style='table-layout:fixed;width:100%;border:0;padding:0;margin:0'><col width='10%'><col width='10%'>
   <tr style='border:none'>
@@ -332,10 +332,6 @@ knitr::include_graphics("https://github.com/therbootcamp/therbootcamp.github.io/
 2. Knit your document! Do you see the tabs now?
 
 
-### X - Add results from the happiness survey
-
-If you've gotten this far, then you've really gotten the hang of R Markdown! Try adding the correct combination of text, tags, and code to add all of the results from the `happiness` data contained here: [Happiness.html](https://dwulff.github.io/Intro2R_Unibe/_sessions/Reporting/Reporting_answers.html)
-
 ## Datasets
 
 ```{r, eval = TRUE, message = FALSE}
@@ -350,7 +346,7 @@ mcdonalds <- read_csv("https://raw.githubusercontent.com/therbootcamp/BaselRBoot
 
 ## Functions
 
-### Happiness
+### Packages
 
 |Package| Installation|
 |:------|:------|
@@ -359,7 +355,6 @@ mcdonalds <- read_csv("https://raw.githubusercontent.com/therbootcamp/BaselRBoot
 |`DT`|`install.packages("DT")`|
 |`broom`|`install.packages("broom")`|
 |`rmdformats`|`install.packages("rmdformats")`|
-
 
 ## Resources
 

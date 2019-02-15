@@ -1,9 +1,35 @@
 ---
-title: "Case Study: Financial Data"
-author: "Introduction to R, February 2019<br/><a href='https://therbootcamp.github.io'>www.therbootcamp.com</a><br/><a href='https://twitter.com/therbootcamp'>@therbootcamp</a>"
+title: "Case study: Finance"
+author: "
+<table style='table-layout:fixed;width:100%;border:0;padding:0;margin:0'><col width='10%'><col width='10%'>
+  <tr style='border:none'>
+    <td style='display:block;width:100%;text-align:left;vertical-align:bottom;padding:0;margin:0;border:none' nowrap>
+      <font style='font-style:normal'>Introduction to R</font><br>
+      <a href='https://dwulff.github.io/Intro2R_Unibe/'>
+        <i class='fas fa-clock' style='font-size:.9em;' ></i>
+      </a>
+      <a href='https://therbootcamp.github.io'>
+        <i class='fas fa-home' style='font-size:.9em;'></i>
+      </a>
+      <a href='mailto:therbootcamp@gmail.com'>
+        <i class='fas fa-envelope' style='font-size: .9em;'></i>
+      </a>
+      <a href='https://www.linkedin.com/company/basel-r-bootcamp/'>
+        <i class='fab fa-linkedin' style='font-size: .9em;'></i>
+      </a>
+      <a href='https://therbootcamp.github.io'>
+        <font style='font-style:normal'>Bern R Bootcamp</font>
+      </a>
+    </td>
+    <td style='width:100%;vertical-align:bottom;text-align:right;padding:0;margin:0;border:none'>
+      <img src='https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/by-sa.png' style='height:15px;width:80px'/>
+    </td>
+  </tr>
+</table>"
 output:
   html_document:
     css: practical.css
+    self_contained: no
 ---
 
 ```{r setup, include = FALSE}
@@ -21,13 +47,10 @@ library(baselers)
 library(tidyverse)
 ```
 
-
-<figure>
-<center>
-  <img src="https://static.memrise.com/uploads/course_photos/3146044000150629230223.jpg" alt="Memrise">
-  <figcaption><a href="https://static.memrise.com/uploads/course_photos/3146044000150629230223.jpg">source</a></figcaption>
-</figure>
-
+<p align="center">
+<img width="100%" src="image/finance.png" margin=0><br>
+<font style="font-size:10px">adapted from [static.memrise.com](https://static.memrise.com/uploads/course_photos/3146044000150629230223.jpg)</font>
+</p>
 
 # {.tabset}
 
@@ -43,38 +66,6 @@ To address these questions, you will import several data files, using various fu
 
 Below you will find several tasks that will guide you through these steps. For the most part these tasks require you to make use of what you have learned in the sessions **Data**, **Wrangling**, **Analysing**, and **Plotting**. 
 
-### Datasets
-
-```{r, eval = TRUE, message = FALSE}
-library(tidyverse)
-library(haven)
-```
-
-|File | Rows | Columns | Description |
-|:----|:-----|:------|:-----------------------------------------|
-|[\^DJI.csv](https://raw.githubusercontent.com/therbootcamp/BaselRBootcamp_2018July/master/_sessions/_data/baselrbootcamp_data/%5EDJI.csv) | 8364 | 7 | Dow Jones Industrial stock history|
-|[\^GDAXI.csv](https://raw.githubusercontent.com/therbootcamp/BaselRBootcamp_2018July/master/_sessions/_data/baselrbootcamp_data/%5EGDAXI.csv) | 7811 | 7 |DAX stock history |
-|[\^N225.csv](https://raw.githubusercontent.com/therbootcamp/BaselRBootcamp_2018July/master/_sessions/_data/baselrbootcamp_data/%5EN225.csv) | 13722 | 7 | Nikkei stock history |
-|[euro-dollar.txt](https://raw.githubusercontent.com/therbootcamp/BaselRBootcamp_2018July/master/_sessions/_data/baselrbootcamp_data/euro-dollar.txt) | 6545 | 1 | Euro to dollar exchange rates |
-|[yen-dollar.txt](https://raw.githubusercontent.com/therbootcamp/BaselRBootcamp_2018July/master/_sessions/_data/baselrbootcamp_data/yen-dollar.txt) | 8754 | 7 | Yen to dollar exchange rates |
-
-<u>Variables of data sets `^DJI.csv`, `^GDAXI.csv`, `^N225.csv`</u>
-
-| Variable| Description|
-|:------------------------------|:----------------------------------------------------------------|
-|     Date|    Current day|
-|     Open|    Day's price when the stock exchange opened| 
-|     High|    Day's highest price|
-|     Low|    Day's lowest price|
-|     Close|    Day's closing price|
-|     Adj Close|    Adjusted closing price that has been amended to include any distributions and corporate actions that occurred at any time prior to the next day's open| 
-
-<u>Variables of data sets "euro-dollar.txt", "yen-dollar.txt"</u>
-
-| Variable| Description|
-|:------------------------------|:----------------------------------------------------------------|
-|     Date (currently unnamed)|  Current day|
-|     Rate (currently unnamed)|  Day's exchange rate in terms of 1 US Dollar. E.g., a value of .75 means that the respective currency is worth a fraction of .75 of 1 US Dollar|
 
 ## Tasks
 
@@ -332,7 +323,46 @@ financial %>%
   )
 ```
 
-### References
+
+
+## Datasets
+
+|File | Rows | Columns | Description |
+|:----|:-----|:------|:-----------------------------------------|
+|[\^DJI.csv](https://raw.githubusercontent.com/therbootcamp/BaselRBootcamp_2018July/master/_sessions/_data/baselrbootcamp_data/%5EDJI.csv) | 8364 | 7 | Dow Jones Industrial stock history|
+|[\^GDAXI.csv](https://raw.githubusercontent.com/therbootcamp/BaselRBootcamp_2018July/master/_sessions/_data/baselrbootcamp_data/%5EGDAXI.csv) | 7811 | 7 |DAX stock history |
+|[\^N225.csv](https://raw.githubusercontent.com/therbootcamp/BaselRBootcamp_2018July/master/_sessions/_data/baselrbootcamp_data/%5EN225.csv) | 13722 | 7 | Nikkei stock history |
+|[euro-dollar.txt](https://raw.githubusercontent.com/therbootcamp/BaselRBootcamp_2018July/master/_sessions/_data/baselrbootcamp_data/euro-dollar.txt) | 6545 | 3 | Euro to dollar exchange rates |
+|[yen-dollar.txt](https://raw.githubusercontent.com/therbootcamp/BaselRBootcamp_2018July/master/_sessions/_data/baselrbootcamp_data/yen-dollar.txt) | 8754 | 3 | Yen to dollar exchange rates |
+
+### Variable descriptions
+
+| Variable| Description|
+|:------------------------------|:----------------------------------------------------------------|
+|     Date|    Current day|
+|     Open|    Day's price when the stock exchange opened| 
+|     High|    Day's highest price|
+|     Low|    Day's lowest price|
+|     Close|    Day's closing price|
+|     Adj Close|    Adjusted closing price that has been amended to include any distributions and corporate actions that occurred at any time prior to the next day's open| 
+
+<u>Variables of data sets "euro-dollar.txt", "yen-dollar.txt"</u>
+
+| Variable| Description|
+|:------------------------------|:----------------------------------------------------------------|
+|     Date (currently unnamed)|  Current day|
+|     Rate (currently unnamed)|  Day's exchange rate in terms of 1 US Dollar. E.g., a value of .75 means that the respective currency is worth a fraction of .75 of 1 US Dollar|
+
+## Functions
+
+### Packages
+
+|Package| Installation|
+|:------|:------|
+|`tidyverse`|`install.packages("tidyverse")`|
+|`haven`|`install.packages("haven")`|
+
+## Resources
 
 - [weforum.org "What's the relationship between stock returns and exchange rates?"](https://www.weforum.org/agenda/2015/07/whats-the-relationship-between-stock-returns-and-exchange-rates/)
 

@@ -1,9 +1,35 @@
 ---
-title: "Case Study: Dimarta Clinical Trial"
-author: "Introduction to R, February 2019<br/><a href='https://therbootcamp.github.io'>www.therbootcamp.com</a><br/><a href='https://twitter.com/therbootcamp'>@therbootcamp</a>"
+title: "Case study: Clinical"
+author: "
+<table style='table-layout:fixed;width:100%;border:0;padding:0;margin:0'><col width='10%'><col width='10%'>
+  <tr style='border:none'>
+    <td style='display:block;width:100%;text-align:left;vertical-align:bottom;padding:0;margin:0;border:none' nowrap>
+      <font style='font-style:normal'>Introduction to R</font><br>
+      <a href='https://dwulff.github.io/Intro2R_Unibe/'>
+        <i class='fas fa-clock' style='font-size:.9em;' ></i>
+      </a>
+      <a href='https://therbootcamp.github.io'>
+        <i class='fas fa-home' style='font-size:.9em;'></i>
+      </a>
+      <a href='mailto:therbootcamp@gmail.com'>
+        <i class='fas fa-envelope' style='font-size: .9em;'></i>
+      </a>
+      <a href='https://www.linkedin.com/company/basel-r-bootcamp/'>
+        <i class='fab fa-linkedin' style='font-size: .9em;'></i>
+      </a>
+      <a href='https://therbootcamp.github.io'>
+        <font style='font-style:normal'>Bern R Bootcamp</font>
+      </a>
+    </td>
+    <td style='width:100%;vertical-align:bottom;text-align:right;padding:0;margin:0;border:none'>
+      <img src='https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/by-sa.png' style='height:15px;width:80px'/>
+    </td>
+  </tr>
+</table>"
 output:
   html_document:
     css: practical.css
+    self_contained: no
 ---
 
 ```{r setup, include = FALSE}
@@ -83,12 +109,11 @@ trial_df$qol_end <- trial_df$qol_start + round(rnorm(n = 300, mean = 0, sd = 1),
 ```
 
 
-<figure>
-<center>
-  <img src="http://www.formerfda.com/wp-content/uploads/2014/08/clinical-trials.jpg" alt="Trulli">
-  <figcaption><a href="http://www.formerfda.com/wp-content/uploads/2014/08/clinical-trials.jpg">source</a></figcaption>
-</figure>
 
+<p align="center">
+<img width="100%" src="http://www.formerfda.com/wp-content/uploads/2014/08/clinical-trials.jpg" margin=0><br>
+<font style="font-size:10px">adapted from [formerfda.com](http://www.formerfda.com/wp-content/uploads/2014/08/clinical-trials.jpg)</font>
+</p>
 
 
 # {.tabset}
@@ -99,57 +124,6 @@ trial_df$qol_end <- trial_df$qol_start + round(rnorm(n = 300, mean = 0, sd = 1),
 In this case study, we will look at the results of a clinical trial exploring the effectiveness of a new medication called dimarta on reducing histamine in patients with a disease that leads to chronically high histamine levels. In the study, 300 patients were assigned to one of three different treatment arms. One arm was given a placebo. The other arm was given adiclax -- the standard of care for the disease. Finally, the third arm was given dimarta. There were two main measures of interest in the trial: patient's changes in histamine from the beginning to the end of the trial, and their change in quality of life (measured by self report). 
 
 In addition to exploring the effects of the three medications, the researchers are interested in the extent to which three different biomarkers, dw, ms, and np, are correlated with therapeutic outcomes. In other words, to patients that express one or more of these biomarkers have better, or worse, outcomes that those that do not express these biomarkers?
-
-## Datasets
-
-```{r, eval = TRUE, message = FALSE}
-library(tidyverse)
-library(haven)
-```
-
-|File | Rows | Columns | Description |
-|:----|:-----|:------|:-----------------------------------------|
-|[dimarta_trial.csv](https://raw.githubusercontent.com/therbootcamp/BaselRBootcamp_2018July/master/_sessions/_data/baselrbootcamp_data/dimarta_trial.csv) | 300 | 6 | Key DIMARTA trial outcomes|
-|[dimarta_biomarker.csv](https://raw.githubusercontent.com/therbootcamp/BaselRBootcamp_2018July/master/_sessions/_data/baselrbootcamp_data/dimarta_biomarker.csv) | 900 | 3 | Biomarker status' for 3 different biomarkers for each patient. |
-|[dimarta_demographics.csv](https://raw.githubusercontent.com/therbootcamp/BaselRBootcamp_2018July/master/_sessions/_data/baselrbootcamp_data/dimarta_demographics.csv) | 300 | 5 | Demographic information for each patient |
-
-Column Descriptions
-
-**dimarta_trial.csv**
-
-| Variable| Description|
-|:------------------------------|:----------------------------------------------------------------|
-|     PatientID|    Unique patient id|
-|     arm|  Treatment arm, either 1 = placebo, 2 = adiclax (the standard of treatment), or 3 = dimarta (the target drug)| 
-|     histamine_start| histamine value at the start of the trial|
-|     histamine_end| histamine value at the end of the trial|
-|     qol_start| Patient's rated quality of life at the start of the trial|
-|     qol_end| Patient's rated quality of life at the end of the trial|
-
-Table: Table1. `dimarta_trial.csv` variable description:
-
-**dimarta_demographics.csv**
-
-| Variable| Description|
-|:------------------------------|:----------------------------------------------------------------|
-|     PatientID|    Unique patient id|
-|     age|   Patient age| 
-|     gender| Patient gender, 0 = male, 1 = female|
-|     site| Site where the clinical trial was conducted|
-|     diseasestatus| Status of the patient's disease at start of trial|
-
-Table: Table2. `dimarta_demographics.csv` variable description:
-
-**dimarta_biomarker.csv**
-
-| Variable| Description|
-|:------------------------------|:----------------------------------------------------------------|
-|     PatientID|    Unique patient id|
-|     Biomarker|    One of three biomarkers: dw, ms, and np| 
-|     BiomarkerStatus| Result of the test for the biomarker.|
-
-Table: Table3. `dimarta_biomarker.csv` variable description:
-
 
 
 ## Tasks
@@ -614,4 +588,56 @@ mean(abs(arm_glm$residuals))
 
 ```
 
+## Datasets
 
+|File | Rows | Columns | Description |
+|:----|:-----|:------|:-----------------------------------------|
+|[dimarta_trial.csv](https://raw.githubusercontent.com/therbootcamp/BaselRBootcamp_2018July/master/_sessions/_data/baselrbootcamp_data/dimarta_trial.csv) | 300 | 6 | Key DIMARTA trial outcomes|
+|[dimarta_biomarker.csv](https://raw.githubusercontent.com/therbootcamp/BaselRBootcamp_2018July/master/_sessions/_data/baselrbootcamp_data/dimarta_biomarker.csv) | 900 | 3 | Biomarker status' for 3 different biomarkers for each patient. |
+|[dimarta_demographics.csv](https://raw.githubusercontent.com/therbootcamp/BaselRBootcamp_2018July/master/_sessions/_data/baselrbootcamp_data/dimarta_demographics.csv) | 300 | 5 | Demographic information for each patient |
+
+Column Descriptions
+
+**dimarta_trial.csv**
+
+| Variable| Description|
+|:------------------------------|:----------------------------------------------------------------|
+|     PatientID|    Unique patient id|
+|     arm|  Treatment arm, either 1 = placebo, 2 = adiclax (the standard of treatment), or 3 = dimarta (the target drug)| 
+|     histamine_start| histamine value at the start of the trial|
+|     histamine_end| histamine value at the end of the trial|
+|     qol_start| Patient's rated quality of life at the start of the trial|
+|     qol_end| Patient's rated quality of life at the end of the trial|
+
+Table: Table1. `dimarta_trial.csv` variable description:
+
+**dimarta_demographics.csv**
+
+| Variable| Description|
+|:------------------------------|:----------------------------------------------------------------|
+|     PatientID|    Unique patient id|
+|     age|   Patient age| 
+|     gender| Patient gender, 0 = male, 1 = female|
+|     site| Site where the clinical trial was conducted|
+|     diseasestatus| Status of the patient's disease at start of trial|
+
+Table: Table2. `dimarta_demographics.csv` variable description:
+
+**dimarta_biomarker.csv**
+
+| Variable| Description|
+|:------------------------------|:----------------------------------------------------------------|
+|     PatientID|    Unique patient id|
+|     Biomarker|    One of three biomarkers: dw, ms, and np| 
+|     BiomarkerStatus| Result of the test for the biomarker.|
+
+Table: Table3. `dimarta_biomarker.csv` variable description:
+
+## Functions
+
+### Packages
+
+|Package| Installation|
+|:------|:------|
+|`tidyverse`|`install.packages("tidyverse")`|
+|`haven`|`install.packages("haven")`|
