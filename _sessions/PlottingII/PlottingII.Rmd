@@ -630,7 +630,7 @@ myplot
 
 ```{r}
 # define my theme
-mytheme = theme(
+mytheme <- theme(
     panel.background = 
       element_rect(fill = 'tomato'), 
     plot.background = 
@@ -677,7 +677,7 @@ myplot
 
 ```{r}
 # define my theme
-mytheme = theme(
+mytheme <- theme(
     panel.background = 
       element_rect(fill = 'tomato'), 
     plot.background = 
@@ -761,7 +761,7 @@ myplot + mytheme
 
 ```{r, echo = F}
 # orginal plot
-myplot = ggplot(data = mpg,
+myplot <- ggplot(data = mpg,
        aes(x = displ, y = hwy,
            size = cyl, color = class)) + 
   geom_point() + theme_bw()
@@ -820,7 +820,7 @@ myplot
 
 ```{r, echo = F}
 # orginal plot
-myplot = ggplot(data = mpg,
+myplot <- ggplot(data = mpg,
        aes(x = displ, y = hwy,
            size = cyl, color = class)) + 
   geom_point() + theme_bw()
@@ -878,7 +878,7 @@ myplot +
 
 ```{r, echo = F}
 # orginal plot
-myplot = ggplot(data = mpg,
+myplot <- ggplot(data = mpg,
        aes(x = displ, y = hwy,
            size = cyl, color = class)) + 
   geom_point() + theme_bw()
@@ -936,7 +936,7 @@ myplot +
 
 ```{r, echo = F}
 # orginal plot
-myplot = ggplot(data = mpg,
+myplot <- ggplot(data = mpg,
        aes(x = displ, y = hwy,
            size = cyl, color = class)) + 
   geom_point() + theme_bw()
@@ -994,7 +994,7 @@ myplot +
 
 ```{r, echo = F}
 # orginal plot
-myplot = ggplot(data = mpg,
+myplot <- ggplot(data = mpg,
        aes(x = displ, y = hwy,
            size = cyl, color = class)) + 
   geom_point() + theme_bw()
@@ -1190,10 +1190,3 @@ ggsave(filename = "myplot",
 class: middle, center
 
 <h1><a href="https://dwulff.github.io/Intro2R_Unibe/_sessions/PlottingII/PlottingII_practical.html">Practical</a></h1>
-
-
-
-
-
-
-
