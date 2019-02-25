@@ -6,7 +6,12 @@ output: html_document
 ---
 
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
+knitr::opts_chunk$set(echo = FALSE,
+                      eval = TRUE,
+                      message = FALSE,
+                      warning = FALSE,
+                      error = FALSE)
+
 
 library(googlesheets)
 library(tidyverse)
@@ -19,7 +24,7 @@ evaluation <- gs_title('February 2019 BernRBootcamp follow-up survey (Responses)
 
 ## How satisfied were you with the bootcamp in general? (5 points scale, 5 = best)
 
-```{r echo = FALSE}
+```{r}
   evaluation %>%
   ggplot(aes(`How satisfied were you with the bootcamp in general?`)) +
     geom_histogram(binwidth = 0.5) +
@@ -31,9 +36,9 @@ evaluation <- gs_title('February 2019 BernRBootcamp follow-up survey (Responses)
 ```
 
 
-Do you plan to rely on R in the future?
+## Do you plan to rely on R in the future?
 
-```{r echo = FALSE}
+```{r}
   evaluation %>%
   ggplot(aes(`Do you plan to rely on R in the future?`)) +
     geom_histogram(binwidth = 0.5) +
@@ -52,7 +57,7 @@ evaluation %>%
   select(`The amount of time allocated to presentations was`,
          `The amount of time allocated to practicals was`,
          `Generally the level of difficulty in the presentations was`,
-         `Generally the level of difficulty in the practicals was`,) %>%
+         `Generally the level of difficulty in the practicals was`) %>%
   gather(question, value) %>%
   ggplot(aes(value)) +
   stat_count() + 
@@ -66,14 +71,11 @@ evaluation %>%
 ```
 
 
-Which sessions did you find most useful/interesting? (select up to 3)
-Which sessions did you find most useless/boring? (select up to 3)
-
 ## Do you have any other remarks regarding the workshop? How can we make the next workshop better?
 
 ```{r}
 evaluation %>%
   select(`Do you have any other remarks regarding the workshop? How can we make the next workshop better?`) %>%
-  table(`Do you have any other remarks regarding the workshop? How can we make the next workshop better?`)
+  table()
 
 ```
