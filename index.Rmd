@@ -57,5 +57,5 @@ output:
 
 
 <p align="left"><br>
-    <img border="0" alt="Jun2020Schedule" src="https://dwulff.github.io/Intro2R_Unibe/_sessions/Welcome/image/schedule.png" style="width:510px">
+    <img border="0" alt="Jun2020Schedule" src="https://dwulff.github.io/Intro2R_Unibe/_sessions/Welcome/image/schedule.png" style="width:100%">
 </p>
