@@ -1,8 +1,8 @@
 <!DOCTYPE html>
-<html>
+<html lang="" xml:lang="">
   <head>
     <title>Wrangling</title>
-    <meta charset="utf-8">
+    <meta charset="utf-8" />
     <meta name="author" content="Introduction to R   Bern R Bootcamp" />
     <link href="libs/remark-css/default.css" rel="stylesheet" />
     <link rel="stylesheet" href="baselrbootcamp.css" type="text/css" />
@@ -13,7 +13,7 @@ class: center, middle, inverse, title-slide
 
 # Wrangling
 ### Introduction to R<br> <a href='https://therbootcamp.github.io'> Bern R Bootcamp </a> <br> <a href='https://dwulff.github.io/Intro2R_Unibe/'> <i class='fas fa-clock' style='font-size:.9em;'></i> </a>  <a href='https://therbootcamp.github.io'> <i class='fas fa-home' style='font-size:.9em;' ></i> </a>  <a href='mailto:therbootcamp@gmail.com'> <i class='fas fa-envelope' style='font-size: .9em;'></i> </a>  <a href='https://www.linkedin.com/company/basel-r-bootcamp/'> <i class='fab fa-linkedin' style='font-size: .9em;'></i> </a>
-### February 2019
+### June 2020
 
 ---
 
@@ -171,7 +171,7 @@ score
 ```
 
 ```
-## [1] 8 4 6 3 7 3
+[1] 8 4 6 3 7 3
 ```
 
 ```r
@@ -180,7 +180,7 @@ mean(x = score)
 ```
 
 ```
-## [1] 5.167
+[1] 5.167
 ```
 
 ```r
@@ -190,7 +190,7 @@ score %&gt;%  # AND THEN
 ```
 
 ```
-## [1] 5.167
+[1] 5.167
 ```
 
 
@@ -218,7 +218,7 @@ score
 ```
 
 ```
-## [1] 8 4 6 3 7 3
+[1] 8 4 6 3 7 3
 ```
 
 ```r
@@ -227,7 +227,7 @@ round(mean(x = score), digits = 1)
 ```
 
 ```
-## [1] 5.2
+[1] 5.2
 ```
 
 ```r
@@ -238,7 +238,7 @@ score %&gt;%     # AND THEN
 ```
 
 ```
-## [1] 5.2
+[1] 5.2
 ```
 
 ]
@@ -284,14 +284,14 @@ patients
 ```
 
 ```
-## # A tibble: 5 x 3
-##      ID    X1    X2
-##   &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
-## 1     1    37     1
-## 2     2    65     2
-## 3     3    57     2
-## 4     4    34     1
-## 5     5    45     2
+# A tibble: 5 x 3
+     ID    X1    X2
+  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+1     1    37     1
+2     2    65     2
+3     3    57     2
+4     4    34     1
+5     5    45     2
 ```
 
 
@@ -304,14 +304,14 @@ results
 ```
 
 ```
-## # A tibble: 5 x 3
-##      id   t_1   t_2
-##   &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
-## 1     4   100   105
-## 2    92   134   150
-## 3     1   123   135
-## 4     2   143   140
-## 5    99   102    68
+# A tibble: 5 x 3
+     ID   t_1   t_2
+  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+1     4   100   105
+2    92   134   150
+3     1   123   135
+4     2   143   140
+5    99   102    68
 ```
 
 ]
@@ -346,14 +346,14 @@ patients   # Baselers data
 ```
 
 ```
-## # A tibble: 5 x 3
-##      ID    X1    X2
-##   &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
-## 1     1    37     1
-## 2     2    65     2
-## 3     3    57     2
-## 4     4    34     1
-## 5     5    45     2
+# A tibble: 5 x 3
+     ID    X1    X2
+  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+1     1    37     1
+2     2    65     2
+3     3    57     2
+4     4    34     1
+5     5    45     2
 ```
 
 
@@ -381,14 +381,14 @@ patients  # Original
 ```
 
 ```
-## # A tibble: 5 x 3
-##      ID    X1    X2
-##   &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
-## 1     1    37     1
-## 2     2    65     2
-## 3     3    57     2
-## 4     4    34     1
-## 5     5    45     2
+# A tibble: 5 x 3
+     ID    X1    X2
+  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+1     1    37     1
+2     2    65     2
+3     3    57     2
+4     4    34     1
+5     5    45     2
 ```
 ]
 
@@ -407,14 +407,14 @@ patients %&gt;%
 ```
 
 ```
-## # A tibble: 5 x 3
-##      ID   age   arm
-##   &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
-## 1     1    37     1
-## 2     2    65     2
-## 3     3    57     2
-## 4     4    34     1
-## 5     5    45     2
+# A tibble: 5 x 3
+     ID   age   arm
+  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+1     1    37     1
+2     2    65     2
+3     3    57     2
+4     4    34     1
+5     5    45     2
 ```
 
 
@@ -457,14 +457,14 @@ patients %&gt;%
 ```
 
 ```
-## # A tibble: 5 x 5
-##      ID   age   arm age_months age_decades
-##   &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;      &lt;dbl&gt;       &lt;dbl&gt;
-## 1     1    37     1        444         3.7
-## 2     2    65     2        780         6.5
-## 3     3    57     2        684         5.7
-## 4     4    34     1        408         3.4
-## 5     5    45     2        540         4.5
+# A tibble: 5 x 5
+     ID   age   arm age_months age_decades
+  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;      &lt;dbl&gt;       &lt;dbl&gt;
+1     1    37     1        444         3.7
+2     2    65     2        780         6.5
+3     3    57     2        684         5.7
+4     4    34     1        408         3.4
+5     5    45     2        540         4.5
 ```
 
 ]
@@ -508,14 +508,14 @@ patients %&gt;%
 ```
 
 ```
-## # A tibble: 5 x 4
-##      ID   age   arm arm_lab
-##   &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;  
-## 1     1    37     1 placebo
-## 2     2    65     2 drug   
-## 3     3    57     2 drug   
-## 4     4    34     1 placebo
-## 5     5    45     2 drug
+# A tibble: 5 x 4
+     ID   age   arm arm_lab
+  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;  
+1     1    37     1 placebo
+2     2    65     2 drug   
+3     3    57     2 drug   
+4     4    34     1 placebo
+5     5    45     2 drug   
 ```
 
 ]
@@ -562,17 +562,24 @@ combined &lt;- patients %&gt;%
                               arm == 2 ~ "drug")) %&gt;%
   
 # Join with results with left_join()
-  left_join(results, by = "id")
-```
-
-```
-## Error: `by` can't contain join column `id` which is missing from LHS
+  left_join(results, by = "ID")
 ```
 
 
 ```r
 # Show combined data set
 combined 
+```
+
+```
+# A tibble: 5 x 6
+     ID   age   arm arm_lab   t_1   t_2
+  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;   &lt;dbl&gt; &lt;dbl&gt;
+1     1    37     1 placebo   123   135
+2     2    65     2 drug      143   140
+3     3    57     2 drug       NA    NA
+4     4    34     1 placebo   100   105
+5     5    45     2 drug       NA    NA
 ```
 
 ]
@@ -610,14 +617,14 @@ patients
 ```
 
 ```
-## # A tibble: 5 x 3
-##      ID    X1    X2
-##   &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
-## 1     1    37     1
-## 2     2    65     2
-## 3     3    57     2
-## 4     4    34     1
-## 5     5    45     2
+# A tibble: 5 x 3
+     ID    X1    X2
+  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+1     1    37     1
+2     2    65     2
+3     3    57     2
+4     4    34     1
+5     5    45     2
 ```
 
 
@@ -630,14 +637,14 @@ results
 ```
 
 ```
-## # A tibble: 5 x 3
-##      id   t_1   t_2
-##   &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
-## 1     4   100   105
-## 2    92   134   150
-## 3     1   123   135
-## 4     2   143   140
-## 5    99   102    68
+# A tibble: 5 x 3
+     ID   t_1   t_2
+  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+1     4   100   105
+2    92   134   150
+3     1   123   135
+4     2   143   140
+5    99   102    68
 ```
 
 ]
@@ -678,21 +685,27 @@ combined &lt;- patients %&gt;%
                               arm == 2 ~ "drug")) %&gt;%
   
 # Join with results with left_join()
-  left_join(results, by = "id")
+  left_join(results, by = "ID")
+```
 
+```
+Error: `by` can't contain join column `ID` which is missing from LHS
+```
+
+```r
 # Show combined data set
 combined
 ```
 
 ```
-## # A tibble: 5 x 6
-##      id   age   arm arm_lab   t_1   t_2
-##   &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;   &lt;dbl&gt; &lt;dbl&gt;
-## 1     1    37     1 placebo   123   135
-## 2     2    65     2 drug      143   140
-## 3     3    57     2 drug       NA    NA
-## 4     4    34     1 placebo   100   105
-## 5     5    45     2 drug       NA    NA
+# A tibble: 5 x 6
+     ID   age   arm arm_lab   t_1   t_2
+  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;   &lt;dbl&gt; &lt;dbl&gt;
+1     1    37     1 placebo   123   135
+2     2    65     2 drug      143   140
+3     3    57     2 drug       NA    NA
+4     4    34     1 placebo   100   105
+5     5    45     2 drug       NA    NA
 ```
 
 ]
@@ -723,14 +736,14 @@ combined
 ```
 
 ```
-## # A tibble: 5 x 6
-##      id   age   arm arm_lab   t_1   t_2
-##   &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;   &lt;dbl&gt; &lt;dbl&gt;
-## 1     1    37     1 placebo   123   135
-## 2     2    65     2 drug      143   140
-## 3     3    57     2 drug       NA    NA
-## 4     4    34     1 placebo   100   105
-## 5     5    45     2 drug       NA    NA
+# A tibble: 5 x 6
+     ID   age   arm arm_lab   t_1   t_2
+  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;   &lt;dbl&gt; &lt;dbl&gt;
+1     1    37     1 placebo   123   135
+2     2    65     2 drug      143   140
+3     3    57     2 drug       NA    NA
+4     4    34     1 placebo   100   105
+5     5    45     2 drug       NA    NA
 ```
 
 ```
@@ -772,14 +785,14 @@ combined %&gt;%
 ```
 
 ```
-## # A tibble: 5 x 6
-##      id   age   arm arm_lab   t_1   t_2
-##   &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;   &lt;dbl&gt; &lt;dbl&gt;
-## 1     1    37     1 placebo   123   135
-## 2     4    34     1 placebo   100   105
-## 3     2    65     2 drug      143   140
-## 4     3    57     2 drug       NA    NA
-## 5     5    45     2 drug       NA    NA
+# A tibble: 5 x 6
+     ID   age   arm arm_lab   t_1   t_2
+  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;   &lt;dbl&gt; &lt;dbl&gt;
+1     1    37     1 placebo   123   135
+2     4    34     1 placebo   100   105
+3     2    65     2 drug      143   140
+4     3    57     2 drug       NA    NA
+5     5    45     2 drug       NA    NA
 ```
 
 
@@ -821,14 +834,14 @@ combined %&gt;%
 ```
 
 ```
-## # A tibble: 5 x 6
-##      id   age   arm arm_lab   t_1   t_2
-##   &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;   &lt;dbl&gt; &lt;dbl&gt;
-## 1     4    34     1 placebo   100   105
-## 2     1    37     1 placebo   123   135
-## 3     5    45     2 drug       NA    NA
-## 4     3    57     2 drug       NA    NA
-## 5     2    65     2 drug      143   140
+# A tibble: 5 x 6
+     ID   age   arm arm_lab   t_1   t_2
+  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;   &lt;dbl&gt; &lt;dbl&gt;
+1     4    34     1 placebo   100   105
+2     1    37     1 placebo   123   135
+3     5    45     2 drug       NA    NA
+4     3    57     2 drug       NA    NA
+5     2    65     2 drug      143   140
 ```
 
 ]
@@ -852,7 +865,7 @@ c(2, 6, 10)
 ```
 
 ```
-## [1]  2  6 10
+[1]  2  6 10
 ```
 
 ```r
@@ -861,7 +874,7 @@ c(2, 6, 10)
 ```
 
 ```
-## [1] 0 1 2 3 4 5
+[1] 0 1 2 3 4 5
 ```
 
 
@@ -879,11 +892,11 @@ combined %&gt;%
 ```
 
 ```
-## # A tibble: 2 x 6
-##      id   age   arm arm_lab   t_1   t_2
-##   &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;   &lt;dbl&gt; &lt;dbl&gt;
-## 1     3    57     2 drug       NA    NA
-## 2     5    45     2 drug       NA    NA
+# A tibble: 2 x 6
+     ID   age   arm arm_lab   t_1   t_2
+  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;   &lt;dbl&gt; &lt;dbl&gt;
+1     3    57     2 drug       NA    NA
+2     5    45     2 drug       NA    NA
 ```
 
 
@@ -906,7 +919,7 @@ c(2, 6, 10)
 ```
 
 ```
-## [1]  2  6 10
+[1]  2  6 10
 ```
 
 ```r
@@ -915,7 +928,7 @@ c(2, 6, 10)
 ```
 
 ```
-## [1] 0 1 2 3 4 5
+[1] 0 1 2 3 4 5
 ```
 
 ]
@@ -933,13 +946,13 @@ combined %&gt;%
 ```
 
 ```
-## # A tibble: 4 x 6
-##      id   age   arm arm_lab   t_1   t_2
-##   &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;   &lt;dbl&gt; &lt;dbl&gt;
-## 1     1    37     1 placebo   123   135
-## 2     2    65     2 drug      143   140
-## 3     3    57     2 drug       NA    NA
-## 4     4    34     1 placebo   100   105
+# A tibble: 4 x 6
+     ID   age   arm arm_lab   t_1   t_2
+  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;   &lt;dbl&gt; &lt;dbl&gt;
+1     1    37     1 placebo   123   135
+2     2    65     2 drug      143   140
+3     3    57     2 drug       NA    NA
+4     4    34     1 placebo   100   105
 ```
 
 ]
@@ -974,14 +987,14 @@ combined %&gt;%
 ```
 
 ```
-## # A tibble: 5 x 6
-##      id   age   arm arm_lab   t_1   t_2
-##   &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;   &lt;dbl&gt; &lt;dbl&gt;
-## 1     1    37     1 placebo   123   135
-## 2     2    65     2 drug      143   140
-## 3     3    57     2 drug       NA    NA
-## 4     4    34     1 placebo   100   105
-## 5     5    45     2 drug       NA    NA
+# A tibble: 5 x 6
+     ID   age   arm arm_lab   t_1   t_2
+  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;   &lt;dbl&gt; &lt;dbl&gt;
+1     1    37     1 placebo   123   135
+2     2    65     2 drug      143   140
+3     3    57     2 drug       NA    NA
+4     4    34     1 placebo   100   105
+5     5    45     2 drug       NA    NA
 ```
 
 ]
@@ -1017,12 +1030,12 @@ combined %&gt;%
 ```
 
 ```
-## # A tibble: 3 x 6
-##      id   age   arm arm_lab   t_1   t_2
-##   &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;   &lt;dbl&gt; &lt;dbl&gt;
-## 1     2    65     2 drug      143   140
-## 2     3    57     2 drug       NA    NA
-## 3     5    45     2 drug       NA    NA
+# A tibble: 3 x 6
+     ID   age   arm arm_lab   t_1   t_2
+  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;   &lt;dbl&gt; &lt;dbl&gt;
+1     2    65     2 drug      143   140
+2     3    57     2 drug       NA    NA
+3     5    45     2 drug       NA    NA
 ```
 
 ]
@@ -1054,23 +1067,23 @@ tibble %&gt;%
 
 .pull-right55[
 
-Select variables `id` and `arm`.
+Select variables `ID` and `arm`.
 
 
 ```r
 combined %&gt;%
-  select(id, arm) # Select id and arm variables
+  select(ID, arm) # Select ID and arm variables
 ```
 
 ```
-## # A tibble: 5 x 2
-##      id   arm
-##   &lt;dbl&gt; &lt;dbl&gt;
-## 1     1     1
-## 2     2     2
-## 3     3     2
-## 4     4     1
-## 5     5     2
+# A tibble: 5 x 2
+     ID   arm
+  &lt;dbl&gt; &lt;dbl&gt;
+1     1     1
+2     2     2
+3     3     2
+4     4     1
+5     5     2
 ```
 
 ]
@@ -1110,18 +1123,18 @@ Select everything &lt;i&gt;except&lt;/i&gt; id
 
 ```r
 combined %&gt;%
-  select(-id) # Everything BUT id
+  select(-ID) # Everything BUT ID
 ```
 
 ```
-## # A tibble: 5 x 5
-##     age   arm arm_lab   t_1   t_2
-##   &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;   &lt;dbl&gt; &lt;dbl&gt;
-## 1    37     1 placebo   123   135
-## 2    65     2 drug      143   140
-## 3    57     2 drug       NA    NA
-## 4    34     1 placebo   100   105
-## 5    45     2 drug       NA    NA
+# A tibble: 5 x 5
+    age   arm arm_lab   t_1   t_2
+  &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;   &lt;dbl&gt; &lt;dbl&gt;
+1    37     1 placebo   123   135
+2    65     2 drug      143   140
+3    57     2 drug       NA    NA
+4    34     1 placebo   100   105
+5    45     2 drug       NA    NA
 ```
 
 ]
@@ -1167,14 +1180,14 @@ combined
 ```
 
 ```
-## # A tibble: 5 x 6
-##      id   age   arm arm_lab   t_1   t_2
-##   &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;   &lt;dbl&gt; &lt;dbl&gt;
-## 1     1    37     1 placebo   123   135
-## 2     2    65     2 drug      143   140
-## 3     3    57     2 drug       NA    NA
-## 4     4    34     1 placebo   100   105
-## 5     5    45     2 drug       NA    NA
+# A tibble: 5 x 6
+     ID   age   arm arm_lab   t_1   t_2
+  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;   &lt;dbl&gt; &lt;dbl&gt;
+1     1    37     1 placebo   123   135
+2     2    65     2 drug      143   140
+3     3    57     2 drug       NA    NA
+4     4    34     1 placebo   100   105
+5     5    45     2 drug       NA    NA
 ```
 
 ]
@@ -1187,24 +1200,24 @@ combined
 combined %&gt;% 
   gather(time,  # New group variable
          value, # New target variable
-         -id)   # Omit ID
+         -ID)   # Omit ID
 ```
 
 ```
-## # A tibble: 25 x 3
-##       id time  value
-##    &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt;
-##  1     1 age   37   
-##  2     2 age   65   
-##  3     3 age   57   
-##  4     4 age   34   
-##  5     5 age   45   
-##  6     1 arm   1    
-##  7     2 arm   2    
-##  8     3 arm   2    
-##  9     4 arm   1    
-## 10     5 arm   2    
-## # ... with 15 more rows
+# A tibble: 25 x 3
+      ID time  value
+   &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt;
+ 1     1 age   37   
+ 2     2 age   65   
+ 3     3 age   57   
+ 4     4 age   34   
+ 5     5 age   45   
+ 6     1 arm   1    
+ 7     2 arm   2    
+ 8     3 arm   2    
+ 9     4 arm   1    
+10     5 arm   2    
+# … with 15 more rows
 ```
 
 ]
@@ -1223,14 +1236,14 @@ combined
 ```
 
 ```
-## # A tibble: 5 x 6
-##      id   age   arm arm_lab   t_1   t_2
-##   &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;   &lt;dbl&gt; &lt;dbl&gt;
-## 1     1    37     1 placebo   123   135
-## 2     2    65     2 drug      143   140
-## 3     3    57     2 drug       NA    NA
-## 4     4    34     1 placebo   100   105
-## 5     5    45     2 drug       NA    NA
+# A tibble: 5 x 6
+     ID   age   arm arm_lab   t_1   t_2
+  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;   &lt;dbl&gt; &lt;dbl&gt;
+1     1    37     1 placebo   123   135
+2     2    65     2 drug      143   140
+3     3    57     2 drug       NA    NA
+4     4    34     1 placebo   100   105
+5     5    45     2 drug       NA    NA
 ```
 
 ]
@@ -1244,23 +1257,23 @@ combined
 combined %&gt;% 
   gather(time,  # New group variable
          value, # New target variable
-         -id, -age, -arm, -arm_lab) # Omit variables
+         -ID, -age, -arm, -arm_lab) # Omit variables
 ```
 
 ```
-## # A tibble: 10 x 6
-##       id   age   arm arm_lab time  value
-##    &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;   &lt;chr&gt; &lt;dbl&gt;
-##  1     1    37     1 placebo t_1     123
-##  2     2    65     2 drug    t_1     143
-##  3     3    57     2 drug    t_1      NA
-##  4     4    34     1 placebo t_1     100
-##  5     5    45     2 drug    t_1      NA
-##  6     1    37     1 placebo t_2     135
-##  7     2    65     2 drug    t_2     140
-##  8     3    57     2 drug    t_2      NA
-##  9     4    34     1 placebo t_2     105
-## 10     5    45     2 drug    t_2      NA
+# A tibble: 10 x 6
+      ID   age   arm arm_lab time  value
+   &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;   &lt;chr&gt; &lt;dbl&gt;
+ 1     1    37     1 placebo t_1     123
+ 2     2    65     2 drug    t_1     143
+ 3     3    57     2 drug    t_1      NA
+ 4     4    34     1 placebo t_1     100
+ 5     5    45     2 drug    t_1      NA
+ 6     1    37     1 placebo t_2     135
+ 7     2    65     2 drug    t_2     140
+ 8     3    57     2 drug    t_2      NA
+ 9     4    34     1 placebo t_2     105
+10     5    45     2 drug    t_2      NA
 ```
 
 ]
@@ -1277,23 +1290,23 @@ combined %&gt;%
 combined %&gt;% 
   gather(time,  # New group variable
          value, # New target variable
-         -id, -age, -arm, -arm_lab) # Omit variables
+         -ID, -age, -arm, -arm_lab) # Omit variables
 ```
 
 ```
-## # A tibble: 10 x 6
-##       id   age   arm arm_lab time  value
-##    &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;   &lt;chr&gt; &lt;dbl&gt;
-##  1     1    37     1 placebo t_1     123
-##  2     2    65     2 drug    t_1     143
-##  3     3    57     2 drug    t_1      NA
-##  4     4    34     1 placebo t_1     100
-##  5     5    45     2 drug    t_1      NA
-##  6     1    37     1 placebo t_2     135
-##  7     2    65     2 drug    t_2     140
-##  8     3    57     2 drug    t_2      NA
-##  9     4    34     1 placebo t_2     105
-## 10     5    45     2 drug    t_2      NA
+# A tibble: 10 x 6
+      ID   age   arm arm_lab time  value
+   &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;   &lt;chr&gt; &lt;dbl&gt;
+ 1     1    37     1 placebo t_1     123
+ 2     2    65     2 drug    t_1     143
+ 3     3    57     2 drug    t_1      NA
+ 4     4    34     1 placebo t_1     100
+ 5     5    45     2 drug    t_1      NA
+ 6     1    37     1 placebo t_2     135
+ 7     2    65     2 drug    t_2     140
+ 8     3    57     2 drug    t_2      NA
+ 9     4    34     1 placebo t_2     105
+10     5    45     2 drug    t_2      NA
 ```
 
 
@@ -1307,7 +1320,7 @@ combined %&gt;%
 long_combined = combined %&gt;% 
   gather(time,  # New group variable
          value, # New target variable
-         -id, -age, -arm, -arm_lab) # Omit variables
+         -ID, -age, -arm, -arm_lab) # Omit variables
          
 # "Spread" long data to wide
 long_combined %&gt;%
@@ -1316,14 +1329,14 @@ long_combined %&gt;%
 ```
 
 ```
-## # A tibble: 5 x 6
-##      id   age   arm arm_lab   t_1   t_2
-##   &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;   &lt;dbl&gt; &lt;dbl&gt;
-## 1     1    37     1 placebo   123   135
-## 2     2    65     2 drug      143   140
-## 3     3    57     2 drug       NA    NA
-## 4     4    34     1 placebo   100   105
-## 5     5    45     2 drug       NA    NA
+# A tibble: 5 x 6
+     ID   age   arm arm_lab   t_1   t_2
+  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;   &lt;dbl&gt; &lt;dbl&gt;
+1     1    37     1 placebo   123   135
+2     2    65     2 drug      143   140
+3     3    57     2 drug       NA    NA
+4     4    34     1 placebo   100   105
+5     5    45     2 drug       NA    NA
 ```
 
 ]
@@ -1335,6 +1348,7 @@ class: middle, center
 
 &lt;h1&gt;&lt;a href="https://dwulff.github.io/Intro2R_Unibe/_sessions/Wrangling/Wrangling_practical.html"&gt;Practical&lt;/a&gt;&lt;/h1&gt;
     </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
 <script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
 <script>var slideshow = remark.create({
 "highlightStyle": "github",
@@ -1345,16 +1359,89 @@ class: middle, center
 if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
   window.dispatchEvent(new Event('resize'));
 });
-(function() {
-  var d = document, s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
   if (!r) return;
   s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
   d.head.appendChild(s);
-})();</script>
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
 
 <script>
-(function() {
-  var i, text, code, codes = document.getElementsByTagName('code');
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
   for (i = 0; i < codes.length;) {
     code = codes[i];
     if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
@@ -1368,14 +1455,15 @@ if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
     }
     i++;
   }
-})();
+};
+slideshow._releaseMath(document);
 </script>
 <!-- dynamically load mathjax for compatibility with self-contained -->
 <script>
 (function () {
   var script = document.createElement('script');
   script.type = 'text/javascript';
-  script.src  = 'https://cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
   if (location.protocol !== 'file:' && /^https?:/.test(script.src))
     script.src  = script.src.replace(/^https?:/, '');
   document.getElementsByTagName('head')[0].appendChild(script);

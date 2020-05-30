@@ -18,7 +18,7 @@ author: "
   <a href='https://www.linkedin.com/company/basel-r-bootcamp/'>
     <i class='fab fa-linkedin' style='font-size: .9em;'></i>
   </a>"
-date: "February 2019"
+date: "June 2020"
 output:
   xaringan::moon_reader:
     css: ["default", "baselrbootcamp.css"]
@@ -65,7 +65,8 @@ baselers <- read_csv("https://raw.githubusercontent.com/therbootcamp/baselers/ma
 ```{r setup, include=FALSE}
 options(htmltools.dir.version = FALSE)
 options(width=110)
-options(digits = 4)
+options(digits = 4) 
+knitr::opts_chunk$set(comment = NA)
 library(tidyverse)
 baselers <- read_csv("https://raw.githubusercontent.com/therbootcamp/baselers/master/inst/extdata/baselers.txt")
 ```
@@ -279,7 +280,7 @@ patients
 
 
 ```{r, echo = F}
-results <- tibble(id = c(4, 92, 1, 2, 99),
+results <- tibble(ID = c(4, 92, 1, 2, 99),
                   t_1 = c(100, 134, 123, 143, 102),
                   t_2 = c(105, 150, 135, 140,68))
 ```
@@ -475,11 +476,11 @@ combined <- patients %>%
                               arm == 2 ~ "drug")) %>%
   
 # Join with results with left_join()
-  left_join(results, by = "id")
+  left_join(results, by = "ID")
 
 ```
 
-```{r, eval = F}
+```{r, eval = T}
 # Show combined data set
 combined 
 ```
@@ -524,7 +525,7 @@ patients
 
 
 ```{r, echo = F}
-results <- tibble(id = c(4, 92, 1, 2, 99),
+results <- tibble(ID = c(4, 92, 1, 2, 99),
                   t_1 = c(100, 134, 123, 143, 102),
                   t_2 = c(105, 150, 135, 140,68))
 ```
@@ -570,7 +571,7 @@ combined <- patients %>%
                               arm == 2 ~ "drug")) %>%
   
 # Join with results with left_join()
-  left_join(results, by = "id")
+  left_join(results, by = "ID")
 
 # Show combined data set
 combined
@@ -830,11 +831,11 @@ tibble %>%
 
 .pull-right55[
 
-Select variables `id` and `arm`.
+Select variables `ID` and `arm`.
 
 ```{r}
 combined %>%
-  select(id, arm) # Select id and arm variables
+  select(ID, arm) # Select ID and arm variables
 ```
 
 ]
@@ -872,7 +873,7 @@ Select everything <i>except</i> id
 ```{r}
 
 combined %>%
-  select(-id) # Everything BUT id
+  select(-ID) # Everything BUT ID
 ```
 
 ]
@@ -925,7 +926,7 @@ combined
 combined %>% 
   gather(time,  # New group variable
          value, # New target variable
-         -id)   # Omit ID
+         -ID)   # Omit ID
 ```
 
 ]
@@ -952,7 +953,7 @@ combined
 combined %>% 
   gather(time,  # New group variable
          value, # New target variable
-         -id, -age, -arm, -arm_lab) # Omit variables
+         -ID, -age, -arm, -arm_lab) # Omit variables
 ```
 
 ]
@@ -968,7 +969,7 @@ combined %>%
 combined %>% 
   gather(time,  # New group variable
          value, # New target variable
-         -id, -age, -arm, -arm_lab) # Omit variables
+         -ID, -age, -arm, -arm_lab) # Omit variables
 ```
 
 
@@ -981,7 +982,7 @@ combined %>%
 long_combined = combined %>% 
   gather(time,  # New group variable
          value, # New target variable
-         -id, -age, -arm, -arm_lab) # Omit variables
+         -ID, -age, -arm, -arm_lab) # Omit variables
          
 # "Spread" long data to wide
 long_combined %>%
