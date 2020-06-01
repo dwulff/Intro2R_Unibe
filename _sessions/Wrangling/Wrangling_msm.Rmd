@@ -26,7 +26,7 @@ author: "Introduction to Data Science with R<br/>
   <a href='https://www.linkedin.com/company/basel-r-bootcamp/'>
     <i class='fab fa-linkedin' style='font-size: .9em;'></i>
   </a>"
-date: "February 2019"
+date: "June 2020"
 output:
   xaringan::moon_reader:
     css: ["default", "baselrbootcamp.css"]
@@ -55,9 +55,9 @@ layout: true
     <a href="https://therbootcamp.github.io/">
       <font color="#7E7E7E">
 <<<<<<< HEAD:_sessions/Wrangling/Wrangling.Rmd
-       Introduction to R | February 2019
+       Introduction to R | June 2020
 =======
-       R Bootcamp Bern | February 2019
+       R Bootcamp Bern | June 2020
 >>>>>>> 08ce1b458a25fa338b36f65c6eadeda31d5fc467:_sessions/3_Wrangling/Wrangling.Rmd
       </font>
     </a>
@@ -77,7 +77,8 @@ baselers <- read_csv("https://raw.githubusercontent.com/therbootcamp/baselers/ma
 ```{r setup, include=FALSE}
 options(htmltools.dir.version = FALSE)
 options(width=110)
-options(digits = 4)
+options(digits = 4) 
+knitr::opts_chunk$set(comment = NA)
 library(tidyverse)
 baselers <- read_csv("https://raw.githubusercontent.com/therbootcamp/baselers/master/inst/extdata/baselers.txt")
 ```

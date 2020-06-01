@@ -17,7 +17,7 @@ author: "Introduction to R<br>
   <a href='https://www.linkedin.com/company/basel-r-bootcamp/'>
     <i class='fab fa-linkedin' style='font-size: .9em;'></i>
   </a>"
-date: "February 2019"
+date: "June 2020"
 output:
   xaringan::moon_reader:
     css: ["default", "baselrbootcamp.css"]
@@ -45,7 +45,7 @@ layout: true
     </a>
     <a href="https://therbootcamp.github.io/">
       <font color="#7E7E7E">
-       Introduction to R | February 2019
+       Introduction to R | June 2020
       </font>
     </a>
     </span>
@@ -66,7 +66,8 @@ options(htmltools.dir.version = FALSE)
 # https://github.com/yihui/xaringan/wiki
 # https://github.com/gnab/remark/wiki/Markdown
 options(width=110)
-options(digits = 4)
+options(digits = 4) 
+knitr::opts_chunk$set(comment = NA)
 
 require(tidyverse)
 ```

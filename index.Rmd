@@ -18,7 +18,7 @@ author: "
         <font style='font-style:normal;font-size:20px;padding-left:5px'>Bern R Bootcamp</font>
       </a>
       <br>
-      <img src='https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/by-sa.png' style= 'height:16.7px;vertical-align:baseline'/><font style='font-style:normal;font-size:20px;padding-left:9.3px'>February 2019</font>
+      <img src='https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/by-sa.png' style= 'height:16.7px;vertical-align:baseline'/><font style='font-style:normal;font-size:20px;padding-left:9.3px'>June 2020</font>
       "
 output:
   html_document:
@@ -31,9 +31,9 @@ output:
 
 ### Links
 
-##### Data sets: <a href="https://dwulff.github.io/Intro2R_Unibe/1_Data/BernRBootcamp_Day1.zip">Day 1</a>, <a href="https://dwulff.github.io/Intro2R_Unibe/1_Data/BernRBootcamp_Day2.zip">Day 2</a>, <a href="https://dwulff.github.io/Intro2R_Unibe/1_Data/BernRBootcamp_Day3.zip">Day 3</a>
+##### Data sets: <a href="https://dwulff.github.io/Intro2R_Unibe/1_Data/BernRBootcamp_Day1.zip">Day 1</a><!---, <a href="https://dwulff.github.io/Intro2R_Unibe/1_Data/BernRBootcamp_Day2.zip">Day 2</a>, <a href="https://dwulff.github.io/Intro2R_Unibe/1_Data/BernRBootcamp_Day3.zip">Day 3</a>--->
 
-#####  Final project: <a href="https://dwulff.github.io/Intro2R_Unibe/_sessions/FinalProject/FinalProject.html">Assignment</a>, <a href="https://doodle.com/poll/f6y4dg6dt7t6scz5">Doodle</a>
+#####  Final project<!---: <a href="https://dwulff.github.io/Intro2R_Unibe/_sessions/FinalProject/FinalProject.html">Assignment</a>, <a href="https://doodle.com/poll/f6y4dg6dt7t6scz5">Doodle</a>--->
 
 #####  PDFs
 
@@ -45,31 +45,16 @@ output:
 
 |  | Day 1<br>Fundamentals| Day 2<br>Analysis| Day 3<br>Reporting| 
 |:--|:-------------|:-------------|:-------------|
-|0| Welcome!<br>[slides](_sessions/Welcome/Welcome.html) | Recap I<br>[slides](_sessions/RecapI/RecapI.html)| Recap II <br>[slides](_sessions/RecapII/RecapII.html) |
-|1| Intro to R<br>[slides](_sessions/IntroToR/IntroToR.html), [source](_sessions/IntroToR/IntroToR_interactive.R) | Statistics I<br>[slides](_sessions/StatisticsI/StatisticsI.html), [practical](_sessions/StatisticsI/StatisticsI_practical.html)| Plotting II <br>[slides](_sessions/PlottingII/PlottingII.html), [practical](_sessions/PlottingII/PlottingII_practical.html) |
-|2|  Data <br>[slides](_sessions/Data/Data.html), [practical](_sessions/Data/Data_practical.html)| Statistics II<br>[slides](_sessions/StatisticsII/StatisticsII.html), [practical](_sessions/StatisticsII/StatisticsII_practical.html)| Reporting<br>[slides](_sessions/Reporting/Reporting.html), [practical](_sessions/Reporting/Reporting_practical.html) |
-|3|   Wrangling<br>[slides](_sessions/Wrangling/Wrangling.html), [practical](_sessions/Wrangling/Wrangling_practical.html) | Plotting I<br>[slides](_sessions/PlottingI/PlottingI.html), [practical](_sessions/PlottingI/PlottingI_practical.html)| Case Studies<br>[Intro](_sessions/CaseStudies/CaseStudies.html)<br>[1: Clinical Trial](_sessions/CaseStudies/Clinical_Data_Case_Study.html)<br>[2: Finance ](_sessions/CaseStudies/Financial_Data_Case_Study.html) |
-|4| |  | Next Steps<br> [slides](_sessions/NextSteps/NextSteps.html) |
+|0| Welcome!<br>[slides](_sessions/Welcome/Welcome.html) | Recap I<br><!---[slides](_sessions/RecapI/RecapI.html)--->| Recap II <!---<br>[slides](_sessions/RecapII/RecapII.html) --->|
+|1| Intro to R<br>[slides](_sessions/IntroToR/IntroToR.html), [source](_sessions/IntroToR/IntroToR_interactive.R) | Statistics I<br><!---[slides](_sessions/StatisticsI/StatisticsI.html), [practical](_sessions/StatisticsI/StatisticsI_practical.html)-->| Plotting II <br><!---[slides](_sessions/PlottingII/PlottingII.html), [practical](_sessions/PlottingII/PlottingII_practical.html)--> |
+|2|  Data <br>[slides](_sessions/Data/Data.html), [practical](_sessions/Data/Data_practical.html)| Statistics II<br><!---[slides](_sessions/StatisticsII/StatisticsII.html), [practical](_sessions/StatisticsII/StatisticsII_practical.html)-->| Reporting<br><!---[slides](_sessions/Reporting/Reporting.html), [practical](_sessions/Reporting/Reporting_practical.html) -->|
+|3|   Wrangling<br>[slides](_sessions/Wrangling/Wrangling.html), [practical](_sessions/Wrangling/Wrangling_practical.html) | Plotting I<br><!---[slides](_sessions/PlottingI/PlottingI.html), [practical](_sessions/PlottingI/PlottingI_practical.html)-->| Case Studies<br><!---[Intro](_sessions/CaseStudies/CaseStudies.html)<br>[1: Clinical Trial](_sessions/CaseStudies/Clinical_Data_Case_Study.html)<br>[2: Finance ](_sessions/CaseStudies/Financial_Data_Case_Study.html)--> |
+|4| |  | Next Steps<br> <!---[slides](_sessions/NextSteps/NextSteps.html) -->|
 <br>
-
-
-<!---
-
-|  | Day 1<br>Fundamentals| Day 2<br>Analysis| Day 3<br>Reporting| 
-|:--|:-------------|:-------------|:-------------|
-|0| Welcome!<br>[slides](_sessions/Welcome/Welcome.html) | Recap I<br>[slides](_sessions/Recap/Recap.html)| Recap II<br>[slides](_sessions/RecapII/RecapII.html)|
-|1| Intro to R<br>[slides](_sessions/IntroToR/IntroToR.html), [source](_sessions/IntroToR/IntroToR_interactive.R) | Statistics I <br>[slides](_sessions/StatisticsI/StatisticsI.html), [practical](_sessions/StatisticsI/StatisticsI_practical.html) | Plotting II <br>[slides](_sessions/PlottingII/PlottingII.html), [practical](_sessions/PlottingII/PlottingII.html) |
-|2|  Data <br>[slides](_sessions/Data/Data.html), [practical](_sessions/Data/Data_practical.html)| Statistics II<br>[slides](_sessions/StatisticsII/Statistics.html), [practical](_sessions/StatisticsII/Statistics_practical.html)| Reporting<br>[slides](_sessions/Reporting/Reporting.html), [practical](_sessions/Reporting/Reporting_practical.html)|
-|3|   Wrangling<br>[slides](_sessions/Wrangling/Wrangling.html), [practical](_sessions/Wrangling/Wrangling_practical.html) | Plotting I<br>[slides](_sessions/PlottingI/Plotting.html), [practical](_sessions/PlottingI/Plotting_practical.html) |Case Studies<br>[Intro](_sessions/CaseStudies/CaseStudies.html)<br>[1: Clinical Trial](_sessions/CaseStudies/Clinical_Data_Case_Study.html)<br>[2: Finance ](_sessions/CaseStudies/Financial_Data_Case_Study.html)|
-|4| |  | Next Steps<br> [slides](_sessions/NextSteps/NextSteps.html) |
-<br>
-
---->
 
 
 ### Schedule
 
-
-<p align="left"><br>
-    <img border="0" alt="Feb2019Schedule" src="https://dwulff.github.io/Intro2R_Unibe/_sessions/Welcome/image/schedule.png" style="width:510px">
+<p align="center"><br>
+    <img border="0" alt="Jun2020Schedule" src="https://dwulff.github.io/Intro2R_Unibe/_sessions/Welcome/image/schedule.png" style="width:110%">
 </p>

@@ -1,15 +1,15 @@
 <!DOCTYPE html>
 
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html>
 
 <head>
 
 <meta charset="utf-8" />
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
 
 
-<meta name="author" content="             Bern R Bootcamp    February 2019" />
+<meta name="author" content="             Bern R Bootcamp    June 2020" />
 
 
 <title>Introduction to R</title>
@@ -71,9 +71,7 @@ h6 {
 
 <link rel="stylesheet" href="index.css" type="text/css" />
 
-</head>
 
-<body>
 
 <style type = "text/css">
 .main-container {
@@ -87,7 +85,6 @@ code {
 }
 img {
   max-width:100%;
-  height: auto;
 }
 .tabbed-pane {
   padding-top: 12px;
@@ -98,22 +95,81 @@ img {
 button.code-folding-btn:focus {
   outline: none;
 }
+summary {
+  display: list-item;
+}
 </style>
 
 
 
-<div class="container-fluid main-container">
-
 <!-- tabsets -->
-<script>
-$(document).ready(function () {
-  window.buildTabsets("TOC");
-});
-</script>
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "&#xe258;";
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
 
 <!-- code folding -->
 
 
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
 
 
 
@@ -123,7 +179,7 @@ $(document).ready(function () {
 
 
 <h1 class="title toc-ignore">Introduction to R</h1>
-<h4 class="author"><em><a href='https://therbootcamp.github.io'> <i class='fas fa-home' style='font-size:1em;'></i> </a> <a href='https://therbootcamp.github.io/appliedML_2019Jan/'> <i class='fas fa-clock' style='font-size:1em;' ></i> </a> <a href='mailto:therbootcamp@gmail.com'> <i class='fas fa-envelope' style='font-size: 1em;'></i> </a> <a href='https://www.linkedin.com/company/basel-r-bootcamp/'> <i class='fab fa-linkedin' style='font-size: 1em;'></i> </a> <a href='https://therbootcamp.github.io'> <font style='font-style:normal;font-size:20px;padding-left:5px'>Bern R Bootcamp</font> </a> <br> <img src='https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/by-sa.png' style= 'height:16.7px;vertical-align:baseline'/><font style='font-style:normal;font-size:20px;padding-left:9.3px'>February 2019</font></em></h4>
+<h4 class="author"><a href='https://therbootcamp.github.io'> <i class='fas fa-home' style='font-size:1em;'></i> </a> <a href='https://therbootcamp.github.io/appliedML_2019Jan/'> <i class='fas fa-clock' style='font-size:1em;' ></i> </a> <a href='mailto:therbootcamp@gmail.com'> <i class='fas fa-envelope' style='font-size: 1em;'></i> </a> <a href='https://www.linkedin.com/company/basel-r-bootcamp/'> <i class='fab fa-linkedin' style='font-size: 1em;'></i> </a> <a href='https://therbootcamp.github.io'> <font style='font-style:normal;font-size:20px;padding-left:5px'>Bern R Bootcamp</font> </a> <br> <img src='https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/by-sa.png' style= 'height:16.7px;vertical-align:baseline'/><font style='font-style:normal;font-size:20px;padding-left:9.3px'>June 2020</font></h4>
 
 </div>
 
@@ -131,11 +187,11 @@ $(document).ready(function () {
 <p><br></p>
 <div id="links" class="section level3">
 <h3>Links</h3>
-<div id="data-sets-day-1-day-2-day-3" class="section level5">
-<h5>Data sets: <a href="https://dwulff.github.io/Intro2R_Unibe/1_Data/BernRBootcamp_Day1.zip">Day 1</a>, <a href="https://dwulff.github.io/Intro2R_Unibe/1_Data/BernRBootcamp_Day2.zip">Day 2</a>, <a href="https://dwulff.github.io/Intro2R_Unibe/1_Data/BernRBootcamp_Day3.zip">Day 3</a></h5>
+<div id="data-sets-day-1" class="section level5">
+<h5>Data sets: <a href="https://dwulff.github.io/Intro2R_Unibe/1_Data/BernRBootcamp_Day1.zip">Day 1</a><!---, <a href="https://dwulff.github.io/Intro2R_Unibe/1_Data/BernRBootcamp_Day2.zip">Day 2</a>, <a href="https://dwulff.github.io/Intro2R_Unibe/1_Data/BernRBootcamp_Day3.zip">Day 3</a>---></h5>
 </div>
-<div id="final-project-assignment-doodle" class="section level5">
-<h5>Final project: <a href="https://dwulff.github.io/Intro2R_Unibe/_sessions/FinalProject/FinalProject.html">Assignment</a>, <a href="https://doodle.com/poll/f6y4dg6dt7t6scz5">Doodle</a></h5>
+<div id="final-project" class="section level5">
+<h5>Final project<!---: <a href="https://dwulff.github.io/Intro2R_Unibe/_sessions/FinalProject/FinalProject.html">Assignment</a>, <a href="https://doodle.com/poll/f6y4dg6dt7t6scz5">Doodle</a>---></h5>
 </div>
 <div id="pdfs" class="section level5">
 <h5>PDFs</h5>
@@ -144,13 +200,7 @@ $(document).ready(function () {
 </div>
 <div id="materials" class="section level3">
 <h3>Materials</h3>
-<table style="width:68%;">
-<colgroup>
-<col width="5%" />
-<col width="20%" />
-<col width="20%" />
-<col width="20%" />
-</colgroup>
+<table>
 <thead>
 <tr class="header">
 <th align="left"></th>
@@ -163,53 +213,41 @@ $(document).ready(function () {
 <tr class="odd">
 <td align="left">0</td>
 <td align="left">Welcome!<br><a href="_sessions/Welcome/Welcome.html">slides</a></td>
-<td align="left">Recap I<br><a href="_sessions/RecapI/RecapI.html">slides</a></td>
-<td align="left">Recap II <br><a href="_sessions/RecapII/RecapII.html">slides</a></td>
+<td align="left">Recap I<br><!---[slides](_sessions/RecapI/RecapI.html)---></td>
+<td align="left">Recap II <!---<br>[slides](_sessions/RecapII/RecapII.html) ---></td>
 </tr>
 <tr class="even">
 <td align="left">1</td>
 <td align="left">Intro to R<br><a href="_sessions/IntroToR/IntroToR.html">slides</a>, <a href="_sessions/IntroToR/IntroToR_interactive.R">source</a></td>
-<td align="left">Statistics I<br><a href="_sessions/StatisticsI/StatisticsI.html">slides</a>, <a href="_sessions/StatisticsI/StatisticsI_practical.html">practical</a></td>
-<td align="left">Plotting II <br><a href="_sessions/PlottingII/PlottingII.html">slides</a>, <a href="_sessions/PlottingII/PlottingII_practical.html">practical</a></td>
+<td align="left">Statistics I<br><!---[slides](_sessions/StatisticsI/StatisticsI.html), [practical](_sessions/StatisticsI/StatisticsI_practical.html)--></td>
+<td align="left">Plotting II <br><!---[slides](_sessions/PlottingII/PlottingII.html), [practical](_sessions/PlottingII/PlottingII_practical.html)--></td>
 </tr>
 <tr class="odd">
 <td align="left">2</td>
 <td align="left">Data <br><a href="_sessions/Data/Data.html">slides</a>, <a href="_sessions/Data/Data_practical.html">practical</a></td>
-<td align="left">Statistics II<br><a href="_sessions/StatisticsII/StatisticsII.html">slides</a>, <a href="_sessions/StatisticsII/StatisticsII_practical.html">practical</a></td>
-<td align="left">Reporting<br><a href="_sessions/Reporting/Reporting.html">slides</a>, <a href="_sessions/Reporting/Reporting_practical.html">practical</a></td>
+<td align="left">Statistics II<br><!---[slides](_sessions/StatisticsII/StatisticsII.html), [practical](_sessions/StatisticsII/StatisticsII_practical.html)--></td>
+<td align="left">Reporting<br><!---[slides](_sessions/Reporting/Reporting.html), [practical](_sessions/Reporting/Reporting_practical.html) --></td>
 </tr>
 <tr class="even">
 <td align="left">3</td>
 <td align="left">Wrangling<br><a href="_sessions/Wrangling/Wrangling.html">slides</a>, <a href="_sessions/Wrangling/Wrangling_practical.html">practical</a></td>
-<td align="left">Plotting I<br><a href="_sessions/PlottingI/PlottingI.html">slides</a>, <a href="_sessions/PlottingI/PlottingI_practical.html">practical</a></td>
-<td align="left">Case Studies<br><a href="_sessions/CaseStudies/CaseStudies.html">Intro</a><br><a href="_sessions/CaseStudies/Clinical_Data_Case_Study.html">1: Clinical Trial</a><br><a href="_sessions/CaseStudies/Financial_Data_Case_Study.html">2: Finance</a></td>
+<td align="left">Plotting I<br><!---[slides](_sessions/PlottingI/PlottingI.html), [practical](_sessions/PlottingI/PlottingI_practical.html)--></td>
+<td align="left">Case Studies<br><!---[Intro](_sessions/CaseStudies/CaseStudies.html)<br>[1: Clinical Trial](_sessions/CaseStudies/Clinical_Data_Case_Study.html)<br>[2: Finance ](_sessions/CaseStudies/Financial_Data_Case_Study.html)--></td>
 </tr>
 <tr class="odd">
 <td align="left">4</td>
 <td align="left"></td>
 <td align="left"></td>
-<td align="left">Next Steps<br> <a href="_sessions/NextSteps/NextSteps.html">slides</a></td>
+<td align="left">Next Steps<br> <!---[slides](_sessions/NextSteps/NextSteps.html) --></td>
 </tr>
 </tbody>
 </table>
 <p><br></p>
-<!---
-
-|  | Day 1<br>Fundamentals| Day 2<br>Analysis| Day 3<br>Reporting| 
-|:--|:-------------|:-------------|:-------------|
-|0| Welcome!<br>[slides](_sessions/Welcome/Welcome.html) | Recap I<br>[slides](_sessions/Recap/Recap.html)| Recap II<br>[slides](_sessions/RecapII/RecapII.html)|
-|1| Intro to R<br>[slides](_sessions/IntroToR/IntroToR.html), [source](_sessions/IntroToR/IntroToR_interactive.R) | Statistics I <br>[slides](_sessions/StatisticsI/StatisticsI.html), [practical](_sessions/StatisticsI/StatisticsI_practical.html) | Plotting II <br>[slides](_sessions/PlottingII/PlottingII.html), [practical](_sessions/PlottingII/PlottingII.html) |
-|2|  Data <br>[slides](_sessions/Data/Data.html), [practical](_sessions/Data/Data_practical.html)| Statistics II<br>[slides](_sessions/StatisticsII/Statistics.html), [practical](_sessions/StatisticsII/Statistics_practical.html)| Reporting<br>[slides](_sessions/Reporting/Reporting.html), [practical](_sessions/Reporting/Reporting_practical.html)|
-|3|   Wrangling<br>[slides](_sessions/Wrangling/Wrangling.html), [practical](_sessions/Wrangling/Wrangling_practical.html) | Plotting I<br>[slides](_sessions/PlottingI/Plotting.html), [practical](_sessions/PlottingI/Plotting_practical.html) |Case Studies<br>[Intro](_sessions/CaseStudies/CaseStudies.html)<br>[1: Clinical Trial](_sessions/CaseStudies/Clinical_Data_Case_Study.html)<br>[2: Finance ](_sessions/CaseStudies/Financial_Data_Case_Study.html)|
-|4| |  | Next Steps<br> [slides](_sessions/NextSteps/NextSteps.html) |
-<br>
-
---->
 </div>
 <div id="schedule" class="section level3">
 <h3>Schedule</h3>
 <p align="left">
-<br> <img border="0" alt="Feb2019Schedule" src="https://dwulff.github.io/Intro2R_Unibe/_sessions/Welcome/image/schedule.png" style="width:510px">
+<br> <img border="0" alt="Jun2020Schedule" src="https://dwulff.github.io/Intro2R_Unibe/_sessions/Welcome/image/schedule.png" style="width:100%">
 </p>
 </div>
 
@@ -230,6 +268,23 @@ $(document).ready(function () {
 
 
 </script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open')
+  });
+});
+</script>
+
+<!-- code folding -->
+
 
 <!-- dynamically load mathjax for compatibility with self-contained -->
 <script>

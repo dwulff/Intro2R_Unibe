@@ -18,7 +18,7 @@ author: "
   <a href='https://www.linkedin.com/company/basel-r-bootcamp/'>
     <i class='fab fa-linkedin' style='font-size: .9em;'></i>
   </a>"
-date: "February 2019"
+date: "June 2020"
 output:
   xaringan::moon_reader:
     css: ["default", "baselrbootcamp.css"]
@@ -46,7 +46,7 @@ layout: true
     </a>
     <a href="https://therbootcamp.github.io/">
       <font color="#7E7E7E">
-       Introduction to R | February 2019
+       Introduction to R | June 2020
       </font>
     </a>
     </span>
@@ -58,7 +58,8 @@ layout: true
 ```{r setup, include=FALSE}
 options(htmltools.dir.version = FALSE)
 options(width=110)
-options(digits = 4)
+options(digits = 4) 
+knitr::opts_chunk$set(comment = NA)
 
 knitr::opts_chunk$set(fig.align = 'center')
 ```
@@ -160,7 +161,7 @@ Each session contains a slide-based <high>introduction</high> and a hands-on <hi
 <high>All available online</high>. Follow along, and don't worry about memorizing
 
 <br><br>
-<a href="https://therbootcamp.github.io/Intro2DataScience_2018Oct/">This is a Link to our materials</a>.
+<a href="https://dwulff.github.io/Intro2R_Unibe/">This is a Link to our materials</a>.
 <br><br>
 
 <high>Be interactive! Ask questions!</high>
@@ -286,7 +287,7 @@ Sometimes, you may find yourself in need of some <high>intensive help</high>. <b
 .pull-left4[
 
 <br><br>
-# Breaks
+# Breaks - UPDATEW
 
 1 - Feel free to take breaks when you need them. Coffee, tea will be provided at
 10:30 and at 15:00 (we will keep this a bit flexible).
@@ -392,7 +393,7 @@ Sometimes, you may find yourself in need of some <high>intensive help</high>. <b
 
 .pull-right6[
 
-<img src="https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/bernrbootcamp_schedule.png" height="580" align="center">
+<img src="https://dwulff.github.io/Intro2R_Unibe/_sessions/Welcome/image/schedule.png" align="center">
 
 
 ]
