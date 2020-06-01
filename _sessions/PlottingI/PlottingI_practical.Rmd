@@ -44,6 +44,11 @@ knitr::opts_chunk$set(comment = NA,
 require(tidyverse)
 options(digits = 3)
 mcdonalds <- read_csv("1_Data/mcdonalds.csv")
+
+library(plotly)
+library(ggthemes)
+kc_house <- read_csv("https://raw.githubusercontent.com/therbootcamp/BaselRBootcamp_2018July/master/_sessions/_data/baselrbootcamp_data/kc_house.csv")
+
 ```
 
 <p align="center" width="100%">
@@ -491,14 +496,6 @@ ggplot(data = mpg,
 
 
 ## Datasets
-
-```{r, eval = TRUE, message = FALSE}
-library(tidyverse)
-library(plotly)
-library(ggthemes)
-mcdonalds <- read_csv("https://raw.githubusercontent.com/therbootcamp/BaselRBootcamp_2018July/master/_sessions/_data/baselrbootcamp_data/mcdonalds.csv")
-kc_house <- read_csv("https://raw.githubusercontent.com/therbootcamp/BaselRBootcamp_2018July/master/_sessions/_data/baselrbootcamp_data/kc_house.csv")
-```
 
 |File  |Rows | Columns |
 |:----|:-----|:------|

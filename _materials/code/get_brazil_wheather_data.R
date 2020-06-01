@@ -19,8 +19,7 @@ daily_single_ag <- get_power(community = "AG",
                              lonlat = c(-47.8821658, -15.7942287),
                              pars = c("RH2M", "T2M", "PRECTOT"),
                              dates = c("2015-11-09", "2016-06-09"),
-                             temporal_average = "DAILY"
-)
+                             temporal_average = "DAILY")
 
 class(daily_single_ag) <- c("tbl_df", "tbl", "data.frame")
 
