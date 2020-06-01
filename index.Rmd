@@ -55,7 +55,6 @@ output:
 
 ### Schedule
 
-
-<p align="left"><br>
-    <img border="0" alt="Jun2020Schedule" src="https://dwulff.github.io/Intro2R_Unibe/_sessions/Welcome/image/schedule.png" style="width:100%">
+<p align="center"><br>
+    <img border="0" alt="Jun2020Schedule" src="https://dwulff.github.io/Intro2R_Unibe/_sessions/Welcome/image/schedule.png" style="width:110%">
 </p>

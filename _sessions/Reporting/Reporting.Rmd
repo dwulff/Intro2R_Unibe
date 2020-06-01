@@ -47,7 +47,7 @@ output:
     </a>
     <a href="https://therbootcamp.github.io/">
       <font color="#7E7E7E">
-       Introduction to R | February 2019
+       Introduction to R | June 2020
       </font>
     </a>
     </span>

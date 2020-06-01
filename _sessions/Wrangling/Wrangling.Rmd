@@ -46,7 +46,7 @@ layout: true
     </a>
     <a href="https://therbootcamp.github.io/">
       <font color="#7E7E7E">
-       Introduction to R | February 2019
+       Introduction to R | June 2020
       </font>
     </a>
     </span>
@@ -131,7 +131,7 @@ To wrangle data in R, we will use the <high><mono>dplyr</mono></high> and <high>
 |:-------------|:----|
 |<b>dplyr</b> | Transformation | `rename()`, `mutate()`, `case_when()`, `*_join()`  |
 |<b>dplyr</b> | Organisation | `arrange()`, `slice()`, `filter()`, `select()`  |
-|<b>tidyr</b> | Organisation | `gather()`, `spread()` |
+|<b>tidyr</b> | Organisation | `pivot_longer()`, `pivot_wider()` |
 |<b>dplyr</b> | Aggregation | `group_by()`, `summarise()` |
 
 ]
@@ -473,7 +473,7 @@ Other `*_join()` functions: `right_join()`, `full_join()`, `inner_join()`, `anti
 combined <- patients %>% 
   rename(age = X1, arm = X2) %>%
   mutate(arm_lab = case_when(arm == 1 ~ "placebo",
-                              arm == 2 ~ "drug")) %>%
+                             arm == 2 ~ "drug")) %>%
   
 # Join with results with left_join()
   left_join(results, by = "ID")
@@ -537,48 +537,6 @@ results
 
 ]
 
-
-
----
-
-# `left_join()`
-
-.pull-left35[
-
-Use `left_join()` to <high>combine two data frames</high> based on one or more key variables
-
-```{r, eval = FALSE}
-# Join tibble_1 to tibble_2
-#   matched by KEY
-tibble_1 %>%
-  left_join(tibble_2, 
-      by = c("KEY"))
-```
-
-
-Other `*_join()` functions: `right_join()`, `full_join()`, `inner_join()`, `anti_join()`, `semi_join()`.
-
-
-]
-
-.pull-right6[
-
-```{r,error=TRUE}
-# Join patients with results to create combined
-combined <- patients %>% 
-  rename(age = X1, arm = X2, id = ID) %>%
-  mutate(arm_lab = case_when(arm == 1 ~ "placebo",
-                              arm == 2 ~ "drug")) %>%
-  
-# Join with results with left_join()
-  left_join(results, by = "ID")
-
-# Show combined data set
-combined
-```
-
-]
-
 ---
 
 # Organisation
@@ -601,8 +559,6 @@ Organisation functions help you change the organisation of your data by <high>so
 ```{r}
 # combined tibble
 combined
-```
-
 ```
 
 ]
@@ -676,7 +632,6 @@ combined %>%
 ]
 
 
-
 ---
 
 # `slice()`
@@ -737,7 +692,7 @@ c(2, 6, 10)
 Select rows `1` through `4`.
 
 ```{r}
-# First 5 rows
+# First 4 rows
 combined %>%
   slice(1:4)
 ```
@@ -767,9 +722,9 @@ Use `filter()` to <high>select rows</high> (or remove) based on logical statemen
 Select <i>only</i> patients over `30`.
 
 ```{r}
-# Filter patients older than 30
+# Filter patients younger than 40
 combined %>%
-  filter(age > 30)
+  filter(age < 40)
 ```
 
 ]
@@ -795,12 +750,12 @@ Use `filter()` to <high>select rows</high> (or remove) based on logical statemen
 
 .pull-right55[
 
-Select <i>only</i> patients over `30` given arm is `'drug'`.
+Select <i>only</i> patients over `30` in the `'drug'` arm.
 
 ```{r}
 # Filter patients older than 30 given drug
 combined %>%
-  filter(age > 30 & arm_lab == "drug")
+  filter(age > 30 & arm_lab == 'drug')
 ```
 
 ]
@@ -868,12 +823,12 @@ tibble %>%
 
 .pull-right55[
 
-Select everything <i>except</i> id
+Select everything <i>except</i> t_2
 
 ```{r}
 
 combined %>%
-  select(-ID) # Everything BUT ID
+  select(-t_2) # Everything BUT ID
 ```
 
 ]
@@ -887,14 +842,14 @@ combined %>%
 
 Some functions require data to be in a certain shape, that is to be either in a wide or a long format.
 
-Use <high>`gather()`</high> and <high>`spread()`</high> from the `tidyr`package to change a tibble between <high>wide</high> and <high>long</high> formats.
+Use <high>`pivot_longer()`</high> and <high>`pivot_wider()`</high> from the `tidyr`package to change a tibble between <high>wide</high> and <high>long</high> formats.
 
 <br>
 
 | Function | Result |
 |:----------|:-------|
-|`gather()`|<high>wide &#8594; long</high> format|
-|`spread()`|<high>long &#8594; wide</high> format|
+|`pivot_longer()`|<high>wide &#8594; long</high> format|
+|`pivot_wider()`|<high>long &#8594; wide</high> format|
 
 ]
 
@@ -926,14 +881,14 @@ combined
 combined %>% 
   gather(time,  # New group variable
          value, # New target variable
-         -ID)   # Omit ID
+         -ID)   # Omit ID  
 ```
 
 ]
 
 ---
 
-# `gather()`
+# `pivot_longer()`
 
 .pull-left45[
 
@@ -949,27 +904,28 @@ combined
 
 
 ```{r}
-# "Gather" wide data to long
+# "pivot_longer" wide data to long
 combined %>% 
-  gather(time,  # New group variable
-         value, # New target variable
-         -ID, -age, -arm, -arm_lab) # Omit variables
+  pivot_longer(names_to = 'time', 
+               values_to = 'value',
+               cols = c(t_1, t_2))
 ```
 
 ]
 
 ---
 
-# `spread()`
+# `pivot_wider()`
 
 .pull-left45[
 
 ```{r}
 # Show long data
+long <- 
 combined %>% 
-  gather(time,  # New group variable
-         value, # New target variable
-         -ID, -age, -arm, -arm_lab) # Omit variables
+  pivot_longer(names_to = 'time', 
+               values_to = 'value',
+               cols = c(t_1, t_2))
 ```
 
 
@@ -978,16 +934,10 @@ combined %>%
 .pull-right45[
 
 ```{r}
-# "Gather" wide data to long
-long_combined = combined %>% 
-  gather(time,  # New group variable
-         value, # New target variable
-         -ID, -age, -arm, -arm_lab) # Omit variables
-         
-# "Spread" long data to wide
-long_combined %>%
-  spread(time,   # Old group variable
-         value)  # Old target variable
+# "pivot_wider" long data to wide
+long %>% 
+  pivot_wider(names_from = 'time', 
+                     values_from = 'value') 
 ```
 
 ]

@@ -1,8 +1,8 @@
 <!DOCTYPE html>
-<html>
+<html lang="" xml:lang="">
   <head>
     <title>Welcome!</title>
-    <meta charset="utf-8">
+    <meta charset="utf-8" />
     <meta name="author" content="Introduction to R   Bern R Bootcamp" />
     <link href="libs/remark-css/default.css" rel="stylesheet" />
     <link rel="stylesheet" href="baselrbootcamp.css" type="text/css" />
@@ -13,7 +13,7 @@ class: center, middle, inverse, title-slide
 
 # Welcome!
 ### Introduction to R<br> <a href='https://therbootcamp.github.io'> Bern R Bootcamp </a> <br> <a href='https://dwulff.github.io/Intro2R_Unibe/'> <i class='fas fa-clock' style='font-size:.9em;'></i> </a>  <a href='https://therbootcamp.github.io'> <i class='fas fa-home' style='font-size:.9em;' ></i> </a>  <a href='mailto:therbootcamp@gmail.com'> <i class='fas fa-envelope' style='font-size: .9em;'></i> </a>  <a href='https://www.linkedin.com/company/basel-r-bootcamp/'> <i class='fab fa-linkedin' style='font-size: .9em;'></i> </a>
-### February 2019
+### June 2020
 
 ---
 
@@ -34,7 +34,7 @@ layout: true
     &lt;/a&gt;
     &lt;a href="https://therbootcamp.github.io/"&gt;
       &lt;font color="#7E7E7E"&gt;
-       Introduction to R | February 2019
+       Introduction to R | June 2020
       &lt;/font&gt;
     &lt;/a&gt;
     &lt;/span&gt;
@@ -142,7 +142,7 @@ Each session contains a slide-based &lt;high&gt;introduction&lt;/high&gt; and a 
 &lt;high&gt;All available online&lt;/high&gt;. Follow along, and don't worry about memorizing
 
 &lt;br&gt;&lt;br&gt;
-&lt;a href="https://therbootcamp.github.io/Intro2DataScience_2018Oct/"&gt;This is a Link to our materials&lt;/a&gt;.
+&lt;a href="https://dwulff.github.io/Intro2R_Unibe/"&gt;This is a Link to our materials&lt;/a&gt;.
 &lt;br&gt;&lt;br&gt;
 
 &lt;high&gt;Be interactive! Ask questions!&lt;/high&gt;
@@ -268,7 +268,7 @@ Sometimes, you may find yourself in need of some &lt;high&gt;intensive help&lt;/
 .pull-left4[
 
 &lt;br&gt;&lt;br&gt;
-# Breaks
+# Breaks - UPDATEW
 
 1 - Feel free to take breaks when you need them. Coffee, tea will be provided at
 10:30 and at 15:00 (we will keep this a bit flexible).
@@ -374,7 +374,7 @@ Sometimes, you may find yourself in need of some &lt;high&gt;intensive help&lt;/
 
 .pull-right6[
 
-&lt;img src="https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/bernrbootcamp_schedule.png" height="580" align="center"&gt;
+&lt;img src="https://dwulff.github.io/Intro2R_Unibe/_sessions/Welcome/image/schedule.png" align="center"&gt;
 
 
 ]
@@ -425,9 +425,25 @@ if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
     }
     deleted = true;
   });
-})();</script>
-
-<script>
+})();
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
 (function() {
   var links = document.getElementsByTagName('a');
   for (var i = 0; i < links.length; i++) {
@@ -436,11 +452,27 @@ if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
     }
   }
 })();
-</script>
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
 
 <script>
-(function() {
-  var i, text, code, codes = document.getElementsByTagName('code');
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
   for (i = 0; i < codes.length;) {
     code = codes[i];
     if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
@@ -454,7 +486,8 @@ if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
     }
     i++;
   }
-})();
+};
+slideshow._releaseMath(document);
 </script>
 <!-- dynamically load mathjax for compatibility with self-contained -->
 <script>
