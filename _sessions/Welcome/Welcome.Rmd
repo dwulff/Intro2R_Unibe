@@ -55,30 +55,6 @@ layout: true
 ---
 
 
-```{r setup, include=FALSE}
-options(htmltools.dir.version = FALSE)
-options(width=110)
-options(digits = 4) 
-knitr::opts_chunk$set(comment = NA)
-
-knitr::opts_chunk$set(fig.align = 'center')
-```
-
-.pull-left4[
-<br><br><br><br><br><br>
-# Welcome to the<br><high>Bern R Bootcamp!</high>
-
-]
-
-.pull-right6[
-<br><br>
-
-<p align="center"><img src="image/Eiger.jpg" width="600"  height="450"></p>
-<center><font size = 3></font></center>
-]
----
-
-
 .pull-left45[
 <br><br><br><br><br>
 #  Schedule and Materials
