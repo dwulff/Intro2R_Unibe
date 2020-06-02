@@ -266,7 +266,7 @@ score %&gt;%     # AND THEN
 &lt;b&gt;4&lt;/b&gt; &lt;i&gt;Sort&lt;/i&gt; - &lt;high&gt;Sort&lt;/high&gt; tibble by age. &lt;br&gt;&lt;br&gt;
 &lt;b&gt;5&lt;/b&gt; &lt;i&gt;Filter&lt;/i&gt; - Select relevant &lt;high&gt;cases&lt;/high&gt;. &lt;br&gt;&lt;br&gt;
 &lt;b&gt;6&lt;/b&gt; &lt;i&gt;Select&lt;/i&gt; - Select relevant &lt;high&gt;variables&lt;/high&gt;.&lt;br&gt;&lt;br&gt;
-&lt;b&gt;7&lt;/b&gt; &lt;i&gt;Spread&lt;/i&gt; - Change to &lt;high&gt;wide format&lt;/high&gt;.&lt;br&gt;&lt;br&gt;
+&lt;b&gt;7&lt;/b&gt; &lt;i&gt;Pivot&lt;/i&gt; - Change to &lt;high&gt;wide format&lt;/high&gt;.&lt;br&gt;&lt;br&gt;
 
 
 ]
@@ -599,7 +599,7 @@ combined
 &lt;b&gt;4&lt;/b&gt; &lt;i&gt;Sort&lt;/i&gt; - &lt;high&gt;Sort&lt;/high&gt; tibble by age. &lt;br&gt;&lt;br&gt;
 &lt;b&gt;5&lt;/b&gt; &lt;i&gt;Filter&lt;/i&gt; - Select relevant &lt;high&gt;cases&lt;/high&gt;. &lt;br&gt;&lt;br&gt;
 &lt;b&gt;6&lt;/b&gt; &lt;i&gt;Select&lt;/i&gt; - Select relevant &lt;high&gt;variables&lt;/high&gt;.&lt;br&gt;&lt;br&gt;
-&lt;b&gt;7&lt;/b&gt; &lt;i&gt;Spread&lt;/i&gt; - Change to &lt;high&gt;wide format&lt;/high&gt;.&lt;br&gt;&lt;br&gt;
+&lt;b&gt;7&lt;/b&gt; &lt;i&gt;Pivot&lt;/i&gt; - Change to &lt;high&gt;wide format&lt;/high&gt;.&lt;br&gt;&lt;br&gt;
 
 
 ]
@@ -980,20 +980,24 @@ combined %&gt;%
 
 .pull-left4[
 
-Use `select()` to &lt;high&gt;select variables&lt;/high&gt; (or remove).
-
-&lt;high&gt;Remove variables&lt;/high&gt; with `-` (minus).
+Use `select()` to &lt;high&gt;select variables&lt;/high&gt; (and remove all others)
 
 
 ```r
 # Select variables A, B
- %&gt;% 
+tibble %&gt;% 
   select(A, B)
-  
+```
+
+&lt;high&gt;Remove variables&lt;/high&gt; with `-`.
+
+
+```r
 # Select everything BUT A
 tibble %&gt;% 
-  select(-A)  
+  select(-A)
 ```
+
 
 
 ]
@@ -1102,61 +1106,6 @@ Use &lt;high&gt;`pivot_longer()`&lt;/high&gt; and &lt;high&gt;`pivot_wider()`&lt
 
 ---
 
-# `gather()`
-
-.pull-left45[
-
-
-```r
-# Show original data (wide)
-combined
-```
-
-```
-# A tibble: 5 x 6
-     ID   age   arm arm_lab   t_1   t_2
-  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;   &lt;dbl&gt; &lt;dbl&gt;
-1     1    37     1 placebo   123   135
-2     2    65     2 drug      143   140
-3     3    57     2 drug       NA    NA
-4     4    34     1 placebo   100   105
-5     5    45     2 drug       NA    NA
-```
-
-]
-
-.pull-right45[
-
-
-```r
-# "Gather" wide data to long
-combined %&gt;% 
-  gather(time,  # New group variable
-         value, # New target variable
-         -ID)   # Omit ID  
-```
-
-```
-# A tibble: 25 x 3
-      ID time  value
-   &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt;
- 1     1 age   37   
- 2     2 age   65   
- 3     3 age   57   
- 4     4 age   34   
- 5     5 age   45   
- 6     1 arm   1    
- 7     2 arm   2    
- 8     3 arm   2    
- 9     4 arm   1    
-10     5 arm   2    
-# … with 15 more rows
-```
-
-]
-
----
-
 # `pivot_longer()`
 
 .pull-left45[
@@ -1218,13 +1167,27 @@ combined %&gt;%
 .pull-left45[
 
 
+
+
 ```r
 # Show long data
-long &lt;- 
-combined %&gt;% 
-  pivot_longer(names_to = 'time', 
-               values_to = 'value',
-               cols = c(t_1, t_2))
+long 
+```
+
+```
+# A tibble: 10 x 6
+      ID   age   arm arm_lab time  value
+   &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;   &lt;chr&gt; &lt;dbl&gt;
+ 1     1    37     1 placebo t_1     123
+ 2     1    37     1 placebo t_2     135
+ 3     2    65     2 drug    t_1     143
+ 4     2    65     2 drug    t_2     140
+ 5     3    57     2 drug    t_1      NA
+ 6     3    57     2 drug    t_2      NA
+ 7     4    34     1 placebo t_1     100
+ 8     4    34     1 placebo t_2     105
+ 9     5    45     2 drug    t_1      NA
+10     5    45     2 drug    t_2      NA
 ```
 
 
