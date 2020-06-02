@@ -257,7 +257,7 @@ score %>%     # AND THEN
 <b>4</b> <i>Sort</i> - <high>Sort</high> tibble by age. <br><br>
 <b>5</b> <i>Filter</i> - Select relevant <high>cases</high>. <br><br>
 <b>6</b> <i>Select</i> - Select relevant <high>variables</high>.<br><br>
-<b>7</b> <i>Spread</i> - Change to <high>wide format</high>.<br><br>
+<b>7</b> <i>Pivot</i> - Change to <high>wide format</high>.<br><br>
 
 
 ]
@@ -502,7 +502,7 @@ combined
 <b>4</b> <i>Sort</i> - <high>Sort</high> tibble by age. <br><br>
 <b>5</b> <i>Filter</i> - Select relevant <high>cases</high>. <br><br>
 <b>6</b> <i>Select</i> - Select relevant <high>variables</high>.<br><br>
-<b>7</b> <i>Spread</i> - Change to <high>wide format</high>.<br><br>
+<b>7</b> <i>Pivot</i> - Change to <high>wide format</high>.<br><br>
 
 
 ]
@@ -767,19 +767,22 @@ combined %>%
 
 .pull-left4[
 
-Use `select()` to <high>select variables</high> (or remove).
-
-<high>Remove variables</high> with `-` (minus).
+Use `select()` to <high>select variables</high> (and remove all others)
 
 ```{r, eval = FALSE}
 # Select variables A, B
- %>% 
+tibble %>% 
   select(A, B)
-  
+```
+
+<high>Remove variables</high> with `-`.
+
+```{r, eval = FALSE}
 # Select everything BUT A
 tibble %>% 
-  select(-A)  
+  select(-A)
 ```
+
 
 
 ]
@@ -863,31 +866,6 @@ Use <high>`pivot_longer()`</high> and <high>`pivot_wider()`</high> from the `tid
 
 ---
 
-# `gather()`
-
-.pull-left45[
-
-```{r}
-# Show original data (wide)
-combined
-```
-
-]
-
-.pull-right45[
-
-```{r}
-# "Gather" wide data to long
-combined %>% 
-  gather(time,  # New group variable
-         value, # New target variable
-         -ID)   # Omit ID  
-```
-
-]
-
----
-
 # `pivot_longer()`
 
 .pull-left45[
@@ -919,13 +897,19 @@ combined %>%
 
 .pull-left45[
 
-```{r}
+```{r echo = FALSE}
 # Show long data
 long <- 
 combined %>% 
   pivot_longer(names_to = 'time', 
                values_to = 'value',
                cols = c(t_1, t_2))
+
+```
+
+```{r}
+# Show long data
+long 
 ```
 
 

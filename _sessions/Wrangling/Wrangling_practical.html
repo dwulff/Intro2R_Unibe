@@ -1,17 +1,17 @@
 <!DOCTYPE html>
 
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html>
 
 <head>
 
 <meta charset="utf-8" />
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
 
 
 
 
-<title>Wrangling</title>
+<title>Wrangling_practical.utf8</title>
 
 <script src="Wrangling_practical_files/jquery-1.11.3/jquery.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -70,9 +70,7 @@ h6 {
 
 <link rel="stylesheet" href="practical.css" type="text/css" />
 
-</head>
 
-<body>
 
 <style type = "text/css">
 .main-container {
@@ -86,7 +84,6 @@ code {
 }
 img {
   max-width:100%;
-  height: auto;
 }
 .tabbed-pane {
   padding-top: 12px;
@@ -97,22 +94,81 @@ img {
 button.code-folding-btn:focus {
   outline: none;
 }
+summary {
+  display: list-item;
+}
 </style>
 
 
 
-<div class="container-fluid main-container">
-
 <!-- tabsets -->
-<script>
-$(document).ready(function () {
-  window.buildTabsets("TOC");
-});
-</script>
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "&#xe258;";
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
 
 <!-- code folding -->
 
 
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
 
 
 
@@ -121,19 +177,6 @@ $(document).ready(function () {
 
 
 
-<h1 class="title toc-ignore">Wrangling</h1>
-<h4 class="author"><em><table style='table-layout:fixed;width:100%;border:0;padding:0;margin:0'>
-<col width='10%'>
-<col width='10%'>
-<tr style="border:none">
-<td style="display:block;width:100%;text-align:left;vertical-align:bottom;padding:0;margin:0;border:none" nowrap>
-<font style='font-style:normal'>Introduction to R</font><br> <a href='https://dwulff.github.io/Intro2R_Unibe/'> <i class='fas fa-clock' style='font-size:.9em;' ></i> </a> <a href='https://therbootcamp.github.io'> <i class='fas fa-home' style='font-size:.9em;'></i> </a> <a href='mailto:therbootcamp@gmail.com'> <i class='fas fa-envelope' style='font-size: .9em;'></i> </a> <a href='https://www.linkedin.com/company/basel-r-bootcamp/'> <i class='fab fa-linkedin' style='font-size: .9em;'></i> </a> <a href='https://therbootcamp.github.io'> <font style='font-style:normal'>Bern R Bootcamp</font> </a>
-</td>
-<td style="width:100%;vertical-align:bottom;text-align:right;padding:0;margin:0;border:none">
-<img src='https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/by-sa.png' style='height:15px;width:80px'/>
-</td>
-</tr>
-</table></em></h4>
 
 </div>
 
@@ -141,7 +184,6 @@ $(document).ready(function () {
 <p align="center" width="100%">
 <img src="image/trial.jpg" alt="Trulli" style="width:100%;height:280px"> <br> <font style="font-size:10px">from <a href="https://parkinsonsnewstoday.com/2016/02/24/promising-respiratory-drug-focus-of-new-clinical-trial-for-parkinsons-disease">parkinsonsnewstoday.com</a></font>
 </p>
-<p><img src="" width="70%" style="display: block; margin: auto;" /></p>
 <div id="section" class="section level1 tabset">
 <h1></h1>
 <div id="overview" class="section level2">
@@ -331,14 +373,14 @@ trial_act &lt;- trial_act %&gt;%
 <li>Print your new <code>trial_act</code> dataframe. Do you now see the demographic data?</li>
 </ol>
 </div>
-<div id="h---reshaping-with-gather-and-spread" class="section level3">
-<h3>H - Reshaping with gather() and spread()</h3>
+<div id="h---reshaping-with-pivot_longer-and-pivot_wider" class="section level3">
+<h3>H - Reshaping with pivot_longer() and pivot_wider()</h3>
 <p>Remember the <code>CD4_wide</code> dataframe you created before? Currently it is in the <em>wide</em> format, where each row is a patient, where key data (different CD4 T cell counts) are in different columns like this:</p>
 <pre class="r"><code># Data is in a &#39;wide&#39; format
 CD4_wide</code></pre>
 <pre><code># A tibble: 2,139 x 5
    pidnum  arms  cd40 cd420 cd496
-    &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt;
+    &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
  1  10056     2   422   477   660
  2  10059     3   162   218    NA
  3  10089     3   326   274   122
@@ -349,38 +391,38 @@ CD4_wide</code></pre>
  8  10190     0   401   366   453
  9  10198     3   214   107     8
 10  10229     0   221   132    NA
-# ... with 2,129 more rows</code></pre>
+# … with 2,129 more rows</code></pre>
 <p>Our goal is to convert this data to a ‘long’ format, where each row represents a single CD4 T cell count for a specific patient, like this:</p>
 <pre class="r"><code># This is the same data in &#39;long&#39; format
 CD4_long</code></pre>
 <pre><code># A tibble: 6,417 x 4
    pidnum  arms time  value
-    &lt;int&gt; &lt;int&gt; &lt;chr&gt; &lt;int&gt;
+    &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt; &lt;dbl&gt;
  1  10056     2 cd40    422
- 2  10059     3 cd40    162
- 3  10089     3 cd40    326
- 4  10093     3 cd40    287
- 5  10124     0 cd40    504
- 6  10140     1 cd40    235
- 7  10165     0 cd40    244
- 8  10190     0 cd40    401
- 9  10198     3 cd40    214
-10  10229     0 cd40    221
-# ... with 6,407 more rows</code></pre>
+ 2  10056     2 cd420   477
+ 3  10056     2 cd496   660
+ 4  10059     3 cd40    162
+ 5  10059     3 cd420   218
+ 6  10059     3 cd496    NA
+ 7  10089     3 cd40    326
+ 8  10089     3 cd420   274
+ 9  10089     3 cd496   122
+10  10093     3 cd40    287
+# … with 6,407 more rows</code></pre>
 <ol style="list-style-type: decimal">
-<li>Using the <code>gather()</code> function, create a new dataframe called <code>CD4_long</code> that shows the <code>CD4_wide</code> data in the ‘long’ format. To do this, use the following template. Set the grouping column to <code>time</code> and the new data column to <code>value</code>.</li>
+<li>Using the <code>pivot_longer()</code> function, create a new dataframe called <code>CD4_long</code> that shows the <code>CD4_wide</code> data in the ‘long’ format. To do this, use the following template. Set the grouping column to <code>time</code> and the new data column to <code>value</code>.</li>
 </ol>
 <pre class="r"><code>CD4_long &lt;- CD4_wide %&gt;% 
-  gather(XX,  # New grouping column
-         XX,  # New data column
-         -pidnum, -arms)  # Names of columns to replicate</code></pre>
+  pivot_longer(names_to = &#39;XXX&#39;,  # New grouping column
+         values_to = &#39;XXX&#39;,  # New data column
+         cols = c(&#39;XXX&#39;, &#39;XXX&#39;, &#39;XXX&#39;))   # Names of columns to replicate</code></pre>
 <ol start="2" style="list-style-type: decimal">
 <li><p>Print your <code>CD4_long</code> dataframe! Do you now see that each row is a specific observation for a patient?</p></li>
-<li><p>Now use the <code>spread()</code> function to convert the long data bring the data <em>back</em> into the wide format! To do this, make the first argument <code>time</code>, and the second argument <code>value</code></p></li>
+<li><p>Now use the <code>pivot_wider()</code> function to convert the long data <em>back</em> into the wide format! To do this, make the first argument <code>time</code>, and the second argument <code>value</code></p></li>
 </ol>
 <pre class="r"><code>CD4_long %&gt;%
-  spread(XX,   # Grouping column
-         XX)   # Value columnn</code></pre>
+   pivot_wider(names_from = &#39;XXX&#39;,  # Grouping column
+   values_from = &#39;XXX&#39;)   # Value columnn</code></pre>
 </div>
 <div id="practice" class="section level3">
 <h3>Practice!</h3>
@@ -492,10 +534,10 @@ baselers &lt;- baselers %&gt;%
 </tbody>
 </table>
 <p>The <code>trial_act</code> data set contains a randomized clinical trial to compare monotherapy with zidovudine or didanosine with combination therapy with zidovudine and didanosine or zidovudine and zalcitabine in adults infected with the human immunodeficiency virus type I whose CD4 T cell counts were between 200 and 500 per cubic millimeter.</p>
-<table style="width:75%;">
+<table>
 <colgroup>
-<col width="20%" />
-<col width="54%" />
+<col width="26%" />
+<col width="73%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -636,11 +678,11 @@ baselers &lt;- baselers %&gt;%
 </div>
 <div id="functions-1" class="section level3">
 <h3>Functions</h3>
-<table style="width:83%;">
+<table>
 <colgroup>
-<col width="6%" />
-<col width="11%" />
-<col width="65%" />
+<col width="7%" />
+<col width="12%" />
+<col width="80%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -691,12 +733,12 @@ baselers &lt;- baselers %&gt;%
 <td align="left">Combine multiple data sets using a key column</td>
 </tr>
 <tr class="odd">
-<td align="left"><code>spread()</code></td>
+<td align="left"><code>pivot_wider()</code></td>
 <td align="left"><code>tidyr</code></td>
 <td align="left">Convert long data to wide format - from rows to columns</td>
 </tr>
 <tr class="even">
-<td align="left"><code>gather()</code></td>
+<td align="left"><code>pivot_longer()</code></td>
 <td align="left"><code>tidyr</code></td>
 <td align="left">Convert wide data to long format - from columns to rows</td>
 </tr>
@@ -708,12 +750,12 @@ baselers &lt;- baselers %&gt;%
 <h2>Resources</h2>
 <div id="dplyr-vignette" class="section level3">
 <h3><code>dplyr</code> vignette</h3>
-<p>See <a href="https://cran.r-project.org/web/packages/dplyr/vignettes/dplyr.html" class="uri">https://cran.r-project.org/web/packages/dplyr/vignettes/dplyr.html</a> for the full dplyr vignette with lots of wrangling tips and tricks.</p>
+<p>See <a href="https://cran.r-project.org/web/packages/dplyr/vignettes/dplyr.html">https://cran.r-project.org/web/packages/dplyr/vignettes/dplyr.html</a> for the full dplyr vignette with lots of wrangling tips and tricks.</p>
 </div>
 <div id="cheatsheets" class="section level3">
 <h3>Cheatsheets</h3>
 <p align="center" width="100%">
-<a href="https://www.rstudio.com/wp-content/uploads/2015/02/data-wrangling-cheatsheet.pdf"> <img src="https://image.slidesharecdn.com/data-wrangling-cheatsheet-160705210122/95/data-wrangling-with-dplyr-and-tidyr-cheat-sheet-1-638.jpg?cb=1467752577" style="width:70%"></a> <br> <font style="font-size:10px">from <a href="https://www.rstudio.com/resources/cheatsheets/">R Studio</a></font>
+<a href="https://github.com/rstudio/cheatsheets/raw/master/data-transformation.pdf"> <img src="https://d33wubrfki0l68.cloudfront.net/db69c3d03699d395475d2ac14d64f611054fa9a4/e98f3/wp-content/uploads/2018/08/data-transformation.png" style="width:70%"></a> <br> <font style="font-size:10px">from <a href="https://www.rstudio.com/resources/cheatsheets/">R Studio</a></font>
 </p>
 </div>
 </div>
@@ -736,6 +778,23 @@ $(document).ready(function () {
 
 
 </script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open')
+  });
+});
+</script>
+
+<!-- code folding -->
+
 
 <!-- dynamically load mathjax for compatibility with self-contained -->
 <script>

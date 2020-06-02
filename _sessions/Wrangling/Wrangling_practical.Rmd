@@ -51,7 +51,7 @@ options(digits = 3)
 </p>
 
 ```{r, echo = FALSE, fig.align = 'center', eval = TRUE, out.width = "70%"}
-knitr::include_graphics("")
+#knitr::include_graphics("")
 ```
 
 # {.tabset}
@@ -435,7 +435,7 @@ trial_act <- trial_act %>%
 trial_act
 ```
 
-### H - Reshaping with gather() and spread()
+### H - Reshaping with pivot_longer() and pivot_wider()
 
 Remember the `CD4_wide` dataframe you created before? Currently it is in the *wide* format, where each row is a patient, where key data (different CD4 T cell counts) are in different columns like this:
 
@@ -453,9 +453,9 @@ Our goal is to convert this data to a 'long' format, where each row represents a
 
 ```{r, echo = FALSE, eval = TRUE}
 CD4_long <- CD4_wide %>% 
-  gather(time,  # New grouping column
-         value,  # New data column
-         -pidnum, -arms)  # Names of columns to replicate
+  pivot_longer(names_to = 'time',  # New grouping column
+         values_to = 'value',  # New data column
+         cols = c('cd40', 'cd420', 'cd496'))  # Names of columns to replicate
 ```
 
 ```{r, echo = TRUE, eval = TRUE}
@@ -463,20 +463,13 @@ CD4_long <- CD4_wide %>%
 CD4_long
 ```
 
-1. Using the `gather()` function, create a new dataframe called `CD4_long` that shows the `CD4_wide` data in the 'long' format. To do this, use the following template. Set the grouping column to `time` and the new data column to `value`. 
+1. Using the `pivot_longer()` function, create a new dataframe called `CD4_long` that shows the `CD4_wide` data in the 'long' format. To do this, use the following template. Set the grouping column to `time` and the new data column to `value`. 
 
 ```{r, echo = TRUE, eval = FALSE}
 CD4_long <- CD4_wide %>% 
-  gather(XX,  # New grouping column
-         XX,  # New data column
-         -pidnum, -arms)  # Names of columns to replicate
-```
-
-```{r}
-CD4_long <- CD4_wide %>% 
-  gather(time,  # New grouping column
-         value,  # New data column
-         -pidnum, -arms)  # Names of columns to replicate
+  pivot_longer(names_to = 'XXX',  # New grouping column
+         values_to = 'XXX',  # New data column
+         cols = c('XXX', 'XXX', 'XXX'))   # Names of columns to replicate
 ```
 
 2. Print your `CD4_long` dataframe! Do you now see that each row is a specific observation for a patient?
@@ -485,17 +478,18 @@ CD4_long <- CD4_wide %>%
 CD4_long
 ```
 
-3. Now use the `spread()` function to convert the long data bring the data *back* into the wide format! To do this, make the first argument `time`, and the second argument `value`
+3. Now use the `pivot_wider()` function to convert the long data *back* into the wide format! To do this, make the first argument `time`, and the second argument `value`
 
 ```{r, echo = TRUE, eval = FALSE}
 CD4_long %>%
-  spread(XX,   # Grouping column
-         XX)   # Value columnn
+   pivot_wider(names_from = 'XXX',  # Grouping column
+   values_from = 'XXX')   # Value columnn
 ```
 
 ```{r}
 CD4_long %>%
-  spread(time, value)
+  pivot_wider(names_from = 'time', 
+              values_from = 'value')
 ```
 
 ### Practice!
@@ -680,8 +674,8 @@ infected with the human immunodeficiency virus type I whose CD4 T cell counts we
 |     `case_when()`|`dplyr`|    Recode values of a column| 
 |     `group_by(), summarise()`|`dplyr`|   Group data and then calculate summary statistics|
 |     `left_join()`|`dplyr`|   Combine multiple data sets using a key column|
-|     `spread()`|`tidyr`|    Convert long data to wide format - from rows to columns| 
-|     `gather()`|`tidyr`|    Convert wide data to long format - from columns to rows|
+|     `pivot_wider()`|`tidyr`|    Convert long data to wide format - from rows to columns| 
+|     `pivot_longer()`|`tidyr`|    Convert wide data to long format - from columns to rows|
 
 ## Resources
 
@@ -692,8 +686,8 @@ See [https://cran.r-project.org/web/packages/dplyr/vignettes/dplyr.html](https:/
 ### Cheatsheets
 
 <p align="center" width="100%">
-<a href="https://www.rstudio.com/wp-content/uploads/2015/02/data-wrangling-cheatsheet.pdf">
-  <img src="https://image.slidesharecdn.com/data-wrangling-cheatsheet-160705210122/95/data-wrangling-with-dplyr-and-tidyr-cheat-sheet-1-638.jpg?cb=1467752577" style="width:70%"></a>
+<a href="https://github.com/rstudio/cheatsheets/raw/master/data-transformation.pdf">
+  <img src="https://d33wubrfki0l68.cloudfront.net/db69c3d03699d395475d2ac14d64f611054fa9a4/e98f3/wp-content/uploads/2018/08/data-transformation.png" style="width:70%"></a>
   <br>
   <font style="font-size:10px">from <a href="https://www.rstudio.com/resources/cheatsheets/">R Studio</a></font>
 </p>
