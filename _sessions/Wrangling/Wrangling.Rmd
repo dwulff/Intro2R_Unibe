@@ -831,7 +831,7 @@ Select everything <i>except</i> t_2
 ```{r}
 
 combined %>%
-  select(-t_2) # Everything BUT ID
+  select(-t_2) # Everything BUT t_2
 ```
 
 ]
@@ -921,7 +921,7 @@ long
 # "pivot_wider" long data to wide
 long %>% 
   pivot_wider(names_from = 'time', 
-                     values_from = 'value') 
+              values_from = 'value') 
 ```
 
 ]
