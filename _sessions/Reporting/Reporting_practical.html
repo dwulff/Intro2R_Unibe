@@ -1,27 +1,27 @@
 <!DOCTYPE html>
 
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html>
 
 <head>
 
 <meta charset="utf-8" />
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
 
 
 
 
-<title>Reporting</title>
+<title>Reporting_practical.utf8</title>
 
-<script src="Reporting_practical_files/jquery-1.11.3/jquery.min.js"></script>
+<script src="Reporting_practical_files/jquery/jquery.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<link href="Reporting_practical_files/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet" />
-<script src="Reporting_practical_files/bootstrap-3.3.5/js/bootstrap.min.js"></script>
-<script src="Reporting_practical_files/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
-<script src="Reporting_practical_files/bootstrap-3.3.5/shim/respond.min.js"></script>
-<script src="Reporting_practical_files/navigation-1.1/tabsets.js"></script>
-<link href="Reporting_practical_files/highlightjs-9.12.0/default.css" rel="stylesheet" />
-<script src="Reporting_practical_files/highlightjs-9.12.0/highlight.js"></script>
+<link href="Reporting_practical_files/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+<script src="Reporting_practical_files/bootstrap/js/bootstrap.min.js"></script>
+<script src="Reporting_practical_files/bootstrap/shim/html5shiv.min.js"></script>
+<script src="Reporting_practical_files/bootstrap/shim/respond.min.js"></script>
+<script src="Reporting_practical_files/navigation/tabsets.js"></script>
+<link href="Reporting_practical_files/highlightjs/default.css" rel="stylesheet" />
+<script src="Reporting_practical_files/highlightjs/highlight.js"></script>
 
 <style type="text/css">code{white-space: pre;}</style>
 <style type="text/css">
@@ -70,9 +70,7 @@ h6 {
 
 <link rel="stylesheet" href="practical.css" type="text/css" />
 
-</head>
 
-<body>
 
 <style type = "text/css">
 .main-container {
@@ -86,7 +84,6 @@ code {
 }
 img {
   max-width:100%;
-  height: auto;
 }
 .tabbed-pane {
   padding-top: 12px;
@@ -103,8 +100,6 @@ summary {
 </style>
 
 
-
-<div class="container-fluid main-container">
 
 <!-- tabsets -->
 
@@ -150,6 +145,7 @@ summary {
   border: none;
   display: inline-block;
   border-radius: 4px;
+  background-color: transparent;
 }
 
 .tabset-dropdown > .nav-tabs.nav-tabs-open > li {
@@ -162,20 +158,17 @@ summary {
 }
 </style>
 
-<script>
-$(document).ready(function () {
-  window.buildTabsets("TOC");
-});
-
-$(document).ready(function () {
-  $('.tabset-dropdown > .nav-tabs > li').click(function () {
-    $(this).parent().toggleClass('nav-tabs-open')
-  });
-});
-</script>
-
 <!-- code folding -->
 
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
 
 
 
@@ -184,19 +177,6 @@ $(document).ready(function () {
 
 
 
-<h1 class="title toc-ignore">Reporting</h1>
-<h4 class="author"><em><table style='table-layout:fixed;width:100%;border:0;padding:0;margin:0'>
-<col width='10%'>
-<col width='10%'>
-<tr style="border:none">
-<td style="display:block;width:100%;text-align:left;vertical-align:bottom;padding:0;margin:0;border:none" nowrap>
-<font style='font-style:normal'>Introduction to R</font><br> <a href='https://dwulff.github.io/Intro2R_Unibe/'> <i class='fas fa-clock' style='font-size:.9em;' ></i> </a> <a href='https://therbootcamp.github.io'> <i class='fas fa-home' style='font-size:.9em;'></i> </a> <a href='mailto:therbootcamp@gmail.com'> <i class='fas fa-envelope' style='font-size: .9em;'></i> </a> <a href='https://www.linkedin.com/company/basel-r-bootcamp/'> <i class='fab fa-linkedin' style='font-size: .9em;'></i> </a> <a href='https://therbootcamp.github.io'> <font style='font-style:normal'>Bern R Bootcamp</font> </a>
-</td>
-<td style="width:100%;vertical-align:bottom;text-align:right;padding:0;margin:0;border:none">
-<img src='https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/by-sa.png' style='height:15px;width:80px'/>
-</td>
-</tr>
-</table></em></h4>
 
 </div>
 
@@ -296,7 +276,7 @@ options(digits = 2)  # Round all output to 2 digits</code></pre>
 <ol start="2" style="list-style-type: decimal">
 <li><p>Create a new third level header with the text “Overview” using three hashtags <code>### Overview</code></p></li>
 <li><p>Knit the document!</p></li>
-<li><p>Create a new code chunk by either clicking the “Insert - R” button, or by using the “Command + Option + I”&quot; shortcut on Mac</p></li>
+<li><p>Create a new code chunk by either clicking the “Insert - R” button, or by using the “Command + Option + I”" shortcut on Mac</p></li>
 <li><p>Now it’s time to add an image to your document! In the chunk you just created, use the following template to include an image of a burger in your document. You can find the image here: <a href="https://dwulff.github.io/Intro2R_Unibe/_sessions/PlottingI/image/burgers.jpg">link</a>. (Tip: Use right click and copy link address to copy the link)</p></li>
 </ol>
 <pre class="r"><code># Include a buger image
@@ -304,12 +284,12 @@ options(digits = 2)  # Round all output to 2 digits</code></pre>
 include_graphics(path = &quot;XXX&quot;)</code></pre>
 <ol start="6" style="list-style-type: decimal">
 <li><p>Knit the document!</p></li>
-<li><p>Was your image too big? To make the image a bit smaller, include the chunk argument <code>out.width = &quot;30%&quot;</code>. Note: chunk options are specified within the curly brackets, i.e., <code>{r, option = value}</code>.</p></li>
+<li><p>Was your image too big? To make the image a bit smaller, include the chunk argument <code>out.width = "30%"</code>. Note: chunk options are specified within the curly brackets, i.e., <code>{r, option = value}</code>.</p></li>
 <li><p>Knit the document!</p></li>
 <li><p>Include the appropriate text and formatting to write the sentence below. When writing the number of columns and rows, use in-line chunks to get the data directly from the <code>mcdonalds</code> object! You can get the number of columns with <code>ncol(mcdonalds)</code> and the number of rows with <code>nrow(mcdonalds)</code></p></li>
 </ol>
 <ul>
-<li>The <code>mcdonalds</code> data has 24 columns and 260 rows. Each row corresponds to a different menu item. The data originally come from <a href="https://www.kaggle.com/mcdonalds/nutrition-facts" class="uri">https://www.kaggle.com/mcdonalds/nutrition-facts</a>.</li>
+<li>The <code>mcdonalds</code> data has 24 columns and 260 rows. Each row corresponds to a different menu item. The data originally come from <a href="https://www.kaggle.com/mcdonalds/nutrition-facts">https://www.kaggle.com/mcdonalds/nutrition-facts</a>.</li>
 </ul>
 <ol start="10" style="list-style-type: decimal">
 <li>Knit the document!</li>
@@ -461,23 +441,23 @@ kable(x = tidy(cal_sod_lm),
 <tbody>
 <tr class="odd">
 <td align="left"><code>tidyverse</code></td>
-<td align="left"><code>install.packages(&quot;tidyverse&quot;)</code></td>
+<td align="left"><code>install.packages("tidyverse")</code></td>
 </tr>
 <tr class="even">
 <td align="left"><code>knitr</code></td>
-<td align="left"><code>install.packages(&quot;knitr&quot;)</code></td>
+<td align="left"><code>install.packages("knitr")</code></td>
 </tr>
 <tr class="odd">
 <td align="left"><code>DT</code></td>
-<td align="left"><code>install.packages(&quot;DT&quot;)</code></td>
+<td align="left"><code>install.packages("DT")</code></td>
 </tr>
 <tr class="even">
 <td align="left"><code>broom</code></td>
-<td align="left"><code>install.packages(&quot;broom&quot;)</code></td>
+<td align="left"><code>install.packages("broom")</code></td>
 </tr>
 <tr class="odd">
 <td align="left"><code>rmdformats</code></td>
-<td align="left"><code>install.packages(&quot;rmdformats&quot;)</code></td>
+<td align="left"><code>install.packages("rmdformats")</code></td>
 </tr>
 </tbody>
 </table>
@@ -488,8 +468,8 @@ kable(x = tidy(cal_sod_lm),
 <div id="documentation" class="section level3">
 <h3>Documentation</h3>
 <ul>
-<li><p>The <code>rmdformats</code> package has many nice templates for .Rmd files. Look at their GitHub page at <a href="https://github.com/juba/rmdformats" class="uri">https://github.com/juba/rmdformats</a> for examples. If you install the package from CRAN with <code>install.packages('rmdformats')</code>, you’ll get lots of new templates when you open a new Markdown file in RStudio.</p></li>
-<li><p>If you want to use custom .css files, check out the the <a href="http://rmarkdown.rstudio.com/html_document_format.html#custom_css">R Studio HTML document guide</a>. You can also look at the .css files underlying the <code>rmdformats</code> package on their GitHub page here <a href="https://github.com/juba/rmdformats" class="uri">https://github.com/juba/rmdformats</a>. For example, here is their .css file for the “html docco” template <a href="https://raw.githubusercontent.com/juba/rmdformats/master/inst/templates/html_docco/docco.css" class="uri">https://raw.githubusercontent.com/juba/rmdformats/master/inst/templates/html_docco/docco.css</a></p></li>
+<li><p>The <code>rmdformats</code> package has many nice templates for .Rmd files. Look at their GitHub page at <a href="https://github.com/juba/rmdformats">https://github.com/juba/rmdformats</a> for examples. If you install the package from CRAN with <code>install.packages('rmdformats')</code>, you’ll get lots of new templates when you open a new Markdown file in RStudio.</p></li>
+<li><p>If you want to use custom .css files, check out the the <a href="http://rmarkdown.rstudio.com/html_document_format.html#custom_css">R Studio HTML document guide</a>. You can also look at the .css files underlying the <code>rmdformats</code> package on their GitHub page here <a href="https://github.com/juba/rmdformats">https://github.com/juba/rmdformats</a>. For example, here is their .css file for the “html docco” template <a href="https://raw.githubusercontent.com/juba/rmdformats/master/inst/templates/html_docco/docco.css">https://raw.githubusercontent.com/juba/rmdformats/master/inst/templates/html_docco/docco.css</a></p></li>
 </ul>
 </div>
 <div id="cheatsheet" class="section level3">
@@ -518,6 +498,23 @@ $(document).ready(function () {
 
 
 </script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open')
+  });
+});
+</script>
+
+<!-- code folding -->
+
 
 <!-- dynamically load mathjax for compatibility with self-contained -->
 <script>

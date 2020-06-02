@@ -76,7 +76,7 @@ knitr::opts_chunk$set(comment = NA)
 knitr::opts_chunk$set(comment=NA, fig.width=6, fig.height=6, echo = TRUE, eval = TRUE, 
                       message = FALSE, warning = FALSE, fig.align = 'center', dpi = 200)
 library(tidyverse)
-library(baselers)
+#library(baselers)
 library(ggthemes)
 ```
 
@@ -230,7 +230,7 @@ plot(x = baselers$height,
 <p align="center"><high>Solution: `ggplot2` </high></p>
 
 ```{r, echo = FALSE, out.width = "45%"}
-knitr::include_graphics("https://www.r-graph-gallery.com/wp-content/uploads/2014/09/ggplot_hex.jpg")
+knitr::include_graphics("https://raw.githubusercontent.com/rstudio/hex-stickers/master/PNG/ggplot2.png")
 ```
 
 

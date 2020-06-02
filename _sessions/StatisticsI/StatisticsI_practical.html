@@ -1,27 +1,27 @@
 <!DOCTYPE html>
 
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html>
 
 <head>
 
 <meta charset="utf-8" />
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
 
 
 
 
-<title>Statistics I</title>
+<title>StatisticsI_practical.utf8</title>
 
-<script src="StatisticsI_practical_files/jquery-1.11.3/jquery.min.js"></script>
+<script src="StatisticsI_practical_files/jquery/jquery.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<link href="StatisticsI_practical_files/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet" />
-<script src="StatisticsI_practical_files/bootstrap-3.3.5/js/bootstrap.min.js"></script>
-<script src="StatisticsI_practical_files/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
-<script src="StatisticsI_practical_files/bootstrap-3.3.5/shim/respond.min.js"></script>
-<script src="StatisticsI_practical_files/navigation-1.1/tabsets.js"></script>
-<link href="StatisticsI_practical_files/highlightjs-9.12.0/default.css" rel="stylesheet" />
-<script src="StatisticsI_practical_files/highlightjs-9.12.0/highlight.js"></script>
+<link href="StatisticsI_practical_files/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+<script src="StatisticsI_practical_files/bootstrap/js/bootstrap.min.js"></script>
+<script src="StatisticsI_practical_files/bootstrap/shim/html5shiv.min.js"></script>
+<script src="StatisticsI_practical_files/bootstrap/shim/respond.min.js"></script>
+<script src="StatisticsI_practical_files/navigation/tabsets.js"></script>
+<link href="StatisticsI_practical_files/highlightjs/default.css" rel="stylesheet" />
+<script src="StatisticsI_practical_files/highlightjs/highlight.js"></script>
 
 <style type="text/css">code{white-space: pre;}</style>
 <style type="text/css">
@@ -70,9 +70,7 @@ h6 {
 
 <link rel="stylesheet" href="practical.css" type="text/css" />
 
-</head>
 
-<body>
 
 <style type = "text/css">
 .main-container {
@@ -86,7 +84,6 @@ code {
 }
 img {
   max-width:100%;
-  height: auto;
 }
 .tabbed-pane {
   padding-top: 12px;
@@ -97,22 +94,81 @@ img {
 button.code-folding-btn:focus {
   outline: none;
 }
+summary {
+  display: list-item;
+}
 </style>
 
 
 
-<div class="container-fluid main-container">
-
 <!-- tabsets -->
-<script>
-$(document).ready(function () {
-  window.buildTabsets("TOC");
-});
-</script>
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "&#xe258;";
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
 
 <!-- code folding -->
 
 
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
 
 
 
@@ -121,19 +177,6 @@ $(document).ready(function () {
 
 
 
-<h1 class="title toc-ignore">Statistics I</h1>
-<h4 class="author"><em><table style='table-layout:fixed;width:100%;border:0;padding:0;margin:0'>
-<col width='10%'>
-<col width='10%'>
-<tr style="border:none">
-<td style="display:block;width:100%;text-align:left;vertical-align:bottom;padding:0;margin:0;border:none" nowrap>
-<font style='font-style:normal'>Introduction to R</font><br> <a href='https://dwulff.github.io/Intro2R_Unibe/'> <i class='fas fa-clock' style='font-size:.9em;' ></i> </a> <a href='https://therbootcamp.github.io'> <i class='fas fa-home' style='font-size:.9em;'></i> </a> <a href='mailto:therbootcamp@gmail.com'> <i class='fas fa-envelope' style='font-size: .9em;'></i> </a> <a href='https://www.linkedin.com/company/basel-r-bootcamp/'> <i class='fab fa-linkedin' style='font-size: .9em;'></i> </a> <a href='https://therbootcamp.github.io'> <font style='font-style:normal'>Bern R Bootcamp</font> </a>
-</td>
-<td style="width:100%;vertical-align:bottom;text-align:right;padding:0;margin:0;border:none">
-<img src='https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/by-sa.png' style='height:15px;width:80px'/>
-</td>
-</tr>
-</table></em></h4>
 
 </div>
 
@@ -158,8 +201,8 @@ $(document).ready(function () {
 <h3>A - Setup</h3>
 <ol style="list-style-type: decimal">
 <li><p>Open your <code>BernRBootcamp</code> R project. It should already have the folders <code>1_Data</code> and <code>2_Code</code>. Make sure that the data files listed in the <code>Datasets</code> section above are in your <code>1_Data</code> folder.</p></li>
-<li>Open a new R script. At the top of the script, using comments, write your name and the date. Save it as a new file called <code>statisticsI_practical.R</code> in the <code>2_Code</code> folder.<br />
-</li>
+<li><p>Open a new R script. At the top of the script, using comments, write your name and the date. Save it as a new file called <code>statisticsI_practical.R</code> in the <code>2_Code</code> folder.<br />
+</p></li>
 <li><p>Using <code>library()</code> load the set of packages for this practical listed in the packages section above.</p></li>
 <li><p>For this practical, we’ll use the <code>kc_house.csv</code> data. This dataset contains house sale prices for King County, Washington. It includes homes sold between May 2014 and May 2015. Using the following template, load the data into R and store it as a new object called <code>kc_house</code>.</p></li>
 </ol>
@@ -370,6 +413,12 @@ prices &lt;- kc_house %&gt;%
 <ol style="list-style-type: decimal">
 <li><p>Which zipcode has the highest percentage of houses on the waterfront? (Hint: group by zipcode, calculate the percentage of houses on the waterfront using <code>mean()</code>, then sort the data in descending order) with <code>arrange()</code>, then select the first row with <code>slice()</code>. Once you find it, try searching for that zipcode on Google Maps and see if it’s location makes sense!</p></li>
 <li><p>Which house had the highest price to living space ratio? To answer this, create a new variable called <code>price_to_living</code> that takes <code>price / living_sqm</code>. Then, sort the data in descending order of this variable, and select the first row with <code>slice()</code>! What id value do you get?</p></li>
+</ol>
+<pre class="{r‚}"><code>kc_house %&gt;%
+  mutate(price_to_living = price / living_sqm) %&gt;%
+  arrange(desc(price_to_living)) %&gt;%
+  slice(1)</code></pre>
+<ol start="3" style="list-style-type: decimal">
 <li><p>Which are the top 10 zip codes in terms of mean housing prices? To answer this, group the data by zipcode, calculate the mean price, arrange the dataset in descending order of mean price, then select the top 10 rows!</p></li>
 <li><p>Create the following dataframe <em>exactly</em> as it appears.</p></li>
 </ol>
@@ -532,12 +581,12 @@ htest  # Print result</code></pre>
 </div>
 <div id="datasets" class="section level2">
 <h2>Datasets</h2>
-<table style="width:89%;">
+<table>
 <colgroup>
 <col width="8%" />
-<col width="9%" />
+<col width="10%" />
 <col width="11%" />
-<col width="59%" />
+<col width="70%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -561,11 +610,11 @@ htest  # Print result</code></pre>
 <div id="functions" class="section level2">
 <h2>Functions</h2>
 <p><em>Wrangling</em></p>
-<table style="width:83%;">
+<table>
 <colgroup>
-<col width="6%" />
-<col width="11%" />
-<col width="65%" />
+<col width="7%" />
+<col width="12%" />
+<col width="80%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -616,12 +665,12 @@ htest  # Print result</code></pre>
 <td align="left">Combine multiple data sets using a key column</td>
 </tr>
 <tr class="odd">
-<td align="left"><code>spread()</code></td>
+<td align="left"><code>pivot_wider()</code></td>
 <td align="left"><code>tidyr</code></td>
 <td align="left">Convert long data to wide format - from rows to columns</td>
 </tr>
 <tr class="even">
-<td align="left"><code>gather()</code></td>
+<td align="left"><code>pivot_longer()</code></td>
 <td align="left"><code>tidyr</code></td>
 <td align="left">Convert wide data to long format - from columns to rows</td>
 </tr>
@@ -659,7 +708,7 @@ htest  # Print result</code></pre>
 <h2>Resources</h2>
 <div id="dplyr-vignette" class="section level3">
 <h3><code>dplyr</code> vignette</h3>
-<p>See <a href="https://cran.r-project.org/web/packages/dplyr/vignettes/dplyr.html" class="uri">https://cran.r-project.org/web/packages/dplyr/vignettes/dplyr.html</a> for the full dplyr vignette with lots of wrangling tips and tricks.</p>
+<p>See <a href="https://cran.r-project.org/web/packages/dplyr/vignettes/dplyr.html">https://cran.r-project.org/web/packages/dplyr/vignettes/dplyr.html</a> for the full dplyr vignette with lots of wrangling tips and tricks.</p>
 </div>
 <div id="cheatsheets" class="section level3">
 <h3>Cheatsheets</h3>
@@ -687,6 +736,23 @@ $(document).ready(function () {
 
 
 </script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open')
+  });
+});
+</script>
+
+<!-- code folding -->
+
 
 <!-- dynamically load mathjax for compatibility with self-contained -->
 <script>

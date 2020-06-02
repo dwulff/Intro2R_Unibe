@@ -28,10 +28,7 @@ output:
       highlightLines: true
       countIncrementalSlides: false
       ratio: '16:9'
-
 ---
-
-#layout: true
 
 <div class="my-footer">
   <span style="text-align:center">
@@ -53,7 +50,6 @@ output:
     </span>
   </div> 
 
----
 
 ```{r setup, include=FALSE}
 options(htmltools.dir.version = FALSE)
@@ -74,7 +70,6 @@ knitr::opts_chunk$set(comment=NA, fig.width=6, fig.height=6, echo = TRUE, eval =
 ```{r, echo = FALSE, message = FALSE, warning = FALSE}
 library(tidyverse)
 library(knitr)
-library(baselers)
 ```
 <br><br>
 

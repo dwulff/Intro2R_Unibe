@@ -1,27 +1,27 @@
 <!DOCTYPE html>
 
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html>
 
 <head>
 
 <meta charset="utf-8" />
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
 
 
 
 
-<title>Plotting I</title>
+<title>PlottingI_practical.utf8</title>
 
-<script src="PlottingI_practical_files/jquery-1.11.3/jquery.min.js"></script>
+<script src="PlottingI_practical_files/jquery/jquery.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<link href="PlottingI_practical_files/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet" />
-<script src="PlottingI_practical_files/bootstrap-3.3.5/js/bootstrap.min.js"></script>
-<script src="PlottingI_practical_files/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
-<script src="PlottingI_practical_files/bootstrap-3.3.5/shim/respond.min.js"></script>
-<script src="PlottingI_practical_files/navigation-1.1/tabsets.js"></script>
-<link href="PlottingI_practical_files/highlightjs-9.12.0/default.css" rel="stylesheet" />
-<script src="PlottingI_practical_files/highlightjs-9.12.0/highlight.js"></script>
+<link href="PlottingI_practical_files/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+<script src="PlottingI_practical_files/bootstrap/js/bootstrap.min.js"></script>
+<script src="PlottingI_practical_files/bootstrap/shim/html5shiv.min.js"></script>
+<script src="PlottingI_practical_files/bootstrap/shim/respond.min.js"></script>
+<script src="PlottingI_practical_files/navigation/tabsets.js"></script>
+<link href="PlottingI_practical_files/highlightjs/default.css" rel="stylesheet" />
+<script src="PlottingI_practical_files/highlightjs/highlight.js"></script>
 
 <style type="text/css">code{white-space: pre;}</style>
 <style type="text/css">
@@ -70,9 +70,7 @@ h6 {
 
 <link rel="stylesheet" href="practical.css" type="text/css" />
 
-</head>
 
-<body>
 
 <style type = "text/css">
 .main-container {
@@ -86,7 +84,6 @@ code {
 }
 img {
   max-width:100%;
-  height: auto;
 }
 .tabbed-pane {
   padding-top: 12px;
@@ -97,22 +94,81 @@ img {
 button.code-folding-btn:focus {
   outline: none;
 }
+summary {
+  display: list-item;
+}
 </style>
 
 
 
-<div class="container-fluid main-container">
-
 <!-- tabsets -->
-<script>
-$(document).ready(function () {
-  window.buildTabsets("TOC");
-});
-</script>
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "&#xe258;";
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
 
 <!-- code folding -->
 
 
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
 
 
 
@@ -121,19 +177,6 @@ $(document).ready(function () {
 
 
 
-<h1 class="title toc-ignore">Plotting I</h1>
-<h4 class="author"><em><table style='table-layout:fixed;width:100%;border:0;padding:0;margin:0'>
-<col width='10%'>
-<col width='10%'>
-<tr style="border:none">
-<td style="display:block;width:100%;text-align:left;vertical-align:bottom;padding:0;margin:0;border:none" nowrap>
-<font style='font-style:normal'>Introduction to R</font><br> <a href='https://dwulff.github.io/Intro2R_Unibe/'> <i class='fas fa-clock' style='font-size:.9em;' ></i> </a> <a href='https://therbootcamp.github.io'> <i class='fas fa-home' style='font-size:.9em;'></i> </a> <a href='mailto:therbootcamp@gmail.com'> <i class='fas fa-envelope' style='font-size: .9em;'></i> </a> <a href='https://www.linkedin.com/company/basel-r-bootcamp/'> <i class='fab fa-linkedin' style='font-size: .9em;'></i> </a> <a href='https://therbootcamp.github.io'> <font style='font-style:normal'>Bern R Bootcamp</font> </a>
-</td>
-<td style="width:100%;vertical-align:bottom;text-align:right;padding:0;margin:0;border:none">
-<img src='https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/by-sa.png' style='height:15px;width:80px'/>
-</td>
-</tr>
-</table></em></h4>
 
 </div>
 
@@ -159,7 +202,7 @@ $(document).ready(function () {
 <ol style="list-style-type: decimal">
 <li><p>Open your <code>BernRBootcamp</code> R project. It should already have the folders <code>1_Data</code> and <code>2_Code</code>. Make sure that the data files listed in the <code>Datasets</code> section above are in your <code>1_Data</code> folder.</p></li>
 <li><p>Open a new R script. At the top of the script, using comments, write your name and the date. Save it as a new file called <code>plotting_practicalI.R</code> in the <code>2_Code</code> folder.</p></li>
-<li><p>Using <code>library()</code> load the set of packages for this practical listed in the packages section above.</p></li>
+<li><p>Using <code>library()</code> load the set of packages for this practical listed in the Functions section above.</p></li>
 </ol>
 <pre class="r"><code>## NAME
 ## DATE
@@ -208,7 +251,7 @@ mcdonalds &lt;- mcdonalds %&gt;%
   geom_point() +
   geom_smooth() </code></pre>
 <ol start="5" style="list-style-type: decimal">
-<li>Oops! Did you get several smoothed lines instead of just one? Fix this by specifying that the line should have one color: <code>&quot;black&quot;</code>. When you do, you should then only see one line.</li>
+<li>Oops! Did you get several smoothed lines instead of just one? Fix this by specifying that the line should have one color: <code>"black"</code>. When you do, you should then only see one line.</li>
 </ol>
 <pre class="r"><code>ggplot(mcdonalds, aes(x = XX, y = XX, col = XX)) +
   geom_point() +
@@ -256,12 +299,12 @@ mcdonalds &lt;- mcdonalds %&gt;%
        subtitle = &quot;XX&quot;)</code></pre>
 <p><img src="PlottingI_practical_files/figure-html/unnamed-chunk-27-1.png" width="768" style="display: block; margin: auto;" /></p>
 <ol start="2" style="list-style-type: decimal">
-<li><p>Include the additional argument <code>+ stat_summary(fun.y = &quot;mean&quot;, geom = &quot;point&quot;, col = &quot;white&quot;, size = 4)</code> to include points showing the mean of each distribution</p></li>
+<li><p>Include the additional argument <code>+ stat_summary(fun.y = "mean", geom = "point", col = "white", size = 4)</code> to include points showing the mean of each distribution</p></li>
 <li><p>Now add <code>+ geom_jitter(width = .1, alpha = .5)</code> to your plot, what do you see?</p></li>
 <li><p>Play around with your plotting arguments to see how the results change! Each time you make a change, run the plot again to see your new output!</p></li>
 </ol>
 <ul>
-<li>Change the summary function in <code>stat_summary()</code> from <code>&quot;mean&quot;</code> to <code>&quot;median&quot;</code>.</li>
+<li>Change the summary function in <code>stat_summary()</code> from <code>"mean"</code> to <code>"median"</code>.</li>
 <li>Change the size of the points in <code>stat_summary()</code> to something much bigger (or smaller).</li>
 <li>Change the <code>width</code> argument in <code>geom_jitter()</code> to <code>width = 0</code>.</li>
 <li>Instead of using <code>geom_violin()</code>, try <code>geom_boxplot()</code>.</li>
@@ -283,7 +326,7 @@ mcdonalds &lt;- mcdonalds %&gt;%
 <li>Customize your plot!</li>
 </ol>
 <ul>
-<li>Instead of showing the <code>&quot;mean&quot;</code>, show the <code>&quot;median&quot;</code>.</li>
+<li>Instead of showing the <code>"mean"</code>, show the <code>"median"</code>.</li>
 <li>Give each bar a different color.</li>
 <li>Add overlapping points showing the individual items using <code>geom_point()</code>, <code>geom_count()</code> or <code>geom_jitter()</code>.</li>
 </ul>
@@ -306,7 +349,7 @@ mcdonalds &lt;- mcdonalds %&gt;%
 <ol start="2" style="list-style-type: decimal">
 <li><p>Try adding labels to the plot indicating which item each point represents by adding <code>+ geom_text()</code>.</p></li>
 <li><p>Where are the labels? Ah, we didn’t tell <code>ggplot</code> which column in the data represents the item descriptions. Fix this by specifying the <code>label</code> aesthetic in your first call to the <code>aes()</code> function. That is, include <code>label = Item</code> underneath the line <code>col = XX</code>. Now you should see lots of labels!</p></li>
-<li><p>Customize your <code>geom_text()</code> by including the arguments: <code>geom_text(col = &quot;black&quot;, check_overlap = TRUE, hjust = &quot;left&quot;)</code>.</p></li>
+<li><p>Customize your <code>geom_text()</code> by including the arguments: <code>geom_text(col = "black", check_overlap = TRUE, hjust = "left")</code>.</p></li>
 <li><p>Using the <code>data</code> argument in <code>geom_text()</code>, specify that the labels should only apply to items over 1100 calories (hint: <code>geom_text(data = mcdonalds %&gt;% filter(XX &gt; XX))</code>)</p></li>
 <li><p>Play around!</p></li>
 </ol>
@@ -318,11 +361,9 @@ mcdonalds &lt;- mcdonalds %&gt;%
 </div>
 <div id="examples" class="section level2">
 <h2>Examples</h2>
-<pre class="r"><code># -----------------------------------------------
-# Examples of using ggplot2 on the mpg data
-# ------------------------------------------------
+<pre class="r"><code># ggplot2 -----------------------
 
-library(tidyverse)         # Load tidyverse (which contains ggplot2!)
+library(tidyverse) # Load tidyverse (contains ggplot2!)
 
 mpg # Look at the mpg data
 
@@ -438,11 +479,11 @@ ggplot(data = mpg,
 <tbody>
 <tr class="odd">
 <td align="left"><code>tidyverse</code></td>
-<td align="left"><code>install.packages(&quot;tidyverse&quot;)</code></td>
+<td align="left"><code>install.packages("tidyverse")</code></td>
 </tr>
 <tr class="even">
 <td align="left"><code>ggthemes</code></td>
-<td align="left"><code>install.packages(&quot;ggthemes&quot;)</code></td>
+<td align="left"><code>install.packages("ggthemes")</code></td>
 </tr>
 </tbody>
 </table>
@@ -453,9 +494,9 @@ ggplot(data = mpg,
 <div id="documentation" class="section level3">
 <h3>Documentation</h3>
 <ul>
-<li><p>The main <code>ggplot2</code> webpage at <a href="http://ggplot2.tidyverse.org/" class="uri">http://ggplot2.tidyverse.org/</a> has great tutorials and examples.</p></li>
-<li><p>Check out Selva Prabhakaran’s website for a nice gallery of ggplot2 graphics <a href="http://r-statistics.co/Top50-Ggplot2-Visualizations-MasterList-R-Code.html" class="uri">http://r-statistics.co/Top50-Ggplot2-Visualizations-MasterList-R-Code.html</a></p></li>
-<li><p><code>ggplot2</code> is also great for making maps. For examples, check out Eric Anderson’s page at <a href="http://eriqande.github.io/rep-res-web/lectures/making-maps-with-R.html" class="uri">http://eriqande.github.io/rep-res-web/lectures/making-maps-with-R.html</a></p></li>
+<li><p>The main <code>ggplot2</code> webpage at <a href="http://ggplot2.tidyverse.org/">http://ggplot2.tidyverse.org/</a> has great tutorials and examples.</p></li>
+<li><p>Check out Selva Prabhakaran’s website for a nice gallery of ggplot2 graphics <a href="http://r-statistics.co/Top50-Ggplot2-Visualizations-MasterList-R-Code.html">http://r-statistics.co/Top50-Ggplot2-Visualizations-MasterList-R-Code.html</a></p></li>
+<li><p><code>ggplot2</code> is also great for making maps. For examples, check out Eric Anderson’s page at <a href="http://eriqande.github.io/rep-res-web/lectures/making-maps-with-R.html">http://eriqande.github.io/rep-res-web/lectures/making-maps-with-R.html</a></p></li>
 </ul>
 </div>
 <div id="cheatsheets" class="section level3">
@@ -484,6 +525,23 @@ $(document).ready(function () {
 
 
 </script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open')
+  });
+});
+</script>
+
+<!-- code folding -->
+
 
 <!-- dynamically load mathjax for compatibility with self-contained -->
 <script>

@@ -1,8 +1,8 @@
 <!DOCTYPE html>
-<html>
+<html lang="" xml:lang="">
   <head>
     <title>Statistics I</title>
-    <meta charset="utf-8">
+    <meta charset="utf-8" />
     <meta name="author" content="Introduction to R   Bern R Bootcamp" />
     <link href="libs/remark-css/default.css" rel="stylesheet" />
     <link rel="stylesheet" href="baselrbootcamp.css" type="text/css" />
@@ -98,7 +98,7 @@ To wrangle data in R, we will use the &lt;high&gt;&lt;mono&gt;dplyr&lt;/mono&gt;
 |:-------------|:----|
 |&lt;b&gt;dplyr&lt;/b&gt; | Transformation | `rename()`, `mutate()`, `case_when()`, `*_join()`  |
 |&lt;b&gt;dplyr&lt;/b&gt; | Organisation | `arrange()`, `slice()`, `filter()`, `select()`  |
-|&lt;b&gt;tidyr&lt;/b&gt; | Organisation | `gather()`, `spread()` |
+|&lt;b&gt;tidyr&lt;/b&gt; | Organisation | `pivot_longer()`, `pivot_wider()` |
 |&lt;b&gt;dplyr&lt;/b&gt; | Aggregation | `group_by()`, `summarise()` |
 
 ]
@@ -231,10 +231,10 @@ baselers %&gt;%
 ```
 
 ```
-## # A tibble: 1 x 4
-##       N age_mean height_median children_max
-##   &lt;int&gt;    &lt;dbl&gt;         &lt;dbl&gt;        &lt;dbl&gt;
-## 1 10000     44.6          171.            6
+# A tibble: 1 x 4
+      N age_mean height_median children_max
+  &lt;int&gt;    &lt;dbl&gt;         &lt;dbl&gt;        &lt;dbl&gt;
+1 10000     44.6          171.            6
 ```
 
 
@@ -326,11 +326,11 @@ baselers %&gt;%
 ```
 
 ```
-## # A tibble: 2 x 5
-##   sex        N age_mean height_median children_max
-##   &lt;chr&gt;  &lt;int&gt;    &lt;dbl&gt;         &lt;dbl&gt;        &lt;dbl&gt;
-## 1 female  5000     45.4          164             6
-## 2 male    5000     43.8          178.            6
+# A tibble: 2 x 5
+  sex        N age_mean height_median children_max
+  &lt;chr&gt;  &lt;int&gt;    &lt;dbl&gt;         &lt;dbl&gt;        &lt;dbl&gt;
+1 female  5000     45.4          164             6
+2 male    5000     43.8          178.            6
 ```
 
 ]
@@ -375,19 +375,18 @@ baselers %&gt;%
     N = n(),
     age_mean = mean(age),
     height_median = median(height)
-    #children_max = max(children)
   )
 ```
 
 ```
-## # A tibble: 4 x 5
-## # Groups:   sex [?]
-##   sex    eyecor     N age_mean height_median
-##   &lt;chr&gt;  &lt;chr&gt;  &lt;int&gt;    &lt;dbl&gt;         &lt;dbl&gt;
-## 1 female no      1731     45.3          164.
-## 2 female yes     3269     45.5          164 
-## 3 male   no      1772     43.6          178.
-## 4 male   yes     3228     43.9          178.
+# A tibble: 4 x 5
+# Groups:   sex [2]
+  sex    eyecor     N age_mean height_median
+  &lt;chr&gt;  &lt;chr&gt;  &lt;int&gt;    &lt;dbl&gt;         &lt;dbl&gt;
+1 female no      1731     45.3          164.
+2 female yes     3269     45.5          164 
+3 male   no      1772     43.6          178.
+4 male   yes     3228     43.9          178.
 ```
 
 ]
@@ -425,13 +424,13 @@ baselers %&gt;%
 ```
 
 ```
-## # A tibble: 3 x 5
-## # Groups:   sex [?]
-##   sex   catholic     N age_mean income_median
-##   &lt;chr&gt; &lt;lgl&gt;    &lt;int&gt;    &lt;dbl&gt;         &lt;dbl&gt;
-## 1 male  FALSE     2452     43.7          7100
-## 2 male  TRUE      1401     44.0          7100
-## 3 male  NA         703     43.5          7000
+# A tibble: 3 x 5
+# Groups:   sex [1]
+  sex   catholic     N age_mean income_median
+  &lt;chr&gt; &lt;lgl&gt;    &lt;int&gt;    &lt;dbl&gt;         &lt;dbl&gt;
+1 male  FALSE     2452     43.7          7100
+2 male  TRUE      1401     44.0          7100
+3 male  NA         703     43.5          7000
 ```
 
 ]
@@ -503,17 +502,17 @@ t.test(baselers$happiness,
 ```
 
 ```
-## 
-## 	Welch Two Sample t-test
-## 
-## data:  baselers$happiness and baselers$fitness
-## t = 83, df = 16000, p-value &lt;2e-16
-## alternative hypothesis: true difference in means is not equal to 0
-## 95 percent confidence interval:
-##  1.738 1.822
-## sample estimates:
-## mean of x mean of y 
-##     6.905     5.125
+
+	Welch Two Sample t-test
+
+data:  baselers$happiness and baselers$fitness
+t = 83, df = 15844, p-value &lt;2e-16
+alternative hypothesis: true difference in means is not equal to 0
+95 percent confidence interval:
+ 1.738 1.822
+sample estimates:
+mean of x mean of y 
+    6.905     5.125 
 ```
 
 ]
@@ -548,17 +547,17 @@ t.test(baselers$happiness,
 ```
 
 ```
-## 
-## 	Two Sample t-test
-## 
-## data:  baselers$happiness and baselers$fitness
-## t = 83, df = 20000, p-value &lt;2e-16
-## alternative hypothesis: true difference in means is not equal to 0
-## 95 percent confidence interval:
-##  1.738 1.822
-## sample estimates:
-## mean of x mean of y 
-##     6.905     5.125
+
+	Two Sample t-test
+
+data:  baselers$happiness and baselers$fitness
+t = 83, df = 19998, p-value &lt;2e-16
+alternative hypothesis: true difference in means is not equal to 0
+95 percent confidence interval:
+ 1.738 1.822
+sample estimates:
+mean of x mean of y 
+    6.905     5.125 
 ```
 
 ]
@@ -593,17 +592,17 @@ cor.test(x = baselers$age,
 ```
 
 ```
-## 
-## 	Pearson's product-moment correlation
-## 
-## data:  baselers$age and baselers$income
-## t = 180, df = 8500, p-value &lt;2e-16
-## alternative hypothesis: true correlation is not equal to 0
-## 95 percent confidence interval:
-##  0.8882 0.8968
-## sample estimates:
-##    cor 
-## 0.8926
+
+	Pearson's product-moment correlation
+
+data:  baselers$age and baselers$income
+t = 183, df = 8508, p-value &lt;2e-16
+alternative hypothesis: true correlation is not equal to 0
+95 percent confidence interval:
+ 0.8882 0.8968
+sample estimates:
+   cor 
+0.8926 
 ```
 
 ]
@@ -637,20 +636,20 @@ cor.test(x = baselers$age,
 ```
 
 ```
-## Warning in cor.test.default(x = baselers$age, y = baselers$income, method = "spearman"): Cannot compute exact
-## p-value with ties
+Warning in cor.test.default(x = baselers$age, y = baselers$income, method = "spearman"): Cannot compute exact
+p-value with ties
 ```
 
 ```
-## 
-## 	Spearman's rank correlation rho
-## 
-## data:  baselers$age and baselers$income
-## S = 1.3e+10, p-value &lt;2e-16
-## alternative hypothesis: true rho is not equal to 0
-## sample estimates:
-##    rho 
-## 0.8756
+
+	Spearman's rank correlation rho
+
+data:  baselers$age and baselers$income
+S = 1.3e+10, p-value &lt;2e-16
+alternative hypothesis: true rho is not equal to 0
+sample estimates:
+   rho 
+0.8756 
 ```
 
 ]
@@ -687,10 +686,10 @@ tab
 ```
 
 ```
-##         tattoo
-## sex      FALSE TRUE
-##   female  4703  297
-##   male    4794  206
+        tattoo
+sex      FALSE TRUE
+  female  4703  297
+  male    4794  206
 ```
 
 ]
@@ -721,11 +720,11 @@ chisq.test(tab)
 ```
 
 ```
-## 
-## 	Pearson's Chi-squared test with Yates' continuity correction
-## 
-## data:  tab
-## X-squared = 17, df = 1, p-value = 4e-05
+
+	Pearson's Chi-squared test with Yates' continuity correction
+
+data:  tab
+X-squared = 17, df = 1, p-value = 4e-05
 ```
 
 ]
@@ -758,12 +757,12 @@ wilcox.test(baselers$happiness,
 ```
 
 ```
-## 
-## 	Wilcoxon rank sum test with continuity correction
-## 
-## data:  baselers$happiness and baselers$fitness
-## W = 7.8e+07, p-value &lt;2e-16
-## alternative hypothesis: true location shift is not equal to 0
+
+	Wilcoxon rank sum test with continuity correction
+
+data:  baselers$happiness and baselers$fitness
+W = 7.8e+07, p-value &lt;2e-16
+alternative hypothesis: true location shift is not equal to 0
 ```
 
 ]
@@ -776,6 +775,7 @@ class: middle, center
 
 &lt;h1&gt;&lt;a href="https://dwulff.github.io/Intro2R_Unibe/_sessions/StatisticsI/StatisticsI_practical.html"&gt;Practical&lt;/a&gt;&lt;/h1&gt;
     </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
 <script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
 <script>var slideshow = remark.create({
 "highlightStyle": "github",
@@ -786,16 +786,89 @@ class: middle, center
 if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
   window.dispatchEvent(new Event('resize'));
 });
-(function() {
-  var d = document, s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
   if (!r) return;
   s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
   d.head.appendChild(s);
-})();</script>
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
 
 <script>
-(function() {
-  var i, text, code, codes = document.getElementsByTagName('code');
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
   for (i = 0; i < codes.length;) {
     code = codes[i];
     if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
@@ -809,14 +882,15 @@ if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
     }
     i++;
   }
-})();
+};
+slideshow._releaseMath(document);
 </script>
 <!-- dynamically load mathjax for compatibility with self-contained -->
 <script>
 (function () {
   var script = document.createElement('script');
   script.type = 'text/javascript';
-  script.src  = 'https://cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
   if (location.protocol !== 'file:' && /^https?:/.test(script.src))
     script.src  = script.src.replace(/^https?:/, '');
   document.getElementsByTagName('head')[0].appendChild(script);

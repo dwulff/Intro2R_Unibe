@@ -80,7 +80,7 @@ In this practical you'll practice plotting data with the amazing `ggplot2` packa
 
 2. Open a new R script. At the top of the script, using comments, write your name and the date. Save it as a new file called `plotting_practicalI.R` in the `2_Code` folder.  
 
-3. Using `library()` load the set of packages for this practical listed in the packages section above.
+3. Using `library()` load the set of packages for this practical listed in the Functions section above.
 
 ```{r, eval = FALSE, echo = TRUE}
 ## NAME

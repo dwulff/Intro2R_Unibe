@@ -622,8 +622,8 @@ htest  # Print result
 |     `case_when()`|`dplyr`|    Recode values of a column| 
 |     `group_by(), summarise()`|`dplyr`|   Group data and then calculate summary statistics|
 |     `left_join()`|`dplyr`|   Combine multiple data sets using a key column|
-|     `spread()`|`tidyr`|    Convert long data to wide format - from rows to columns| 
-|     `gather()`|`tidyr`|    Convert wide data to long format - from columns to rows|
+|     `pivot_wider()`|`tidyr`|    Convert long data to wide format - from rows to columns| 
+|     `pivot_longer()`|`tidyr`|    Convert wide data to long format - from columns to rows|
 
 *Statistical Tests*
 
