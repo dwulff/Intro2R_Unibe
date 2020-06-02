@@ -84,7 +84,7 @@ In this session you will get to know...
 
 .pull-right45[
 
-<img src="http://uc3.co/wp-content/uploads/2012/10/cloud-hoskins.jpg">
+<img src="image/data.jpg">
 
 ]
 
@@ -749,30 +749,6 @@ baselers <- read_csv(file = "1_Data/baselers.csv",
 
 .pull-left5[
 
-Reading in data, <high> `readr` infers the type of data </high> for each column. 
-
-```{r}
-# Read baselers
-baselers <- read_csv(file = "1_Data/baselers.csv")
-baselers
-```
-
-]
-
-.pull-right45[
-
-<center>`baselers.csv`
-
-<img src="https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/baselers_raw.png">
-
-]
-
----
-
-# Handling data types
-
-.pull-left5[
-
 Incorrect data types can be fixed. Typically this involves:
 
 1 - <high>removing character elements</high> from otherwise numeric variables.<br><br2>
@@ -847,36 +823,6 @@ data <- jsonlite::read_json(file, ...)
 ```
 ]
 
-
----
-
-# Documentation
-
-.pull-left5[
-
-R documentation (<high>help files</high> and <high>vignettes</high>) will become very easy to use once you are familiar with the basic R vocabulary. 
-
-Pay attention to...
-
-<high>Usage</high> - shows how to use function, its arguments and their defaults.<br><high>Arguments</high> - describes arguments, and their `class`.<br><high>Value</high> - describes what the function returns.<br><high>Examples</high> - provide working R code.
-
-```{r, eval = F}
-# To access help files
-?name_of_function
-
-# search help files
-??name_of_function
-
-```
-
-]
-
-.pull-right5[
-```{r}
-?cor
-```
-<p align="center"><img src="https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/help_cor.png" width="500"></p>
-]
 
 ---
 

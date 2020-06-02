@@ -1,8 +1,7 @@
 ---
 title: "Data"
 subtitle: ""
-author: "
-<table style='table-layout:fixed;width:100%;border:0;padding:0;margin:0'><col width='10%'><col width='10%'>
+author: "<table style='table-layout:fixed;width:100%;border:0;padding:0;margin:0'><col width='10%'><col width='10%'>
   <tr style='border:none'>
     <td style='display:block;width:100%;text-align:left;vertical-align:bottom;padding:0;margin:0;border:none' nowrap>
       <font style='font-style:normal'>Introduction to R</font><br>
@@ -25,8 +24,7 @@ author: "
     <td style='width:100%;vertical-align:bottom;text-align:right;padding:0;margin:0;border:none'>
       <img src='https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/by-sa.png' style='height:15px;width:80px'/>
     </td>
-  </tr>
-</table>"
+  </tr></table>"
 output:
   html_document:
     css: practical.css
@@ -43,11 +41,12 @@ knitr::opts_chunk$set(echo = FALSE,
 
 options(digits = 3)
 #devtools::install_github("therbootcamp/baselers")
-library(baselers)
 library(tidyverse)
 library(knitr)
 library(kableExtra)
 library(readxl)
+
+baselers = read_csv('1_Data/baselers.csv')
 ```
 
 

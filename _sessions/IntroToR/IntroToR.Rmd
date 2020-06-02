@@ -108,7 +108,7 @@ link = 'https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/ma
 ```
 
 ```{r, results='hide'}
-data <- read.table(link)
+data <- read.table("data/my_data.txt")
 variables <- data[,c('group','variable')]
 analysis <- lm(variable ~ group, data = variables)
 summary(analysis)

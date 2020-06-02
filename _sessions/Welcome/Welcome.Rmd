@@ -281,37 +281,6 @@ Sometimes, you may find yourself in need of some <high>intensive help</high>. <b
 <br>
 
 
-
----
-
-.pull-left4[
-
-<br><br>
-# Breaks - UPDATEW
-
-1 - Feel free to take breaks when you need them. Coffee, tea will be provided at
-10:30 and at 15:00 (we will keep this a bit flexible).
-
-2 - Cafeteria in the basement of this buidling. Wending machines are available also availble there.
-
-3 - Lunch on your own or together (Schanze, Welle, Coop)
-
-]
-
-
-.pull-right6[
-
-<p align="center"><br><br><br><br>
-<img src="https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/tibits.jpg" height="400" vspace="10">
-<br>
-<font style="font-size:10px">from <a href="https://www.tibits.ch/de/restaurants.html">Tibits.ch</a></font>
-</p>
-
-]
-
-
-
-
 ---
 
 .pull-left45[
@@ -351,50 +320,8 @@ Sometimes, you may find yourself in need of some <high>intensive help</high>. <b
 
 ---
 
-# Your goals
+class: middle, center
 
-.pull-left4[
+<h1><a href=https://dwulff.github.io/Intro2R_Unibe/index.html>Schedule</a></h1>
 
-### Data & Graphs
-- Read in, sort, filter, transform data. 
-- Data evaluation and graphs with R.
-
-### Know X - want to switch to R 
-- How to do things in R instead of, e.g., Stata.
-- Refresh some old R knowledge and learn something new.
-
-### Statistics
-- Learn about R to be more efficient with statistical analysis.
-- Use R for research.
-]
-
-.pull-right55[
-
-<p align="center">
-<img src="image/most_interested.png" style="width:500px">
-<br>
-<font style="font-size:10px">Survey result</font>
-</p>
-
-]
-
----
-
-.pull-left35[
-<br><br><br><br><br><br><br><br><br>
-
-<p align="center">
-  <font size=8><hfont><high>Questions?</high></hfont></font><br>
-  <font size = 4><a href = "https://dwulff.github.io/Intro2R_Unibe/">Link to schedule</a></font>
-</p>
-
-]
-
-
-.pull-right6[
-
-<img src="https://dwulff.github.io/Intro2R_Unibe/_sessions/Welcome/image/schedule.png" align="center">
-
-
-]
 
