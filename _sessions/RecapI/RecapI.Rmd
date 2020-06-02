@@ -115,27 +115,6 @@ R has 3 main data objects...
 
 ---
 
-.pull-left4[
-
-# Functions
-
-Functions have 3 elements:
-
-1 - <high>Name</high>: Used to refer to the function and call (execute) it.
-
-2 - <high>Arguments</high>: Used to provide (data) inputs and to control what the function does. Arguments with default values (e.g., `use = "everything"`) need not be specified. Arguments without default values (e.g., `x`) need be specified. <high>Inputs must have the appropriate class!</high>
-
-3 - <high>Body</high>: The code that uses the inputs (arguments) to produce the desired output. The code of the functions body is based <high>copies of the inputs</high>, which are named according to the arguments names. 
-
-]
-
-.pull-right55[
-  <br><br>
-  <img src="https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/function.png"></img>
-]
-
----
-
 # Documentation
 
 .pull-left5[
@@ -191,7 +170,7 @@ Raw data can come in many shapes and sizes, but <high>R's got you covered</high>
 
 .pull-right45[
 
-<img src="http://uc3.co/wp-content/uploads/2012/10/cloud-hoskins.jpg">
+<img src="https://ih1.redbubble.net/image.839237707.5445/st,small,507x507-pad,600x600,f8f8f8.u1.jpg">
 
 ]
 ---
