@@ -264,23 +264,19 @@ Sometimes, you may find yourself in need of some <high>intensive help</high>. <b
 
 1. What is your name?
 
-2. Where are you from?
+2. What is your study subject?
 
-3. What is your main study subject?
+3. What is your programming experience in general and with R?
 
-4. What is your programming experience?
+4. Why do you want to learn R?
 
-5. Have you used R in the past?
+5. Mac or PC?
 
-6. What would you most like to do with R?
+6. Coffee or tea?
 
-7. Coffee or tea?
+7. Beer or wine?
 
-8. Mac or PC?
-
-9. Beer or wine?
-
-10. Berlin or Paris?
+8. Berlin or Paris?
 
 ]
 
