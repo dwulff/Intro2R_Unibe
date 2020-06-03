@@ -233,8 +233,6 @@ plot(x = baselers$height,
 knitr::include_graphics("https://raw.githubusercontent.com/rstudio/hex-stickers/master/PNG/ggplot2.png")
 ```
 
-
-
 ]
 
 .pull-right55[

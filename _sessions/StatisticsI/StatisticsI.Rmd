@@ -1,5 +1,5 @@
 ---
-title: "Statistics I"
+title: "Statistics"
 author: "
   Introduction to R<br>
   <a href='https://therbootcamp.github.io'>
@@ -54,9 +54,7 @@ layout: true
   
 ```{r, eval = FALSE, echo = FALSE, message=FALSE}
 # Code to knit slides
-library(tidyverse)
-#xaringan::inf_mr('_sessions/D1S2_Wrangling/Wrangling.Rmd')
-baselers <- read_csv("https://raw.githubusercontent.com/therbootcamp/baselers/master/inst/extdata/baselers.txt")
+
 ```
 
 ```{r setup, include=FALSE}
@@ -65,6 +63,8 @@ options(width=110)
 options(digits = 4) 
 knitr::opts_chunk$set(comment = NA)
 library(tidyverse)
+#xaringan::inf_mr('_sessions/D1S2_Wrangling/Wrangling.Rmd')
+baselers <- read_csv("https://raw.githubusercontent.com/therbootcamp/baselers/master/inst/extdata/baselers.txt")
 ```
 
 # Statistics I
@@ -389,10 +389,7 @@ baselers %>%
 
 Combine <high>tranformation</high>, <high>organization</high>, and <high>aggregating</high> operations at once!
 
-Just use the <high>pipe %>%</high>.
-
-It can easily happen, that your pipes get very long - the <a href="https://github.com/elbersb/tidylog">tidylog package</a> can come in handy for that.
-
+Just use the <high>pipe %>%</high>!
 
 ]
 
@@ -469,8 +466,6 @@ Alternative <high>arguments allow for variations</high>, e.g., to account for un
 
 .pull-right5[
 
-### t-test with `t.test()`
-
 ```{r}
 # 2-sample t-test
 t.test(baselers$happiness,
@@ -498,8 +493,6 @@ Alternative <high>arguments allow for variations</high>, e.g., to account for un
 ]
 
 .pull-right5[
-
-### t-test with `t.test()`
 
 ```{r}
 # 2-sample t-test assuming equal variance
@@ -531,7 +524,6 @@ Alternative <high>arguments allow for variations</high>, e.g., to conduct the te
 
 .pull-right5[
 
-### Correlation test with `cor.test()`
 
 ```{r}
 # correlation test
@@ -560,7 +552,6 @@ Alternative <high>arguments allow for variations</high>, e.g., to conduct the te
 
 .pull-right5[
 
-### Rank-correlation test with `cor.test()`
 
 ```{r}
 # correlation test
@@ -589,7 +580,6 @@ Alternative <high>arguments allow for variations</high>, e.g., to conduct the te
 
 .pull-right5[
 
-### Chi-square test with `chisq.test()`
 
 ```{r}
 # compute cross-table with table
@@ -622,7 +612,6 @@ Alternative <high>arguments allow for variations</high>, e.g., to conduct the te
 
 .pull-right5[
 
-### Chi-square test with `chisq.test()`
 
 ```{r}
 # chi-square test 
@@ -650,7 +639,6 @@ Alternative <high>arguments allow for variations</high>.
 
 .pull-right5[
 
-### Wilcoxon test with `wilcox.test()`
 
 ```{r}
 # 2-sample wilcoxon rank test assuming equal variance
