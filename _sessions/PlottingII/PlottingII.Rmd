@@ -77,7 +77,7 @@ knitr::opts_chunk$set(comment = NA)
 knitr::opts_chunk$set(comment=NA, fig.width=6, fig.height=6, echo = TRUE, eval = TRUE, 
                       message = FALSE, warning = FALSE, fig.align = 'center', dpi = 200)
 library(tidyverse)
-library(baselers)
+#library(baselers)
 library(ggthemes)
 library(extrafont)
 library(gridExtra)
@@ -1117,7 +1117,7 @@ myplot <- ggplot(data = mpg,
             mytheme
 
 # Create "myplot.pdf", from myplot
-ggsave(filename = "myplot",
+ggsave(filename = "myplot.pdf",
        plot = myplot,
        device = "pdf",
        path = "figures",
@@ -1174,7 +1174,7 @@ myplot <- ggplot(data = mpg,
             mytheme
 
 # Create "myplot.png", from myplot
-ggsave(filename = "myplot",
+ggsave(filename = "myplot.png",
        plot = myplot,
        device = "png",
        path = "figures",
