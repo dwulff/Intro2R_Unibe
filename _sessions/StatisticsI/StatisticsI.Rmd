@@ -422,10 +422,10 @@ baselers %>%
 
 | Function| Purpose |
 |:------|:-------| 
-| `t.test()` | Compre group means | 
+| `t.test()` | Compare group means | 
 | `cor.test()` | Compare correlations  |
 | `chisq.test()` | Compare cell frequencies |
-| `wilcox.test()` | Compre group means non-parametrically |
+| `wilcox.test()` | Compare group means non-parametrically |
 
 <u>Fomula-based tests</u>
 
