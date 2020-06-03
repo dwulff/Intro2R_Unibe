@@ -126,7 +126,7 @@ knitr::include_graphics("https://raw.githubusercontent.com/therbootcamp/therboot
 
 2. Knit your document! Make sure you don't get any errors!
 
-3. Now it's time to load your datafiles. In the *same* `setup` chunk, load each of the data files listed in the `Datasets` section. 
+3. Now it's time to load your datafiles. In the *same* `setup` chunk, load the  `Mcdonalds` dataset. 
 
 ```{r, eval = FALSE, echo = TRUE}
 # --- Load packages
@@ -134,7 +134,6 @@ library(XX)
 library(XX)
 
 # --- Load data
-XXX <- read_csv()
 XXX <- read_csv()
 ```
 
@@ -369,7 +368,7 @@ mcdonalds <- read_csv("https://raw.githubusercontent.com/therbootcamp/BaselRBoot
 ### Cheatsheet
 
 <a href="https://github.com/rstudio/cheatsheets/raw/master/rmarkdown-2.0.pdf">
-  <center><img src="https://www.rstudio.com/wp-content/uploads/2018/08/rmarkdown-2.0-600x464.png" width="600px">
+  <center><img src="https://d33wubrfki0l68.cloudfront.net/65dffd1bdcaa0025006262164d98e8068e8b4387/c3895/wp-content/uploads/2018/08/rmarkdown-2.0.png" width="600px">
 </a>
 
 

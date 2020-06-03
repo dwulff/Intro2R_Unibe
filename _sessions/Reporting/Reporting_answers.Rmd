@@ -23,15 +23,14 @@ options(digits = 2)  # Round all output to 2 digits
 library(tidyverse)
 library(knitr)
 library(broom)
-library(skimr)
+#library(skimr)
 
 # Load data 
 
 mcdonalds <- read_csv("1_Data/mcdonalds.csv")
-happiness <- read_csv("1_Data/happiness.csv")
 ```
 
-In this practical, I will analyse two datasets and show reproducible results in a dynamic document created in R Markdown. R Markdown is great because I can integrate `code` directly into my document, and easily use *italics* and **bold** using formatting tags.
+In this practical, I will analyse the `mcdonalds` datasets and show reproducible results in a dynamic document are created in R Markdown. R Markdown is great because I can integrate `code` directly into my document, and easily use *italics* and **bold** using formatting tags.
 
 # Fast Food Nutrition 
 
@@ -43,12 +42,12 @@ In this practical, I will analyse two datasets and show reproducible results in 
 knitr::include_graphics("https://upload.wikimedia.org/wikipedia/commons/thumb/4/4d/Cheeseburger.jpg/2560px-Cheeseburger.jpg")
 ```
 
-The `mcdonalds` data contains `r ncol(mcdonalds)` pieces of information for `r nrow(mcdonalds)` menu items. The data originally come from [https://www.kaggle.com/mcdonalds/nutrition-facts](https://www.kaggle.com/mcdonalds/nutrition-facts).
+The `mcdonalds` data contains `r ncol(mcdonalds)` pieces of information for `r nrow(mcdonalds)` menu items. The data originally comes from [https://www.kaggle.com/mcdonalds/nutrition-facts](https://www.kaggle.com/mcdonalds/nutrition-facts). 
 
 
 ### Data
 
-Here is a table showing the first 6 columns in the data
+Here is a table showing the first 6 columns and 10 rows of the dataset. You can scroll through the dataset and search for specific items you are interested in.
 
 ```{r, echo = FALSE}
 DT::datatable(mcdonalds %>% select(1:6))
@@ -56,7 +55,7 @@ DT::datatable(mcdonalds %>% select(1:6))
 
 ### Calories Histogram
 
-Across all items, the mean number of calories is `r mean(mcdonalds$Calories)` and the maximum is `r max(mcdonalds$Calories)`. The following plot is a histogram showing the distribution of calories across all menu items
+Across all items, the mean number of calories is `r mean(mcdonalds$Calories)`. The following plot is a histogram showing the distribution of calories across all menu items:
 
 ```{r, fig.width = 6, fig.height = 4}
 ggplot(data = mcdonalds,
@@ -67,6 +66,8 @@ ggplot(data = mcdonalds,
        caption = "Source: Kaggle.com") +
   theme_bw()
 ```
+
+The dataset contains several items with zero calories: `r mcdonalds %>% filter(Calories == min(Calories)) %>% pull(Item)` and one item with the maximum amount of calories: `r mcdonalds %>% filter(Calories == max(Calories)) %>% pull(Item)` of `r mcdonalds %>% filter(Calories == max(Calories)) %>% pull(Calories)` kCal.
 
 ### Calories and Sodium Scatterplot
 
@@ -88,7 +89,7 @@ Which menu categories have the most calories? To answer this, we'll start by cre
 
 ```{r, fig.width = 12, fig.height = 4, out.width = "90%"}
 ggplot(data = mcdonalds,
-       aes(x = Category, y = Calories, fill = Category)) +
+       aes(x = reorder(Category, -Calories), y = Calories, fill = Category)) +
   stat_summary(geom = "bar", fun.y = "mean") +
   guides(fill = FALSE) +
   labs(title = "McDonalds Menu Items",
@@ -107,27 +108,29 @@ Calories_agg <- mcdonalds %>%
     Mean = mean(Calories),
     Median = median(Calories),
     Max = max(Calories)
-  )
+  ) %>%
+  arrange(desc(Mean))
 
 kable(x = Calories_agg, 
       caption = "Summary Statistics of McDonalds Menu item Calories")
 ```
 
 
-### Regression
+### Regression analysis
 
-To see if there is a relationship between calories and sodium across menu items, I conducted a regression analysis using the `lm()` function in R, here are the main results:
+What predicts Calories best? I conducted a regression analysis using the `lm()` function here are the main results:
 
 ```{r}
 # Create regression model predicting Sodium from Calories
 
-cal_sod_lm <- lm(Sodium ~ Calories,
-                 data = mcdonalds)
+mcdonalds_select <- mcdonalds %>% select(Calories, 'Total Fat' , 'Sugars' , 'Carbohydrates') 
+cal_sod_lm <- lm(Calories ~ .,
+                 data = mcdonalds_select)
 
 # Export cal_sod_lm to a nicely formatted table
 
 kable(x = tidy(cal_sod_lm), 
       digits = 3, 
-      caption = "Regression analysis predicting Sodium from Calories")
+      caption = "Regression analysis predicting Calories from Total Fat, Sugars and Carbohydrates")
 ```
 

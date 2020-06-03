@@ -61,6 +61,7 @@ options(htmltools.dir.version = FALSE)
 options(width=110)
 options(digits = 4) 
 knitr::opts_chunk$set(comment = NA)
+
 ```
 
 ```{r, echo = FALSE}
@@ -70,6 +71,7 @@ knitr::opts_chunk$set(comment=NA, fig.width=6, fig.height=6, echo = TRUE, eval =
 ```{r, echo = FALSE, message = FALSE, warning = FALSE}
 library(tidyverse)
 library(knitr)
+baselers <- read_csv(file = "1_Data/baselers.csv")
 ```
 <br><br>
 
