@@ -1,7 +1,6 @@
 ---
 title: "Case study: Finance"
-author: "
-<table style='table-layout:fixed;width:100%;border:0;padding:0;margin:0'><col width='10%'><col width='10%'>
+author: "<table style='table-layout:fixed;width:100%;border:0;padding:0;margin:0'><col width='10%'><col width='10%'>
   <tr style='border:none'>
     <td style='display:block;width:100%;text-align:left;vertical-align:bottom;padding:0;margin:0;border:none' nowrap>
       <font style='font-style:normal'>Introduction to R</font><br>
@@ -24,8 +23,7 @@ author: "
     <td style='width:100%;vertical-align:bottom;text-align:right;padding:0;margin:0;border:none'>
       <img src='https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/by-sa.png' style='height:15px;width:80px'/>
     </td>
-  </tr>
-</table>"
+  </tr></table>"
 output:
   html_document:
     css: practical.css
@@ -37,8 +35,8 @@ knitr::opts_chunk$set(comment = NA,
                       fig.width = 6, 
                       fig.height = 6,
                       fig.align = 'center',
-                      echo = TRUE, 
-                      eval = TRUE, 
+                      echo = FALSE, 
+                      eval = FALSE, 
                       warning = FALSE)
 
 options(digits = 3)
@@ -97,7 +95,7 @@ dax <- read_csv(file = '1_Data/^GDAXI.csv', na = 'XXX')  # 'XXX' means missing!
 nik <- read_csv(file = '1_Data/^N225.csv', na = 'XXX')   # 'XXX' means missing!
 ```
 
-```{r echo = FALSE, eval = TRUE, messages = FALSE}
+```{r}
 # Load index data from local data folder 
 dow <- read_csv(file = '1_Data/^DJI.csv')
 dax <- read_csv(file = '1_Data/^GDAXI.csv', na = 'null')
@@ -106,7 +104,7 @@ nik <- read_csv(file = '1_Data/^N225.csv', na = 'null')
 
 3. Load in the exchange rate data sets, `euro-dollar.txt` and `yen-dollar.txt`, from the `1_Data` folder as two new objects called `eur_usd` and `yen_usd`. To do this, use the `read_delim()`-function and `\t` as the `delim`-argument, telling R that the data is tab-delimited. 
 
-```{r echo = FALSE, eval = TRUE}
+```{r}
 # Load exchange rate data from local data folder 
 eur_usd <- read_delim(file = '1_Data/euro-dollar.txt', delim = '\t')
 yen_usd <- read_delim(file = '1_Data/yen-dollar.txt', delim = '\t')
@@ -114,7 +112,7 @@ yen_usd <- read_delim(file = '1_Data/yen-dollar.txt', delim = '\t')
 
 4. Print the `eur_usd` and `yen_usd` objects. Are all the data types and variable names correct? Not quite, right?
 
-```{r echo = FALSE, eval = TRUE}
+```{r}
 # print exchange rate data sets
 eur_usd 
 yen_usd
@@ -122,7 +120,7 @@ yen_usd
 
 5. To fix the data, first load the data again and use the `col_names`-argument to explicitly assign the column names to be `Date` and `Rate`. This will prevent R to take names from the first row of the data.
 
-```{r echo = FALSE, eval = TRUE}
+```{r}
 # load data specifying col_names
 eur_usd <- read_delim(file = '1_Data/euro-dollar.txt', 
                       delim = '\t',
@@ -136,7 +134,7 @@ yen_usd <- read_delim(file = '1_Data/yen-dollar.txt',
 
 6. Now, change the variable `Date` to type `date`. Fix this using the `parse_date()` function with `format = '%d %b %Y'`. This specifies the exact format the dates are formatted in. Overwrite the existing `Date`-variable.
 
-```{r echo = FALSE, eval = TRUE}
+```{r echo = TRUE}
 # change Date to date type in both datasets
 eur_usd <- eur_usd %>%
   mutate(Date = parse_date(Date, format = '%d %b %Y'))
@@ -150,9 +148,9 @@ yen_usd <- yen_usd %>%
 
 ### C - Wrangling
 
-1. Before we can begin the analysis of the data, we to join the individual data frames into a single data frame called `financial_data` that contains only the dates variable (`Date`), the stock index (unadjusted) closing prices (`Close`), as well as the exchange rates. Begin by joining `dow` and `dax` using `inner_join()`, selecting only the `Date` and `Close` variables of each data frame. See code below.
+1. Before we can begin the analysis of the data, we need to join the individual data frames into a single data frame called `financial_data` that contains only the dates variable (`Date`), the stock index (unadjusted) closing prices (`Close`), as well as the exchange rates. Begin by joining `dow` and `dax` using `inner_join()`, selecting only the `Date` and `Close` variables of each data frame. See code below.
 
-```{r echo = FALSE, eval = TRUE}
+```{r, echo = TRUE}
 # create single data frame
 financial <- dow %>% 
   select(Date,Close) %>% 
@@ -162,20 +160,19 @@ financial
 
 2. Inspect the data! What has R done with the names of the two `Close` variables? Run the code again, this time using the `suffix`-argument to give both variables suffixes preserve the origin of these variables, e.g., `suffix = c(_dow','_dax')`.  
 
-```{r echo = FALSE, eval = TRUE}
+```{r}
 # create single data frame
 financial <- dow %>% 
   select(Date,Close) %>% 
   inner_join(dax %>% select(Date, Close),
-            by = 'Date',
+             by = 'Date',
              suffix = c('_dow','_dax'))
 financial
 ```
 
 3. Looks better now? OK, now that you know how to join two data sets repeat the steps until all five data sets are included in `financial`. Remember, we only want the dates variable (`Date`), the stock index (unadjusted) closing prices (`Close`). Note if you have trouble fixing all variables names using the `suffix`-argument you can also take of this at the end using `rename()`.
 
-
-```{r echo = FALSE, eval = TRUE}
+```{r}
 financial <- financial %>%
   inner_join(nik %>% select(Date, Close), by = 'Date') %>%
   inner_join(eur_usd, by = 'Date') %>%
@@ -183,10 +180,9 @@ financial <- financial %>%
   rename(Close_nik = Close)
 ```
 
-
 4. Alright, now let's create `change` variables that show how the exchange rates and stock indices have moved. Use the `mutate`- and the `diff()`-function. The `diff` computes the differences between every adjacent pair of entries in a vector. As this results in one fewer differences than there values in the vector add an `NA` at the first position of the change variable à la `c(NA, diff(my_variable))`. 
 
-```{r echo = FALSE, eval = TRUE}
+```{r}
 # create variables representing day-to-day changes
 financial <- financial %>% 
   mutate(
@@ -201,12 +197,12 @@ financial <- financial %>%
 
 5. We will be mainly interested in how stock prices and exchange rates change over the course of a year. To create a variable that codes the year `mutate()` and `lubridate::year(Date)`, which will extract from `Date` the year information.
 
-```{r eval = FALSE, echo = FALSE}
+```{r}
 # load lubridate
 library(lubridate)
 ```
 
-```{r echo = FALSE, eval = TRUE}
+```{r}
 # create year variable
 financial <- financial %>% 
   mutate(year = year(Date))
@@ -224,7 +220,7 @@ pivot_longer(names_to = 'variable',
                       -XXX))
 ```
 
-```{r echo = FALSE}
+```{r}
 # create long version of data frame
 financial_long <- 
 financial %>%
@@ -240,7 +236,7 @@ pivot_longer(names_to = 'variable',
 
 1. Plot the development of each of the stock indices over the available time periods. First, select rows corresponding to the stock index prices. Then use the `ggplot()`-function to start a plot. Then, Map `Date` to `x` and `value` to `y` in the `aes()`-function. And, finally, add a `geom_line()`. Does the plot look right?
 
-```{r echo = FALSE, eval= TRUE}
+```{r}
 # plot long version of data frame
 financial_long %>% 
   filter(variable %in% c("Close_dow", "Close_dax", "Close_nik")) %>%
@@ -250,7 +246,7 @@ ggplot(mapping = aes(x = Date, y = value)) +
 
 2. Looked like the values of the three stock indices were somehow overlayering each other. Use `+ facet_grid(~variable)` to teas them apart. Also give it a slightly nicer appearance using `+ theme_light()` What does the plot tell you? Has there been a particular drop in any year?
 
-```{r echo = FALSE, eval= TRUE}
+```{r}
 # plot long version of data frame
 financial_long %>% 
   filter(variable %in% c("Close_dow", "Close_dax", "Close_nik")) %>%
@@ -263,7 +259,7 @@ ggplot(mapping = aes(x = Date, y = value)) +
 
 3. Calculate the overall stock index price change per year. To do this, use `group_by()` and `summarise()` on the stock index change variables. Use the basic `sum()`-function inside `summarise()` to compute the overall change in the year. In doing this, don't forget there were `NA`'s in two of the stock index price variables. Check out the result! When was the biggest drop in stock index prices?
 
-```{r echo = FALSE, eval= TRUE}
+```{r}
 # calculate aggregate change per year
 aggregate_change <- financial %>% 
   group_by(year) %>% 
@@ -278,7 +274,7 @@ aggregate_change
 
 4. The results up to now suggest that modern financial markets are closely intertwined, to the extent that a change in one market can bring about a change in the markets. Evaluate this aspect of financial markets by calculating all correlations between the three stock index change variables using the `cor()`-function. `cor()` can take a data frame as an argument to produce the full correlation matrix among all variables in the data frame. This requires, however, that the data is stored in a "wide" format. Reactivate the old, wide `financial` data set and use it inside `cor()`. Before that select the variables you are interest in. Again, don't forget about the `NA`s - there is an argument for `cor()` to deal with them. How closely are the stock indices related and which ones are most closely related?  
 
-```{r echo = FALSE, eval= TRUE}
+```{r}
 financial %>% 
   select(Close_dow_change, Close_dax_change, Close_nik_change) %>%
   cor(., use = 'complete.obs')
@@ -286,7 +282,7 @@ financial %>%
 
 5. Evaluate the stability of the relationships between financial markets by calculating pair-wise correlations for each year using `group_by` and `summarise()`. Note that here you have to specify each pairwise correlation separately inside `summarise()`. 
 
-```{r echo = FALSE, eval= TRUE}
+```{r}
 
 financial %>% 
   group_by(year) %>% 
@@ -299,7 +295,7 @@ financial %>%
 
 6. Another important aspect of financial markets are exchange rates between currencies. Generally, it is assumed that a strong economy translates into both a strong stock index and a strong currency relative to other currencies. For the end of this practical, let's find out if that holds true our data. First, evaluate whether changes in exchange rates changes correlate with each other in the same way that stock indices did using the `cor`-function. 
 
-```{r echo = FALSE, eval= TRUE}
+```{r}
 financial %>% 
   select(Rate_eur_change, Rate_yen_change) %>%
   cor(., use = 'complete.obs')
@@ -307,7 +303,7 @@ financial %>%
 
 7. Now, evaluate whether exchange rates vary as a function of the *difference* between stock indices. That is, for instance, does a large difference between Dow Jones and DAX translate into a strong Dollar relative to the EURO? According to the above intuition this should be the case. However, there is an alternative economic hypothesis. That is, foreign investors who benefit from a rise in stock index price may be motivated to sell their holdings and exchange them for their own currency to maintain a neutral position. This would, in effect, depreciate the currency at the same time as the stock index is outperforming, thus producing a negative relationship. What do you think? Ask the data.
 
-```{r echo = FALSE, eval= TRUE}
+```{r}
 financial %>% 
   summarize(
     cor_dow_dax = cor(Close_dow - Close_dax, Rate_eur, use = 'complete.obs'),
@@ -317,7 +313,7 @@ financial %>%
 
 8. Finally, evaluate the stability of the above relationship for each year separately. Can you make out a stable pattern? No? I guess it depends. As always.
 
-```{r echo = FALSE, eval= TRUE}
+```{r}
 financial %>% 
   group_by(year) %>% 
   summarize(

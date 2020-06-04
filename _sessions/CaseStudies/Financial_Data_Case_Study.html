@@ -11,7 +11,7 @@
 
 
 
-<title>Financial_Data_Case_Study.utf8</title>
+<title>Case study: Finance</title>
 
 <script src="Financial_Data_Case_Study_files/jquery-1.11.3/jquery.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -177,6 +177,19 @@ summary {
 
 
 
+<h1 class="title toc-ignore">Case study: Finance</h1>
+<h4 class="author"><table style='table-layout:fixed;width:100%;border:0;padding:0;margin:0'>
+<col width='10%'>
+<col width='10%'>
+<tr style="border:none">
+<td style="display:block;width:100%;text-align:left;vertical-align:bottom;padding:0;margin:0;border:none" nowrap>
+<font style='font-style:normal'>Introduction to R</font><br> <a href='https://dwulff.github.io/Intro2R_Unibe/'> <i class='fas fa-clock' style='font-size:.9em;' ></i> </a> <a href='https://therbootcamp.github.io'> <i class='fas fa-home' style='font-size:.9em;'></i> </a> <a href='mailto:therbootcamp@gmail.com'> <i class='fas fa-envelope' style='font-size: .9em;'></i> </a> <a href='https://www.linkedin.com/company/basel-r-bootcamp/'> <i class='fab fa-linkedin' style='font-size: .9em;'></i> </a> <a href='https://therbootcamp.github.io'> <font style='font-style:normal'>Bern R Bootcamp</font> </a>
+</td>
+<td style="width:100%;vertical-align:bottom;text-align:right;padding:0;margin:0;border:none">
+<img src='https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/by-sa.png' style='height:15px;width:80px'/>
+</td>
+</tr>
+</table></h4>
 
 </div>
 
@@ -219,135 +232,34 @@ summary {
 dow &lt;- read_csv(file = &#39;1_Data/^DJI.csv&#39;)
 dax &lt;- read_csv(file = &#39;1_Data/^GDAXI.csv&#39;, na = &#39;XXX&#39;)  # &#39;XXX&#39; means missing!
 nik &lt;- read_csv(file = &#39;1_Data/^N225.csv&#39;, na = &#39;XXX&#39;)   # &#39;XXX&#39; means missing!</code></pre>
-<pre><code>Parsed with column specification:
-cols(
-  Date = col_date(format = &quot;&quot;),
-  Open = col_double(),
-  High = col_double(),
-  Low = col_double(),
-  Close = col_double(),
-  `Adj Close` = col_double(),
-  Volume = col_double()
-)
-Parsed with column specification:
-cols(
-  Date = col_date(format = &quot;&quot;),
-  Open = col_double(),
-  High = col_double(),
-  Low = col_double(),
-  Close = col_double(),
-  `Adj Close` = col_double(),
-  Volume = col_double()
-)
-Parsed with column specification:
-cols(
-  Date = col_date(format = &quot;&quot;),
-  Open = col_double(),
-  High = col_double(),
-  Low = col_double(),
-  Close = col_double(),
-  `Adj Close` = col_double(),
-  Volume = col_double()
-)</code></pre>
 <ol start="3" style="list-style-type: decimal">
-<li>Load in the exchange rate data sets, <code>euro-dollar.txt</code> and <code>yen-dollar.txt</code>, from the <code>1_Data</code> folder as two new objects called <code>eur_usd</code> and <code>yen_usd</code>. To do this, use the <code>read_delim()</code>-function and <code>\t</code> as the <code>delim</code>-argument, telling R that the data is tab-delimited.</li>
-</ol>
-<pre><code>Parsed with column specification:
-cols(
-  `04 Jan 1999` = col_character(),
-  `1.186669` = col_double()
-)</code></pre>
-<pre><code>Parsed with column specification:
-cols(
-  `02 Jan 1990` = col_character(),
-  `0.006838` = col_double()
-)</code></pre>
-<ol start="4" style="list-style-type: decimal">
-<li>Print the <code>eur_usd</code> and <code>yen_usd</code> objects. Are all the data types and variable names correct? Not quite, right?</li>
-</ol>
-<pre><code># A tibble: 6,545 x 2
-   `04 Jan 1999` `1.186669`
-   &lt;chr&gt;              &lt;dbl&gt;
- 1 05 Jan 1999         1.18
- 2 06 Jan 1999         1.16
- 3 07 Jan 1999         1.17
- 4 08 Jan 1999         1.16
- 5 11 Jan 1999         1.15
- 6 12 Jan 1999         1.16
- 7 13 Jan 1999         1.17
- 8 14 Jan 1999         1.17
- 9 15 Jan 1999         1.16
-10 18 Jan 1999         1.16
-# … with 6,535 more rows</code></pre>
-<pre><code># A tibble: 8,764 x 2
-   `02 Jan 1990` `0.006838`
-   &lt;chr&gt;              &lt;dbl&gt;
- 1 03 Jan 1990      0.00686
- 2 04 Jan 1990      0.00698
- 3 05 Jan 1990      0.00695
- 4 08 Jan 1990      0.00694
- 5 09 Jan 1990      0.00689
- 6 10 Jan 1990      0.00688
- 7 11 Jan 1990      0.00688
- 8 12 Jan 1990      0.00688
- 9 16 Jan 1990      0.00687
-10 17 Jan 1990      0.00687
-# … with 8,754 more rows</code></pre>
-<ol start="5" style="list-style-type: decimal">
-<li>To fix the data, first load the data again and use the <code>col_names</code>-argument to explicitly assign the column names to be <code>Date</code> and <code>Rate</code>. This will prevent R to take names from the first row of the data.</li>
-</ol>
-<pre><code>Parsed with column specification:
-cols(
-  Date = col_character(),
-  Rate = col_double()
-)
-Parsed with column specification:
-cols(
-  Date = col_character(),
-  Rate = col_double()
-)</code></pre>
-<ol start="6" style="list-style-type: decimal">
+<li><p>Load in the exchange rate data sets, <code>euro-dollar.txt</code> and <code>yen-dollar.txt</code>, from the <code>1_Data</code> folder as two new objects called <code>eur_usd</code> and <code>yen_usd</code>. To do this, use the <code>read_delim()</code>-function and <code>\t</code> as the <code>delim</code>-argument, telling R that the data is tab-delimited.</p></li>
+<li><p>Print the <code>eur_usd</code> and <code>yen_usd</code> objects. Are all the data types and variable names correct? Not quite, right?</p></li>
+<li><p>To fix the data, first load the data again and use the <code>col_names</code>-argument to explicitly assign the column names to be <code>Date</code> and <code>Rate</code>. This will prevent R to take names from the first row of the data.</p></li>
 <li><p>Now, change the variable <code>Date</code> to type <code>date</code>. Fix this using the <code>parse_date()</code> function with <code>format = '%d %b %Y'</code>. This specifies the exact format the dates are formatted in. Overwrite the existing <code>Date</code>-variable.</p></li>
-<li><p>Now you should have tidier data! Go ahead an explore the data a bit. What data do they contain? Consider using <code>summary</code> or <code>skimr::skim()</code>.</p></li>
+</ol>
+<pre class="r"><code># change Date to date type in both datasets
+eur_usd &lt;- eur_usd %&gt;%
+  mutate(Date = parse_date(Date, format = &#39;%d %b %Y&#39;))
+
+yen_usd &lt;- yen_usd %&gt;%
+  mutate(Date = parse_date(Date, format = &#39;%d %b %Y&#39;))</code></pre>
+<ol start="7" style="list-style-type: decimal">
+<li>Now you should have tidier data! Go ahead an explore the data a bit. What data do they contain? Consider using <code>summary</code> or <code>skimr::skim()</code>.</li>
 </ol>
 </div>
 <div id="c---wrangling" class="section level3">
 <h3>C - Wrangling</h3>
 <ol style="list-style-type: decimal">
-<li>Before we can begin the analysis of the data, we to join the individual data frames into a single data frame called <code>financial_data</code> that contains only the dates variable (<code>Date</code>), the stock index (unadjusted) closing prices (<code>Close</code>), as well as the exchange rates. Begin by joining <code>dow</code> and <code>dax</code> using <code>inner_join()</code>, selecting only the <code>Date</code> and <code>Close</code> variables of each data frame. See code below.</li>
+<li>Before we can begin the analysis of the data, we need to join the individual data frames into a single data frame called <code>financial_data</code> that contains only the dates variable (<code>Date</code>), the stock index (unadjusted) closing prices (<code>Close</code>), as well as the exchange rates. Begin by joining <code>dow</code> and <code>dax</code> using <code>inner_join()</code>, selecting only the <code>Date</code> and <code>Close</code> variables of each data frame. See code below.</li>
 </ol>
-<pre><code># A tibble: 7,577 x 3
-   Date       Close.x Close.y
-   &lt;date&gt;       &lt;dbl&gt;   &lt;dbl&gt;
- 1 1987-12-30   1950.   1005.
- 2 1987-12-31   1939.     NA 
- 3 1988-01-04   2015.    956.
- 4 1988-01-05   2032.    996.
- 5 1988-01-06   2038.   1006.
- 6 1988-01-07   2052.   1014.
- 7 1988-01-08   1911.   1027.
- 8 1988-01-11   1945.    988.
- 9 1988-01-12   1929.    987.
-10 1988-01-13   1925.    966.
-# … with 7,567 more rows</code></pre>
+<pre class="r"><code># create single data frame
+financial &lt;- dow %&gt;% 
+  select(Date,Close) %&gt;% 
+  inner_join(dax %&gt;% select(Date, Close), by = &#39;Date&#39;)
+financial</code></pre>
 <ol start="2" style="list-style-type: decimal">
-<li>Inspect the data! What has R done with the names of the two <code>Close</code> variables? Run the code again, this time using the <code>suffix</code>-argument to give both variables suffixes preserve the origin of these variables, e.g., <code>suffix = c(_dow','_dax')</code>.</li>
-</ol>
-<pre><code># A tibble: 7,577 x 3
-   Date       Close_dow Close_dax
-   &lt;date&gt;         &lt;dbl&gt;     &lt;dbl&gt;
- 1 1987-12-30     1950.     1005.
- 2 1987-12-31     1939.       NA 
- 3 1988-01-04     2015.      956.
- 4 1988-01-05     2032.      996.
- 5 1988-01-06     2038.     1006.
- 6 1988-01-07     2052.     1014.
- 7 1988-01-08     1911.     1027.
- 8 1988-01-11     1945.      988.
- 9 1988-01-12     1929.      987.
-10 1988-01-13     1925.      966.
-# … with 7,567 more rows</code></pre>
-<ol start="3" style="list-style-type: decimal">
+<li><p>Inspect the data! What has R done with the names of the two <code>Close</code> variables? Run the code again, this time using the <code>suffix</code>-argument to give both variables suffixes preserve the origin of these variables, e.g., <code>suffix = c(_dow','_dax')</code>.</p></li>
 <li><p>Looks better now? OK, now that you know how to join two data sets repeat the steps until all five data sets are included in <code>financial</code>. Remember, we only want the dates variable (<code>Date</code>), the stock index (unadjusted) closing prices (<code>Close</code>). Note if you have trouble fixing all variables names using the <code>suffix</code>-argument you can also take of this at the end using <code>rename()</code>.</p></li>
 <li><p>Alright, now let’s create <code>change</code> variables that show how the exchange rates and stock indices have moved. Use the <code>mutate</code>- and the <code>diff()</code>-function. The <code>diff</code> computes the differences between every adjacent pair of entries in a vector. As this results in one fewer differences than there values in the vector add an <code>NA</code> at the first position of the change variable à la <code>c(NA, diff(my_variable))</code>.</p></li>
 <li><p>We will be mainly interested in how stock prices and exchange rates change over the course of a year. To create a variable that codes the year <code>mutate()</code> and <code>lubridate::year(Date)</code>, which will extract from <code>Date</code> the year information.</p></li>
@@ -367,111 +279,15 @@ pivot_longer(names_to = &#39;variable&#39;,
 <div id="d---analysing-and-plotting" class="section level3">
 <h3>D - Analysing and Plotting</h3>
 <ol style="list-style-type: decimal">
-<li>Plot the development of each of the stock indices over the available time periods. First, select rows corresponding to the stock index prices. Then use the <code>ggplot()</code>-function to start a plot. Then, Map <code>Date</code> to <code>x</code> and <code>value</code> to <code>y</code> in the <code>aes()</code>-function. And, finally, add a <code>geom_line()</code>. Does the plot look right?</li>
+<li><p>Plot the development of each of the stock indices over the available time periods. First, select rows corresponding to the stock index prices. Then use the <code>ggplot()</code>-function to start a plot. Then, Map <code>Date</code> to <code>x</code> and <code>value</code> to <code>y</code> in the <code>aes()</code>-function. And, finally, add a <code>geom_line()</code>. Does the plot look right?</p></li>
+<li><p>Looked like the values of the three stock indices were somehow overlayering each other. Use <code>+ facet_grid(~variable)</code> to teas them apart. Also give it a slightly nicer appearance using <code>+ theme_light()</code> What does the plot tell you? Has there been a particular drop in any year?</p></li>
+<li><p>Calculate the overall stock index price change per year. To do this, use <code>group_by()</code> and <code>summarise()</code> on the stock index change variables. Use the basic <code>sum()</code>-function inside <code>summarise()</code> to compute the overall change in the year. In doing this, don’t forget there were <code>NA</code>’s in two of the stock index price variables. Check out the result! When was the biggest drop in stock index prices?</p></li>
+<li><p>The results up to now suggest that modern financial markets are closely intertwined, to the extent that a change in one market can bring about a change in the markets. Evaluate this aspect of financial markets by calculating all correlations between the three stock index change variables using the <code>cor()</code>-function. <code>cor()</code> can take a data frame as an argument to produce the full correlation matrix among all variables in the data frame. This requires, however, that the data is stored in a “wide” format. Reactivate the old, wide <code>financial</code> data set and use it inside <code>cor()</code>. Before that select the variables you are interest in. Again, don’t forget about the <code>NA</code>s - there is an argument for <code>cor()</code> to deal with them. How closely are the stock indices related and which ones are most closely related?</p></li>
+<li><p>Evaluate the stability of the relationships between financial markets by calculating pair-wise correlations for each year using <code>group_by</code> and <code>summarise()</code>. Note that here you have to specify each pairwise correlation separately inside <code>summarise()</code>.</p></li>
+<li><p>Another important aspect of financial markets are exchange rates between currencies. Generally, it is assumed that a strong economy translates into both a strong stock index and a strong currency relative to other currencies. For the end of this practical, let’s find out if that holds true our data. First, evaluate whether changes in exchange rates changes correlate with each other in the same way that stock indices did using the <code>cor</code>-function.</p></li>
+<li><p>Now, evaluate whether exchange rates vary as a function of the <em>difference</em> between stock indices. That is, for instance, does a large difference between Dow Jones and DAX translate into a strong Dollar relative to the EURO? According to the above intuition this should be the case. However, there is an alternative economic hypothesis. That is, foreign investors who benefit from a rise in stock index price may be motivated to sell their holdings and exchange them for their own currency to maintain a neutral position. This would, in effect, depreciate the currency at the same time as the stock index is outperforming, thus producing a negative relationship. What do you think? Ask the data.</p></li>
+<li><p>Finally, evaluate the stability of the above relationship for each year separately. Can you make out a stable pattern? No? I guess it depends. As always.</p></li>
 </ol>
-<p><img src="Financial_Data_Case_Study_files/figure-html/unnamed-chunk-16-1.png" width="576" style="display: block; margin: auto;" /></p>
-<ol start="2" style="list-style-type: decimal">
-<li>Looked like the values of the three stock indices were somehow overlayering each other. Use <code>+ facet_grid(~variable)</code> to teas them apart. Also give it a slightly nicer appearance using <code>+ theme_light()</code> What does the plot tell you? Has there been a particular drop in any year?</li>
-</ol>
-<p><img src="Financial_Data_Case_Study_files/figure-html/unnamed-chunk-17-1.png" width="576" style="display: block; margin: auto;" /></p>
-<ol start="3" style="list-style-type: decimal">
-<li>Calculate the overall stock index price change per year. To do this, use <code>group_by()</code> and <code>summarise()</code> on the stock index change variables. Use the basic <code>sum()</code>-function inside <code>summarise()</code> to compute the overall change in the year. In doing this, don’t forget there were <code>NA</code>’s in two of the stock index price variables. Check out the result! When was the biggest drop in stock index prices?</li>
-</ol>
-<pre><code># A tibble: 20 x 4
-    year mean_dow_change mean_dax_change mean_nik_change
-   &lt;dbl&gt;           &lt;dbl&gt;           &lt;dbl&gt;           &lt;dbl&gt;
- 1  1999            NA             1529.          5903. 
- 2  2000          -709.            -455.         -5561. 
- 3  2001          -766.           -1254.         -4436. 
- 4  2002         -1680.           -2112.         -2235. 
- 5  2003          2112.             718.           327. 
- 6  2004           329.             180.          1335. 
- 7  2005           -65.5           1108.          3219. 
- 8  2006          1746.            1189.          1504. 
- 9  2007           903.            1470.         -1918. 
-10  2008         -4697.           -3257.         -6448. 
-11  2009          1880.            1147.          1513. 
-12  2010          1021.             957.          -318. 
-13  2011           648.           -1016.         -1774. 
-14  2012           721.            1714.          1940. 
-15  2013          3566.            1940.          5896. 
-16  2014          1479.             253.          1159. 
-17  2015          -379.             937.          1583. 
-18  2016          2159.             738.            80.7
-19  2017          4957.            1266.          3439. 
-20  2018          -455.            -960.         -2395. </code></pre>
-<ol start="4" style="list-style-type: decimal">
-<li>The results up to now suggest that modern financial markets are closely intertwined, to the extent that a change in one market can bring about a change in the markets. Evaluate this aspect of financial markets by calculating all correlations between the three stock index change variables using the <code>cor()</code>-function. <code>cor()</code> can take a data frame as an argument to produce the full correlation matrix among all variables in the data frame. This requires, however, that the data is stored in a “wide” format. Reactivate the old, wide <code>financial</code> data set and use it inside <code>cor()</code>. Before that select the variables you are interest in. Again, don’t forget about the <code>NA</code>s - there is an argument for <code>cor()</code> to deal with them. How closely are the stock indices related and which ones are most closely related?</li>
-</ol>
-<pre><code>                 Close_dow_change Close_dax_change Close_nik_change
-Close_dow_change            1.000            0.570            0.169
-Close_dax_change            0.570            1.000            0.318
-Close_nik_change            0.169            0.318            1.000</code></pre>
-<ol start="5" style="list-style-type: decimal">
-<li>Evaluate the stability of the relationships between financial markets by calculating pair-wise correlations for each year using <code>group_by</code> and <code>summarise()</code>. Note that here you have to specify each pairwise correlation separately inside <code>summarise()</code>.</li>
-</ol>
-<pre><code># A tibble: 20 x 4
-    year cor_dow_dax cor_dow_nik cor_dax_nik
-   &lt;dbl&gt;       &lt;dbl&gt;       &lt;dbl&gt;       &lt;dbl&gt;
- 1  1999       0.453      0.0730       0.192
- 2  2000       0.308     -0.0519       0.195
- 3  2001       0.667      0.255        0.287
- 4  2002       0.654      0.196        0.236
- 5  2003       0.695      0.127        0.249
- 6  2004       0.468      0.166        0.344
- 7  2005       0.390      0.0625       0.327
- 8  2006       0.594      0.100        0.266
- 9  2007       0.537      0.0874       0.394
-10  2008       0.613      0.212        0.527
-11  2009       0.732      0.175        0.260
-12  2010       0.695      0.255        0.329
-13  2011       0.796      0.185        0.351
-14  2012       0.725      0.212        0.325
-15  2013       0.566      0.161        0.256
-16  2014       0.567      0.149        0.176
-17  2015       0.538      0.254        0.295
-18  2016       0.605      0.214        0.387
-19  2017       0.554      0.367        0.395
-20  2018       0.378      0.108        0.481</code></pre>
-<ol start="6" style="list-style-type: decimal">
-<li>Another important aspect of financial markets are exchange rates between currencies. Generally, it is assumed that a strong economy translates into both a strong stock index and a strong currency relative to other currencies. For the end of this practical, let’s find out if that holds true our data. First, evaluate whether changes in exchange rates changes correlate with each other in the same way that stock indices did using the <code>cor</code>-function.</li>
-</ol>
-<pre><code>                Rate_eur_change Rate_yen_change
-Rate_eur_change           1.000           0.391
-Rate_yen_change           0.391           1.000</code></pre>
-<ol start="7" style="list-style-type: decimal">
-<li>Now, evaluate whether exchange rates vary as a function of the <em>difference</em> between stock indices. That is, for instance, does a large difference between Dow Jones and DAX translate into a strong Dollar relative to the EURO? According to the above intuition this should be the case. However, there is an alternative economic hypothesis. That is, foreign investors who benefit from a rise in stock index price may be motivated to sell their holdings and exchange them for their own currency to maintain a neutral position. This would, in effect, depreciate the currency at the same time as the stock index is outperforming, thus producing a negative relationship. What do you think? Ask the data.</li>
-</ol>
-<pre><code># A tibble: 1 x 2
-  cor_dow_dax cor_dow_nik
-        &lt;dbl&gt;       &lt;dbl&gt;
-1      0.0869       0.569</code></pre>
-<ol start="8" style="list-style-type: decimal">
-<li>Finally, evaluate the stability of the above relationship for each year separately. Can you make out a stable pattern? No? I guess it depends. As always.</li>
-</ol>
-<pre><code># A tibble: 20 x 3
-    year cor_dow_dax cor_dow_nik
-   &lt;dbl&gt;       &lt;dbl&gt;       &lt;dbl&gt;
- 1  1999      -0.639     -0.501 
- 2  2000      -0.222     -0.479 
- 3  2001      -0.393     -0.221 
- 4  2002       0.162     -0.287 
- 5  2003       0.772     -0.320 
- 6  2004       0.253      0.427 
- 7  2005       0.831      0.862 
- 8  2006       0.776      0.0745
- 9  2007      -0.136      0.824 
-10  2008       0.825      0.788 
-11  2009       0.837      0.740 
-12  2010       0.714      0.932 
-13  2011      -0.334      0.459 
-14  2012      -0.248      0.727 
-15  2013      -0.235      0.898 
-16  2014      -0.856      0.781 
-17  2015       0.601      0.819 
-18  2016      -0.108      0.831 
-19  2017       0.784      0.629 
-20  2018       0.470      0.792 </code></pre>
 </div>
 </div>
 <div id="datasets" class="section level2">
