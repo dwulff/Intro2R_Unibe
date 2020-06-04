@@ -31,7 +31,7 @@ output:
 
 ### Links
 
-##### Data sets: <a href="https://dwulff.github.io/Intro2R_Unibe/1_Data/BernRBootcamp_Day1.zip">Day 1</a>, <a href="https://dwulff.github.io/Intro2R_Unibe/1_Data/BernRBootcamp_Day2.zip">Day 2</a><!---, <a href="https://dwulff.github.io/Intro2R_Unibe/1_Data/BernRBootcamp_Day3.zip">Day 3</a>--->
+##### Data sets: <a href="https://dwulff.github.io/Intro2R_Unibe/1_Data/BernRBootcamp_Day1.zip">Day 1</a>, <a href="https://dwulff.github.io/Intro2R_Unibe/1_Data/BernRBootcamp_Day2.zip">Day 2</a>, <a href="https://dwulff.github.io/Intro2R_Unibe/1_Data/BernRBootcamp_Day3.zip">Day 3</a>
 
 #####  Final project: <a href="https://dwulff.github.io/Intro2R_Unibe/_sessions/FinalProject/FinalProject.html">Assignment</a>
 

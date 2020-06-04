@@ -351,11 +351,7 @@ cols(
 <li><p>Looks better now? OK, now that you know how to join two data sets repeat the steps until all five data sets are included in <code>financial</code>. Remember, we only want the dates variable (<code>Date</code>), the stock index (unadjusted) closing prices (<code>Close</code>). Note if you have trouble fixing all variables names using the <code>suffix</code>-argument you can also take of this at the end using <code>rename()</code>.</p></li>
 <li><p>Alright, now let’s create <code>change</code> variables that show how the exchange rates and stock indices have moved. Use the <code>mutate</code>- and the <code>diff()</code>-function. The <code>diff</code> computes the differences between every adjacent pair of entries in a vector. As this results in one fewer differences than there values in the vector add an <code>NA</code> at the first position of the change variable à la <code>c(NA, diff(my_variable))</code>.</p></li>
 <li><p>We will be mainly interested in how stock prices and exchange rates change over the course of a year. To create a variable that codes the year <code>mutate()</code> and <code>lubridate::year(Date)</code>, which will extract from <code>Date</code> the year information.</p></li>
-</ol>
-<pre class="r"><code># load lubridate
-library(lubridate)</code></pre>
-<ol start="6" style="list-style-type: decimal">
-<li>Finally, we want the data in the “long”, instead of the current “wide” format. Call this dataset <code>financial_long</code>. In long formats variables occupy different rows rather than columns. We want to end with 4 columns: Date, year, variable and value.</li>
+<li><p>Finally, we want the data in the “long”, instead of the current “wide” format. Call this dataset <code>financial_long</code>. In long formats variables occupy different rows rather than columns. We want to end with 4 columns: Date, year, variable and value.</p></li>
 </ol>
 <pre class="r"><code># create long version of data frame
 financial_long &lt;- 
@@ -364,12 +360,6 @@ pivot_longer(names_to = &#39;variable&#39;,
              values_to = &#39;value&#39;,
              cols = c(-XXX, 
                       -XXX))</code></pre>
-<pre class="r"><code># create long version of data frame
-financial_long &lt;- 
-financial %&gt;%
-pivot_longer(names_to = &#39;variable&#39;,
-             values_to = &#39;value&#39;,
-             cols = c(-Date, -year))</code></pre>
 <ol start="7" style="list-style-type: decimal">
 <li>Now your data is tidy proper (at least with regard to the analyses required here)! Go ahead an explore the data a bit. What data do they contain? Consider using <code>summary</code> or <code>skimr::skim()</code>.</li>
 </ol>
@@ -379,35 +369,14 @@ pivot_longer(names_to = &#39;variable&#39;,
 <ol style="list-style-type: decimal">
 <li>Plot the development of each of the stock indices over the available time periods. First, select rows corresponding to the stock index prices. Then use the <code>ggplot()</code>-function to start a plot. Then, Map <code>Date</code> to <code>x</code> and <code>value</code> to <code>y</code> in the <code>aes()</code>-function. And, finally, add a <code>geom_line()</code>. Does the plot look right?</li>
 </ol>
-<pre class="r"><code># create long version of data frame
-financial_long %&gt;% 
-  filter(variable %in% c(&quot;Close_dow&quot;, &quot;Close_dax&quot;, &quot;Close_nik&quot;)) %&gt;%
-ggplot(mapping = aes(x = Date, y = value)) + 
-  geom_line()</code></pre>
 <p><img src="Financial_Data_Case_Study_files/figure-html/unnamed-chunk-16-1.png" width="576" style="display: block; margin: auto;" /></p>
 <ol start="2" style="list-style-type: decimal">
 <li>Looked like the values of the three stock indices were somehow overlayering each other. Use <code>+ facet_grid(~variable)</code> to teas them apart. Also give it a slightly nicer appearance using <code>+ theme_light()</code> What does the plot tell you? Has there been a particular drop in any year?</li>
 </ol>
-<pre class="r"><code># create long version of data frame
-financial_long %&gt;% 
-  filter(variable %in% c(&quot;Close_dow&quot;, &quot;Close_dax&quot;, &quot;Close_nik&quot;)) %&gt;%
-ggplot(mapping = aes(x = Date, y = value)) + 
-  geom_line() + 
-  facet_grid(~variable) + 
-  theme_light()</code></pre>
 <p><img src="Financial_Data_Case_Study_files/figure-html/unnamed-chunk-17-1.png" width="576" style="display: block; margin: auto;" /></p>
 <ol start="3" style="list-style-type: decimal">
 <li>Calculate the overall stock index price change per year. To do this, use <code>group_by()</code> and <code>summarise()</code> on the stock index change variables. Use the basic <code>sum()</code>-function inside <code>summarise()</code> to compute the overall change in the year. In doing this, don’t forget there were <code>NA</code>’s in two of the stock index price variables. Check out the result! When was the biggest drop in stock index prices?</li>
 </ol>
-<pre class="r"><code># calculate aggregate change per year
-aggregate_change &lt;- financial %&gt;% 
-  group_by(year) %&gt;% 
-  summarize(
-    mean_dow_change = sum(Close_dow_change),
-    mean_dax_change = sum(Close_dax_change, na.rm = TRUE),
-    mean_nik_change = sum(Close_nik_change, na.rm = TRUE)
-)
-aggregate_change</code></pre>
 <pre><code># A tibble: 20 x 4
     year mean_dow_change mean_dax_change mean_nik_change
    &lt;dbl&gt;           &lt;dbl&gt;           &lt;dbl&gt;           &lt;dbl&gt;
@@ -434,9 +403,6 @@ aggregate_change</code></pre>
 <ol start="4" style="list-style-type: decimal">
 <li>The results up to now suggest that modern financial markets are closely intertwined, to the extent that a change in one market can bring about a change in the markets. Evaluate this aspect of financial markets by calculating all correlations between the three stock index change variables using the <code>cor()</code>-function. <code>cor()</code> can take a data frame as an argument to produce the full correlation matrix among all variables in the data frame. This requires, however, that the data is stored in a “wide” format. Reactivate the old, wide <code>financial</code> data set and use it inside <code>cor()</code>. Before that select the variables you are interest in. Again, don’t forget about the <code>NA</code>s - there is an argument for <code>cor()</code> to deal with them. How closely are the stock indices related and which ones are most closely related?</li>
 </ol>
-<pre class="r"><code>financial %&gt;% 
-  select(Close_dow_change, Close_dax_change, Close_nik_change) %&gt;%
-  cor(., use = &#39;complete.obs&#39;)</code></pre>
 <pre><code>                 Close_dow_change Close_dax_change Close_nik_change
 Close_dow_change            1.000            0.570            0.169
 Close_dax_change            0.570            1.000            0.318
@@ -444,13 +410,6 @@ Close_nik_change            0.169            0.318            1.000</code></pre>
 <ol start="5" style="list-style-type: decimal">
 <li>Evaluate the stability of the relationships between financial markets by calculating pair-wise correlations for each year using <code>group_by</code> and <code>summarise()</code>. Note that here you have to specify each pairwise correlation separately inside <code>summarise()</code>.</li>
 </ol>
-<pre class="r"><code>financial %&gt;% 
-  group_by(year) %&gt;% 
-  summarize(
-    cor_dow_dax = cor(Close_dow_change, Close_dax_change, use = &#39;complete.obs&#39;),
-    cor_dow_nik = cor(Close_dow_change, Close_nik_change, use = &#39;complete.obs&#39;),
-    cor_dax_nik = cor(Close_dax_change, Close_nik_change, use = &#39;complete.obs&#39;)
-)</code></pre>
 <pre><code># A tibble: 20 x 4
     year cor_dow_dax cor_dow_nik cor_dax_nik
    &lt;dbl&gt;       &lt;dbl&gt;       &lt;dbl&gt;       &lt;dbl&gt;
@@ -477,20 +436,12 @@ Close_nik_change            0.169            0.318            1.000</code></pre>
 <ol start="6" style="list-style-type: decimal">
 <li>Another important aspect of financial markets are exchange rates between currencies. Generally, it is assumed that a strong economy translates into both a strong stock index and a strong currency relative to other currencies. For the end of this practical, let’s find out if that holds true our data. First, evaluate whether changes in exchange rates changes correlate with each other in the same way that stock indices did using the <code>cor</code>-function.</li>
 </ol>
-<pre class="r"><code>financial %&gt;% 
-  select(Rate_eur_change, Rate_yen_change) %&gt;%
-  cor(., use = &#39;complete.obs&#39;)</code></pre>
 <pre><code>                Rate_eur_change Rate_yen_change
 Rate_eur_change           1.000           0.391
 Rate_yen_change           0.391           1.000</code></pre>
 <ol start="7" style="list-style-type: decimal">
 <li>Now, evaluate whether exchange rates vary as a function of the <em>difference</em> between stock indices. That is, for instance, does a large difference between Dow Jones and DAX translate into a strong Dollar relative to the EURO? According to the above intuition this should be the case. However, there is an alternative economic hypothesis. That is, foreign investors who benefit from a rise in stock index price may be motivated to sell their holdings and exchange them for their own currency to maintain a neutral position. This would, in effect, depreciate the currency at the same time as the stock index is outperforming, thus producing a negative relationship. What do you think? Ask the data.</li>
 </ol>
-<pre class="r"><code>financial %&gt;% 
-  summarize(
-    cor_dow_dax = cor(Close_dow - Close_dax, Rate_eur, use = &#39;complete.obs&#39;),
-    cor_dow_nik = cor(Close_dow - Close_nik, Rate_yen, use = &#39;complete.obs&#39;)
-  )</code></pre>
 <pre><code># A tibble: 1 x 2
   cor_dow_dax cor_dow_nik
         &lt;dbl&gt;       &lt;dbl&gt;
@@ -498,12 +449,6 @@ Rate_yen_change           0.391           1.000</code></pre>
 <ol start="8" style="list-style-type: decimal">
 <li>Finally, evaluate the stability of the above relationship for each year separately. Can you make out a stable pattern? No? I guess it depends. As always.</li>
 </ol>
-<pre class="r"><code>financial %&gt;% 
-  group_by(year) %&gt;% 
-  summarize(
-    cor_dow_dax = cor(Close_dow - Close_dax, Rate_eur, use = &#39;complete.obs&#39;),
-    cor_dow_nik = cor(Close_dow - Close_nik, Rate_yen, use = &#39;complete.obs&#39;)
-  )</code></pre>
 <pre><code># A tibble: 20 x 3
     year cor_dow_dax cor_dow_nik
    &lt;dbl&gt;       &lt;dbl&gt;       &lt;dbl&gt;
@@ -652,15 +597,15 @@ Rate_yen_change           0.391           1.000</code></pre>
 <tbody>
 <tr class="odd">
 <td align="left"><code>tidyverse</code></td>
-<td align="left"><code>install.packages(&quot;tidyverse&quot;)</code></td>
+<td align="left"><code>install.packages("tidyverse")</code></td>
 </tr>
 <tr class="even">
 <td align="left"><code>haven</code></td>
-<td align="left"><code>install.packages(&quot;haven&quot;)</code></td>
+<td align="left"><code>install.packages("haven")</code></td>
 </tr>
 <tr class="odd">
 <td align="left"><code>lubridate</code></td>
-<td align="left"><code>install.packages(&quot;lubridate&quot;)</code></td>
+<td align="left"><code>install.packages("lubridate")</code></td>
 </tr>
 </tbody>
 </table>

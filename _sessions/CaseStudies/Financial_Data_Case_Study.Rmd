@@ -97,7 +97,7 @@ dax <- read_csv(file = '1_Data/^GDAXI.csv', na = 'XXX')  # 'XXX' means missing!
 nik <- read_csv(file = '1_Data/^N225.csv', na = 'XXX')   # 'XXX' means missing!
 ```
 
-```{r echo = FALSE, eval = TRUE}
+```{r echo = FALSE, eval = TRUE, messages = FALSE}
 # Load index data from local data folder 
 dow <- read_csv(file = '1_Data/^DJI.csv')
 dax <- read_csv(file = '1_Data/^GDAXI.csv', na = 'null')
@@ -201,7 +201,7 @@ financial <- financial %>%
 
 5. We will be mainly interested in how stock prices and exchange rates change over the course of a year. To create a variable that codes the year `mutate()` and `lubridate::year(Date)`, which will extract from `Date` the year information.
 
-```{r eval = FALSE}
+```{r eval = FALSE, echo = FALSE}
 # load lubridate
 library(lubridate)
 ```
@@ -224,7 +224,7 @@ pivot_longer(names_to = 'variable',
                       -XXX))
 ```
 
-```{r}
+```{r echo = FALSE}
 # create long version of data frame
 financial_long <- 
 financial %>%
@@ -240,8 +240,8 @@ pivot_longer(names_to = 'variable',
 
 1. Plot the development of each of the stock indices over the available time periods. First, select rows corresponding to the stock index prices. Then use the `ggplot()`-function to start a plot. Then, Map `Date` to `x` and `value` to `y` in the `aes()`-function. And, finally, add a `geom_line()`. Does the plot look right?
 
-```{r}
-# create long version of data frame
+```{r echo = FALSE, eval= TRUE}
+# plot long version of data frame
 financial_long %>% 
   filter(variable %in% c("Close_dow", "Close_dax", "Close_nik")) %>%
 ggplot(mapping = aes(x = Date, y = value)) + 
@@ -250,8 +250,8 @@ ggplot(mapping = aes(x = Date, y = value)) +
 
 2. Looked like the values of the three stock indices were somehow overlayering each other. Use `+ facet_grid(~variable)` to teas them apart. Also give it a slightly nicer appearance using `+ theme_light()` What does the plot tell you? Has there been a particular drop in any year?
 
-```{r}
-# create long version of data frame
+```{r echo = FALSE, eval= TRUE}
+# plot long version of data frame
 financial_long %>% 
   filter(variable %in% c("Close_dow", "Close_dax", "Close_nik")) %>%
 ggplot(mapping = aes(x = Date, y = value)) + 
@@ -263,7 +263,7 @@ ggplot(mapping = aes(x = Date, y = value)) +
 
 3. Calculate the overall stock index price change per year. To do this, use `group_by()` and `summarise()` on the stock index change variables. Use the basic `sum()`-function inside `summarise()` to compute the overall change in the year. In doing this, don't forget there were `NA`'s in two of the stock index price variables. Check out the result! When was the biggest drop in stock index prices?
 
-```{r}
+```{r echo = FALSE, eval= TRUE}
 # calculate aggregate change per year
 aggregate_change <- financial %>% 
   group_by(year) %>% 
@@ -278,7 +278,7 @@ aggregate_change
 
 4. The results up to now suggest that modern financial markets are closely intertwined, to the extent that a change in one market can bring about a change in the markets. Evaluate this aspect of financial markets by calculating all correlations between the three stock index change variables using the `cor()`-function. `cor()` can take a data frame as an argument to produce the full correlation matrix among all variables in the data frame. This requires, however, that the data is stored in a "wide" format. Reactivate the old, wide `financial` data set and use it inside `cor()`. Before that select the variables you are interest in. Again, don't forget about the `NA`s - there is an argument for `cor()` to deal with them. How closely are the stock indices related and which ones are most closely related?  
 
-```{r}
+```{r echo = FALSE, eval= TRUE}
 financial %>% 
   select(Close_dow_change, Close_dax_change, Close_nik_change) %>%
   cor(., use = 'complete.obs')
@@ -286,7 +286,7 @@ financial %>%
 
 5. Evaluate the stability of the relationships between financial markets by calculating pair-wise correlations for each year using `group_by` and `summarise()`. Note that here you have to specify each pairwise correlation separately inside `summarise()`. 
 
-```{r}
+```{r echo = FALSE, eval= TRUE}
 
 financial %>% 
   group_by(year) %>% 
@@ -299,7 +299,7 @@ financial %>%
 
 6. Another important aspect of financial markets are exchange rates between currencies. Generally, it is assumed that a strong economy translates into both a strong stock index and a strong currency relative to other currencies. For the end of this practical, let's find out if that holds true our data. First, evaluate whether changes in exchange rates changes correlate with each other in the same way that stock indices did using the `cor`-function. 
 
-```{r}
+```{r echo = FALSE, eval= TRUE}
 financial %>% 
   select(Rate_eur_change, Rate_yen_change) %>%
   cor(., use = 'complete.obs')
@@ -307,7 +307,7 @@ financial %>%
 
 7. Now, evaluate whether exchange rates vary as a function of the *difference* between stock indices. That is, for instance, does a large difference between Dow Jones and DAX translate into a strong Dollar relative to the EURO? According to the above intuition this should be the case. However, there is an alternative economic hypothesis. That is, foreign investors who benefit from a rise in stock index price may be motivated to sell their holdings and exchange them for their own currency to maintain a neutral position. This would, in effect, depreciate the currency at the same time as the stock index is outperforming, thus producing a negative relationship. What do you think? Ask the data.
 
-```{r}
+```{r echo = FALSE, eval= TRUE}
 financial %>% 
   summarize(
     cor_dow_dax = cor(Close_dow - Close_dax, Rate_eur, use = 'complete.obs'),
@@ -317,7 +317,7 @@ financial %>%
 
 8. Finally, evaluate the stability of the above relationship for each year separately. Can you make out a stable pattern? No? I guess it depends. As always.
 
-```{r}
+```{r echo = FALSE, eval= TRUE}
 financial %>% 
   group_by(year) %>% 
   summarize(
