@@ -102,230 +102,6 @@ In 3 days, 9 sessions, and 21 hours you have come a long way.
 
 ]
 
-
-
----
-
-
-
-
-# Stuff we didn't cover
-
-.pull-left4[
-
-<font size = 6>
-
-1. Networks<br>
-2. Statistics<br>
-3. Machine learning<br>
-4. Text analysis<br>
-5. Rcpp<br>
-6. Forms<br>
-
-</font>
-<br>
-
-]
-
-.pull-right5[
-<p align="center"><img src="https://i0.wp.com/www.pieceofk.fr/wp-content/uploads/2017/09/Rplot.png?zoom=2&w=450" width=380 align="center"><br><br>
-<font size=2>source <a href="https://www.r-bloggers.com/exploring-the-cran-social-network/">R-bloggers.com</a>
-</p>
-]
-
----
-
-# Networks
-
-A <high>social graph</high> of package Co-authors using [`tidyverse`](https://cran.r-project.org/web/packages/tidyverse/index.html) plus [`ggraph`](https://cran.r-project.org/web/packages/ggraph/index.html), an extension for [`ggplot2`](https://cran.r-project.org/web/packages/ggplot2/index.html) for graphs (aka networks) and [`igraph`](https://cran.r-project.org/web/packages/igraph/index.html), an extremely powerful library for network analysis. Find the code and additional explanations [here](https://www.r-bloggers.com/exploring-the-cran-social-network/).
-
-.pull-left[
-  <p align="center"><img src="https://i1.wp.com/www.pieceofk.fr/wp-content/uploads/2017/09/Rplot04.png?zoom=2&w=450" width=450><br>
-  <font size=2>source <a href="https://www.r-bloggers.com/exploring-the-cran-social-network/">R-bloggers.com</a></p>
-  ]
-
-.pull-right[
-<p align="center">
-<br><br>
-  <img src="https://i1.wp.com/www.pieceofk.fr/wp-content/uploads/2017/09/Rplot02.png?zoom=2&w=450" width=450><br><br><br>
-  <font size=2>source <a href="https://www.r-bloggers.com/exploring-the-cran-social-network/">R-bloggers.com</a></p>
-  ]
-
-
----
-
-.pull-left5[
-
-# Stats
-
-> "It's easy to lie with statistics; it is easier to lie without them."
-
-> Frederick Mosteller
-
-<br>
-
-| Package| Description| 
-|:------|:------------|
-| [`stats`](https://www.rdocumentation.org/packages/stats/versions/3.5.1)  | Linear, generalized linear models, individual tests, and distributions.|
-| [`lme4`](https://cran.r-project.org/web/packages/lme4/index.html), [`afex`](https://cran.r-project.org/web/packages/afex/index.html)  | Mixed-mode, hierarchical regression.|
-| [`sem`](https://cran.r-project.org/web/packages/sem/index.html), [`lavaan`](https://cran.r-project.org/web/packages/lavaan/index.html), [`OpenMx`](https://cran.r-project.org/web/packages/OpenMx/index.html) | Structural equation modeling. |
-| [`survival`](https://cran.r-project.org/web/packages/survival/index.html) | Survival analysis. |
-
-]
-
-.pull-right4[
-<br><br>
-<p align = "center">
-<img src="https://imgs.xkcd.com/comics/p_values_2x.png" height = 500><br>
-<font size=2><a href="http://www.xkcd.com/">xkcd.com</a>
-</p>
-]
----
-
-
-.pull-left5[
-
-# Bayesian statistics
-
-> The subjectivist (i.e. Bayesian) states his judgements, whereas the objectivist sweeps them under the carpet by calling assumptions knowledge, and he basks in the glorious objectivity of science.
-
-> I. J. Good
-
-
-| Package| Description| 
-|:------|:------------|
-| [`BayesFactor`](https://cran.r-project.org/web/packages/BayesFactor/index.html), [`rstanarm`](https://cran.r-project.org/web/packages/rstanarm/index.html)  | Bayesian linear models. As easy as non-Bayesian methods. |
-| [`rjags`](https://cran.r-project.org/web/packages/rjags/index.html), [`rstan`](https://cran.r-project.org/web/packages/rstan/index.html)  | Build flexible, hierarchical Bayesian models. |
-| [`mcmc`](https://cran.r-project.org/web/packages/mcmc/index.html)| Metropolis algorithms. |
-| [`bridgesampling`](https://cran.r-project.org/web/packages/mcmc/index.html)| Estimating marginal likelihoods using bridgesampling. |
-
-  ]
-
-
-
-.pull-right4[
-<br><br>
-<p align = "center">
-<img src="https://i.stack.imgur.com/tStr4.png" height=500><br>
-<font size=2><a href="http://www.xkcd.com/">xkcd.com</a>
-</p>
-
-]
-
-
----
-
-# Machine learning
-
-.pull-left45[
-
-| Package| Description| 
-|:------|:------------|
-| [`caret`](https://cran.r-project.org/web/packages/caret/index.html) | Umbrella package for diverse machine learning algorithms.|
-| [`mlr`](https://cran.r-project.org/web/packages/mlr/index.html), [`e1071`](https://cran.r-project.org/web/packages/e1071/index.html), etc. | Other umbrella packages. |
-| [`randomForest`](https://cran.r-project.org/web/packages/randomForest/index.html), [`rpart`](https://cran.r-project.org/web/packages/rpart/index.html), [`FFTrees`](https://cran.r-project.org/web/packages/FFTrees/index.html) | Decision trees. |
-| [`cluster`](https://cran.r-project.org/web/packages/cluster/index.html), [`fastcluster`](https://cran.r-project.org/web/packages/fastcluster/index.html), [`cstab`](https://cran.r-project.org/web/packages/cstab/index.html), etc.| Cluster analysis.|
-| [`forecast`](https://cran.r-project.org/web/packages/forecast/index.html), [`mgm`](https://cran.r-project.org/web/packages/mgm/index.html), [`timeSeries`](https://cran.r-project.org/web/packages/timeSeries/index.html), etc.| Time series models.|
-| [`tensorflow`](https://cran.r-project.org/web/packages/tensorflow/index.html) | Time series models.|
-
-
-
-]
-
-.pull-right45[
-
-<img src="image/machine_learning.png" height="300px" width="480px"></img>
-
-]
-
----
-
-# Text analysis
-
-.pull-left45[
-
-<p align = "center">
-
-<iframe width="600" height="337" src="https://www.youtube.com/embed/bd1mEm2Fy08" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
-
-<high>Sundar Pichai @ Google IO, May 2018</high>
-
-</p>
-
-]
-
-
-
-.pull-right45[
-
-| Package| Description| 
-|:------|:------------|
-| [`tm`](https://cran.r-project.org/web/packages/tm/index.html), [`tidytext`](https://cran.r-project.org/package=tidytext)  | General text analysis packages  |
-| [`stringr`](https://cran.r-project.org/web/packages/stringr/index.html), [`stringi`](https://cran.r-project.org/web/packages/stringi/index.html)  | String operations and regular expressions. |
-| [`rvest`](https://cran.r-project.org/web/packages/rvest/index.html), [`XML`](https://cran.r-project.org/web/packages/XML/index.html)  | Scraping content of the internet|
-| [`text2vec`](https://cran.r-project.org/web/packages/text2vec/index.html) | Vector representation of words. |
-| [`SentimentAnalysis`](https://cran.r-project.org/web/packages/SentimentAnalysis/index.html) | Sentiment analysis.|
-| [`twitteR`](https://cran.r-project.org/web/packages/twitteR/index.html), [`streamR`](https://cran.r-project.org/web/packages/streamR/index.html), [`jsonlite`](https://www.google.ch/search?q=cran+jsonlite&rlz=1C5CHFA_enDE745CH747&oq=cran+jsonlite&aqs=chrome.0.0j69i57.3551j0j4&sourceid=chrome&ie=UTF-8) | Streaming and parsing tweets. |
-| [`Rfacebook`](https://cran.r-project.org/web/packages/Rfacebook/index.html) | Access to Facebook API. |
-
-]
-
-
-```{r, include=F,eval=F}
-
-.pull-right45[
-<p align = "center">
-<img src="http://languagelog.ldc.upenn.edu/myl/begging_the_question_2x.png" height=450><br>
-<font size=2><a href="http://www.xkcd.com/">xkcd.com</a>
-</p>
-```
-
-
-
----
-
-# Rcpp
-
-By now one of the most referenced R packages is Rcpp - <high>R's interface to C++</high>. With often relatively little effort due to <high>Rcpp sugar</high>, Rcpp can provide vast speed improvements, which many packages today rely on Rcpp in the background for <high>swift code execution</high>. Rcpp becomes particularly powerful, when supplemented with `BH`, which makes avaialble a collection <high>free, peer-reviewed C++ libraries</high>, and [RcppArmdillo](http://arma.sourceforge.net/), which available the high-performance <high>Armadillo</high> library for linear algebra methods. 
-
-
-.pull-left4[
-<p align="center">
-  <img src="https://classic105.s3.amazonaws.com/wp-content/uploads/2017/05/180207142-sugar.jpg" width=350><br>
-  <font size=2>source <a href="https://classic105.s3.amazonaws.com/wp-content/uploads/2017/05/180207142-sugar.jpg/">classic105.com</a></p>
-]
-
-.pull-right6[
-
-<p align="center">
-  <img src="https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/Rcpp.png" width=480><br><br2>
-  <font size=2><a href="http://dirk.eddelbuettel.com/code/rcpp/Rcpp-quickref.pdf">Quick Reference Guide</a></p>
-]
-
-
----
-
-.pull-left5[
-# Google Forms & Maps
-
-New packages also allow you to interact with [Google Maps](https://www.google.com/maps) and [Google Forms](https://docs.google.com/forms). Use `ggmap` to access Google Maps and `googlesheets` to access Google Forms.
-
-```{r, eval = F}
-library(ggmap)
-ggmap(get_map(c(7.588576, 47.559601),zoom=16))
-```
-<p align="center">
-  <img src="https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/basel.png" width=350></p>
-]
-
-.pull-right45[
-
-<p align="center"><br><br><iframe src="https://docs.google.com/forms/d/e/1FAIpQLSdGYg5kPpINYoHJ9ronAr8eEE6w8Y9SG0r-oqGv-tw_sWh-UQ/viewform?embedded=true" width="430" height="550">Wird geladen...</iframe></p>
-
-
-]
-
-
 ---
 
 # How to continue
@@ -336,8 +112,8 @@ ggmap(get_map(c(7.588576, 47.559601),zoom=16))
 1. Practice<br>
 2. Read books<br>
 3. Consult websites<br>
-4. Attend R group<br>
-5. Get consulting<br>
+4. Get support<br>
+5. Take courses<br>
 ]
 
 </font>
@@ -351,82 +127,66 @@ ggmap(get_map(c(7.588576, 47.559601),zoom=16))
 
 # Books
 
-Here is a very incomplete series of good books. They are ordered by complexity, beginning with user-friendly books on <high>learning statistics</high> in R and ending with books focusing on the more <high>advanced topics of the R language</high>.
+Here is a series of useful good books ordered by complexity.
 
 
-<table width="100%" style="cellspacing:0; cellpadding:0; border:none">
+<table width="80%" style="cellspacing:0; cellpadding:0; border:none; padding-top:30px">
 
   <tr>    
-  
-  <td>
-  <a href="https://bookdown.org/ndphillips/YaRrr/"><img border="0" alt="W3Schools" src="https://bookdown.org/ndphillips/YaRrr/images/YaRrr_Cover.jpg" height="180"></a>
-  </td>
-  
-<td>
-  <a href="https://uk.sagepub.com/en-gb/eur/change-location/0"><img border="0" alt="W3Schools" src="http://t3.gstatic.com/images?q=tbn:ANd9GcSbjn-7l52NdtNguTjP85sJ7QOTVTo5OegVC8bOrS34QSBucXCW" height="180" ></a>
-  </td>
 
   <td> 
   <a href="http://r4ds.had.co.nz/"><img border="0" alt="W3Schools" src="http://r4ds.had.co.nz/cover.png" height="180"></a>
   </td>
-  
+
   <td>
   <a href="https://covers.oreillystatic.com/images/0636920028574/cat.gif"><img border="0" alt="W3Schools" src="https://covers.oreillystatic.com/images/0636920028574/cat.gif" height="180"></a>
   </td>
 
-  <td>
-  <a href="http://ggplot2.org/book/"><img border="0" alt="W3Schools" src="http://t1.gstatic.com/images?q=tbn:ANd9GcQNvhEpXp9OwvqVosEh-UecM3TNbhdb1eVZp3LywUcXGeVC3scQ" height="180"></a>
-  </td>  
-
-    <td>
-  <a href="https://www.tidytextmining.com/"><img border="0" alt="W3Schools" src="https://www.tidytextmining.com/images/cover.png" height="180" ></a>
+  <td> 
+  <a href="https://ggplot2-book.org/"><img border="0" alt="W3Schools" src="https://images-na.ssl-images-amazon.com/images/I/31uoy-qmhEL._SX331_BO1,204,203,200_.jpg" height="180"></a>
   </td>
 
-    <td>
-  <a href="http://appliedpredictivemodeling.com/"><img border="0" alt="W3Schools" src="http://static1.squarespace.com/static/51156277e4b0b8b2ffe11c00/t/51157487e4b0b8b2ffe16829/1509217882069/?format=1500w" height="180" ></a>
+  <td>
+  <a href="https://www.springer.com/de/book/9783540799979"><img border="0" alt="W3Schools" src="https://images.springer.com/sgw/books/medium/9783540799979.jpg" height="180" ></a>
   </td>
   
-      <td>
-  <a href="http://www-bcf.usc.edu/~gareth/ISL/ISLR%20First%20Printing.pdf"><img border="0" alt="W3Schools" src="https://images-na.ssl-images-amazon.com/images/I/41EaH4W9LVL._SX332_BO1,204,203,200_.jpg" height="180" ></a>
+  <td>
+  <a href="https://bookdown.org/ndphillips/YaRrr/"><img border="0" alt="W3Schools" src="https://bookdown.org/ndphillips/YaRrr/images/YaRrr_Cover.jpg" height="180" ></a>
+  </td>
+  
+  <td>
+  <a href="https://www.orellfuessli.ch/shop/home/artikeldetails/ID35367941.html?ProvID=10917736&gclid=Cj0KCQiAg_HhBRDNARIsAGHLV5238Q26gQmFttHRnYGjcAhz4CslStb-3qBegvuZS5gnCpWSLNlQvF0aAgfOEALw_wcB"><img border="0" alt="W3Schools" src="https://assets.thalia.media/img/35367941-00-00.jpg" height="180" ></a>
   </td>
   
   </tr>
   
 
-  <tr>
+  <tr style="background-color:#ffffff">
 
-    <td>
-  <a href="https://www.amazon.com/Doing-Bayesian-Data-Analysis-Second/dp/0124058884"><img border="0" alt="W3Schools" src="http://t1.gstatic.com/images?q=tbn:ANd9GcTRRlqFPDLuz1b1FRqtL_bcVrILqPEJgh17piFhG-zwXYN_nCWm" height="180" ></a>
+  <td>
+  <a href="http://appliedpredictivemodeling.com/"><img border="0" alt="W3Schools" src="http://static1.squarespace.com/static/51156277e4b0b8b2ffe11c00/t/51157487e4b0b8b2ffe16829/1509217882069/?format=1500w" height="180" ></a>
   </td>
   
-      <td>
-  <a href="https://www.manning.com/books/deep-learning-with-r"><img border="0" alt="W3Schools" src=" http://t2.gstatic.com/images?q=tbn:ANd9GcTfqjySUegtFHmrss1s042VPMfeotHpu1VZFSrOtGz0N-K3EsiB" height="180" ></a>
+  <td>
+  <a href="http://www-bcf.usc.edu/~gareth/ISL/ISLR%20First%20Printing.pdf"><img border="0" alt="W3Schools" src="https://images-na.ssl-images-amazon.com/images/I/41EaH4W9LVL._SX332_BO1,204,203,200_.jpg" height="180" ></a>
+  </td>
+  
+  <td>
+  <a href="https://www.manning.com/books/deep-learning-with-r"><img border="0" alt="W3Schools" src="https://images-na.ssl-images-amazon.com/images/I/51h5d4dYaoL._SX396_BO1,204,203,200_.jpg" height="180" ></a>
   </td>
 
-        <td>
+
+  <td>
   <a href="https://csgillespie.github.io/efficientR/"><img border="0" alt="W3Schools" src="https://csgillespie.github.io/efficientR/figures/f0_web.png" height="180" ></a>
   </td>
 
   <td>
   <a href="www.rcpp.org/"><img border="0" alt="W3Schools" src="http://t3.gstatic.com/images?q=tbn:ANd9GcSO9T6JQYtpQgcaCXudbqMB-fnvTjGowsnmeh9-BQku3zveR4-J" height="180" ></a>
   </td>
-
-        <td>
-  <a href="https://www.wiley.com/en-us/The+R+Book%2C+2nd+Edition-p-9780470973929"><img border="0" alt="W3Schools" src="https://media.wiley.com/product_data/coverImage300/27/04709739/0470973927.jpg" height="180" ></a>
-  </td>
   
   
   <td>
   <a href="http://adv-r.had.co.nz/"><img border="0" alt="W3Schools" src="https://images.tandf.co.uk/common/jackets/amazon/978146658/9781466586963.jpg" height="180" ></a>
-  </td>
-
-      <td>
-  <a href="http://r-pkgs.had.co.nz/"><img border="0" alt="W3Schools" src="http://t3.gstatic.com/images?q=tbn:ANd9GcQdwOQxaWZnTc2s55ltS2NL8jpxbnD0sEC6QNPiHKPrIM-AHmAB" height="180" ></a>
-  </td>
-  
-
-  <td>
-  <a href="https://images-na.ssl-images-amazon.com/images/I/41eCbcQARTL._SX342_BO1,204,203,200_.jpg"><img border="0" alt="W3Schools" src="https://images-na.ssl-images-amazon.com/images/I/41eCbcQARTL._SX342_BO1,204,203,200_.jpg" height="180" ></a>
   </td>
 
 
@@ -469,66 +229,47 @@ The web is a great place to learn about R.
 
 ---
 
-# Meet other R enthusiasts at...
-
-<p align="center">
-<img src="image/bernr.png" style="height:440px">
-</p>
-
----
-
-# Consulting
+# Support
 
 <table class="tg"  style="cellspacing:0; cellpadding:0; border:none">
+  <col width="22%">
+  <col width="22%">
+  <col width="22%">
   <tr>
-    <th class="tg-yw4l">
-    
-  <p align="center"><br>
-    <a href="www.dirkwulff.org"><img border="0" alt="W3Schools" src="https://therbootcamp.github.io/assets/img/dirk_square_small2.png" height="230" style="border-radius:50%"></a><br>
-
-<p align="center">
-<font size = 5>Dr. Dirk Wulff</font><br><br>
-<a href="www.dirkwulff.org"><b>dirkwulff.org</b></a><br>
-<a href="https://github.com/dwulff"><b>github.com/dwulff</b></a><br>
-<font size=4><i>packages: </i></font> 
-<a href="https://cran.r-project.org/web/packages/cstab/index.html"><b>cstab</b></a>, <br>
-<a href="https://cran.r-project.org/web/packages/mousetrap/index.html"><b>mousetrap</b></a>, <a href="https://cran.r-project.org/web/packages/memnet/index.html"><b>memnet</b> <a href="https://github.com/dwulff/choicepp"><b>choicepp</b>
-</p>  
+    <th class="tg-yw4l" valign='top'>
+    <p align="center"><br>
+    <a href="www.dirkwulff.org"><img border="0" alt="W3Schools" src="https://therbootcamp.github.io/img/team/1.png" height="230" style="border-radius:50%"></a><br>
+    <p align="center">
+    <font size = 5>Dr. Dirk Wulff</font><br><br>
+    <a href="www.dirkwulff.org"><b>dirkwulff.org</b></a><br>
+    <a href="https://github.com/dwulff"><b>github.com/dwulff</b></a><br>
+    <font size=4><i>packages: </i></font> 
+    <a href="https://cran.r-project.org/web/packages/cstab/index.html"><b>cstab</b></a>, <br>
+    <a href="https://cran.r-project.org/web/packages/mousetrap/index.html"><b>mousetrap</b></a>, <a href="https://cran.r-project.org/web/packages/memnet/index.html"><b>memnet</b> <a href="https://github.com/dwulff/choicepp"><b>choicepp</b>
+    </p>  
+  </th>
   
-    </th>
-    <th class="tg-yw4l"><p align="center"><br>
-    <a href="www.nathanieldphillips.com/"><img border="0" alt="W3Schools" src="https://therbootcamp.github.io/assets/img/nathaniel_square_small.png" height="230" style="border-radius:50%"></a><br>
-
-<p align="center">
-<font size = 5>Dr. Nathaniel Phillips</font><br><br>
-<a href="www.nathanieldphillips.com/"><b>nathanieldphillips.com</b></a><br>
-<a href="https://github.com/ndphillips"><b>github.com/ndphillips</b></a><br>
-<font size=4><i>packages: </i></font> 
-<a href="https://github.com/ndphillips/yarrr"><b>yarrr</b></a>, <br>
-<a href="https://github.com/ndphillips/FFTrees"><b>FFTrees</b></a></th>
-
-<th class="tg-yw4l">
- <p align="center">
-<p align="center"><br>
-    <a href="https://psychologie.unibas.ch/de/personen/markus-steiner/about-me/"><img border="0" alt="W3Schools" src="https://therbootcamp.github.io/assets/img/markus_square2.png" height="230" style="border-radius:50%"></a><br>
-
-<p align="center">
-<font size = 5>Markus Steiner</font><br><br>
-<a href="https://github.com/mdsteiner"><b>github.com/mdsteiner</b></a><br>
-<font size=4><i>package: </i></font> 
-<a href="https://github.com/ndphillips/ShinyPsych"><b>ShinyPsych</b> <br><br><br>
-</p></th>
-
-<th class="tg-yw4l">
- <p align="center">
-<p align="center"><br>
-    <a href="www.schulte-mecklenbeck.com"><img border="0" alt="W3Schools" src="https://therbootcamp.github.io/assets/img/michael_square.png" height="230" style="border-radius:50%"></a><br>
-
-<p align="center">
-<font size = 5>Dr Michael Schulte-M.</font><br>
-<a href="www.schulte-mecklenbeck.com"><b>schulte-mecklenbeck.com</b></a><br>
-<a href="https://github.com/schultem"><b>github.com/schultem</b></a><br><br>
-</p></th>
+  <th class="tg-yw4l" valign='top'><p align="center"><br>
+    <a href="https://psychologie.unibas.ch/en/persons/markus-steiner/about-me/"><img border="0" alt="W3Schools" src="https://therbootcamp.github.io/img/team/2.png" height="230" style="border-radius:50%"></a><br>
+    <p align="center">
+    <font size = 5>Markus Steiner</font><br><br>
+    <a href="https://github.com/mdsteiner"><b>github.com/mdsteiner</b></a><br>
+    <font size=4><i>packages: </i></font> 
+    <a href="https://github.com/mdsteiner/ShinyPsych"><b>ShinyPsych</b></a>, <br>
+    <a href="https://github.com/mdsteiner/EFAtools"><b>EFAtools</b></a> <br><br>
+    </p>
+  </th>
+  
+  <th class="tg-yw4l" valign='top'>
+    <p align="center">
+    <p align="center"><br>
+    <a href="https://www.schulte-mecklenbeck.com/"><img border="0" alt="W3Schools" src="https://therbootcamp.github.io/img/team/3.png" height="230" style="border-radius:50%"></a><br>
+    <p align="center">
+    <font size = 5>Dr. Michael Schulte-<br>Mecklenbeck</font><br><br>
+    <a href="www.schulte-mecklenbeck.com"><b>schulte-mecklenbeck.com</b></a><br>
+    <a href="https://github.com/schultem"><b>github.com/schultem</b></a><br><br>
+    </p>
+  </th>
 
 
 </tr>
@@ -537,51 +278,73 @@ The web is a great place to learn about R.
 
 ---
 
-# Next Bootcamps
+# Weiterführende Kurse
 
+
+<table class="tg"  style="cellspacing:0; cellpadding:0; border:none;">
+<tr valign="top">
+  <col width="25%">
+  <col width="25%">
+  <col width="25%">
+
+  <td>
+    <p align="center">
+      <a class="project-link" href="http://therbootcamp.github.io/#courses" align="center">
+      <font style="font-size:20px;weight:700"><br>Reporting mit R<br></font><br>
+      <br>
+      <img src="https://therbootcamp.github.io/img/courses/4.png" height="230px" style="border-radius:50%;border:10px solid #E9ECEF"></img><br><br>
+      <high>Juni 5/6, 2020</high><br><br><br>
+      </a>
+    </p>
+  </td>
+  
+  <td>
+    <p align="center">
+      <a class="project-link" href="http://therbootcamp.github.io/#courses" align="center">
+      <font style="font-size:20px;weight:700"><br>Statistik mit R<br></font><br>
+      <br>
+      <img src="https://therbootcamp.github.io/img/courses/2.png" height="230px" style="border-radius:50%;border:10px solid #E9ECEF"></img><br><br>
+      <high>September 25/26, 2020</high><br><br><br>
+      </a>
+    </p>
+  </td>
+  
+    <td>
+    <p align="center">
+      <a class="project-link" href="http://therbootcamp.github.io/#courses" align="center">
+      <font style="font-size:20px;weight:700"><br>Machine Learning mit R<br></font><br>
+      <br>
+      <img src="https://therbootcamp.github.io/img/courses/1.png" height="230px" style="border-radius:50%;border:10px solid #E9ECEF"></img><br><br>
+      <high>Okt 23/24, 2020</high><br><br><br>
+      </a>
+    </p>
+  </td>
+  
+  </tr>
+
+---
 
 .pull-left45[
+# Please provide Feedback
+<br><br>
 
-
-<p align="center">
-
-<a class="project-link" href="mailto:therbootcamp@gmail.com?subject=Preregistration for Statistics with R&body=I would like to preregister for the R Bootcamp on 'Statistics with R' in February/March 2019 (tbc) in Basel, Switzerland." align="center">
-
-<font style="font-size:26px;weight:700"> Statistics with R</font><br>
-<br>
-<img src="image/statistics.png" height="260px" width="480px"></img><br>
-
-<high>2 days, April 6-7, 2019</high><br><br><br>
-</a>
-
+<p align = "center">
+  <img src="image/feedback.png" height=350px></img><br>
+  <font style="font-size:10px">from <a href="https://cdn-images-1.medium.com/max/1600/1*5OZNYAfzDZfM1lwJBZEuHQ.png">medium.com</a></font>
 </p>
-
 
 ]
 
 .pull-right45[
 
-<p align="center">
-
-<a href = "https://advancedstudies.unibas.ch/courses/course/applied-machine-learning-with-r-208291">
-<font style="font-size:26px;weight:700"> Applied Machine Learning with R </font><br>
-<br>
-<img src="image/machine_learning.png" height="260px" width="480px"></img><br>
-
-<high>2 days, May 11-12, 2019</high></a>
-
-</p>
-
+<p align="center"><br><br>
+<iframe src="https://docs.google.com/forms/d/e/1FAIpQLSeBqsc5iS0BQpoOHfrstZl5ViNWR0eRPGqJPMGyyMGtaxeQhg/viewform?embedded=true" width="430" height="550" frameborder="0" marginheight="0" marginwidth="0">Loading…</iframe></p>
 ]
-
 
 
 ---
 
+class: center, middle
 
-# Thank you
-
-
-<a href="http://i.imgur.com/PgtvQar.png"><font size=5>Here is an R Joke.</font></a><br><br>
-<font size=5>And now one more thing</font>...
+# Thank you!
 
