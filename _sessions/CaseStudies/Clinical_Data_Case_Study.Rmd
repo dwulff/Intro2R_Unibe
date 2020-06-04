@@ -1,7 +1,6 @@
 ---
 title: "Case study: Clinical"
-author: "
-<table style='table-layout:fixed;width:100%;border:0;padding:0;margin:0'><col width='10%'><col width='10%'>
+author: "<table style='table-layout:fixed;width:100%;border:0;padding:0;margin:0'><col width='10%'><col width='10%'>
   <tr style='border:none'>
     <td style='display:block;width:100%;text-align:left;vertical-align:bottom;padding:0;margin:0;border:none' nowrap>
       <font style='font-style:normal'>Introduction to R</font><br>
@@ -24,8 +23,7 @@ author: "
     <td style='width:100%;vertical-align:bottom;text-align:right;padding:0;margin:0;border:none'>
       <img src='https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/by-sa.png' style='height:15px;width:80px'/>
     </td>
-  </tr>
-</table>"
+  </tr></table>"
 output:
   html_document:
     css: practical.css
@@ -37,8 +35,8 @@ knitr::opts_chunk$set(comment = NA,
                       fig.width = 6, 
                       fig.height = 6,
                       fig.align = 'center',
-                      echo = TRUE, 
-                      eval = TRUE, 
+                      echo = FALSE, 
+                      eval = FALSE, 
                       warning = FALSE)
 
 options(digits = 3)
@@ -47,58 +45,62 @@ library(tidyverse)
 
 
 ```{r, eval = TRUE, echo = FALSE, message = FALSE}
-set.seed(100)
-
-PatientID_v <- sapply(1:900, FUN = function(x) {
-  paste0(sample(letters, size = 8, replace = TRUE), collapse = "")
-})
-
-arm_v <- rep(c(1, 2, 3), length.out = 300)
-
-demographics_df <- tibble(
-  PatientID = PatientID_v,
-  age = round(rnorm(n = 300, mean = 40, sd = 5), 0),
-  gender = sample(c(0, 1), size = 300, replace = TRUE),
-  site  = sample(c("London", "Paris", "Tokyo"), size = 300, replace = TRUE),
-  diseasestatus = sample(c("Early", "Mid", "Late"), size = 300, replace = TRUE)
-) %>%
-  sample_frac(1)
-
-biomarker_df <- expand.grid(
-  PatientID = PatientID_v,
-  Biomarker = c("dw", "np", "ms"), 
-  stringsAsFactors = FALSE
-) %>% as_tibble() %>%
-  sample_frac(1)
-
-biomarker_df$BiomarkerStatus <- sample(c(TRUE, FALSE),
-                                             size = 300, replace = TRUE, prob = c(.25, .75))
-
-trial_df <-  tibble(
-  PatientID = PatientID_v,
-  arm = arm_v,
-  histamine_start = round(rnorm(n = 300, mean = 50, sd = 15), 2),
-  histamine_end = NA
-) %>% as_tibble() %>%
-  sample_frac(1) 
-
-
-trial_df$histamine_end[trial_df$arm == 1] <- trial_df$histamine_start[trial_df$arm == 1] + round(rnorm(sum(trial_df$arm == 1), mean = 3, sd = 5), 2)
-trial_df$histamine_end[trial_df$arm == 2] <- trial_df$histamine_start[trial_df$arm == 2] + round(rnorm(sum(trial_df$arm == 2), mean = -4, sd = 5), 2)
-trial_df$histamine_end[trial_df$arm == 3] <- trial_df$histamine_start[trial_df$arm == 3] + round(rnorm(sum(trial_df$arm == 3), mean = 0, sd = 5), 2)
-
-trial_df$qol_start <- round(rnorm(n = 300, mean = 3, sd = 1), 0)
-trial_df$qol_end <- trial_df$qol_start + round(rnorm(n = 300, mean = 0, sd = 1), 0)
-
-# Add some bad  / NA values
+# set.seed(100)
 # 
-# trial_df$histamine_start[sample(nrow(trial_df), size = 5)] <- c(999, -24, 888, -99, 999)
-# trial_df$histamine_end[sample(nrow(trial_df), size = 10)] <- NA
-# trial_df$histamine_start[sample(nrow(trial_df), size = 7)] <- NA
-
+# PatientID_v <- sapply(1:300, FUN = function(x) {
+#   paste0(sample(letters, size = 8, replace = TRUE), collapse = "")
+#   })
+# 
+# arm_v <- rep(c(1, 2, 3), length.out = 300)
+# 
+# demographics_df <- tibble(
+#   PatientID = PatientID_v,
+#   age = round(rnorm(n = 300, mean = 40, sd = 5), 0),
+#   gender = sample(c(0, 1), size = 300, replace = TRUE),
+#   site  = sample(c("London", "Paris", "Tokyo"), size = 300, replace = TRUE),
+#   diseasestatus = sample(c("Early", "Mid", "Late"), size = 300, replace = TRUE)
+# ) %>%
+#   sample_frac(1)
+# 
+# biomarker_df <- expand.grid(
+#   PatientID = PatientID_v,
+#   Biomarker = c("dw", "np", "ms"), 
+#   stringsAsFactors = FALSE
+# ) %>% as_tibble() %>%
+#   sample_frac(1)
+# 
+# biomarker_df$BiomarkerStatus <- sample(c(TRUE, FALSE),
+#                                              size = 900, replace = TRUE, prob = c(.25, .75))
+# 
+# trial_df <-  tibble(
+#   PatientID = PatientID_v,
+#   arm = arm_v,
+#   histamine_start = round(rnorm(n = 300, mean = 50, sd = 15), 2),
+#   histamine_end = NA
+# ) %>% as_tibble() %>%
+#   sample_frac(1) 
+# 
+# 
+# trial_df$histamine_end[trial_df$arm == 1] <- trial_df$histamine_start[trial_df$arm == 1] + round(rnorm(sum(trial_df$arm == 1), mean = 3, sd = 5), 2)
+# trial_df$histamine_end[trial_df$arm == 2] <- trial_df$histamine_start[trial_df$arm == 2] + round(rnorm(sum(trial_df$arm == 2), mean = -4, sd = 5), 2)
+# trial_df$histamine_end[trial_df$arm == 3] <- trial_df$histamine_start[trial_df$arm == 3] + round(rnorm(sum(trial_df$arm == 3), mean = 0, sd = 5), 2)
+# 
+# trial_df$qol_start <- round(rnorm(n = 300, mean = 3, sd = 1), 0)
+# trial_df$qol_end <- trial_df$qol_start + round(rnorm(n = 300, mean = 0, sd = 1), 0)
+# 
+# # Add some bad  / NA values
+# # 
+# # trial_df$histamine_start[sample(nrow(trial_df), size = 5)] <- c(999, -24, 888, -99, 999)
+# # trial_df$histamine_end[sample(nrow(trial_df), size = 10)] <- NA
+# # trial_df$histamine_start[sample(nrow(trial_df), size = 7)] <- NA
+# 
 # write_csv(x = trial_df, path = "_sessions/D2S3_CaseStudies/dimarta_trial.csv")
 # write_csv(x = biomarker_df, path = "_sessions/D2S3_CaseStudies/dimarta_biomarker.csv")
 # write_csv(x = demographics_df, path = "_sessions/D2S3_CaseStudies/dimarta_demographics.csv")
+
+trial_df <- read_csv("1_Data/dimarta_trial.csv")
+demographics_df <- read_csv("1_Data/dimarta_demographics.csv")
+biomarker_df <- read_csv("1_Data/dimarta_biomarker.csv")
 ```
 
 
@@ -302,7 +304,7 @@ dimarta_df %>%
 
 12. Add a new column to the `dimarta_df` data called `histamine_change` that shows the *change* in patient's histamine levels from the start to the end of the trial (Hint: use `mutate()` and just subtract `histamine_start` from `histamine_end`!)
 
-```{r, eval = TRUE}
+```{r}
 dimarta_df <- dimarta_df %>%
   mutate(
     histamine_change = histamine_end - histamine_start
@@ -471,7 +473,7 @@ ggplot(data = XXX,
        caption = "XXX")
 ```
 
-```{r, eval = TRUE, message = FALSE}
+```{r message = FALSE}
 ggplot(data = dimarta_df,
        aes(x = histamine_start, 
            y = histamine_end)) +
@@ -483,7 +485,7 @@ ggplot(data = dimarta_df,
 
 6. Now create the same plot as above, but have different colored points for different study arms (but only one regression line).
 
-```{r, eval = TRUE, message = FALSE}
+```{r message = FALSE}
 ggplot(data = dimarta_df,
        aes(x = histamine_start, 
            y = histamine_end,
@@ -496,7 +498,7 @@ ggplot(data = dimarta_df,
 
 7. Instead of having different study arms as different colored points, create another plot using `facet_wrap()` to have different study arms in different plotting panels.
 
-```{r, eval = TRUE, message = FALSE}
+```{r message = FALSE}
 ggplot(data = dimarta_df,
        aes(x = histamine_start, 
            y = histamine_end)) +
@@ -507,80 +509,6 @@ ggplot(data = dimarta_df,
        caption = "Dimarta")
 ```
 
-### E - Statistics
-
-1. Create a regression model predicting final histamine levels as a function of all variables in the dataset that make clinical sense to include. Call it `full_glm`.
-
-```{r}
-full_glm <- glm(formula = histamine_end ~ age + StudyArm + gender + site + histamine_start,
-                data = dimarta_df)
-```
-
-
-2. Explore the object with `summary()`, `tidy()` (part of the `broom` package), and `names()`. Which variables predict final histamine levels? 
-```{r}
-summary(full_glm)
-
-library(broom)
-
-tidy(full_glm)
-
-names(full_glm)
-```
-
-3. Add the residuals from this model as a new column in your data called `residuals_full`
-
-```{r}
-dimarta_df <- dimarta_df %>%
-  mutate(residuals_full = full_glm$residuals)
-```
-
-4. Plot the residuals from the regression as a histogram (hint: you can find the residuals in your regression object). How do they look?
-
-```{r}
-ggplot(dimarta_df,
-       aes(x = residuals_full)) +
-  geom_histogram()
-```
-
-5. Add the absolute value of the residuals from the model as a new column in your data called `residuals_abs_full` 
-
-```{r}
-dimarta_df <- dimarta_df %>%
-  mutate(residuals_abs_full = abs(residuals_full))
-```
-
-6. Plot the absolute value of the residuals as a histogram. How do these look?
-
-```{r}
-ggplot(dimarta_df,
-       aes(x = residuals_abs_full)) +
-  geom_histogram()
-```
-
-
-7. What is the mean value of the absolute value of this residuals?
-
-```{r}
-dimarta_df %>%
-  summarise(residuals_abs_full_mean = mean(residuals_abs_full))
-```
-
-8. Now create a regression model predicting histamine change based *only* on the study arm. Call it `arm_glm`. Then follow the steps above to add the residuals (original and absolute) from this model to your dataframe. Call them `residuals_arm` and `residuals_abs_arm`.
-
-```{r}
-arm_glm <- glm(formula = histamine_end ~ StudyArm,
-               data = dimarta_df)
-```
-
-9. Calculate the mean of the raw and absolute residuals from your `arm_glm` model. How do they compare to your `full_glm` model? What does this mean?
-
-```{r}
-mean(arm_glm$residuals)
-
-mean(abs(arm_glm$residuals))
-
-```
 
 ## Datasets
 
