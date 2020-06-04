@@ -1,17 +1,17 @@
 <!DOCTYPE html>
 
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html>
 
 <head>
 
 <meta charset="utf-8" />
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
 
 
 
 
-<title>Case study: Finance</title>
+<title>Financial_Data_Case_Study.utf8</title>
 
 <script src="Financial_Data_Case_Study_files/jquery-1.11.3/jquery.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -70,9 +70,7 @@ h6 {
 
 <link rel="stylesheet" href="practical.css" type="text/css" />
 
-</head>
 
-<body>
 
 <style type = "text/css">
 .main-container {
@@ -86,7 +84,6 @@ code {
 }
 img {
   max-width:100%;
-  height: auto;
 }
 .tabbed-pane {
   padding-top: 12px;
@@ -97,22 +94,81 @@ img {
 button.code-folding-btn:focus {
   outline: none;
 }
+summary {
+  display: list-item;
+}
 </style>
 
 
 
-<div class="container-fluid main-container">
-
 <!-- tabsets -->
-<script>
-$(document).ready(function () {
-  window.buildTabsets("TOC");
-});
-</script>
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "&#xe258;";
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
 
 <!-- code folding -->
 
 
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
 
 
 
@@ -121,19 +177,6 @@ $(document).ready(function () {
 
 
 
-<h1 class="title toc-ignore">Case study: Finance</h1>
-<h4 class="author"><em><table style='table-layout:fixed;width:100%;border:0;padding:0;margin:0'>
-<col width='10%'>
-<col width='10%'>
-<tr style="border:none">
-<td style="display:block;width:100%;text-align:left;vertical-align:bottom;padding:0;margin:0;border:none" nowrap>
-<font style='font-style:normal'>Introduction to R</font><br> <a href='https://dwulff.github.io/Intro2R_Unibe/'> <i class='fas fa-clock' style='font-size:.9em;' ></i> </a> <a href='https://therbootcamp.github.io'> <i class='fas fa-home' style='font-size:.9em;'></i> </a> <a href='mailto:therbootcamp@gmail.com'> <i class='fas fa-envelope' style='font-size: .9em;'></i> </a> <a href='https://www.linkedin.com/company/basel-r-bootcamp/'> <i class='fab fa-linkedin' style='font-size: .9em;'></i> </a> <a href='https://therbootcamp.github.io'> <font style='font-style:normal'>Bern R Bootcamp</font> </a>
-</td>
-<td style="width:100%;vertical-align:bottom;text-align:right;padding:0;margin:0;border:none">
-<img src='https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/by-sa.png' style='height:15px;width:80px'/>
-</td>
-</tr>
-</table></em></h4>
 
 </div>
 
@@ -173,7 +216,9 @@ $(document).ready(function () {
 <li><p>Once you have identified the character string for missing data, us the <code>read_csv()</code> function to load in the stock index data sets, “^DJI.csv”, “^GDAXI.csv”, and “^N225.csv”, from your <code>1_Data</code> folder. In so doing, set an explicit <code>na</code>-argument to account for the fact that “^GDAXI.csv” “^N225.csv” use a specific character string to represent missings in the data.</p></li>
 </ol>
 <pre class="r"><code># Load index data from local data folder 
-dow &lt;- read_csv(file = &#39;1_Data/^DJI.csv&#39;)</code></pre>
+dow &lt;- read_csv(file = &#39;1_Data/^DJI.csv&#39;)
+dax &lt;- read_csv(file = &#39;1_Data/^GDAXI.csv&#39;, na = &#39;XXX&#39;)  # &#39;XXX&#39; means missing!
+nik &lt;- read_csv(file = &#39;1_Data/^N225.csv&#39;, na = &#39;XXX&#39;)   # &#39;XXX&#39; means missing!</code></pre>
 <pre><code>Parsed with column specification:
 cols(
   Date = col_date(format = &quot;&quot;),
@@ -182,10 +227,9 @@ cols(
   Low = col_double(),
   Close = col_double(),
   `Adj Close` = col_double(),
-  Volume = col_integer()
-)</code></pre>
-<pre class="r"><code>dax &lt;- read_csv(file = &#39;1_Data/^GDAXI.csv&#39;, na = &#39;null&#39;)</code></pre>
-<pre><code>Parsed with column specification:
+  Volume = col_double()
+)
+Parsed with column specification:
 cols(
   Date = col_date(format = &quot;&quot;),
   Open = col_double(),
@@ -193,10 +237,9 @@ cols(
   Low = col_double(),
   Close = col_double(),
   `Adj Close` = col_double(),
-  Volume = col_integer()
-)</code></pre>
-<pre class="r"><code>nik &lt;- read_csv(file = &#39;1_Data/^N225.csv&#39;, na = &#39;null&#39;)</code></pre>
-<pre><code>Parsed with column specification:
+  Volume = col_double()
+)
+Parsed with column specification:
 cols(
   Date = col_date(format = &quot;&quot;),
   Open = col_double(),
@@ -204,19 +247,16 @@ cols(
   Low = col_double(),
   Close = col_double(),
   `Adj Close` = col_double(),
-  Volume = col_integer()
+  Volume = col_double()
 )</code></pre>
 <ol start="3" style="list-style-type: decimal">
 <li>Load in the exchange rate data sets, <code>euro-dollar.txt</code> and <code>yen-dollar.txt</code>, from the <code>1_Data</code> folder as two new objects called <code>eur_usd</code> and <code>yen_usd</code>. To do this, use the <code>read_delim()</code>-function and <code>\t</code> as the <code>delim</code>-argument, telling R that the data is tab-delimited.</li>
 </ol>
-<pre class="r"><code># Load exchange rate data from local data folder 
-eur_usd &lt;- read_delim(file = &#39;1_Data/euro-dollar.txt&#39;, delim = &#39;\t&#39;)</code></pre>
 <pre><code>Parsed with column specification:
 cols(
   `04 Jan 1999` = col_character(),
   `1.186669` = col_double()
 )</code></pre>
-<pre class="r"><code>yen_usd &lt;- read_delim(file = &#39;1_Data/yen-dollar.txt&#39;, delim = &#39;\t&#39;)</code></pre>
 <pre><code>Parsed with column specification:
 cols(
   `02 Jan 1990` = col_character(),
@@ -225,8 +265,6 @@ cols(
 <ol start="4" style="list-style-type: decimal">
 <li>Print the <code>eur_usd</code> and <code>yen_usd</code> objects. Are all the data types and variable names correct? Not quite, right?</li>
 </ol>
-<pre class="r"><code># print exchange rate data sets
-eur_usd </code></pre>
 <pre><code># A tibble: 6,545 x 2
    `04 Jan 1999` `1.186669`
    &lt;chr&gt;              &lt;dbl&gt;
@@ -240,8 +278,7 @@ eur_usd </code></pre>
  8 14 Jan 1999         1.17
  9 15 Jan 1999         1.16
 10 18 Jan 1999         1.16
-# ... with 6,535 more rows</code></pre>
-<pre class="r"><code>yen_usd</code></pre>
+# … with 6,535 more rows</code></pre>
 <pre><code># A tibble: 8,764 x 2
    `02 Jan 1990` `0.006838`
    &lt;chr&gt;              &lt;dbl&gt;
@@ -255,38 +292,23 @@ eur_usd </code></pre>
  8 12 Jan 1990      0.00688
  9 16 Jan 1990      0.00687
 10 17 Jan 1990      0.00687
-# ... with 8,754 more rows</code></pre>
+# … with 8,754 more rows</code></pre>
 <ol start="5" style="list-style-type: decimal">
 <li>To fix the data, first load the data again and use the <code>col_names</code>-argument to explicitly assign the column names to be <code>Date</code> and <code>Rate</code>. This will prevent R to take names from the first row of the data.</li>
 </ol>
-<pre class="r"><code># load data specifying col_names
-eur_usd &lt;- read_delim(file = &#39;1_Data/euro-dollar.txt&#39;, 
-                      delim = &#39;\t&#39;,
-                      col_names = c(&#39;Date&#39;, &#39;Rate&#39;))</code></pre>
 <pre><code>Parsed with column specification:
 cols(
   Date = col_character(),
   Rate = col_double()
-)</code></pre>
-<pre class="r"><code>yen_usd &lt;- read_delim(file = &#39;1_Data/yen-dollar.txt&#39;, 
-                      delim = &#39;\t&#39;,
-                      col_names = c(&#39;Date&#39;, &#39;Rate&#39;))</code></pre>
-<pre><code>Parsed with column specification:
+)
+Parsed with column specification:
 cols(
   Date = col_character(),
   Rate = col_double()
 )</code></pre>
 <ol start="6" style="list-style-type: decimal">
-<li>Now, change the variable <code>Date</code> to type <code>date</code>. Fix this using the <code>parse_date()</code> function with <code>format = '%d %b %Y'</code>. This specifies the exact format the dates are formatted in. Overwrite the existing <code>Date</code>-variable.</li>
-</ol>
-<pre class="r"><code># change Date to date type in both datasets
-eur_usd &lt;- eur_usd %&gt;%
-  mutate(Date = parse_date(Date, format = &#39;%d %b %Y&#39;))
-
-yen_usd &lt;- yen_usd %&gt;%
-  mutate(Date = parse_date(Date, format = &#39;%d %b %Y&#39;))</code></pre>
-<ol start="7" style="list-style-type: decimal">
-<li>Now you should have tidier data! Go ahead an explore the data a bit. What data do they contain? Consider using <code>summary</code> or <code>skimr::skim()</code>.</li>
+<li><p>Now, change the variable <code>Date</code> to type <code>date</code>. Fix this using the <code>parse_date()</code> function with <code>format = '%d %b %Y'</code>. This specifies the exact format the dates are formatted in. Overwrite the existing <code>Date</code>-variable.</p></li>
+<li><p>Now you should have tidier data! Go ahead an explore the data a bit. What data do they contain? Consider using <code>summary</code> or <code>skimr::skim()</code>.</p></li>
 </ol>
 </div>
 <div id="c---wrangling" class="section level3">
@@ -294,11 +316,6 @@ yen_usd &lt;- yen_usd %&gt;%
 <ol style="list-style-type: decimal">
 <li>Before we can begin the analysis of the data, we to join the individual data frames into a single data frame called <code>financial_data</code> that contains only the dates variable (<code>Date</code>), the stock index (unadjusted) closing prices (<code>Close</code>), as well as the exchange rates. Begin by joining <code>dow</code> and <code>dax</code> using <code>inner_join()</code>, selecting only the <code>Date</code> and <code>Close</code> variables of each data frame. See code below.</li>
 </ol>
-<pre class="r"><code># create single data frame
-financial &lt;- dow %&gt;% 
-  select(Date,Close) %&gt;% 
-  inner_join(dax %&gt;% select(Date, Close), by = &#39;Date&#39;)
-financial</code></pre>
 <pre><code># A tibble: 7,577 x 3
    Date       Close.x Close.y
    &lt;date&gt;       &lt;dbl&gt;   &lt;dbl&gt;
@@ -312,17 +329,10 @@ financial</code></pre>
  8 1988-01-11   1945.    988.
  9 1988-01-12   1929.    987.
 10 1988-01-13   1925.    966.
-# ... with 7,567 more rows</code></pre>
+# … with 7,567 more rows</code></pre>
 <ol start="2" style="list-style-type: decimal">
 <li>Inspect the data! What has R done with the names of the two <code>Close</code> variables? Run the code again, this time using the <code>suffix</code>-argument to give both variables suffixes preserve the origin of these variables, e.g., <code>suffix = c(_dow','_dax')</code>.</li>
 </ol>
-<pre class="r"><code># create single data frame
-financial &lt;- dow %&gt;% 
-  select(Date,Close) %&gt;% 
-  inner_join(dax %&gt;% select(Date, Close),
-            by = &#39;Date&#39;,
-             suffix = c(&#39;_dow&#39;,&#39;_dax&#39;))
-financial</code></pre>
 <pre><code># A tibble: 7,577 x 3
    Date       Close_dow Close_dax
    &lt;date&gt;         &lt;dbl&gt;     &lt;dbl&gt;
@@ -336,70 +346,30 @@ financial</code></pre>
  8 1988-01-11     1945.      988.
  9 1988-01-12     1929.      987.
 10 1988-01-13     1925.      966.
-# ... with 7,567 more rows</code></pre>
+# … with 7,567 more rows</code></pre>
 <ol start="3" style="list-style-type: decimal">
-<li>Looks better now? OK, now that you know how to join two data sets repeat the steps until all five data sets are included in <code>financial</code>. Remember, we only want the dates variable (<code>Date</code>), the stock index (unadjusted) closing prices (<code>Close</code>). Note if you have trouble fixing all variables names using the <code>suffix</code>-argument you can also take of this at the end using <code>rename()</code>.</li>
-</ol>
-<pre class="r"><code>financial &lt;- financial %&gt;%
-  inner_join(nik %&gt;% select(Date, Close), by = &#39;Date&#39;) %&gt;%
-  inner_join(eur_usd, by = &#39;Date&#39;) %&gt;%
-  inner_join(yen_usd, by = &#39;Date&#39;, suffix = c(&#39;_eur&#39;, &#39;_yen&#39;)) %&gt;%
-  rename(Close_nik = Close)</code></pre>
-<ol start="4" style="list-style-type: decimal">
-<li>Alright, now let’s create <code>change</code> variables that show how the exchange rates and stock indices have moved. Use the <code>mutate</code>- and the <code>diff()</code>-function. The <code>diff</code> computes the differences between every adjacent pair of entries in a vector. As this results in one fewer differences than there values in the vector add an <code>NA</code> at the first position of the change variable à la <code>c(NA, diff(my_variable))</code>.</li>
-</ol>
-<pre class="r"><code># create variables representing day-to-day changes
-financial &lt;- financial %&gt;% 
-  mutate(
-  Close_dow_change = c(NA, diff(Close_dow)),
-  Close_dax_change = c(NA, diff(Close_dax)),
-  Close_nik_change = c(NA, diff(Close_nik)),
-  Rate_eur_change = c(NA, diff(Rate_eur)),
-  Rate_yen_change = c(NA, diff(Rate_yen))
-)</code></pre>
-<ol start="5" style="list-style-type: decimal">
-<li>We will be mainly interested in how stock prices and exchange rates change over the course of a year. To create a variable that codes the year <code>mutate()</code> and <code>lubridate::year(Date)</code>, which will extract from <code>Date</code> the year information.</li>
+<li><p>Looks better now? OK, now that you know how to join two data sets repeat the steps until all five data sets are included in <code>financial</code>. Remember, we only want the dates variable (<code>Date</code>), the stock index (unadjusted) closing prices (<code>Close</code>). Note if you have trouble fixing all variables names using the <code>suffix</code>-argument you can also take of this at the end using <code>rename()</code>.</p></li>
+<li><p>Alright, now let’s create <code>change</code> variables that show how the exchange rates and stock indices have moved. Use the <code>mutate</code>- and the <code>diff()</code>-function. The <code>diff</code> computes the differences between every adjacent pair of entries in a vector. As this results in one fewer differences than there values in the vector add an <code>NA</code> at the first position of the change variable à la <code>c(NA, diff(my_variable))</code>.</p></li>
+<li><p>We will be mainly interested in how stock prices and exchange rates change over the course of a year. To create a variable that codes the year <code>mutate()</code> and <code>lubridate::year(Date)</code>, which will extract from <code>Date</code> the year information.</p></li>
 </ol>
 <pre class="r"><code># load lubridate
 library(lubridate)</code></pre>
-<pre><code>
-Attaching package: &#39;lubridate&#39;</code></pre>
-<pre><code>The following object is masked from &#39;package:base&#39;:
-
-    date</code></pre>
-<pre class="r"><code># create year variable
-financial &lt;- financial %&gt;% 
-  mutate(year = year(Date))</code></pre>
 <ol start="6" style="list-style-type: decimal">
-<li>Finally, we want the data in the “long”, instead of the current “wide” format. Call this dataset <code>financial_long</code>. In long formats variables occupy different rows rather than columns. To this using the <code>gather()</code>-function. Hint: The first two arguments to the <code>gather</code>-function specify the names of the new variables, the third and fourth specify the names of the variables whose format you would like to change (minus in front is intentional). Check out the example in the <code>?gather</code>-help file.</li>
+<li>Finally, we want the data in the “long”, instead of the current “wide” format. Call this dataset <code>financial_long</code>. In long formats variables occupy different rows rather than columns. We want to end with 4 columns: Date, year, variable and value.</li>
 </ol>
 <pre class="r"><code># create long version of data frame
-financial_long &lt;- financial %&gt;% 
-                gather(variable, 
-                       value, 
-                       -XXX, 
-                       -XXX)</code></pre>
+financial_long &lt;- 
+financial %&gt;%
+pivot_longer(names_to = &#39;variable&#39;,
+             values_to = &#39;value&#39;,
+             cols = c(-XXX, 
+                      -XXX))</code></pre>
 <pre class="r"><code># create long version of data frame
-financial_long &lt;- financial %&gt;% 
-  gather(variable, 
-         value, 
-         -Date, 
-         -year)
-financial_long</code></pre>
-<pre><code># A tibble: 45,920 x 4
-   Date        year variable  value
-   &lt;date&gt;     &lt;dbl&gt; &lt;chr&gt;     &lt;dbl&gt;
- 1 1999-01-04  1999 Close_dow 9184.
- 2 1999-01-05  1999 Close_dow 9311.
- 3 1999-01-06  1999 Close_dow 9545.
- 4 1999-01-07  1999 Close_dow 9538.
- 5 1999-01-08  1999 Close_dow 9643.
- 6 1999-01-11  1999 Close_dow 9620.
- 7 1999-01-12  1999 Close_dow 9475.
- 8 1999-01-13  1999 Close_dow 9350.
- 9 1999-01-14  1999 Close_dow 9121.
-10 1999-01-15  1999 Close_dow 9341.
-# ... with 45,910 more rows</code></pre>
+financial_long &lt;- 
+financial %&gt;%
+pivot_longer(names_to = &#39;variable&#39;,
+             values_to = &#39;value&#39;,
+             cols = c(-Date, -year))</code></pre>
 <ol start="7" style="list-style-type: decimal">
 <li>Now your data is tidy proper (at least with regard to the analyses required here)! Go ahead an explore the data a bit. What data do they contain? Consider using <code>summary</code> or <code>skimr::skim()</code>.</li>
 </ol>
@@ -414,7 +384,7 @@ financial_long %&gt;%
   filter(variable %in% c(&quot;Close_dow&quot;, &quot;Close_dax&quot;, &quot;Close_nik&quot;)) %&gt;%
 ggplot(mapping = aes(x = Date, y = value)) + 
   geom_line()</code></pre>
-<p><img src="Financial_Data_Case_Study_files/figure-html/unnamed-chunk-15-1.png" width="576" style="display: block; margin: auto;" /></p>
+<p><img src="Financial_Data_Case_Study_files/figure-html/unnamed-chunk-16-1.png" width="576" style="display: block; margin: auto;" /></p>
 <ol start="2" style="list-style-type: decimal">
 <li>Looked like the values of the three stock indices were somehow overlayering each other. Use <code>+ facet_grid(~variable)</code> to teas them apart. Also give it a slightly nicer appearance using <code>+ theme_light()</code> What does the plot tell you? Has there been a particular drop in any year?</li>
 </ol>
@@ -425,7 +395,7 @@ ggplot(mapping = aes(x = Date, y = value)) +
   geom_line() + 
   facet_grid(~variable) + 
   theme_light()</code></pre>
-<p><img src="Financial_Data_Case_Study_files/figure-html/unnamed-chunk-16-1.png" width="576" style="display: block; margin: auto;" /></p>
+<p><img src="Financial_Data_Case_Study_files/figure-html/unnamed-chunk-17-1.png" width="576" style="display: block; margin: auto;" /></p>
 <ol start="3" style="list-style-type: decimal">
 <li>Calculate the overall stock index price change per year. To do this, use <code>group_by()</code> and <code>summarise()</code> on the stock index change variables. Use the basic <code>sum()</code>-function inside <code>summarise()</code> to compute the overall change in the year. In doing this, don’t forget there were <code>NA</code>’s in two of the stock index price variables. Check out the result! When was the biggest drop in stock index prices?</li>
 </ol>
@@ -688,6 +658,10 @@ Rate_yen_change           0.391           1.000</code></pre>
 <td align="left"><code>haven</code></td>
 <td align="left"><code>install.packages(&quot;haven&quot;)</code></td>
 </tr>
+<tr class="odd">
+<td align="left"><code>lubridate</code></td>
+<td align="left"><code>install.packages(&quot;lubridate&quot;)</code></td>
+</tr>
 </tbody>
 </table>
 </div>
@@ -718,6 +692,23 @@ $(document).ready(function () {
 
 
 </script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open')
+  });
+});
+</script>
+
+<!-- code folding -->
+
 
 <!-- dynamically load mathjax for compatibility with self-contained -->
 <script>

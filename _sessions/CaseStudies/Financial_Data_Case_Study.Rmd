@@ -43,8 +43,8 @@ knitr::opts_chunk$set(comment = NA,
 
 options(digits = 3)
 
-library(baselers)
 library(tidyverse)
+library(lubridate)
 ```
 
 <p align="center">
@@ -90,14 +90,14 @@ knitr::include_graphics("https://raw.githubusercontent.com/therbootcamp/therboot
 
 2. Once you have identified the character string for missing data, us the `read_csv()` function to load in the stock index data sets, "\^DJI.csv", "\^GDAXI.csv", and "\^N225.csv", from your `1_Data` folder. In so doing, set an explicit `na`-argument to account for the fact that "\^GDAXI.csv" "\^N225.csv" use a specific character string to represent missings in the data.  
 
-```{r, echo = FALSE, eval = FALSE}
+```{r, echo = TRUE, eval = FALSE}
 # Load index data from local data folder 
 dow <- read_csv(file = '1_Data/^DJI.csv')
 dax <- read_csv(file = '1_Data/^GDAXI.csv', na = 'XXX')  # 'XXX' means missing!
 nik <- read_csv(file = '1_Data/^N225.csv', na = 'XXX')   # 'XXX' means missing!
 ```
 
-```{r}
+```{r echo = FALSE, eval = TRUE}
 # Load index data from local data folder 
 dow <- read_csv(file = '1_Data/^DJI.csv')
 dax <- read_csv(file = '1_Data/^GDAXI.csv', na = 'null')
@@ -106,7 +106,7 @@ nik <- read_csv(file = '1_Data/^N225.csv', na = 'null')
 
 3. Load in the exchange rate data sets, `euro-dollar.txt` and `yen-dollar.txt`, from the `1_Data` folder as two new objects called `eur_usd` and `yen_usd`. To do this, use the `read_delim()`-function and `\t` as the `delim`-argument, telling R that the data is tab-delimited. 
 
-```{r}
+```{r echo = FALSE, eval = TRUE}
 # Load exchange rate data from local data folder 
 eur_usd <- read_delim(file = '1_Data/euro-dollar.txt', delim = '\t')
 yen_usd <- read_delim(file = '1_Data/yen-dollar.txt', delim = '\t')
@@ -114,7 +114,7 @@ yen_usd <- read_delim(file = '1_Data/yen-dollar.txt', delim = '\t')
 
 4. Print the `eur_usd` and `yen_usd` objects. Are all the data types and variable names correct? Not quite, right?
 
-```{r}
+```{r echo = FALSE, eval = TRUE}
 # print exchange rate data sets
 eur_usd 
 yen_usd
@@ -122,7 +122,7 @@ yen_usd
 
 5. To fix the data, first load the data again and use the `col_names`-argument to explicitly assign the column names to be `Date` and `Rate`. This will prevent R to take names from the first row of the data.
 
-```{r}
+```{r echo = FALSE, eval = TRUE}
 # load data specifying col_names
 eur_usd <- read_delim(file = '1_Data/euro-dollar.txt', 
                       delim = '\t',
@@ -136,7 +136,7 @@ yen_usd <- read_delim(file = '1_Data/yen-dollar.txt',
 
 6. Now, change the variable `Date` to type `date`. Fix this using the `parse_date()` function with `format = '%d %b %Y'`. This specifies the exact format the dates are formatted in. Overwrite the existing `Date`-variable.
 
-```{r, echo = TRUE}
+```{r echo = FALSE, eval = TRUE}
 # change Date to date type in both datasets
 eur_usd <- eur_usd %>%
   mutate(Date = parse_date(Date, format = '%d %b %Y'))
@@ -152,7 +152,7 @@ yen_usd <- yen_usd %>%
 
 1. Before we can begin the analysis of the data, we to join the individual data frames into a single data frame called `financial_data` that contains only the dates variable (`Date`), the stock index (unadjusted) closing prices (`Close`), as well as the exchange rates. Begin by joining `dow` and `dax` using `inner_join()`, selecting only the `Date` and `Close` variables of each data frame. See code below.
 
-```{r, echo = TRUE}
+```{r echo = FALSE, eval = TRUE}
 # create single data frame
 financial <- dow %>% 
   select(Date,Close) %>% 
@@ -162,7 +162,7 @@ financial
 
 2. Inspect the data! What has R done with the names of the two `Close` variables? Run the code again, this time using the `suffix`-argument to give both variables suffixes preserve the origin of these variables, e.g., `suffix = c(_dow','_dax')`.  
 
-```{r, echo = TRUE}
+```{r echo = FALSE, eval = TRUE}
 # create single data frame
 financial <- dow %>% 
   select(Date,Close) %>% 
@@ -175,7 +175,7 @@ financial
 3. Looks better now? OK, now that you know how to join two data sets repeat the steps until all five data sets are included in `financial`. Remember, we only want the dates variable (`Date`), the stock index (unadjusted) closing prices (`Close`). Note if you have trouble fixing all variables names using the `suffix`-argument you can also take of this at the end using `rename()`.
 
 
-```{r}
+```{r echo = FALSE, eval = TRUE}
 financial <- financial %>%
   inner_join(nik %>% select(Date, Close), by = 'Date') %>%
   inner_join(eur_usd, by = 'Date') %>%
@@ -186,7 +186,7 @@ financial <- financial %>%
 
 4. Alright, now let's create `change` variables that show how the exchange rates and stock indices have moved. Use the `mutate`- and the `diff()`-function. The `diff` computes the differences between every adjacent pair of entries in a vector. As this results in one fewer differences than there values in the vector add an `NA` at the first position of the change variable à la `c(NA, diff(my_variable))`. 
 
-```{r}
+```{r echo = FALSE, eval = TRUE}
 # create variables representing day-to-day changes
 financial <- financial %>% 
   mutate(
@@ -201,34 +201,36 @@ financial <- financial %>%
 
 5. We will be mainly interested in how stock prices and exchange rates change over the course of a year. To create a variable that codes the year `mutate()` and `lubridate::year(Date)`, which will extract from `Date` the year information.
 
-```{r}
+```{r eval = FALSE}
 # load lubridate
 library(lubridate)
+```
 
+```{r echo = FALSE, eval = TRUE}
 # create year variable
 financial <- financial %>% 
   mutate(year = year(Date))
 ```
 
-6. Finally, we want the data in the "long", instead of the current "wide" format. Call this dataset `financial_long`. In long formats variables occupy different rows rather than columns. To this using the `gather()`-function. Hint: The first two arguments to the `gather`-function specify the names of the new variables, the third and fourth specify the names of the variables whose format you would like to change (minus in front is intentional). Check out the example in the `?gather`-help file.
+6. Finally, we want the data in the "long", instead of the current "wide" format. Call this dataset `financial_long`. In long formats variables occupy different rows rather than columns. We want to end with 4 columns: Date, year, variable and value. 
 
 ```{r, echo = TRUE, eval = FALSE}
 # create long version of data frame
-financial_long <- financial %>% 
-                gather(variable, 
-                       value, 
-                       -XXX, 
-                       -XXX)
+financial_long <- 
+financial %>%
+pivot_longer(names_to = 'variable',
+             values_to = 'value',
+             cols = c(-XXX, 
+                      -XXX))
 ```
 
 ```{r}
 # create long version of data frame
-financial_long <- financial %>% 
-  gather(variable, 
-         value, 
-         -Date, 
-         -year)
-financial_long
+financial_long <- 
+financial %>%
+pivot_longer(names_to = 'variable',
+             values_to = 'value',
+             cols = c(-Date, -year))
 ```
 
 7. Now your data is tidy proper (at least with regard to the analyses required here)! Go ahead an explore the data a bit. What data do they contain? Consider using `summary` or `skimr::skim()`.
@@ -362,6 +364,7 @@ financial %>%
 |:------|:------|
 |`tidyverse`|`install.packages("tidyverse")`|
 |`haven`|`install.packages("haven")`|
+|`lubridate`|`install.packages("lubridate")`|
 
 ## Resources
 

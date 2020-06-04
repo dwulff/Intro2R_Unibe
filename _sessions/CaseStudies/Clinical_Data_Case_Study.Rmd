@@ -42,23 +42,16 @@ knitr::opts_chunk$set(comment = NA,
                       warning = FALSE)
 
 options(digits = 3)
-
-library(baselers)
 library(tidyverse)
 ```
 
 
 ```{r, eval = TRUE, echo = FALSE, message = FALSE}
-
-library(tidyverse)
 set.seed(100)
 
-PatientID_v <- sapply(1:300, FUN = function(x) {
-  
+PatientID_v <- sapply(1:900, FUN = function(x) {
   paste0(sample(letters, size = 8, replace = TRUE), collapse = "")
-  
 })
-
 
 arm_v <- rep(c(1, 2, 3), length.out = 300)
 

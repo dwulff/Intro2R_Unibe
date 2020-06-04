@@ -1,5 +1,5 @@
 ---
-title: "Final Project"
+title: "Final Project (2 ECTS)"
 subtitle: ""
 author: "
 <table style='table-layout:fixed;width:100%;border:0;padding:0;margin:0'><col width='10%'><col width='10%'>
@@ -59,7 +59,7 @@ library(ggmap)
 
 ## Overview
 
-This is your final assignment in this course. You will use all we learned during the course to understand, arrange, analyse, visualise and report on a new dataset about medical appointments.
+This is your final assignment if you want to get ECTS points for this course. You will use all we learned during the course to understand, arrange, analyse, visualise and report on a new dataset about medical appointments. If you are not into ECTS points you can still take a swing at the project - it will have some new challenges for you!
 
 What is the dataset about? There is a large number of medical appointments where patients end up canceling or simply do not show up. This practise comes with costs to the medical system - in this assignment we will try to understand what drives patients not to show up in a sample of medical appointments from Vitoria, Espirito Santo, Brazil.
 
