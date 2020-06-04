@@ -67,7 +67,7 @@ options(htmltools.dir.version = FALSE)
 options(width=110)
 options(digits = 4) 
 knitr::opts_chunk$set(comment = NA)
-library(baselers)
+
 
 options(htmltools.dir.version = FALSE)
 # see: https://github.com/yihui/xaringan
@@ -92,8 +92,6 @@ trial_X <- data.frame(id = 1:5,
 
 baselers <- read_csv("https://raw.githubusercontent.com/therbootcamp/baselers/master/inst/extdata/baselers.txt")
 
-library(tidyverse)
-library(baselers)
 ```
 
 
@@ -272,118 +270,6 @@ baselers %>%
 </p>
 
 ]
-
----
-
-# Statistical functions like <mono>lm()</mono>
-
-.pull-left3[
-
-Statistical functions work with two types of objects... 
-
-
-(1) A <high>`tibble`</high> in place of the `data` argument.
-
-(2) A <high>`formula`</high> in place of the `formula` argument.
-
-<br>
-<high>`Formulas`</high> specifies a <high>criterion</high> (y) as a function of one or more <high>predictors</high> (x1, x2, ...) in the form:
-
-<mono>formula = y ~ x1 + x2 +...<mono>
-
-]
-
-.pull-right65[
-
-```{r, eval = F}
-# Example: Create regression object (my_glm)
-my_glm <- lm(formula = XX ~ XX + XX,
-             data = XX)
-```
-
-<p align="center">
-<img src="https://raw.githubusercontent.com/therbootcamp/Erfurt_2018June/master/_sessions/_image/formula_description.png">
-</p>
-
-]
-
----
-
-# Statistical functions like <mono>lm()</mono>
-
-.pull-left3[
-
-Statistical functions work with two types of objects... 
-
-
-(1) A <high>`tibble`</high> in place of the `data` argument.
-
-(2) A <high>`formula`</high> in place of the `formula` argument.
-
-<br>
-<high>`Formulas`</high> specifies a <high>criterion</high> (y) as a function of one or more <high>predictors</high> (x1, x2, ...) in the form:
-
-<mono>formula = y ~ x1 + x2 +...<mono>
-
-]
-
-.pull-right65[
-
-```{r}
-# Example: Create regression object (my_glm)
-my_glm <- lm(formula = income ~ age + height,
-             data = baselers)
-```
-
-<p align="center">
-<img src="https://raw.githubusercontent.com/therbootcamp/Erfurt_2018June/master/_sessions/_image/formula_description.png">
-</p>
-
-]
-
-
----
-
-# Customize formulas
-
-Include <high>additional predictors</high> to formulas by "adding" them with <high>`X`</high> 
-
-```{r eval = FALSE}
-# Include multiple terms with +
-my_lm <- lm(formula = income X age X height,
-            data = baselers)
-```
-
-
-To include, both <high>main effects and interactions</high>, use <high><mono>XXX</mono></high>.
-
-```{r eval = FALSE}
-# Include both main effects and interactions for age and height
-my_lm <- lm(formula = income X age X height,
-            data = baselers)
-```
-
----
-
-# Customize formulas
-
-Include <high>additional predictors</high> to formulas by "adding" them with <high>`+`</high> 
-
-```{r}
-# Include multiple terms with +
-my_lm <- lm(formula = income ~ age + height,
-            data = baselers)
-```
-
-To include, both <high>main effects and interactions</high>, use <high><mono>x1*x2</mono></high>.
-
-```{r}
-# Include both main effects and interactions for age and height
-my_lm <- lm(formula = income ~ age * height,
-            data = baselers)
-```
-
----
 
 .pull-left45[
 
