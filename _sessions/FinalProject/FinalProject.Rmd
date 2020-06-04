@@ -1,6 +1,5 @@
 ---
-title: "Final Project (2 ECTS)"
-subtitle: ""
+title: "Final Project for 2 ECTS"
 author: "
 <table style='table-layout:fixed;width:100%;border:0;padding:0;margin:0'><col width='10%'><col width='10%'>
   <tr style='border:none'>
@@ -31,7 +30,6 @@ output:
   html_document:
     css: practical.css
     self_contained: no
-
 ---
 
 ```{r setup, echo = FALSE, message = FALSE}
@@ -210,12 +208,7 @@ appointments %>%
 dim(full_df)
 ```
 
-### E - Predicting
-
-From the given list of parameters, such as gender, time difference between making an appointment and the actual appointment, demographic variables, the weather on the appointment day build different models that predict whether the a patient will be a no show for his/her appointment.
-
-
-### F - Presenting the results
+### E - Presenting the results
 
 1. Generate a new file with `File - R Markdown - Document` (with the default: HTML). Save this file to your `BernRBootcamp` folder. 
 

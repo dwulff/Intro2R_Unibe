@@ -134,11 +134,13 @@ ggplot(data = crime,
 
 ```{r, echo = TRUE, eval = TRUE}
 # vector of crime variables
-crime_vars = c("murders","robberies","assaults","burglaries","larcenies","autoTheft","arsons")
+columns = c("murders","robberies","assaults","burglaries","larcenies","autoTheft","arsons")
 
 # transform to long
 crime_long <- crime %>% 
-  gather(crime_var, frequency, crime_vars)
+  pivot_longer(names_to = "crime_vars",
+               values_to = "frequency",
+               cols = columns)
 ```
 
 4. Using the the `crime_long` data set, you can now make use of the amazing power of `ggplot2`'s facet functions, such as `facet_wrap()`. Use `facet_wrap()` to automatically plot crime frequency against the percentage of people using public transportation for each of the crime variables. 
@@ -156,7 +158,7 @@ ggplot(data = crime_long,
        mapping = aes(x = PctUsePubTrans, y = frequency)) + 
   geom_point() + 
   scale_y_log10() + 
-  facet_wrap(~ crime_var)
+  facet_wrap(~ crime_vars)
 ```
 
 5. This was much more efficient, right? Now explore the relationship of frequency to other variables, such as `medIncome`, `TotalPctDiv`, or `PctNotHSGrad`, for each of the crime measures. What variables do predict, which kind of crime? Explore!
