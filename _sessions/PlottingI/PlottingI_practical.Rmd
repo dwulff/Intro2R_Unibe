@@ -37,8 +37,8 @@ knitr::opts_chunk$set(comment = NA,
                       fig.width = 6, 
                       fig.height = 6,
                       fig.align = 'center',
-                      echo = FALSE, 
-                      eval = FALSE, 
+                      echo = TRUE, 
+                      eval = TRUE, 
                       warning = FALSE,
                       message = FALSE)
 require(tidyverse)
@@ -117,7 +117,7 @@ mcdonalds <- mcdonalds %>%
   rename_all(.funs = ~ gsub(" ", "", .))  # no more spaces!
 ```
 
-```{r, echo = FALSE, eval = TRUE}
+```{r, eval = TRUE}
 # Clean up the names of mcdonalds
 mcdonalds <- mcdonalds %>%
   select(-contains("% Daily Value")) %>%  # Remove all '% Daily Value' columns
@@ -134,7 +134,7 @@ mcdonalds
 
 In this section, you'll build the following plot step by step.
 
-```{r, echo = FALSE, eval = TRUE, fig.width = 7, fig.height = 4}
+```{r, eval = TRUE, fig.width = 7, fig.height = 4}
 ggplot(mcdonalds, aes(x = Calories, y = SaturatedFat, col = Category)) +
   geom_point() +
   geom_smooth(col = "black") +
@@ -289,7 +289,7 @@ ggplot(data = mcdonalds, aes(x = XX, y = XX, fill = XX)) +
 ```
 
 
-```{r, eval = TRUE, echo = FALSE, fig.width = 8, fig.height = 3}
+```{r, eval = TRUE, fig.width = 8, fig.height = 3}
 ggplot(data = mcdonalds, aes(x = Category, y = Calories, fill = Category)) +
   geom_violin() +
   guides(fill = FALSE) +
@@ -361,7 +361,7 @@ ggplot(mcdonalds, aes(x = Category, y = Calories)) +
 
 Let's create the following plot with additional point labels using `geom_text()`:
 
-```{r, echo = FALSE, eval = TRUE, fig.width = 8, fig.height = 4}
+```{r, eval = TRUE, fig.width = 8, fig.height = 4}
 ggplot(mcdonalds, aes(x = Sugars, 
                       y = Calories, 
                       col = Category, 

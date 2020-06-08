@@ -35,9 +35,10 @@ knitr::opts_chunk$set(comment = NA,
                       fig.width = 6, 
                       fig.height = 6,
                       fig.align = 'center',
-                      echo = FALSE, 
-                      eval = FALSE, 
-                      warning = FALSE)
+                      echo = TRUE, 
+                      eval = TRUE, 
+                      warning = FALSE,
+                      message = FALSE)
 
 options(digits = 3)
 library(tidyverse)
@@ -150,7 +151,7 @@ biomarker_df <- read_csv("XXX/XXX")
 ```
 
 
-```{r, echo = FALSE, eval = TRUE, message = FALSE}
+```{r, eval = TRUE, message = FALSE}
 ## read in datasets
 trial_df <- read_csv("1_Data/dimarta_trial.csv")
 demographics_df <- read_csv("1_Data/dimarta_demographics.csv")

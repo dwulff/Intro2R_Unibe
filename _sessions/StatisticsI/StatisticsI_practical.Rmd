@@ -38,8 +38,8 @@ knitr::opts_chunk$set(comment = NA,
                       fig.width = 6, 
                       fig.height = 6,
                       fig.align = 'center',
-                      echo = FALSE, 
-                      eval = FALSE, 
+                      echo = TRUE, 
+                      eval = TRUE, 
                       warning = FALSE,
                       message = FALSE)
 
@@ -297,7 +297,7 @@ kc_house %>%
 
 3. Using `group_by()` and `summarise()`, create a dataframe showing the same results as the following table.
 
-```{r, results = 'asis', eval = TRUE, echo = FALSE}
+```{r, results = 'asis', eval = TRUE}
 kc_house %>%
   group_by(mansion) %>%
   summarise(N = n(),
@@ -381,7 +381,7 @@ brumhilda %>%
 
 1. Let's see if there is a significant difference between the selling prices of houses on the waterfront versus those not on the waterfront. To do this, you'll conduct a t-test using the `t.test()` function and assign the result to `waterfront_htest`. To prepare for the t-test, you need to create two vectors carrying the prices for the houses on the waterfront and those not on the waterfront. (Note: this is a bit of a hack that we don't need when speciying models the proper way -> next session)
 
-```{r, echo = TRUE, eval = FALSE}
+```{r, echo = TRUE}
 # create list separating values for waterfron yes and no
 prices <- kc_house %>%
   mutate(waterfront_lab = 

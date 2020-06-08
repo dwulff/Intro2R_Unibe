@@ -37,8 +37,8 @@ knitr::opts_chunk$set(comment = NA,
                       fig.width = 6, 
                       fig.height = 6,
                       fig.align = 'center',
-                      echo = FALSE, 
-                      eval = FALSE, 
+                      echo = TRUE, 
+                      eval = TRUE, 
                       warning = FALSE)
 
 options(digits = 3)
@@ -439,12 +439,12 @@ trial_act
 
 Remember the `CD4_wide` dataframe you created before? Currently it is in the *wide* format, where each row is a patient, where key data (different CD4 T cell counts) are in different columns like this:
 
-```{r, eval = TRUE, echo = FALSE}
+```{r, eval = TRUE}
 CD4_wide <- trial_act %>%
   select(`pidnum`, `arms`, `cd40`, `cd420`, `cd496`)
 ```
 
-```{r, echo = TRUE, eval = TRUE}
+```{r, eval = TRUE}
 # Data is in a 'wide' format
 CD4_wide
 ```

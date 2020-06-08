@@ -200,22 +200,105 @@ summary {
 <div id="a---setup" class="section level3">
 <h3>A - Setup</h3>
 <ol style="list-style-type: decimal">
-<li><p>Open your <code>BernRBootcamp</code> R project. It should already have the folders <code>1_Data</code> and <code>2_Code</code>. Make sure that the data files listed in the <code>Datasets</code> section above are in your <code>1_Data</code> folder.</p></li>
-<li><p>Open a new R script. At the top of the script, using comments, write your name and the date. Save it as a new file called <code>statisticsI_practical.R</code> in the <code>2_Code</code> folder.<br />
-</p></li>
-<li><p>Using <code>library()</code> load the set of packages for this practical listed in the packages section above.</p></li>
-<li><p>For this practical, we’ll use the <code>kc_house.csv</code> data. This dataset contains house sale prices for King County, Washington. It includes homes sold between May 2014 and May 2015. Using the following template, load the data into R and store it as a new object called <code>kc_house</code>.</p></li>
+<li>Open your <code>BernRBootcamp</code> R project. It should already have the folders <code>1_Data</code> and <code>2_Code</code>. Make sure that the data files listed in the <code>Datasets</code> section above are in your <code>1_Data</code> folder.</li>
+</ol>
+<pre class="r"><code># Done!</code></pre>
+<ol start="2" style="list-style-type: decimal">
+<li>Open a new R script. At the top of the script, using comments, write your name and the date. Save it as a new file called <code>statisticsI_practical.R</code> in the <code>2_Code</code> folder.<br />
+</li>
+<li>Using <code>library()</code> load the set of packages for this practical listed in the packages section above.</li>
+</ol>
+<pre class="r"><code>library(tidyverse)</code></pre>
+<ol start="3" style="list-style-type: decimal">
+<li>For this practical, we’ll use the <code>kc_house.csv</code> data. This dataset contains house sale prices for King County, Washington. It includes homes sold between May 2014 and May 2015. Using the following template, load the data into R and store it as a new object called <code>kc_house</code>.</li>
 </ol>
 <pre class="r"><code>kc_house &lt;- read_csv(file = &quot;XX&quot;)</code></pre>
 <ol start="4" style="list-style-type: decimal">
 <li>Using <code>print()</code>, <code>summary()</code>, and <code>head()</code>, explore the data to make sure it was loaded correctly.</li>
 </ol>
+<pre class="r"><code>kc_house</code></pre>
+<pre><code># A tibble: 21,613 x 21
+   id    date                 price bedrooms bathrooms sqft_living sqft_lot
+   &lt;chr&gt; &lt;dttm&gt;               &lt;dbl&gt;    &lt;dbl&gt;     &lt;dbl&gt;       &lt;dbl&gt;    &lt;dbl&gt;
+ 1 7129… 2014-10-13 00:00:00 2.22e5        3      1           1180     5650
+ 2 6414… 2014-12-09 00:00:00 5.38e5        3      2.25        2570     7242
+ 3 5631… 2015-02-25 00:00:00 1.80e5        2      1            770    10000
+ 4 2487… 2014-12-09 00:00:00 6.04e5        4      3           1960     5000
+ 5 1954… 2015-02-18 00:00:00 5.10e5        3      2           1680     8080
+ 6 7237… 2014-05-12 00:00:00 1.23e6        4      4.5         5420   101930
+ 7 1321… 2014-06-27 00:00:00 2.58e5        3      2.25        1715     6819
+ 8 2008… 2015-01-15 00:00:00 2.92e5        3      1.5         1060     9711
+ 9 2414… 2015-04-15 00:00:00 2.30e5        3      1           1780     7470
+10 3793… 2015-03-12 00:00:00 3.23e5        3      2.5         1890     6560
+# … with 21,603 more rows, and 14 more variables: floors &lt;dbl&gt;,
+#   waterfront &lt;dbl&gt;, view &lt;dbl&gt;, condition &lt;dbl&gt;, grade &lt;dbl&gt;,
+#   sqft_above &lt;dbl&gt;, sqft_basement &lt;dbl&gt;, yr_built &lt;dbl&gt;, yr_renovated &lt;dbl&gt;,
+#   zipcode &lt;dbl&gt;, lat &lt;dbl&gt;, long &lt;dbl&gt;, sqft_living15 &lt;dbl&gt;, sqft_lot15 &lt;dbl&gt;</code></pre>
+<pre class="r"><code>summary(kc_house)</code></pre>
+<pre><code>      id                 date                         price        
+ Length:21613       Min.   :2014-05-02 00:00:00   Min.   :  75000  
+ Class :character   1st Qu.:2014-07-22 00:00:00   1st Qu.: 321950  
+ Mode  :character   Median :2014-10-16 00:00:00   Median : 450000  
+                    Mean   :2014-10-29 04:38:01   Mean   : 540088  
+                    3rd Qu.:2015-02-17 00:00:00   3rd Qu.: 645000  
+                    Max.   :2015-05-27 00:00:00   Max.   :7700000  
+    bedrooms      bathrooms     sqft_living       sqft_lot           floors    
+ Min.   : 0.0   Min.   :0.00   Min.   :  290   Min.   :    520   Min.   :1.00  
+ 1st Qu.: 3.0   1st Qu.:1.75   1st Qu.: 1427   1st Qu.:   5040   1st Qu.:1.00  
+ Median : 3.0   Median :2.25   Median : 1910   Median :   7618   Median :1.50  
+ Mean   : 3.4   Mean   :2.11   Mean   : 2080   Mean   :  15107   Mean   :1.49  
+ 3rd Qu.: 4.0   3rd Qu.:2.50   3rd Qu.: 2550   3rd Qu.:  10688   3rd Qu.:2.00  
+ Max.   :33.0   Max.   :8.00   Max.   :13540   Max.   :1651359   Max.   :3.50  
+   waterfront         view        condition        grade         sqft_above  
+ Min.   :0.000   Min.   :0.00   Min.   :1.00   Min.   : 1.00   Min.   : 290  
+ 1st Qu.:0.000   1st Qu.:0.00   1st Qu.:3.00   1st Qu.: 7.00   1st Qu.:1190  
+ Median :0.000   Median :0.00   Median :3.00   Median : 7.00   Median :1560  
+ Mean   :0.008   Mean   :0.23   Mean   :3.41   Mean   : 7.66   Mean   :1788  
+ 3rd Qu.:0.000   3rd Qu.:0.00   3rd Qu.:4.00   3rd Qu.: 8.00   3rd Qu.:2210  
+ Max.   :1.000   Max.   :4.00   Max.   :5.00   Max.   :13.00   Max.   :9410  
+ sqft_basement     yr_built     yr_renovated     zipcode           lat      
+ Min.   :   0   Min.   :1900   Min.   :   0   Min.   :98001   Min.   :47.2  
+ 1st Qu.:   0   1st Qu.:1951   1st Qu.:   0   1st Qu.:98033   1st Qu.:47.5  
+ Median :   0   Median :1975   Median :   0   Median :98065   Median :47.6  
+ Mean   : 292   Mean   :1971   Mean   :  84   Mean   :98078   Mean   :47.6  
+ 3rd Qu.: 560   3rd Qu.:1997   3rd Qu.:   0   3rd Qu.:98118   3rd Qu.:47.7  
+ Max.   :4820   Max.   :2015   Max.   :2015   Max.   :98199   Max.   :47.8  
+      long      sqft_living15    sqft_lot15    
+ Min.   :-122   Min.   : 399   Min.   :   651  
+ 1st Qu.:-122   1st Qu.:1490   1st Qu.:  5100  
+ Median :-122   Median :1840   Median :  7620  
+ Mean   :-122   Mean   :1987   Mean   : 12768  
+ 3rd Qu.:-122   3rd Qu.:2360   3rd Qu.: 10083  
+ Max.   :-121   Max.   :6210   Max.   :871200  </code></pre>
+<pre class="r"><code>head(kc_house)</code></pre>
+<pre><code># A tibble: 6 x 21
+  id    date                 price bedrooms bathrooms sqft_living sqft_lot
+  &lt;chr&gt; &lt;dttm&gt;               &lt;dbl&gt;    &lt;dbl&gt;     &lt;dbl&gt;       &lt;dbl&gt;    &lt;dbl&gt;
+1 7129… 2014-10-13 00:00:00 2.22e5        3      1           1180     5650
+2 6414… 2014-12-09 00:00:00 5.38e5        3      2.25        2570     7242
+3 5631… 2015-02-25 00:00:00 1.80e5        2      1            770    10000
+4 2487… 2014-12-09 00:00:00 6.04e5        4      3           1960     5000
+5 1954… 2015-02-18 00:00:00 5.10e5        3      2           1680     8080
+6 7237… 2014-05-12 00:00:00 1.23e6        4      4.5         5420   101930
+# … with 14 more variables: floors &lt;dbl&gt;, waterfront &lt;dbl&gt;, view &lt;dbl&gt;,
+#   condition &lt;dbl&gt;, grade &lt;dbl&gt;, sqft_above &lt;dbl&gt;, sqft_basement &lt;dbl&gt;,
+#   yr_built &lt;dbl&gt;, yr_renovated &lt;dbl&gt;, zipcode &lt;dbl&gt;, lat &lt;dbl&gt;, long &lt;dbl&gt;,
+#   sqft_living15 &lt;dbl&gt;, sqft_lot15 &lt;dbl&gt;</code></pre>
 </div>
 <div id="b---recap" class="section level3">
 <h3>B - Recap</h3>
 <ol style="list-style-type: decimal">
-<li><p>Print the names of the <code>kc_house</code> data with <code>names()</code>.</p></li>
-<li><p>Change the following column names using <code>rename()</code>.</p></li>
+<li>Print the names of the <code>kc_house</code> data with <code>names()</code>.</li>
+</ol>
+<pre class="r"><code>names(kc_house)</code></pre>
+<pre><code> [1] &quot;id&quot;            &quot;date&quot;          &quot;price&quot;         &quot;bedrooms&quot;     
+ [5] &quot;bathrooms&quot;     &quot;sqft_living&quot;   &quot;sqft_lot&quot;      &quot;floors&quot;       
+ [9] &quot;waterfront&quot;    &quot;view&quot;          &quot;condition&quot;     &quot;grade&quot;        
+[13] &quot;sqft_above&quot;    &quot;sqft_basement&quot; &quot;yr_built&quot;      &quot;yr_renovated&quot; 
+[17] &quot;zipcode&quot;       &quot;lat&quot;           &quot;long&quot;          &quot;sqft_living15&quot;
+[21] &quot;sqft_lot15&quot;   </code></pre>
+<ol start="2" style="list-style-type: decimal">
+<li>Change the following column names using <code>rename()</code>.</li>
 </ol>
 <table>
 <thead>
@@ -255,6 +338,13 @@ summary {
   rename(NEW = OLD,
          NEW = OLD,
          NEW = OLD)</code></pre>
+<pre class="r"><code>kc_house &lt;- kc_house %&gt;%
+  rename(living_sqft = sqft_living,
+         lot_sqft = sqft_lot,
+         above_sqft = sqft_above,
+         basement_sqft = sqft_basement,
+         built_yr = yr_built,
+         renovated_yr = yr_renovated)</code></pre>
 <ol start="3" style="list-style-type: decimal">
 <li>Create new column(s) <code>living_sqm</code>, <code>lot_sqm</code>, <code>above_sqm</code> and <code>basement_sqm</code> which show the respective room sizes in square meters rather than square feet (Hint: Multiply each by 0.093).</li>
 </ol>
@@ -263,6 +353,11 @@ summary {
          lot_sqm = XXX * XXX,
          XXX = XXX,
          XXX = XXX)</code></pre>
+<pre class="r"><code>kc_house &lt;- kc_house %&gt;%
+  mutate(living_sqm = living_sqft * 0.093,
+         lot_sqm = lot_sqft * 0.093,
+         above_sqm = above_sqft * 0.093,
+         basement_sqm  = basement_sqft * 0.093)</code></pre>
 <ol start="4" style="list-style-type: decimal">
 <li>Add a new variable to the dataframe called <code>mansion</code> which is “Yes” when the <em>sum</em> of the house’s living, above, and basement space is above 750 square meters.</li>
 </ol>
@@ -270,6 +365,10 @@ summary {
                 mutate(XXX = case_when(
                               XXX + XXX + XXX &gt; XXX ~ &quot;XXX&quot;,
                               XXXX + XXX + XXX &lt;= XXX ~ &quot;XXX&quot;))</code></pre>
+<pre class="r"><code>kc_house &lt;- kc_house %&gt;%
+                mutate(mansion = case_when(
+                              living_sqm + above_sqm +  basement_sqm &gt; 750 ~ &quot;Yes&quot;,
+                              living_sqm + above_sqm + basement_sqm &lt;= 750 ~ &quot;No&quot;))</code></pre>
 </div>
 <div id="c---simple-summaries" class="section level3">
 <h3>C - Simple summaries</h3>
@@ -277,6 +376,8 @@ summary {
 <li>Using the base-R <code>df$col</code> notation, calculate the mean price of all houses.</li>
 </ol>
 <pre class="r"><code>mean(XXX$XXX)</code></pre>
+<pre class="r"><code>mean(kc_house$price)</code></pre>
+<pre><code>[1] 540088</code></pre>
 <ol start="2" style="list-style-type: decimal">
 <li>Now, do the same using <code>summarise()</code> with the following template. Do you get the same answer? What is different about the output from <code>summarise()</code> versus using the dollar sign?</li>
 </ol>
@@ -284,20 +385,77 @@ summary {
   summarise(
     price_mean = mean(XXX)
   )</code></pre>
+<pre class="r"><code>kc_house %&gt;%
+  summarise(
+    price_mean = mean(price)
+  )</code></pre>
+<pre><code># A tibble: 1 x 1
+  price_mean
+       &lt;dbl&gt;
+1    540088.</code></pre>
 <ol start="3" style="list-style-type: decimal">
-<li><p>What is the <em>median</em> price of all houses? Use the <code>median()</code> function!</p></li>
-<li><p>What was the highest selling price? Use the <code>max()</code> function!</p></li>
-<li><p>Using the following template, sort the data frame in descending order of price. Then, print it. Do you see the house with the highest selling price at the top?</p></li>
+<li>What is the <em>median</em> price of all houses? Use the <code>median()</code> function!</li>
+</ol>
+<pre class="r"><code>kc_house %&gt;%
+  summarise(
+    price_median = median(price)
+  )</code></pre>
+<pre><code># A tibble: 1 x 1
+  price_median
+         &lt;dbl&gt;
+1       450000</code></pre>
+<ol start="4" style="list-style-type: decimal">
+<li>What was the highest selling price? Use the <code>max()</code> function!</li>
+</ol>
+<pre class="r"><code>kc_house %&gt;%
+  summarise(
+    price_max = max(price)
+  )</code></pre>
+<pre><code># A tibble: 1 x 1
+  price_max
+      &lt;dbl&gt;
+1   7700000</code></pre>
+<ol start="5" style="list-style-type: decimal">
+<li>Using the following template, sort the data frame in descending order of price. Then, print it. Do you see the house with the highest selling price at the top?</li>
 </ol>
 <pre class="r"><code>kc_house &lt;- kc_house %&gt;%
   arrange(desc(XXX))
 
 kc_house</code></pre>
+<pre class="r"><code>kc_house &lt;- kc_house %&gt;%
+  arrange(desc(price))
+
+kc_house</code></pre>
+<pre><code># A tibble: 21,613 x 26
+   id    date                 price bedrooms bathrooms living_sqft lot_sqft
+   &lt;chr&gt; &lt;dttm&gt;               &lt;dbl&gt;    &lt;dbl&gt;     &lt;dbl&gt;       &lt;dbl&gt;    &lt;dbl&gt;
+ 1 6762… 2014-10-13 00:00:00 7.70e6        6      8          12050    27600
+ 2 9808… 2014-06-11 00:00:00 7.06e6        5      4.5        10040    37325
+ 3 9208… 2014-09-19 00:00:00 6.88e6        6      7.75        9890    31374
+ 4 2470… 2014-08-04 00:00:00 5.57e6        5      5.75        9200    35069
+ 5 8907… 2015-04-13 00:00:00 5.35e6        5      5           8000    23985
+ 6 7558… 2015-04-13 00:00:00 5.30e6        6      6           7390    24829
+ 7 1247… 2014-10-20 00:00:00 5.11e6        5      5.25        8010    45517
+ 8 1924… 2014-06-17 00:00:00 4.67e6        5      6.75        9640    13068
+ 9 7738… 2014-08-15 00:00:00 4.50e6        5      5.5         6640    40014
+10 3835… 2014-06-18 00:00:00 4.49e6        4      3           6430    27517
+# … with 21,603 more rows, and 19 more variables: floors &lt;dbl&gt;,
+#   waterfront &lt;dbl&gt;, view &lt;dbl&gt;, condition &lt;dbl&gt;, grade &lt;dbl&gt;,
+#   above_sqft &lt;dbl&gt;, basement_sqft &lt;dbl&gt;, built_yr &lt;dbl&gt;, renovated_yr &lt;dbl&gt;,
+#   zipcode &lt;dbl&gt;, lat &lt;dbl&gt;, long &lt;dbl&gt;, sqft_living15 &lt;dbl&gt;,
+#   sqft_lot15 &lt;dbl&gt;, living_sqm &lt;dbl&gt;, lot_sqm &lt;dbl&gt;, above_sqm &lt;dbl&gt;,
+#   basement_sqm &lt;dbl&gt;, mansion &lt;chr&gt;</code></pre>
 <ol start="6" style="list-style-type: decimal">
 <li>What percentage of houses sold for more than 1,000,000? Let’s answer this with <code>summarise()</code>.</li>
 </ol>
 <pre class="r"><code>kc_house %&gt;%
   summarise(mil_p = mean(XXX &gt; 1000000))</code></pre>
+<pre class="r"><code>kc_house %&gt;%
+  summarise(mil_p = mean(price &gt; 1000000))</code></pre>
+<pre><code># A tibble: 1 x 1
+   mil_p
+   &lt;dbl&gt;
+1 0.0678</code></pre>
 <ol start="7" style="list-style-type: decimal">
 <li>For mansions <em>only</em>, calculate the mean number of floors and bathrooms (hint: before summarising the data, use <code>filter()</code> to only select mansions!)</li>
 </ol>
@@ -307,6 +465,16 @@ kc_house</code></pre>
     floors_mean = XXX(XXX),
     bathrooms_mean = XXX(XXX)
   )</code></pre>
+<pre class="r"><code>kc_house %&gt;%
+  filter(mansion == &quot;Yes&quot;) %&gt;%
+  summarise(
+    floors_mean = mean(floors),
+    bathrooms_mean = mean(bathrooms)
+  )</code></pre>
+<pre><code># A tibble: 1 x 2
+  floors_mean bathrooms_mean
+        &lt;dbl&gt;          &lt;dbl&gt;
+1        1.92           3.68</code></pre>
 </div>
 <div id="d---simple-grouped-summaries" class="section level3">
 <h3>D - Simple grouped summaries</h3>
@@ -316,6 +484,14 @@ kc_house</code></pre>
 <pre class="r"><code>kc_house %&gt;%
   group_by(XXX) %&gt;%
   summarise(XXX = n())</code></pre>
+<pre class="r"><code>kc_house %&gt;%
+  group_by(mansion) %&gt;%
+  summarise(N = n())</code></pre>
+<pre><code># A tibble: 2 x 2
+  mansion     N
+  &lt;chr&gt;   &lt;int&gt;
+1 No      20862
+2 Yes       751</code></pre>
 <ol start="2" style="list-style-type: decimal">
 <li>What is the mean selling price of mansions versus non-mansions? To do this, just add another argument to your <code>summarise()</code> function!</li>
 </ol>
@@ -323,9 +499,26 @@ kc_house</code></pre>
   group_by(mansion) %&gt;%
   summarise(N = n(),
             XXX = XXX(XXX))</code></pre>
+<pre class="r"><code>kc_house %&gt;%
+  group_by(mansion) %&gt;%
+  summarise(N = n(),
+            price_mean = mean(price))</code></pre>
+<pre><code># A tibble: 2 x 3
+  mansion     N price_mean
+  &lt;chr&gt;   &lt;int&gt;      &lt;dbl&gt;
+1 No      20862    504024.
+2 Yes       751   1541915.</code></pre>
 <ol start="3" style="list-style-type: decimal">
 <li>Using <code>group_by()</code> and <code>summarise()</code>, create a dataframe showing the same results as the following table.</li>
 </ol>
+<pre class="r"><code>kc_house %&gt;%
+  group_by(mansion) %&gt;%
+  summarise(N = n(),
+            price_min = min(price),
+            price_mean = mean(price),
+            price_median = median(price),
+            price_max = max(price)) %&gt;%
+  knitr::kable()</code></pre>
 <table>
 <thead>
 <tr class="header">
@@ -357,8 +550,28 @@ kc_house</code></pre>
 </tbody>
 </table>
 <ol start="4" style="list-style-type: decimal">
-<li><p>Do houses built in later years tend to have more living space? To answer this, group the data by <code>built_yr</code>, and then calculate the mean number of living square meters. Be sure to also include the number of houses built in each year!</p></li>
-<li><p>Was that table too big? Try using the following code to get the results for each decade rather than each year!</p></li>
+<li>Do houses built in later years tend to have more living space? To answer this, group the data by <code>built_yr</code>, and then calculate the mean number of living square meters. Be sure to also include the number of houses built in each year!</li>
+</ol>
+<pre class="r"><code>kc_house %&gt;%
+  group_by(built_yr) %&gt;%
+  summarise(N = n(),
+            living = mean(living_sqm))</code></pre>
+<pre><code># A tibble: 116 x 3
+   built_yr     N living
+      &lt;dbl&gt; &lt;int&gt;  &lt;dbl&gt;
+ 1     1900    87   161.
+ 2     1901    29   164.
+ 3     1902    27   179.
+ 4     1903    46   140.
+ 5     1904    45   149.
+ 6     1905    74   183.
+ 7     1906    92   168.
+ 8     1907    65   177.
+ 9     1908    86   158.
+10     1909    94   177.
+# … with 106 more rows</code></pre>
+<ol start="5" style="list-style-type: decimal">
+<li>Was that table too big? Try using the following code to get the results for each decade rather than each year!</li>
 </ol>
 <pre class="r"><code>kc_house %&gt;%
   mutate(built_decade = floor(built_yr / 10)) %&gt;%
@@ -376,11 +589,60 @@ kc_house</code></pre>
 </ol>
 <pre class="r"><code>brumhilda &lt;- kc_house %&gt;%
   filter(XXX %in% c(XXX, XXX, XXX, XXX))</code></pre>
+<pre class="r"><code>brumhilda &lt;- kc_house %&gt;%
+  filter(zipcode %in% c(98001, 98109, 98117, 98199))</code></pre>
 <ol start="2" style="list-style-type: decimal">
-<li><p>For each of the zip codes, calculate the <code>mean()</code> and <code>median()</code> selling price (as well as the number of houses) in each zip code.</p></li>
-<li><p>Now Brumhilda wants the same data separated by whether or not the house is a mansion or not. Include these results by also grouping the data by <code>mansion</code> (as well as <code>zipcode</code>), and calculating the same summary statistics as before.</p></li>
-<li><p>Ok that was good, but now she also wants to know what the maximum and minimum number of floors were in each group. Add these summary statistics!</p></li>
+<li>For each of the zip codes, calculate the <code>mean()</code> and <code>median()</code> selling price (as well as the number of houses) in each zip code.</li>
 </ol>
+<pre class="r"><code>brumhilda %&gt;%
+  group_by(zipcode) %&gt;%
+  summarise(price_mean = mean(price),
+           price_median = median(price),
+           N = n())</code></pre>
+<pre><code># A tibble: 4 x 4
+  zipcode price_mean price_median     N
+    &lt;dbl&gt;      &lt;dbl&gt;        &lt;dbl&gt; &lt;int&gt;
+1   98001    280805.       260000   362
+2   98109    879624.       736000   109
+3   98117    576795.       544000   553
+4   98199    791821.       689800   317</code></pre>
+<ol start="3" style="list-style-type: decimal">
+<li>Now Brumhilda wants the same data separated by whether or not the house is a mansion or not. Include these results by also grouping the data by <code>mansion</code> (as well as <code>zipcode</code>), and calculating the same summary statistics as before.</li>
+</ol>
+<pre class="r"><code>brumhilda %&gt;%
+  group_by(zipcode, mansion) %&gt;%
+  summarise(price_mean = mean(price),
+           price_median = median(price),
+           N = n())</code></pre>
+<pre><code># A tibble: 8 x 5
+# Groups:   zipcode [4]
+  zipcode mansion price_mean price_median     N
+    &lt;dbl&gt; &lt;chr&gt;        &lt;dbl&gt;        &lt;dbl&gt; &lt;int&gt;
+1   98001 No         277589.       260000   359
+2   98001 Yes        665667.       637000     3
+3   98109 No         833528.       730500   106
+4   98109 Yes       2508333.      2900000     3
+5   98117 No         575626.       543000   551
+6   98117 Yes        898750        898750     2
+7   98199 No         753625.       675000   305
+8   98199 Yes       1762618.      1425000    12</code></pre>
+<ol start="4" style="list-style-type: decimal">
+<li>Ok that was good, but now she also wants to know what the maximum and minimum number of floors were in each group. Add these summary statistics!</li>
+</ol>
+<pre class="r"><code>brumhilda %&gt;%
+  group_by(zipcode) %&gt;%
+  summarise(price_mean = mean(price),
+           price_median = median(price),
+           floors_min = min(floors),
+           floors_max = max(floors),
+           N = n())</code></pre>
+<pre><code># A tibble: 4 x 6
+  zipcode price_mean price_median floors_min floors_max     N
+    &lt;dbl&gt;      &lt;dbl&gt;        &lt;dbl&gt;      &lt;dbl&gt;      &lt;dbl&gt; &lt;int&gt;
+1   98001    280805.       260000          1        2.5   362
+2   98109    879624.       736000          1        3     109
+3   98117    576795.       544000          1        3     553
+4   98199    791821.       689800          1        3     317</code></pre>
 </div>
 <div id="f---statistics" class="section level3">
 <h3>F - Statistics</h3>
@@ -399,29 +661,264 @@ prices &lt;- kc_house %&gt;%
 <li>Fill in the XXs in the code below, such that <code>x</code> becomes the <code>'no_waterfront'</code> prices and <code>y</code> becomes the <code>'waterfront'</code> prices.</li>
 </ol>
 <pre class="r"><code>waterfront_htest &lt;- t.test(x = prices$XX, y = prices$XX)</code></pre>
+<pre class="r"><code>waterfront_htest &lt;- t.test(x = prices$no_waterfront, y = prices$waterfront)</code></pre>
 <ol start="3" style="list-style-type: decimal">
-<li><p>Print your <code>waterfront_htest</code> object to see a printout of the main results.</p></li>
-<li><p>Look at the names of your <code>waterfront_htest</code> object with <code>names()</code>.</p></li>
-<li><p>Using the <code>$</code>, print the test statistic (<code>statistic</code>) from your <code>waterfront_htest</code> object.</p></li>
-<li><p>Now using <code>$</code>, print only the p-value (<code>p.value</code>) from the object.</p></li>
-<li><p>Run a Wilcoxon test instead of the t-test to evalute whether the result is robust. Is the result the same?</p></li>
+<li>Print your <code>waterfront_htest</code> object to see a printout of the main results.</li>
+</ol>
+<pre class="r"><code>waterfront_htest</code></pre>
+<pre><code>
+    Welch Two Sample t-test
+
+data:  prices$no_waterfront and prices$waterfront
+t = -13, df = 162, p-value &lt;2e-16
+alternative hypothesis: true difference in means is not equal to 0
+95 percent confidence interval:
+ -1303662  -956963
+sample estimates:
+mean of x mean of y 
+   531564   1661876 </code></pre>
+<ol start="4" style="list-style-type: decimal">
+<li>Look at the names of your <code>waterfront_htest</code> object with <code>names()</code>.</li>
+</ol>
+<pre class="r"><code>names(waterfront_htest)</code></pre>
+<pre><code> [1] &quot;statistic&quot;   &quot;parameter&quot;   &quot;p.value&quot;     &quot;conf.int&quot;    &quot;estimate&quot;   
+ [6] &quot;null.value&quot;  &quot;stderr&quot;      &quot;alternative&quot; &quot;method&quot;      &quot;data.name&quot;  </code></pre>
+<ol start="5" style="list-style-type: decimal">
+<li>Using the <code>$</code>, print the test statistic (<code>statistic</code>) from your <code>waterfront_htest</code> object.</li>
+</ol>
+<pre class="r"><code>waterfront_htest$statistic</code></pre>
+<pre><code>    t 
+-12.9 </code></pre>
+<ol start="6" style="list-style-type: decimal">
+<li>Now using <code>$</code>, print only the p-value (<code>p.value</code>) from the object.</li>
+</ol>
+<pre class="r"><code>waterfront_htest$p.value</code></pre>
+<pre><code>[1] 1.38e-26</code></pre>
+<ol start="7" style="list-style-type: decimal">
+<li>Run a Wilcoxon test instead of the t-test to evalute whether the result is robust. Is the result the same?</li>
 </ol>
 <pre class="r"><code>wilcox.test(x = prices$XX, y = prices$XX)</code></pre>
+<pre class="r"><code>wilcox.test(x = prices$no_waterfront, y = prices$waterfront)</code></pre>
+<pre><code>
+    Wilcoxon rank sum test with continuity correction
+
+data:  prices$no_waterfront and prices$waterfront
+W = 4e+05, p-value &lt;2e-16
+alternative hypothesis: true location shift is not equal to 0</code></pre>
 </div>
 <div id="x---challenges" class="section level3">
 <h3>X - Challenges</h3>
 <ol style="list-style-type: decimal">
-<li><p>Which zipcode has the highest percentage of houses on the waterfront? (Hint: group by zipcode, calculate the percentage of houses on the waterfront using <code>mean()</code>, then sort the data in descending order) with <code>arrange()</code>, then select the first row with <code>slice()</code>. Once you find it, try searching for that zipcode on Google Maps and see if it’s location makes sense!</p></li>
-<li><p>Which house had the highest price to living space ratio? To answer this, create a new variable called <code>price_to_living</code> that takes <code>price / living_sqm</code>. Then, sort the data in descending order of this variable, and select the first row with <code>slice()</code>! What id value do you get?</p></li>
+<li>Which zipcode has the highest percentage of houses on the waterfront? (Hint: group by zipcode, calculate the percentage of houses on the waterfront using <code>mean()</code>, then sort the data in descending order) with <code>arrange()</code>, then select the first row with <code>slice()</code>. Once you find it, try searching for that zipcode on Google Maps and see if it’s location makes sense!</li>
+</ol>
+<pre class="r"><code>kc_house %&gt;%
+  group_by(zipcode) %&gt;%
+  summarise(waterfront_p = mean(waterfront)) %&gt;%
+  arrange(desc(waterfront_p)) %&gt;%
+  slice(1)</code></pre>
+<pre><code># A tibble: 1 x 2
+  zipcode waterfront_p
+    &lt;dbl&gt;        &lt;dbl&gt;
+1   98070        0.203</code></pre>
+<ol start="2" style="list-style-type: decimal">
+<li>Which house had the highest price to living space ratio? To answer this, create a new variable called <code>price_to_living</code> that takes <code>price / living_sqm</code>. Then, sort the data in descending order of this variable, and select the first row with <code>slice()</code>! What id value do you get?</li>
 </ol>
 <pre class="{r‚}"><code>kc_house %&gt;%
   mutate(price_to_living = price / living_sqm) %&gt;%
   arrange(desc(price_to_living)) %&gt;%
   slice(1)</code></pre>
 <ol start="3" style="list-style-type: decimal">
-<li><p>Which are the top 10 zip codes in terms of mean housing prices? To answer this, group the data by zipcode, calculate the mean price, arrange the dataset in descending order of mean price, then select the top 10 rows!</p></li>
-<li><p>Create the following dataframe <em>exactly</em> as it appears.</p></li>
+<li>Which are the top 10 zip codes in terms of mean housing prices? To answer this, group the data by zipcode, calculate the mean price, arrange the dataset in descending order of mean price, then select the top 10 rows!</li>
 </ol>
+<pre class="r"><code>kc_house %&gt;%
+  group_by(zipcode) %&gt;%
+  summarise(price_mean = mean(price)) %&gt;%
+  arrange(desc(price_mean)) %&gt;%
+  slice(1:10)</code></pre>
+<pre><code># A tibble: 10 x 2
+   zipcode price_mean
+     &lt;dbl&gt;      &lt;dbl&gt;
+ 1   98039   2160607.
+ 2   98004   1355927.
+ 3   98040   1194230.
+ 4   98112   1095499.
+ 5   98102    901258.
+ 6   98109    879624.
+ 7   98105    862825.
+ 8   98006    859685.
+ 9   98119    849448.
+10   98005    810165.</code></pre>
+<ol start="4" style="list-style-type: decimal">
+<li>Create the following dataframe <em>exactly</em> as it appears.</li>
+</ol>
+<pre class="r"><code>kc_house %&gt;%
+  filter(built_yr &gt;= 1990 &amp; built_yr &lt; 1999) %&gt;%
+  group_by(built_yr) %&gt;%
+  summarise(N = n(),
+            price_mean = mean(price),
+            price_max = max(price),
+            living_sqm_mean = mean(living_sqm)) %&gt;%
+  knitr::kable(digits = 0)</code></pre>
+<table>
+<thead>
+<tr class="header">
+<th align="right">built_yr</th>
+<th align="right">N</th>
+<th align="right">price_mean</th>
+<th align="right">price_max</th>
+<th align="right">living_sqm_mean</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="right">1990</td>
+<td align="right">320</td>
+<td align="right">563966</td>
+<td align="right">3640900</td>
+<td align="right">234</td>
+</tr>
+<tr class="even">
+<td align="right">1991</td>
+<td align="right">224</td>
+<td align="right">630441</td>
+<td align="right">5300000</td>
+<td align="right">244</td>
+</tr>
+<tr class="odd">
+<td align="right">1992</td>
+<td align="right">198</td>
+<td align="right">548169</td>
+<td align="right">2480000</td>
+<td align="right">223</td>
+</tr>
+<tr class="even">
+<td align="right">1993</td>
+<td align="right">202</td>
+<td align="right">556612</td>
+<td align="right">3120000</td>
+<td align="right">226</td>
+</tr>
+<tr class="odd">
+<td align="right">1994</td>
+<td align="right">249</td>
+<td align="right">486834</td>
+<td align="right">2880500</td>
+<td align="right">209</td>
+</tr>
+<tr class="even">
+<td align="right">1995</td>
+<td align="right">169</td>
+<td align="right">577771</td>
+<td align="right">3200000</td>
+<td align="right">224</td>
+</tr>
+<tr class="odd">
+<td align="right">1996</td>
+<td align="right">195</td>
+<td align="right">639534</td>
+<td align="right">3100000</td>
+<td align="right">240</td>
+</tr>
+<tr class="even">
+<td align="right">1997</td>
+<td align="right">177</td>
+<td align="right">606058</td>
+<td align="right">3800000</td>
+<td align="right">234</td>
+</tr>
+<tr class="odd">
+<td align="right">1998</td>
+<td align="right">239</td>
+<td align="right">594159</td>
+<td align="right">1960000</td>
+<td align="right">241</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr class="header">
+<th align="right">built_yr</th>
+<th align="right">N</th>
+<th align="right">price_mean</th>
+<th align="right">price_max</th>
+<th align="right">living_sqm_mean</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="right">1990</td>
+<td align="right">320</td>
+<td align="right">563966</td>
+<td align="right">3640900</td>
+<td align="right">234</td>
+</tr>
+<tr class="even">
+<td align="right">1991</td>
+<td align="right">224</td>
+<td align="right">630441</td>
+<td align="right">5300000</td>
+<td align="right">244</td>
+</tr>
+<tr class="odd">
+<td align="right">1992</td>
+<td align="right">198</td>
+<td align="right">548169</td>
+<td align="right">2480000</td>
+<td align="right">223</td>
+</tr>
+<tr class="even">
+<td align="right">1993</td>
+<td align="right">202</td>
+<td align="right">556612</td>
+<td align="right">3120000</td>
+<td align="right">226</td>
+</tr>
+<tr class="odd">
+<td align="right">1994</td>
+<td align="right">249</td>
+<td align="right">486834</td>
+<td align="right">2880500</td>
+<td align="right">209</td>
+</tr>
+<tr class="even">
+<td align="right">1995</td>
+<td align="right">169</td>
+<td align="right">577771</td>
+<td align="right">3200000</td>
+<td align="right">224</td>
+</tr>
+<tr class="odd">
+<td align="right">1996</td>
+<td align="right">195</td>
+<td align="right">639534</td>
+<td align="right">3100000</td>
+<td align="right">240</td>
+</tr>
+<tr class="even">
+<td align="right">1997</td>
+<td align="right">177</td>
+<td align="right">606058</td>
+<td align="right">3800000</td>
+<td align="right">234</td>
+</tr>
+<tr class="odd">
+<td align="right">1998</td>
+<td align="right">239</td>
+<td align="right">594159</td>
+<td align="right">1960000</td>
+<td align="right">241</td>
+</tr>
+</tbody>
+</table>
+<pre class="r"><code>kc_house %&gt;%
+  filter(built_yr &gt;= 1990 &amp; built_yr &lt; 1999) %&gt;%
+  group_by(built_yr) %&gt;%
+  summarise(N = n(),
+            price_mean = mean(price),
+            price_max = max(price),
+            living_sqm_mean = mean(living_sqm)) %&gt;%
+  knitr::kable(digits = 0)</code></pre>
 <table>
 <thead>
 <tr class="header">
@@ -501,6 +998,19 @@ prices &lt;- kc_house %&gt;%
 <ol start="5" style="list-style-type: decimal">
 <li>The <code>chisq.test()</code> function allows you to do conduct a chi square test testing the relationship between two nominal variables. Look at the help menu to see how the function works. Then, conduct a chi-square test to see if there is a relationship between whether a house is on the waterfront and the grade of the house. Do houses on the waterfront tend to have higher (or lower) grades than houses not on the waterfront?</li>
 </ol>
+<pre class="r"><code># First look at a table
+table(kc_house$waterfront, kc_house$grade)</code></pre>
+<pre><code>   
+       1    3    4    5    6    7    8    9   10   11   12   13
+  0    1    3   29  238 2026 8958 6028 2590 1106  379   79   13
+  1    0    0    0    4   12   23   40   25   28   20   11    0</code></pre>
+<pre class="r"><code># Then run the test
+chisq.test(table(kc_house$waterfront, kc_house$grade))</code></pre>
+<pre><code>
+    Pearson&#39;s Chi-squared test
+
+data:  table(kc_house$waterfront, kc_house$grade)
+X-squared = 335, df = 11, p-value &lt;2e-16</code></pre>
 </div>
 </div>
 <div id="examples" class="section level2">

@@ -203,23 +203,107 @@ summary {
 <div id="a---setup" class="section level3">
 <h3>A - Setup</h3>
 <ol style="list-style-type: decimal">
-<li><p>Open your <code>BernRBootcamp</code> R project. It should already have the folders <code>1_Data</code> and <code>2_Code</code>. Make sure that the data files listed in the <code>Datasets</code> section above are in your <code>1_Data</code> folder</p></li>
-<li><p>Open a new R script. At the top of the script, using comments, write your name and the date. Save it as a new file called <code>wrangling_practical.R</code> in the <code>2_Code</code> folder.</p></li>
+<li>Open your <code>BernRBootcamp</code> R project. It should already have the folders <code>1_Data</code> and <code>2_Code</code>. Make sure that the data files listed in the <code>Datasets</code> section above are in your <code>1_Data</code> folder</li>
+</ol>
+<pre class="r"><code># Done!</code></pre>
+<ol start="2" style="list-style-type: decimal">
+<li>Open a new R script. At the top of the script, using comments, write your name and the date. Save it as a new file called <code>wrangling_practical.R</code> in the <code>2_Code</code> folder.</li>
+</ol>
+<pre class="r"><code># Done!</code></pre>
+<ol start="3" style="list-style-type: decimal">
 <li><p>Using <code>library()</code> load the set of packages for this practical listed in the packages section above.</p></li>
 <li><p>For this practical, we’ll use the <code>trial_act</code> data, this is the result of a randomized clinical trial comparing the effects of different medications on adults infected with the human immunodeficiency virus (You can learn more about the trial <a href="https://www.nejm.org/doi/full/10.1056/NEJM199610103351501">here</a>). Using the following template, load the data into R and store it as a new object called <code>trial_act</code>.</p></li>
 </ol>
 <pre class="r"><code># Load trial_act.csv from the data folder in your working directory
 
 trial_act &lt;- read_csv(file = &quot;XX&quot;)</code></pre>
+<pre class="r"><code>trial_act &lt;- read_csv(file = &quot;1_Data/trial_act.csv&quot;)</code></pre>
 <ol start="5" style="list-style-type: decimal">
-<li><p>Using the same code structure, load the <code>trial_act_demo_fake.csv</code> data as a new dataframe called <code>trial_act_demo</code></p></li>
-<li><p>Take a look at the first few rows of the datasets by printing them to the console.</p></li>
+<li>Using the same code structure, load the <code>trial_act_demo_fake.csv</code> data as a new dataframe called <code>trial_act_demo</code></li>
+</ol>
+<pre class="r"><code>trial_act_demo &lt;- read_csv(file = &quot;1_Data/trial_act_demo_fake.csv&quot;)</code></pre>
+<ol start="6" style="list-style-type: decimal">
+<li>Take a look at the first few rows of the datasets by printing them to the console.</li>
 </ol>
 <pre class="r"><code># Print trial_act object
 trial_act</code></pre>
+<pre><code># A tibble: 2,139 x 27
+   pidnum   age  wtkg  hemo  homo drugs karnof oprior   z30 zprior preanti  race
+    &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt;   &lt;dbl&gt; &lt;dbl&gt;
+ 1  10056    48  89.8     0     0     0    100      0     0      1       0     0
+ 2  10059    61  49.4     0     0     0     90      0     1      1     895     0
+ 3  10089    45  88.5     0     1     1     90      0     1      1     707     0
+ 4  10093    47  85.3     0     1     0    100      0     1      1    1399     0
+ 5  10124    43  66.7     0     1     0    100      0     1      1    1352     0
+ 6  10140    46  88.9     0     1     1    100      0     1      1    1181     0
+ 7  10165    31  73.0     0     1     0    100      0     1      1     930     0
+ 8  10190    41  66.2     0     1     1    100      0     1      1    1329     0
+ 9  10198    40  82.6     0     1     0     90      0     1      1    1074     0
+10  10229    35  78.0     0     1     0    100      0     1      1     964     0
+# … with 2,129 more rows, and 15 more variables: gender &lt;dbl&gt;, str2 &lt;dbl&gt;,
+#   strat &lt;dbl&gt;, symptom &lt;dbl&gt;, treat &lt;dbl&gt;, offtrt &lt;dbl&gt;, cd40 &lt;dbl&gt;,
+#   cd420 &lt;dbl&gt;, cd496 &lt;dbl&gt;, r &lt;dbl&gt;, cd80 &lt;dbl&gt;, cd820 &lt;dbl&gt;, cens &lt;dbl&gt;,
+#   days &lt;dbl&gt;, arms &lt;dbl&gt;</code></pre>
 <ol start="7" style="list-style-type: decimal">
 <li>Use the the <code>summary()</code> function to print more details on the columns of the datasets.</li>
 </ol>
+<pre class="r"><code>summary(trial_act)</code></pre>
+<pre><code>     pidnum            age            wtkg            hemo      
+ Min.   : 10056   Min.   :12.0   Min.   : 31.0   Min.   :0.000  
+ 1st Qu.: 81446   1st Qu.:29.0   1st Qu.: 66.7   1st Qu.:0.000  
+ Median :190566   Median :34.0   Median : 74.4   Median :0.000  
+ Mean   :248778   Mean   :35.2   Mean   : 75.1   Mean   :0.084  
+ 3rd Qu.:280277   3rd Qu.:40.0   3rd Qu.: 82.6   3rd Qu.:0.000  
+ Max.   :990077   Max.   :70.0   Max.   :159.9   Max.   :1.000  
+                                                                
+      homo           drugs           karnof          oprior           z30      
+ Min.   :0.000   Min.   :0.000   Min.   : 70.0   Min.   :0.000   Min.   :0.00  
+ 1st Qu.:0.000   1st Qu.:0.000   1st Qu.: 90.0   1st Qu.:0.000   1st Qu.:0.00  
+ Median :1.000   Median :0.000   Median :100.0   Median :0.000   Median :1.00  
+ Mean   :0.661   Mean   :0.131   Mean   : 95.4   Mean   :0.022   Mean   :0.55  
+ 3rd Qu.:1.000   3rd Qu.:0.000   3rd Qu.:100.0   3rd Qu.:0.000   3rd Qu.:1.00  
+ Max.   :1.000   Max.   :1.000   Max.   :100.0   Max.   :1.000   Max.   :1.00  
+                                                                               
+     zprior     preanti          race           gender           str2      
+ Min.   :1   Min.   :   0   Min.   :0.000   Min.   :0.000   Min.   :0.000  
+ 1st Qu.:1   1st Qu.:   0   1st Qu.:0.000   1st Qu.:1.000   1st Qu.:0.000  
+ Median :1   Median : 142   Median :0.000   Median :1.000   Median :1.000  
+ Mean   :1   Mean   : 379   Mean   :0.288   Mean   :0.828   Mean   :0.586  
+ 3rd Qu.:1   3rd Qu.: 740   3rd Qu.:1.000   3rd Qu.:1.000   3rd Qu.:1.000  
+ Max.   :1   Max.   :2851   Max.   :1.000   Max.   :1.000   Max.   :1.000  
+                                                                           
+     strat         symptom          treat           offtrt           cd40     
+ Min.   :1.00   Min.   :0.000   Min.   :0.000   Min.   :0.000   Min.   :   0  
+ 1st Qu.:1.00   1st Qu.:0.000   1st Qu.:1.000   1st Qu.:0.000   1st Qu.: 264  
+ Median :2.00   Median :0.000   Median :1.000   Median :0.000   Median : 340  
+ Mean   :1.98   Mean   :0.173   Mean   :0.751   Mean   :0.363   Mean   : 351  
+ 3rd Qu.:3.00   3rd Qu.:0.000   3rd Qu.:1.000   3rd Qu.:1.000   3rd Qu.: 423  
+ Max.   :3.00   Max.   :1.000   Max.   :1.000   Max.   :1.000   Max.   :1199  
+                                                                              
+     cd420          cd496            r              cd80          cd820     
+ Min.   :  49   Min.   :   0   Min.   :0.000   Min.   :  40   Min.   : 124  
+ 1st Qu.: 269   1st Qu.: 209   1st Qu.:0.000   1st Qu.: 654   1st Qu.: 632  
+ Median : 353   Median : 321   Median :1.000   Median : 893   Median : 865  
+ Mean   : 371   Mean   : 329   Mean   :0.627   Mean   : 987   Mean   : 935  
+ 3rd Qu.: 460   3rd Qu.: 440   3rd Qu.:1.000   3rd Qu.:1207   3rd Qu.:1146  
+ Max.   :1119   Max.   :1190   Max.   :1.000   Max.   :5011   Max.   :6035  
+                NA&#39;s   :797                                                 
+      cens            days           arms     
+ Min.   :0.000   Min.   :  14   Min.   :0.00  
+ 1st Qu.:0.000   1st Qu.: 727   1st Qu.:1.00  
+ Median :0.000   Median : 997   Median :2.00  
+ Mean   :0.244   Mean   : 879   Mean   :1.52  
+ 3rd Qu.:0.000   3rd Qu.:1091   3rd Qu.:3.00  
+ Max.   :1.000   Max.   :1231   Max.   :3.00  
+                                              </code></pre>
+<pre class="r"><code>summary(trial_act_demo)</code></pre>
+<pre><code>     pidnum          exercise    education        
+ Min.   : 10056   Min.   :0.0   Length:2139       
+ 1st Qu.: 81446   1st Qu.:1.0   Class :character  
+ Median :190566   Median :1.0   Mode  :character  
+ Mean   :248778   Mean   :2.2                     
+ 3rd Qu.:280277   3rd Qu.:3.0                     
+ Max.   :990077   Max.   :7.0                     </code></pre>
 </div>
 <div id="b---change-column-names-with-rename" class="section level3">
 <h3>B - Change column names with rename()</h3>
@@ -227,6 +311,11 @@ trial_act</code></pre>
 <li>Print the names of the <code>trial_act</code> data with <code>names(XXX)</code></li>
 </ol>
 <pre class="r"><code>names(XXX)</code></pre>
+<pre class="r"><code>names(trial_act)</code></pre>
+<pre><code> [1] &quot;pidnum&quot;  &quot;age&quot;     &quot;wtkg&quot;    &quot;hemo&quot;    &quot;homo&quot;    &quot;drugs&quot;   &quot;karnof&quot; 
+ [8] &quot;oprior&quot;  &quot;z30&quot;     &quot;zprior&quot;  &quot;preanti&quot; &quot;race&quot;    &quot;gender&quot;  &quot;str2&quot;   
+[15] &quot;strat&quot;   &quot;symptom&quot; &quot;treat&quot;   &quot;offtrt&quot;  &quot;cd40&quot;    &quot;cd420&quot;   &quot;cd496&quot;  
+[22] &quot;r&quot;       &quot;cd80&quot;    &quot;cd820&quot;   &quot;cens&quot;    &quot;days&quot;    &quot;arms&quot;   </code></pre>
 <ol start="2" style="list-style-type: decimal">
 <li>Using <code>rename()</code>, change the column name <code>wtkg</code> in the <code>trial_act</code> dataframe to <code>weight_kg</code>. Be sure to assign the result back to <code>trial_act</code> to change it!</li>
 </ol>
@@ -234,10 +323,22 @@ trial_act</code></pre>
 
 trial_act &lt;- trial_act %&gt;%
   rename(XX = XX)</code></pre>
+<pre class="r"><code>trial_act &lt;- trial_act %&gt;%
+  rename(weight_kg = wtkg)</code></pre>
 <ol start="3" style="list-style-type: decimal">
-<li><p>Look at the names of your <code>trial_act</code> dataframe again, do you now see the column <code>weight_kg</code>?</p></li>
-<li><p>Change the column name <code>age</code> to <code>age_y</code> (to specify that age is in years).</p></li>
+<li>Look at the names of your <code>trial_act</code> dataframe again, do you now see the column <code>weight_kg</code>?</li>
 </ol>
+<pre class="r"><code>names(trial_act)</code></pre>
+<pre><code> [1] &quot;pidnum&quot;    &quot;age&quot;       &quot;weight_kg&quot; &quot;hemo&quot;      &quot;homo&quot;      &quot;drugs&quot;    
+ [7] &quot;karnof&quot;    &quot;oprior&quot;    &quot;z30&quot;       &quot;zprior&quot;    &quot;preanti&quot;   &quot;race&quot;     
+[13] &quot;gender&quot;    &quot;str2&quot;      &quot;strat&quot;     &quot;symptom&quot;   &quot;treat&quot;     &quot;offtrt&quot;   
+[19] &quot;cd40&quot;      &quot;cd420&quot;     &quot;cd496&quot;     &quot;r&quot;         &quot;cd80&quot;      &quot;cd820&quot;    
+[25] &quot;cens&quot;      &quot;days&quot;      &quot;arms&quot;     </code></pre>
+<ol start="4" style="list-style-type: decimal">
+<li>Change the column name <code>age</code> to <code>age_y</code> (to specify that age is in years).</li>
+</ol>
+<pre class="r"><code>trial_act &lt;- trial_act %&gt;%
+  rename(age_y = age)</code></pre>
 </div>
 <div id="c---select-columns-with-select" class="section level3">
 <h3>C - Select columns with select()</h3>
@@ -246,17 +347,37 @@ trial_act &lt;- trial_act %&gt;%
 </ol>
 <pre class="r"><code>XXX %&gt;%
   select(XXX)</code></pre>
+<pre class="r"><code>trial_act %&gt;% 
+  select(age_y)</code></pre>
+<pre><code># A tibble: 2,139 x 1
+   age_y
+   &lt;dbl&gt;
+ 1    48
+ 2    61
+ 3    45
+ 4    47
+ 5    43
+ 6    46
+ 7    31
+ 8    41
+ 9    40
+10    35
+# … with 2,129 more rows</code></pre>
 <ol start="2" style="list-style-type: decimal">
 <li><p>Using <code>select()</code> select the columns <code>pidnum</code>, <code>age_y</code>, <code>gender</code>, and <code>weight_kg</code> (but don’t assign the result to anything)</p></li>
 <li><p>Now it’s time to create a new dataframe! Select the columns <code>pidnum</code>, <code>arms</code>, <code>cd40</code>, <code>cd420</code>, and <code>cd496</code> <em>and</em> assign the result to a new object called <code>CD4_wide</code>. The <code>cd40</code>, <code>cd420</code>, and <code>cd496</code> columns show patient’s CD4 T cell counts at baseline, 20 weeks, and 96 weeks. After you create <code>CD4_wide</code>, print it to make sure it worked!</p></li>
 </ol>
 <pre class="r"><code>XX &lt;- trial_act %&gt;% 
   select(XX, XX, XX, XX, ...)</code></pre>
+<pre class="r"><code>CD4_wide &lt;- trial_act %&gt;%
+  select(`pidnum`, `arms`, `cd40`, `cd420`, `cd496`)</code></pre>
 <ol start="4" style="list-style-type: decimal">
 <li>Did you know you can easily select all columns that start with specific characters using <code>starts_with()</code>? Try adapting the following code to get the same result you got before.</li>
 </ol>
 <pre class="r"><code>CD4_wide &lt;- trial_act %&gt;% 
   select(pidnum, arms, starts_with(&quot;XXX&quot;))</code></pre>
+<pre class="r"><code>CD4_wide &lt;- trial_act %&gt;% 
+  select(pidnum, arms, starts_with(&quot;cd&quot;))</code></pre>
 <ol start="5" style="list-style-type: decimal">
 <li>A colleague wants an anonymised dataframe that does <em>not</em> contain the columns <code>pidnum</code> and <code>age</code>. Create this dataframe by selecting all columns <em>except</em> <code>pidnum</code> and <code>age</code> (hint: use the notation <code>select(-XXX, -XXX))</code> to select everything <em>except</em> specified columns</li>
 </ol>
@@ -268,6 +389,8 @@ trial_act &lt;- trial_act %&gt;%
 </ol>
 <pre class="r"><code>trial_act &lt;- trial_act %&gt;%
   mutate(XX = XX * 12)</code></pre>
+<pre class="r"><code>trial_act &lt;- trial_act %&gt;%
+  mutate(age_m = age_y * 12)</code></pre>
 <ol start="2" style="list-style-type: decimal">
 <li>Using <code>mutate</code>, add the following new columns to <code>trial_act</code>. (Try combining these into <em>one</em> call to the <code>mutate()</code> function!)</li>
 </ol>
@@ -280,6 +403,10 @@ trial_act &lt;- trial_act %&gt;%
   mutate(weight_lb = XXX,
          cd_change_20 = XXX,
          XXX = XXX)</code></pre>
+<pre class="r"><code>trial_act &lt;- trial_act %&gt;% 
+  mutate(weight_lb = weight_kg * 2.2,
+         cd_change_20 = cd420 - cd40,
+         cd_change_960 = cd496 - cd40)</code></pre>
 <ol start="3" style="list-style-type: decimal">
 <li>If you look at the <code>gender</code> column, you will see that it is numeric (0s and 1s). Using the <code>mutate()</code> and <code>case_when()</code> functions, create a new column called <code>gender_char</code> which shows the gender as a string, where 0 = “female” and 1 = “male”:</li>
 </ol>
@@ -289,6 +416,11 @@ trial_act &lt;- trial_act %&gt;%
   gender_char = case_when(
     gender == XX ~ &quot;XX&quot;,
     gender == XX ~ &quot;XX&quot;))</code></pre>
+<pre class="r"><code>trial_act &lt;- trial_act %&gt;%
+  mutate(
+  gender_char = case_when(
+    gender == 0 ~ &quot;female&quot;,
+    gender == 1 ~ &quot;male&quot;))</code></pre>
 <ol start="4" style="list-style-type: decimal">
 <li>The column <code>arms</code> is also numeric and not very meaningful. Create a new column <code>arms_char</code> contains the names of the arms. Here is a table of the mapping</li>
 </ol>
@@ -318,6 +450,13 @@ trial_act &lt;- trial_act %&gt;%
 </tr>
 </tbody>
 </table>
+<pre class="r"><code>trial_act &lt;- trial_act %&gt;%
+  mutate(
+  arms_char = case_when(
+    arms == 0 ~ &quot;zidovudine&quot;,
+    arms == 1 ~ &quot;zidovudine and didanosine&quot;,
+    arms == 2 ~ &quot;zidovudine and zalcitabine&quot;,
+    arms == 3 ~ &quot;didanosine&quot;))</code></pre>
 <ol start="5" style="list-style-type: decimal">
 <li>If you haven’t already, try putting all the code for your previous questions in one call to <code>mutate()</code>. That is, in one block of code, create <code>age_m</code>, <code>weight_lb</code>, <code>cd_change_20</code>, <code>cd_change_960</code>, <code>gender_char</code> and <code>over50</code> using the <code>mutate()</code> function only once. Here’s how your code should look:</li>
 </ol>
@@ -330,6 +469,21 @@ trial_act &lt;- trial_act %&gt;%
     XXX = case_when(XXX),
     XXX = case_when(XXX)
   )</code></pre>
+<pre class="r"><code>trial_act &lt;- trial_act %&gt;%
+  mutate(
+    agem = age_y * 12,
+    weight_lb = weight_kg * 2.2,
+    cd_change_20 = cd420 - cd40,
+    cd_change_960 = cd496 - cd40,
+    gender_char = case_when(
+                      gender == 0 ~ &quot;female&quot;,
+                      gender == 1 ~ &quot;male&quot;),
+   arms_char = case_when(
+    arms == 0 ~ &quot;zidovudine&quot;,
+    arms == 1 ~ &quot;zidovudine and didanosine&quot;,
+    arms == 2 ~ &quot;zidovudine and zalcitabine&quot;,
+    arms == 3 ~ &quot;didanosine&quot;)
+  )</code></pre>
 </div>
 <div id="e---arrange-rows-with-arrange" class="section level3">
 <h3>E - Arrange rows with arrange()</h3>
@@ -338,27 +492,169 @@ trial_act &lt;- trial_act %&gt;%
 </ol>
 <pre class="r"><code>trial_act &lt;- trial_act %&gt;% 
  arrange(XXX)</code></pre>
+<pre class="r"><code>trial_act &lt;- trial_act %&gt;% 
+ arrange(age_y)
+
+trial_act</code></pre>
+<pre><code># A tibble: 2,139 x 34
+   pidnum age_y weight_kg  hemo  homo drugs karnof oprior   z30 zprior preanti
+    &lt;dbl&gt; &lt;dbl&gt;     &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt;   &lt;dbl&gt;
+ 1 940533    12      41.4     1     0     0    100      0     0      1       0
+ 2 950037    12      53.1     1     0     0    100      0     1      1     902
+ 3 950056    12      31       1     0     0    100      0     1      1    2500
+ 4 910034    13      32.7     1     0     0    100      0     1      1     553
+ 5 940534    13      62.9     1     0     0    100      0     0      1     366
+ 6 960014    13      48.5     1     0     0    100      0     0      1       0
+ 7 310767    14      65       1     0     0    100      0     1      1     490
+ 8 920050    14      54.2     1     0     0    100      0     1      1     610
+ 9 940544    14      41.1     1     0     0    100      0     0      1       0
+10 950061    14      64.3     1     0     0    100      0     1      1     387
+# … with 2,129 more rows, and 23 more variables: race &lt;dbl&gt;, gender &lt;dbl&gt;,
+#   str2 &lt;dbl&gt;, strat &lt;dbl&gt;, symptom &lt;dbl&gt;, treat &lt;dbl&gt;, offtrt &lt;dbl&gt;,
+#   cd40 &lt;dbl&gt;, cd420 &lt;dbl&gt;, cd496 &lt;dbl&gt;, r &lt;dbl&gt;, cd80 &lt;dbl&gt;, cd820 &lt;dbl&gt;,
+#   cens &lt;dbl&gt;, days &lt;dbl&gt;, arms &lt;dbl&gt;, age_m &lt;dbl&gt;, weight_lb &lt;dbl&gt;,
+#   cd_change_20 &lt;dbl&gt;, cd_change_960 &lt;dbl&gt;, gender_char &lt;chr&gt;,
+#   arms_char &lt;chr&gt;, agem &lt;dbl&gt;</code></pre>
 <ol start="2" style="list-style-type: decimal">
-<li><p>Now arrange the data in <em>descending</em> order of <code>age_y</code> (from highest to lowest). After, look the data to make sure it worked. To arrange data in descending order, just include <code>desc()</code> around the variable. E.g.; <code>data %&gt;% arrrange(desc(height))</code></p></li>
-<li><p>You can sort the rows of dataframes with multiple columns by including many arguments to <code>arrange()</code>. Now sort the data by arms (<code>arms</code>) and then age_y (<code>age_y</code>). Print the result to make sure it looks right!</p></li>
+<li>Now arrange the data in <em>descending</em> order of <code>age_y</code> (from highest to lowest). After, look the data to make sure it worked. To arrange data in descending order, just include <code>desc()</code> around the variable. E.g.; <code>data %&gt;% arrrange(desc(height))</code></li>
+</ol>
+<pre class="r"><code>trial_act &lt;- trial_act %&gt;% 
+ arrange(desc(age_y))
+
+trial_act</code></pre>
+<pre><code># A tibble: 2,139 x 34
+   pidnum age_y weight_kg  hemo  homo drugs karnof oprior   z30 zprior preanti
+    &lt;dbl&gt; &lt;dbl&gt;     &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt;   &lt;dbl&gt;
+ 1  11438    70      73.9     0     1     0    100      0     1      1     674
+ 2 211360    70      63.1     0     1     0     90      0     0      1       0
+ 3 211284    69      81.6     0     1     0    100      0     0      1       0
+ 4  50580    68      90.5     0     1     1    100      0     1      1     618
+ 5  81127    68      70.8     0     1     0     90      0     1      1    1770
+ 6  10924    67      71       0     1     0    100      0     0      1       0
+ 7 241150    67      82.1     0     1     0     90      0     0      1       0
+ 8  50662    66      84.4     0     1     0    100      0     0      1       0
+ 9  11987    65      77.2     0     1     0     90      0     0      1       0
+10 140797    65      60.5     0     1     0     90      0     0      1       0
+# … with 2,129 more rows, and 23 more variables: race &lt;dbl&gt;, gender &lt;dbl&gt;,
+#   str2 &lt;dbl&gt;, strat &lt;dbl&gt;, symptom &lt;dbl&gt;, treat &lt;dbl&gt;, offtrt &lt;dbl&gt;,
+#   cd40 &lt;dbl&gt;, cd420 &lt;dbl&gt;, cd496 &lt;dbl&gt;, r &lt;dbl&gt;, cd80 &lt;dbl&gt;, cd820 &lt;dbl&gt;,
+#   cens &lt;dbl&gt;, days &lt;dbl&gt;, arms &lt;dbl&gt;, age_m &lt;dbl&gt;, weight_lb &lt;dbl&gt;,
+#   cd_change_20 &lt;dbl&gt;, cd_change_960 &lt;dbl&gt;, gender_char &lt;chr&gt;,
+#   arms_char &lt;chr&gt;, agem &lt;dbl&gt;</code></pre>
+<ol start="3" style="list-style-type: decimal">
+<li>You can sort the rows of dataframes with multiple columns by including many arguments to <code>arrange()</code>. Now sort the data by arms (<code>arms</code>) and then age_y (<code>age_y</code>). Print the result to make sure it looks right!</li>
 </ol>
 <pre class="r"><code>trial_act &lt;- trial_act %&gt;% 
  arrange(XXX, XXX)</code></pre>
+<pre class="r"><code>trial_act &lt;- trial_act %&gt;% 
+ arrange(arms, age_y)
+
+trial_act</code></pre>
+<pre><code># A tibble: 2,139 x 34
+   pidnum age_y weight_kg  hemo  homo drugs karnof oprior   z30 zprior preanti
+    &lt;dbl&gt; &lt;dbl&gt;     &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt;   &lt;dbl&gt;
+ 1 960014    13      48.5     1     0     0    100      0     0      1       0
+ 2 960031    14      48.3     1     0     0    100      0     0      1       0
+ 3 990071    14      60       1     0     0    100      0     0      1       0
+ 4 980042    16      63       1     0     0    100      0     1      1     753
+ 5 171040    17      51.3     0     0     0     90      0     0      1       0
+ 6 990026    17     103.      1     0     0    100      0     1      1     417
+ 7 310234    18      57.3     1     0     0    100      0     1      1     344
+ 8 940519    18      56.8     1     0     0    100      0     1      1     805
+ 9 211314    19      50.8     0     0     0     90      0     0      1       0
+10 340767    19      74.8     0     1     0    100      0     0      1       0
+# … with 2,129 more rows, and 23 more variables: race &lt;dbl&gt;, gender &lt;dbl&gt;,
+#   str2 &lt;dbl&gt;, strat &lt;dbl&gt;, symptom &lt;dbl&gt;, treat &lt;dbl&gt;, offtrt &lt;dbl&gt;,
+#   cd40 &lt;dbl&gt;, cd420 &lt;dbl&gt;, cd496 &lt;dbl&gt;, r &lt;dbl&gt;, cd80 &lt;dbl&gt;, cd820 &lt;dbl&gt;,
+#   cens &lt;dbl&gt;, days &lt;dbl&gt;, arms &lt;dbl&gt;, age_m &lt;dbl&gt;, weight_lb &lt;dbl&gt;,
+#   cd_change_20 &lt;dbl&gt;, cd_change_960 &lt;dbl&gt;, gender_char &lt;chr&gt;,
+#   arms_char &lt;chr&gt;, agem &lt;dbl&gt;</code></pre>
 </div>
 <div id="f---filter-specific-rows-with-filter" class="section level3">
 <h3>F - Filter specific rows with <code>filter()</code></h3>
 <ol style="list-style-type: decimal">
-<li>Using the <code>filter()</code> function, filter only the rows from males (Hint: <code>gender_char == &quot;male&quot;</code>)</li>
+<li>Using the <code>filter()</code> function, filter only the rows from males (Hint: <code>gender_char == "male"</code>)</li>
 </ol>
 <pre class="r"><code>trial_act %&gt;%
   filter(XXX == &quot;XXX&quot;)</code></pre>
+<pre class="r"><code>trial_act %&gt;%
+  filter(gender_char == &quot;male&quot;)</code></pre>
+<pre><code># A tibble: 1,771 x 34
+   pidnum age_y weight_kg  hemo  homo drugs karnof oprior   z30 zprior preanti
+    &lt;dbl&gt; &lt;dbl&gt;     &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt;   &lt;dbl&gt;
+ 1 960014    13      48.5     1     0     0    100      0     0      1       0
+ 2 960031    14      48.3     1     0     0    100      0     0      1       0
+ 3 990071    14      60       1     0     0    100      0     0      1       0
+ 4 980042    16      63       1     0     0    100      0     1      1     753
+ 5 990026    17     103.      1     0     0    100      0     1      1     417
+ 6 940519    18      56.8     1     0     0    100      0     1      1     805
+ 7 340767    19      74.8     0     1     0    100      0     0      1       0
+ 8 211007    20      72.7     0     1     0     90      0     1      1      21
+ 9 261065    20      57.3     0     1     0    100      0     0      1       0
+10 490308    20      72       0     1     0    100      0     0      1     539
+# … with 1,761 more rows, and 23 more variables: race &lt;dbl&gt;, gender &lt;dbl&gt;,
+#   str2 &lt;dbl&gt;, strat &lt;dbl&gt;, symptom &lt;dbl&gt;, treat &lt;dbl&gt;, offtrt &lt;dbl&gt;,
+#   cd40 &lt;dbl&gt;, cd420 &lt;dbl&gt;, cd496 &lt;dbl&gt;, r &lt;dbl&gt;, cd80 &lt;dbl&gt;, cd820 &lt;dbl&gt;,
+#   cens &lt;dbl&gt;, days &lt;dbl&gt;, arms &lt;dbl&gt;, age_m &lt;dbl&gt;, weight_lb &lt;dbl&gt;,
+#   cd_change_20 &lt;dbl&gt;, cd_change_960 &lt;dbl&gt;, gender_char &lt;chr&gt;,
+#   arms_char &lt;chr&gt;, agem &lt;dbl&gt;</code></pre>
 <ol start="2" style="list-style-type: decimal">
-<li><p>Create a new dataframe called <code>trial_act_male</code> that only contains rows from males (hint: just assign what you did in the previous question to a new object!). After you create <code>trial_act_male</code>, print it to make sure it only contains data from males!</p></li>
-<li><p>Filter only rows for patients under the age of 60.</p></li>
-<li><p>A colleague of yours named Tracy wants a datafame only containing data from females over the age of 40. Create this dataframe with <code>filter()</code> and call it <code>trial_act_Tracy</code>. After you create the dataframe, print it to make sure it looks correct!</p></li>
+<li>Create a new dataframe called <code>trial_act_male</code> that only contains rows from males (hint: just assign what you did in the previous question to a new object!). After you create <code>trial_act_male</code>, print it to make sure it only contains data from males!</li>
+</ol>
+<pre class="r"><code>trial_act_male &lt;- trial_act %&gt;%
+  filter(gender_char == &quot;male&quot;)
+
+trial_act_male</code></pre>
+<pre><code># A tibble: 1,771 x 34
+   pidnum age_y weight_kg  hemo  homo drugs karnof oprior   z30 zprior preanti
+    &lt;dbl&gt; &lt;dbl&gt;     &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt;   &lt;dbl&gt;
+ 1 960014    13      48.5     1     0     0    100      0     0      1       0
+ 2 960031    14      48.3     1     0     0    100      0     0      1       0
+ 3 990071    14      60       1     0     0    100      0     0      1       0
+ 4 980042    16      63       1     0     0    100      0     1      1     753
+ 5 990026    17     103.      1     0     0    100      0     1      1     417
+ 6 940519    18      56.8     1     0     0    100      0     1      1     805
+ 7 340767    19      74.8     0     1     0    100      0     0      1       0
+ 8 211007    20      72.7     0     1     0     90      0     1      1      21
+ 9 261065    20      57.3     0     1     0    100      0     0      1       0
+10 490308    20      72       0     1     0    100      0     0      1     539
+# … with 1,761 more rows, and 23 more variables: race &lt;dbl&gt;, gender &lt;dbl&gt;,
+#   str2 &lt;dbl&gt;, strat &lt;dbl&gt;, symptom &lt;dbl&gt;, treat &lt;dbl&gt;, offtrt &lt;dbl&gt;,
+#   cd40 &lt;dbl&gt;, cd420 &lt;dbl&gt;, cd496 &lt;dbl&gt;, r &lt;dbl&gt;, cd80 &lt;dbl&gt;, cd820 &lt;dbl&gt;,
+#   cens &lt;dbl&gt;, days &lt;dbl&gt;, arms &lt;dbl&gt;, age_m &lt;dbl&gt;, weight_lb &lt;dbl&gt;,
+#   cd_change_20 &lt;dbl&gt;, cd_change_960 &lt;dbl&gt;, gender_char &lt;chr&gt;,
+#   arms_char &lt;chr&gt;, agem &lt;dbl&gt;</code></pre>
+<ol start="3" style="list-style-type: decimal">
+<li>Filter only rows for patients under the age of 60.</li>
+</ol>
+<pre class="r"><code>trial_act %&gt;%
+  filter(age_y &lt; 60)</code></pre>
+<pre><code># A tibble: 2,110 x 34
+   pidnum age_y weight_kg  hemo  homo drugs karnof oprior   z30 zprior preanti
+    &lt;dbl&gt; &lt;dbl&gt;     &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt;   &lt;dbl&gt;
+ 1 960014    13      48.5     1     0     0    100      0     0      1       0
+ 2 960031    14      48.3     1     0     0    100      0     0      1       0
+ 3 990071    14      60       1     0     0    100      0     0      1       0
+ 4 980042    16      63       1     0     0    100      0     1      1     753
+ 5 171040    17      51.3     0     0     0     90      0     0      1       0
+ 6 990026    17     103.      1     0     0    100      0     1      1     417
+ 7 310234    18      57.3     1     0     0    100      0     1      1     344
+ 8 940519    18      56.8     1     0     0    100      0     1      1     805
+ 9 211314    19      50.8     0     0     0     90      0     0      1       0
+10 340767    19      74.8     0     1     0    100      0     0      1       0
+# … with 2,100 more rows, and 23 more variables: race &lt;dbl&gt;, gender &lt;dbl&gt;,
+#   str2 &lt;dbl&gt;, strat &lt;dbl&gt;, symptom &lt;dbl&gt;, treat &lt;dbl&gt;, offtrt &lt;dbl&gt;,
+#   cd40 &lt;dbl&gt;, cd420 &lt;dbl&gt;, cd496 &lt;dbl&gt;, r &lt;dbl&gt;, cd80 &lt;dbl&gt;, cd820 &lt;dbl&gt;,
+#   cens &lt;dbl&gt;, days &lt;dbl&gt;, arms &lt;dbl&gt;, age_m &lt;dbl&gt;, weight_lb &lt;dbl&gt;,
+#   cd_change_20 &lt;dbl&gt;, cd_change_960 &lt;dbl&gt;, gender_char &lt;chr&gt;,
+#   arms_char &lt;chr&gt;, agem &lt;dbl&gt;</code></pre>
+<ol start="4" style="list-style-type: decimal">
+<li>A colleague of yours named Tracy wants a datafame only containing data from females over the age of 40. Create this dataframe with <code>filter()</code> and call it <code>trial_act_Tracy</code>. After you create the dataframe, print it to make sure it looks correct!</li>
 </ol>
 <pre class="r"><code>trial_act_Tracy &lt;- XXX %&gt;%
   filter(XXX &gt; XXX &amp; XXX == XXX)</code></pre>
+<pre class="r"><code>trial_act_Tracy &lt;- trial_act %&gt;%
+  filter(age_y &gt; 40 &amp; gender_char == &quot;female&quot;)</code></pre>
 </div>
 <div id="g---combine-dataframes-with-left_join" class="section level3">
 <h3>G - Combine dataframes with <code>left_join()</code></h3>
@@ -369,28 +665,52 @@ trial_act &lt;- trial_act %&gt;%
 </ol>
 <pre class="r"><code>trial_act &lt;- trial_act %&gt;%
   left_join(XX, by = &quot;XX&quot;)</code></pre>
+<pre class="r"><code>trial_act &lt;- trial_act %&gt;%
+  left_join(trial_act_demo, by = &quot;pidnum&quot;)</code></pre>
 <ol start="3" style="list-style-type: decimal">
 <li>Print your new <code>trial_act</code> dataframe. Do you now see the demographic data?</li>
 </ol>
+<pre class="r"><code>trial_act</code></pre>
+<pre><code># A tibble: 2,139 x 36
+   pidnum age_y weight_kg  hemo  homo drugs karnof oprior   z30 zprior preanti
+    &lt;dbl&gt; &lt;dbl&gt;     &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt;   &lt;dbl&gt;
+ 1 960014    13      48.5     1     0     0    100      0     0      1       0
+ 2 960031    14      48.3     1     0     0    100      0     0      1       0
+ 3 990071    14      60       1     0     0    100      0     0      1       0
+ 4 980042    16      63       1     0     0    100      0     1      1     753
+ 5 171040    17      51.3     0     0     0     90      0     0      1       0
+ 6 990026    17     103.      1     0     0    100      0     1      1     417
+ 7 310234    18      57.3     1     0     0    100      0     1      1     344
+ 8 940519    18      56.8     1     0     0    100      0     1      1     805
+ 9 211314    19      50.8     0     0     0     90      0     0      1       0
+10 340767    19      74.8     0     1     0    100      0     0      1       0
+# … with 2,129 more rows, and 25 more variables: race &lt;dbl&gt;, gender &lt;dbl&gt;,
+#   str2 &lt;dbl&gt;, strat &lt;dbl&gt;, symptom &lt;dbl&gt;, treat &lt;dbl&gt;, offtrt &lt;dbl&gt;,
+#   cd40 &lt;dbl&gt;, cd420 &lt;dbl&gt;, cd496 &lt;dbl&gt;, r &lt;dbl&gt;, cd80 &lt;dbl&gt;, cd820 &lt;dbl&gt;,
+#   cens &lt;dbl&gt;, days &lt;dbl&gt;, arms &lt;dbl&gt;, age_m &lt;dbl&gt;, weight_lb &lt;dbl&gt;,
+#   cd_change_20 &lt;dbl&gt;, cd_change_960 &lt;dbl&gt;, gender_char &lt;chr&gt;,
+#   arms_char &lt;chr&gt;, agem &lt;dbl&gt;, exercise &lt;dbl&gt;, education &lt;chr&gt;</code></pre>
 </div>
 <div id="h---reshaping-with-pivot_longer-and-pivot_wider" class="section level3">
 <h3>H - Reshaping with pivot_longer() and pivot_wider()</h3>
 <p>Remember the <code>CD4_wide</code> dataframe you created before? Currently it is in the <em>wide</em> format, where each row is a patient, where key data (different CD4 T cell counts) are in different columns like this:</p>
+<pre class="r"><code>CD4_wide &lt;- trial_act %&gt;%
+  select(`pidnum`, `arms`, `cd40`, `cd420`, `cd496`)</code></pre>
 <pre class="r"><code># Data is in a &#39;wide&#39; format
 CD4_wide</code></pre>
 <pre><code># A tibble: 2,139 x 5
    pidnum  arms  cd40 cd420 cd496
     &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
- 1  10056     2   422   477   660
- 2  10059     3   162   218    NA
- 3  10089     3   326   274   122
- 4  10093     3   287   394    NA
- 5  10124     0   504   353   660
- 6  10140     1   235   339   264
- 7  10165     0   244   225   106
- 8  10190     0   401   366   453
- 9  10198     3   214   107     8
-10  10229     0   221   132    NA
+ 1 960014     0   283   271    NA
+ 2 960031     0   481   428   519
+ 3 990071     0   166   169    28
+ 4 980042     0   299   214   124
+ 5 171040     0   549   415   436
+ 6 990026     0   373   218    NA
+ 7 310234     0   445   371   338
+ 8 940519     0   276   150    34
+ 9 211314     0   298   267    NA
+10 340767     0   503   452    NA
 # … with 2,129 more rows</code></pre>
 <p>Our goal is to convert this data to a ‘long’ format, where each row represents a single CD4 T cell count for a specific patient, like this:</p>
 <pre class="r"><code># This is the same data in &#39;long&#39; format
@@ -398,16 +718,16 @@ CD4_long</code></pre>
 <pre><code># A tibble: 6,417 x 4
    pidnum  arms time  value
     &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt; &lt;dbl&gt;
- 1  10056     2 cd40    422
- 2  10056     2 cd420   477
- 3  10056     2 cd496   660
- 4  10059     3 cd40    162
- 5  10059     3 cd420   218
- 6  10059     3 cd496    NA
- 7  10089     3 cd40    326
- 8  10089     3 cd420   274
- 9  10089     3 cd496   122
-10  10093     3 cd40    287
+ 1 960014     0 cd40    283
+ 2 960014     0 cd420   271
+ 3 960014     0 cd496    NA
+ 4 960031     0 cd40    481
+ 5 960031     0 cd420   428
+ 6 960031     0 cd496   519
+ 7 990071     0 cd40    166
+ 8 990071     0 cd420   169
+ 9 990071     0 cd496    28
+10 980042     0 cd40    299
 # … with 6,407 more rows</code></pre>
 <ol style="list-style-type: decimal">
 <li>Using the <code>pivot_longer()</code> function, create a new dataframe called <code>CD4_long</code> that shows the <code>CD4_wide</code> data in the ‘long’ format. To do this, use the following template. Set the grouping column to <code>time</code> and the new data column to <code>value</code>.</li>
@@ -417,12 +737,46 @@ CD4_long</code></pre>
          values_to = &#39;XXX&#39;,  # New data column
          cols = c(&#39;XXX&#39;, &#39;XXX&#39;, &#39;XXX&#39;))   # Names of columns to replicate</code></pre>
 <ol start="2" style="list-style-type: decimal">
-<li><p>Print your <code>CD4_long</code> dataframe! Do you now see that each row is a specific observation for a patient?</p></li>
-<li><p>Now use the <code>pivot_wider()</code> function to convert the long data <em>back</em> into the wide format! To do this, make the first argument <code>time</code>, and the second argument <code>value</code></p></li>
+<li>Print your <code>CD4_long</code> dataframe! Do you now see that each row is a specific observation for a patient?</li>
+</ol>
+<pre class="r"><code>CD4_long</code></pre>
+<pre><code># A tibble: 6,417 x 4
+   pidnum  arms time  value
+    &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt; &lt;dbl&gt;
+ 1 960014     0 cd40    283
+ 2 960014     0 cd420   271
+ 3 960014     0 cd496    NA
+ 4 960031     0 cd40    481
+ 5 960031     0 cd420   428
+ 6 960031     0 cd496   519
+ 7 990071     0 cd40    166
+ 8 990071     0 cd420   169
+ 9 990071     0 cd496    28
+10 980042     0 cd40    299
+# … with 6,407 more rows</code></pre>
+<ol start="3" style="list-style-type: decimal">
+<li>Now use the <code>pivot_wider()</code> function to convert the long data <em>back</em> into the wide format! To do this, make the first argument <code>time</code>, and the second argument <code>value</code></li>
 </ol>
 <pre class="r"><code>CD4_long %&gt;%
    pivot_wider(names_from = &#39;XXX&#39;,  # Grouping column
    values_from = &#39;XXX&#39;)   # Value columnn</code></pre>
+<pre class="r"><code>CD4_long %&gt;%
+  pivot_wider(names_from = &#39;time&#39;, 
+              values_from = &#39;value&#39;)</code></pre>
+<pre><code># A tibble: 2,139 x 5
+   pidnum  arms  cd40 cd420 cd496
+    &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+ 1 960014     0   283   271    NA
+ 2 960031     0   481   428   519
+ 3 990071     0   166   169    28
+ 4 980042     0   299   214   124
+ 5 171040     0   549   415   436
+ 6 990026     0   373   218    NA
+ 7 310234     0   445   371   338
+ 8 940519     0   276   150    34
+ 9 211314     0   298   267    NA
+10 340767     0   503   452    NA
+# … with 2,129 more rows</code></pre>
 </div>
 <div id="practice" class="section level3">
 <h3>Practice!</h3>
@@ -434,14 +788,92 @@ CD4_long</code></pre>
 <li>Only patients younger than 60</li>
 <li>Only patients whose baseline CD4 T cell counts <code>cd40</code> were greater than 250 <em>and</em> less than 400.</li>
 </ul>
+<pre class="r"><code>trial_A &lt;- trial_act %&gt;%
+  filter(drugs == 1,
+         age_y &lt; 60,
+         cd40 &gt; 250 &amp; cd40 &lt; 400)
+
+trial_A</code></pre>
+<pre><code># A tibble: 126 x 36
+   pidnum age_y weight_kg  hemo  homo drugs karnof oprior   z30 zprior preanti
+    &lt;dbl&gt; &lt;dbl&gt;     &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt;   &lt;dbl&gt;
+ 1 630023    26      86.2     0     0     1     90      0     0      1       0
+ 2  10378    27      67.3     0     0     1     90      0     1      1     875
+ 3 320475    27      66.6     0     0     1     90      0     0      1       0
+ 4  71333    29      73.9     0     1     1    100      0     0      1       0
+ 5 140809    29      70       0     1     1    100      0     0      1       0
+ 6 630030    29      88.2     0     0     1    100      0     0      1       0
+ 7 190395    33      68       0     0     1    100      0     1      1     842
+ 8 320365    34      86.0     0     0     1    100      0     0      1       0
+ 9 540015    34      72.6     0     0     1    100      0     0      1       0
+10 180917    35      77.7     0     0     1     90      0     1      1     248
+# … with 116 more rows, and 25 more variables: race &lt;dbl&gt;, gender &lt;dbl&gt;,
+#   str2 &lt;dbl&gt;, strat &lt;dbl&gt;, symptom &lt;dbl&gt;, treat &lt;dbl&gt;, offtrt &lt;dbl&gt;,
+#   cd40 &lt;dbl&gt;, cd420 &lt;dbl&gt;, cd496 &lt;dbl&gt;, r &lt;dbl&gt;, cd80 &lt;dbl&gt;, cd820 &lt;dbl&gt;,
+#   cens &lt;dbl&gt;, days &lt;dbl&gt;, arms &lt;dbl&gt;, age_m &lt;dbl&gt;, weight_lb &lt;dbl&gt;,
+#   cd_change_20 &lt;dbl&gt;, cd_change_960 &lt;dbl&gt;, gender_char &lt;chr&gt;,
+#   arms_char &lt;chr&gt;, agem &lt;dbl&gt;, exercise &lt;dbl&gt;, education &lt;chr&gt;</code></pre>
 <ol start="2" style="list-style-type: decimal">
-<li><p>Add a new column to <code>trial_act</code> called <code>drugs_char</code> which is <code>&quot;User&quot;</code> when drugs == 1, and <code>&quot;Non User&quot;</code> when drugs == 0.</p></li>
-<li><p>Create a new dataframe called <code>trial_B</code> from <code>trial_act</code> with the following restrictions:</p></li>
+<li>Add a new column to <code>trial_act</code> called <code>drugs_char</code> which is <code>"User"</code> when drugs == 1, and <code>"Non User"</code> when drugs == 0.</li>
+</ol>
+<pre class="r"><code>trial_act &lt;- trial_act %&gt;%
+  mutate(drugs_char = case_when(
+    drugs == 1 ~ &quot;User&quot;,
+    drugs == 0 ~ &quot;Non User&quot;
+  ))
+
+trial_act</code></pre>
+<pre><code># A tibble: 2,139 x 37
+   pidnum age_y weight_kg  hemo  homo drugs karnof oprior   z30 zprior preanti
+    &lt;dbl&gt; &lt;dbl&gt;     &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt;   &lt;dbl&gt;
+ 1 960014    13      48.5     1     0     0    100      0     0      1       0
+ 2 960031    14      48.3     1     0     0    100      0     0      1       0
+ 3 990071    14      60       1     0     0    100      0     0      1       0
+ 4 980042    16      63       1     0     0    100      0     1      1     753
+ 5 171040    17      51.3     0     0     0     90      0     0      1       0
+ 6 990026    17     103.      1     0     0    100      0     1      1     417
+ 7 310234    18      57.3     1     0     0    100      0     1      1     344
+ 8 940519    18      56.8     1     0     0    100      0     1      1     805
+ 9 211314    19      50.8     0     0     0     90      0     0      1       0
+10 340767    19      74.8     0     1     0    100      0     0      1       0
+# … with 2,129 more rows, and 26 more variables: race &lt;dbl&gt;, gender &lt;dbl&gt;,
+#   str2 &lt;dbl&gt;, strat &lt;dbl&gt;, symptom &lt;dbl&gt;, treat &lt;dbl&gt;, offtrt &lt;dbl&gt;,
+#   cd40 &lt;dbl&gt;, cd420 &lt;dbl&gt;, cd496 &lt;dbl&gt;, r &lt;dbl&gt;, cd80 &lt;dbl&gt;, cd820 &lt;dbl&gt;,
+#   cens &lt;dbl&gt;, days &lt;dbl&gt;, arms &lt;dbl&gt;, age_m &lt;dbl&gt;, weight_lb &lt;dbl&gt;,
+#   cd_change_20 &lt;dbl&gt;, cd_change_960 &lt;dbl&gt;, gender_char &lt;chr&gt;,
+#   arms_char &lt;chr&gt;, agem &lt;dbl&gt;, exercise &lt;dbl&gt;, education &lt;chr&gt;,
+#   drugs_char &lt;chr&gt;</code></pre>
+<ol start="3" style="list-style-type: decimal">
+<li>Create a new dataframe called <code>trial_B</code> from <code>trial_act</code> with the following restrictions:</li>
 </ol>
 <ul>
 <li>Only patients whose CD4 T cell counts increase <em>more</em> than 200 between baseline (<code>cd40</code>) and after 96 weeks (<code>cd496</code>)</li>
 <li>Only drug users</li>
 </ul>
+<pre class="r"><code>trial_B &lt;- trial_act %&gt;%
+  filter(
+    cd496 - cd40 &gt; 200,
+    drugs == 1
+  )
+
+trial_B</code></pre>
+<pre><code># A tibble: 8 x 37
+  pidnum age_y weight_kg  hemo  homo drugs karnof oprior   z30 zprior preanti
+   &lt;dbl&gt; &lt;dbl&gt;     &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt;   &lt;dbl&gt;
+1 220489    45      70.9     0     0     1    100      0     0      1       0
+2 140744    30      81.2     0     1     1    100      0     0      1       0
+3  10962    41      81.9     0     0     1     90      0     0      1       0
+4  50580    68      90.5     0     1     1    100      0     1      1     618
+5  10881    36      81.6     0     1     1    100      0     1      1      86
+6 250197    49      86.2     0     1     1     90      0     0      1       0
+7  50572    28      84.4     0     1     1     90      0     0      1      15
+8  50623    35      77       0     1     1    100      0     0      1       0
+# … with 26 more variables: race &lt;dbl&gt;, gender &lt;dbl&gt;, str2 &lt;dbl&gt;, strat &lt;dbl&gt;,
+#   symptom &lt;dbl&gt;, treat &lt;dbl&gt;, offtrt &lt;dbl&gt;, cd40 &lt;dbl&gt;, cd420 &lt;dbl&gt;,
+#   cd496 &lt;dbl&gt;, r &lt;dbl&gt;, cd80 &lt;dbl&gt;, cd820 &lt;dbl&gt;, cens &lt;dbl&gt;, days &lt;dbl&gt;,
+#   arms &lt;dbl&gt;, age_m &lt;dbl&gt;, weight_lb &lt;dbl&gt;, cd_change_20 &lt;dbl&gt;,
+#   cd_change_960 &lt;dbl&gt;, gender_char &lt;chr&gt;, arms_char &lt;chr&gt;, agem &lt;dbl&gt;,
+#   exercise &lt;dbl&gt;, education &lt;chr&gt;, drugs_char &lt;chr&gt;</code></pre>
 </div>
 </div>
 <div id="examples" class="section level2">
@@ -671,7 +1103,7 @@ baselers &lt;- baselers %&gt;%
 <tbody>
 <tr class="odd">
 <td align="left"><code>tidyverse</code></td>
-<td align="left"><code>install.packages(&quot;tidyverse&quot;)</code></td>
+<td align="left"><code>install.packages("tidyverse")</code></td>
 </tr>
 </tbody>
 </table>

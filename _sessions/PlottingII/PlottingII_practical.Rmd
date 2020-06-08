@@ -1,7 +1,6 @@
 ---
 title: "Plotting II"
-author: "
-<table style='table-layout:fixed;width:100%;border:0;padding:0;margin:0'><col width='10%'><col width='10%'>
+author: "<table style='table-layout:fixed;width:100%;border:0;padding:0;margin:0'><col width='10%'><col width='10%'>
   <tr style='border:none'>
     <td style='display:block;width:100%;text-align:left;vertical-align:bottom;padding:0;margin:0;border:none' nowrap>
       <font style='font-style:normal'>Introduction to R</font><br>
@@ -24,8 +23,7 @@ author: "
     <td style='width:100%;vertical-align:bottom;text-align:right;padding:0;margin:0;border:none'>
       <img src='https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/by-sa.png' style='height:15px;width:80px'/>
     </td>
-  </tr>
-</table>"
+  </tr></table>"
 output:
   html_document:
     css: practical.css
@@ -37,8 +35,8 @@ knitr::opts_chunk$set(comment = NA,
                       fig.width = 6, 
                       fig.height = 6,
                       fig.align = 'center',
-                      echo = FALSE, 
-                      eval = FALSE, 
+                      echo = TRUE, 
+                      eval = TRUE, 
                       warning = FALSE,
                       message = FALSE)
 
@@ -48,6 +46,7 @@ library(tidyverse)
 library(gridExtra)
 library(ggthemes)
 require(ggmap)
+library(viridis)
 
 crime = read_csv('1_Data/crime.csv')
 
@@ -134,13 +133,13 @@ ggplot(data = crime,
 
 ```{r, echo = TRUE, eval = TRUE}
 # vector of crime variables
-columns = c("murders","robberies","assaults","burglaries","larcenies","autoTheft","arsons")
+crime_vars = c("murders","robberies","assaults","burglaries","larcenies","autoTheft","arsons")
 
 # transform to long
 crime_long <- crime %>% 
-  pivot_longer(names_to = "crime_vars",
+  pivot_longer(names_to = "crime_var",
                values_to = "frequency",
-               cols = columns)
+               cols = crime_vars)
 ```
 
 4. Using the the `crime_long` data set, you can now make use of the amazing power of `ggplot2`'s facet functions, such as `facet_wrap()`. Use `facet_wrap()` to automatically plot crime frequency against the percentage of people using public transportation for each of the crime variables. 
@@ -158,7 +157,7 @@ ggplot(data = crime_long,
        mapping = aes(x = PctUsePubTrans, y = frequency)) + 
   geom_point() + 
   scale_y_log10() + 
-  facet_wrap(~ crime_vars)
+  facet_wrap(~ crime_var)
 ```
 
 5. This was much more efficient, right? Now explore the relationship of frequency to other variables, such as `medIncome`, `TotalPctDiv`, or `PctNotHSGrad`, for each of the crime measures. What variables do predict, which kind of crime? Explore!
@@ -167,8 +166,8 @@ ggplot(data = crime_long,
 
 Now that we have an informative plot, let's focus on making it a bit more "pretty"", using ggplot's `theme()` function. The goal is to create a plot that looks like the plot below.  
 
-```{r, eval = TRUE, echo = FALSE}
-ggplot(data = crime_long,
+```{r, eval = TRUE}
+crime_facets <- ggplot(data = crime_long,
        mapping = aes(x = PctUsePubTrans, y = frequency)) + 
   geom_point() + 
   scale_y_log10() + 
@@ -183,16 +182,15 @@ ggplot(data = crime_long,
     strip.text = element_text(face='italic', size=12, hjust=1),
     axis.title.y = element_text(size=12,margin=margin(r = 10)),
     axis.title.x = element_text(size=12,margin=margin(t = 10)),
-    panel.spacing = unit(1.1, "lines")
-    
-  ) + 
+    panel.spacing = unit(1.1, "lines")) + 
   labs(x = '% public transportation', y = 'Crime frequency')
+crime_facets
 ```
 
 
 1. To begin with store one of the facetted plots of section B as `crime_facets`.
 
-```{r}
+```{r, eval = FALSE, echo = TRUE}
 crime_facets <- XX
 ```
 
@@ -556,78 +554,6 @@ itineraries <- tibble(
   lon_end = 77.21,
   lat_start = 47.55,
   lat_end = 28.64)
-
-# flat map
-map <- ggplot() +
-  geom_polygon(data = world,  aes(long, lat, group = group), fill = "grey") +
-  theme_void()
-
-# add locations to map
-map + 
-  geom_curve(data = itineraries,
-             mapping = aes(x = lon_start, y = lat_start,
-                           xend = lon_end, yend = lat_end),
-                           col = 'steelblue', lty = 2, lwd = 1.2) +
-  geom_point(data = locations, 
-             mapping = aes(x = lon, y = lat), 
-             color = "steelblue", size = 4)
-
-```
-
-4. A great companion for maps in `ggplot2` is the `ggmap` package. Provided you have created an API key [**here**](https://developers.google.com/maps/documentation/geocoding/get-api-key) and registered it using the `register_google()` function, you can use the `geocode()` function to easily identify locations of maps or regions. 
-
-```{r, echo = TRUE, eval = FALSE, fig.width = 8, fig.height = 4}
-# register API
-register_google(XXX)
-
-# my travel itenerary
-itinerary <- c('New York', 'Buenos Aires', 'Basel', 'Cape town', 'Mumbai', 'Beijing', 'Sydney', 'Auckland')
-
-# get locations
-locations <- itinerary %>% geocode()
-
-# itineraries
-itineraries <- tibble(
-  lon_start = locations$lon[-length(itinerary)],
-  lat_start = locations$lat[-length(itinerary)],  
-  lon_end = locations$lon[-1],
-  lat_end = locations$lat[-1]
-  ) 
-
-# flat map
-map <- ggplot() +
-  geom_polygon(data = world,  aes(long, lat, group = group), fill = "grey") +
-  theme_void()
-
-# add locations to map
-map + 
-  geom_curve(data = itineraries,
-             mapping = aes(x = lon_start, y = lat_start,
-                           xend = lon_end, yend = lat_end),
-                           col = 'steelblue', lty = 2, lwd = 1.2) +
-  geom_point(data = locations, 
-             mapping = aes(x = lon, y = lat), 
-             color = "steelblue", size = 4)
-
-```
-
-```{r, echo = FALSE, eval = TRUE, fig.width = 8, fig.height = 4}
-# register API
-register_google('AIzaSyD3Qjgf-skqll06EBy3iZg2BvMzJMKP474')
-
-# my travel itenerary
-itinerary <- c('New York', 'Buenos Aires', 'Basel', 'Cape town', 'Mumbai', 'Beijing', 'Sydney', 'Auckland')
-
-# get locations
-locations <- itinerary %>% geocode()
-
-# itineraries
-itineraries <- tibble(
-  lon_start = locations$lon[-length(itinerary)],
-  lat_start = locations$lat[-length(itinerary)],  
-  lon_end = locations$lon[-1],
-  lat_end = locations$lat[-1]
-  ) 
 
 # flat map
 map <- ggplot() +
